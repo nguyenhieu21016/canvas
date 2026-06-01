@@ -46,9 +46,22 @@ create table if not exists public.modules (
   updated_at timestamptz not null default now()
 );
 
+create table if not exists public.lecture_groups (
+  id uuid primary key default gen_random_uuid(),
+  module_id uuid not null references public.modules(id) on delete cascade,
+  owner_id uuid not null references public.profiles(id) on delete cascade default auth.uid(),
+  title text not null,
+  description text,
+  sort_order integer not null default 0,
+  published boolean not null default true,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
 create table if not exists public.lectures (
   id uuid primary key default gen_random_uuid(),
   module_id uuid not null references public.modules(id) on delete cascade,
+  group_id uuid references public.lecture_groups(id) on delete set null,
   owner_id uuid not null references public.profiles(id) on delete cascade default auth.uid(),
   title text not null,
   description text,
@@ -58,6 +71,9 @@ create table if not exists public.lectures (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+alter table public.lectures
+add column if not exists group_id uuid references public.lecture_groups(id) on delete set null;
 
 create table if not exists public.assignments (
   id uuid primary key default gen_random_uuid(),
@@ -121,11 +137,25 @@ create table if not exists public.attempt_answers (
 );
 
 create index if not exists modules_phase_id_idx on public.modules(phase_id);
+create index if not exists lecture_groups_module_id_idx on public.lecture_groups(module_id);
 create index if not exists lectures_module_id_idx on public.lectures(module_id);
+create index if not exists lectures_group_id_idx on public.lectures(group_id);
 create index if not exists assignments_lecture_id_idx on public.assignments(lecture_id);
 create index if not exists questions_assignment_id_idx on public.questions(assignment_id);
 create index if not exists attempts_student_id_idx on public.attempts(student_id);
 create index if not exists attempts_assignment_id_idx on public.attempts(assignment_id);
+create index if not exists profiles_role_created_at_idx on public.profiles(role, created_at desc);
+create index if not exists phases_published_sort_idx on public.phases(published, sort_order, created_at);
+create index if not exists modules_published_phase_sort_idx on public.modules(published, phase_id, sort_order, created_at);
+create index if not exists lecture_groups_published_module_sort_idx on public.lecture_groups(published, module_id, sort_order, created_at);
+create index if not exists lectures_published_module_sort_idx on public.lectures(published, module_id, sort_order, created_at);
+create index if not exists lectures_published_group_sort_idx on public.lectures(published, group_id, sort_order, created_at);
+create index if not exists assignments_published_lecture_sort_idx on public.assignments(published, lecture_id, sort_order, created_at);
+create index if not exists assignments_owner_created_at_idx on public.assignments(owner_id, created_at desc);
+create index if not exists questions_assignment_sort_idx on public.questions(assignment_id, sort_order, created_at);
+create index if not exists attempts_status_submitted_at_idx on public.attempts(status, submitted_at desc);
+create index if not exists attempts_student_status_submitted_at_idx on public.attempts(student_id, status, submitted_at desc);
+create index if not exists attempts_assignment_status_submitted_at_idx on public.attempts(assignment_id, status, submitted_at desc);
 
 create or replace function public.touch_updated_at()
 returns trigger
@@ -150,6 +180,11 @@ for each row execute function public.touch_updated_at();
 drop trigger if exists touch_modules_updated_at on public.modules;
 create trigger touch_modules_updated_at
 before update on public.modules
+for each row execute function public.touch_updated_at();
+
+drop trigger if exists touch_lecture_groups_updated_at on public.lecture_groups;
+create trigger touch_lecture_groups_updated_at
+before update on public.lecture_groups
 for each row execute function public.touch_updated_at();
 
 drop trigger if exists touch_lectures_updated_at on public.lectures;
@@ -286,6 +321,7 @@ $$;
 alter table public.profiles enable row level security;
 alter table public.phases enable row level security;
 alter table public.modules enable row level security;
+alter table public.lecture_groups enable row level security;
 alter table public.lectures enable row level security;
 alter table public.assignments enable row level security;
 alter table public.questions enable row level security;
@@ -353,6 +389,27 @@ with check (public.can_manage_owner(owner_id));
 drop policy if exists "modules delete owner admin" on public.modules;
 create policy "modules delete owner admin"
 on public.modules for delete
+using (public.can_manage_owner(owner_id));
+
+drop policy if exists "lecture_groups select visible" on public.lecture_groups;
+create policy "lecture_groups select visible"
+on public.lecture_groups for select
+using (published or public.can_manage_owner(owner_id));
+
+drop policy if exists "lecture_groups insert manager" on public.lecture_groups;
+create policy "lecture_groups insert manager"
+on public.lecture_groups for insert
+with check (public.is_manager() and (owner_id = auth.uid() or public.is_admin()));
+
+drop policy if exists "lecture_groups update owner admin" on public.lecture_groups;
+create policy "lecture_groups update owner admin"
+on public.lecture_groups for update
+using (public.can_manage_owner(owner_id))
+with check (public.can_manage_owner(owner_id));
+
+drop policy if exists "lecture_groups delete owner admin" on public.lecture_groups;
+create policy "lecture_groups delete owner admin"
+on public.lecture_groups for delete
 using (public.can_manage_owner(owner_id));
 
 drop policy if exists "lectures select visible" on public.lectures;
@@ -693,6 +750,45 @@ begin
 end;
 $$;
 
+create or replace function public.get_dashboard_stats()
+returns jsonb
+language sql
+security definer
+set search_path = public
+as $$
+  with actor as (
+    select id, role
+    from public.profiles
+    where id = auth.uid()
+      and status = 'active'
+      and role in ('teacher'::public.app_role, 'admin'::public.app_role)
+  ),
+  visible_assignments as (
+    select a.id
+    from public.assignments a
+    cross join actor
+    where actor.role = 'admin'::public.app_role
+      or a.owner_id = actor.id
+  ),
+  submitted_attempts as (
+    select at.score_10
+    from public.attempts at
+    join visible_assignments va on va.id = at.assignment_id
+    where at.status = 'submitted'::public.attempt_status
+  )
+  select jsonb_build_object(
+    'total_students', (
+      select count(*)
+      from public.profiles p
+      cross join actor
+      where p.role = 'student'::public.app_role
+    ),
+    'total_assignments', (select count(*) from visible_assignments),
+    'total_submissions', (select count(*) from submitted_attempts),
+    'average_score', coalesce((select round(avg(score_10)::numeric, 2) from submitted_attempts), 0)
+  );
+$$;
+
 create or replace function public.admin_create_user_sql(
   p_email text,
   p_password text,
@@ -823,10 +919,51 @@ begin
 end;
 $$;
 
+create or replace function public.admin_delete_user_sql(p_user_id uuid)
+returns void
+language plpgsql
+security definer
+set search_path = public, auth
+as $$
+declare
+  v_actor_role public.app_role;
+  v_target_role public.app_role;
+begin
+  select role into v_actor_role
+  from public.profiles
+  where id = auth.uid()
+    and status = 'active';
+
+  if v_actor_role is null or v_actor_role not in ('teacher'::public.app_role, 'admin'::public.app_role) then
+    raise exception 'Manager role required' using errcode = '42501';
+  end if;
+
+  if p_user_id = auth.uid() then
+    raise exception 'Cannot delete your own account' using errcode = '42501';
+  end if;
+
+  select role into v_target_role
+  from public.profiles
+  where id = p_user_id;
+
+  if v_target_role is null then
+    raise exception 'User not found' using errcode = 'P0002';
+  end if;
+
+  if v_target_role <> 'student'::public.app_role then
+    raise exception 'Only student accounts can be deleted here' using errcode = '42501';
+  end if;
+
+  delete from auth.users
+  where id = p_user_id;
+end;
+$$;
+
 grant usage on schema public to anon, authenticated;
 grant select, insert, update, delete on public.profiles to authenticated;
 grant select, insert, update, delete on public.phases to authenticated;
 grant select, insert, update, delete on public.modules to authenticated;
+grant select, insert, update, delete on public.lecture_groups to authenticated;
 grant select, insert, update, delete on public.lectures to authenticated;
 grant select, insert, update, delete on public.assignments to authenticated;
 grant select, insert, update, delete on public.questions to authenticated;
@@ -835,7 +972,9 @@ grant select, insert, update, delete on public.attempts to authenticated;
 grant select, insert, update, delete on public.attempt_answers to authenticated;
 grant execute on function public.submit_attempt(uuid) to authenticated;
 grant execute on function public.get_attempt_review(uuid) to authenticated;
+grant execute on function public.get_dashboard_stats() to authenticated;
 grant execute on function public.admin_create_user_sql(text, text, text, public.app_role) to authenticated;
+grant execute on function public.admin_delete_user_sql(uuid) to authenticated;
 
 -- Seed admin flow:
 -- 1. Create the first admin user in Supabase Auth Dashboard.

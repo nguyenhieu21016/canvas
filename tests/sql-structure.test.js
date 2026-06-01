@@ -9,6 +9,7 @@ describe('Supabase migration', () => {
       'profiles',
       'phases',
       'modules',
+      'lecture_groups',
       'lectures',
       'assignments',
       'questions',
@@ -43,5 +44,18 @@ describe('Supabase migration', () => {
     expect(sql).toContain('Teachers can only create students');
     expect(sql).toContain('insert into auth.users');
     expect(sql).toContain('grant execute on function public.admin_create_user_sql');
+    expect(sql).toContain('create or replace function public.admin_delete_user_sql');
+    expect(sql).toContain('Only student accounts can be deleted here');
+    expect(sql).toContain('delete from auth.users');
+    expect(sql).toContain('grant execute on function public.admin_delete_user_sql');
+  });
+
+  it('adds indexes and aggregate RPCs for common dashboard queries', () => {
+    expect(sql).toContain('create index if not exists profiles_role_created_at_idx');
+    expect(sql).toContain('create index if not exists lecture_groups_published_module_sort_idx');
+    expect(sql).toContain('create index if not exists attempts_status_submitted_at_idx');
+    expect(sql).toContain('create index if not exists questions_assignment_sort_idx');
+    expect(sql).toContain('create or replace function public.get_dashboard_stats');
+    expect(sql).toContain('grant execute on function public.get_dashboard_stats()');
   });
 });

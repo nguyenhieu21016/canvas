@@ -1,5 +1,8 @@
 import { supabase } from './supabaseClient.js';
 
+const CACHE_TTL_MS = 20_000;
+const cache = new Map();
+
 function requireSupabase() {
   if (!supabase) {
     throw new Error('Supabase chưa được cấu hình. Tạo .env từ .env.example rồi khởi động lại dev server.');
@@ -9,6 +12,27 @@ function requireSupabase() {
 
 function assertOk({ error }) {
   if (error) throw error;
+}
+
+function getCached(key) {
+  const item = cache.get(key);
+  if (!item || item.expiresAt < Date.now()) {
+    cache.delete(key);
+    return null;
+  }
+  return item.value;
+}
+
+function setCached(key, value, ttl = CACHE_TTL_MS) {
+  cache.set(key, {
+    value,
+    expiresAt: Date.now() + ttl,
+  });
+  return value;
+}
+
+function clearLmsCache() {
+  cache.clear();
 }
 
 export async function getSession() {
@@ -65,42 +89,80 @@ export async function getCurrentProfile() {
 }
 
 export async function fetchLearningPath(role = 'student') {
+  const cacheKey = `learning-path:${role}`;
+  const cached = getCached(cacheKey);
+  if (cached) return cached;
+
   const client = requireSupabase();
   const shouldFilterPublished = role === 'student';
 
-  let phasesQuery = client.from('phases').select('*').order('sort_order').order('created_at');
-  let modulesQuery = client.from('modules').select('*').order('sort_order').order('created_at');
-  let lecturesQuery = client.from('lectures').select('*').order('sort_order').order('created_at');
-  let assignmentsQuery = client.from('assignments').select('*').order('sort_order').order('created_at');
+  let phasesQuery = client
+    .from('phases')
+    .select('id, owner_id, title, description, sort_order, published, created_at')
+    .order('sort_order')
+    .order('created_at');
+  let modulesQuery = client
+    .from('modules')
+    .select('id, phase_id, owner_id, title, description, sort_order, published, created_at')
+    .order('sort_order')
+    .order('created_at');
+  let lectureGroupsQuery = client
+    .from('lecture_groups')
+    .select('id, module_id, owner_id, title, description, sort_order, published, created_at')
+    .order('sort_order')
+    .order('created_at');
+  let lecturesQuery = client
+    .from('lectures')
+    .select('id, module_id, group_id, owner_id, title, description, slide_url, sort_order, published, created_at')
+    .order('sort_order')
+    .order('created_at');
+  let assignmentsQuery = client
+    .from('assignments')
+    .select('id, lecture_id, owner_id, title, description, pdf_url, sort_order, published, created_at')
+    .order('sort_order')
+    .order('created_at');
 
   if (shouldFilterPublished) {
     phasesQuery = phasesQuery.eq('published', true);
     modulesQuery = modulesQuery.eq('published', true);
+    lectureGroupsQuery = lectureGroupsQuery.eq('published', true);
     lecturesQuery = lecturesQuery.eq('published', true);
     assignmentsQuery = assignmentsQuery.eq('published', true);
   }
 
-  const [phasesResult, modulesResult, lecturesResult, assignmentsResult] = await Promise.all([
+  const [phasesResult, modulesResult, lectureGroupsResult, lecturesResult, assignmentsResult] = await Promise.all([
     phasesQuery,
     modulesQuery,
+    lectureGroupsQuery,
     lecturesQuery,
     assignmentsQuery,
   ]);
-  [phasesResult, modulesResult, lecturesResult, assignmentsResult].forEach(assertOk);
+  [phasesResult, modulesResult, lectureGroupsResult, lecturesResult, assignmentsResult].forEach(assertOk);
 
   const modulesByPhase = new Map();
+  const groupsByModule = new Map();
   const lecturesByModule = new Map();
+  const lecturesByGroup = new Map();
   const assignmentsByLecture = new Map();
   const freeAssignments = [];
 
   for (const module of modulesResult.data ?? []) {
     if (!modulesByPhase.has(module.phase_id)) modulesByPhase.set(module.phase_id, []);
-    modulesByPhase.get(module.phase_id).push({ ...module, lectures: [] });
+    modulesByPhase.get(module.phase_id).push({ ...module, lecture_groups: [], lectures: [] });
+  }
+
+  for (const group of lectureGroupsResult.data ?? []) {
+    if (!groupsByModule.has(group.module_id)) groupsByModule.set(group.module_id, []);
+    groupsByModule.get(group.module_id).push({ ...group, lectures: [] });
   }
 
   for (const lecture of lecturesResult.data ?? []) {
     if (!lecturesByModule.has(lecture.module_id)) lecturesByModule.set(lecture.module_id, []);
     lecturesByModule.get(lecture.module_id).push({ ...lecture, assignments: [] });
+    if (lecture.group_id) {
+      if (!lecturesByGroup.has(lecture.group_id)) lecturesByGroup.set(lecture.group_id, []);
+      lecturesByGroup.get(lecture.group_id).push({ ...lecture, assignments: [] });
+    }
   }
 
   for (const assignment of assignmentsResult.data ?? []) {
@@ -117,8 +179,15 @@ export async function fetchLearningPath(role = 'student') {
   for (const moduleList of modulesByPhase.values()) {
     for (const module of moduleList) {
       module.lectures = lecturesByModule.get(module.id) ?? [];
+      module.lecture_groups = groupsByModule.get(module.id) ?? [];
       for (const lecture of module.lectures) {
         lecture.assignments = assignmentsByLecture.get(lecture.id) ?? [];
+      }
+      for (const group of module.lecture_groups) {
+        group.lectures = (lecturesByGroup.get(group.id) ?? []).map((lecture) => ({
+          ...lecture,
+          assignments: assignmentsByLecture.get(lecture.id) ?? [],
+        }));
       }
     }
   }
@@ -128,19 +197,21 @@ export async function fetchLearningPath(role = 'student') {
     modules: modulesByPhase.get(phase.id) ?? [],
   }));
 
-  return {
+  return setCached(cacheKey, {
     phases,
     modules: modulesResult.data ?? [],
+    lectureGroups: lectureGroupsResult.data ?? [],
     lectures: lecturesResult.data ?? [],
     assignments: assignmentsResult.data ?? [],
     freeAssignments,
-  };
+  });
 }
 
 export async function upsertPhase(payload) {
   const client = requireSupabase();
   const { data, error } = await client.from('phases').upsert(payload).select().single();
   assertOk({ error });
+  clearLmsCache();
   return data;
 }
 
@@ -148,12 +219,14 @@ export async function deletePhase(id) {
   const client = requireSupabase();
   const { error } = await client.from('phases').delete().eq('id', id);
   assertOk({ error });
+  clearLmsCache();
 }
 
 export async function upsertModule(payload) {
   const client = requireSupabase();
   const { data, error } = await client.from('modules').upsert(payload).select().single();
   assertOk({ error });
+  clearLmsCache();
   return data;
 }
 
@@ -161,12 +234,29 @@ export async function deleteModule(id) {
   const client = requireSupabase();
   const { error } = await client.from('modules').delete().eq('id', id);
   assertOk({ error });
+  clearLmsCache();
+}
+
+export async function upsertLectureGroup(payload) {
+  const client = requireSupabase();
+  const { data, error } = await client.from('lecture_groups').upsert(payload).select().single();
+  assertOk({ error });
+  clearLmsCache();
+  return data;
+}
+
+export async function deleteLectureGroup(id) {
+  const client = requireSupabase();
+  const { error } = await client.from('lecture_groups').delete().eq('id', id);
+  assertOk({ error });
+  clearLmsCache();
 }
 
 export async function upsertLecture(payload) {
   const client = requireSupabase();
   const { data, error } = await client.from('lectures').upsert(payload).select().single();
   assertOk({ error });
+  clearLmsCache();
   return data;
 }
 
@@ -174,13 +264,14 @@ export async function deleteLecture(id) {
   const client = requireSupabase();
   const { error } = await client.from('lectures').delete().eq('id', id);
   assertOk({ error });
+  clearLmsCache();
 }
 
 export async function fetchAssignmentsForManager() {
   const client = requireSupabase();
   const { data, error } = await client
     .from('assignments')
-    .select('*, lectures(title), profiles(full_name)')
+    .select('id, lecture_id, owner_id, title, description, pdf_url, sort_order, published, created_at, lectures(title), profiles(full_name)')
     .order('created_at', { ascending: false });
   assertOk({ error });
   return data ?? [];
@@ -230,36 +321,36 @@ export async function saveAssignmentWithQuestions(payload, questions) {
     assertOk(deleteResult);
   }
 
-  for (const [index, item] of questions.entries()) {
-    const questionPayload = {
-      id: item.id || undefined,
-      assignment_id: assignment.id,
-      type: item.type,
-      prompt: item.prompt,
-      points: Number(item.points),
-      sort_order: Number(item.sort_order ?? index + 1),
-      choices: item.choices ?? [],
-      settings: item.settings ?? {},
-    };
-    const { data: question, error: questionError } = await client
-      .from('questions')
-      .upsert(questionPayload)
-      .select()
-      .single();
-    assertOk({ error: questionError });
+  const questionRows = questions.map((item, index) => ({
+    id: item.id || crypto.randomUUID(),
+    assignment_id: assignment.id,
+    type: item.type,
+    prompt: item.prompt || `Câu ${index + 1}`,
+    points: Number(item.points),
+    sort_order: Number(item.sort_order ?? index + 1),
+    choices: item.choices ?? [],
+    settings: item.settings ?? {},
+  }));
 
-    const keyPayload = {
-      question_id: question.id,
+  if (questionRows.length > 0) {
+    const questionsResult = await client.from('questions').upsert(questionRows, {
+      onConflict: 'id',
+    });
+    assertOk(questionsResult);
+
+    const keyRows = questions.map((item, index) => ({
+      question_id: questionRows[index].id,
       correct_answer: item.answer_key?.correct_answer ?? null,
       accepted_answers: item.answer_key?.accepted_answers ?? [],
       points_map: item.answer_key?.points_map ?? [],
-    };
-    const keyResult = await client.from('answer_keys').upsert(keyPayload, {
+    }));
+    const keyResult = await client.from('answer_keys').upsert(keyRows, {
       onConflict: 'question_id',
     });
     assertOk(keyResult);
   }
 
+  clearLmsCache();
   return assignment;
 }
 
@@ -267,6 +358,7 @@ export async function deleteAssignment(id) {
   const client = requireSupabase();
   const { error } = await client.from('assignments').delete().eq('id', id);
   assertOk({ error });
+  clearLmsCache();
 }
 
 export async function fetchAssignmentForStudent(assignmentId) {
@@ -339,14 +431,17 @@ export async function fetchAttemptReview(attemptId) {
 }
 
 export async function fetchStudents() {
+  const cached = getCached('students');
+  if (cached) return cached;
+
   const client = requireSupabase();
   const { data, error } = await client
     .from('profiles')
-    .select('*')
+    .select('id, email, full_name, role, status, created_at, updated_at')
     .eq('role', 'student')
     .order('created_at', { ascending: false });
   assertOk({ error });
-  return data ?? [];
+  return setCached('students', data ?? []);
 }
 
 export async function createManagedUser({ email, password, full_name: fullName, role = 'student' }) {
@@ -358,7 +453,10 @@ export async function createManagedUser({ email, password, full_name: fullName, 
     p_role: role,
   });
 
-  if (!error) return { profile: data, via: 'rpc' };
+  if (!error) {
+    clearLmsCache();
+    return { profile: data, via: 'rpc' };
+  }
 
   if (error.code !== '42883') {
     throw error;
@@ -372,11 +470,30 @@ export async function createManagedUser({ email, password, full_name: fullName, 
   });
 }
 
+export async function deleteManagedUser(id) {
+  const client = requireSupabase();
+  const { error } = await client.rpc('admin_delete_user_sql', {
+    p_user_id: id,
+  });
+
+  if (!error) {
+    clearLmsCache();
+    return;
+  }
+
+  if (error.code !== '42883') {
+    throw error;
+  }
+
+  await invokeAdminFunction('admin-delete-user', { id });
+  clearLmsCache();
+}
+
 export async function fetchGradebook() {
   const client = requireSupabase();
   const { data, error } = await client
     .from('attempts')
-    .select('*, profiles(full_name, email), assignments(title)')
+    .select('id, assignment_id, student_id, status, submitted_at, score, max_points, score_10, profiles(full_name, email), assignments(title)')
     .eq('status', 'submitted')
     .order('submitted_at', { ascending: false });
   assertOk({ error });
@@ -385,25 +502,14 @@ export async function fetchGradebook() {
 
 export async function fetchDashboardStats() {
   const client = requireSupabase();
-  const [students, assignments, attempts] = await Promise.all([
-    client.from('profiles').select('id', { count: 'exact', head: true }).eq('role', 'student'),
-    client.from('assignments').select('id', { count: 'exact', head: true }),
-    client.from('attempts').select('score_10').eq('status', 'submitted'),
-  ]);
-  [students, assignments, attempts].forEach(assertOk);
-
-  const scores = (attempts.data ?? [])
-    .map((attempt) => Number(attempt.score_10))
-    .filter((score) => Number.isFinite(score));
-  const average = scores.length
-    ? scores.reduce((sum, score) => sum + score, 0) / scores.length
-    : 0;
+  const { data, error } = await client.rpc('get_dashboard_stats');
+  assertOk({ error });
 
   return {
-    totalStudents: students.count ?? 0,
-    totalAssignments: assignments.count ?? 0,
-    totalSubmissions: scores.length,
-    averageScore: average,
+    totalStudents: Number(data?.total_students ?? 0),
+    totalAssignments: Number(data?.total_assignments ?? 0),
+    totalSubmissions: Number(data?.total_submissions ?? 0),
+    averageScore: Number(data?.average_score ?? 0),
   };
 }
 

@@ -3,12 +3,15 @@ import '@material/web/button/filled-tonal-button.js';
 import '@material/web/button/outlined-button.js';
 import '@material/web/icon/icon.js';
 import '@material/web/progress/circular-progress.js';
+import '@material/web/switch/switch.js';
 import '@material/web/textfield/outlined-text-field.js';
 import './styles.css';
 import { hasSupabaseConfig, supabase } from './services/supabaseClient.js';
 import {
   deleteAssignment,
   deleteLecture,
+  deleteLectureGroup,
+  deleteManagedUser,
   deleteModule,
   deletePhase,
   createManagedUser,
@@ -30,6 +33,7 @@ import {
   signUpStudent,
   submitAssignmentAttempt,
   upsertLecture,
+  upsertLectureGroup,
   upsertModule,
   upsertPhase,
 } from './services/lmsApi.js';
@@ -46,7 +50,20 @@ const state = {
   profile: null,
   authMode: 'login',
   assignmentEditor: null,
+  theme: localStorage.getItem('lms:theme') || 'light',
 };
+
+function applyTheme() {
+  document.documentElement.dataset.theme = state.theme;
+}
+
+function toggleTheme() {
+  state.theme = state.theme === 'dark' ? 'light' : 'dark';
+  localStorage.setItem('lms:theme', state.theme);
+  applyTheme();
+}
+
+applyTheme();
 
 function wireMaterialFormButtons(root = document) {
   if (!root) return;
@@ -96,6 +113,12 @@ function toast(message, tone = 'info') {
   toastEl._timer = window.setTimeout(() => toastEl.classList.remove('show'), 3600);
 }
 
+function accountInitial(profile) {
+  const name = (profile?.full_name || profile?.email || 'U').trim();
+  const lastWord = name.split(/\s+/).filter(Boolean).at(-1) || name;
+  return lastWord.charAt(0).toUpperCase();
+}
+
 function pageRoot() {
   return document.querySelector('#page-root');
 }
@@ -129,6 +152,7 @@ function navItems() {
 
 function renderShell() {
   const current = route().name;
+  const activeNav = current === 'phase' ? 'learn' : current;
   app.innerHTML = `
     <div class="app-shell">
       <aside class="rail" aria-label="Điều hướng">
@@ -143,7 +167,7 @@ function renderShell() {
           ${navItems()
             .map(
               (item) => `
-                <a class="nav-item ${current === item.path ? 'active' : ''}" href="#/${item.path}">
+                <a class="nav-item ${activeNav === item.path ? 'active' : ''}" href="#/${item.path}">
                   <md-icon>${item.icon}</md-icon>
                   <span>${item.label}</span>
                 </a>
@@ -159,7 +183,14 @@ function renderShell() {
             <h1 class="page-title ${current === 'learn' ? 'learn-title' : ''}">${pageTitle(current)}</h1>
           </div>
           <div class="account-strip">
-            <span>${escapeHtml(state.profile.full_name || state.profile.email)}</span>
+            <label class="theme-toggle" title="Dark mode">
+              <md-icon>${state.theme === 'dark' ? 'dark_mode' : 'light_mode'}</md-icon>
+              <md-switch id="theme-switch" ${state.theme === 'dark' ? 'selected' : ''} aria-label="Dark mode"></md-switch>
+            </label>
+            <span class="account-avatar" aria-hidden="true">
+              ${escapeHtml(accountInitial(state.profile))}
+            </span>
+            <span class="account-name">${escapeHtml(state.profile.full_name || state.profile.email)}</span>
             <md-outlined-button id="logout-button">
               <md-icon slot="icon">logout</md-icon>
               Thoát
@@ -178,12 +209,15 @@ function renderShell() {
     go('learn');
     render();
   });
+
+  document.querySelector('#theme-switch')?.addEventListener('change', toggleTheme);
 }
 
 function pageTitle(name) {
   return (
     {
       learn: 'Lộ trình luyện thi 2027',
+      phase: 'Chi tiết giai đoạn',
       history: 'Lịch sử học tập',
       assignment: 'Làm bài',
       review: 'Xem lại bài',
@@ -302,8 +336,10 @@ async function mountLearn() {
     const data = await fetchLearningPath(state.profile.role);
     root.innerHTML = `
       <section class="learn-layout">
+        <div class="phase-card-grid">
+          ${data.phases.length ? data.phases.map(renderPhaseCard).join('') : '<div class="empty-state">Chưa có lộ trình học.</div>'}
+        </div>
         <div class="path-list">
-          ${data.phases.length ? data.phases.map(renderPhase).join('') : '<div class="empty-state">Chưa có lộ trình học.</div>'}
           ${
             data.freeAssignments.length
               ? `
@@ -324,6 +360,68 @@ async function mountLearn() {
   } catch (error) {
     root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
   }
+}
+
+async function mountPhaseDetail(id) {
+  const root = pageRoot();
+  root.innerHTML = renderLoading('Đang mở giai đoạn');
+  try {
+    const data = await fetchLearningPath(state.profile.role);
+    const phase = data.phases.find((item) => item.id === id);
+    if (!phase) {
+      root.innerHTML = '<div class="empty-state">Không tìm thấy giai đoạn.</div>';
+      return;
+    }
+    root.innerHTML = `
+      <section class="phase-detail-panel">
+        <a class="text-link back-link" href="#/learn">
+          <md-icon>arrow_back</md-icon>
+          Lộ trình
+        </a>
+        <div class="phase-detail-heading">
+          <p class="eyebrow">Giai đoạn</p>
+          <h2>${escapeHtml(phase.title)}</h2>
+        </div>
+        ${phase.description ? `<p class="muted">${escapeHtml(phase.description)}</p>` : ''}
+        <div class="module-stack phase-module-stack">
+          ${
+            phase.modules.length
+              ? phase.modules.map(renderModule).join('')
+              : '<div class="empty-state compact">Chưa có chuyên đề.</div>'
+          }
+        </div>
+      </section>
+    `;
+  } catch (error) {
+    root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
+  }
+}
+
+function renderPhaseCard(phase) {
+  const lectureCount = phase.modules.reduce((sum, module) => sum + module.lectures.length, 0);
+  const groupCount = phase.modules.reduce((sum, module) => sum + module.lecture_groups.length, 0);
+  const assignmentCount = phase.modules.reduce(
+    (sum, module) => sum + module.lectures.reduce((total, lecture) => total + lecture.assignments.length, 0),
+    0,
+  );
+  return `
+    <a class="phase-card" href="#/phase/${phase.id}">
+      <div>
+        <p class="eyebrow">Giai đoạn</p>
+        <h2>${escapeHtml(phase.title)}</h2>
+      </div>
+      <div class="phase-card-meta">
+        <span><md-icon>folder_open</md-icon>${phase.modules.length} chuyên đề</span>
+        <span><md-icon>library_books</md-icon>${groupCount} nhóm bài giảng</span>
+        <span><md-icon>menu_book</md-icon>${lectureCount} bài giảng</span>
+        <span><md-icon>quiz</md-icon>${assignmentCount} bài tập</span>
+      </div>
+      <span class="phase-card-action">
+        Mở giai đoạn
+        <md-icon>arrow_forward</md-icon>
+      </span>
+    </a>
+  `;
 }
 
 function renderPhase(phase) {
@@ -350,6 +448,7 @@ function renderPhase(phase) {
 
 
 function renderModule(module) {
+  const ungroupedLectures = module.lectures.filter((lecture) => !lecture.group_id);
   return `
     <article class="module-block">
       <div class="module-title">
@@ -358,12 +457,36 @@ function renderModule(module) {
       </div>
       <div class="lecture-list">
         ${
-          module.lectures.length
-            ? module.lectures.map(renderLecture).join('')
-            : '<div class="empty-state compact">Chưa có bài giảng.</div>'
+          module.lecture_groups.length || ungroupedLectures.length
+            ? `
+              ${module.lecture_groups.map(renderLectureGroup).join('')}
+              ${ungroupedLectures.length ? renderLectureGroup({ title: 'Bài giảng chưa nhóm', lectures: ungroupedLectures }, true) : ''}
+            `
+            : '<div class="empty-state compact">Chưa có nhóm bài giảng.</div>'
         }
       </div>
     </article>
+  `;
+}
+
+function renderLectureGroup(group, isUngrouped = false) {
+  return `
+    <details class="lecture-group-block ${isUngrouped ? 'ungrouped' : ''}">
+      <summary class="lecture-group-title">
+        <span>
+          <md-icon>library_books</md-icon>
+          <h4>${escapeHtml(group.title)}</h4>
+        </span>
+        <md-icon>expand_more</md-icon>
+      </summary>
+      <div class="lecture-list">
+        ${
+          group.lectures.length
+            ? group.lectures.map(renderLecture).join('')
+            : '<div class="empty-state compact">Chưa có bài giảng trong nhóm.</div>'
+        }
+      </div>
+    </details>
   `;
 }
 
@@ -444,10 +567,11 @@ async function mountAssignment(id) {
 function renderQuestionInput(question, index, answer) {
   const choices = Array.isArray(question.choices) && question.choices.length ? question.choices : ['A', 'B', 'C', 'D'];
   const settings = question.settings ?? {};
+  const displayPrompt = question.prompt && question.prompt !== `Câu ${index + 1}`;
   const prompt = `
     <div class="question-prompt">
       <span>Câu ${index + 1}</span>
-      <p>${escapeHtml(question.prompt)}</p>
+      ${displayPrompt ? `<p>${escapeHtml(question.prompt)}</p>` : ''}
       <small>${Number(question.points)} điểm</small>
     </div>
   `;
@@ -621,12 +745,12 @@ async function mountReview(id) {
         </div>
         <div class="review-list">
           ${items
-            .map(
+      .map(
               (item, index) => `
                 <article class="review-item ${item.is_correct ? 'correct' : 'wrong'}">
                   <div>
                     <p class="eyebrow">Câu ${index + 1} · ${Number(item.earned_points).toFixed(2)}/${Number(item.points).toFixed(2)} điểm</p>
-                    <h3>${escapeHtml(item.prompt)}</h3>
+                    ${item.prompt && item.prompt !== `Câu ${index + 1}` ? `<h3>${escapeHtml(item.prompt)}</h3>` : ''}
                   </div>
                   <dl>
                     <dt>Bài làm</dt>
@@ -686,10 +810,16 @@ async function mountContentManager() {
   try {
     const data = await fetchLearningPath(state.profile.role);
     root.innerHTML = `
-      <section class="manager-grid">
-        ${renderPhaseForm()}
-        ${renderModuleForm(data.phases)}
-        ${renderLectureForm(data.modules)}
+      <section class="panel content-create-panel">
+        <div class="panel-heading">
+          <h2>Tạo nội dung</h2>
+        </div>
+        <div class="content-create-grid four">
+          ${renderPhaseForm()}
+          ${renderModuleForm(data.phases)}
+          ${renderLectureGroupForm(data.modules)}
+          ${renderLectureForm(data.modules, data.lectureGroups)}
+        </div>
       </section>
       <section class="panel">
         <div class="panel-heading">
@@ -707,13 +837,16 @@ async function mountContentManager() {
 
 function renderPhaseForm() {
   return `
-    <form class="panel entity-form" data-entity="phase">
-      <div class="panel-heading"><h2>Giai đoạn</h2></div>
+    <form class="entity-form compact-entity-form" data-entity="phase">
+      <div class="entity-form-heading">
+        <md-icon>flag</md-icon>
+        <h3>Giai đoạn</h3>
+      </div>
       <input type="hidden" name="id">
+      <input type="hidden" name="description" value="">
+      <input type="hidden" name="sort_order" value="0">
+      <input type="hidden" name="published" value="true">
       <input class="field" name="title" placeholder="Tên giai đoạn" required>
-      <textarea class="field" name="description" placeholder="Mô tả"></textarea>
-      <input class="field" name="sort_order" type="number" value="0" placeholder="Thứ tự">
-      <label class="switch-row"><input type="checkbox" name="published" checked> Publish</label>
       <div class="button-row">
         <md-filled-button type="submit"><md-icon slot="icon">save</md-icon>Lưu</md-filled-button>
         <md-outlined-button type="reset">Mới</md-outlined-button>
@@ -724,17 +857,20 @@ function renderPhaseForm() {
 
 function renderModuleForm(phases) {
   return `
-    <form class="panel entity-form" data-entity="module">
-      <div class="panel-heading"><h2>Chuyên đề</h2></div>
+    <form class="entity-form compact-entity-form" data-entity="module">
+      <div class="entity-form-heading">
+        <md-icon>folder_open</md-icon>
+        <h3>Chuyên đề</h3>
+      </div>
       <input type="hidden" name="id">
+      <input type="hidden" name="description" value="">
+      <input type="hidden" name="sort_order" value="0">
+      <input type="hidden" name="published" value="true">
       <select class="field" name="phase_id" required>
         <option value="">Chọn giai đoạn</option>
         ${phases.map((phase) => option(phase.id, phase.title)).join('')}
       </select>
       <input class="field" name="title" placeholder="Tên chuyên đề" required>
-      <textarea class="field" name="description" placeholder="Mô tả"></textarea>
-      <input class="field" name="sort_order" type="number" value="0" placeholder="Thứ tự">
-      <label class="switch-row"><input type="checkbox" name="published" checked> Publish</label>
       <div class="button-row">
         <md-filled-button type="submit"><md-icon slot="icon">save</md-icon>Lưu</md-filled-button>
         <md-outlined-button type="reset">Mới</md-outlined-button>
@@ -743,20 +879,51 @@ function renderModuleForm(phases) {
   `;
 }
 
-function renderLectureForm(modules) {
+function renderLectureGroupForm(modules) {
   return `
-    <form class="panel entity-form" data-entity="lecture">
-      <div class="panel-heading"><h2>Bài giảng</h2></div>
+    <form class="entity-form compact-entity-form" data-entity="lectureGroup">
+      <div class="entity-form-heading">
+        <md-icon>library_books</md-icon>
+        <h3>Nhóm bài giảng</h3>
+      </div>
       <input type="hidden" name="id">
+      <input type="hidden" name="description" value="">
+      <input type="hidden" name="sort_order" value="0">
+      <input type="hidden" name="published" value="true">
       <select class="field" name="module_id" required>
         <option value="">Chọn chuyên đề</option>
         ${modules.map((module) => option(module.id, module.title)).join('')}
       </select>
+      <input class="field" name="title" placeholder="Tên nhóm, ví dụ: Bài giảng 1" required>
+      <div class="button-row">
+        <md-filled-button type="submit"><md-icon slot="icon">save</md-icon>Lưu</md-filled-button>
+        <md-outlined-button type="reset">Mới</md-outlined-button>
+      </div>
+    </form>
+  `;
+}
+
+function renderLectureForm(modules, lectureGroups) {
+  return `
+    <form class="entity-form compact-entity-form" data-entity="lecture">
+      <div class="entity-form-heading">
+        <md-icon>menu_book</md-icon>
+        <h3>Bài giảng</h3>
+      </div>
+      <input type="hidden" name="id">
+      <input type="hidden" name="description" value="">
+      <input type="hidden" name="sort_order" value="0">
+      <input type="hidden" name="published" value="true">
+      <select class="field" name="module_id" required>
+        <option value="">Chọn chuyên đề</option>
+        ${modules.map((module) => option(module.id, module.title)).join('')}
+      </select>
+      <select class="field" name="group_id">
+        <option value="">Chưa nhóm</option>
+        ${lectureGroups.map((group) => option(group.id, group.title)).join('')}
+      </select>
       <input class="field" name="title" placeholder="Tên bài giảng" required>
-      <textarea class="field" name="description" placeholder="Mô tả"></textarea>
       <input class="field" name="slide_url" placeholder="Link Google Drive slide">
-      <input class="field" name="sort_order" type="number" value="0" placeholder="Thứ tự">
-      <label class="switch-row"><input type="checkbox" name="published" checked> Publish</label>
       <div class="button-row">
         <md-filled-button type="submit"><md-icon slot="icon">save</md-icon>Lưu</md-filled-button>
         <md-outlined-button type="reset">Mới</md-outlined-button>
@@ -767,8 +934,9 @@ function renderLectureForm(modules) {
 
 function renderManagePhase(phase) {
   return `
-    <div class="manage-node">
+    <div class="manage-node" draggable="true" data-entity="phase" data-parent="root" data-id="${phase.id}" data-payload="${escapeHtml(JSON.stringify(phase))}">
       <div>
+        <md-icon class="drag-handle" aria-hidden="true">drag_indicator</md-icon>
         <strong>${escapeHtml(phase.title)}</strong>
         <span>${phase.modules.length} chuyên đề</span>
       </div>
@@ -780,23 +948,42 @@ function renderManagePhase(phase) {
     ${phase.modules
       .map(
         (module) => `
-          <div class="manage-node child">
+          <div class="manage-node child" draggable="true" data-entity="module" data-parent="${phase.id}" data-id="${module.id}" data-payload="${escapeHtml(JSON.stringify(module))}">
             <div>
+              <md-icon class="drag-handle" aria-hidden="true">drag_indicator</md-icon>
               <strong>${escapeHtml(module.title)}</strong>
-              <span>${module.lectures.length} bài giảng</span>
+              <span>${module.lecture_groups.length} nhóm · ${module.lectures.length} bài giảng</span>
             </div>
             <div class="icon-actions">
               <button data-edit-module="${module.id}" data-payload="${escapeHtml(JSON.stringify(module))}" aria-label="Sửa chuyên đề"><md-icon>edit</md-icon></button>
               <button data-delete-module="${module.id}" aria-label="Xóa chuyên đề"><md-icon>delete</md-icon></button>
             </div>
           </div>
+          ${module.lecture_groups
+            .map(
+              (group) => `
+                <div class="manage-node grandchild" draggable="true" data-entity="lectureGroup" data-parent="${module.id}" data-id="${group.id}" data-payload="${escapeHtml(JSON.stringify(group))}">
+                  <div>
+                    <md-icon class="drag-handle" aria-hidden="true">drag_indicator</md-icon>
+                    <strong>${escapeHtml(group.title)}</strong>
+                    <span>${group.lectures.length} bài giảng</span>
+                  </div>
+                  <div class="icon-actions">
+                    <button data-edit-lecture-group="${group.id}" data-payload="${escapeHtml(JSON.stringify(group))}" aria-label="Sửa nhóm bài giảng"><md-icon>edit</md-icon></button>
+                    <button data-delete-lecture-group="${group.id}" aria-label="Xóa nhóm bài giảng"><md-icon>delete</md-icon></button>
+                  </div>
+                </div>
+              `,
+            )
+            .join('')}
           ${module.lectures
             .map(
               (lecture) => `
-                <div class="manage-node grandchild">
+                <div class="manage-node greatgrandchild" draggable="true" data-entity="lecture" data-parent="${lecture.group_id || `module:${module.id}`}" data-id="${lecture.id}" data-payload="${escapeHtml(JSON.stringify(lecture))}">
                   <div>
+                    <md-icon class="drag-handle" aria-hidden="true">drag_indicator</md-icon>
                     <strong>${escapeHtml(lecture.title)}</strong>
-                    <span>${lecture.published ? 'Published' : 'Draft'}</span>
+                    <span>${lecture.group_id ? 'Trong nhóm' : 'Chưa nhóm'}</span>
                   </div>
                   <div class="icon-actions">
                     <button data-edit-lecture="${lecture.id}" data-payload="${escapeHtml(JSON.stringify(lecture))}" aria-label="Sửa bài giảng"><md-icon>edit</md-icon></button>
@@ -821,14 +1008,17 @@ function wireContentForms() {
         ...values,
         id: values.id || undefined,
         sort_order: Number(values.sort_order || 0),
-        published: form.querySelector('[name="published"]').checked,
+        published: form.querySelector('[name="published"]')?.type === 'checkbox'
+          ? form.querySelector('[name="published"]').checked
+          : values.published !== 'false',
         owner_id: state.profile.id,
       };
       const restore = setButtonLoading(form.querySelector('md-filled-button'));
       try {
         if (form.dataset.entity === 'phase') await upsertPhase(payload);
         if (form.dataset.entity === 'module') await upsertModule(payload);
-        if (form.dataset.entity === 'lecture') await upsertLecture(payload);
+        if (form.dataset.entity === 'lectureGroup') await upsertLectureGroup(payload);
+        if (form.dataset.entity === 'lecture') await upsertLecture({ ...payload, group_id: payload.group_id || null });
         toast('Đã lưu nội dung.', 'success');
         await mountContentManager();
       } catch (error) {
@@ -839,10 +1029,16 @@ function wireContentForms() {
     });
   });
 
-  document.querySelectorAll('[data-payload]').forEach((button) => {
+  document.querySelectorAll('button[data-payload]').forEach((button) => {
     button.addEventListener('click', () => {
       const payload = JSON.parse(button.dataset.payload);
-      const kind = button.dataset.editPhase ? 'phase' : button.dataset.editModule ? 'module' : 'lecture';
+      const kind = button.dataset.editPhase
+        ? 'phase'
+        : button.dataset.editModule
+          ? 'module'
+          : button.dataset.editLectureGroup
+            ? 'lectureGroup'
+            : 'lecture';
       const form = document.querySelector(`[data-entity="${kind}"]`);
       Object.entries(payload).forEach(([key, value]) => {
         const input = form.querySelector(`[name="${key}"]`);
@@ -854,12 +1050,15 @@ function wireContentForms() {
     });
   });
 
-  document.querySelectorAll('[data-delete-phase],[data-delete-module],[data-delete-lecture]').forEach((button) => {
+  wireContentDragSort();
+
+  document.querySelectorAll('[data-delete-phase],[data-delete-module],[data-delete-lecture-group],[data-delete-lecture]').forEach((button) => {
     button.addEventListener('click', async () => {
       if (!window.confirm('Xóa mục này?')) return;
       try {
         if (button.dataset.deletePhase) await deletePhase(button.dataset.deletePhase);
         if (button.dataset.deleteModule) await deleteModule(button.dataset.deleteModule);
+        if (button.dataset.deleteLectureGroup) await deleteLectureGroup(button.dataset.deleteLectureGroup);
         if (button.dataset.deleteLecture) await deleteLecture(button.dataset.deleteLecture);
         toast('Đã xóa.', 'success');
         await mountContentManager();
@@ -868,6 +1067,97 @@ function wireContentForms() {
       }
     });
   });
+}
+
+function contentPayloadForSave(kind, payload) {
+  const base = {
+    id: payload.id,
+    owner_id: payload.owner_id ?? state.profile.id,
+    title: payload.title,
+    description: payload.description ?? '',
+    sort_order: Number(payload.sort_order ?? 0),
+    published: payload.published ?? true,
+  };
+
+  if (kind === 'module') return { ...base, phase_id: payload.phase_id };
+  if (kind === 'lectureGroup') return { ...base, module_id: payload.module_id };
+  if (kind === 'lecture') return { ...base, module_id: payload.module_id, group_id: payload.group_id || null, slide_url: payload.slide_url ?? '' };
+  return base;
+}
+
+function wireContentDragSort() {
+  let dragged = null;
+
+  document.querySelectorAll('.manage-node[draggable="true"]').forEach((node) => {
+    node.addEventListener('dragstart', (event) => {
+      dragged = node;
+      node.classList.add('dragging');
+      event.dataTransfer.effectAllowed = 'move';
+      event.dataTransfer.setData('text/plain', node.dataset.id);
+    });
+
+    node.addEventListener('dragend', () => {
+      node.classList.remove('dragging');
+      document.querySelectorAll('.manage-node.drop-target').forEach((item) => item.classList.remove('drop-target'));
+      dragged = null;
+    });
+
+    node.addEventListener('dragover', (event) => {
+      if (!dragged || dragged === node) return;
+      if (dragged.dataset.entity !== node.dataset.entity || dragged.dataset.parent !== node.dataset.parent) return;
+      event.preventDefault();
+      node.classList.add('drop-target');
+      event.dataTransfer.dropEffect = 'move';
+    });
+
+    node.addEventListener('dragleave', () => {
+      node.classList.remove('drop-target');
+    });
+
+    node.addEventListener('drop', async (event) => {
+      event.preventDefault();
+      node.classList.remove('drop-target');
+      if (!dragged || dragged === node) return;
+      if (dragged.dataset.entity !== node.dataset.entity || dragged.dataset.parent !== node.dataset.parent) {
+        toast('Chỉ kéo thả trong cùng một cấp.', 'error');
+        return;
+      }
+
+      try {
+        await reorderContentNodes(dragged, node);
+        toast('Đã cập nhật thứ tự.', 'success');
+        await mountContentManager();
+      } catch (error) {
+        toast(error.message, 'error');
+      }
+    });
+  });
+}
+
+async function reorderContentNodes(sourceNode, targetNode) {
+  const kind = sourceNode.dataset.entity;
+  const parent = sourceNode.dataset.parent;
+  const nodes = Array.from(document.querySelectorAll(`.manage-node[data-entity="${kind}"][data-parent="${parent}"]`));
+  const from = nodes.indexOf(sourceNode);
+  const to = nodes.indexOf(targetNode);
+  if (from < 0 || to < 0 || from === to) return;
+
+  const ordered = nodes.map((node) => JSON.parse(node.dataset.payload));
+  const [moved] = ordered.splice(from, 1);
+  ordered.splice(to, 0, moved);
+
+  await Promise.all(
+    ordered.map((payload, index) => {
+      const next = contentPayloadForSave(kind, {
+        ...payload,
+        sort_order: (index + 1) * 10,
+      });
+      if (kind === 'phase') return upsertPhase(next);
+      if (kind === 'module') return upsertModule(next);
+      if (kind === 'lectureGroup') return upsertLectureGroup(next);
+      return upsertLecture(next);
+    }),
+  );
 }
 
 function emptyEditor() {
@@ -942,36 +1232,50 @@ function normalizeEditorQuestion(raw) {
 function renderAssignmentEditor(lectures) {
   const { assignment, questions } = state.assignmentEditor;
   return `
-    <div class="panel-heading">
-      <h2>${assignment.id ? 'Chỉnh sửa đề' : 'Tạo đề mới'}</h2>
+    <div class="assignment-editor-header">
+      <div>
+        <p class="eyebrow">Đề thi / BTVN</p>
+        <h2>${assignment.id ? 'Chỉnh sửa đề' : 'Tạo đề mới'}</h2>
+      </div>
       <div class="button-row">
         ${assignment.id ? '<md-outlined-button id="delete-assignment" type="button"><md-icon slot="icon">delete</md-icon>Xóa</md-outlined-button>' : ''}
         <md-filled-button type="submit"><md-icon slot="icon">save</md-icon>Lưu đề</md-filled-button>
       </div>
     </div>
     <input type="hidden" name="id" value="${escapeHtml(assignment.id ?? '')}">
-    <div class="form-grid two">
-      <input class="field" name="title" value="${escapeHtml(assignment.title)}" placeholder="Tên đề thi / BTVN" required>
-      <select class="field" name="lecture_id">
-        <option value="">Bài tập tự do</option>
-        ${lectures.map((lecture) => option(lecture.id, lecture.title, assignment.lecture_id)).join('')}
-      </select>
-      <input class="field" name="pdf_url" value="${escapeHtml(assignment.pdf_url)}" placeholder="Link PDF Google Drive" required>
-      <input class="field" name="sort_order" type="number" value="${Number(assignment.sort_order ?? 0)}" placeholder="Thứ tự">
-    </div>
-    <textarea class="field" name="description" placeholder="Mô tả">${escapeHtml(assignment.description ?? '')}</textarea>
-    <label class="switch-row"><input type="checkbox" name="published" ${assignment.published ? 'checked' : ''}> Publish</label>
-    <div class="question-builder-header">
-      <h3>Phiếu trả lời</h3>
-      <div class="button-row">
-        <md-outlined-button type="button" data-add-question="mcq"><md-icon slot="icon">radio_button_checked</md-icon>Trắc nghiệm</md-outlined-button>
-        <md-outlined-button type="button" data-add-question="tf4"><md-icon slot="icon">fact_check</md-icon>Đúng/Sai</md-outlined-button>
-        <md-outlined-button type="button" data-add-question="short"><md-icon slot="icon">short_text</md-icon>Điền ngắn</md-outlined-button>
+    <input type="hidden" name="description" value="${escapeHtml(assignment.description ?? '')}">
+    <input type="hidden" name="sort_order" value="${Number(assignment.sort_order ?? 0)}">
+    <input type="hidden" name="published" value="true">
+    <section class="assignment-info-panel">
+      <div class="entity-form-heading">
+        <md-icon>picture_as_pdf</md-icon>
+        <h3>Thông tin đề</h3>
       </div>
-    </div>
-    <div class="question-builder">
-      ${questions.map((question, index) => renderQuestionEditor(question, index)).join('')}
-    </div>
+      <div class="assignment-info-grid">
+        <input class="field" name="title" value="${escapeHtml(assignment.title)}" placeholder="Tên đề thi / BTVN" required>
+        <select class="field" name="lecture_id">
+          <option value="">Bài tập tự do</option>
+          ${lectures.map((lecture) => option(lecture.id, lecture.title, assignment.lecture_id)).join('')}
+        </select>
+        <input class="field wide" name="pdf_url" value="${escapeHtml(assignment.pdf_url)}" placeholder="Link PDF Google Drive" required>
+      </div>
+    </section>
+    <section class="answer-key-panel">
+      <div class="question-builder-header">
+        <div>
+          <p class="eyebrow">Phiếu trả lời</p>
+          <h3>${questions.length} câu</h3>
+        </div>
+        <div class="button-row">
+          <md-outlined-button type="button" data-add-question="mcq"><md-icon slot="icon">radio_button_checked</md-icon>Trắc nghiệm</md-outlined-button>
+          <md-outlined-button type="button" data-add-question="tf4"><md-icon slot="icon">fact_check</md-icon>Đúng/Sai</md-outlined-button>
+          <md-outlined-button type="button" data-add-question="short"><md-icon slot="icon">short_text</md-icon>Điền ngắn</md-outlined-button>
+        </div>
+      </div>
+      <div class="question-builder">
+        ${questions.length ? questions.map((question, index) => renderQuestionEditor(question, index)).join('') : '<div class="empty-state compact">Chưa có câu nào trong phiếu trả lời.</div>'}
+      </div>
+    </section>
   `;
 }
 
@@ -990,7 +1294,6 @@ function renderQuestionEditor(question, index) {
         <input class="field" name="question-points-${index}" type="number" step="0.25" min="0" value="${Number(question.points ?? 1)}" placeholder="Điểm">
         <input class="field" name="question-sort-${index}" type="number" value="${Number(question.sort_order ?? index + 1)}" placeholder="Thứ tự">
       </div>
-      <textarea class="field" name="question-prompt-${index}" placeholder="Nội dung câu hỏi" required>${escapeHtml(question.prompt ?? '')}</textarea>
       ${renderQuestionKeyEditor(question, index)}
     </article>
   `;
@@ -1148,7 +1451,7 @@ function collectEditor() {
     const base = {
       id: values[`question-id-${index}`] || undefined,
       type,
-      prompt: values[`question-prompt-${index}`],
+      prompt: `Câu ${index + 1}`,
       points: Number(values[`question-points-${index}`] || 0),
       sort_order: Number(values[`question-sort-${index}`] || index + 1),
       choices: [],
@@ -1194,7 +1497,7 @@ function collectEditor() {
       pdf_url: values.pdf_url,
       lecture_id: values.lecture_id,
       sort_order: Number(values.sort_order || 0),
-      published: form.querySelector('[name="published"]').checked,
+      published: values.published !== 'false',
     },
     questions,
   };
@@ -1335,7 +1638,7 @@ function wireStudentManager() {
     button.addEventListener('click', async () => {
       if (!window.confirm('Xóa tài khoản học sinh này?')) return;
       try {
-        await invokeAdminFunction('admin-delete-user', { id: button.dataset.deleteStudent });
+        await deleteManagedUser(button.dataset.deleteStudent);
         toast('Đã xóa học sinh.', 'success');
         await mountStudents();
       } catch (error) {
@@ -1386,6 +1689,7 @@ async function mountCurrentRoute() {
   }
 
   if (current.name === 'assignment') return mountAssignment(current.id);
+  if (current.name === 'phase') return mountPhaseDetail(current.id);
   if (current.name === 'history') return mountHistory();
   if (current.name === 'review') return mountReview(current.id);
   if (current.name === 'dashboard') return mountDashboard();
