@@ -2088,38 +2088,11 @@ function mountSettings() {
           <md-switch id="settings-dark-mode" ${state.theme === 'dark' ? 'selected' : ''} aria-label="Dark mode"></md-switch>
         </div>
       </div>
-      <div class="panel settings-panel">
-        <div class="panel-heading">
-          <div>
-            <p class="eyebrow">Theme</p>
-            <h2>Màu pastel</h2>
-          </div>
-        </div>
-        <div class="theme-choice-grid">
-          ${colorThemes
-            .map(
-              (theme) => `
-                <button class="theme-choice ${state.colorTheme === theme.id ? 'selected' : ''}" type="button" data-color-theme="${theme.id}">
-                  <span class="theme-swatch" style="background: ${theme.color}"></span>
-                  <span>${theme.label}</span>
-                  ${state.colorTheme === theme.id ? '<md-icon>check</md-icon>' : ''}
-                </button>
-              `,
-            )
-            .join('')}
-        </div>
-      </div>
     </section>
   `;
 
   document.querySelector('#settings-dark-mode')?.addEventListener('change', (event) => {
     setThemeMode(event.currentTarget.selected ? 'dark' : 'light');
-  });
-  document.querySelectorAll('[data-color-theme]').forEach((button) => {
-    button.addEventListener('click', () => {
-      setColorTheme(button.dataset.colorTheme);
-      mountSettings();
-    });
   });
 }
 
