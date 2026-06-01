@@ -694,6 +694,55 @@ begin
 end;
 $$;
 
+create or replace function public.submit_assignment_attempt(
+  p_assignment_id uuid,
+  p_answers jsonb default '{}'::jsonb
+)
+returns public.attempts
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_attempt public.attempts%rowtype;
+  v_assignment public.assignments%rowtype;
+  v_user_id uuid := auth.uid();
+begin
+  if v_user_id is null then
+    raise exception 'Authentication required' using errcode = '42501';
+  end if;
+
+  select * into v_assignment
+  from public.assignments
+  where id = p_assignment_id;
+
+  if not found then
+    raise exception 'Assignment not found' using errcode = 'P0002';
+  end if;
+
+  if not (v_assignment.published or public.can_manage_owner(v_assignment.owner_id)) then
+    raise exception 'Not allowed' using errcode = '42501';
+  end if;
+
+  insert into public.attempts (assignment_id, student_id, status)
+  values (p_assignment_id, v_user_id, 'draft')
+  returning * into v_attempt;
+
+  insert into public.attempt_answers (attempt_id, question_id, answer)
+  select v_attempt.id, q.id, answer_item.answer
+  from (
+    select item.key::uuid as question_id, item.value as answer
+    from jsonb_each(coalesce(p_answers, '{}'::jsonb)) as item
+    where item.key ~* '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+  ) as answer_item
+  join public.questions q
+    on q.id = answer_item.question_id
+   and q.assignment_id = p_assignment_id;
+
+  return public.submit_attempt(v_attempt.id);
+end;
+$$;
+
 create or replace function public.get_attempt_review(p_attempt_id uuid)
 returns jsonb
 language plpgsql
@@ -971,6 +1020,7 @@ grant select, insert, update, delete on public.answer_keys to authenticated;
 grant select, insert, update, delete on public.attempts to authenticated;
 grant select, insert, update, delete on public.attempt_answers to authenticated;
 grant execute on function public.submit_attempt(uuid) to authenticated;
+grant execute on function public.submit_assignment_attempt(uuid, jsonb) to authenticated;
 grant execute on function public.get_attempt_review(uuid) to authenticated;
 grant execute on function public.get_dashboard_stats() to authenticated;
 grant execute on function public.admin_create_user_sql(text, text, text, public.app_role) to authenticated;

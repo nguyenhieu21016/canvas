@@ -17,12 +17,14 @@ import {
   createManagedUser,
   fetchAssignmentEditor,
   fetchAssignmentForStudent,
+  fetchAssignmentInsights,
   fetchAssignmentsForManager,
   fetchAttemptReview,
   fetchDashboardStats,
   fetchGradebook,
   fetchLearningPath,
   fetchMyHistory,
+  fetchStudentAssignmentOverview,
   fetchStudents,
   getCurrentProfile,
   getSession,
@@ -51,15 +53,35 @@ const state = {
   authMode: 'login',
   assignmentEditor: null,
   theme: localStorage.getItem('lms:theme') || 'light',
+  colorTheme: localStorage.getItem('lms:colorTheme') || 'blue',
 };
+
+const colorThemes = [
+  { id: 'blue', label: 'Blue pastel', color: '#d3e4ff' },
+  { id: 'yellow', label: 'Yellow pastel', color: '#f8e287' },
+  { id: 'pink', label: 'Pink pastel', color: '#ffd8e4' },
+  { id: 'green', label: 'Green pastel', color: '#d9f0c3' },
+  { id: 'lavender', label: 'Lavender pastel', color: '#eaddff' },
+];
 
 function applyTheme() {
   document.documentElement.dataset.theme = state.theme;
+  document.documentElement.dataset.color = state.colorTheme;
+  document.querySelector('meta[name="theme-color"]')?.setAttribute(
+    'content',
+    colorThemes.find((theme) => theme.id === state.colorTheme)?.color ?? '#d3e4ff',
+  );
 }
 
-function toggleTheme() {
-  state.theme = state.theme === 'dark' ? 'light' : 'dark';
+function setThemeMode(mode) {
+  state.theme = mode;
   localStorage.setItem('lms:theme', state.theme);
+  applyTheme();
+}
+
+function setColorTheme(colorTheme) {
+  state.colorTheme = colorTheme;
+  localStorage.setItem('lms:colorTheme', state.colorTheme);
   applyTheme();
 }
 
@@ -119,6 +141,13 @@ function accountInitial(profile) {
   return lastWord.charAt(0).toUpperCase();
 }
 
+function daysUntilExam() {
+  const today = new Date();
+  const start = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  const examDate = new Date(2027, 5, 12);
+  return Math.max(0, Math.ceil((examDate - start) / 86_400_000));
+}
+
 function pageRoot() {
   return document.querySelector('#page-root');
 }
@@ -136,6 +165,9 @@ function navItems() {
   const base = [
     { path: 'learn', icon: 'school', label: 'Học tập' },
     { path: 'history', icon: 'history', label: 'Lịch sử' },
+    { path: 'grades', icon: 'grade', label: 'Bảng điểm' },
+    { path: 'countdown', icon: 'event', label: 'Đếm ngược' },
+    { path: 'settings', icon: 'settings', label: 'Cài đặt' },
   ];
 
   if (!isManager()) return base;
@@ -146,57 +178,57 @@ function navItems() {
     { path: 'content', icon: 'view_list', label: 'Nội dung' },
     { path: 'assignments', icon: 'assignment', label: 'Đề thi' },
     { path: 'students', icon: 'groups', label: 'Học sinh' },
-    { path: 'grades', icon: 'grade', label: 'Bảng điểm' },
   ];
 }
 
 function renderShell() {
   const current = route().name;
-  const activeNav = current === 'phase' ? 'learn' : current;
+  const activeNav = ['phase', 'assignment', 'review'].includes(current) ? 'learn' : current;
+  const navMarkup = navItems()
+    .map(
+      (item) => `
+        <a class="nav-item ${activeNav === item.path ? 'active' : ''}" href="#/${item.path}">
+          <span class="nav-indicator">
+            <md-icon>${item.icon}</md-icon>
+          </span>
+          <span>${item.label}</span>
+        </a>
+      `,
+    )
+    .join('');
   app.innerHTML = `
     <div class="app-shell">
-      <aside class="rail" aria-label="Điều hướng">
-        <a class="brand" href="#/learn" aria-label="Canvas">
-          <span class="brand-mark">C</span>
-          <div class="brand-text">
-            <span class="brand-copy">Canvas</span>
-            <span class="brand-subtitle">Hướng tới kì thi THPTQG 2027</span>
-          </div>
-        </a>
-        <nav class="nav-list">
-          ${navItems()
-            .map(
-              (item) => `
-                <a class="nav-item ${activeNav === item.path ? 'active' : ''}" href="#/${item.path}">
-                  <md-icon>${item.icon}</md-icon>
-                  <span>${item.label}</span>
-                </a>
-              `,
-            )
-            .join('')}
-        </nav>
-      </aside>
       <div class="workspace">
         <header class="topbar">
-          <div>
-            <p class="eyebrow">${escapeHtml(roleLabel(state.profile.role))}</p>
-            <h1 class="page-title ${current === 'learn' ? 'learn-title' : ''}">${pageTitle(current)}</h1>
+          <div class="topbar-main">
+            <a class="brand" href="#/learn" aria-label="Canvas">
+              <span class="brand-mark">C</span>
+              <div class="brand-text">
+                <span class="brand-copy">Canvas</span>
+                <span class="brand-subtitle">Hướng tới kì thi THPTQG 2027</span>
+              </div>
+            </a>
+            <div class="page-heading">
+              <span class="role-chip">${escapeHtml(roleLabel(state.profile.role))}</span>
+              <h1 class="page-title ${current === 'learn' ? 'learn-title' : ''}">${pageTitle(current)}</h1>
+            </div>
           </div>
           <div class="account-strip">
-            <label class="theme-toggle" title="Dark mode">
-              <md-icon>${state.theme === 'dark' ? 'dark_mode' : 'light_mode'}</md-icon>
-              <md-switch id="theme-switch" ${state.theme === 'dark' ? 'selected' : ''} aria-label="Dark mode"></md-switch>
-            </label>
-            <span class="account-avatar" aria-hidden="true">
-              ${escapeHtml(accountInitial(state.profile))}
+            <span class="account-pill">
+              <span class="account-avatar" aria-hidden="true">
+                ${escapeHtml(accountInitial(state.profile))}
+              </span>
+              <span class="account-name">${escapeHtml(state.profile.full_name || state.profile.email)}</span>
             </span>
-            <span class="account-name">${escapeHtml(state.profile.full_name || state.profile.email)}</span>
             <md-outlined-button id="logout-button">
               <md-icon slot="icon">logout</md-icon>
               Thoát
             </md-outlined-button>
           </div>
         </header>
+        <nav class="nav-list" aria-label="Điều hướng">
+          ${navMarkup}
+        </nav>
         <main id="page-root" class="page-root">${renderLoading()}</main>
       </div>
     </div>
@@ -210,7 +242,6 @@ function renderShell() {
     render();
   });
 
-  document.querySelector('#theme-switch')?.addEventListener('change', toggleTheme);
 }
 
 function pageTitle(name) {
@@ -219,6 +250,8 @@ function pageTitle(name) {
       learn: 'Lộ trình luyện thi 2027',
       phase: 'Chi tiết giai đoạn',
       history: 'Lịch sử học tập',
+      countdown: 'Đếm ngược THPTQG',
+      settings: 'Cài đặt',
       assignment: 'Làm bài',
       review: 'Xem lại bài',
       dashboard: 'Thống kê',
@@ -514,15 +547,105 @@ function renderLecture(lecture) {
 }
 
 function renderAssignmentChip(assignment) {
+  const progress = assignment.progress;
+  const hasSubmitted = progress?.status === 'submitted';
   return `
-    <a class="assignment-chip" href="#/assignment/${assignment.id}">
-      <md-icon>quiz</md-icon>
-      <span>${escapeHtml(assignment.title)}</span>
-    </a>
+    <div class="assignment-progress-row ${hasSubmitted ? 'completed' : 'pending'}">
+      <a class="assignment-chip" href="#/assignment/${assignment.id}">
+        <md-icon>quiz</md-icon>
+        <span>${escapeHtml(assignment.title)}</span>
+      </a>
+      <span class="assignment-chip-progress">
+        <span>${hasSubmitted ? `Cao nhất ${formatScore(progress.bestScore)}/10` : 'Chưa làm'}</span>
+        ${hasSubmitted ? renderScoreProgress(progress.bestScore) : ''}
+      </span>
+    </div>
   `;
 }
 
 async function mountAssignment(id) {
+  if (isManager()) return mountAssignmentManagerView(id);
+
+  return mountStudentAssignmentOverview(id);
+}
+
+async function mountStudentAssignmentOverview(id) {
+  const root = pageRoot();
+  root.innerHTML = renderLoading('Đang mở bài tập');
+  try {
+    const { assignment, attempts } = await fetchStudentAssignmentOverview(id);
+    const latest = attempts[0];
+    root.innerHTML = `
+      <section class="assignment-start">
+        <div class="panel assignment-start-hero">
+          <div>
+            <p class="eyebrow">Bài tập về nhà</p>
+            <h2>${escapeHtml(assignment.title)}</h2>
+            ${latest ? `<p class="muted">Lần gần nhất: ${formatScore(latest.score_10)}/10 · ${formatDateTime(latest.submitted_at)}</p>` : '<p class="muted">Bạn chưa làm bài này.</p>'}
+          </div>
+          <div class="insight-actions">
+            <md-filled-button id="start-assignment">
+              <md-icon slot="icon">${latest ? 'restart_alt' : 'play_arrow'}</md-icon>
+              ${latest ? 'Làm lại' : 'Làm bài'}
+            </md-filled-button>
+            ${latest ? `<md-outlined-button id="review-latest-attempt"><md-icon slot="icon">visibility</md-icon>Xem bài mới nhất</md-outlined-button>` : ''}
+          </div>
+        </div>
+        <section class="exam-shell assignment-preview-shell">
+          <div class="exam-paper">
+            <div class="split-heading">
+              <div>
+                <p class="eyebrow">Đề bài</p>
+                <h2>${escapeHtml(assignment.title)}</h2>
+              </div>
+            </div>
+            ${driveFrame(assignment.pdf_url, assignment.title, true)}
+          </div>
+          <div class="panel assignment-history-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Lịch sử làm bài</p>
+                <h2>${attempts.length} lần nộp</h2>
+              </div>
+            </div>
+            ${renderStudentAssignmentHistory(attempts)}
+          </div>
+        </section>
+      </section>
+    `;
+    document.querySelector('#start-assignment')?.addEventListener('click', () => mountAssignmentExam(id));
+    document.querySelector('#review-latest-attempt')?.addEventListener('click', () => go(`review/${latest.id}`));
+  } catch (error) {
+    root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
+  }
+}
+
+function renderStudentAssignmentHistory(attempts) {
+  if (!attempts.length) return '<div class="empty-state compact">Chưa có lần nộp nào.</div>';
+  return `
+    <div class="stack-list">
+      ${attempts
+        .map(
+          (attempt, index) => `
+            <article class="attempt-history-row">
+              <div>
+                <strong>Lần ${attempts.length - index}</strong>
+                <small>${formatDateTime(attempt.submitted_at)}</small>
+              </div>
+              <div class="score-progress-block">
+                <span>${formatScore(attempt.score_10)}/10</span>
+                ${renderScoreProgress(attempt.score_10)}
+              </div>
+              <a class="text-link" href="#/review/${attempt.id}">Chi tiết</a>
+            </article>
+          `,
+        )
+        .join('')}
+    </div>
+  `;
+}
+
+async function mountAssignmentExam(id) {
   const root = pageRoot();
   root.innerHTML = renderLoading('Đang mở đề');
   try {
@@ -558,14 +681,162 @@ async function mountAssignment(id) {
         </form>
       </section>
     `;
+    wireMaterialFormButtons(root);
     wireAnswerAutosave(id);
   } catch (error) {
     root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
   }
 }
 
+async function mountAssignmentManagerView(id) {
+  const root = pageRoot();
+  root.innerHTML = renderLoading('Đang tải thống kê bài tập');
+  try {
+    const { assignment, submittedStudents, pendingStudents, stats } = await fetchAssignmentInsights(id);
+    root.innerHTML = `
+      <section class="assignment-insights">
+        <div class="panel assignment-insights-hero">
+          <div>
+            <p class="eyebrow">Bài tập về nhà</p>
+            <h2>${escapeHtml(assignment.title)}</h2>
+            <p class="muted">${escapeHtml(assignment.lectures?.title ?? 'Bài tập tự do')}</p>
+          </div>
+          <div class="assignment-score-summary">
+            <span>Điểm trung bình</span>
+            <strong>${formatScore(stats.averageScore)}/10</strong>
+            ${renderScoreProgress(stats.averageScore)}
+          </div>
+          <div class="insight-actions">
+            <md-filled-tonal-button id="edit-assignment-from-insights">
+              <md-icon slot="icon">edit</md-icon>
+              Sửa đề
+            </md-filled-tonal-button>
+            <md-outlined-button id="all-assignments-from-insights">
+              <md-icon slot="icon">list</md-icon>
+              Danh sách đề
+            </md-outlined-button>
+          </div>
+        </div>
+        <section class="metric-grid">
+          ${renderMetric('Đã làm', `${stats.submittedCount}/${stats.totalStudents}`, 'task_alt')}
+          ${renderMetric('Chưa làm', stats.pendingCount, 'pending_actions')}
+          ${renderMetric('Điểm TB', formatScore(stats.averageScore), 'monitoring')}
+          ${renderMetric('Điểm cao nhất', formatScore(stats.bestScore), 'workspace_premium')}
+        </section>
+        <section class="manager-grid assignment-insights-grid">
+          <div class="panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Đã làm</p>
+                <h2>${submittedStudents.length} học sinh</h2>
+              </div>
+            </div>
+            ${renderSubmittedStudents(submittedStudents)}
+          </div>
+          <div class="panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Chưa làm</p>
+                <h2>${pendingStudents.length} học sinh</h2>
+              </div>
+            </div>
+            ${renderPendingStudents(pendingStudents)}
+          </div>
+        </section>
+      </section>
+    `;
+
+    document.querySelector('#edit-assignment-from-insights')?.addEventListener('click', async () => {
+      try {
+        const editor = await fetchAssignmentEditor(id);
+        state.assignmentEditor = {
+          assignment: editor.assignment,
+          questions: editor.questions.map(normalizeEditorQuestion),
+        };
+        go('assignments');
+      } catch (error) {
+        toast(error.message, 'error');
+      }
+    });
+    document.querySelector('#all-assignments-from-insights')?.addEventListener('click', () => go('assignments'));
+  } catch (error) {
+    root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
+  }
+}
+
+function renderSubmittedStudents(rows) {
+  if (!rows.length) return '<div class="empty-state compact">Chưa có học sinh nộp bài.</div>';
+  return `
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Học sinh</th>
+            <th>Điểm</th>
+            <th>Nộp lúc</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows
+            .map(
+              ({ student, attempt }) => `
+                <tr>
+                  <td>
+                    <strong>${escapeHtml(student.full_name || student.email)}</strong>
+                    <small>${escapeHtml(student.email)}</small>
+                  </td>
+                  <td>
+                    <div class="score-progress-block">
+                      <span>${formatScore(attempt.score_10)}/10</span>
+                      ${renderScoreProgress(attempt.score_10)}
+                    </div>
+                  </td>
+                  <td>${formatDateTime(attempt.submitted_at)}</td>
+                  <td><a class="text-link" href="#/review/${attempt.id}">Chi tiết</a></td>
+                </tr>
+              `,
+            )
+            .join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function renderScoreProgress(score) {
+  const value = Math.max(0, Math.min(10, Number(score ?? 0)));
+  return `
+    <div class="score-progress" aria-label="Điểm ${formatScore(value)} trên 10">
+      <span style="width: ${value * 10}%"></span>
+    </div>
+  `;
+}
+
+function renderPendingStudents(rows) {
+  if (!rows.length) return '<div class="empty-state compact">Tất cả học sinh đã nộp bài.</div>';
+  return `
+    <div class="student-status-list">
+      ${rows
+        .map(
+          (student) => `
+            <article class="student-status-row">
+              <span class="account-avatar" aria-hidden="true">${escapeHtml(accountInitial(student))}</span>
+              <div>
+                <strong>${escapeHtml(student.full_name || student.email)}</strong>
+                <small>${escapeHtml(student.email)}</small>
+              </div>
+              <span class="status">Chưa làm</span>
+            </article>
+          `,
+        )
+        .join('')}
+    </div>
+  `;
+}
+
 function renderQuestionInput(question, index, answer) {
-  const choices = Array.isArray(question.choices) && question.choices.length ? question.choices : ['A', 'B', 'C', 'D'];
+  const choices = ['A', 'B', 'C', 'D'];
   const settings = question.settings ?? {};
   const displayPrompt = question.prompt && question.prompt !== `Câu ${index + 1}`;
   const prompt = `
@@ -588,7 +859,7 @@ function renderQuestionInput(question, index, answer) {
                 return `
                   <label class="choice-tile">
                     <input type="radio" name="q-${question.id}" value="${value}" ${answer === value ? 'checked' : ''}>
-                    <span>${value}. ${escapeHtml(choice)}</span>
+                    <span>${escapeHtml(choice)}</span>
                   </label>
                 `;
               },
@@ -662,7 +933,6 @@ function wireAnswerAutosave(assignmentId) {
     try {
       const submitted = await submitAssignmentAttempt({
         assignmentId,
-        studentId: state.profile.id,
         answers: collectAnswers(),
       });
       clearDraft(localStorage, state.profile.id, assignmentId);
@@ -735,17 +1005,27 @@ async function mountReview(id) {
     const review = await fetchAttemptReview(id);
     const items = review.items ?? [];
     root.innerHTML = `
-      <section class="panel">
-        <div class="panel-heading">
-          <div>
-            <p class="eyebrow">Kết quả</p>
-            <h2>${escapeHtml(review.assignment?.title ?? 'Bài làm')}</h2>
+      <section class="exam-shell">
+        <div class="exam-paper">
+          <div class="split-heading">
+            <div>
+              <p class="eyebrow">Đề bài</p>
+              <h2>${escapeHtml(review.assignment?.title ?? 'Bài làm')}</h2>
+            </div>
           </div>
-          <div class="score-badge">${formatScore(review.attempt?.score_10)}/10</div>
+          ${driveFrame(review.assignment?.pdf_url, review.assignment?.title ?? 'Đề bài', true)}
         </div>
-        <div class="review-list">
-          ${items
-      .map(
+        <div class="answer-sheet">
+          <div class="split-heading">
+            <div>
+              <p class="eyebrow">Kết quả</p>
+              <h2>${items.length} câu</h2>
+            </div>
+            <div class="score-badge">${formatScore(review.attempt?.score_10)}/10</div>
+          </div>
+          <div class="review-list">
+            ${items
+              .map(
               (item, index) => `
                 <article class="review-item ${item.is_correct ? 'correct' : 'wrong'}">
                   <div>
@@ -762,6 +1042,7 @@ async function mountReview(id) {
               `,
             )
             .join('')}
+          </div>
         </div>
       </section>
     `;
@@ -792,6 +1073,36 @@ async function mountDashboard() {
   } catch (error) {
     root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
   }
+}
+
+function mountCountdown() {
+  const root = pageRoot();
+  const days = daysUntilExam();
+  const examDate = new Date(2027, 5, 12);
+  const formattedExamDate = examDate.toLocaleDateString('vi-VN', {
+    weekday: 'long',
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  });
+  root.innerHTML = `
+    <section class="countdown-page">
+      <div class="countdown-hero">
+        <div>
+          <p class="eyebrow">THPTQG 2027</p>
+          <h2>${days}</h2>
+          <span>ngày</span>
+        </div>
+        <md-icon>event</md-icon>
+      </div>
+      <div class="countdown-details">
+        <article>
+          <span>Ngày thi dự kiến</span>
+          <strong>${escapeHtml(formattedExamDate)}</strong>
+        </article>
+      </div>
+    </section>
+  `;
 }
 
 function renderMetric(label, value, icon) {
@@ -1329,17 +1640,7 @@ function renderQuestionKeyEditor(question, index) {
     return `<input class="field" name="short-answers-${index}" value="${escapeHtml((key.accepted_answers ?? []).join(', '))}" placeholder="Đáp án chấp nhận, cách nhau bằng dấu phẩy">`;
   }
 
-  const choices = question.choices?.length ? question.choices : ['A', 'B', 'C', 'D'];
   return `
-    <div class="form-grid two">
-      ${[0, 1, 2, 3]
-        .map(
-          (choiceIndex) => `
-            <input class="field" name="choice-${index}-${choiceIndex}" value="${escapeHtml(choices[choiceIndex] ?? '')}" placeholder="Đáp án ${String.fromCharCode(65 + choiceIndex)}">
-          `,
-        )
-        .join('')}
-    </div>
     <select class="field" name="mcq-answer-${index}">
       ${['A', 'B', 'C', 'D'].map((letter) => option(letter, `Đáp án ${letter}`, key.correct_answer ?? 'A')).join('')}
     </select>
@@ -1437,7 +1738,7 @@ function defaultQuestion(type) {
     type: 'mcq',
     prompt: '',
     points: 1,
-    choices: ['A', 'B', 'C', 'D'],
+    choices: [],
     answer_key: { correct_answer: 'A' },
   };
 }
@@ -1460,7 +1761,7 @@ function collectEditor() {
     };
 
     if (type === 'mcq') {
-      base.choices = [0, 1, 2, 3].map((item) => values[`choice-${index}-${item}`] || String.fromCharCode(65 + item));
+      base.choices = [];
       base.answer_key = { correct_answer: values[`mcq-answer-${index}`] || 'A' };
     }
 
@@ -1649,6 +1950,8 @@ function wireStudentManager() {
 }
 
 async function mountGrades() {
+  if (!isManager()) return mountStudentGrades();
+
   const root = pageRoot();
   root.innerHTML = renderLoading();
   try {
@@ -1668,6 +1971,158 @@ async function mountGrades() {
   }
 }
 
+async function mountStudentGrades() {
+  const root = pageRoot();
+  root.innerHTML = renderLoading('Đang tải bảng điểm');
+  try {
+    const data = await fetchLearningPath(state.profile.role);
+    const assignments = collectLearningPathAssignments(data);
+    root.innerHTML = `
+      <section class="panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Bảng điểm</p>
+            <h2>${assignments.length} bài tập về nhà</h2>
+          </div>
+        </div>
+        ${renderStudentGradesTable(assignments)}
+      </section>
+    `;
+  } catch (error) {
+    root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
+  }
+}
+
+function collectLearningPathAssignments(data) {
+  const rowsById = new Map();
+  const scoreOf = (assignment) => Number(assignment.progress?.bestScore ?? -1);
+  const pushAssignment = (assignment, context = 'Bài tập tự do') => {
+    const row = { ...assignment, context };
+    const current = rowsById.get(assignment.id);
+    if (!current || scoreOf(row) > scoreOf(current)) {
+      rowsById.set(assignment.id, row);
+    }
+  };
+
+  for (const phase of data.phases ?? []) {
+    for (const module of phase.modules ?? []) {
+      for (const lecture of module.lectures ?? []) {
+        for (const assignment of lecture.assignments ?? []) {
+          pushAssignment(assignment, lecture.title || module.title || phase.title);
+        }
+      }
+      for (const group of module.lecture_groups ?? []) {
+        for (const lecture of group.lectures ?? []) {
+          for (const assignment of lecture.assignments ?? []) {
+            pushAssignment(assignment, lecture.title || group.title || module.title || phase.title);
+          }
+        }
+      }
+    }
+  }
+
+  for (const assignment of data.freeAssignments ?? []) {
+    pushAssignment(assignment);
+  }
+
+  return Array.from(rowsById.values()).sort((a, b) => a.title.localeCompare(b.title, 'vi'));
+}
+
+function renderStudentGradesTable(assignments) {
+  if (!assignments.length) return '<div class="empty-state">Chưa có bài tập về nhà.</div>';
+  return `
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Bài tập</th>
+            <th>Thuộc bài</th>
+            <th>Trạng thái</th>
+            <th>Điểm cao nhất</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          ${assignments
+            .map((assignment) => {
+              const hasSubmitted = assignment.progress?.status === 'submitted';
+              return `
+                <tr>
+                  <td><strong>${escapeHtml(assignment.title)}</strong></td>
+                  <td>${escapeHtml(assignment.context ?? '-')}</td>
+                  <td><span class="status">${hasSubmitted ? 'Đã làm' : 'Chưa làm'}</span></td>
+                  <td>
+                    ${
+                      hasSubmitted
+                        ? `<div class="score-progress-block"><span>${formatScore(assignment.progress.bestScore)}/10</span>${renderScoreProgress(assignment.progress.bestScore)}</div>`
+                        : '-'
+                    }
+                  </td>
+                  <td><a class="text-link" href="#/assignment/${assignment.id}">${hasSubmitted ? 'Làm lại' : 'Làm bài'}</a></td>
+                </tr>
+              `;
+            })
+            .join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function mountSettings() {
+  const root = pageRoot();
+  root.innerHTML = `
+    <section class="settings-page">
+      <div class="panel settings-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Giao diện</p>
+            <h2>Cài đặt hiển thị</h2>
+          </div>
+        </div>
+        <div class="settings-row">
+          <div>
+            <strong>Dark mode</strong>
+            <p class="muted">Chuyển giao diện sang nền tối.</p>
+          </div>
+          <md-switch id="settings-dark-mode" ${state.theme === 'dark' ? 'selected' : ''} aria-label="Dark mode"></md-switch>
+        </div>
+      </div>
+      <div class="panel settings-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Theme</p>
+            <h2>Màu pastel</h2>
+          </div>
+        </div>
+        <div class="theme-choice-grid">
+          ${colorThemes
+            .map(
+              (theme) => `
+                <button class="theme-choice ${state.colorTheme === theme.id ? 'selected' : ''}" type="button" data-color-theme="${theme.id}">
+                  <span class="theme-swatch" style="background: ${theme.color}"></span>
+                  <span>${theme.label}</span>
+                  ${state.colorTheme === theme.id ? '<md-icon>check</md-icon>' : ''}
+                </button>
+              `,
+            )
+            .join('')}
+        </div>
+      </div>
+    </section>
+  `;
+
+  document.querySelector('#settings-dark-mode')?.addEventListener('change', (event) => {
+    setThemeMode(event.currentTarget.selected ? 'dark' : 'light');
+  });
+  document.querySelectorAll('[data-color-theme]').forEach((button) => {
+    button.addEventListener('click', () => {
+      setColorTheme(button.dataset.colorTheme);
+      mountSettings();
+    });
+  });
+}
+
 function wireTableSearch(inputSelector, rowSelector) {
   const input = document.querySelector(inputSelector);
   if (!input) return;
@@ -1683,7 +2138,7 @@ function wireTableSearch(inputSelector, rowSelector) {
 
 async function mountCurrentRoute() {
   const current = route();
-  if (!isManager() && ['dashboard', 'content', 'assignments', 'students', 'grades'].includes(current.name)) {
+  if (!isManager() && ['dashboard', 'content', 'assignments', 'students'].includes(current.name)) {
     go('learn');
     return;
   }
@@ -1691,6 +2146,8 @@ async function mountCurrentRoute() {
   if (current.name === 'assignment') return mountAssignment(current.id);
   if (current.name === 'phase') return mountPhaseDetail(current.id);
   if (current.name === 'history') return mountHistory();
+  if (current.name === 'countdown') return mountCountdown();
+  if (current.name === 'settings') return mountSettings();
   if (current.name === 'review') return mountReview(current.id);
   if (current.name === 'dashboard') return mountDashboard();
   if (current.name === 'content') return mountContentManager();

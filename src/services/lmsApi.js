@@ -130,14 +130,20 @@ export async function fetchLearningPath(role = 'student') {
     assignmentsQuery = assignmentsQuery.eq('published', true);
   }
 
-  const [phasesResult, modulesResult, lectureGroupsResult, lecturesResult, assignmentsResult] = await Promise.all([
+  const [phasesResult, modulesResult, lectureGroupsResult, lecturesResult, assignmentsResult, attemptsResult] = await Promise.all([
     phasesQuery,
     modulesQuery,
     lectureGroupsQuery,
     lecturesQuery,
     assignmentsQuery,
+    shouldFilterPublished
+      ? client
+        .from('attempts')
+        .select('assignment_id, score_10, submitted_at')
+        .eq('status', 'submitted')
+      : Promise.resolve({ data: [], error: null }),
   ]);
-  [phasesResult, modulesResult, lectureGroupsResult, lecturesResult, assignmentsResult].forEach(assertOk);
+  [phasesResult, modulesResult, lectureGroupsResult, lecturesResult, assignmentsResult, attemptsResult].forEach(assertOk);
 
   const modulesByPhase = new Map();
   const groupsByModule = new Map();
@@ -145,6 +151,15 @@ export async function fetchLearningPath(role = 'student') {
   const lecturesByGroup = new Map();
   const assignmentsByLecture = new Map();
   const freeAssignments = [];
+  const bestAttemptsByAssignment = new Map();
+
+  for (const attempt of attemptsResult.data ?? []) {
+    const current = bestAttemptsByAssignment.get(attempt.assignment_id);
+    const score = Number(attempt.score_10 ?? 0);
+    if (!current || score > Number(current.score_10 ?? 0)) {
+      bestAttemptsByAssignment.set(attempt.assignment_id, attempt);
+    }
+  }
 
   for (const module of modulesResult.data ?? []) {
     if (!modulesByPhase.has(module.phase_id)) modulesByPhase.set(module.phase_id, []);
@@ -166,14 +181,25 @@ export async function fetchLearningPath(role = 'student') {
   }
 
   for (const assignment of assignmentsResult.data ?? []) {
+    const bestAttempt = bestAttemptsByAssignment.get(assignment.id);
+    const assignmentWithProgress = {
+      ...assignment,
+      progress: bestAttempt
+        ? {
+          status: 'submitted',
+          bestScore: Number(bestAttempt.score_10 ?? 0),
+          submittedAt: bestAttempt.submitted_at,
+        }
+        : { status: 'not_started', bestScore: null, submittedAt: null },
+    };
     if (!assignment.lecture_id) {
-      freeAssignments.push(assignment);
+      freeAssignments.push(assignmentWithProgress);
       continue;
     }
     if (!assignmentsByLecture.has(assignment.lecture_id)) {
       assignmentsByLecture.set(assignment.lecture_id, []);
     }
-    assignmentsByLecture.get(assignment.lecture_id).push(assignment);
+    assignmentsByLecture.get(assignment.lecture_id).push(assignmentWithProgress);
   }
 
   for (const moduleList of modulesByPhase.values()) {
@@ -380,34 +406,33 @@ export async function fetchAssignmentForStudent(assignmentId) {
   };
 }
 
-export async function submitAssignmentAttempt({ assignmentId, studentId, answers }) {
+export async function fetchStudentAssignmentOverview(assignmentId) {
   const client = requireSupabase();
-  const { data: attempt, error } = await client
-    .from('attempts')
-    .insert({
-      assignment_id: assignmentId,
-      student_id: studentId,
-      status: 'draft',
-    })
-    .select()
-    .single();
-  assertOk({ error });
+  const [assignmentResult, attemptsResult] = await Promise.all([
+    client.from('assignments').select('*').eq('id', assignmentId).single(),
+    client
+      .from('attempts')
+      .select('id, assignment_id, status, submitted_at, score, max_points, score_10')
+      .eq('assignment_id', assignmentId)
+      .eq('status', 'submitted')
+      .order('submitted_at', { ascending: false }),
+  ]);
+  assertOk(assignmentResult);
+  assertOk(attemptsResult);
 
-  const answerRows = Object.entries(answers).map(([questionId, answer]) => ({
-    attempt_id: attempt.id,
-    question_id: questionId,
-    answer,
-  }));
+  return {
+    assignment: assignmentResult.data,
+    attempts: attemptsResult.data ?? [],
+  };
+}
 
-  if (answerRows.length > 0) {
-    const answersResult = await client.from('attempt_answers').insert(answerRows);
-    assertOk(answersResult);
-  }
-
-  const { data: submitted, error: submitError } = await client.rpc('submit_attempt', {
-    p_attempt_id: attempt.id,
+export async function submitAssignmentAttempt({ assignmentId, answers }) {
+  const client = requireSupabase();
+  const { data: submitted, error } = await client.rpc('submit_assignment_attempt', {
+    p_assignment_id: assignmentId,
+    p_answers: answers ?? {},
   });
-  assertOk({ error: submitError });
+  assertOk({ error });
   return submitted;
 }
 
@@ -428,6 +453,59 @@ export async function fetchAttemptReview(attemptId) {
   });
   assertOk({ error });
   return data;
+}
+
+export async function fetchAssignmentInsights(assignmentId) {
+  const client = requireSupabase();
+  const [assignmentResult, attemptsResult, studentsResult] = await Promise.all([
+    client
+      .from('assignments')
+      .select('id, title, description, pdf_url, published, created_at, lectures(title), profiles(full_name)')
+      .eq('id', assignmentId)
+      .single(),
+    client
+      .from('attempts')
+      .select('id, assignment_id, student_id, status, submitted_at, score, max_points, score_10, profiles(full_name, email)')
+      .eq('assignment_id', assignmentId)
+      .eq('status', 'submitted')
+      .order('submitted_at', { ascending: false }),
+    client
+      .from('profiles')
+      .select('id, email, full_name, status')
+      .eq('role', 'student')
+      .order('full_name', { ascending: true }),
+  ]);
+  [assignmentResult, attemptsResult, studentsResult].forEach(assertOk);
+
+  const attempts = attemptsResult.data ?? [];
+  const latestByStudent = new Map();
+  for (const attempt of attempts) {
+    if (!latestByStudent.has(attempt.student_id)) {
+      latestByStudent.set(attempt.student_id, attempt);
+    }
+  }
+
+  const students = studentsResult.data ?? [];
+  const submittedStudents = students
+    .map((student) => ({ student, attempt: latestByStudent.get(student.id) }))
+    .filter((item) => item.attempt);
+  const pendingStudents = students.filter((student) => !latestByStudent.has(student.id));
+  const scores = submittedStudents.map((item) => Number(item.attempt.score_10 ?? 0));
+  const averageScore = scores.length ? scores.reduce((sum, score) => sum + score, 0) / scores.length : 0;
+
+  return {
+    assignment: assignmentResult.data,
+    attempts,
+    submittedStudents,
+    pendingStudents,
+    stats: {
+      totalStudents: students.length,
+      submittedCount: submittedStudents.length,
+      pendingCount: pendingStudents.length,
+      averageScore,
+      bestScore: scores.length ? Math.max(...scores) : 0,
+    },
+  };
 }
 
 export async function fetchStudents() {
