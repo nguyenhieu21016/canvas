@@ -2153,8 +2153,14 @@ async function bootstrap() {
   }
 
   supabase.auth.onAuthStateChange(async (_event, session) => {
-    state.session = session;
-    state.profile = session ? await getCurrentProfile() : null;
+    try {
+      state.session = session;
+      state.profile = session ? await getCurrentProfile() : null;
+    } catch (error) {
+      state.session = null;
+      state.profile = null;
+      toast(error.message, 'error');
+    }
     render();
   });
 

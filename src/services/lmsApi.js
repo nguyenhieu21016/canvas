@@ -1,7 +1,9 @@
 import { supabase } from './supabaseClient.js';
 
 const CACHE_TTL_MS = 20_000;
+const REQUEST_TIMEOUT_MS = 12_000;
 const cache = new Map();
+const inFlight = new Map();
 
 function requireSupabase() {
   if (!supabase) {
@@ -33,11 +35,31 @@ function setCached(key, value, ttl = CACHE_TTL_MS) {
 
 function clearLmsCache() {
   cache.clear();
+  inFlight.clear();
+}
+
+function withTimeout(promise, label = 'request', timeoutMs = REQUEST_TIMEOUT_MS) {
+  let timer;
+  const timeout = new Promise((_, reject) => {
+    timer = globalThis.setTimeout(() => {
+      reject(new Error(`${label} mất quá lâu. Kiểm tra mạng rồi thử lại.`));
+    }, timeoutMs);
+  });
+  return Promise.race([promise, timeout]).finally(() => globalThis.clearTimeout(timer));
+}
+
+function dedupeRequest(key, factory) {
+  const active = inFlight.get(key);
+  if (active) return active;
+
+  const request = factory().finally(() => inFlight.delete(key));
+  inFlight.set(key, request);
+  return request;
 }
 
 export async function getSession() {
   const client = requireSupabase();
-  const { data, error } = await client.auth.getSession();
+  const { data, error } = await withTimeout(client.auth.getSession(), 'Kiểm tra phiên đăng nhập', 8_000);
   assertOk({ error });
   return data.session;
 }
@@ -75,15 +97,15 @@ export async function getCurrentProfile() {
   const {
     data: { user },
     error: userError,
-  } = await client.auth.getUser();
+  } = await withTimeout(client.auth.getUser(), 'Kiểm tra tài khoản', 8_000);
   assertOk({ error: userError });
   if (!user) return null;
 
-  const { data, error } = await client
+  const { data, error } = await withTimeout(client
     .from('profiles')
     .select('*')
     .eq('id', user.id)
-    .maybeSingle();
+    .maybeSingle(), 'Tải hồ sơ');
   assertOk({ error });
   return data;
 }
@@ -93,143 +115,149 @@ export async function fetchLearningPath(role = 'student') {
   const cached = getCached(cacheKey);
   if (cached) return cached;
 
-  const client = requireSupabase();
-  const shouldFilterPublished = role === 'student';
+  return dedupeRequest(cacheKey, async () => {
+    const cachedAgain = getCached(cacheKey);
+    if (cachedAgain) return cachedAgain;
 
-  let phasesQuery = client
-    .from('phases')
-    .select('id, owner_id, title, description, sort_order, published, created_at')
-    .order('sort_order')
-    .order('created_at');
-  let modulesQuery = client
-    .from('modules')
-    .select('id, phase_id, owner_id, title, description, sort_order, published, created_at')
-    .order('sort_order')
-    .order('created_at');
-  let lectureGroupsQuery = client
-    .from('lecture_groups')
-    .select('id, module_id, owner_id, title, description, sort_order, published, created_at')
-    .order('sort_order')
-    .order('created_at');
-  let lecturesQuery = client
-    .from('lectures')
-    .select('id, module_id, group_id, owner_id, title, description, slide_url, sort_order, published, created_at')
-    .order('sort_order')
-    .order('created_at');
-  let assignmentsQuery = client
-    .from('assignments')
-    .select('id, lecture_id, owner_id, title, description, pdf_url, sort_order, published, created_at')
-    .order('sort_order')
-    .order('created_at');
+    const client = requireSupabase();
+    const shouldFilterPublished = role === 'student';
 
-  if (shouldFilterPublished) {
-    phasesQuery = phasesQuery.eq('published', true);
-    modulesQuery = modulesQuery.eq('published', true);
-    lectureGroupsQuery = lectureGroupsQuery.eq('published', true);
-    lecturesQuery = lecturesQuery.eq('published', true);
-    assignmentsQuery = assignmentsQuery.eq('published', true);
-  }
+    let phasesQuery = client
+      .from('phases')
+      .select('id, owner_id, title, description, sort_order, published, created_at')
+      .order('sort_order')
+      .order('created_at');
+    let modulesQuery = client
+      .from('modules')
+      .select('id, phase_id, owner_id, title, description, sort_order, published, created_at')
+      .order('sort_order')
+      .order('created_at');
+    let lectureGroupsQuery = client
+      .from('lecture_groups')
+      .select('id, module_id, owner_id, title, description, sort_order, published, created_at')
+      .order('sort_order')
+      .order('created_at');
+    let lecturesQuery = client
+      .from('lectures')
+      .select('id, module_id, group_id, owner_id, title, description, slide_url, sort_order, published, created_at')
+      .order('sort_order')
+      .order('created_at');
+    let assignmentsQuery = client
+      .from('assignments')
+      .select('id, lecture_id, owner_id, title, description, pdf_url, sort_order, published, created_at')
+      .order('sort_order')
+      .order('created_at');
 
-  const [phasesResult, modulesResult, lectureGroupsResult, lecturesResult, assignmentsResult, attemptsResult] = await Promise.all([
-    phasesQuery,
-    modulesQuery,
-    lectureGroupsQuery,
-    lecturesQuery,
-    assignmentsQuery,
-    shouldFilterPublished
-      ? client
-        .from('attempts')
-        .select('assignment_id, score_10, submitted_at')
-        .eq('status', 'submitted')
-      : Promise.resolve({ data: [], error: null }),
-  ]);
-  [phasesResult, modulesResult, lectureGroupsResult, lecturesResult, assignmentsResult, attemptsResult].forEach(assertOk);
-
-  const modulesByPhase = new Map();
-  const groupsByModule = new Map();
-  const lecturesByModule = new Map();
-  const lecturesByGroup = new Map();
-  const assignmentsByLecture = new Map();
-  const freeAssignments = [];
-  const bestAttemptsByAssignment = new Map();
-
-  for (const attempt of attemptsResult.data ?? []) {
-    const current = bestAttemptsByAssignment.get(attempt.assignment_id);
-    const score = Number(attempt.score_10 ?? 0);
-    if (!current || score > Number(current.score_10 ?? 0)) {
-      bestAttemptsByAssignment.set(attempt.assignment_id, attempt);
+    if (shouldFilterPublished) {
+      phasesQuery = phasesQuery.eq('published', true);
+      modulesQuery = modulesQuery.eq('published', true);
+      lectureGroupsQuery = lectureGroupsQuery.eq('published', true);
+      lecturesQuery = lecturesQuery.eq('published', true);
+      assignmentsQuery = assignmentsQuery.eq('published', true);
     }
-  }
 
-  for (const module of modulesResult.data ?? []) {
-    if (!modulesByPhase.has(module.phase_id)) modulesByPhase.set(module.phase_id, []);
-    modulesByPhase.get(module.phase_id).push({ ...module, lecture_groups: [], lectures: [] });
-  }
+    const [phasesResult, modulesResult, lectureGroupsResult, lecturesResult, assignmentsResult, attemptsResult] =
+      await withTimeout(
+        Promise.all([
+          phasesQuery,
+          modulesQuery,
+          lectureGroupsQuery,
+          lecturesQuery,
+          assignmentsQuery,
+          shouldFilterPublished
+            ? client.from('attempts').select('assignment_id, score_10, submitted_at').eq('status', 'submitted')
+            : Promise.resolve({ data: [], error: null }),
+        ]),
+        'Tải lộ trình',
+      );
+    [phasesResult, modulesResult, lectureGroupsResult, lecturesResult, assignmentsResult, attemptsResult].forEach(assertOk);
 
-  for (const group of lectureGroupsResult.data ?? []) {
-    if (!groupsByModule.has(group.module_id)) groupsByModule.set(group.module_id, []);
-    groupsByModule.get(group.module_id).push({ ...group, lectures: [] });
-  }
+    const modulesByPhase = new Map();
+    const groupsByModule = new Map();
+    const lecturesByModule = new Map();
+    const lecturesByGroup = new Map();
+    const assignmentsByLecture = new Map();
+    const freeAssignments = [];
+    const bestAttemptsByAssignment = new Map();
 
-  for (const lecture of lecturesResult.data ?? []) {
-    if (!lecturesByModule.has(lecture.module_id)) lecturesByModule.set(lecture.module_id, []);
-    lecturesByModule.get(lecture.module_id).push({ ...lecture, assignments: [] });
-    if (lecture.group_id) {
-      if (!lecturesByGroup.has(lecture.group_id)) lecturesByGroup.set(lecture.group_id, []);
-      lecturesByGroup.get(lecture.group_id).push({ ...lecture, assignments: [] });
+    for (const attempt of attemptsResult.data ?? []) {
+      const current = bestAttemptsByAssignment.get(attempt.assignment_id);
+      const score = Number(attempt.score_10 ?? 0);
+      if (!current || score > Number(current.score_10 ?? 0)) {
+        bestAttemptsByAssignment.set(attempt.assignment_id, attempt);
+      }
     }
-  }
 
-  for (const assignment of assignmentsResult.data ?? []) {
-    const bestAttempt = bestAttemptsByAssignment.get(assignment.id);
-    const assignmentWithProgress = {
-      ...assignment,
-      progress: bestAttempt
-        ? {
-          status: 'submitted',
-          bestScore: Number(bestAttempt.score_10 ?? 0),
-          submittedAt: bestAttempt.submitted_at,
+    for (const module of modulesResult.data ?? []) {
+      if (!modulesByPhase.has(module.phase_id)) modulesByPhase.set(module.phase_id, []);
+      modulesByPhase.get(module.phase_id).push({ ...module, lecture_groups: [], lectures: [] });
+    }
+
+    for (const group of lectureGroupsResult.data ?? []) {
+      if (!groupsByModule.has(group.module_id)) groupsByModule.set(group.module_id, []);
+      groupsByModule.get(group.module_id).push({ ...group, lectures: [] });
+    }
+
+    for (const lecture of lecturesResult.data ?? []) {
+      if (!lecturesByModule.has(lecture.module_id)) lecturesByModule.set(lecture.module_id, []);
+      lecturesByModule.get(lecture.module_id).push({ ...lecture, assignments: [] });
+      if (lecture.group_id) {
+        if (!lecturesByGroup.has(lecture.group_id)) lecturesByGroup.set(lecture.group_id, []);
+        lecturesByGroup.get(lecture.group_id).push({ ...lecture, assignments: [] });
+      }
+    }
+
+    for (const assignment of assignmentsResult.data ?? []) {
+      const bestAttempt = bestAttemptsByAssignment.get(assignment.id);
+      const assignmentWithProgress = {
+        ...assignment,
+        progress: bestAttempt
+          ? {
+              status: 'submitted',
+              bestScore: Number(bestAttempt.score_10 ?? 0),
+              submittedAt: bestAttempt.submitted_at,
+            }
+          : { status: 'not_started', bestScore: null, submittedAt: null },
+      };
+      if (!assignment.lecture_id) {
+        freeAssignments.push(assignmentWithProgress);
+        continue;
+      }
+      if (!assignmentsByLecture.has(assignment.lecture_id)) {
+        assignmentsByLecture.set(assignment.lecture_id, []);
+      }
+      assignmentsByLecture.get(assignment.lecture_id).push(assignmentWithProgress);
+    }
+
+    for (const moduleList of modulesByPhase.values()) {
+      for (const module of moduleList) {
+        module.lectures = lecturesByModule.get(module.id) ?? [];
+        module.lecture_groups = groupsByModule.get(module.id) ?? [];
+        for (const lecture of module.lectures) {
+          lecture.assignments = assignmentsByLecture.get(lecture.id) ?? [];
         }
-        : { status: 'not_started', bestScore: null, submittedAt: null },
-    };
-    if (!assignment.lecture_id) {
-      freeAssignments.push(assignmentWithProgress);
-      continue;
-    }
-    if (!assignmentsByLecture.has(assignment.lecture_id)) {
-      assignmentsByLecture.set(assignment.lecture_id, []);
-    }
-    assignmentsByLecture.get(assignment.lecture_id).push(assignmentWithProgress);
-  }
-
-  for (const moduleList of modulesByPhase.values()) {
-    for (const module of moduleList) {
-      module.lectures = lecturesByModule.get(module.id) ?? [];
-      module.lecture_groups = groupsByModule.get(module.id) ?? [];
-      for (const lecture of module.lectures) {
-        lecture.assignments = assignmentsByLecture.get(lecture.id) ?? [];
-      }
-      for (const group of module.lecture_groups) {
-        group.lectures = (lecturesByGroup.get(group.id) ?? []).map((lecture) => ({
-          ...lecture,
-          assignments: assignmentsByLecture.get(lecture.id) ?? [],
-        }));
+        for (const group of module.lecture_groups) {
+          group.lectures = (lecturesByGroup.get(group.id) ?? []).map((lecture) => ({
+            ...lecture,
+            assignments: assignmentsByLecture.get(lecture.id) ?? [],
+          }));
+        }
       }
     }
-  }
 
-  const phases = (phasesResult.data ?? []).map((phase) => ({
-    ...phase,
-    modules: modulesByPhase.get(phase.id) ?? [],
-  }));
+    const phases = (phasesResult.data ?? []).map((phase) => ({
+      ...phase,
+      modules: modulesByPhase.get(phase.id) ?? [],
+    }));
 
-  return setCached(cacheKey, {
-    phases,
-    modules: modulesResult.data ?? [],
-    lectureGroups: lectureGroupsResult.data ?? [],
-    lectures: lecturesResult.data ?? [],
-    assignments: assignmentsResult.data ?? [],
-    freeAssignments,
+    return setCached(cacheKey, {
+      phases,
+      modules: modulesResult.data ?? [],
+      lectureGroups: lectureGroupsResult.data ?? [],
+      lectures: lecturesResult.data ?? [],
+      assignments: assignmentsResult.data ?? [],
+      freeAssignments,
+    });
   });
 }
 
@@ -295,17 +323,17 @@ export async function deleteLecture(id) {
 
 export async function fetchAssignmentsForManager() {
   const client = requireSupabase();
-  const { data, error } = await client
+  const { data, error } = await withTimeout(client
     .from('assignments')
     .select('id, lecture_id, owner_id, title, description, pdf_url, sort_order, published, created_at, lectures(title), profiles(full_name)')
-    .order('created_at', { ascending: false });
+    .order('created_at', { ascending: false }), 'Tải danh sách đề');
   assertOk({ error });
   return data ?? [];
 }
 
 export async function fetchAssignmentEditor(assignmentId) {
   const client = requireSupabase();
-  const [assignmentResult, questionsResult] = await Promise.all([
+  const [assignmentResult, questionsResult] = await withTimeout(Promise.all([
     client.from('assignments').select('*').eq('id', assignmentId).single(),
     client
       .from('questions')
@@ -313,7 +341,7 @@ export async function fetchAssignmentEditor(assignmentId) {
       .eq('assignment_id', assignmentId)
       .order('sort_order')
       .order('created_at'),
-  ]);
+  ]), 'Tải trình sửa đề');
   assertOk(assignmentResult);
   assertOk(questionsResult);
   return {
@@ -389,7 +417,7 @@ export async function deleteAssignment(id) {
 
 export async function fetchAssignmentForStudent(assignmentId) {
   const client = requireSupabase();
-  const [assignmentResult, questionsResult] = await Promise.all([
+  const [assignmentResult, questionsResult] = await withTimeout(Promise.all([
     client.from('assignments').select('*').eq('id', assignmentId).single(),
     client
       .from('questions')
@@ -397,7 +425,7 @@ export async function fetchAssignmentForStudent(assignmentId) {
       .eq('assignment_id', assignmentId)
       .order('sort_order')
       .order('created_at'),
-  ]);
+  ]), 'Tải đề bài');
   assertOk(assignmentResult);
   assertOk(questionsResult);
   return {
@@ -408,7 +436,7 @@ export async function fetchAssignmentForStudent(assignmentId) {
 
 export async function fetchStudentAssignmentOverview(assignmentId) {
   const client = requireSupabase();
-  const [assignmentResult, attemptsResult] = await Promise.all([
+  const [assignmentResult, attemptsResult] = await withTimeout(Promise.all([
     client.from('assignments').select('*').eq('id', assignmentId).single(),
     client
       .from('attempts')
@@ -416,7 +444,7 @@ export async function fetchStudentAssignmentOverview(assignmentId) {
       .eq('assignment_id', assignmentId)
       .eq('status', 'submitted')
       .order('submitted_at', { ascending: false }),
-  ]);
+  ]), 'Tải lịch sử bài tập');
   assertOk(assignmentResult);
   assertOk(attemptsResult);
 
@@ -428,36 +456,36 @@ export async function fetchStudentAssignmentOverview(assignmentId) {
 
 export async function submitAssignmentAttempt({ assignmentId, answers }) {
   const client = requireSupabase();
-  const { data: submitted, error } = await client.rpc('submit_assignment_attempt', {
+  const { data: submitted, error } = await withTimeout(client.rpc('submit_assignment_attempt', {
     p_assignment_id: assignmentId,
     p_answers: answers ?? {},
-  });
+  }), 'Nộp bài', 20_000);
   assertOk({ error });
   return submitted;
 }
 
 export async function fetchMyHistory() {
   const client = requireSupabase();
-  const { data, error } = await client
+  const { data, error } = await withTimeout(client
     .from('attempts')
     .select('*, assignments(title)')
-    .order('submitted_at', { ascending: false });
+    .order('submitted_at', { ascending: false }), 'Tải lịch sử');
   assertOk({ error });
   return data ?? [];
 }
 
 export async function fetchAttemptReview(attemptId) {
   const client = requireSupabase();
-  const { data, error } = await client.rpc('get_attempt_review', {
+  const { data, error } = await withTimeout(client.rpc('get_attempt_review', {
     p_attempt_id: attemptId,
-  });
+  }), 'Tải chi tiết bài làm');
   assertOk({ error });
   return data;
 }
 
 export async function fetchAssignmentInsights(assignmentId) {
   const client = requireSupabase();
-  const [assignmentResult, attemptsResult, studentsResult] = await Promise.all([
+  const [assignmentResult, attemptsResult, studentsResult] = await withTimeout(Promise.all([
     client
       .from('assignments')
       .select('id, title, description, pdf_url, published, created_at, lectures(title), profiles(full_name)')
@@ -474,7 +502,7 @@ export async function fetchAssignmentInsights(assignmentId) {
       .select('id, email, full_name, status')
       .eq('role', 'student')
       .order('full_name', { ascending: true }),
-  ]);
+  ]), 'Tải thống kê bài tập');
   [assignmentResult, attemptsResult, studentsResult].forEach(assertOk);
 
   const attempts = attemptsResult.data ?? [];
@@ -513,11 +541,11 @@ export async function fetchStudents() {
   if (cached) return cached;
 
   const client = requireSupabase();
-  const { data, error } = await client
+  const { data, error } = await withTimeout(client
     .from('profiles')
     .select('id, email, full_name, role, status, created_at, updated_at')
     .eq('role', 'student')
-    .order('created_at', { ascending: false });
+    .order('created_at', { ascending: false }), 'Tải danh sách học sinh');
   assertOk({ error });
   return setCached('students', data ?? []);
 }
@@ -569,18 +597,18 @@ export async function deleteManagedUser(id) {
 
 export async function fetchGradebook() {
   const client = requireSupabase();
-  const { data, error } = await client
+  const { data, error } = await withTimeout(client
     .from('attempts')
     .select('id, assignment_id, student_id, status, submitted_at, score, max_points, score_10, profiles(full_name, email), assignments(title)')
     .eq('status', 'submitted')
-    .order('submitted_at', { ascending: false });
+    .order('submitted_at', { ascending: false }), 'Tải bảng điểm');
   assertOk({ error });
   return data ?? [];
 }
 
 export async function fetchDashboardStats() {
   const client = requireSupabase();
-  const { data, error } = await client.rpc('get_dashboard_stats');
+  const { data, error } = await withTimeout(client.rpc('get_dashboard_stats'), 'Tải thống kê');
   assertOk({ error });
 
   return {
