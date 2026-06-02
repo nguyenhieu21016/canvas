@@ -313,7 +313,7 @@ function renderAuth() {
       const password = form.querySelector('[name="password"]').value;
       if (state.authMode === 'login') {
         state.session = await signIn(email, password);
-        state.profile = await getCurrentProfile();
+        state.profile = await getCurrentProfile(state.session?.user);
       } else {
         const fullName = form.querySelector('[name="full_name"]').value.trim();
         const signup = await signUpStudent({ email, password, fullName });
@@ -324,7 +324,7 @@ function renderAuth() {
           renderAuth();
           return;
         }
-        state.profile = await getCurrentProfile();
+        state.profile = await getCurrentProfile(state.session.user);
       }
       render();
     } catch (error) {
@@ -2151,7 +2151,7 @@ async function bootstrap() {
 
   try {
     state.session = await getSession();
-    if (state.session) state.profile = await getCurrentProfile();
+    if (state.session) state.profile = await getCurrentProfile(state.session.user);
   } catch (error) {
     toast(error.message, 'error');
   }
@@ -2159,10 +2159,8 @@ async function bootstrap() {
   supabase.auth.onAuthStateChange(async (_event, session) => {
     try {
       state.session = session;
-      state.profile = session ? await getCurrentProfile() : null;
+      state.profile = session ? await getCurrentProfile(session.user) : null;
     } catch (error) {
-      state.session = null;
-      state.profile = null;
       toast(error.message, 'error');
     }
     render();

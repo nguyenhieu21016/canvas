@@ -101,13 +101,17 @@ export async function signOut() {
   assertOk({ error });
 }
 
-export async function getCurrentProfile() {
+export async function getCurrentProfile(sessionUser = null) {
   const client = requireSupabase();
-  const {
-    data: { user },
-    error: userError,
-  } = await withTimeout(client.auth.getUser(), 'Kiểm tra tài khoản', AUTH_TIMEOUT_MS);
-  assertOk({ error: userError });
+  let user = sessionUser;
+  if (!user) {
+    const {
+      data: { user: authUser },
+      error: userError,
+    } = await withTimeout(client.auth.getUser(), 'Kiểm tra tài khoản', AUTH_TIMEOUT_MS);
+    assertOk({ error: userError });
+    user = authUser;
+  }
   if (!user) return null;
 
   const { data, error } = await withTimeout(client
