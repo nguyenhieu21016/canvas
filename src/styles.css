@@ -865,12 +865,18 @@ md-icon {
   background: inherit;
 }
 
-.lecture-group-block {
+.lecture-group-block,
+.lecture-group-block[open] {
   display: grid;
   border: 1px solid var(--md-sys-color-outline-variant);
   border-radius: 8px;
   background: var(--md-sys-color-surface-container-low);
   overflow: hidden;
+}
+
+.lecture-group-title,
+.lecture-group-block[open] .lecture-group-title {
+  background: inherit;
 }
 
 .lecture-group-block.ungrouped {
