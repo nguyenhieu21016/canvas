@@ -1314,6 +1314,7 @@ function wireContentForms() {
   document.querySelectorAll('.entity-form').forEach((form) => {
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
+      if (form.dataset.saving === 'true') return;
       const values = Object.fromEntries(new FormData(form).entries());
       const payload = {
         ...values,
@@ -1325,16 +1326,19 @@ function wireContentForms() {
         owner_id: state.profile.id,
       };
       const restore = setButtonLoading(form.querySelector('md-filled-button'));
+      form.dataset.saving = 'true';
       try {
         if (form.dataset.entity === 'phase') await upsertPhase(payload);
         if (form.dataset.entity === 'module') await upsertModule(payload);
         if (form.dataset.entity === 'lectureGroup') await upsertLectureGroup(payload);
         if (form.dataset.entity === 'lecture') await upsertLecture({ ...payload, group_id: payload.group_id || null });
         toast('Đã lưu nội dung.', 'success');
+        restore();
         await mountContentManager();
       } catch (error) {
         toast(error.message, 'error');
       } finally {
+        delete form.dataset.saving;
         restore();
       }
     });

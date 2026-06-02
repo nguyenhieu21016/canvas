@@ -272,7 +272,7 @@ export async function fetchLearningPath(role = 'student') {
 
 export async function upsertPhase(payload) {
   const client = requireSupabase();
-  const { data, error } = await client.from('phases').upsert(payload).select().single();
+  const { data, error } = await withTimeout(client.from('phases').upsert(payload).select().single(), 'Lưu giai đoạn');
   assertOk({ error });
   clearLmsCache();
   return data;
@@ -280,14 +280,14 @@ export async function upsertPhase(payload) {
 
 export async function deletePhase(id) {
   const client = requireSupabase();
-  const { error } = await client.from('phases').delete().eq('id', id);
+  const { error } = await withTimeout(client.from('phases').delete().eq('id', id), 'Xóa giai đoạn');
   assertOk({ error });
   clearLmsCache();
 }
 
 export async function upsertModule(payload) {
   const client = requireSupabase();
-  const { data, error } = await client.from('modules').upsert(payload).select().single();
+  const { data, error } = await withTimeout(client.from('modules').upsert(payload).select().single(), 'Lưu chuyên đề');
   assertOk({ error });
   clearLmsCache();
   return data;
@@ -295,14 +295,17 @@ export async function upsertModule(payload) {
 
 export async function deleteModule(id) {
   const client = requireSupabase();
-  const { error } = await client.from('modules').delete().eq('id', id);
+  const { error } = await withTimeout(client.from('modules').delete().eq('id', id), 'Xóa chuyên đề');
   assertOk({ error });
   clearLmsCache();
 }
 
 export async function upsertLectureGroup(payload) {
   const client = requireSupabase();
-  const { data, error } = await client.from('lecture_groups').upsert(payload).select().single();
+  const { data, error } = await withTimeout(
+    client.from('lecture_groups').upsert(payload).select().single(),
+    'Lưu nhóm bài giảng',
+  );
   assertOk({ error });
   clearLmsCache();
   return data;
@@ -310,14 +313,14 @@ export async function upsertLectureGroup(payload) {
 
 export async function deleteLectureGroup(id) {
   const client = requireSupabase();
-  const { error } = await client.from('lecture_groups').delete().eq('id', id);
+  const { error } = await withTimeout(client.from('lecture_groups').delete().eq('id', id), 'Xóa nhóm bài giảng');
   assertOk({ error });
   clearLmsCache();
 }
 
 export async function upsertLecture(payload) {
   const client = requireSupabase();
-  const { data, error } = await client.from('lectures').upsert(payload).select().single();
+  const { data, error } = await withTimeout(client.from('lectures').upsert(payload).select().single(), 'Lưu bài giảng');
   assertOk({ error });
   clearLmsCache();
   return data;
@@ -325,7 +328,7 @@ export async function upsertLecture(payload) {
 
 export async function deleteLecture(id) {
   const client = requireSupabase();
-  const { error } = await client.from('lectures').delete().eq('id', id);
+  const { error } = await withTimeout(client.from('lectures').delete().eq('id', id), 'Xóa bài giảng');
   assertOk({ error });
   clearLmsCache();
 }
