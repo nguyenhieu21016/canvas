@@ -15,6 +15,6 @@ export function roleLabel(role) {
   return {
     student: 'Học sinh',
     teacher: 'Giáo viên',
-    admin: 'Admin',
+    admin: 'Giáo viên',
   }[role] ?? role;
 }

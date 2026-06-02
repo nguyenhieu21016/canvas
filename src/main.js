@@ -201,13 +201,6 @@ function renderShell() {
       <div class="workspace">
         <header class="topbar">
           <div class="topbar-main">
-            <a class="brand" href="#/learn" aria-label="Canvas">
-              <span class="brand-mark">C</span>
-              <div class="brand-text">
-                <span class="brand-copy">Canvas</span>
-                <span class="brand-subtitle">Hướng tới kì thi THPTQG 2027</span>
-              </div>
-            </a>
             <div class="page-heading">
               <span class="role-chip">${escapeHtml(roleLabel(state.profile.role))}</span>
               <h1 class="page-title ${current === 'learn' ? 'learn-title' : ''}">${pageTitle(current)}</h1>
@@ -247,7 +240,7 @@ function renderShell() {
 function pageTitle(name) {
   return (
     {
-      learn: 'Lộ trình luyện thi 2027',
+      learn: 'Lộ trình ôn thi 2027',
       phase: 'Chi tiết giai đoạn',
       history: 'Lịch sử học tập',
       countdown: 'Đếm ngược THPTQG',
@@ -259,7 +252,7 @@ function pageTitle(name) {
       assignments: 'Quản lý đề thi',
       students: 'Quản lý học sinh',
       grades: 'Bảng điểm',
-    }[name] ?? 'Lộ trình luyện thi 2027'
+    }[name] ?? 'Lộ trình ôn thi 2027'
   );
 }
 

@@ -501,8 +501,9 @@ md-icon {
 .topbar-main {
   display: flex;
   align-items: center;
-  gap: clamp(18px, 3vw, 32px);
+  gap: 0;
   min-width: 0;
+  flex: 1 1 auto;
 }
 
 .topbar-main > div:last-child {
@@ -512,6 +513,8 @@ md-icon {
 .page-heading {
   display: grid;
   gap: 6px;
+  justify-items: start;
+  text-align: left;
 }
 
 .topbar h1,
@@ -529,9 +532,8 @@ md-icon {
 }
 
 .page-title.learn-title {
-  color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-surface);
   font-weight: 700;
-  text-transform: uppercase;
 }
 
 .role-chip {
@@ -1952,8 +1954,7 @@ tbody tr:hover {
 }
 
 :root[data-theme='dark'] .text-link,
-:root[data-theme='dark'] .phase-card-action,
-:root[data-theme='dark'] .page-title.learn-title {
+:root[data-theme='dark'] .phase-card-action {
   color: var(--md-sys-color-primary);
 }
 
