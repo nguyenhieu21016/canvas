@@ -46,6 +46,13 @@ import { escapeHtml, option, setButtonLoading } from './lib/html.js';
 
 const app = document.querySelector('#app');
 const toastEl = document.querySelector('#toast');
+const detachedPageRoot = {
+  isConnected: false,
+  set innerHTML(_value) {},
+  get innerHTML() {
+    return '';
+  },
+};
 
 const state = {
   session: null,
@@ -149,7 +156,7 @@ function daysUntilExam() {
 }
 
 function pageRoot() {
-  return document.querySelector('#page-root');
+  return document.querySelector('#page-root') ?? detachedPageRoot;
 }
 
 function renderLoading(label = 'Đang tải dữ liệu') {

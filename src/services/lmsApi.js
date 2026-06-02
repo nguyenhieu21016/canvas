@@ -1,7 +1,8 @@
 import { supabase } from './supabaseClient.js';
 
 const CACHE_TTL_MS = 20_000;
-const REQUEST_TIMEOUT_MS = 12_000;
+const REQUEST_TIMEOUT_MS = 30_000;
+const AUTH_TIMEOUT_MS = 20_000;
 const cache = new Map();
 const inFlight = new Map();
 
@@ -42,7 +43,7 @@ function withTimeout(promise, label = 'request', timeoutMs = REQUEST_TIMEOUT_MS)
   let timer;
   const timeout = new Promise((_, reject) => {
     timer = globalThis.setTimeout(() => {
-      reject(new Error(`${label} mất quá lâu. Kiểm tra mạng rồi thử lại.`));
+      reject(new Error(`${label} đang chậm hơn bình thường. Thử lại sau một chút.`));
     }, timeoutMs);
   });
   return Promise.race([promise, timeout]).finally(() => globalThis.clearTimeout(timer));
@@ -59,36 +60,44 @@ function dedupeRequest(key, factory) {
 
 export async function getSession() {
   const client = requireSupabase();
-  const { data, error } = await withTimeout(client.auth.getSession(), 'Kiểm tra phiên đăng nhập', 8_000);
+  const { data, error } = await withTimeout(client.auth.getSession(), 'Kiểm tra phiên đăng nhập', AUTH_TIMEOUT_MS);
   assertOk({ error });
   return data.session;
 }
 
 export async function signIn(email, password) {
   const client = requireSupabase();
-  const { data, error } = await client.auth.signInWithPassword({ email, password });
+  const { data, error } = await withTimeout(
+    client.auth.signInWithPassword({ email, password }),
+    'Đăng nhập',
+    AUTH_TIMEOUT_MS,
+  );
   assertOk({ error });
   return data.session;
 }
 
 export async function signUpStudent({ email, password, fullName }) {
   const client = requireSupabase();
-  const { data, error } = await client.auth.signUp({
-    email,
-    password,
-    options: {
-      data: {
-        full_name: fullName,
+  const { data, error } = await withTimeout(
+    client.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          full_name: fullName,
+        },
       },
-    },
-  });
+    }),
+    'Đăng ký',
+    AUTH_TIMEOUT_MS,
+  );
   assertOk({ error });
   return data;
 }
 
 export async function signOut() {
   const client = requireSupabase();
-  const { error } = await client.auth.signOut();
+  const { error } = await withTimeout(client.auth.signOut(), 'Đăng xuất', AUTH_TIMEOUT_MS);
   assertOk({ error });
 }
 
@@ -97,7 +106,7 @@ export async function getCurrentProfile() {
   const {
     data: { user },
     error: userError,
-  } = await withTimeout(client.auth.getUser(), 'Kiểm tra tài khoản', 8_000);
+  } = await withTimeout(client.auth.getUser(), 'Kiểm tra tài khoản', AUTH_TIMEOUT_MS);
   assertOk({ error: userError });
   if (!user) return null;
 
