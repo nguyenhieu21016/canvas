@@ -865,22 +865,26 @@ md-icon {
   background: inherit;
 }
 
-.lecture-group-block,
-.lecture-group-block[open] {
+.lecture-group-block {
+  --lecture-group-surface: var(--md-sys-color-surface-container-low);
   display: grid;
   border: 1px solid var(--md-sys-color-outline-variant);
   border-radius: 8px;
-  background: var(--md-sys-color-surface-container-low);
+  background: var(--lecture-group-surface);
   overflow: hidden;
 }
 
+.lecture-group-block,
+.lecture-group-block[open],
 .lecture-group-title,
-.lecture-group-block[open] .lecture-group-title {
-  background: inherit;
+.lecture-group-block[open] .lecture-group-title,
+.lecture-group-block:hover,
+.lecture-group-block:focus-within {
+  background-color: var(--lecture-group-surface);
 }
 
 .lecture-group-block.ungrouped {
-  background: var(--md-sys-color-surface-container-lowest);
+  --lecture-group-surface: var(--md-sys-color-surface-container-low);
 }
 
 .lecture-group-title {
@@ -1921,7 +1925,6 @@ tbody tr:hover {
   background: var(--md-sys-color-surface-container-high);
 }
 
-:root[data-theme='dark'] .lecture-group-block.ungrouped,
 :root[data-theme='dark'] .choice-tile,
 :root[data-theme='dark'] .assignment-chip,
 :root[data-theme='dark'] .segmented .selected {
