@@ -854,9 +854,15 @@ md-icon {
   margin: 0;
 }
 
-.lecture-row {
+.lecture-row,
+.lecture-row[open] {
   overflow: hidden;
   background: var(--md-sys-color-surface-container-low);
+}
+
+.lecture-row summary,
+.lecture-row[open] summary {
+  background: inherit;
 }
 
 .lecture-group-block {
@@ -1568,7 +1574,9 @@ td small {
 }
 
 .manage-node.greatgrandchild {
-  padding-left: 72px;
+  margin-left: 72px;
+  padding-left: 16px;
+  border-left: 2px solid var(--md-sys-color-outline-variant);
 }
 
 .manage-node div:first-child {

@@ -1284,29 +1284,33 @@ function renderManagePhase(phase) {
                     <button data-delete-lecture-group="${group.id}" aria-label="Xóa nhóm bài giảng"><md-icon>delete</md-icon></button>
                   </div>
                 </div>
+                ${(group.lectures ?? []).map((lecture) => renderManageLecture(lecture, group.id, 'Trong nhóm')).join('')}
               `,
             )
             .join('')}
           ${module.lectures
-            .map(
-              (lecture) => `
-                <div class="manage-node greatgrandchild" draggable="true" data-entity="lecture" data-parent="${lecture.group_id || `module:${module.id}`}" data-id="${lecture.id}" data-payload="${escapeHtml(JSON.stringify(lecture))}">
-                  <div>
-                    <md-icon class="drag-handle" aria-hidden="true">drag_indicator</md-icon>
-                    <strong>${escapeHtml(lecture.title)}</strong>
-                    <span>${lecture.group_id ? 'Trong nhóm' : 'Chưa nhóm'}</span>
-                  </div>
-                  <div class="icon-actions">
-                    <button data-edit-lecture="${lecture.id}" data-payload="${escapeHtml(JSON.stringify(lecture))}" aria-label="Sửa bài giảng"><md-icon>edit</md-icon></button>
-                    <button data-delete-lecture="${lecture.id}" aria-label="Xóa bài giảng"><md-icon>delete</md-icon></button>
-                  </div>
-                </div>
-              `,
-            )
+            .filter((lecture) => !lecture.group_id)
+            .map((lecture) => renderManageLecture(lecture, `module:${module.id}`, 'Chưa nhóm'))
             .join('')}
         `,
       )
       .join('')}
+  `;
+}
+
+function renderManageLecture(lecture, parent, statusText) {
+  return `
+    <div class="manage-node greatgrandchild" draggable="true" data-entity="lecture" data-parent="${escapeHtml(parent)}" data-id="${lecture.id}" data-payload="${escapeHtml(JSON.stringify(lecture))}">
+      <div>
+        <md-icon class="drag-handle" aria-hidden="true">drag_indicator</md-icon>
+        <strong>${escapeHtml(lecture.title)}</strong>
+        <span>${escapeHtml(statusText)}</span>
+      </div>
+      <div class="icon-actions">
+        <button data-edit-lecture="${lecture.id}" data-payload="${escapeHtml(JSON.stringify(lecture))}" aria-label="Sửa bài giảng"><md-icon>edit</md-icon></button>
+        <button data-delete-lecture="${lecture.id}" aria-label="Xóa bài giảng"><md-icon>delete</md-icon></button>
+      </div>
+    </div>
   `;
 }
 
