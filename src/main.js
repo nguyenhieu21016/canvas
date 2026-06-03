@@ -153,7 +153,7 @@ function accountInitial(profile) {
 function daysUntilExam() {
   const today = new Date();
   const start = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-  const examDate = new Date(2027, 5, 12);
+  const examDate = new Date(2027, 5, 11);
   return Math.max(0, Math.ceil((examDate - start) / 86_400_000));
 }
 
@@ -1107,7 +1107,7 @@ async function mountDashboard() {
 function mountCountdown() {
   const root = pageRoot();
   const days = daysUntilExam();
-  const examDate = new Date(2027, 5, 12);
+  const examDate = new Date(2027, 5, 11);
   const formattedExamDate = examDate.toLocaleDateString('vi-VN', {
     weekday: 'long',
     day: '2-digit',
