@@ -1,4 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
-  <rect width="192" height="192" rx="40" fill="#386a9f"/>
-  <text x="96" y="130" font-family="Google Sans, sans-serif" font-size="120" font-weight="700" fill="#d3e4ff" text-anchor="middle">C</text>
+  <rect width="192" height="192" rx="40" fill="#d3e4ff"/>
+  <text
+    x="88"
+    y="132"
+    fill="#17324d"
+    font-family="Google Sans, Arial, sans-serif"
+    font-size="118"
+    font-weight="800"
+    text-anchor="middle"
+  >C</text>
+  <text
+    x="132"
+    y="74"
+    fill="#386a9f"
+    font-family="Google Sans, Arial, sans-serif"
+    font-size="54"
+    font-weight="800"
+    text-anchor="middle"
+  >*</text>
 </svg>
