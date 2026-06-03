@@ -8,7 +8,7 @@ export function formatDateTime(value) {
 
 export function formatScore(value) {
   if (value === null || value === undefined) return '-';
-  return Number(value).toFixed(2);
+  return Number(value).toFixed(1);
 }
 
 export function roleLabel(role) {

@@ -638,8 +638,8 @@ declare
   v_earned numeric := 0;
   v_max numeric := 0;
   v_item_earned numeric;
-  v_item_point numeric;
   v_is_correct boolean;
+  v_has_expected boolean;
   v_actual text;
   v_expected text;
 begin
@@ -678,26 +678,25 @@ begin
   loop
     v_item_earned := 0;
     v_is_correct := false;
-    v_max := v_max + v_item.points;
+    v_has_expected := false;
+    v_max := v_max + 1;
 
     if v_item.type = 'mcq' then
       v_actual := upper(trim(coalesce(v_item.answer #>> '{}', '')));
       v_expected := upper(trim(coalesce(v_item.correct_answer #>> '{}', '')));
       v_is_correct := v_actual <> '' and v_actual = v_expected;
-      if v_is_correct then
-        v_item_earned := v_item.points;
-      end if;
     elsif v_item.type = 'tf4' then
+      v_is_correct := true;
       for v_index in 0..3 loop
         if v_item.correct_answer ->> v_index is not null then
-          v_item_point := coalesce(nullif(v_item.points_map ->> v_index, '')::numeric, v_item.points / 4);
-          if v_item.answer ->> v_index is not null
-            and (v_item.answer ->> v_index)::boolean = (v_item.correct_answer ->> v_index)::boolean then
-            v_item_earned := v_item_earned + v_item_point;
+          v_has_expected := true;
+          if v_item.answer ->> v_index is null
+            or (v_item.answer ->> v_index)::boolean <> (v_item.correct_answer ->> v_index)::boolean then
+            v_is_correct := false;
           end if;
         end if;
       end loop;
-      v_is_correct := v_item_earned = v_item.points;
+      v_is_correct := v_has_expected and v_is_correct;
     elsif v_item.type = 'short' then
       v_actual := public.normalize_answer_text(v_item.answer #>> '{}');
       select exists (
@@ -706,11 +705,11 @@ begin
         where public.normalize_answer_text(accepted.answer) = v_actual
           and v_actual <> ''
       ) into v_is_correct;
-      if v_is_correct then
-        v_item_earned := v_item.points;
-      end if;
     end if;
 
+    if v_is_correct then
+      v_item_earned := 1;
+    end if;
     v_earned := v_earned + v_item_earned;
 
     insert into public.attempt_answers (
@@ -738,7 +737,7 @@ begin
       submitted_at = now(),
       score = v_earned,
       max_points = v_max,
-      score_10 = case when v_max > 0 then round((v_earned / v_max) * 10, 2) else 0 end,
+      score_10 = case when v_max > 0 then round((v_earned / v_max) * 10, 1) else 0 end,
       updated_at = now()
   where id = p_attempt_id
   returning * into v_attempt;

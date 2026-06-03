@@ -24,50 +24,42 @@ function answerAt(value, index) {
 }
 
 export function gradeQuestion(question, key, answer) {
-  const points = Number(question?.points ?? key?.points ?? 0);
   const type = question?.type;
 
   if (type === QUESTION_TYPES.MCQ) {
     const expected = String(key?.correct_answer ?? '').trim().toUpperCase();
     const actual = String(answer ?? '').trim().toUpperCase();
     const isCorrect = actual !== '' && actual === expected;
-    return { earned: isCorrect ? points : 0, max: points, isCorrect };
+    return { earned: isCorrect ? 1 : 0, max: 1, isCorrect };
   }
 
   if (type === QUESTION_TYPES.TF4) {
     const correct = key?.correct_answer ?? [];
-    const pointMap = Array.isArray(key?.points_map) ? key.points_map : null;
-    let earned = 0;
-    let compared = 0;
+    let isCorrect = true;
+    let hasExpected = false;
 
     for (let index = 0; index < 4; index += 1) {
       const expected = answerAt(correct, index);
       if (expected === undefined || expected === null) continue;
+      hasExpected = true;
       const actual = answerAt(answer, index);
-      if (actual === undefined || actual === null) continue;
-      compared += 1;
-      const itemPoint = Number(pointMap?.[index] ?? points / 4);
-      if (toBoolean(actual) === toBoolean(expected)) {
-        earned += itemPoint;
+      if (actual === undefined || actual === null || toBoolean(actual) !== toBoolean(expected)) {
+        isCorrect = false;
       }
     }
 
-    const max = compared > 0 ? points : 0;
-    return {
-      earned: Number(earned.toFixed(4)),
-      max,
-      isCorrect: max > 0 && Math.abs(earned - max) < 0.0001,
-    };
+    isCorrect = hasExpected && isCorrect;
+    return { earned: isCorrect ? 1 : 0, max: 1, isCorrect };
   }
 
   if (type === QUESTION_TYPES.SHORT) {
     const accepted = Array.isArray(key?.accepted_answers) ? key.accepted_answers : [];
     const actual = normalizeShortAnswer(answer);
     const isCorrect = actual !== '' && accepted.some((item) => normalizeShortAnswer(item) === actual);
-    return { earned: isCorrect ? points : 0, max: points, isCorrect };
+    return { earned: isCorrect ? 1 : 0, max: 1, isCorrect };
   }
 
-  return { earned: 0, max: points, isCorrect: false };
+  return { earned: 0, max: 1, isCorrect: false };
 }
 
 export function gradeAttempt(questions, answersByQuestionId, keysByQuestionId) {
@@ -80,8 +72,8 @@ export function gradeAttempt(questions, answersByQuestionId, keysByQuestionId) {
     return { questionId: question.id, ...result };
   });
   const earned = details.reduce((sum, item) => sum + item.earned, 0);
-  const max = details.reduce((sum, item) => sum + item.max, 0);
-  const score10 = max > 0 ? Math.round((earned / max) * 1000) / 100 : 0;
+  const max = questions.length;
+  const score10 = max > 0 ? Math.round((earned / max) * 100) / 10 : 0;
 
   return {
     earned: Number(earned.toFixed(4)),

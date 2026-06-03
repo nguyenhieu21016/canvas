@@ -1206,7 +1206,7 @@ md-icon {
 
 .tf-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: 10px;
 }
@@ -1274,9 +1274,10 @@ textarea.field {
 
 .score-badge {
   border-color: transparent;
-  background: var(--md-sys-color-primary);
-  color: var(--md-sys-color-on-primary);
-  font-size: 1.2rem;
+  background: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-primary);
+  font-size: 1.12rem;
+  font-weight: 650;
 }
 
 .metric-grid {
@@ -2042,11 +2043,13 @@ tbody tr:hover {
   grid-template-columns: minmax(0, 1fr) minmax(240px, 0.5fr);
   gap: 16px;
   padding: 16px;
-  border-left: 5px solid var(--md-sys-color-error);
+  border: 1px solid color-mix(in srgb, var(--md-sys-color-error) 28%, var(--md-sys-color-outline-variant));
+  background: color-mix(in srgb, #ffd9de 58%, var(--md-sys-color-surface-container-lowest));
 }
 
 .review-item.correct {
-  border-left-color: var(--md-sys-color-tertiary);
+  border-color: color-mix(in srgb, #2f6f4e 30%, var(--md-sys-color-outline-variant));
+  background: color-mix(in srgb, #d7f3df 62%, var(--md-sys-color-surface-container-lowest));
 }
 
 .review-item h3 {
@@ -2172,6 +2175,16 @@ tbody tr:hover {
 :root[data-theme='dark'] .doc-frame {
   border-color: var(--md-sys-color-outline-variant);
   background: var(--md-sys-color-surface-container-high);
+}
+
+:root[data-theme='dark'] .review-item {
+  border-color: color-mix(in srgb, #ffb4ab 28%, var(--md-sys-color-outline-variant));
+  background: color-mix(in srgb, #5b1f24 42%, var(--md-sys-color-surface-container-high));
+}
+
+:root[data-theme='dark'] .review-item.correct {
+  border-color: color-mix(in srgb, #9bd6a8 28%, var(--md-sys-color-outline-variant));
+  background: color-mix(in srgb, #173f2b 46%, var(--md-sys-color-surface-container-high));
 }
 
 :root[data-theme='dark'] select.field,

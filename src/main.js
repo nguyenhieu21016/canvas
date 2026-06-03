@@ -52,8 +52,8 @@ const toastEl = document.querySelector('#toast');
 const MAX_AVATAR_SOURCE_BYTES = 5 * 1024 * 1024;
 const MAX_AVATAR_UPLOAD_BYTES = 250 * 1024;
 const AVATAR_SIZE = 320;
-const APP_VERSION = '1.1.2';
-const APP_LAST_UPDATE = 'Sửa lỗi khung hiển thị đề bài trong bài tập về nhà.';
+const APP_VERSION = '1.1.3';
+const APP_LAST_UPDATE = 'Đổi cách chấm điểm bài tập sang chia đều theo số câu đúng.';
 let renderGeneration = 0;
 const detachedPageRoot = {
   isConnected: false,
@@ -951,7 +951,6 @@ function renderQuestionInput(question, index, answer) {
     <div class="question-prompt">
       <span>Câu ${index + 1}</span>
       ${displayPrompt ? `<p>${escapeHtml(question.prompt)}</p>` : ''}
-      <small>${Number(question.points)} điểm</small>
     </div>
   `;
 
@@ -1137,7 +1136,7 @@ async function mountReview(id) {
               (item, index) => `
                 <article class="review-item ${item.is_correct ? 'correct' : 'wrong'}">
                   <div>
-                    <p class="eyebrow">Câu ${index + 1} · ${Number(item.earned_points).toFixed(2)}/${Number(item.points).toFixed(2)} điểm</p>
+                    <p class="eyebrow">Câu ${index + 1}</p>
                     ${item.prompt && item.prompt !== `Câu ${index + 1}` ? `<h3>${escapeHtml(item.prompt)}</h3>` : ''}
                   </div>
                   <dl>
@@ -1732,11 +1731,10 @@ function renderQuestionEditor(question, index) {
         <button type="button" data-remove-question="${index}" aria-label="Xóa câu"><md-icon>close</md-icon></button>
       </div>
       <input type="hidden" name="question-id-${index}" value="${escapeHtml(question.id ?? '')}">
-      <div class="form-grid three">
+      <div class="form-grid two">
         <select class="field" name="question-type-${index}">
           ${['mcq', 'tf4', 'short'].map((type) => option(type, type.toUpperCase(), question.type)).join('')}
         </select>
-        <input class="field" name="question-points-${index}" type="number" step="0.25" min="0" value="${Number(question.points ?? 1)}" placeholder="Điểm">
         <input class="field" name="question-sort-${index}" type="number" value="${Number(question.sort_order ?? index + 1)}" placeholder="Thứ tự">
       </div>
       ${renderQuestionKeyEditor(question, index)}
@@ -1749,7 +1747,6 @@ function renderQuestionKeyEditor(question, index) {
   if (question.type === 'tf4') {
     const statements = question.settings?.statements ?? ['', '', '', ''];
     const correct = key.correct_answer ?? [true, true, true, true];
-    const pointsMap = Array.isArray(key.points_map) ? key.points_map : [];
     return `
       <div class="tf-editor">
         ${[0, 1, 2, 3]
@@ -1757,7 +1754,6 @@ function renderQuestionKeyEditor(question, index) {
             (itemIndex) => `
               <div class="tf-row">
                 <input class="field" name="tf-statement-${index}-${itemIndex}" value="${escapeHtml(statements[itemIndex] ?? '')}" placeholder="Ý ${itemIndex + 1}">
-                <input class="field" name="tf-points-${index}-${itemIndex}" type="number" step="0.25" min="0" value="${escapeHtml(pointsMap[itemIndex] ?? '')}" placeholder="Điểm ý">
                 <select class="field" name="tf-answer-${index}-${itemIndex}">
                   ${option('true', 'Đúng', String(correct[itemIndex] ?? true))}
                   ${option('false', 'Sai', String(correct[itemIndex] ?? true))}
@@ -1887,7 +1883,7 @@ function collectEditor() {
       id: values[`question-id-${index}`] || undefined,
       type,
       prompt: `Câu ${index + 1}`,
-      points: Number(values[`question-points-${index}`] || 0),
+      points: 1,
       sort_order: Number(values[`question-sort-${index}`] || index + 1),
       choices: [],
       settings: {},
@@ -1905,10 +1901,7 @@ function collectEditor() {
       };
       base.answer_key = {
         correct_answer: [0, 1, 2, 3].map((item) => values[`tf-answer-${index}-${item}`] === 'true'),
-        points_map: [0, 1, 2, 3].map((item) => {
-          const value = values[`tf-points-${index}-${item}`];
-          return value === '' || value === undefined ? null : Number(value);
-        }),
+        points_map: [],
       };
     }
 
