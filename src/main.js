@@ -46,6 +46,7 @@ import { escapeHtml, option, setButtonLoading } from './lib/html.js';
 
 const app = document.querySelector('#app');
 const toastEl = document.querySelector('#toast');
+let renderGeneration = 0;
 const detachedPageRoot = {
   isConnected: false,
   set innerHTML(_value) {},
@@ -234,12 +235,14 @@ function renderShell() {
     </div>
   `;
 
-  document.querySelector('#logout-button')?.addEventListener('click', async () => {
-    await signOut();
+  document.querySelector('#logout-button')?.addEventListener('click', () => {
+    const button = document.querySelector('#logout-button');
+    if (button) button.disabled = true;
     state.session = null;
     state.profile = null;
     go('learn');
     render();
+    signOut().catch((error) => toast(error.message, 'error'));
   });
 
 }
@@ -950,7 +953,7 @@ async function mountHistory() {
   const root = pageRoot();
   root.innerHTML = renderLoading();
   try {
-    const history = await fetchMyHistory();
+    const history = isManager() ? await fetchGradebook() : await fetchMyHistory();
     root.innerHTML = `
       <section class="panel">
         <div class="panel-heading">
@@ -2139,11 +2142,13 @@ async function mountCurrentRoute() {
 }
 
 async function render() {
+  const generation = ++renderGeneration;
   if (!hasSupabaseConfig || !state.session || !state.profile) {
     renderAuth();
     return;
   }
   renderShell();
+  if (generation !== renderGeneration || !state.session || !state.profile) return;
   await mountCurrentRoute();
 }
 
