@@ -271,7 +271,6 @@ function renderAuth() {
     <main class="auth-screen">
       <section class="auth-panel">
         <div class="auth-copy">
-          <span class="brand-mark large">C</span>
           <h1>Canvas</h1>
           <p>If you can get 1 percent better each day for one year, you’ll end up 37 times better by the time you’re done.</p>
         </div>
