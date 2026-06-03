@@ -52,8 +52,8 @@ const toastEl = document.querySelector('#toast');
 const MAX_AVATAR_SOURCE_BYTES = 5 * 1024 * 1024;
 const MAX_AVATAR_UPLOAD_BYTES = 250 * 1024;
 const AVATAR_SIZE = 320;
-const APP_VERSION = '1.1.0';
-const APP_LAST_UPDATE = 'Thêm avatar tài khoản, gỡ avatar và tối ưu lưu ảnh nhẹ hơn.';
+const APP_VERSION = '1.1.1';
+const APP_LAST_UPDATE = 'Thêm tuỳ chọn đổi màu giao diện trong trang cài đặt.';
 let renderGeneration = 0;
 const detachedPageRoot = {
   isConnected: false,
@@ -63,22 +63,23 @@ const detachedPageRoot = {
   },
 };
 
+const colorThemes = [
+  { id: 'blue', label: 'Xanh biển', color: '#d3e4ff' },
+  { id: 'yellow', label: 'Vàng', color: '#f8e287' },
+  { id: 'green', label: 'Xanh lá', color: '#d9f0c3' },
+  { id: 'lavender', label: 'Tím', color: '#eaddff' },
+  { id: 'pink', label: 'Hồng', color: '#ffd8e4' },
+];
+
+const storedColorTheme = localStorage.getItem('lms:colorTheme');
 const state = {
   session: null,
   profile: null,
   authMode: 'login',
   assignmentEditor: null,
   theme: localStorage.getItem('lms:theme') || 'light',
-  colorTheme: localStorage.getItem('lms:colorTheme') || 'blue',
+  colorTheme: colorThemes.some((theme) => theme.id === storedColorTheme) ? storedColorTheme : 'blue',
 };
-
-const colorThemes = [
-  { id: 'blue', label: 'Blue pastel', color: '#d3e4ff' },
-  { id: 'yellow', label: 'Yellow pastel', color: '#f8e287' },
-  { id: 'pink', label: 'Pink pastel', color: '#ffd8e4' },
-  { id: 'green', label: 'Green pastel', color: '#d9f0c3' },
-  { id: 'lavender', label: 'Lavender pastel', color: '#eaddff' },
-];
 
 function applyTheme() {
   document.documentElement.dataset.theme = state.theme;
@@ -96,6 +97,7 @@ function setThemeMode(mode) {
 }
 
 function setColorTheme(colorTheme) {
+  if (!colorThemes.some((theme) => theme.id === colorTheme)) return;
   state.colorTheme = colorTheme;
   localStorage.setItem('lms:colorTheme', state.colorTheme);
   applyTheme();
@@ -2259,6 +2261,31 @@ function mountSettings() {
             </div>
             <md-switch id="settings-dark-mode" ${state.theme === 'dark' ? 'selected' : ''} aria-label="Dark mode"></md-switch>
           </div>
+          <div class="settings-color-row">
+            <div>
+              <strong>Màu giao diện</strong>
+              <p class="muted">Chọn tông màu chính của web.</p>
+            </div>
+            <div class="theme-color-options" role="radiogroup" aria-label="Màu giao diện">
+              ${colorThemes
+                .map(
+                  (theme) => `
+                    <button
+                      class="theme-color-option ${state.colorTheme === theme.id ? 'active' : ''}"
+                      type="button"
+                      data-color-theme="${escapeHtml(theme.id)}"
+                      role="radio"
+                      aria-checked="${state.colorTheme === theme.id ? 'true' : 'false'}"
+                      aria-label="${escapeHtml(theme.label)}"
+                      title="${escapeHtml(theme.label)}"
+                    >
+                      <span style="--swatch-color: ${escapeHtml(theme.color)}"></span>
+                    </button>
+                  `,
+                )
+                .join('')}
+            </div>
+          </div>
         </div>
       </div>
       <div class="panel settings-panel app-info-panel">
@@ -2341,6 +2368,12 @@ function mountSettings() {
 
   document.querySelector('#settings-dark-mode')?.addEventListener('change', (event) => {
     setThemeMode(event.currentTarget.selected ? 'dark' : 'light');
+  });
+  document.querySelectorAll('[data-color-theme]').forEach((button) => {
+    button.addEventListener('click', () => {
+      setColorTheme(button.dataset.colorTheme);
+      render();
+    });
   });
 }
 
