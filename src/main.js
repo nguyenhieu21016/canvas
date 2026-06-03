@@ -34,6 +34,7 @@ import {
   signOut,
   signUpStudent,
   submitAssignmentAttempt,
+  updateProfileName,
   upsertLecture,
   upsertLectureGroup,
   upsertModule,
@@ -2125,8 +2126,29 @@ function renderStudentGradesTable(assignments) {
 
 function mountSettings() {
   const root = pageRoot();
+  const profileName = state.profile?.full_name ?? '';
   root.innerHTML = `
     <section class="settings-page">
+      <div class="panel settings-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Tài khoản</p>
+            <h2>Thông tin cá nhân</h2>
+          </div>
+        </div>
+        <form id="profile-name-form" class="settings-form">
+          <md-outlined-text-field
+            name="full_name"
+            label="Tên hiển thị"
+            value="${escapeHtml(profileName)}"
+            required
+          ></md-outlined-text-field>
+          <md-filled-button type="submit">
+            <md-icon slot="icon">save</md-icon>
+            Lưu tên
+          </md-filled-button>
+        </form>
+      </div>
       <div class="panel settings-panel">
         <div class="panel-heading">
           <div>
@@ -2144,6 +2166,26 @@ function mountSettings() {
       </div>
     </section>
   `;
+
+  document.querySelector('#profile-name-form')?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const field = form.elements.full_name;
+    const button = form.querySelector('md-filled-button');
+    const nextName = field.value.trim();
+    const restore = setButtonLoading(button, 'Đang lưu...');
+
+    try {
+      const updatedProfile = await updateProfileName(state.profile?.id, nextName);
+      state.profile = updatedProfile;
+      restore();
+      toast('Đã cập nhật tên hiển thị.', 'success');
+      render();
+    } catch (error) {
+      restore();
+      toast(error.message, 'error');
+    }
+  });
 
   document.querySelector('#settings-dark-mode')?.addEventListener('change', (event) => {
     setThemeMode(event.currentTarget.selected ? 'dark' : 'light');
@@ -2195,6 +2237,15 @@ async function render() {
   await mountCurrentRoute();
 }
 
+function renderRouteTransition() {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!document.startViewTransition || reduceMotion) {
+    render();
+    return;
+  }
+  document.startViewTransition(() => render());
+}
+
 async function bootstrap() {
   if (!hasSupabaseConfig) {
     renderAuth();
@@ -2218,7 +2269,7 @@ async function bootstrap() {
     render();
   });
 
-  window.addEventListener('hashchange', render);
+  window.addEventListener('hashchange', renderRouteTransition);
   render();
 }
 

@@ -40,10 +40,22 @@
   --md-sys-shape-corner-medium: 8px;
   --md-sys-shape-corner-large: 8px;
   --page-gutter: clamp(16px, 2.5vw, 28px);
-  --motion-emphasized: cubic-bezier(0.2, 0, 0, 1);
-  --motion-standard: cubic-bezier(0.2, 0, 0, 1);
-  --motion-enter: 420ms var(--motion-emphasized);
-  --motion-fast: 180ms var(--motion-standard);
+  --motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --motion-easing-standard-decelerate: cubic-bezier(0, 0, 0, 1);
+  --motion-easing-standard-accelerate: cubic-bezier(0.3, 0, 1, 1);
+  --motion-easing-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  --motion-easing-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --motion-easing-emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
+  --motion-duration-short2: 100ms;
+  --motion-duration-short3: 150ms;
+  --motion-duration-short4: 200ms;
+  --motion-duration-medium1: 250ms;
+  --motion-duration-medium2: 300ms;
+  --motion-duration-medium4: 400ms;
+  --motion-duration-long1: 450ms;
+  --motion-enter: var(--motion-duration-medium2) var(--motion-easing-emphasized-decelerate);
+  --motion-exit: var(--motion-duration-short3) var(--motion-easing-emphasized-accelerate);
+  --motion-fast: var(--motion-duration-short3) var(--motion-easing-standard);
   --md-sys-elevation-level1: 0 1px 3px color-mix(in srgb, var(--md-sys-color-on-surface) 12%, transparent);
   --md-sys-elevation-level2: 0 2px 6px color-mix(in srgb, var(--md-sys-color-on-surface) 14%, transparent);
   --md-sys-elevation-level3: 0 4px 12px color-mix(in srgb, var(--md-sys-color-on-surface) 16%, transparent);
@@ -241,7 +253,7 @@ md-icon {
   border-radius: 8px;
   background: var(--md-sys-color-surface-container-lowest);
   box-shadow: 0 18px 54px color-mix(in srgb, var(--md-sys-color-primary) 14%, transparent);
-  animation: panel-enter var(--motion-enter) both;
+  animation: panel-enter var(--motion-duration-medium4) var(--motion-easing-emphasized-decelerate) both;
 }
 
 .auth-copy {
@@ -385,7 +397,7 @@ md-icon {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  animation: shell-enter 320ms var(--motion-standard) both;
+  animation: shell-enter var(--motion-duration-medium2) var(--motion-easing-emphasized-decelerate) both;
 }
 
 .nav-list {
@@ -495,7 +507,7 @@ md-icon {
   position: sticky;
   top: 0;
   z-index: 2;
-  animation: topbar-enter 360ms var(--motion-standard) both;
+  animation: topbar-enter var(--motion-duration-medium1) var(--motion-easing-standard-decelerate) both;
 }
 
 .topbar-main {
@@ -625,6 +637,14 @@ md-icon {
 
 .page-root > * {
   animation: page-enter var(--motion-enter) both;
+}
+
+::view-transition-old(root) {
+  animation: route-exit var(--motion-exit) both;
+}
+
+::view-transition-new(root) {
+  animation: route-enter var(--motion-duration-medium1) var(--motion-easing-emphasized-decelerate) both;
 }
 
 .loading-state {
@@ -936,12 +956,12 @@ md-icon {
 
 .lecture-group-block.opening > .lecture-list,
 .lecture-row.opening .lecture-body {
-  animation: details-enter 260ms var(--motion-emphasized) both;
+  animation: details-enter var(--motion-duration-medium1) var(--motion-easing-emphasized-decelerate) both;
 }
 
 .lecture-group-block.closing > .lecture-list,
 .lecture-row.closing .lecture-body {
-  animation: details-exit 150ms var(--motion-emphasized) both;
+  animation: details-exit var(--motion-duration-short3) var(--motion-easing-emphasized-accelerate) both;
 }
 
 .lecture-row summary {
@@ -1353,6 +1373,14 @@ textarea.field {
 .settings-panel {
   display: grid;
   gap: 16px;
+}
+
+.settings-form {
+  display: grid;
+  grid-template-columns: minmax(240px, 720px) minmax(12px, 1fr) auto;
+  align-items: end;
+  gap: 12px;
+  width: 100%;
 }
 
 .settings-row {
@@ -2032,14 +2060,28 @@ tbody tr:hover {
 @keyframes page-enter {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(8px) scale(0.995);
   }
 }
 
 @keyframes item-enter {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(8px);
+  }
+}
+
+@keyframes route-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes route-exit {
+  to {
+    opacity: 0;
+    transform: translateY(-4px);
   }
 }
 
@@ -2191,6 +2233,7 @@ tbody tr:hover {
   .form-grid.two,
   .form-grid.three,
   .form-grid.four,
+  .settings-form,
   .tf-row,
   .attempt-history-row,
   .student-status-row,

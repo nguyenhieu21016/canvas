@@ -136,6 +136,26 @@ export async function getCurrentProfile(sessionUser = null) {
   return data;
 }
 
+export async function updateProfileName(profileId, fullName) {
+  const client = requireSupabase();
+  const name = fullName.trim();
+  if (!profileId) throw new Error('Không tìm thấy tài khoản để cập nhật.');
+  if (!name) throw new Error('Tên hiển thị không được để trống.');
+
+  const { data, error } = await withTimeout(
+    client
+      .from('profiles')
+      .update({ full_name: name })
+      .eq('id', profileId)
+      .select('*')
+      .single(),
+    'Cập nhật tên',
+  );
+  assertOk({ error });
+  clearLmsCache();
+  return data;
+}
+
 export async function fetchLearningPath(role = 'student') {
   const cacheKey = `learning-path:${role}`;
   const cached = getCached(cacheKey);
