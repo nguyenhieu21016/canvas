@@ -1141,7 +1141,7 @@ async function mountContentManager() {
         ${data.phases.length ? data.phases.map(renderManagePhase).join('') : '<div class="empty-state">Chưa có nội dung.</div>'}
       </section>
     `;
-    wireContentForms();
+    wireContentForms(data);
     wireMaterialFormButtons(root);
   } catch (error) {
     root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
@@ -1316,16 +1316,19 @@ function renderManageLecture(lecture, parent, statusText) {
   `;
 }
 
-function wireContentForms() {
+function wireContentForms(pathData) {
   document.querySelectorAll('.entity-form').forEach((form) => {
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       if (form.dataset.saving === 'true') return;
       const values = Object.fromEntries(new FormData(form).entries());
+      const sortOrder = values.id
+        ? Number(values.sort_order || 0)
+        : nextContentSortOrder(form.dataset.entity, values, pathData);
       const payload = {
         ...values,
         id: values.id || undefined,
-        sort_order: Number(values.sort_order || 0),
+        sort_order: sortOrder,
         published: form.querySelector('[name="published"]')?.type === 'checkbox'
           ? form.querySelector('[name="published"]').checked
           : values.published !== 'false',
@@ -1388,6 +1391,21 @@ function wireContentForms() {
       }
     });
   });
+}
+
+function nextContentSortOrder(kind, values, pathData) {
+  const byParent = {
+    phase: pathData.phases ?? [],
+    module: (pathData.modules ?? []).filter((item) => item.phase_id === values.phase_id),
+    lectureGroup: (pathData.lectureGroups ?? []).filter((item) => item.module_id === values.module_id),
+    lecture: (pathData.lectures ?? []).filter((item) => {
+      if (values.group_id) return item.group_id === values.group_id;
+      return item.module_id === values.module_id && !item.group_id;
+    }),
+  }[kind] ?? [];
+
+  const maxSortOrder = byParent.reduce((max, item) => Math.max(max, Number(item.sort_order ?? 0)), 0);
+  return maxSortOrder + 10;
 }
 
 function contentPayloadForSave(kind, payload) {
