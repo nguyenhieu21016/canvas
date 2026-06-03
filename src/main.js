@@ -427,9 +427,33 @@ async function mountPhaseDetail(id) {
         </div>
       </section>
     `;
+    wireAnimatedDetails(root);
   } catch (error) {
     root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
   }
+}
+
+function wireAnimatedDetails(root) {
+  root.querySelectorAll('.lecture-group-block, .lecture-row').forEach((details) => {
+    const summary = details.querySelector('summary');
+    summary?.addEventListener('click', (event) => {
+      if (!details.open) {
+        details.classList.remove('opening');
+        window.requestAnimationFrame(() => details.classList.add('opening'));
+        return;
+      }
+      if (details.dataset.closing === 'true') return;
+      event.preventDefault();
+      details.dataset.closing = 'true';
+      details.classList.remove('opening');
+      details.classList.add('closing');
+      window.setTimeout(() => {
+        details.open = false;
+        details.classList.remove('closing');
+        delete details.dataset.closing;
+      }, 150);
+    });
+  });
 }
 
 function renderPhaseCard(phase) {
@@ -560,7 +584,7 @@ function renderAssignmentChip(assignment) {
         <span>${escapeHtml(assignment.title)}</span>
       </a>
       <span class="assignment-chip-progress">
-        <span>${hasSubmitted ? `Cao nhất ${formatScore(progress.bestScore)}/10` : 'Chưa làm'}</span>
+        <span>${hasSubmitted ? `Cao nhất: ${formatScore(progress.bestScore)}/10` : 'Chưa làm'}</span>
         ${hasSubmitted ? renderScoreProgress(progress.bestScore) : ''}
       </span>
     </div>

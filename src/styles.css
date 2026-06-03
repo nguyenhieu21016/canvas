@@ -925,9 +925,23 @@ md-icon {
   transform: rotate(180deg);
 }
 
+.lecture-group-block.closing .lecture-group-title > md-icon:last-child,
+.lecture-row.closing summary > md-icon:last-child {
+  transform: rotate(0deg);
+}
+
 .lecture-group-block > .lecture-list {
   padding: 0 14px 14px;
+}
+
+.lecture-group-block.opening > .lecture-list,
+.lecture-row.opening .lecture-body {
   animation: details-enter 260ms var(--motion-emphasized) both;
+}
+
+.lecture-group-block.closing > .lecture-list,
+.lecture-row.closing .lecture-body {
+  animation: details-exit 150ms var(--motion-emphasized) both;
 }
 
 .lecture-row summary {
@@ -963,7 +977,6 @@ md-icon {
   display: grid;
   gap: 10px;
   padding: 0 14px 12px;
-  animation: details-enter 260ms var(--motion-emphasized) both;
 }
 
 .lecture-actions {
@@ -1045,7 +1058,7 @@ md-icon {
   color: var(--md-sys-color-on-surface-variant);
   font-size: 0.82rem;
   font-weight: 800;
-  justify-items: end;
+  justify-items: start;
 }
 
 .assignment-action.completed .assignment-chip-progress {
@@ -2032,6 +2045,13 @@ tbody tr:hover {
 
 @keyframes details-enter {
   from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes details-exit {
+  to {
     opacity: 0;
     transform: translateY(-6px);
   }
