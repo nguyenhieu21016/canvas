@@ -52,8 +52,8 @@ const toastEl = document.querySelector('#toast');
 const MAX_AVATAR_SOURCE_BYTES = 5 * 1024 * 1024;
 const MAX_AVATAR_UPLOAD_BYTES = 250 * 1024;
 const AVATAR_SIZE = 320;
-const APP_VERSION = '1.1.1';
-const APP_LAST_UPDATE = 'Thêm tuỳ chọn đổi màu giao diện trong trang cài đặt.';
+const APP_VERSION = '1.1.2';
+const APP_LAST_UPDATE = 'Sửa lỗi khung hiển thị đề bài trong bài tập về nhà.';
 let renderGeneration = 0;
 const detachedPageRoot = {
   isConnected: false,
