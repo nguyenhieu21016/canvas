@@ -17,11 +17,14 @@ create table if not exists public.profiles (
   id uuid primary key references auth.users(id) on delete cascade,
   email text not null unique,
   full_name text not null default '',
+  avatar_url text,
   role public.app_role not null default 'student',
   status text not null default 'active' check (status in ('active', 'disabled')),
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+alter table public.profiles add column if not exists avatar_url text;
 
 create table if not exists public.phases (
   id uuid primary key default gen_random_uuid(),
@@ -348,6 +351,56 @@ create policy "profiles update self name"
 on public.profiles for update
 using (id = auth.uid())
 with check (id = auth.uid() and role = public.current_role());
+
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values (
+  'avatars',
+  'avatars',
+  true,
+  307200,
+  array['image/webp', 'image/jpeg', 'image/png']
+)
+on conflict (id) do update
+set
+  public = excluded.public,
+  file_size_limit = excluded.file_size_limit,
+  allowed_mime_types = excluded.allowed_mime_types;
+
+drop policy if exists "avatars public read" on storage.objects;
+create policy "avatars public read"
+on storage.objects for select
+using (bucket_id = 'avatars');
+
+drop policy if exists "avatars owner insert" on storage.objects;
+create policy "avatars owner insert"
+on storage.objects for insert
+to authenticated
+with check (
+  bucket_id = 'avatars'
+  and (storage.foldername(name))[1] = (select auth.uid())::text
+);
+
+drop policy if exists "avatars owner update" on storage.objects;
+create policy "avatars owner update"
+on storage.objects for update
+to authenticated
+using (
+  bucket_id = 'avatars'
+  and (storage.foldername(name))[1] = (select auth.uid())::text
+)
+with check (
+  bucket_id = 'avatars'
+  and (storage.foldername(name))[1] = (select auth.uid())::text
+);
+
+drop policy if exists "avatars owner delete" on storage.objects;
+create policy "avatars owner delete"
+on storage.objects for delete
+to authenticated
+using (
+  bucket_id = 'avatars'
+  and (storage.foldername(name))[1] = (select auth.uid())::text
+);
 
 drop policy if exists "phases select visible" on public.phases;
 create policy "phases select visible"

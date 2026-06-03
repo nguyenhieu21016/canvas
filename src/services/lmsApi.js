@@ -156,6 +156,63 @@ export async function updateProfileName(profileId, fullName) {
   return data;
 }
 
+export async function updateProfileAvatar(profileId, avatarBlob) {
+  const client = requireSupabase();
+  if (!profileId) throw new Error('Không tìm thấy tài khoản để cập nhật avatar.');
+  if (!avatarBlob) throw new Error('Chọn ảnh avatar trước khi lưu.');
+
+  const avatarPath = `${profileId}/avatar.webp`;
+  const { error: uploadError } = await withTimeout(
+    client.storage.from('avatars').upload(avatarPath, avatarBlob, {
+      cacheControl: '3600',
+      contentType: avatarBlob.type || 'image/webp',
+      upsert: true,
+    }),
+    'Tải avatar lên',
+  );
+  assertOk({ error: uploadError });
+
+  const { data: publicUrlData } = client.storage.from('avatars').getPublicUrl(avatarPath);
+  const avatarUrl = `${publicUrlData.publicUrl}?v=${Date.now()}`;
+  const { data, error } = await withTimeout(
+    client
+      .from('profiles')
+      .update({ avatar_url: avatarUrl })
+      .eq('id', profileId)
+      .select('*')
+      .single(),
+    'Cập nhật avatar',
+  );
+  assertOk({ error });
+  clearLmsCache();
+  return data;
+}
+
+export async function removeProfileAvatar(profileId) {
+  const client = requireSupabase();
+  if (!profileId) throw new Error('Không tìm thấy tài khoản để gỡ avatar.');
+
+  const avatarPath = `${profileId}/avatar.webp`;
+  const { error: removeError } = await withTimeout(
+    client.storage.from('avatars').remove([avatarPath]),
+    'Gỡ avatar',
+  );
+  assertOk({ error: removeError });
+
+  const { data, error } = await withTimeout(
+    client
+      .from('profiles')
+      .update({ avatar_url: null })
+      .eq('id', profileId)
+      .select('*')
+      .single(),
+    'Cập nhật avatar',
+  );
+  assertOk({ error });
+  clearLmsCache();
+  return data;
+}
+
 export async function fetchLearningPath(role = 'student') {
   const cacheKey = `learning-path:${role}`;
   const cached = getCached(cacheKey);

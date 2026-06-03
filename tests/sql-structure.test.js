@@ -31,6 +31,15 @@ describe('Supabase migration', () => {
     expect(sql).toContain('answer_keys select owner admin');
   });
 
+  it('supports lightweight profile avatars in storage', () => {
+    expect(sql).toContain('avatar_url text');
+    expect(sql).toContain("insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)");
+    expect(sql).toContain("'avatars'");
+    expect(sql).toContain('307200');
+    expect(sql).toContain('avatars owner insert');
+    expect(sql).toContain('(storage.foldername(name))[1] = (select auth.uid())::text');
+  });
+
   it('scopes attempt visibility and submission through review policies', () => {
     expect(sql).toContain('create or replace function public.can_review_attempt');
     expect(sql).toContain('using (public.can_review_attempt(id))');

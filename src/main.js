@@ -29,11 +29,13 @@ import {
   getCurrentProfile,
   getSession,
   invokeAdminFunction,
+  removeProfileAvatar,
   saveAssignmentWithQuestions,
   signIn,
   signOut,
   signUpStudent,
   submitAssignmentAttempt,
+  updateProfileAvatar,
   updateProfileName,
   upsertLecture,
   upsertLectureGroup,
@@ -47,6 +49,11 @@ import { escapeHtml, option, setButtonLoading } from './lib/html.js';
 
 const app = document.querySelector('#app');
 const toastEl = document.querySelector('#toast');
+const MAX_AVATAR_SOURCE_BYTES = 5 * 1024 * 1024;
+const MAX_AVATAR_UPLOAD_BYTES = 250 * 1024;
+const AVATAR_SIZE = 320;
+const APP_VERSION = '1.1.0';
+const APP_LAST_UPDATE = 'Thêm avatar tài khoản, gỡ avatar và tối ưu lưu ảnh nhẹ hơn.';
 let renderGeneration = 0;
 const detachedPageRoot = {
   isConnected: false,
@@ -150,6 +157,22 @@ function accountInitial(profile) {
   return lastWord.charAt(0).toUpperCase();
 }
 
+function renderAccountAvatar(profile, className = 'account-avatar') {
+  if (profile?.avatar_url) {
+    return `
+      <span class="${className} has-image" aria-hidden="true">
+        <img src="${escapeHtml(profile.avatar_url)}" alt="">
+      </span>
+    `;
+  }
+
+  return `
+    <span class="${className}" aria-hidden="true">
+      ${escapeHtml(accountInitial(profile))}
+    </span>
+  `;
+}
+
 function daysUntilExam() {
   const today = new Date();
   const start = new Date(today.getFullYear(), today.getMonth(), today.getDate());
@@ -168,6 +191,62 @@ function renderLoading(label = 'Đang tải dữ liệu') {
       <span>${escapeHtml(label)}</span>
     </div>
   `;
+}
+
+function loadImageFromFile(file) {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(file);
+    const image = new Image();
+    image.onload = () => {
+      URL.revokeObjectURL(url);
+      resolve(image);
+    };
+    image.onerror = () => {
+      URL.revokeObjectURL(url);
+      reject(new Error('Không đọc được ảnh này.'));
+    };
+    image.src = url;
+  });
+}
+
+function canvasToBlob(canvas, type, quality) {
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((blob) => {
+      if (blob) resolve(blob);
+      else reject(new Error('Không nén được ảnh avatar.'));
+    }, type, quality);
+  });
+}
+
+async function resizeAvatarFile(file) {
+  if (!file) throw new Error('Chọn ảnh avatar trước.');
+  if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+    throw new Error('Avatar chỉ nhận ảnh JPG, PNG hoặc WebP.');
+  }
+  if (file.size > MAX_AVATAR_SOURCE_BYTES) {
+    throw new Error('Ảnh gốc tối đa 5MB thôi m.');
+  }
+
+  const image = await loadImageFromFile(file);
+  const sourceSize = Math.min(image.naturalWidth, image.naturalHeight);
+  const sourceX = Math.max(0, (image.naturalWidth - sourceSize) / 2);
+  const sourceY = Math.max(0, (image.naturalHeight - sourceSize) / 2);
+  const canvas = document.createElement('canvas');
+  canvas.width = AVATAR_SIZE;
+  canvas.height = AVATAR_SIZE;
+  const context = canvas.getContext('2d');
+  context.drawImage(image, sourceX, sourceY, sourceSize, sourceSize, 0, 0, AVATAR_SIZE, AVATAR_SIZE);
+
+  let bestBlob = null;
+  for (const quality of [0.82, 0.72, 0.62, 0.52]) {
+    bestBlob = await canvasToBlob(canvas, 'image/webp', quality);
+    if (bestBlob.size <= MAX_AVATAR_UPLOAD_BYTES) break;
+  }
+
+  if (bestBlob.size > MAX_AVATAR_UPLOAD_BYTES) {
+    throw new Error('Ảnh sau khi nén vẫn hơi nặng, thử ảnh khác nhé.');
+  }
+  return bestBlob;
 }
 
 function navItems() {
@@ -217,9 +296,7 @@ function renderShell() {
           </div>
           <div class="account-strip">
             <span class="account-pill">
-              <span class="account-avatar" aria-hidden="true">
-                ${escapeHtml(accountInitial(state.profile))}
-              </span>
+              ${renderAccountAvatar(state.profile)}
               <span class="account-name">${escapeHtml(state.profile.full_name || state.profile.email)}</span>
             </span>
             <md-outlined-button id="logout-button">
@@ -2129,43 +2206,118 @@ function mountSettings() {
   const profileName = state.profile?.full_name ?? '';
   root.innerHTML = `
     <section class="settings-page">
-      <div class="panel settings-panel">
-        <div class="panel-heading">
-          <div>
-            <p class="eyebrow">Tài khoản</p>
-            <h2>Thông tin cá nhân</h2>
+      <div class="settings-main-column">
+        <div class="panel settings-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Tài khoản</p>
+              <h2>Thông tin cá nhân</h2>
+            </div>
+          </div>
+          <div class="avatar-settings">
+            ${renderAccountAvatar(state.profile, 'settings-avatar-preview')}
+            <div class="avatar-settings-copy">
+              <strong>Avatar</strong>
+              <p class="muted">Ảnh sẽ được crop vuông và nén nhẹ trước khi lưu.</p>
+            </div>
+            <input id="avatar-input" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+            <div class="avatar-actions">
+              <md-outlined-button id="avatar-upload-button" type="button">
+                <md-icon slot="icon">photo_camera</md-icon>
+                Đổi ảnh
+              </md-outlined-button>
+              <md-outlined-button id="avatar-remove-button" type="button" ${state.profile?.avatar_url ? '' : 'disabled'}>
+                <md-icon slot="icon">person</md-icon>
+                Gỡ ảnh
+              </md-outlined-button>
+            </div>
+          </div>
+          <form id="profile-name-form" class="settings-form">
+            <md-outlined-text-field
+              name="full_name"
+              label="Tên hiển thị"
+              value="${escapeHtml(profileName)}"
+              required
+            ></md-outlined-text-field>
+            <md-filled-button type="submit">
+              <md-icon slot="icon">save</md-icon>
+              Lưu tên
+            </md-filled-button>
+          </form>
+        </div>
+        <div class="panel settings-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Giao diện</p>
+              <h2>Cài đặt hiển thị</h2>
+            </div>
+          </div>
+          <div class="settings-row">
+            <div>
+              <strong>Dark mode</strong>
+              <p class="muted">Chuyển giao diện sang nền tối.</p>
+            </div>
+            <md-switch id="settings-dark-mode" ${state.theme === 'dark' ? 'selected' : ''} aria-label="Dark mode"></md-switch>
           </div>
         </div>
-        <form id="profile-name-form" class="settings-form">
-          <md-outlined-text-field
-            name="full_name"
-            label="Tên hiển thị"
-            value="${escapeHtml(profileName)}"
-            required
-          ></md-outlined-text-field>
-          <md-filled-button type="submit">
-            <md-icon slot="icon">save</md-icon>
-            Lưu tên
-          </md-filled-button>
-        </form>
       </div>
-      <div class="panel settings-panel">
-        <div class="panel-heading">
-          <div>
-            <p class="eyebrow">Giao diện</p>
-            <h2>Cài đặt hiển thị</h2>
-          </div>
+      <div class="panel settings-panel app-info-panel">
+        <div>
+          <p class="eyebrow">Canvas</p>
+          <h2>Canvas</h2>
         </div>
-        <div class="settings-row">
+        <div class="app-info-list">
           <div>
-            <strong>Dark mode</strong>
-            <p class="muted">Chuyển giao diện sang nền tối.</p>
+            <span>Phiên bản</span>
+            <strong>Phiên bản thứ ${escapeHtml(APP_VERSION)}</strong>
           </div>
-          <md-switch id="settings-dark-mode" ${state.theme === 'dark' ? 'selected' : ''} aria-label="Dark mode"></md-switch>
+          <div>
+            <span>Cập nhật gần nhất</span>
+            <strong>${escapeHtml(APP_LAST_UPDATE)}</strong>
+          </div>
         </div>
       </div>
     </section>
   `;
+
+  const avatarInput = document.querySelector('#avatar-input');
+  const avatarButton = document.querySelector('#avatar-upload-button');
+  const removeAvatarButton = document.querySelector('#avatar-remove-button');
+  avatarButton?.addEventListener('click', () => avatarInput?.click());
+  avatarInput?.addEventListener('change', async (event) => {
+    const file = event.currentTarget.files?.[0];
+    if (!file) return;
+    const restore = setButtonLoading(avatarButton, 'Đang lưu...');
+
+    try {
+      const avatarBlob = await resizeAvatarFile(file);
+      const updatedProfile = await updateProfileAvatar(state.profile?.id, avatarBlob);
+      state.profile = updatedProfile;
+      restore();
+      toast('Đã cập nhật avatar.', 'success');
+      render();
+    } catch (error) {
+      restore();
+      toast(error.message, 'error');
+    } finally {
+      event.currentTarget.value = '';
+    }
+  });
+  removeAvatarButton?.addEventListener('click', async () => {
+    if (!state.profile?.avatar_url) return;
+    const restore = setButtonLoading(removeAvatarButton, 'Đang gỡ...');
+
+    try {
+      const updatedProfile = await removeProfileAvatar(state.profile?.id);
+      state.profile = updatedProfile;
+      restore();
+      toast('Đã gỡ avatar.', 'success');
+      render();
+    } catch (error) {
+      restore();
+      toast(error.message, 'error');
+    }
+  });
 
   document.querySelector('#profile-name-form')?.addEventListener('submit', async (event) => {
     event.preventDefault();
