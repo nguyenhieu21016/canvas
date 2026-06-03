@@ -961,19 +961,24 @@ md-icon {
 
 .lecture-body {
   display: grid;
-  gap: 14px;
-  padding: 0 14px 14px;
+  gap: 10px;
+  padding: 0 14px 12px;
   animation: details-enter 260ms var(--motion-emphasized) both;
 }
 
-.lecture-media {
-  min-height: 0;
+.lecture-actions {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
 }
 
 .drive-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  align-self: start;
+  white-space: nowrap;
 }
 
 .doc-frame {
@@ -991,23 +996,35 @@ md-icon {
   gap: 10px;
 }
 
-.assignment-progress-row {
+.assignment-action-list {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(180px, 0.32fr);
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
-  gap: 12px;
+  gap: 8px;
+  min-width: 0;
+}
+
+.assignment-action {
+  display: grid;
+  grid-template-columns: auto minmax(120px, max-content);
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
 }
 
 .assignment-chip {
-  min-height: 42px;
+  min-height: 40px;
+  max-width: min(560px, 58vw);
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 0 12px;
-  border: 1px solid var(--md-sys-color-outline-variant);
-  border-radius: 8px;
+  border: 1px solid var(--md-sys-color-outline);
+  border-radius: 999px;
   background: transparent;
   color: var(--md-sys-color-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
   text-decoration: none;
   transition:
     background-color var(--motion-fast),
@@ -1024,21 +1041,19 @@ md-icon {
 
 .assignment-chip-progress {
   display: grid;
-  gap: 6px;
+  gap: 5px;
   color: var(--md-sys-color-on-surface-variant);
   font-size: 0.82rem;
   font-weight: 800;
-}
-
-.assignment-progress-row.pending .assignment-chip-progress {
   justify-items: end;
 }
 
-.assignment-progress-row.completed .assignment-chip-progress {
+.assignment-action.completed .assignment-chip-progress {
   color: var(--md-sys-color-primary);
 }
 
 .assignment-chip-progress .score-progress {
+  width: 120px;
   height: 6px;
 }
 
@@ -2157,11 +2172,22 @@ tbody tr:hover {
   .form-grid.three,
   .form-grid.four,
   .tf-row,
-  .assignment-progress-row,
   .attempt-history-row,
   .student-status-row,
   .review-item {
     grid-template-columns: 1fr;
+  }
+
+  .lecture-actions,
+  .assignment-action-list,
+  .assignment-action {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  .assignment-chip {
+    max-width: none;
+    flex: 1 1 auto;
   }
 
   .doc-frame {

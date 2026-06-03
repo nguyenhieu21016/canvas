@@ -537,11 +537,13 @@ function renderLecture(lecture) {
       </summary>
       <div class="lecture-body">
         ${lecture.description ? `<p>${escapeHtml(lecture.description)}</p>` : ''}
-        <div class="lecture-media">
+        <div class="lecture-actions">
           ${driveFrame(lecture.slide_url, lecture.title)}
-        </div>
-        <div class="item-grid">
-          ${lecture.assignments.map(renderAssignmentChip).join('')}
+          ${
+            lecture.assignments.length
+              ? `<div class="assignment-action-list">${lecture.assignments.map(renderAssignmentChip).join('')}</div>`
+              : ''
+          }
         </div>
       </div>
     </details>
@@ -552,7 +554,7 @@ function renderAssignmentChip(assignment) {
   const progress = assignment.progress;
   const hasSubmitted = progress?.status === 'submitted';
   return `
-    <div class="assignment-progress-row ${hasSubmitted ? 'completed' : 'pending'}">
+    <div class="assignment-action ${hasSubmitted ? 'completed' : 'pending'}">
       <a class="assignment-chip" href="#/assignment/${assignment.id}">
         <md-icon>quiz</md-icon>
         <span>${escapeHtml(assignment.title)}</span>

@@ -1,6 +1,8 @@
 import { supabase } from './supabaseClient.js';
 
-const CACHE_TTL_MS = 20_000;
+const CACHE_TTL_MS = 120_000;
+const LEARNING_PATH_CACHE_TTL_MS = 10 * 60_000;
+const STALE_CACHE_TTL_MS = 30 * 60_000;
 const REQUEST_TIMEOUT_MS = 30_000;
 const AUTH_TIMEOUT_MS = 20_000;
 const cache = new Map();
@@ -26,9 +28,20 @@ function getCached(key) {
   return item.value;
 }
 
+function getStaleCached(key, maxAge = STALE_CACHE_TTL_MS) {
+  const item = cache.get(key);
+  if (!item) return null;
+  if (Date.now() - (item.createdAt ?? 0) > maxAge) {
+    cache.delete(key);
+    return null;
+  }
+  return item.value;
+}
+
 function setCached(key, value, ttl = CACHE_TTL_MS) {
   cache.set(key, {
     value,
+    createdAt: Date.now(),
     expiresAt: Date.now() + ttl,
   });
   return value;
@@ -127,10 +140,14 @@ export async function fetchLearningPath(role = 'student') {
   const cacheKey = `learning-path:${role}`;
   const cached = getCached(cacheKey);
   if (cached) return cached;
+  const stale = getStaleCached(cacheKey);
+  if (stale) return stale;
 
   return dedupeRequest(cacheKey, async () => {
     const cachedAgain = getCached(cacheKey);
     if (cachedAgain) return cachedAgain;
+    const staleAgain = getStaleCached(cacheKey);
+    if (staleAgain) return staleAgain;
 
     const client = requireSupabase();
     const shouldFilterPublished = role === 'student';
@@ -270,7 +287,7 @@ export async function fetchLearningPath(role = 'student') {
       lectures: lecturesResult.data ?? [],
       assignments: assignmentsResult.data ?? [],
       freeAssignments,
-    });
+    }, LEARNING_PATH_CACHE_TTL_MS);
   });
 }
 
@@ -477,17 +494,25 @@ export async function submitAssignmentAttempt({ assignmentId, answers }) {
     p_answers: answers ?? {},
   }), 'Nộp bài', 20_000);
   assertOk({ error });
+  clearLmsCache();
   return submitted;
 }
 
 export async function fetchMyHistory() {
+  const cached = getCached('my-history');
+  if (cached) return cached;
+
   const client = requireSupabase();
-  const { data, error } = await withTimeout(client
-    .from('attempts')
-    .select('*, assignments(title)')
-    .order('submitted_at', { ascending: false }), 'Tải lịch sử');
-  assertOk({ error });
-  return data ?? [];
+  return dedupeRequest('my-history', async () => {
+    const cachedAgain = getCached('my-history');
+    if (cachedAgain) return cachedAgain;
+    const { data, error } = await withTimeout(client
+      .from('attempts')
+      .select('*, assignments(title)')
+      .order('submitted_at', { ascending: false }), 'Tải lịch sử');
+    assertOk({ error });
+    return setCached('my-history', data ?? []);
+  });
 }
 
 export async function fetchAttemptReview(attemptId) {
@@ -612,14 +637,21 @@ export async function deleteManagedUser(id) {
 }
 
 export async function fetchGradebook() {
+  const cached = getCached('gradebook');
+  if (cached) return cached;
+
   const client = requireSupabase();
-  const { data, error } = await withTimeout(client
-    .from('attempts')
-    .select('id, assignment_id, student_id, status, submitted_at, score, max_points, score_10, profiles(full_name, email), assignments(title)')
-    .eq('status', 'submitted')
-    .order('submitted_at', { ascending: false }), 'Tải bảng điểm');
-  assertOk({ error });
-  return data ?? [];
+  return dedupeRequest('gradebook', async () => {
+    const cachedAgain = getCached('gradebook');
+    if (cachedAgain) return cachedAgain;
+    const { data, error } = await withTimeout(client
+      .from('attempts')
+      .select('id, assignment_id, student_id, status, submitted_at, score, max_points, score_10, profiles(full_name, email), assignments(title)')
+      .eq('status', 'submitted')
+      .order('submitted_at', { ascending: false }), 'Tải bảng điểm');
+    assertOk({ error });
+    return setCached('gradebook', data ?? []);
+  });
 }
 
 export async function fetchDashboardStats() {
