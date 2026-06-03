@@ -828,6 +828,12 @@ md-icon {
   gap: 12px;
 }
 
+.review-heading-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .module-stack > *,
 .lecture-list > *,
 .question-stack > *,

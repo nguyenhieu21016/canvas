@@ -518,6 +518,18 @@ export async function saveAssignmentWithQuestions(payload, questions) {
   return assignment;
 }
 
+export async function regradeAssignment(assignmentId) {
+  const client = requireSupabase();
+  if (!assignmentId) return 0;
+  const { data, error } = await withTimeout(
+    client.rpc('regrade_assignment', { p_assignment_id: assignmentId }),
+    'Chấm lại bài đã nộp',
+  );
+  assertOk({ error });
+  clearLmsCache();
+  return Number(data ?? 0);
+}
+
 export async function deleteAssignment(id) {
   const client = requireSupabase();
   const { error } = await client.from('assignments').delete().eq('id', id);

@@ -795,6 +795,97 @@ begin
 end;
 $$;
 
+create or replace function public.regrade_assignment(p_assignment_id uuid)
+returns integer
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_assignment public.assignments%rowtype;
+  v_updated_count integer := 0;
+begin
+  select * into v_assignment
+  from public.assignments
+  where id = p_assignment_id;
+
+  if not found then
+    raise exception 'Assignment not found' using errcode = 'P0002';
+  end if;
+
+  if not public.can_manage_owner(v_assignment.owner_id) then
+    raise exception 'Not allowed' using errcode = '42501';
+  end if;
+
+  with graded as (
+    select
+      a.id as attempt_id,
+      q.id as question_id,
+      q.type,
+      coalesce(aa.answer, 'null'::jsonb) as answer,
+      ak.correct_answer,
+      ak.accepted_answers,
+      case
+        when q.type = 'mcq' then
+          upper(trim(coalesce(aa.answer #>> '{}', ''))) <> ''
+          and upper(trim(coalesce(aa.answer #>> '{}', ''))) = upper(trim(coalesce(ak.correct_answer #>> '{}', '')))
+        when q.type = 'tf4' then
+          (ak.correct_answer ->> 0 is not null or ak.correct_answer ->> 1 is not null or ak.correct_answer ->> 2 is not null or ak.correct_answer ->> 3 is not null)
+          and coalesce((aa.answer ->> 0)::boolean = (ak.correct_answer ->> 0)::boolean, ak.correct_answer ->> 0 is null)
+          and coalesce((aa.answer ->> 1)::boolean = (ak.correct_answer ->> 1)::boolean, ak.correct_answer ->> 1 is null)
+          and coalesce((aa.answer ->> 2)::boolean = (ak.correct_answer ->> 2)::boolean, ak.correct_answer ->> 2 is null)
+          and coalesce((aa.answer ->> 3)::boolean = (ak.correct_answer ->> 3)::boolean, ak.correct_answer ->> 3 is null)
+        when q.type = 'short' then
+          exists (
+            select 1
+            from unnest(coalesce(ak.accepted_answers, '{}')) as accepted(answer)
+            where public.normalize_answer_text(accepted.answer) = public.normalize_answer_text(aa.answer #>> '{}')
+              and public.normalize_answer_text(aa.answer #>> '{}') <> ''
+          )
+        else false
+      end as is_correct
+    from public.attempts a
+    join public.questions q on q.assignment_id = a.assignment_id
+    left join public.answer_keys ak on ak.question_id = q.id
+    left join public.attempt_answers aa on aa.attempt_id = a.id and aa.question_id = q.id
+    where a.assignment_id = p_assignment_id
+      and a.status = 'submitted'
+  ),
+  upserted_answers as (
+    insert into public.attempt_answers (attempt_id, question_id, answer, is_correct, earned_points)
+    select attempt_id, question_id, answer, is_correct, case when is_correct then 1 else 0 end
+    from graded
+    on conflict (attempt_id, question_id) do update
+    set is_correct = excluded.is_correct,
+        earned_points = excluded.earned_points,
+        updated_at = now()
+    returning attempt_id
+  ),
+  totals as (
+    select
+      attempt_id,
+      sum(case when is_correct then 1 else 0 end)::numeric as earned,
+      count(*)::numeric as max_points
+    from graded
+    group by attempt_id
+  ),
+  updated_attempts as (
+    update public.attempts a
+    set score = totals.earned,
+        max_points = totals.max_points,
+        score_10 = case when totals.max_points > 0 then round((totals.earned / totals.max_points) * 10, 1) else 0 end,
+        updated_at = now()
+    from totals
+    where a.id = totals.attempt_id
+    returning a.id
+  )
+  select count(*) into v_updated_count
+  from updated_attempts;
+
+  return v_updated_count;
+end;
+$$;
+
 create or replace function public.get_attempt_review(p_attempt_id uuid)
 returns jsonb
 language plpgsql
@@ -1073,6 +1164,7 @@ grant select, insert, update, delete on public.attempts to authenticated;
 grant select, insert, update, delete on public.attempt_answers to authenticated;
 grant execute on function public.submit_attempt(uuid) to authenticated;
 grant execute on function public.submit_assignment_attempt(uuid, jsonb) to authenticated;
+grant execute on function public.regrade_assignment(uuid) to authenticated;
 grant execute on function public.get_attempt_review(uuid) to authenticated;
 grant execute on function public.get_dashboard_stats() to authenticated;
 grant execute on function public.admin_create_user_sql(text, text, text, public.app_role) to authenticated;

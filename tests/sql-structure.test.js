@@ -23,6 +23,8 @@ describe('Supabase migration', () => {
 
   it('keeps grading and review in server-side RPCs', () => {
     expect(sql).toContain('create or replace function public.submit_attempt');
+    expect(sql).toContain('create or replace function public.regrade_assignment');
+    expect(sql).toContain('grant execute on function public.regrade_assignment');
     expect(sql).toContain('create or replace function public.get_attempt_review');
   });
 

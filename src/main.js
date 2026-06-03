@@ -30,6 +30,7 @@ import {
   getSession,
   invokeAdminFunction,
   removeProfileAvatar,
+  regradeAssignment,
   saveAssignmentWithQuestions,
   signIn,
   signOut,
@@ -52,8 +53,8 @@ const toastEl = document.querySelector('#toast');
 const MAX_AVATAR_SOURCE_BYTES = 5 * 1024 * 1024;
 const MAX_AVATAR_UPLOAD_BYTES = 250 * 1024;
 const AVATAR_SIZE = 320;
-const APP_VERSION = '1.1.3';
-const APP_LAST_UPDATE = 'Đổi cách chấm điểm bài tập sang chia đều theo số câu đúng.';
+const APP_VERSION = '1.1.4';
+const APP_LAST_UPDATE = 'Tự chấm lại bài đã nộp sau khi sửa đáp án và thêm nút chấm lại thủ công.';
 let renderGeneration = 0;
 const detachedPageRoot = {
   isConnected: false,
@@ -1128,7 +1129,15 @@ async function mountReview(id) {
               <p class="eyebrow">Kết quả</p>
               <h2>${items.length} câu</h2>
             </div>
-            <div class="score-badge">${formatScore(review.attempt?.score_10)}/10</div>
+            <div class="review-heading-actions">
+              ${isManager() ? `
+                <md-outlined-button id="regrade-review-button" type="button">
+                  <md-icon slot="icon">refresh</md-icon>
+                  Chấm lại
+                </md-outlined-button>
+              ` : ''}
+              <div class="score-badge">${formatScore(review.attempt?.score_10)}/10</div>
+            </div>
           </div>
           <div class="review-list">
             ${items
@@ -1153,6 +1162,18 @@ async function mountReview(id) {
         </div>
       </section>
     `;
+    document.querySelector('#regrade-review-button')?.addEventListener('click', async (event) => {
+      const restore = setButtonLoading(event.currentTarget, 'Đang chấm...');
+      try {
+        const regradedCount = await regradeAssignment(review.assignment?.id);
+        toast(`Đã chấm lại ${regradedCount} bài đã nộp.`, 'success');
+        await mountReview(id);
+      } catch (error) {
+        toast(error.message, 'error');
+      } finally {
+        restore();
+      }
+    });
   } catch (error) {
     root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
   }
@@ -1831,7 +1852,7 @@ function wireAssignmentEditor(lectures) {
     const restore = setButtonLoading(event.currentTarget.querySelector('md-filled-button'));
     try {
       const editor = collectEditor(lectures);
-      await saveAssignmentWithQuestions(
+      const savedAssignment = await saveAssignmentWithQuestions(
         {
           ...editor.assignment,
           id: editor.assignment.id || undefined,
@@ -1840,8 +1861,9 @@ function wireAssignmentEditor(lectures) {
         },
         editor.questions,
       );
+      const regradedCount = await regradeAssignment(savedAssignment.id);
       state.assignmentEditor = emptyEditor();
-      toast('Đã lưu đề thi.', 'success');
+      toast(regradedCount > 0 ? `Đã lưu đề và chấm lại ${regradedCount} bài đã nộp.` : 'Đã lưu đề thi.', 'success');
       await mountAssignmentManager();
     } catch (error) {
       toast(error.message, 'error');
