@@ -1786,6 +1786,17 @@ td small {
   gap: 10px;
 }
 
+.bulk-add-questions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.compact-number {
+  width: 88px;
+  min-height: 40px;
+}
+
 .manage-node {
   min-height: 52px;
   display: flex;

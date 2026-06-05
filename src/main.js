@@ -858,10 +858,7 @@ async function mountAssignmentManagerView(id) {
     document.querySelector('#edit-assignment-from-insights')?.addEventListener('click', async () => {
       try {
         const editor = await fetchAssignmentEditor(id);
-        state.assignmentEditor = {
-          assignment: editor.assignment,
-          questions: editor.questions.map(normalizeEditorQuestion),
-        };
+        state.assignmentEditor = normalizeAssignmentEditor(editor);
         go('assignments');
       } catch (error) {
         toast(error.message, 'error');
@@ -1694,6 +1691,13 @@ function normalizeEditorQuestion(raw) {
   };
 }
 
+function normalizeAssignmentEditor(editor) {
+  return {
+    assignment: editor.assignment,
+    questions: editor.questions.map(normalizeEditorQuestion),
+  };
+}
+
 function renderAssignmentEditor(lectures) {
   const { assignment, questions } = state.assignmentEditor;
   return `
@@ -1735,6 +1739,10 @@ function renderAssignmentEditor(lectures) {
           <md-outlined-button type="button" data-add-question="mcq"><md-icon slot="icon">radio_button_checked</md-icon>Trắc nghiệm</md-outlined-button>
           <md-outlined-button type="button" data-add-question="tf4"><md-icon slot="icon">fact_check</md-icon>Đúng/Sai</md-outlined-button>
           <md-outlined-button type="button" data-add-question="short"><md-icon slot="icon">short_text</md-icon>Điền ngắn</md-outlined-button>
+          <div class="bulk-add-questions">
+            <input class="field compact-number" name="bulk-question-count" type="number" min="1" max="100" value="20" aria-label="Số câu cần thêm">
+            <md-filled-tonal-button type="button" data-add-many-questions="mcq"><md-icon slot="icon">playlist_add</md-icon>Thêm nhiều</md-filled-tonal-button>
+          </div>
         </div>
       </div>
       <div class="question-builder">
@@ -1808,10 +1816,7 @@ function wireAssignmentEditor(lectures) {
     button.addEventListener('click', async () => {
       try {
         const editor = await fetchAssignmentEditor(button.dataset.loadAssignment);
-        state.assignmentEditor = {
-          assignment: editor.assignment,
-          questions: editor.questions.map(normalizeEditorQuestion),
-        };
+        state.assignmentEditor = normalizeAssignmentEditor(editor);
         await mountAssignmentManager();
       } catch (error) {
         toast(error.message, 'error');
@@ -1823,6 +1828,17 @@ function wireAssignmentEditor(lectures) {
     button.addEventListener('click', () => {
       state.assignmentEditor = collectEditor(lectures);
       state.assignmentEditor.questions.push(defaultQuestion(button.dataset.addQuestion));
+      mountAssignmentManager();
+    });
+  });
+
+  document.querySelectorAll('[data-add-many-questions]').forEach((button) => {
+    button.addEventListener('click', () => {
+      state.assignmentEditor = collectEditor(lectures);
+      const countInput = document.querySelector('input[name="bulk-question-count"]');
+      const count = Math.min(100, Math.max(1, Number(countInput?.value || 20)));
+      const questions = Array.from({ length: count }, () => defaultQuestion(button.dataset.addManyQuestions));
+      state.assignmentEditor.questions.push(...questions);
       mountAssignmentManager();
     });
   });
@@ -1862,13 +1878,25 @@ function wireAssignmentEditor(lectures) {
         editor.questions,
       );
       const regradedCount = await regradeAssignment(savedAssignment.id);
-      state.assignmentEditor = emptyEditor();
+      const savedEditor = await fetchAssignmentEditor(savedAssignment.id);
+      state.assignmentEditor = normalizeAssignmentEditor(savedEditor);
       toast(regradedCount > 0 ? `Đã lưu đề và chấm lại ${regradedCount} bài đã nộp.` : 'Đã lưu đề thi.', 'success');
       await mountAssignmentManager();
     } catch (error) {
       toast(error.message, 'error');
     } finally {
       restore();
+    }
+  });
+
+  const editorForm = document.querySelector('#assignment-editor');
+  editorForm?.addEventListener('input', () => {
+    state.assignmentEditor = collectEditor(lectures);
+  });
+  editorForm?.addEventListener('change', async (event) => {
+    state.assignmentEditor = collectEditor(lectures);
+    if (event.target?.matches('select[name^="question-type-"]')) {
+      await mountAssignmentManager();
     }
   });
 }
