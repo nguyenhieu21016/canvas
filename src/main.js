@@ -53,8 +53,8 @@ const toastEl = document.querySelector('#toast');
 const MAX_AVATAR_SOURCE_BYTES = 5 * 1024 * 1024;
 const MAX_AVATAR_UPLOAD_BYTES = 250 * 1024;
 const AVATAR_SIZE = 320;
-const APP_VERSION = '1.1.4';
-const APP_LAST_UPDATE = 'Tự chấm lại bài đã nộp sau khi sửa đáp án và thêm nút chấm lại thủ công.';
+const APP_VERSION = '1.1.5';
+const APP_LAST_UPDATE = 'Sửa lỗi đáp án trắc nghiệm trong trình sửa đề và thêm nút tạo nhiều câu cùng lúc.';
 let renderGeneration = 0;
 const detachedPageRoot = {
   isConnected: false,
