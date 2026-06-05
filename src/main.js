@@ -1678,7 +1678,9 @@ async function mountAssignmentManager() {
 }
 
 function normalizeEditorQuestion(raw) {
-  const key = Array.isArray(raw.answer_keys) ? raw.answer_keys[0] : raw.answer_key;
+  const key = Array.isArray(raw.answer_keys)
+    ? raw.answer_keys[0]
+    : raw.answer_keys ?? raw.answer_key;
   return {
     id: raw.id,
     type: raw.type,
