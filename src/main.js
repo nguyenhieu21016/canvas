@@ -15,15 +15,19 @@ import {
   deleteModule,
   deletePhase,
   createManagedUser,
+  createSolutionRequest,
   fetchAssignmentEditor,
   fetchAssignmentForStudent,
   fetchAssignmentInsights,
+  fetchAssignmentSolutionRequests,
   fetchAssignmentsForManager,
   fetchAttemptReview,
   fetchDashboardStats,
   fetchGradebook,
   fetchLearningPath,
   fetchMyHistory,
+  fetchSolutionRequest,
+  fetchSolutionRequestsForAttempt,
   fetchStudentAssignmentOverview,
   fetchStudents,
   getCurrentProfile,
@@ -38,6 +42,7 @@ import {
   submitAssignmentAttempt,
   updateProfileAvatar,
   updateProfileName,
+  updateSolutionRequest,
   upsertLecture,
   upsertLectureGroup,
   upsertModule,
@@ -53,8 +58,8 @@ const toastEl = document.querySelector('#toast');
 const MAX_AVATAR_SOURCE_BYTES = 5 * 1024 * 1024;
 const MAX_AVATAR_UPLOAD_BYTES = 250 * 1024;
 const AVATAR_SIZE = 320;
-const APP_VERSION = '1.1.5';
-const APP_LAST_UPDATE = 'Sửa lỗi đáp án trắc nghiệm trong trình sửa đề và thêm nút tạo nhiều câu cùng lúc.';
+const APP_VERSION = '1.1.6';
+const APP_LAST_UPDATE = 'Thêm yêu cầu lời giải chi tiết và quản lý link PDF lời giải cho từng bài nộp.';
 let renderGeneration = 0;
 const detachedPageRoot = {
   isConnected: false,
@@ -338,6 +343,7 @@ function pageTitle(name) {
       settings: 'Cài đặt',
       assignment: 'Làm bài',
       review: 'Xem lại bài',
+      solution: 'Lời giải chi tiết',
       dashboard: 'Thống kê',
       content: 'Quản lý nội dung',
       assignments: 'Quản lý đề thi',
@@ -684,6 +690,8 @@ async function mountStudentAssignmentOverview(id) {
   try {
     const { assignment, attempts } = await fetchStudentAssignmentOverview(id);
     const latest = attempts[0];
+    const solutionRequests = latest ? await fetchSolutionRequestsForAttempt(latest.id) : [];
+    const fulfilledSolution = fulfilledSolutionRequest(solutionRequests);
     root.innerHTML = `
       <section class="assignment-start">
         <div class="panel assignment-start-hero">
@@ -697,9 +705,12 @@ async function mountStudentAssignmentOverview(id) {
               <md-icon slot="icon">${latest ? 'restart_alt' : 'play_arrow'}</md-icon>
               ${latest ? 'Làm lại' : 'Làm bài'}
             </md-filled-button>
+            ${latest ? `<md-filled-tonal-button id="request-solution-button"><md-icon slot="icon">rate_review</md-icon>Yêu cầu giải chi tiết</md-filled-tonal-button>` : ''}
+            ${fulfilledSolution ? `<md-outlined-button id="view-solution-button"><md-icon slot="icon">description</md-icon>Xem lời giải chi tiết</md-outlined-button>` : ''}
             ${latest ? `<md-outlined-button id="review-latest-attempt"><md-icon slot="icon">visibility</md-icon>Xem bài mới nhất</md-outlined-button>` : ''}
           </div>
         </div>
+        ${latest ? renderSolutionRequestDialog(solutionRequests) : ''}
         <section class="exam-shell assignment-preview-shell">
           <div class="exam-paper">
             <div class="split-heading">
@@ -722,11 +733,62 @@ async function mountStudentAssignmentOverview(id) {
         </section>
       </section>
     `;
+    wireMaterialFormButtons(root);
     document.querySelector('#start-assignment')?.addEventListener('click', () => mountAssignmentExam(id));
+    document.querySelector('#view-solution-button')?.addEventListener('click', () => go(`solution/${fulfilledSolution.id}`));
     document.querySelector('#review-latest-attempt')?.addEventListener('click', () => go(`review/${latest.id}`));
+    document.querySelector('#request-solution-button')?.addEventListener('click', () => {
+      const dialog = document.querySelector('#solution-request-dialog');
+      openSolutionRequestDialog(dialog);
+    });
+    document.querySelector('#close-solution-request-dialog')?.addEventListener('click', () => {
+      closeSolutionRequestDialog(document.querySelector('#solution-request-dialog'));
+    });
+    document.querySelector('#solution-request-dialog')?.addEventListener('click', (event) => {
+      if (event.target === event.currentTarget) closeSolutionRequestDialog(event.currentTarget);
+    });
+    document.querySelector('#solution-request-dialog')?.addEventListener('cancel', (event) => {
+      event.preventDefault();
+      closeSolutionRequestDialog(event.currentTarget);
+    });
+    wireSolutionRequestForm('#overview-solution-request-form', {
+      assignmentId: assignment.id,
+      attemptId: latest?.id,
+      onSaved: (request) => {
+        prependStudentSolutionHistory(request);
+        closeSolutionRequestDialog(document.querySelector('#solution-request-dialog'));
+      },
+    });
   } catch (error) {
     root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
   }
+}
+
+function openSolutionRequestDialog(dialog) {
+  if (!dialog || dialog.open) return;
+  dialog.dataset.closing = 'false';
+  dialog.showModal();
+  window.requestAnimationFrame(() => {
+    dialog.classList.add('open');
+    dialog.querySelector('[name="requested_questions"]')?.focus();
+  });
+}
+
+function closeSolutionRequestDialog(dialog) {
+  if (!dialog || !dialog.open || dialog.dataset.closing === 'true') return;
+  dialog.dataset.closing = 'true';
+  dialog.classList.remove('open');
+  dialog.classList.add('closing');
+  const surface = dialog.querySelector('.dialog-surface');
+  const finish = () => {
+    dialog.classList.remove('closing');
+    dialog.dataset.closing = 'false';
+    dialog.close();
+  };
+  surface?.addEventListener('animationend', finish, { once: true });
+  window.setTimeout(() => {
+    if (dialog.open && dialog.dataset.closing === 'true') finish();
+  }, 240);
 }
 
 function renderStudentAssignmentHistory(attempts) {
@@ -801,7 +863,10 @@ async function mountAssignmentManagerView(id) {
   const root = pageRoot();
   root.innerHTML = renderLoading('Đang tải thống kê bài tập');
   try {
-    const { assignment, submittedStudents, pendingStudents, stats } = await fetchAssignmentInsights(id);
+    const [{ assignment, submittedStudents, pendingStudents, stats }, solutionRequests] = await Promise.all([
+      fetchAssignmentInsights(id),
+      fetchAssignmentSolutionRequests(id),
+    ]);
     root.innerHTML = `
       <section class="assignment-insights">
         <div class="panel assignment-insights-hero">
@@ -852,6 +917,7 @@ async function mountAssignmentManagerView(id) {
             ${renderPendingStudents(pendingStudents)}
           </div>
         </section>
+        ${renderAssignmentSolutionRequests(solutionRequests)}
       </section>
     `;
 
@@ -865,6 +931,8 @@ async function mountAssignmentManagerView(id) {
       }
     });
     document.querySelector('#all-assignments-from-insights')?.addEventListener('click', () => go('assignments'));
+    wireSolutionRequestManager();
+    wireMaterialFormButtons(root);
   } catch (error) {
     root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
   }
@@ -939,6 +1007,97 @@ function renderPendingStudents(rows) {
         .join('')}
     </div>
   `;
+}
+
+function relationOne(value) {
+  return Array.isArray(value) ? value[0] : value;
+}
+
+function solutionStatusText(request) {
+  return request.status === 'fulfilled' && request.solution_pdf_url ? 'Đã có lời giải' : 'Đang chờ lời giải';
+}
+
+function fulfilledSolutionRequest(requests) {
+  return requests.find((request) => request.status === 'fulfilled' && request.solution_pdf_url);
+}
+
+function renderAssignmentSolutionRequests(requests) {
+  return `
+    <section class="panel solution-requests-panel">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">Yêu cầu lời giải</p>
+          <h2>${requests.length} yêu cầu</h2>
+        </div>
+      </div>
+      ${
+        requests.length
+          ? `<div class="solution-request-list">${requests.map(renderManagerSolutionRequest).join('')}</div>`
+          : '<div class="empty-state compact">Chưa có học sinh yêu cầu lời giải chi tiết.</div>'
+      }
+    </section>
+  `;
+}
+
+function renderManagerSolutionRequest(request) {
+  const student = relationOne(request.profiles) ?? {};
+  const attempt = relationOne(request.attempts) ?? {};
+  return `
+    <article class="solution-request-card">
+      <div class="solution-request-main">
+        <div>
+          <p class="eyebrow">${escapeHtml(solutionStatusText(request))}</p>
+          <h3>${escapeHtml(student.full_name || student.email || 'Học sinh')}</h3>
+          <p class="muted">Gửi ${formatDateTime(request.created_at)}${attempt.submitted_at ? ` · Nộp bài ${formatDateTime(attempt.submitted_at)}` : ''}${attempt.score_10 != null ? ` · ${formatScore(attempt.score_10)}/10` : ''}</p>
+        </div>
+        <span class="status">${escapeHtml(request.status === 'fulfilled' ? 'Đã gửi' : 'Đang chờ')}</span>
+      </div>
+      <dl class="solution-request-details">
+        <dt>Câu cần giải</dt>
+        <dd>${escapeHtml(request.requested_questions)}</dd>
+        ${request.note ? `<dt>Ghi chú</dt><dd>${escapeHtml(request.note)}</dd>` : ''}
+      </dl>
+      <form class="solution-link-form" data-solution-request-id="${request.id}">
+        <input class="field" name="solution_pdf_url" value="${escapeHtml(request.solution_pdf_url ?? '')}" placeholder="Dán link PDF Google Drive lời giải">
+        <md-filled-tonal-button type="submit">
+          <md-icon slot="icon">upload_file</md-icon>
+          Lưu lời giải
+        </md-filled-tonal-button>
+      </form>
+    </article>
+  `;
+}
+
+function wireSolutionRequestManager() {
+  document.querySelectorAll('.solution-link-form').forEach((form) => {
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const restore = setButtonLoading(form.querySelector('md-filled-tonal-button'), 'Đang lưu...');
+      try {
+        const values = Object.fromEntries(new FormData(form).entries());
+        const updated = await updateSolutionRequest(form.dataset.solutionRequestId, {
+          solutionPdfUrl: values.solution_pdf_url,
+        });
+        updateSolutionRequestCardState(form, updated);
+        toast('Đã lưu lời giải.', 'success');
+      } catch (error) {
+        toast(error.message, 'error');
+      } finally {
+        restore();
+      }
+    });
+  });
+}
+
+function updateSolutionRequestCardState(form, request) {
+  const card = form.closest('.solution-request-card');
+  if (!card) return;
+  const statusText = request.status === 'fulfilled' && request.solution_pdf_url ? 'Đã có lời giải' : 'Đang chờ lời giải';
+  const statusLabel = request.status === 'fulfilled' ? 'Đã gửi' : 'Đang chờ';
+  const eyebrow = card.querySelector('.solution-request-main .eyebrow');
+  const status = card.querySelector('.solution-request-main .status');
+  if (eyebrow) eyebrow.textContent = statusText;
+  if (status) status.textContent = statusLabel;
 }
 
 function renderQuestionInput(question, index, answer) {
@@ -1159,6 +1318,7 @@ async function mountReview(id) {
         </div>
       </section>
     `;
+    wireMaterialFormButtons(root);
     document.querySelector('#regrade-review-button')?.addEventListener('click', async (event) => {
       const restore = setButtonLoading(event.currentTarget, 'Đang chấm...');
       try {
@@ -1174,6 +1334,161 @@ async function mountReview(id) {
   } catch (error) {
     root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
   }
+}
+
+async function mountSolution(id) {
+  const root = pageRoot();
+  root.innerHTML = renderLoading('Đang tải lời giải');
+  try {
+    const request = await fetchSolutionRequest(id);
+    const assignment = relationOne(request.assignments) ?? {};
+    root.innerHTML = `
+      <section class="solution-page">
+        <div class="panel solution-page-hero">
+          <div>
+            <p class="eyebrow">Lời giải chi tiết</p>
+            <h2>${escapeHtml(assignment.title ?? 'Lời giải')}</h2>
+          </div>
+          <div class="insight-actions">
+            <md-outlined-button id="back-to-assignment">
+              <md-icon slot="icon">arrow_back</md-icon>
+              Quay lại bài
+            </md-outlined-button>
+          </div>
+        </div>
+        <section class="solution-layout">
+          <aside class="panel solution-info-panel">
+            <div>
+              <p class="eyebrow">Yêu cầu</p>
+              <h3>Câu ${escapeHtml(request.requested_questions)}</h3>
+            </div>
+            <dl class="solution-info-list">
+              <dt>Trạng thái</dt>
+              <dd>${escapeHtml(solutionStatusText(request))}</dd>
+              <dt>Gửi lúc</dt>
+              <dd>${formatDateTime(request.created_at)}</dd>
+              ${request.fulfilled_at ? `<dt>Phản hồi</dt><dd>${formatDateTime(request.fulfilled_at)}</dd>` : ''}
+              ${request.note ? `<dt>Ghi chú</dt><dd>${escapeHtml(request.note)}</dd>` : ''}
+            </dl>
+          </aside>
+          <section class="panel solution-document-panel">
+            ${
+              request.solution_pdf_url
+                ? driveFrame(request.solution_pdf_url, `Lời giải ${assignment.title ?? ''}`, true)
+                : '<div class="empty-state compact">Lời giải chưa được tải lên.</div>'
+            }
+          </section>
+        </section>
+      </section>
+    `;
+    document.querySelector('#back-to-assignment')?.addEventListener('click', () => {
+      if (request.assignment_id) go(`assignment/${request.assignment_id}`);
+      else window.history.back();
+    });
+  } catch (error) {
+    root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
+  }
+}
+
+function renderSolutionRequestDialog(requests) {
+  return `
+    <dialog id="solution-request-dialog" class="solution-request-dialog">
+      <div class="dialog-surface">
+        <div class="dialog-heading">
+          <div>
+            <p class="eyebrow">Lời giải</p>
+            <h2>Yêu cầu giải chi tiết</h2>
+          </div>
+          <button type="button" id="close-solution-request-dialog" aria-label="Đóng"><md-icon>close</md-icon></button>
+        </div>
+        ${renderSolutionRequestForm('overview-solution-request-form')}
+        <div id="solution-request-history-slot">
+          ${requests.length ? renderStudentSolutionHistory(requests) : ''}
+        </div>
+      </div>
+    </dialog>
+  `;
+}
+
+function renderSolutionRequestForm(formId) {
+  return `
+    <form id="${escapeHtml(formId)}" class="solution-request-form">
+      <input class="field" name="requested_questions" placeholder="Ví dụ: 1, 3, 5-8, 12" required>
+      <textarea class="field" name="note" placeholder="Ghi chú thêm nếu cần"></textarea>
+      <md-filled-button type="submit">
+        <md-icon slot="icon">rate_review</md-icon>
+        Gửi yêu cầu
+      </md-filled-button>
+    </form>
+  `;
+}
+
+function wireSolutionRequestForm(formSelector, { assignmentId, attemptId, onSaved }) {
+  document.querySelector(formSelector)?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const restore = setButtonLoading(form.querySelector('md-filled-button'), 'Đang gửi...');
+    try {
+      const values = Object.fromEntries(new FormData(form).entries());
+      const requestedQuestions = String(values.requested_questions ?? '').trim();
+      if (!requestedQuestions) {
+        throw new Error('Nhập câu cần giải trước nhé.');
+      }
+      const request = await createSolutionRequest({
+        assignmentId,
+        attemptId,
+        requestedQuestions,
+        note: values.note,
+      });
+      form.reset();
+      toast('Đã gửi yêu cầu lời giải.', 'success');
+      await onSaved?.(request);
+    } catch (error) {
+      toast(error.message, 'error');
+    } finally {
+      restore();
+    }
+  });
+}
+
+function renderStudentSolutionHistory(requests) {
+  return `
+    <div class="solution-request-history">
+      ${requests
+        .map(
+          (request) => `
+            <article class="solution-history-row">
+              <div>
+                <strong>${escapeHtml(request.requested_questions)}</strong>
+                <small>${formatDateTime(request.created_at)}</small>
+              </div>
+              <span class="status">${escapeHtml(solutionStatusText(request))}</span>
+            </article>
+          `,
+        )
+        .join('')}
+    </div>
+  `;
+}
+
+function prependStudentSolutionHistory(request) {
+  const slot = document.querySelector('#solution-request-history-slot');
+  if (!slot) return;
+  const current = slot.querySelector('.solution-request-history');
+  const row = `
+    <article class="solution-history-row">
+      <div>
+        <strong>${escapeHtml(request.requested_questions)}</strong>
+        <small>${formatDateTime(request.created_at)}</small>
+      </div>
+      <span class="status">${escapeHtml(solutionStatusText(request))}</span>
+    </article>
+  `;
+  if (!current) {
+    slot.innerHTML = `<div class="solution-request-history">${row}</div>`;
+    return;
+  }
+  current.insertAdjacentHTML('afterbegin', row);
 }
 
 function formatAnswer(answer) {
@@ -2448,6 +2763,7 @@ async function mountCurrentRoute() {
   if (current.name === 'countdown') return mountCountdown();
   if (current.name === 'settings') return mountSettings();
   if (current.name === 'review') return mountReview(current.id);
+  if (current.name === 'solution') return mountSolution(current.id);
   if (current.name === 'dashboard') return mountDashboard();
   if (current.name === 'content') return mountContentManager();
   if (current.name === 'assignments') return mountAssignmentManager();

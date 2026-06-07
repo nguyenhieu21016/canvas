@@ -1,7 +1,11 @@
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 
-const sql = readFileSync('supabase/migrations/202606010001_lms_schema.sql', 'utf8');
+const sql = readdirSync('supabase/migrations')
+  .filter((file) => file.endsWith('.sql'))
+  .sort()
+  .map((file) => readFileSync(`supabase/migrations/${file}`, 'utf8'))
+  .join('\n');
 
 describe('Supabase migration', () => {
   it('defines core LMS tables', () => {
@@ -16,6 +20,7 @@ describe('Supabase migration', () => {
       'answer_keys',
       'attempts',
       'attempt_answers',
+      'solution_requests',
     ]) {
       expect(sql).toContain(`create table if not exists public.${table}`);
     }
@@ -68,5 +73,13 @@ describe('Supabase migration', () => {
     expect(sql).toContain('create index if not exists questions_assignment_sort_idx');
     expect(sql).toContain('create or replace function public.get_dashboard_stats');
     expect(sql).toContain('grant execute on function public.get_dashboard_stats()');
+  });
+
+  it('scopes detailed solution requests to students and managers', () => {
+    expect(sql).toContain('alter table public.solution_requests enable row level security');
+    expect(sql).toContain('solution_requests select own manager');
+    expect(sql).toContain('solution_requests insert own visible assignment');
+    expect(sql).toContain('solution_requests update manager');
+    expect(sql).toContain('public.can_manage_assignment(assignment_id)');
   });
 });
