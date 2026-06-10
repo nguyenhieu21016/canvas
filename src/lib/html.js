@@ -13,11 +13,11 @@ export function option(value, label, selectedValue) {
 
 export function setButtonLoading(button, loadingText = 'Đang xử lý...') {
   if (!button) return () => {};
-  const previous = button.textContent;
+  const previous = button.innerHTML;
   button.disabled = true;
   button.textContent = loadingText;
   return () => {
     button.disabled = false;
-    button.textContent = previous;
+    button.innerHTML = previous;
   };
 }

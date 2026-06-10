@@ -272,6 +272,14 @@ md-icon {
   line-height: 1;
 }
 
+.auth-eyebrow {
+  color: var(--md-sys-color-on-surface);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
 .auth-copy p {
   max-width: 28rem;
   margin: 0;
@@ -284,6 +292,16 @@ md-icon {
   align-content: center;
   gap: 18px;
   padding: clamp(24px, 5vw, 48px);
+}
+
+.auth-form-heading {
+  display: grid;
+  gap: 6px;
+}
+
+.auth-form-heading h2 {
+  margin: 0;
+  font-size: clamp(1.45rem, 3vw, 2rem);
 }
 
 .brand {
@@ -373,6 +391,28 @@ md-icon {
   transform: scale(0.98);
 }
 
+.segmented button:focus-visible,
+.auth-secondary-actions button:focus-visible {
+  outline: 2px solid var(--md-sys-color-primary);
+  outline-offset: 2px;
+}
+
+.auth-secondary-actions {
+  min-height: 24px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.auth-secondary-actions .text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
 .notice,
 .error-state,
 .empty-state {
@@ -391,6 +431,49 @@ md-icon {
 
 .empty-state.compact {
   padding: 12px;
+}
+
+.state-message {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+}
+
+.state-message > md-icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-primary);
+}
+
+.error-state.state-message > md-icon {
+  background: color-mix(in srgb, var(--md-sys-color-on-error-container) 12%, transparent);
+  color: var(--md-sys-color-on-error-container);
+}
+
+.state-message strong {
+  color: var(--md-sys-color-on-surface);
+}
+
+.error-state.state-message strong {
+  color: var(--md-sys-color-on-error-container);
+}
+
+.state-message p {
+  margin: 4px 0 0;
+}
+
+.state-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
 }
 
 .app-shell {
@@ -1146,8 +1229,40 @@ md-icon {
 }
 
 .answer-sheet {
+  position: relative;
   overflow: auto;
   animation-delay: 80ms;
+}
+
+.autosave-status {
+  margin: 6px 0 0;
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.sticky-submit-bar {
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--md-sys-color-surface-container-lowest) 94%, transparent);
+  backdrop-filter: blur(14px);
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  box-shadow: 0 -8px 22px color-mix(in srgb, var(--md-sys-color-on-surface) 8%, transparent);
+}
+
+.sticky-submit-bar span {
+  min-width: 0;
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 0.86rem;
+  font-weight: 700;
 }
 
 .question-card {
@@ -1965,6 +2080,22 @@ td small {
   margin-bottom: 18px;
 }
 
+.manage-hub {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.manage-hub-card h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.manage-hub-card h2 md-icon {
+  color: var(--md-sys-color-primary);
+}
+
 .content-create-panel {
   margin-bottom: 18px;
 }
@@ -2111,8 +2242,8 @@ td small {
 .icon-actions button,
 .row-actions button,
 .editor-heading button {
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   display: grid;
   place-items: center;
   border: 0;
@@ -2464,6 +2595,11 @@ tbody tr:hover {
   color: var(--md-sys-color-on-surface-variant);
 }
 
+:root[data-theme='dark'] .sticky-submit-bar {
+  border-color: var(--md-sys-color-outline-variant);
+  background: var(--md-sys-color-surface-container);
+}
+
 :root[data-theme='dark'] .account-avatar {
   border-color: var(--md-sys-color-outline);
   background: var(--md-sys-color-primary-container);
@@ -2791,6 +2927,24 @@ tbody tr:hover {
     min-height: 300px;
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .state-message,
+  .sticky-submit-bar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .sticky-submit-bar {
+    display: flex;
+  }
+
+  .state-message {
+    grid-template-columns: 1fr;
+  }
+
+  .sticky-submit-bar md-filled-button {
+    width: 100%;
   }
 }
 

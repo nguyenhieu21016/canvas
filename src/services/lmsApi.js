@@ -71,6 +71,79 @@ function dedupeRequest(key, factory) {
   return request;
 }
 
+function hydrateLearningPath(raw) {
+  const modulesByPhase = new Map();
+  const groupsByModule = new Map();
+  const lecturesByModule = new Map();
+  const lecturesByGroup = new Map();
+  const assignmentsByLecture = new Map();
+  const freeAssignments = [];
+
+  for (const module of raw.modules ?? []) {
+    if (!modulesByPhase.has(module.phase_id)) modulesByPhase.set(module.phase_id, []);
+    modulesByPhase.get(module.phase_id).push({ ...module, lecture_groups: [], lectures: [] });
+  }
+
+  for (const group of raw.lectureGroups ?? raw.lecture_groups ?? []) {
+    if (!groupsByModule.has(group.module_id)) groupsByModule.set(group.module_id, []);
+    groupsByModule.get(group.module_id).push({ ...group, lectures: [] });
+  }
+
+  for (const lecture of raw.lectures ?? []) {
+    if (!lecturesByModule.has(lecture.module_id)) lecturesByModule.set(lecture.module_id, []);
+    lecturesByModule.get(lecture.module_id).push({ ...lecture, assignments: [] });
+    if (lecture.group_id) {
+      if (!lecturesByGroup.has(lecture.group_id)) lecturesByGroup.set(lecture.group_id, []);
+      lecturesByGroup.get(lecture.group_id).push({ ...lecture, assignments: [] });
+    }
+  }
+
+  for (const assignment of raw.assignments ?? []) {
+    const assignmentWithProgress = {
+      ...assignment,
+      progress: assignment.progress ?? { status: 'not_started', bestScore: null, submittedAt: null },
+    };
+    if (!assignment.lecture_id) {
+      freeAssignments.push(assignmentWithProgress);
+      continue;
+    }
+    if (!assignmentsByLecture.has(assignment.lecture_id)) {
+      assignmentsByLecture.set(assignment.lecture_id, []);
+    }
+    assignmentsByLecture.get(assignment.lecture_id).push(assignmentWithProgress);
+  }
+
+  for (const moduleList of modulesByPhase.values()) {
+    for (const module of moduleList) {
+      module.lectures = lecturesByModule.get(module.id) ?? [];
+      module.lecture_groups = groupsByModule.get(module.id) ?? [];
+      for (const lecture of module.lectures) {
+        lecture.assignments = assignmentsByLecture.get(lecture.id) ?? [];
+      }
+      for (const group of module.lecture_groups) {
+        group.lectures = (lecturesByGroup.get(group.id) ?? []).map((lecture) => ({
+          ...lecture,
+          assignments: assignmentsByLecture.get(lecture.id) ?? [],
+        }));
+      }
+    }
+  }
+
+  const phases = (raw.phases ?? []).map((phase) => ({
+    ...phase,
+    modules: modulesByPhase.get(phase.id) ?? [],
+  }));
+
+  return {
+    phases,
+    modules: raw.modules ?? [],
+    lectureGroups: raw.lectureGroups ?? raw.lecture_groups ?? [],
+    lectures: raw.lectures ?? [],
+    assignments: raw.assignments ?? [],
+    freeAssignments,
+  };
+}
+
 export async function getSession() {
   const client = requireSupabase();
   const { data, error } = await withTimeout(client.auth.getSession(), 'Kiểm tra phiên đăng nhập', AUTH_TIMEOUT_MS);
@@ -106,6 +179,30 @@ export async function signUpStudent({ email, password, fullName }) {
   );
   assertOk({ error });
   return data;
+}
+
+export async function requestPasswordReset(email) {
+  const client = requireSupabase();
+  const redirectTo = `${window.location.origin}${window.location.pathname}#/reset-password`;
+  const { error } = await withTimeout(
+    client.auth.resetPasswordForEmail(email, { redirectTo }),
+    'Gửi email đặt lại mật khẩu',
+    AUTH_TIMEOUT_MS,
+  );
+  assertOk({ error });
+}
+
+export async function updateCurrentUserPassword(password) {
+  const client = requireSupabase();
+  const nextPassword = String(password ?? '');
+  if (nextPassword.length < 6) throw new Error('Mật khẩu mới cần ít nhất 6 ký tự.');
+  const { data, error } = await withTimeout(
+    client.auth.updateUser({ password: nextPassword }),
+    'Cập nhật mật khẩu',
+    AUTH_TIMEOUT_MS,
+  );
+  assertOk({ error });
+  return data.user;
 }
 
 export async function signOut() {
@@ -229,6 +326,18 @@ export async function fetchLearningPath(role = 'student') {
     const client = requireSupabase();
     const shouldFilterPublished = role === 'student';
 
+    try {
+      const { data, error } = await withTimeout(client.rpc('get_learning_path'), 'Tải lộ trình');
+      if (!error && data) {
+        return setCached(cacheKey, hydrateLearningPath(data), LEARNING_PATH_CACHE_TTL_MS);
+      }
+      if (error?.code && error.code !== '42883') {
+        console.warn('get_learning_path RPC failed, falling back to REST queries:', error.message);
+      }
+    } catch (error) {
+      console.warn('get_learning_path RPC timed out, falling back to REST queries:', error.message);
+    }
+
     let phasesQuery = client
       .from('phases')
       .select('id, owner_id, title, description, sort_order, published, created_at')
@@ -279,12 +388,6 @@ export async function fetchLearningPath(role = 'student') {
       );
     [phasesResult, modulesResult, lectureGroupsResult, lecturesResult, assignmentsResult, attemptsResult].forEach(assertOk);
 
-    const modulesByPhase = new Map();
-    const groupsByModule = new Map();
-    const lecturesByModule = new Map();
-    const lecturesByGroup = new Map();
-    const assignmentsByLecture = new Map();
-    const freeAssignments = [];
     const bestAttemptsByAssignment = new Map();
 
     for (const attempt of attemptsResult.data ?? []) {
@@ -295,28 +398,9 @@ export async function fetchLearningPath(role = 'student') {
       }
     }
 
-    for (const module of modulesResult.data ?? []) {
-      if (!modulesByPhase.has(module.phase_id)) modulesByPhase.set(module.phase_id, []);
-      modulesByPhase.get(module.phase_id).push({ ...module, lecture_groups: [], lectures: [] });
-    }
-
-    for (const group of lectureGroupsResult.data ?? []) {
-      if (!groupsByModule.has(group.module_id)) groupsByModule.set(group.module_id, []);
-      groupsByModule.get(group.module_id).push({ ...group, lectures: [] });
-    }
-
-    for (const lecture of lecturesResult.data ?? []) {
-      if (!lecturesByModule.has(lecture.module_id)) lecturesByModule.set(lecture.module_id, []);
-      lecturesByModule.get(lecture.module_id).push({ ...lecture, assignments: [] });
-      if (lecture.group_id) {
-        if (!lecturesByGroup.has(lecture.group_id)) lecturesByGroup.set(lecture.group_id, []);
-        lecturesByGroup.get(lecture.group_id).push({ ...lecture, assignments: [] });
-      }
-    }
-
-    for (const assignment of assignmentsResult.data ?? []) {
+    const assignments = (assignmentsResult.data ?? []).map((assignment) => {
       const bestAttempt = bestAttemptsByAssignment.get(assignment.id);
-      const assignmentWithProgress = {
+      return {
         ...assignment,
         progress: bestAttempt
           ? {
@@ -326,45 +410,15 @@ export async function fetchLearningPath(role = 'student') {
             }
           : { status: 'not_started', bestScore: null, submittedAt: null },
       };
-      if (!assignment.lecture_id) {
-        freeAssignments.push(assignmentWithProgress);
-        continue;
-      }
-      if (!assignmentsByLecture.has(assignment.lecture_id)) {
-        assignmentsByLecture.set(assignment.lecture_id, []);
-      }
-      assignmentsByLecture.get(assignment.lecture_id).push(assignmentWithProgress);
-    }
+    });
 
-    for (const moduleList of modulesByPhase.values()) {
-      for (const module of moduleList) {
-        module.lectures = lecturesByModule.get(module.id) ?? [];
-        module.lecture_groups = groupsByModule.get(module.id) ?? [];
-        for (const lecture of module.lectures) {
-          lecture.assignments = assignmentsByLecture.get(lecture.id) ?? [];
-        }
-        for (const group of module.lecture_groups) {
-          group.lectures = (lecturesByGroup.get(group.id) ?? []).map((lecture) => ({
-            ...lecture,
-            assignments: assignmentsByLecture.get(lecture.id) ?? [],
-          }));
-        }
-      }
-    }
-
-    const phases = (phasesResult.data ?? []).map((phase) => ({
-      ...phase,
-      modules: modulesByPhase.get(phase.id) ?? [],
-    }));
-
-    return setCached(cacheKey, {
-      phases,
+    return setCached(cacheKey, hydrateLearningPath({
+      phases: phasesResult.data ?? [],
       modules: modulesResult.data ?? [],
       lectureGroups: lectureGroupsResult.data ?? [],
       lectures: lecturesResult.data ?? [],
-      assignments: assignmentsResult.data ?? [],
-      freeAssignments,
-    }, LEARNING_PATH_CACHE_TTL_MS);
+      assignments,
+    }), LEARNING_PATH_CACHE_TTL_MS);
   });
 }
 
@@ -431,12 +485,23 @@ export async function deleteLecture(id) {
   clearLmsCache();
 }
 
-export async function fetchAssignmentsForManager() {
+export async function reorderContentNodes(kind, ids) {
+  const client = requireSupabase();
+  const { error } = await withTimeout(
+    client.rpc('reorder_content_nodes', { p_kind: kind, p_ids: ids }),
+    'Cập nhật thứ tự nội dung',
+  );
+  assertOk({ error });
+  clearLmsCache();
+}
+
+export async function fetchAssignmentsForManager({ limit = 100, offset = 0 } = {}) {
   const client = requireSupabase();
   const { data, error } = await withTimeout(client
     .from('assignments')
     .select('id, lecture_id, owner_id, title, description, pdf_url, sort_order, published, created_at, lectures(title), profiles(full_name)')
-    .order('created_at', { ascending: false }), 'Tải danh sách đề');
+    .order('created_at', { ascending: false })
+    .range(offset, offset + limit - 1), 'Tải danh sách đề');
   assertOk({ error });
   return data ?? [];
 }
@@ -587,20 +652,22 @@ export async function submitAssignmentAttempt({ assignmentId, answers }) {
   return submitted;
 }
 
-export async function fetchMyHistory() {
-  const cached = getCached('my-history');
+export async function fetchMyHistory({ limit = 100, offset = 0 } = {}) {
+  const cacheKey = `my-history:${limit}:${offset}`;
+  const cached = getCached(cacheKey);
   if (cached) return cached;
 
   const client = requireSupabase();
-  return dedupeRequest('my-history', async () => {
-    const cachedAgain = getCached('my-history');
+  return dedupeRequest(cacheKey, async () => {
+    const cachedAgain = getCached(cacheKey);
     if (cachedAgain) return cachedAgain;
     const { data, error } = await withTimeout(client
       .from('attempts')
       .select('*, assignments(title)')
-      .order('submitted_at', { ascending: false }), 'Tải lịch sử');
+      .order('submitted_at', { ascending: false })
+      .range(offset, offset + limit - 1), 'Tải lịch sử');
     assertOk({ error });
-    return setCached('my-history', data ?? []);
+    return setCached(cacheKey, data ?? []);
   });
 }
 
@@ -744,8 +811,9 @@ export async function fetchAssignmentInsights(assignmentId) {
   };
 }
 
-export async function fetchStudents() {
-  const cached = getCached('students');
+export async function fetchStudents({ limit = 200, offset = 0 } = {}) {
+  const cacheKey = `students:${limit}:${offset}`;
+  const cached = getCached(cacheKey);
   if (cached) return cached;
 
   const client = requireSupabase();
@@ -753,9 +821,10 @@ export async function fetchStudents() {
     .from('profiles')
     .select('id, email, full_name, role, status, created_at, updated_at')
     .eq('role', 'student')
-    .order('created_at', { ascending: false }), 'Tải danh sách học sinh');
+    .order('created_at', { ascending: false })
+    .range(offset, offset + limit - 1), 'Tải danh sách học sinh');
   assertOk({ error });
-  return setCached('students', data ?? []);
+  return setCached(cacheKey, data ?? []);
 }
 
 export async function createManagedUser({ email, password, full_name: fullName, role = 'student' }) {
@@ -803,21 +872,23 @@ export async function deleteManagedUser(id) {
   clearLmsCache();
 }
 
-export async function fetchGradebook() {
-  const cached = getCached('gradebook');
+export async function fetchGradebook({ limit = 200, offset = 0 } = {}) {
+  const cacheKey = `gradebook:${limit}:${offset}`;
+  const cached = getCached(cacheKey);
   if (cached) return cached;
 
   const client = requireSupabase();
-  return dedupeRequest('gradebook', async () => {
-    const cachedAgain = getCached('gradebook');
+  return dedupeRequest(cacheKey, async () => {
+    const cachedAgain = getCached(cacheKey);
     if (cachedAgain) return cachedAgain;
     const { data, error } = await withTimeout(client
       .from('attempts')
       .select('id, assignment_id, student_id, status, submitted_at, score, max_points, score_10, profiles(full_name, email), assignments(title)')
       .eq('status', 'submitted')
-      .order('submitted_at', { ascending: false }), 'Tải bảng điểm');
+      .order('submitted_at', { ascending: false })
+      .range(offset, offset + limit - 1), 'Tải bảng điểm');
     assertOk({ error });
-    return setCached('gradebook', data ?? []);
+    return setCached(cacheKey, data ?? []);
   });
 }
 

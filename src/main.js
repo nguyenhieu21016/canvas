@@ -1,9 +1,5 @@
 import '@material/web/button/filled-button.js';
-import '@material/web/button/filled-tonal-button.js';
-import '@material/web/button/outlined-button.js';
 import '@material/web/icon/icon.js';
-import '@material/web/progress/circular-progress.js';
-import '@material/web/switch/switch.js';
 import '@material/web/textfield/outlined-text-field.js';
 import './styles.css';
 import { hasSupabaseConfig, supabase } from './services/supabaseClient.js';
@@ -34,12 +30,15 @@ import {
   getSession,
   invokeAdminFunction,
   removeProfileAvatar,
+  requestPasswordReset,
   regradeAssignment,
+  reorderContentNodes as reorderContentNodesApi,
   saveAssignmentWithQuestions,
   signIn,
   signOut,
   signUpStudent,
   submitAssignmentAttempt,
+  updateCurrentUserPassword,
   updateProfileAvatar,
   updateProfileName,
   updateSolutionRequest,
@@ -58,9 +57,10 @@ const toastEl = document.querySelector('#toast');
 const MAX_AVATAR_SOURCE_BYTES = 5 * 1024 * 1024;
 const MAX_AVATAR_UPLOAD_BYTES = 250 * 1024;
 const AVATAR_SIZE = 320;
-const APP_VERSION = '1.1.6';
-const APP_LAST_UPDATE = 'Thêm yêu cầu lời giải chi tiết và quản lý link PDF lời giải cho từng bài nộp.';
+const APP_VERSION = '1.1.7';
+const APP_LAST_UPDATE = 'Tối ưu hiệu năng: gộp tải lộ trình, phân trang dữ liệu lớn, lưu nháp nhẹ hơn và tự mở PDF/Drive.';
 let renderGeneration = 0;
+let appElementsPromise = null;
 const detachedPageRoot = {
   isConnected: false,
   set innerHTML(_value) {},
@@ -82,6 +82,7 @@ const state = {
   session: null,
   profile: null,
   authMode: 'login',
+  passwordRecovery: false,
   assignmentEditor: null,
   theme: localStorage.getItem('lms:theme') || 'light',
   colorTheme: colorThemes.some((theme) => theme.id === storedColorTheme) ? storedColorTheme : 'blue',
@@ -110,6 +111,11 @@ function setColorTheme(colorTheme) {
 }
 
 applyTheme();
+
+function ensureAppElements() {
+  appElementsPromise ??= import('./material/app.js');
+  return appElementsPromise;
+}
 
 function wireMaterialFormButtons(root = document) {
   if (!root) return;
@@ -201,6 +207,44 @@ function renderLoading(label = 'Đang tải dữ liệu') {
   `;
 }
 
+function renderStateMessage({ tone = 'empty', icon = 'info', title, message = '', actionHref = '', actionLabel = '', actionIcon = 'arrow_forward', retry = false }) {
+  return `
+    <div class="${tone === 'error' ? 'error-state' : 'empty-state'} state-message">
+      <md-icon>${escapeHtml(icon)}</md-icon>
+      <div>
+        <strong>${escapeHtml(title)}</strong>
+        ${message ? `<p>${escapeHtml(message)}</p>` : ''}
+      </div>
+      ${
+        actionHref && actionLabel
+          ? `<a class="text-link state-action" href="${escapeHtml(actionHref)}"><md-icon>${escapeHtml(actionIcon)}</md-icon>${escapeHtml(actionLabel)}</a>`
+          : ''
+      }
+      ${
+        retry
+          ? '<button class="text-link state-action" type="button" data-retry-route><md-icon>refresh</md-icon>Thử lại</button>'
+          : ''
+      }
+    </div>
+  `;
+}
+
+function renderErrorState(error, message = 'Không tải được dữ liệu. Kiểm tra kết nối rồi thử lại.') {
+  return renderStateMessage({
+    tone: 'error',
+    icon: 'error',
+    title: error?.message || 'Có lỗi xảy ra',
+    message,
+    retry: true,
+  });
+}
+
+function wireRouteRetry(root = pageRoot()) {
+  root.querySelectorAll('[data-retry-route]').forEach((button) => {
+    button.addEventListener('click', () => mountCurrentRoute());
+  });
+}
+
 function loadImageFromFile(file) {
   return new Promise((resolve, reject) => {
     const url = URL.createObjectURL(file);
@@ -258,28 +302,32 @@ async function resizeAvatarFile(file) {
 }
 
 function navItems() {
-  const base = [
-    { path: 'learn', icon: 'school', label: 'Học tập' },
-    { path: 'history', icon: 'history', label: 'Lịch sử' },
-    { path: 'grades', icon: 'grade', label: 'Bảng điểm' },
-    { path: 'countdown', icon: 'event', label: 'Đếm ngược' },
-    { path: 'settings', icon: 'settings', label: 'Cài đặt' },
-  ];
-
-  if (!isManager()) return base;
+  if (isManager()) {
+    return [
+      { path: 'learn', icon: 'school', label: 'Học tập' },
+      { path: 'dashboard', icon: 'analytics', label: 'Thống kê' },
+      { path: 'grades', icon: 'grade', label: 'Bảng điểm' },
+      { path: 'manage', icon: 'admin_panel_settings', label: 'Quản trị' },
+      { path: 'settings', icon: 'settings', label: 'Cài đặt' },
+    ];
+  }
 
   return [
-    ...base,
-    { path: 'dashboard', icon: 'analytics', label: 'Thống kê' },
-    { path: 'content', icon: 'view_list', label: 'Nội dung' },
-    { path: 'assignments', icon: 'assignment', label: 'Đề thi' },
-    { path: 'students', icon: 'groups', label: 'Học sinh' },
+    { path: 'learn', icon: 'school', label: 'Học tập' },
+    { path: 'grades', icon: 'grade', label: 'Bảng điểm' },
+    { path: 'countdown', icon: 'event', label: 'Đếm ngược' },
+    { path: 'history', icon: 'history', label: 'Lịch sử' },
+    { path: 'settings', icon: 'settings', label: 'Cài đặt' },
   ];
 }
 
 function renderShell() {
   const current = route().name;
-  const activeNav = ['phase', 'assignment', 'review'].includes(current) ? 'learn' : current;
+  const activeNav = ['phase', 'assignment', 'review', 'solution'].includes(current)
+    ? 'learn'
+    : ['content', 'assignments', 'students', 'manage'].includes(current)
+      ? 'manage'
+      : current;
   const navMarkup = navItems()
     .map(
       (item) => `
@@ -345,6 +393,7 @@ function pageTitle(name) {
       review: 'Xem lại bài',
       solution: 'Lời giải chi tiết',
       dashboard: 'Thống kê',
+      manage: 'Quản trị',
       content: 'Quản lý nội dung',
       assignments: 'Quản lý đề thi',
       students: 'Quản lý học sinh',
@@ -354,30 +403,74 @@ function pageTitle(name) {
 }
 
 function renderAuth() {
+  const isReset = state.authMode === 'reset';
+  const isUpdatePassword = state.authMode === 'updatePassword';
+  const primaryLabel = isUpdatePassword
+    ? 'Cập nhật mật khẩu'
+    : isReset
+      ? 'Gửi link đặt lại'
+      : state.authMode === 'login'
+        ? 'Đăng nhập'
+        : 'Tạo tài khoản học sinh';
+  const primaryIcon = isUpdatePassword ? 'lock_reset' : isReset ? 'mail' : state.authMode === 'login' ? 'login' : 'person_add';
   app.innerHTML = `
     <main class="auth-screen">
       <section class="auth-panel">
         <div class="auth-copy">
+          <span class="auth-eyebrow">Hướng tới kì thi THPTQG 2027</span>
           <h1>Canvas</h1>
           <p>If you can get 1 percent better each day for one year, you’ll end up 37 times better by the time you’re done.</p>
         </div>
         <form id="auth-form" class="auth-form">
-          <div class="segmented">
-            <button type="button" data-mode="login" class="${state.authMode === 'login' ? 'selected' : ''}">Đăng nhập</button>
-            <button type="button" data-mode="register" class="${state.authMode === 'register' ? 'selected' : ''}">Đăng ký</button>
-          </div>
+          ${
+            isUpdatePassword || isReset
+              ? `
+                <div class="auth-form-heading">
+                  <p class="eyebrow">Khôi phục tài khoản</p>
+                  <h2>${isReset ? 'Đặt lại mật khẩu' : 'Tạo mật khẩu mới'}</h2>
+                  <p class="muted">${isReset ? 'Nhập email tài khoản, hệ thống sẽ gửi link đặt lại mật khẩu.' : 'Nhập mật khẩu mới để hoàn tất khôi phục tài khoản.'}</p>
+                </div>
+              `
+              : `
+                <div class="segmented" role="tablist" aria-label="Chọn chế độ đăng nhập">
+                  <button type="button" role="tab" aria-selected="${state.authMode === 'login'}" aria-pressed="${state.authMode === 'login'}" data-mode="login" class="${state.authMode === 'login' ? 'selected' : ''}">Đăng nhập</button>
+                  <button type="button" role="tab" aria-selected="${state.authMode === 'register'}" aria-pressed="${state.authMode === 'register'}" data-mode="register" class="${state.authMode === 'register' ? 'selected' : ''}">Đăng ký</button>
+                </div>
+              `
+          }
           ${!hasSupabaseConfig ? '<div class="notice">Cần cấu hình Supabase trong .env để đăng nhập và lưu dữ liệu.</div>' : ''}
           ${
             state.authMode === 'register'
-              ? '<md-outlined-text-field name="full_name" label="Họ tên" required></md-outlined-text-field>'
+              ? '<md-outlined-text-field name="full_name" label="Họ tên" autocomplete="name" required></md-outlined-text-field>'
               : ''
           }
-          <md-outlined-text-field name="email" label="Email" type="email" required></md-outlined-text-field>
-          <md-outlined-text-field name="password" label="Mật khẩu" type="password" required></md-outlined-text-field>
+          ${
+            isUpdatePassword
+              ? ''
+              : '<md-outlined-text-field name="email" label="Email" type="email" autocomplete="email" required></md-outlined-text-field>'
+          }
+          ${
+            isReset
+              ? ''
+              : `<md-outlined-text-field name="password" label="${isUpdatePassword ? 'Mật khẩu mới' : 'Mật khẩu'}" type="password" autocomplete="${isUpdatePassword || state.authMode === 'register' ? 'new-password' : 'current-password'}" required></md-outlined-text-field>`
+          }
+          ${isUpdatePassword ? '<md-outlined-text-field name="confirm_password" label="Nhập lại mật khẩu mới" type="password" autocomplete="new-password" required></md-outlined-text-field>' : ''}
           <md-filled-button type="submit" ${!hasSupabaseConfig ? 'disabled' : ''}>
-            <md-icon slot="icon">${state.authMode === 'login' ? 'login' : 'person_add'}</md-icon>
-            ${state.authMode === 'login' ? 'Đăng nhập' : 'Tạo tài khoản học sinh'}
+            <md-icon slot="icon">${primaryIcon}</md-icon>
+            ${primaryLabel}
           </md-filled-button>
+          <div class="auth-secondary-actions">
+            ${
+              state.authMode === 'login'
+                ? '<button class="text-link" type="button" data-mode="reset">Quên mật khẩu?</button>'
+                : ''
+            }
+            ${
+              isReset
+                ? '<button class="text-link" type="button" data-mode="login"><md-icon>arrow_back</md-icon>Quay lại đăng nhập</button>'
+                : ''
+            }
+          </div>
         </form>
       </section>
     </main>
@@ -398,8 +491,25 @@ function renderAuth() {
     const restore = setButtonLoading(form.querySelector('md-filled-button'));
 
     try {
-      const email = form.querySelector('[name="email"]').value.trim();
-      const password = form.querySelector('[name="password"]').value;
+      const email = form.querySelector('[name="email"]')?.value.trim() ?? '';
+      const password = form.querySelector('[name="password"]')?.value;
+      if (state.authMode === 'reset') {
+        await requestPasswordReset(email);
+        state.authMode = 'login';
+        toast('Đã gửi email đặt lại mật khẩu. Kiểm tra hộp thư của bạn nhé.', 'success');
+        renderAuth();
+        return;
+      }
+      if (state.authMode === 'updatePassword') {
+        const confirmPassword = form.querySelector('[name="confirm_password"]').value;
+        if (password !== confirmPassword) throw new Error('Hai mật khẩu chưa khớp.');
+        await updateCurrentUserPassword(password);
+        state.passwordRecovery = false;
+        toast('Đã cập nhật mật khẩu. Bạn có thể tiếp tục học.', 'success');
+        state.profile = await getCurrentProfile(state.session?.user);
+        render();
+        return;
+      }
       if (state.authMode === 'login') {
         state.session = await signIn(email, password);
         state.profile = await getCurrentProfile(state.session?.user);
@@ -459,7 +569,17 @@ async function mountLearn() {
     root.innerHTML = `
       <section class="learn-layout">
         <div class="phase-card-grid">
-          ${data.phases.length ? data.phases.map(renderPhaseCard).join('') : '<div class="empty-state">Chưa có lộ trình học.</div>'}
+          ${
+            data.phases.length
+              ? data.phases.map(renderPhaseCard).join('')
+              : renderStateMessage({
+                  title: 'Chưa có lộ trình học',
+                  message: isManager() ? 'Tạo giai đoạn đầu tiên để học sinh nhìn thấy kế hoạch học.' : 'Giáo viên chưa mở nội dung cho lớp này.',
+                  actionHref: isManager() ? '#/content' : '',
+                  actionLabel: isManager() ? 'Tạo lộ trình' : '',
+                  actionIcon: 'add',
+                })
+          }
         </div>
         <div class="path-list">
           ${
@@ -480,7 +600,8 @@ async function mountLearn() {
       </section>
     `;
   } catch (error) {
-    root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
+    root.innerHTML = renderErrorState(error);
+    wireRouteRetry(root);
   }
 }
 
@@ -516,7 +637,8 @@ async function mountPhaseDetail(id) {
     `;
     wireAnimatedDetails(root);
   } catch (error) {
-    root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
+    root.innerHTML = renderErrorState(error);
+    wireRouteRetry(root);
   }
 }
 
@@ -760,7 +882,8 @@ async function mountStudentAssignmentOverview(id) {
       },
     });
   } catch (error) {
-    root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
+    root.innerHTML = renderErrorState(error);
+    wireRouteRetry(root);
   }
 }
 
@@ -840,8 +963,9 @@ async function mountAssignmentExam(id) {
             <div>
               <p class="eyebrow">Phiếu trả lời</p>
               <h2>${questions.length} câu</h2>
+              <p id="autosave-status" class="autosave-status">${draft ? `Đã khôi phục bản nháp lưu lúc ${formatDateTime(draft.savedAt)}` : 'Tự động lưu khi bạn chọn đáp án.'}</p>
             </div>
-            <md-filled-button type="submit">
+            <md-filled-button type="submit" data-submit-assignment>
               <md-icon slot="icon">send</md-icon>
               Nộp bài
             </md-filled-button>
@@ -849,13 +973,21 @@ async function mountAssignmentExam(id) {
           <div class="question-stack">
             ${questions.map((question, index) => renderQuestionInput(question, index, answers[question.id])).join('')}
           </div>
+          <div class="sticky-submit-bar">
+            <span id="sticky-autosave-status">${draft ? 'Bản nháp đã sẵn sàng' : 'Câu trả lời sẽ được lưu tự động'}</span>
+            <md-filled-button type="submit" data-submit-assignment>
+              <md-icon slot="icon">send</md-icon>
+              Nộp bài
+            </md-filled-button>
+          </div>
         </form>
       </section>
     `;
     wireMaterialFormButtons(root);
     wireAnswerAutosave(id);
   } catch (error) {
-    root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
+    root.innerHTML = renderErrorState(error);
+    wireRouteRetry(root);
   }
 }
 
@@ -934,7 +1066,8 @@ async function mountAssignmentManagerView(id) {
     wireSolutionRequestManager();
     wireMaterialFormButtons(root);
   } catch (error) {
-    root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
+    root.innerHTML = renderErrorState(error);
+    wireRouteRetry(root);
   }
 }
 
@@ -1168,31 +1301,60 @@ function renderQuestionInput(question, index, answer) {
 function collectAnswers() {
   const answers = {};
   document.querySelectorAll('.question-card').forEach((card) => {
-    const id = card.dataset.questionId;
-    const type = card.dataset.type;
-    if (type === 'mcq') {
-      answers[id] = card.querySelector(`input[name="q-${id}"]:checked`)?.value ?? '';
-    } else if (type === 'tf4') {
-      answers[id] = Array.from({ length: 4 }, (_, index) => {
-        const value = card.querySelector(`input[name="q-${id}-${index}"]:checked`)?.value;
-        if (value === undefined) return null;
-        return value === 'true';
-      });
-    } else {
-      answers[id] = card.querySelector(`input[name="q-${id}"]`)?.value ?? '';
-    }
+    answers[card.dataset.questionId] = collectAnswerFromCard(card);
   });
   return answers;
 }
 
+function collectAnswerFromCard(card) {
+  const id = card.dataset.questionId;
+  const type = card.dataset.type;
+  if (type === 'mcq') {
+    return card.querySelector(`input[name="q-${id}"]:checked`)?.value ?? '';
+  }
+  if (type === 'tf4') {
+    return Array.from({ length: 4 }, (_, index) => {
+      const value = card.querySelector(`input[name="q-${id}-${index}"]:checked`)?.value;
+      if (value === undefined) return null;
+      return value === 'true';
+    });
+  }
+  return card.querySelector(`input[name="q-${id}"]`)?.value ?? '';
+}
+
 function wireAnswerAutosave(assignmentId) {
   const form = document.querySelector('#answer-form');
-  const persist = () => saveDraft(localStorage, state.profile.id, assignmentId, collectAnswers());
+  const autosaveStatus = document.querySelector('#autosave-status');
+  const stickyAutosaveStatus = document.querySelector('#sticky-autosave-status');
+  let autosaveTimer;
+  let draftAnswers = collectAnswers();
+  const setAutosaveStatus = (message) => {
+    if (autosaveStatus) autosaveStatus.textContent = message;
+    if (stickyAutosaveStatus) stickyAutosaveStatus.textContent = message;
+  };
+  const persist = (event) => {
+    const card = event.target?.closest?.('.question-card');
+    if (card?.dataset.questionId) {
+      draftAnswers[card.dataset.questionId] = collectAnswerFromCard(card);
+    } else {
+      draftAnswers = collectAnswers();
+    }
+    setAutosaveStatus('Đang lưu bản nháp...');
+    window.clearTimeout(autosaveTimer);
+    autosaveTimer = window.setTimeout(() => {
+      saveDraft(localStorage, state.profile.id, assignmentId, draftAnswers);
+      setAutosaveStatus(`Đã lưu bản nháp lúc ${new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}`);
+    }, 250);
+  };
   form.addEventListener('input', persist);
   form.addEventListener('change', persist);
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    const button = form.querySelector('md-filled-button');
+    const buttons = Array.from(form.querySelectorAll('[data-submit-assignment]'));
+    const button = buttons[0];
+    buttons.forEach((item) => {
+      item.disabled = true;
+    });
     const restore = setButtonLoading(button, 'Đang nộp...');
     try {
       const submitted = await submitAssignmentAttempt({
@@ -1206,6 +1368,9 @@ function wireAnswerAutosave(assignmentId) {
       toast(error.message, 'error');
     } finally {
       restore();
+      buttons.forEach((item) => {
+        item.disabled = false;
+      });
     }
   });
 }
@@ -1224,7 +1389,8 @@ async function mountHistory() {
       </section>
     `;
   } catch (error) {
-    root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
+    root.innerHTML = renderErrorState(error);
+    wireRouteRetry(root);
   }
 }
 
@@ -1332,7 +1498,8 @@ async function mountReview(id) {
       }
     });
   } catch (error) {
-    root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
+    root.innerHTML = renderErrorState(error);
+    wireRouteRetry(root);
   }
 }
 
@@ -1386,7 +1553,8 @@ async function mountSolution(id) {
       else window.history.back();
     });
   } catch (error) {
-    root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
+    root.innerHTML = renderErrorState(error);
+    wireRouteRetry(root);
   }
 }
 
@@ -1511,8 +1679,37 @@ async function mountDashboard() {
       </section>
     `;
   } catch (error) {
-    root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
+    root.innerHTML = renderErrorState(error);
+    wireRouteRetry(root);
   }
+}
+
+function mountManageHub() {
+  const root = pageRoot();
+  const items = [
+    { href: '#/content', icon: 'view_list', title: 'Nội dung', description: 'Tạo giai đoạn, chuyên đề, nhóm bài giảng và link bài giảng.' },
+    { href: '#/assignments', icon: 'assignment', title: 'Đề thi / BTVN', description: 'Tạo đề, phiếu trả lời, đáp án và chấm lại bài đã nộp.' },
+    { href: '#/students', icon: 'groups', title: 'Học sinh', description: 'Tạo tài khoản, đổi vai trò, đặt lại mật khẩu tạm.' },
+    { href: '#/dashboard', icon: 'analytics', title: 'Thống kê lớp', description: 'Xem tổng học sinh, số đề, lượt nộp và điểm trung bình.' },
+  ];
+  root.innerHTML = `
+    <section class="manage-hub">
+      ${items
+        .map(
+          (item) => `
+            <a class="phase-card manage-hub-card" href="${item.href}">
+              <div>
+                <p class="eyebrow">Quản trị</p>
+                <h2><md-icon>${item.icon}</md-icon>${escapeHtml(item.title)}</h2>
+                <p class="muted">${escapeHtml(item.description)}</p>
+              </div>
+              <span class="phase-card-action">Mở<md-icon>arrow_forward</md-icon></span>
+            </a>
+          `,
+        )
+        .join('')}
+    </section>
+  `;
 }
 
 function mountCountdown() {
@@ -1582,7 +1779,8 @@ async function mountContentManager() {
     wireContentForms(data);
     wireMaterialFormButtons(root);
   } catch (error) {
-    root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
+    root.innerHTML = renderErrorState(error);
+    wireRouteRetry(root);
   }
 }
 
@@ -1846,22 +2044,6 @@ function nextContentSortOrder(kind, values, pathData) {
   return maxSortOrder + 10;
 }
 
-function contentPayloadForSave(kind, payload) {
-  const base = {
-    id: payload.id,
-    owner_id: payload.owner_id ?? state.profile.id,
-    title: payload.title,
-    description: payload.description ?? '',
-    sort_order: Number(payload.sort_order ?? 0),
-    published: payload.published ?? true,
-  };
-
-  if (kind === 'module') return { ...base, phase_id: payload.phase_id };
-  if (kind === 'lectureGroup') return { ...base, module_id: payload.module_id };
-  if (kind === 'lecture') return { ...base, module_id: payload.module_id, group_id: payload.group_id || null, slide_url: payload.slide_url ?? '' };
-  return base;
-}
-
 function wireContentDragSort() {
   let dragged = null;
 
@@ -1919,22 +2101,10 @@ async function reorderContentNodes(sourceNode, targetNode) {
   const to = nodes.indexOf(targetNode);
   if (from < 0 || to < 0 || from === to) return;
 
-  const ordered = nodes.map((node) => JSON.parse(node.dataset.payload));
+  const ordered = nodes.map((node) => node.dataset.id);
   const [moved] = ordered.splice(from, 1);
   ordered.splice(to, 0, moved);
-
-  await Promise.all(
-    ordered.map((payload, index) => {
-      const next = contentPayloadForSave(kind, {
-        ...payload,
-        sort_order: (index + 1) * 10,
-      });
-      if (kind === 'phase') return upsertPhase(next);
-      if (kind === 'module') return upsertModule(next);
-      if (kind === 'lectureGroup') return upsertLectureGroup(next);
-      return upsertLecture(next);
-    }),
-  );
+  await reorderContentNodesApi(kind, ordered);
 }
 
 function emptyEditor() {
@@ -1988,7 +2158,8 @@ async function mountAssignmentManager() {
     wireAssignmentEditor(path.lectures);
     wireMaterialFormButtons(root);
   } catch (error) {
-    root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
+    root.innerHTML = renderErrorState(error);
+    wireRouteRetry(root);
   }
 }
 
@@ -2123,6 +2294,31 @@ function renderQuestionKeyEditor(question, index) {
   `;
 }
 
+function refreshQuestionBuilder(lectures) {
+  const questions = state.assignmentEditor.questions;
+  const heading = document.querySelector('.question-builder-header h3');
+  const builder = document.querySelector('.question-builder');
+  if (heading) heading.textContent = `${questions.length} câu`;
+  if (builder) {
+    builder.innerHTML = questions.length
+      ? questions.map((question, index) => renderQuestionEditor(question, index)).join('')
+      : '<div class="empty-state compact">Chưa có câu nào trong phiếu trả lời.</div>';
+  }
+  wireQuestionEditorControls(lectures);
+}
+
+function wireQuestionEditorControls(lectures) {
+  document.querySelectorAll('[data-remove-question]').forEach((button) => {
+    if (button.dataset.questionBridge === 'true') return;
+    button.dataset.questionBridge = 'true';
+    button.addEventListener('click', () => {
+      state.assignmentEditor = collectEditor(lectures);
+      state.assignmentEditor.questions.splice(Number(button.dataset.removeQuestion), 1);
+      refreshQuestionBuilder(lectures);
+    });
+  });
+}
+
 function wireAssignmentEditor(lectures) {
   document.querySelector('#new-assignment')?.addEventListener('click', () => {
     state.assignmentEditor = emptyEditor();
@@ -2145,7 +2341,7 @@ function wireAssignmentEditor(lectures) {
     button.addEventListener('click', () => {
       state.assignmentEditor = collectEditor(lectures);
       state.assignmentEditor.questions.push(defaultQuestion(button.dataset.addQuestion));
-      mountAssignmentManager();
+      refreshQuestionBuilder(lectures);
     });
   });
 
@@ -2156,17 +2352,11 @@ function wireAssignmentEditor(lectures) {
       const count = Math.min(100, Math.max(1, Number(countInput?.value || 20)));
       const questions = Array.from({ length: count }, () => defaultQuestion(button.dataset.addManyQuestions));
       state.assignmentEditor.questions.push(...questions);
-      mountAssignmentManager();
+      refreshQuestionBuilder(lectures);
     });
   });
 
-  document.querySelectorAll('[data-remove-question]').forEach((button) => {
-    button.addEventListener('click', () => {
-      state.assignmentEditor = collectEditor(lectures);
-      state.assignmentEditor.questions.splice(Number(button.dataset.removeQuestion), 1);
-      mountAssignmentManager();
-    });
-  });
+  wireQuestionEditorControls(lectures);
 
   document.querySelector('#delete-assignment')?.addEventListener('click', async () => {
     if (!window.confirm('Xóa đề này?')) return;
@@ -2213,7 +2403,7 @@ function wireAssignmentEditor(lectures) {
   editorForm?.addEventListener('change', async (event) => {
     state.assignmentEditor = collectEditor(lectures);
     if (event.target?.matches('select[name^="question-type-"]')) {
-      await mountAssignmentManager();
+      refreshQuestionBuilder(lectures);
     }
   });
 }
@@ -2332,7 +2522,8 @@ async function mountStudents() {
     wireTableSearch('#student-search', '[data-student-id]');
     wireMaterialFormButtons(root);
   } catch (error) {
-    root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
+    root.innerHTML = renderErrorState(error);
+    wireRouteRetry(root);
   }
 }
 
@@ -2461,7 +2652,8 @@ async function mountGrades() {
     `;
     wireTableSearch('#grade-search', 'tbody tr[data-search]');
   } catch (error) {
-    root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
+    root.innerHTML = renderErrorState(error);
+    wireRouteRetry(root);
   }
 }
 
@@ -2483,7 +2675,8 @@ async function mountStudentGrades() {
       </section>
     `;
   } catch (error) {
-    root.innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
+    root.innerHTML = renderErrorState(error);
+    wireRouteRetry(root);
   }
 }
 
@@ -2752,7 +2945,7 @@ function wireTableSearch(inputSelector, rowSelector) {
 
 async function mountCurrentRoute() {
   const current = route();
-  if (!isManager() && ['dashboard', 'content', 'assignments', 'students'].includes(current.name)) {
+  if (!isManager() && ['dashboard', 'content', 'assignments', 'students', 'manage'].includes(current.name)) {
     go('learn');
     return;
   }
@@ -2765,6 +2958,7 @@ async function mountCurrentRoute() {
   if (current.name === 'review') return mountReview(current.id);
   if (current.name === 'solution') return mountSolution(current.id);
   if (current.name === 'dashboard') return mountDashboard();
+  if (current.name === 'manage') return mountManageHub();
   if (current.name === 'content') return mountContentManager();
   if (current.name === 'assignments') return mountAssignmentManager();
   if (current.name === 'students') return mountStudents();
@@ -2774,10 +2968,11 @@ async function mountCurrentRoute() {
 
 async function render() {
   const generation = ++renderGeneration;
-  if (!hasSupabaseConfig || !state.session || !state.profile) {
+  if (!hasSupabaseConfig || state.passwordRecovery || !state.session || !state.profile) {
     renderAuth();
     return;
   }
+  await ensureAppElements();
   renderShell();
   if (generation !== renderGeneration || !state.session || !state.profile) return;
   await mountCurrentRoute();
@@ -2805,9 +3000,16 @@ async function bootstrap() {
     toast(error.message, 'error');
   }
 
-  supabase.auth.onAuthStateChange(async (_event, session) => {
+  supabase.auth.onAuthStateChange(async (event, session) => {
     try {
       state.session = session;
+      if (event === 'PASSWORD_RECOVERY') {
+        state.passwordRecovery = true;
+        state.authMode = 'updatePassword';
+        state.profile = null;
+        renderAuth();
+        return;
+      }
       state.profile = session ? await getCurrentProfile(session.user) : null;
     } catch (error) {
       toast(error.message, 'error');
