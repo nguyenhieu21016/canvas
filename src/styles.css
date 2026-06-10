@@ -1924,6 +1924,18 @@ td small {
   gap: 14px;
 }
 
+.solution-requests-page {
+  display: grid;
+  gap: 18px;
+}
+
+.solution-requests-board {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
 .solution-request-list,
 .solution-request-history,
 .solution-request-form {
@@ -2895,6 +2907,7 @@ tbody tr:hover {
   .solution-link-form,
   .solution-request-details,
   .solution-request-main,
+  .solution-requests-board,
   .solution-history-row,
   .solution-info-list,
   .dialog-heading,

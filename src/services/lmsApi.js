@@ -736,6 +736,16 @@ export async function fetchAssignmentSolutionRequests(assignmentId) {
   return data ?? [];
 }
 
+export async function fetchSolutionRequestsForManager() {
+  const client = requireSupabase();
+  const { data, error } = await withTimeout(client
+    .from('solution_requests')
+    .select('*, assignments(title), profiles(full_name, email), attempts(score_10, submitted_at)')
+    .order('created_at', { ascending: false }), 'Tải quản lý yêu cầu lời giải');
+  assertOk({ error });
+  return data ?? [];
+}
+
 export async function updateSolutionRequest(requestId, { solutionPdfUrl }) {
   const client = requireSupabase();
   const url = String(solutionPdfUrl ?? '').trim();

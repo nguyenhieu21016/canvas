@@ -23,6 +23,7 @@ import {
   fetchLearningPath,
   fetchMyHistory,
   fetchSolutionRequest,
+  fetchSolutionRequestsForManager,
   fetchSolutionRequestsForAttempt,
   fetchStudentAssignmentOverview,
   fetchStudents,
@@ -57,8 +58,8 @@ const toastEl = document.querySelector('#toast');
 const MAX_AVATAR_SOURCE_BYTES = 5 * 1024 * 1024;
 const MAX_AVATAR_UPLOAD_BYTES = 250 * 1024;
 const AVATAR_SIZE = 320;
-const APP_VERSION = '1.1.7';
-const APP_LAST_UPDATE = 'Tối ưu hiệu năng: gộp tải lộ trình, phân trang dữ liệu lớn, lưu nháp nhẹ hơn và tự mở PDF/Drive.';
+const APP_VERSION = '1.1.8';
+const APP_LAST_UPDATE = 'Thêm quản lý yêu cầu lời giải cho giáo viên: tách yêu cầu chưa xử lí, đã xử lí và lưu link PDF phản hồi.';
 let renderGeneration = 0;
 let appElementsPromise = null;
 const detachedPageRoot = {
@@ -325,7 +326,7 @@ function renderShell() {
   const current = route().name;
   const activeNav = ['phase', 'assignment', 'review', 'solution'].includes(current)
     ? 'learn'
-    : ['content', 'assignments', 'students', 'manage'].includes(current)
+    : ['content', 'assignments', 'students', 'solution-requests', 'manage'].includes(current)
       ? 'manage'
       : current;
   const navMarkup = navItems()
@@ -397,6 +398,7 @@ function pageTitle(name) {
       content: 'Quản lý nội dung',
       assignments: 'Quản lý đề thi',
       students: 'Quản lý học sinh',
+      'solution-requests': 'Quản lý yêu cầu',
       grades: 'Bảng điểm',
     }[name] ?? 'Lộ trình ôn thi 2027'
   );
@@ -1175,13 +1177,16 @@ function renderAssignmentSolutionRequests(requests) {
 function renderManagerSolutionRequest(request) {
   const student = relationOne(request.profiles) ?? {};
   const attempt = relationOne(request.attempts) ?? {};
+  const assignment = relationOne(request.assignments) ?? {};
   return `
-    <article class="solution-request-card">
+    <article class="solution-request-card" data-solution-request-status="${escapeHtml(request.status)}">
       <div class="solution-request-main">
         <div>
           <p class="eyebrow">${escapeHtml(solutionStatusText(request))}</p>
           <h3>${escapeHtml(student.full_name || student.email || 'Học sinh')}</h3>
-          <p class="muted">Gửi ${formatDateTime(request.created_at)}${attempt.submitted_at ? ` · Nộp bài ${formatDateTime(attempt.submitted_at)}` : ''}${attempt.score_10 != null ? ` · ${formatScore(attempt.score_10)}/10` : ''}</p>
+          <p class="muted">
+            ${assignment.title ? `${escapeHtml(assignment.title)} · ` : ''}Gửi ${formatDateTime(request.created_at)}${attempt.submitted_at ? ` · Nộp bài ${formatDateTime(attempt.submitted_at)}` : ''}${attempt.score_10 != null ? ` · ${formatScore(attempt.score_10)}/10` : ''}
+          </p>
         </div>
         <span class="status">${escapeHtml(request.status === 'fulfilled' ? 'Đã gửi' : 'Đang chờ')}</span>
       </div>
@@ -1201,7 +1206,7 @@ function renderManagerSolutionRequest(request) {
   `;
 }
 
-function wireSolutionRequestManager() {
+function wireSolutionRequestManager({ onSaved } = {}) {
   document.querySelectorAll('.solution-link-form').forEach((form) => {
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -1212,6 +1217,7 @@ function wireSolutionRequestManager() {
           solutionPdfUrl: values.solution_pdf_url,
         });
         updateSolutionRequestCardState(form, updated);
+        await onSaved?.(updated);
         toast('Đã lưu lời giải.', 'success');
       } catch (error) {
         toast(error.message, 'error');
@@ -1231,6 +1237,7 @@ function updateSolutionRequestCardState(form, request) {
   const status = card.querySelector('.solution-request-main .status');
   if (eyebrow) eyebrow.textContent = statusText;
   if (status) status.textContent = statusLabel;
+  card.dataset.solutionRequestStatus = request.status;
 }
 
 function renderQuestionInput(question, index, answer) {
@@ -1689,6 +1696,7 @@ function mountManageHub() {
   const items = [
     { href: '#/content', icon: 'view_list', title: 'Nội dung', description: 'Tạo giai đoạn, chuyên đề, nhóm bài giảng và link bài giảng.' },
     { href: '#/assignments', icon: 'assignment', title: 'Đề thi / BTVN', description: 'Tạo đề, phiếu trả lời, đáp án và chấm lại bài đã nộp.' },
+    { href: '#/solution-requests', icon: 'rate_review', title: 'Yêu cầu lời giải', description: 'Xem yêu cầu chưa xử lí và các yêu cầu đã gửi lời giải.' },
     { href: '#/students', icon: 'groups', title: 'Học sinh', description: 'Tạo tài khoản, đổi vai trò, đặt lại mật khẩu tạm.' },
     { href: '#/dashboard', icon: 'analytics', title: 'Thống kê lớp', description: 'Xem tổng học sinh, số đề, lượt nộp và điểm trung bình.' },
   ];
@@ -1710,6 +1718,60 @@ function mountManageHub() {
         .join('')}
     </section>
   `;
+}
+
+async function mountSolutionRequestsManager() {
+  const root = pageRoot();
+  root.innerHTML = renderLoading('Đang tải yêu cầu lời giải');
+  try {
+    const requests = await fetchSolutionRequestsForManager();
+    const pendingRequests = requests.filter((request) => request.status !== 'fulfilled' || !request.solution_pdf_url);
+    const fulfilledRequests = requests.filter((request) => request.status === 'fulfilled' && request.solution_pdf_url);
+    root.innerHTML = `
+      <section class="solution-requests-page">
+        <section class="metric-grid">
+          ${renderMetric('Chưa xử lí', pendingRequests.length, 'pending_actions')}
+          ${renderMetric('Đã xử lí', fulfilledRequests.length, 'task_alt')}
+          ${renderMetric('Tổng yêu cầu', requests.length, 'rate_review')}
+        </section>
+        <section class="solution-requests-board">
+          <div class="panel solution-requests-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Cần phản hồi</p>
+                <h2>${pendingRequests.length} yêu cầu chưa xử lí</h2>
+              </div>
+            </div>
+            ${
+              pendingRequests.length
+                ? `<div class="solution-request-list">${pendingRequests.map(renderManagerSolutionRequest).join('')}</div>`
+                : '<div class="empty-state compact">Không còn yêu cầu nào đang chờ.</div>'
+            }
+          </div>
+          <div class="panel solution-requests-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Đã phản hồi</p>
+                <h2>${fulfilledRequests.length} yêu cầu đã xử lí</h2>
+              </div>
+            </div>
+            ${
+              fulfilledRequests.length
+                ? `<div class="solution-request-list">${fulfilledRequests.map(renderManagerSolutionRequest).join('')}</div>`
+                : '<div class="empty-state compact">Chưa có yêu cầu nào được xử lí.</div>'
+            }
+          </div>
+        </section>
+      </section>
+    `;
+    wireSolutionRequestManager({
+      onSaved: () => mountSolutionRequestsManager(),
+    });
+    wireMaterialFormButtons(root);
+  } catch (error) {
+    root.innerHTML = renderErrorState(error);
+    wireRouteRetry(root);
+  }
 }
 
 function mountCountdown() {
@@ -2945,7 +3007,7 @@ function wireTableSearch(inputSelector, rowSelector) {
 
 async function mountCurrentRoute() {
   const current = route();
-  if (!isManager() && ['dashboard', 'content', 'assignments', 'students', 'manage'].includes(current.name)) {
+  if (!isManager() && ['dashboard', 'content', 'assignments', 'students', 'solution-requests', 'manage'].includes(current.name)) {
     go('learn');
     return;
   }
@@ -2961,6 +3023,7 @@ async function mountCurrentRoute() {
   if (current.name === 'manage') return mountManageHub();
   if (current.name === 'content') return mountContentManager();
   if (current.name === 'assignments') return mountAssignmentManager();
+  if (current.name === 'solution-requests') return mountSolutionRequestsManager();
   if (current.name === 'students') return mountStudents();
   if (current.name === 'grades') return mountGrades();
   return mountLearn();
