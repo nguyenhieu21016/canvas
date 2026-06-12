@@ -1667,7 +1667,11 @@ function prependStudentSolutionHistory(request) {
 }
 
 function formatAnswer(answer) {
-  if (Array.isArray(answer)) return answer.map((item) => (item === true ? 'Đúng' : item === false ? 'Sai' : '-')).join(', ');
+  if (Array.isArray(answer)) {
+    const isTrueFalseSet = answer.every((item) => item === true || item === false || item == null);
+    if (isTrueFalseSet) return answer.map((item) => (item === true ? 'Đúng' : item === false ? 'Sai' : '-')).join(', ');
+    return answer.map((item) => String(item ?? '-')).join(', ');
+  }
   if (answer && typeof answer === 'object') return JSON.stringify(answer);
   return answer ?? '-';
 }
