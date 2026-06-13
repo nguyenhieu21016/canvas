@@ -306,8 +306,7 @@ function navItems() {
   if (isManager()) {
     return [
       { path: 'learn', icon: 'school', label: 'Học tập' },
-      { path: 'dashboard', icon: 'analytics', label: 'Thống kê' },
-      { path: 'grades', icon: 'grade', label: 'Bảng điểm' },
+      { path: 'dashboard', icon: 'groups', label: 'Theo dõi' },
       { path: 'manage', icon: 'admin_panel_settings', label: 'Quản trị' },
       { path: 'settings', icon: 'settings', label: 'Cài đặt' },
     ];
@@ -393,7 +392,7 @@ function pageTitle(name) {
       assignment: 'Làm bài',
       review: 'Xem lại bài',
       solution: 'Lời giải chi tiết',
-      dashboard: 'Thống kê',
+      dashboard: 'Theo dõi học sinh',
       manage: 'Quản trị',
       content: 'Quản lý nội dung',
       assignments: 'Quản lý đề thi',
@@ -1678,21 +1677,203 @@ function formatAnswer(answer) {
 
 async function mountDashboard() {
   const root = pageRoot();
-  root.innerHTML = renderLoading();
+  root.innerHTML = renderLoading('Đang tải dữ liệu theo dõi học sinh');
   try {
-    const stats = await fetchDashboardStats();
+    const [students, allAttempts] = await Promise.all([
+      fetchStudents(),
+      fetchGradebook(),
+    ]);
+
+    const studentsMarkup = students.map((student) => {
+      const studentAttempts = allAttempts.filter((a) => a.student_id === student.id);
+      const totalSubmissions = studentAttempts.length;
+      const scores = studentAttempts.map((a) => Number(a.score_10 ?? 0));
+      const averageScore = totalSubmissions ? (scores.reduce((sum, score) => sum + score, 0) / totalSubmissions) : 0;
+      const bestScore = totalSubmissions ? Math.max(...scores) : 0;
+
+      const attemptsListMarkup = studentAttempts.slice(0, 5).map((a) => `
+        <div class="attempt-item-row" style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--md-sys-color-outline-variant); font-size: 0.9rem;">
+          <span style="font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60%;">${escapeHtml(a.assignments?.title ?? '-')}</span>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <strong style="color: var(--md-sys-color-primary);">${formatScore(a.score_10)}/10</strong>
+            <a class="text-link" href="#/review/${a.id}" style="font-size: 0.85rem;">Chi tiết</a>
+          </div>
+        </div>
+      `).join('');
+
+      return `
+        <article class="student-detail-card panel" data-student-id="${student.id}" style="display: flex; flex-direction: column; gap: 16px; padding: 20px; border-radius: 12px; background: var(--md-sys-color-surface-container-low);">
+          <div style="display: flex; align-items: center; gap: 16px;">
+            ${renderAccountAvatar(student, 'account-avatar large')}
+            <div style="flex: 1;">
+              <h3 style="margin: 0; font-size: 1.25rem;">${escapeHtml(student.full_name ?? '')}</h3>
+              <p style="margin: 2px 0 0 0; font-size: 0.9rem; color: var(--md-sys-color-on-surface-variant);">${escapeHtml(student.email ?? '')}</p>
+            </div>
+            <select class="field compact" name="status" style="width: auto; padding: 4px 8px; font-size: 0.85rem;" data-status-student="${student.id}">
+              ${option('active', 'Đang học', student.status)}
+              ${option('disabled', 'Tạm khóa', student.status)}
+            </select>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; background: var(--md-sys-color-surface-container-high); padding: 12px; border-radius: 8px; text-align: center;">
+            <div>
+              <span style="font-size: 0.8rem; color: var(--md-sys-color-on-surface-variant);">Đã nộp</span>
+              <div style="font-size: 1.2rem; font-weight: bold; margin-top: 4px;">${totalSubmissions} bài</div>
+            </div>
+            <div>
+              <span style="font-size: 0.8rem; color: var(--md-sys-color-on-surface-variant);">Điểm TB</span>
+              <div style="font-size: 1.2rem; font-weight: bold; margin-top: 4px; color: var(--md-sys-color-primary);">${formatScore(averageScore)}</div>
+            </div>
+            <div>
+              <span style="font-size: 0.8rem; color: var(--md-sys-color-on-surface-variant);">Cao nhất</span>
+              <div style="font-size: 1.2rem; font-weight: bold; margin-top: 4px; color: var(--md-sys-color-tertiary);">${formatScore(bestScore)}</div>
+            </div>
+          </div>
+
+          <div>
+            <h4 style="margin: 0 0 8px 0; font-size: 0.95rem; display: flex; justify-content: space-between; align-items: center;">
+              <span>Bài làm gần đây</span>
+              ${totalSubmissions > 5 ? `<span style="font-size: 0.8rem; font-weight: normal; color: var(--md-sys-color-outline);">Hiện 5/${totalSubmissions}</span>` : ''}
+            </h4>
+            <div class="attempts-list-container" style="min-height: 80px;">
+              ${attemptsListMarkup || '<div class="empty-state compact" style="padding: 16px 0;">Chưa nộp bài nào.</div>'}
+            </div>
+          </div>
+
+          <div style="border-top: 1px dashed var(--md-sys-color-outline-variant); padding-top: 16px; margin-top: auto; display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; gap: 8px;">
+              <input class="field compact" name="full_name" value="${escapeHtml(student.full_name ?? '')}" placeholder="Họ tên mới" style="flex: 1; font-size: 0.9rem; padding: 6px 12px;" data-name-input="${student.id}">
+              <md-filled-tonal-button style="--md-filled-tonal-button-container-shape: 8px; font-size: 0.85rem;" data-save-btn="${student.id}">
+                Lưu tên
+              </md-filled-tonal-button>
+            </div>
+            <div style="display: flex; justify-content: space-between; gap: 8px;">
+              <md-outlined-button style="flex: 1; --md-outlined-button-container-shape: 8px; font-size: 0.85rem;" data-reset-btn="${student.id}">
+                <md-icon slot="icon">key</md-icon> Reset mật khẩu
+              </md-outlined-button>
+              <md-outlined-button style="--md-outlined-button-container-shape: 8px; font-size: 0.85rem; --md-outlined-button-outline-color: var(--md-sys-color-error); --md-outlined-button-label-text-color: var(--md-sys-color-error);" data-delete-btn="${student.id}">
+                <md-icon slot="icon">delete</md-icon> Xóa
+              </md-outlined-button>
+            </div>
+          </div>
+        </article>
+      `;
+    }).join('');
+
     root.innerHTML = `
-      <section class="metric-grid">
-        ${renderMetric('Tổng học sinh', stats.totalStudents, 'groups')}
-        ${renderMetric('Tổng đề thi', stats.totalAssignments, 'assignment')}
-        ${renderMetric('Lượt nộp', stats.totalSubmissions, 'send')}
-        ${renderMetric('Điểm TB lớp', formatScore(stats.averageScore), 'monitoring')}
+      <section class="student-tracker-layout" style="display: flex; flex-direction: column; gap: 24px;">
+        <section class="panel" style="padding: 20px;">
+          <div class="panel-heading" style="margin-bottom: 12px;">
+            <h2 style="margin: 0; font-size: 1.25rem; display: flex; align-items: center; gap: 8px;"><md-icon>person_add</md-icon>Thêm học sinh mới</h2>
+          </div>
+          <form id="create-user-form" class="form-grid four" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) auto; gap: 12px; align-items: center;">
+            <input class="field" name="full_name" placeholder="Họ tên học sinh" required style="padding: 8px 12px;">
+            <input class="field" name="email" type="email" placeholder="Email đăng nhập" required style="padding: 8px 12px;">
+            <input class="field" name="password" type="text" placeholder="Mật khẩu tạm" required style="padding: 8px 12px;">
+            <md-filled-button type="submit" style="height: 40px;"><md-icon slot="icon">person_add</md-icon>Tạo tài khoản</md-filled-button>
+          </form>
+        </section>
+
+        <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px;">
+          ${studentsMarkup || '<div class="panel" style="grid-column: 1/-1; padding: 40px; text-align: center;"><div class="empty-state">Chưa có học sinh nào. Thêm học sinh phía trên để bắt đầu theo dõi.</div></div>'}
+        </section>
       </section>
     `;
+
+    wireDashboardManager(students);
+    wireMaterialFormButtons(root);
   } catch (error) {
     root.innerHTML = renderErrorState(error);
     wireRouteRetry(root);
   }
+}
+
+function wireDashboardManager(students) {
+  // Add new student
+  document.querySelector('#create-user-form')?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const restore = setButtonLoading(form.querySelector('md-filled-button'));
+    const values = Object.fromEntries(new FormData(form).entries());
+    try {
+      await createManagedUser({
+        ...values,
+        role: 'student',
+      });
+      toast('Đã tạo tài khoản học sinh.', 'success');
+      await mountDashboard();
+    } catch (error) {
+      toast(error.message, 'error');
+    } finally {
+      restore();
+    }
+  });
+
+  // Action listeners for each student
+  students.forEach((student) => {
+    const card = document.querySelector(`.student-detail-card[data-student-id="${student.id}"]`);
+    if (!card) return;
+
+    // Save Name
+    card.querySelector('[data-save-btn]')?.addEventListener('click', async () => {
+      const nameInput = card.querySelector('[data-name-input]');
+      const statusSelect = card.querySelector('[data-status-student]');
+      try {
+        await invokeAdminFunction('admin-update-user', {
+          id: student.id,
+          full_name: nameInput.value,
+          status: statusSelect.value,
+          role: 'student',
+        });
+        toast('Đã cập nhật thông tin học sinh.', 'success');
+        await mountDashboard();
+      } catch (error) {
+        toast(error.message, 'error');
+      }
+    });
+
+    // Auto-update on status change
+    card.querySelector('[data-status-student]')?.addEventListener('change', async (event) => {
+      const nameInput = card.querySelector('[data-name-input]');
+      try {
+        await invokeAdminFunction('admin-update-user', {
+          id: student.id,
+          full_name: nameInput.value,
+          status: event.target.value,
+          role: 'student',
+        });
+        toast('Đã cập nhật trạng thái học sinh.', 'success');
+      } catch (error) {
+        toast(error.message, 'error');
+      }
+    });
+
+    // Reset Password
+    card.querySelector('[data-reset-btn]')?.addEventListener('click', async () => {
+      const password = window.prompt('Mật khẩu tạm mới, bỏ trống để hệ thống tự tạo:') || undefined;
+      try {
+        const result = await invokeAdminFunction('admin-reset-password', {
+          id: student.id,
+          password,
+        });
+        toast(`Mật khẩu tạm mới: ${result.temporaryPassword}`, 'success');
+      } catch (error) {
+        toast(error.message, 'error');
+      }
+    });
+
+    // Delete student
+    card.querySelector('[data-delete-btn]')?.addEventListener('click', async () => {
+      if (!window.confirm(`Xóa tài khoản học sinh "${student.full_name || student.email}"? Hành động này không thể hoàn tác.`)) return;
+      try {
+        await deleteManagedUser(student.id);
+        toast('Đã xóa học sinh.', 'success');
+        await mountDashboard();
+      } catch (error) {
+        toast(error.message, 'error');
+      }
+    });
+  });
 }
 
 function mountManageHub() {
@@ -1701,8 +1882,6 @@ function mountManageHub() {
     { href: '#/content', icon: 'view_list', title: 'Nội dung', description: 'Tạo giai đoạn, chuyên đề, nhóm bài giảng và link bài giảng.' },
     { href: '#/assignments', icon: 'assignment', title: 'Đề thi / BTVN', description: 'Tạo đề, phiếu trả lời, đáp án và chấm lại bài đã nộp.' },
     { href: '#/solution-requests', icon: 'rate_review', title: 'Yêu cầu lời giải', description: 'Xem yêu cầu chưa xử lí và các yêu cầu đã gửi lời giải.' },
-    { href: '#/students', icon: 'groups', title: 'Học sinh', description: 'Tạo tài khoản, đổi vai trò, đặt lại mật khẩu tạm.' },
-    { href: '#/dashboard', icon: 'analytics', title: 'Thống kê lớp', description: 'Xem tổng học sinh, số đề, lượt nộp và điểm trung bình.' },
   ];
   root.innerHTML = `
     <section class="manage-hub">
