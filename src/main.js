@@ -2471,17 +2471,22 @@ function renderAssignmentEditor(lectures) {
         <div class="qb-toolbar">
           <div class="qb-single-add">
             <span class="qb-toolbar-label">Thêm 1 câu</span>
-            <div class="qb-chips">
-              <md-filter-chip id="add-mcq" label="Trắc nghiệm" type="button" data-add-question="mcq"><md-icon slot="icon">radio_button_checked</md-icon></md-filter-chip>
-              <md-filter-chip id="add-tf4" label="Đúng/Sai" type="button" data-add-question="tf4"><md-icon slot="icon">fact_check</md-icon></md-filter-chip>
-              <md-filter-chip id="add-short" label="Điền ngắn" type="button" data-add-question="short"><md-icon slot="icon">short_text</md-icon></md-filter-chip>
+            <div class="button-row">
+              <md-outlined-button type="button" data-add-question="mcq"><md-icon slot="icon">radio_button_checked</md-icon>Trắc nghiệm</md-outlined-button>
+              <md-outlined-button type="button" data-add-question="tf4"><md-icon slot="icon">fact_check</md-icon>Đúng/Sai</md-outlined-button>
+              <md-outlined-button type="button" data-add-question="short"><md-icon slot="icon">short_text</md-icon>Điền ngắn</md-outlined-button>
             </div>
           </div>
           <div class="qb-bulk-add">
-            <span class="qb-toolbar-label">Thêm hàng loạt (MCQ)</span>
+            <span class="qb-toolbar-label">Thêm hàng loạt</span>
             <div class="qb-bulk-row">
               <input class="field compact-number" name="bulk-question-count" type="number" min="1" max="100" value="20" aria-label="Số câu">
-              <md-filled-tonal-button type="button" data-add-many-questions="mcq"><md-icon slot="icon">playlist_add</md-icon>Thêm</md-filled-tonal-button>
+              <select class="field" name="bulk-question-type" aria-label="Loại câu">
+                <option value="mcq">Trắc nghiệm</option>
+                <option value="tf4">Đúng/Sai</option>
+                <option value="short">Điền ngắn</option>
+              </select>
+              <md-filled-tonal-button type="button" id="bulk-add-btn"><md-icon slot="icon">playlist_add</md-icon>Thêm</md-filled-tonal-button>
             </div>
           </div>
         </div>
@@ -2598,15 +2603,15 @@ function wireAssignmentEditor(lectures) {
     });
   });
 
-  document.querySelectorAll('[data-add-many-questions]').forEach((button) => {
-    button.addEventListener('click', () => {
-      state.assignmentEditor = collectEditor(lectures);
-      const countInput = document.querySelector('input[name="bulk-question-count"]');
-      const count = Math.min(100, Math.max(1, Number(countInput?.value || 20)));
-      const questions = Array.from({ length: count }, () => defaultQuestion(button.dataset.addManyQuestions));
-      state.assignmentEditor.questions.push(...questions);
-      refreshQuestionBuilder(lectures);
-    });
+  document.querySelector('#bulk-add-btn')?.addEventListener('click', () => {
+    state.assignmentEditor = collectEditor(lectures);
+    const countInput = document.querySelector('input[name="bulk-question-count"]');
+    const typeSelect = document.querySelector('select[name="bulk-question-type"]');
+    const count = Math.min(100, Math.max(1, Number(countInput?.value || 20)));
+    const type = typeSelect?.value || 'mcq';
+    const questions = Array.from({ length: count }, () => defaultQuestion(type));
+    state.assignmentEditor.questions.push(...questions);
+    refreshQuestionBuilder(lectures);
   });
 
   wireQuestionEditorControls(lectures);
