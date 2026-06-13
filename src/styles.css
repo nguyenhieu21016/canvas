@@ -791,8 +791,7 @@ md-icon {
 
 .panel-heading,
 .split-heading,
-.editor-heading,
-.question-builder-header {
+.editor-heading {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -801,8 +800,7 @@ md-icon {
 }
 
 .panel-heading h2,
-.split-heading h2,
-.question-builder-header h3 {
+.split-heading h2 {
   margin: 0;
 }
 
@@ -2178,6 +2176,61 @@ td small {
   gap: 10px;
 }
 
+/* Question builder toolbar */
+.question-builder-header {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.qb-title-block {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.qb-count {
+  margin: 0;
+}
+
+.qb-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.qb-single-add,
+.qb-bulk-add {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.qb-bulk-add {
+  margin-left: auto;
+}
+
+.qb-toolbar-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--md-sys-color-on-surface-variant);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.qb-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.qb-bulk-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .bulk-add-questions {
   display: inline-flex;
   align-items: center;
@@ -2185,7 +2238,7 @@ td small {
 }
 
 .compact-number {
-  width: 88px;
+  width: 80px;
   min-height: 40px;
 }
 

@@ -2464,17 +2464,25 @@ function renderAssignmentEditor(lectures) {
     </section>
     <section class="answer-key-panel">
       <div class="question-builder-header">
-        <div>
+        <div class="qb-title-block">
           <p class="eyebrow">Phiếu trả lời</p>
-          <h3>${questions.length} câu</h3>
+          <h3 class="qb-count">${questions.length} câu hỏi</h3>
         </div>
-        <div class="button-row">
-          <md-outlined-button type="button" data-add-question="mcq"><md-icon slot="icon">radio_button_checked</md-icon>Trắc nghiệm</md-outlined-button>
-          <md-outlined-button type="button" data-add-question="tf4"><md-icon slot="icon">fact_check</md-icon>Đúng/Sai</md-outlined-button>
-          <md-outlined-button type="button" data-add-question="short"><md-icon slot="icon">short_text</md-icon>Điền ngắn</md-outlined-button>
-          <div class="bulk-add-questions">
-            <input class="field compact-number" name="bulk-question-count" type="number" min="1" max="100" value="20" aria-label="Số câu cần thêm">
-            <md-filled-tonal-button type="button" data-add-many-questions="mcq"><md-icon slot="icon">playlist_add</md-icon>Thêm nhiều</md-filled-tonal-button>
+        <div class="qb-toolbar">
+          <div class="qb-single-add">
+            <span class="qb-toolbar-label">Thêm 1 câu</span>
+            <div class="qb-chips">
+              <md-filter-chip id="add-mcq" label="Trắc nghiệm" type="button" data-add-question="mcq"><md-icon slot="icon">radio_button_checked</md-icon></md-filter-chip>
+              <md-filter-chip id="add-tf4" label="Đúng/Sai" type="button" data-add-question="tf4"><md-icon slot="icon">fact_check</md-icon></md-filter-chip>
+              <md-filter-chip id="add-short" label="Điền ngắn" type="button" data-add-question="short"><md-icon slot="icon">short_text</md-icon></md-filter-chip>
+            </div>
+          </div>
+          <div class="qb-bulk-add">
+            <span class="qb-toolbar-label">Thêm hàng loạt (MCQ)</span>
+            <div class="qb-bulk-row">
+              <input class="field compact-number" name="bulk-question-count" type="number" min="1" max="100" value="20" aria-label="Số câu">
+              <md-filled-tonal-button type="button" data-add-many-questions="mcq"><md-icon slot="icon">playlist_add</md-icon>Thêm</md-filled-tonal-button>
+            </div>
           </div>
         </div>
       </div>
@@ -2541,7 +2549,7 @@ function renderQuestionKeyEditor(question, index) {
 
 function refreshQuestionBuilder(lectures) {
   const questions = state.assignmentEditor.questions;
-  const heading = document.querySelector('.question-builder-header h3');
+  const heading = document.querySelector('.question-builder-header .qb-count');
   const builder = document.querySelector('.question-builder');
   if (heading) heading.textContent = `${questions.length} câu`;
   if (builder) {
