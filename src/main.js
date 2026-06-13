@@ -1702,7 +1702,7 @@ async function mountDashboard() {
       `).join('');
 
       return `
-        <article class="student-detail-card panel" data-student-id="${student.id}" style="display: flex; flex-direction: column; gap: 18px; padding: 24px; border-radius: 16px; background: var(--md-sys-color-surface-container-low); min-height: 580px;">
+        <article class="student-detail-card panel" data-student-id="${student.id}" style="margin: 0; display: flex; flex-direction: column; gap: 18px; padding: 24px; border-radius: 16px; background: var(--md-sys-color-surface-container-low); min-height: 580px;">
           <div style="display: flex; align-items: center; gap: 16px;">
             ${renderAccountAvatar(student, 'account-avatar large')}
             <div style="flex: 1; min-width: 0;">
