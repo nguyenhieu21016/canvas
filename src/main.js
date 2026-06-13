@@ -1749,7 +1749,7 @@ async function mountDashboard() {
             </div>
             <div style="display: flex; gap: 12px;">
               <md-filled-tonal-button style="flex: 1; --md-filled-tonal-button-container-shape: 8px;" data-reset-btn="${student.id}">
-                <md-icon slot="icon">key</md-icon> Đặt lại mật khẩu
+                <md-icon slot="icon">lock_reset</md-icon> Đặt lại mật khẩu
               </md-filled-tonal-button>
               <md-filled-button style="flex: 1; --md-filled-button-container-shape: 8px; --md-filled-button-container-color: var(--md-sys-color-error); --md-filled-button-label-text-color: var(--md-sys-color-on-error);" data-delete-btn="${student.id}">
                 <md-icon slot="icon">delete</md-icon> Xóa tài khoản
