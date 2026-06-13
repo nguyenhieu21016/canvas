@@ -9,4 +9,21 @@ export default defineConfig({
     port: 4173,
     strictPort: false,
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('@supabase')) {
+              return 'supabase';
+            }
+            if (id.includes('@material/web')) {
+              return 'material-web';
+            }
+            return 'vendor';
+          }
+        },
+      },
+    },
+  },
 });
