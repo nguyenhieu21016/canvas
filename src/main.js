@@ -1691,67 +1691,67 @@ async function mountDashboard() {
       const averageScore = totalSubmissions ? (scores.reduce((sum, score) => sum + score, 0) / totalSubmissions) : 0;
       const bestScore = totalSubmissions ? Math.max(...scores) : 0;
 
-      const attemptsListMarkup = studentAttempts.slice(0, 5).map((a) => `
-        <div class="attempt-item-row" style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--md-sys-color-outline-variant); font-size: 0.9rem;">
+      const attemptsListMarkup = studentAttempts.map((a) => `
+        <div class="attempt-item-row" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--md-sys-color-outline-variant); font-size: 0.9rem;">
           <span style="font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60%;">${escapeHtml(a.assignments?.title ?? '-')}</span>
           <div style="display: flex; align-items: center; gap: 12px;">
             <strong style="color: var(--md-sys-color-primary);">${formatScore(a.score_10)}/10</strong>
-            <a class="text-link" href="#/review/${a.id}" style="font-size: 0.85rem;">Chi tiết</a>
+            <a class="text-link" href="#/review/${a.id}" style="font-size: 0.85rem; font-weight: 600;">Chi tiết</a>
           </div>
         </div>
       `).join('');
 
       return `
-        <article class="student-detail-card panel" data-student-id="${student.id}" style="display: flex; flex-direction: column; gap: 16px; padding: 20px; border-radius: 12px; background: var(--md-sys-color-surface-container-low);">
+        <article class="student-detail-card panel" data-student-id="${student.id}" style="display: flex; flex-direction: column; gap: 18px; padding: 24px; border-radius: 16px; background: var(--md-sys-color-surface-container-low); min-height: 580px;">
           <div style="display: flex; align-items: center; gap: 16px;">
             ${renderAccountAvatar(student, 'account-avatar large')}
-            <div style="flex: 1;">
-              <h3 style="margin: 0; font-size: 1.25rem;">${escapeHtml(student.full_name ?? '')}</h3>
-              <p style="margin: 2px 0 0 0; font-size: 0.9rem; color: var(--md-sys-color-on-surface-variant);">${escapeHtml(student.email ?? '')}</p>
+            <div style="flex: 1; min-width: 0;">
+              <h3 style="margin: 0; font-size: 1.25rem; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(student.full_name ?? '')}</h3>
+              <p style="margin: 2px 0 0 0; font-size: 0.85rem; color: var(--md-sys-color-on-surface-variant); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(student.email ?? '')}</p>
             </div>
-            <select class="field compact" name="status" style="width: auto; padding: 4px 8px; font-size: 0.85rem;" data-status-student="${student.id}">
+            <select class="field compact" name="status" style="width: auto; height: 36px; min-height: 36px; padding: 4px 32px 4px 12px; font-size: 0.85rem;" data-status-student="${student.id}">
               ${option('active', 'Đang học', student.status)}
               ${option('disabled', 'Tạm khóa', student.status)}
             </select>
           </div>
 
-          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; background: var(--md-sys-color-surface-container-high); padding: 12px; border-radius: 8px; text-align: center;">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; background: var(--md-sys-color-surface-container-high); padding: 12px; border-radius: 12px; text-align: center;">
             <div>
-              <span style="font-size: 0.8rem; color: var(--md-sys-color-on-surface-variant);">Đã nộp</span>
-              <div style="font-size: 1.2rem; font-weight: bold; margin-top: 4px;">${totalSubmissions} bài</div>
+              <span style="font-size: 0.8rem; font-weight: 500; color: var(--md-sys-color-on-surface-variant);">Đã nộp</span>
+              <div style="font-size: 1.15rem; font-weight: 700; margin-top: 4px;">${totalSubmissions} bài</div>
             </div>
             <div>
-              <span style="font-size: 0.8rem; color: var(--md-sys-color-on-surface-variant);">Điểm TB</span>
-              <div style="font-size: 1.2rem; font-weight: bold; margin-top: 4px; color: var(--md-sys-color-primary);">${formatScore(averageScore)}</div>
+              <span style="font-size: 0.8rem; font-weight: 500; color: var(--md-sys-color-on-surface-variant);">Điểm TB</span>
+              <div style="font-size: 1.15rem; font-weight: 700; margin-top: 4px; color: var(--md-sys-color-primary);">${formatScore(averageScore)}</div>
             </div>
             <div>
-              <span style="font-size: 0.8rem; color: var(--md-sys-color-on-surface-variant);">Cao nhất</span>
-              <div style="font-size: 1.2rem; font-weight: bold; margin-top: 4px; color: var(--md-sys-color-tertiary);">${formatScore(bestScore)}</div>
+              <span style="font-size: 0.8rem; font-weight: 500; color: var(--md-sys-color-on-surface-variant);">Cao nhất</span>
+              <div style="font-size: 1.15rem; font-weight: 700; margin-top: 4px; color: var(--md-sys-color-tertiary);">${formatScore(bestScore)}</div>
             </div>
           </div>
 
-          <div>
-            <h4 style="margin: 0 0 8px 0; font-size: 0.95rem; display: flex; justify-content: space-between; align-items: center;">
+          <div style="display: flex; flex-direction: column; flex: 1;">
+            <h4 style="margin: 0 0 8px 0; font-size: 0.95rem; font-weight: 600; display: flex; justify-content: space-between; align-items: center; color: var(--md-sys-color-on-surface);">
               <span>Bài làm gần đây</span>
-              ${totalSubmissions > 5 ? `<span style="font-size: 0.8rem; font-weight: normal; color: var(--md-sys-color-outline);">Hiện 5/${totalSubmissions}</span>` : ''}
+              ${totalSubmissions > 0 ? `<span style="font-size: 0.8rem; font-weight: 500; color: var(--md-sys-color-outline);">Tất cả (${totalSubmissions})</span>` : ''}
             </h4>
-            <div class="attempts-list-container" style="min-height: 80px;">
-              ${attemptsListMarkup || '<div class="empty-state compact" style="padding: 16px 0;">Chưa nộp bài nào.</div>'}
+            <div class="attempts-list-container" style="height: 180px; overflow-y: auto; padding-right: 4px; border: 1px dashed var(--md-sys-color-outline-variant); border-radius: 8px; padding: 4px 12px; background: var(--md-sys-color-surface-container-lowest);">
+              ${attemptsListMarkup || '<div class="empty-state compact" style="padding: 16px 0; border: 0; background: transparent; text-align: center;">Chưa nộp bài nào.</div>'}
             </div>
           </div>
 
-          <div style="border-top: 1px dashed var(--md-sys-color-outline-variant); padding-top: 16px; margin-top: auto; display: flex; flex-direction: column; gap: 12px;">
-            <div style="display: flex; gap: 8px;">
-              <input class="field compact" name="full_name" value="${escapeHtml(student.full_name ?? '')}" placeholder="Họ tên mới" style="flex: 1; font-size: 0.9rem; padding: 6px 12px;" data-name-input="${student.id}">
-              <md-filled-tonal-button style="--md-filled-tonal-button-container-shape: 8px; font-size: 0.85rem;" data-save-btn="${student.id}">
-                Lưu tên
+          <div style="border-top: 1px dashed var(--md-sys-color-outline-variant); padding-top: 16px; display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <md-outlined-text-field label="Họ tên mới" value="${escapeHtml(student.full_name ?? '')}" style="flex: 1; --md-outlined-text-field-container-shape: 8px;" data-name-input="${student.id}"></md-outlined-text-field>
+              <md-filled-tonal-button style="--md-filled-tonal-button-container-shape: 8px; height: 56px;" data-save-btn="${student.id}">
+                Lưu
               </md-filled-tonal-button>
             </div>
-            <div style="display: flex; justify-content: space-between; gap: 8px;">
-              <md-outlined-button style="flex: 1; --md-outlined-button-container-shape: 8px; font-size: 0.85rem;" data-reset-btn="${student.id}">
-                <md-icon slot="icon">key</md-icon> Reset mật khẩu
+            <div style="display: flex; justify-content: space-between; gap: 12px;">
+              <md-outlined-button style="flex: 1; --md-outlined-button-container-shape: 8px;" data-reset-btn="${student.id}">
+                <md-icon slot="icon">key</md-icon> Reset Pass
               </md-outlined-button>
-              <md-outlined-button style="--md-outlined-button-container-shape: 8px; font-size: 0.85rem; --md-outlined-button-outline-color: var(--md-sys-color-error); --md-outlined-button-label-text-color: var(--md-sys-color-error);" data-delete-btn="${student.id}">
+              <md-outlined-button style="flex: 1; --md-outlined-button-container-shape: 8px; --md-outlined-button-outline-color: var(--md-sys-color-error); --md-outlined-button-label-text-color: var(--md-sys-color-error); --md-outlined-button-hover-state-layer-color: var(--md-sys-color-error); --md-outlined-button-focus-state-layer-color: var(--md-sys-color-error); --md-outlined-button-pressed-state-layer-color: var(--md-sys-color-error);" data-delete-btn="${student.id}">
                 <md-icon slot="icon">delete</md-icon> Xóa
               </md-outlined-button>
             </div>
@@ -1762,15 +1762,15 @@ async function mountDashboard() {
 
     root.innerHTML = `
       <section class="student-tracker-layout" style="display: flex; flex-direction: column; gap: 24px;">
-        <section class="panel" style="padding: 20px;">
-          <div class="panel-heading" style="margin-bottom: 12px;">
-            <h2 style="margin: 0; font-size: 1.25rem; display: flex; align-items: center; gap: 8px;"><md-icon>person_add</md-icon>Thêm học sinh mới</h2>
+        <section class="panel" style="padding: 24px; border-radius: 16px;">
+          <div class="panel-heading" style="margin-bottom: 16px;">
+            <h2 style="margin: 0; font-size: 1.25rem; font-weight: 600; display: flex; align-items: center; gap: 8px; color: var(--md-sys-color-on-surface);"><md-icon>person_add</md-icon>Thêm học sinh mới</h2>
           </div>
-          <form id="create-user-form" class="form-grid four" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) auto; gap: 12px; align-items: center;">
-            <input class="field" name="full_name" placeholder="Họ tên học sinh" required style="padding: 8px 12px;">
-            <input class="field" name="email" type="email" placeholder="Email đăng nhập" required style="padding: 8px 12px;">
-            <input class="field" name="password" type="text" placeholder="Mật khẩu tạm" required style="padding: 8px 12px;">
-            <md-filled-button type="submit" style="height: 40px;"><md-icon slot="icon">person_add</md-icon>Tạo tài khoản</md-filled-button>
+          <form id="create-user-form" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) auto; gap: 16px; align-items: center;">
+            <md-outlined-text-field label="Họ tên học sinh" name="full_name" required></md-outlined-text-field>
+            <md-outlined-text-field label="Email đăng nhập" name="email" type="email" required></md-outlined-text-field>
+            <md-outlined-text-field label="Mật khẩu tạm" name="password" required></md-outlined-text-field>
+            <md-filled-button type="submit" style="height: 56px;"><md-icon slot="icon">person_add</md-icon>Tạo tài khoản</md-filled-button>
           </form>
         </section>
 
