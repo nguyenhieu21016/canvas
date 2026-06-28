@@ -1439,7 +1439,7 @@ export async function mountSalaryManager() {
 
     const scheduledIds = new Set(schedules.map((s) => s.student_id));
     const unscheduled = students.filter((s) => !scheduledIds.has(s.id));
-    const monthLabel = new Date(year, month, 1).toLocaleDateString('vi-VN', { month: 'long', year: 'numeric' });
+    const monthLabel = `${month + 1}/${year}`;
 
     function renderStudentTracker(s) {
       // Build maps: date → 'scheduled' | 'taught'
@@ -1541,7 +1541,7 @@ export async function mountSalaryManager() {
         .day-cell:hover { transform: scale(1.12); }
         .day-cell:active { transform: scale(0.95); }
       </style>
-      <section style="max-width:1200px; padding:var(--page-gutter,24px); display:flex; flex-direction:column; gap:20px;">
+      <section style="max-width:860px; margin:0 auto; padding:var(--page-gutter,24px); display:flex; flex-direction:column; gap:20px;">
 
         <!-- Top bar -->
         <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
@@ -1560,7 +1560,7 @@ export async function mountSalaryManager() {
         </div>
 
         <!-- Student trackers -->
-        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(360px, 1fr)); gap:16px; align-items:start;" id="tracker-list">
+        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(360px, 1fr)); gap:16px; align-items:stretch;" id="tracker-list">
           ${schedules.length
             ? schedules.map(renderStudentTracker).join('')
             : `<div style="color:var(--md-sys-color-on-surface-variant); text-align:center; padding:32px 0; font-size:0.95rem;">
