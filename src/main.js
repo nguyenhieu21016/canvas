@@ -61,8 +61,8 @@ const toastEl = document.querySelector('#toast');
 const MAX_AVATAR_SOURCE_BYTES = 5 * 1024 * 1024;
 const MAX_AVATAR_UPLOAD_BYTES = 250 * 1024;
 const AVATAR_SIZE = 320;
-const APP_VERSION = '1.3.3';
-const APP_LAST_UPDATE = 'Đập đi xây lại giao diện Bảng điểm: Hiển thị dạng danh sách thẻ (card-based) trực quan hơn, và tự động phân nhóm bài tập theo từng Giai đoạn.';
+const APP_VERSION = '1.3.4';
+const APP_LAST_UPDATE = 'Giao diện Bảng điểm thẻ mới. Tối ưu code splitting giúp web tải siêu tốc.';
 let renderGeneration = 0;
 let assignmentsForManagerList = [];
 let pendingSolutionRequests = [];
@@ -1926,7 +1926,7 @@ function mountSettings() {
         <div class="app-info-list">
           <div>
             <span>Phiên bản</span>
-            <strong>Phiên bản thứ ${escapeHtml(APP_VERSION)}</strong>
+            <strong>${escapeHtml(APP_VERSION)}</strong>
           </div>
           <div>
             <span>Cập nhật gần nhất</span>
