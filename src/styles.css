@@ -37,8 +37,8 @@
   --md-sys-color-inverse-on-surface: #f1f0f4;
   --md-sys-color-inverse-primary: #a5c8ff;
   --md-sys-shape-corner-small: 8px;
-  --md-sys-shape-corner-medium: 8px;
-  --md-sys-shape-corner-large: 8px;
+  --md-sys-shape-corner-medium: 12px;
+  --md-sys-shape-corner-large: 16px;
   --page-gutter: clamp(16px, 2.5vw, 28px);
   --motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
   --motion-easing-standard-decelerate: cubic-bezier(0, 0, 0, 1);
@@ -2262,13 +2262,15 @@ td small {
 }
 
 .manage-node.dragging {
-  opacity: 0.45;
+  opacity: 0.3;
+  transform: scale(0.97);
 }
 
 .manage-node.drop-target {
-  border-color: var(--md-sys-color-primary);
-  background: color-mix(in srgb, var(--md-sys-color-primary-container) 50%, transparent);
-  transform: translateY(-1px);
+  border-top: 2px dashed var(--md-sys-color-primary) !important;
+  border-bottom: 2px dashed var(--md-sys-color-primary) !important;
+  background: color-mix(in srgb, var(--md-sys-color-primary-container) 15%, transparent) !important;
+  transform: scale(0.99);
 }
 
 .manage-node.child {
@@ -3030,4 +3032,24 @@ tbody tr:hover {
     animation-delay: 0ms !important;
     transition-duration: 1ms !important;
   }
+}
+
+@keyframes skeleton-pulse {
+  0% {
+    background-color: var(--md-sys-color-surface-container-high);
+    opacity: 0.6;
+  }
+  50% {
+    background-color: var(--md-sys-color-surface-container-highest);
+    opacity: 0.9;
+  }
+  100% {
+    background-color: var(--md-sys-color-surface-container-high);
+    opacity: 0.6;
+  }
+}
+
+.skeleton {
+  animation: skeleton-pulse 1.5s infinite ease-in-out;
+  border-radius: 4px;
 }

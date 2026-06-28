@@ -58,9 +58,10 @@ const toastEl = document.querySelector('#toast');
 const MAX_AVATAR_SOURCE_BYTES = 5 * 1024 * 1024;
 const MAX_AVATAR_UPLOAD_BYTES = 250 * 1024;
 const AVATAR_SIZE = 320;
-const APP_VERSION = '1.2.0';
-const APP_LAST_UPDATE = 'Tối ưu hóa hiệu năng lưu bài tập: tránh chấm điểm lại (regrade) không cần thiết khi tạo mới đề thi.';
+const APP_VERSION = '1.3.0';
+const APP_LAST_UPDATE = 'Tái cấu trúc và thiết kế lại giao diện toàn diện: Tương tác kéo thả trực quan hơn, tối ưu kích thước nút bấm di động, kiểm lỗi nhập liệu thời gian thực và màn hình chờ skeleton.';
 let renderGeneration = 0;
+let selectedStudentId = null;
 let appElementsPromise = null;
 const detachedPageRoot = {
   isConnected: false,
@@ -205,6 +206,91 @@ function renderLoading(label = 'Đang tải dữ liệu') {
       <md-circular-progress indeterminate></md-circular-progress>
       <span>${escapeHtml(label)}</span>
     </div>
+  `;
+}
+
+function renderSkeletonDashboard() {
+  return `
+    <section class="students-dashboard" style="display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch; opacity: 0.85; padding: var(--page-gutter);">
+      <!-- Sidebar Skeleton -->
+      <div style="display: flex; flex-direction: column; gap: 16px; width: 320px; min-width: 320px;">
+        <div class="panel" style="padding: 16px; border-radius: var(--md-sys-shape-corner-large, 16px); background: var(--md-sys-color-surface-container-low); display: flex; flex-direction: column; gap: 12px;">
+          <div class="skeleton" style="width: 140px; height: 20px; border-radius: 4px;"></div>
+          <div style="display: flex; align-items: center; gap: 12px; padding: 12px;">
+            <div class="skeleton" style="width: 40px; height: 40px; border-radius: 50%;"></div>
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
+              <div class="skeleton" style="width: 100px; height: 16px; border-radius: 4px;"></div>
+              <div class="skeleton" style="width: 140px; height: 12px; border-radius: 4px;"></div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px; padding: 12px;">
+            <div class="skeleton" style="width: 40px; height: 40px; border-radius: 50%;"></div>
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
+              <div class="skeleton" style="width: 100px; height: 16px; border-radius: 4px;"></div>
+              <div class="skeleton" style="width: 140px; height: 12px; border-radius: 4px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Details Panel Skeleton -->
+      <div class="panel" style="flex: 1; padding: 24px; border-radius: var(--md-sys-shape-corner-large, 16px); background: var(--md-sys-color-surface-container-low); min-height: 480px; display: flex; flex-direction: column; gap: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <div class="skeleton" style="width: 48px; height: 48px; border-radius: 50%;"></div>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <div class="skeleton" style="width: 180px; height: 24px; border-radius: 4px;"></div>
+              <div class="skeleton" style="width: 120px; height: 14px; border-radius: 4px;"></div>
+            </div>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+          <div class="panel" style="background: var(--md-sys-color-surface-container-high); padding: 12px; border-radius: var(--md-sys-shape-corner-medium, 12px); display: flex; flex-direction: column; align-items: center; gap: 8px;">
+            <div class="skeleton" style="width: 60px; height: 14px; border-radius: 4px;"></div>
+            <div class="skeleton" style="width: 40px; height: 20px; border-radius: 4px;"></div>
+          </div>
+          <div class="panel" style="background: var(--md-sys-color-surface-container-high); padding: 12px; border-radius: var(--md-sys-shape-corner-medium, 12px); display: flex; flex-direction: column; align-items: center; gap: 8px;">
+            <div class="skeleton" style="width: 60px; height: 14px; border-radius: 4px;"></div>
+            <div class="skeleton" style="width: 40px; height: 20px; border-radius: 4px;"></div>
+          </div>
+          <div class="panel" style="background: var(--md-sys-color-surface-container-high); padding: 12px; border-radius: var(--md-sys-shape-corner-medium, 12px); display: flex; flex-direction: column; align-items: center; gap: 8px;">
+            <div class="skeleton" style="width: 60px; height: 14px; border-radius: 4px;"></div>
+            <div class="skeleton" style="width: 40px; height: 20px; border-radius: 4px;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderSkeletonAssignments() {
+  return `
+    <section class="assignment-manager" style="display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 18px; align-items: start; opacity: 0.85; padding: var(--page-gutter);">
+      <!-- Sidebar List Skeleton -->
+      <aside class="panel list-panel" style="border-radius: var(--md-sys-shape-corner-large, 16px); background: var(--md-sys-color-surface-container-low); padding: 16px; display: flex; flex-direction: column; gap: 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div class="skeleton" style="width: 120px; height: 22px;"></div>
+          <div class="skeleton" style="width: 60px; height: 32px; border-radius: 16px;"></div>
+        </div>
+        <div style="padding: 12px 0; display: flex; flex-direction: column; gap: 6px;">
+          <div class="skeleton" style="width: 80%; height: 18px;"></div>
+          <div class="skeleton" style="width: 50%; height: 12px;"></div>
+        </div>
+        <div style="padding: 12px 0; display: flex; flex-direction: column; gap: 6px;">
+          <div class="skeleton" style="width: 75%; height: 18px;"></div>
+          <div class="skeleton" style="width: 40%; height: 12px;"></div>
+        </div>
+      </aside>
+
+      <!-- Split workspace skeleton -->
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <div class="panel" style="border-radius: var(--md-sys-shape-corner-large, 16px); background: var(--md-sys-color-surface-container-low); padding: 24px; display: flex; flex-direction: column; gap: 16px; height: 400px;">
+          <div class="skeleton" style="width: 200px; height: 28px;"></div>
+          <div class="skeleton" style="width: 100%; height: 44px; border-radius: 8px;"></div>
+          <div class="skeleton" style="width: 100%; height: 200px; border-radius: 8px; margin-top: 12px;"></div>
+        </div>
+      </div>
+    </section>
   `;
 }
 
@@ -1677,15 +1763,116 @@ function formatAnswer(answer) {
 
 async function mountDashboard() {
   const root = pageRoot();
-  root.innerHTML = renderLoading('Đang tải dữ liệu theo dõi học sinh');
+  root.innerHTML = renderSkeletonDashboard();
   try {
     const [students, allAttempts] = await Promise.all([
       fetchStudents(),
       fetchGradebook(),
     ]);
 
-    const studentsMarkup = students.map((student) => {
-      const studentAttempts = allAttempts.filter((a) => a.student_id === student.id);
+    // Default to first student if none selected or selected student no longer exists
+    if (!selectedStudentId || !students.some(s => s.id === selectedStudentId)) {
+      selectedStudentId = students[0]?.id || null;
+    }
+
+    root.innerHTML = `
+      <section class="student-tracker-layout" style="display: flex; flex-direction: column; gap: 20px;">
+        <style>
+          .add-student-details summary::-webkit-details-marker { display: none; }
+          .add-student-details summary { list-style: none; }
+          .student-sidebar-item:hover {
+            background: var(--md-sys-color-surface-container-high) !important;
+          }
+        </style>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: start;">
+          
+          <!-- Left Column (Sidebar): Student List & Add Form -->
+          <div style="display: flex; flex-direction: column; gap: 16px; width: 320px; min-width: 320px; flex-shrink: 0;">
+            
+            <!-- Students List Panel -->
+            <div class="panel" style="padding: 16px; border-radius: var(--md-sys-shape-corner-large, 16px); display: flex; flex-direction: column; gap: 12px; background: var(--md-sys-color-surface-container-low);">
+              <h3 style="margin: 0; font-size: 0.95rem; font-weight: 600; color: var(--md-sys-color-on-surface);">Danh sách học sinh</h3>
+              <div class="students-sidebar-list" style="display: flex; flex-direction: column; gap: 8px;">
+                <!-- Sidebar items populated by JS -->
+              </div>
+            </div>
+
+            <!-- Add student form (Collapsible) -->
+            <details class="panel add-student-details" style="padding: 16px; border-radius: var(--md-sys-shape-corner-large, 16px); border: 1px solid var(--md-sys-color-outline-variant); background: var(--md-sys-color-surface-container-low);">
+              <summary style="display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none;">
+                <div style="display: flex; align-items: center; gap: 8px; color: var(--md-sys-color-on-surface);">
+                  <md-icon style="font-size: 1.2rem;">person_add</md-icon>
+                  <span style="font-weight: 600; font-size: 0.9rem;">Thêm học sinh mới</span>
+                </div>
+                <md-icon style="font-size: 1.2rem; color: var(--md-sys-color-outline);">expand_more</md-icon>
+              </summary>
+              <div style="padding-top: 16px; border-top: 1px dashed var(--md-sys-color-outline-variant); margin-top: 16px;">
+                <form id="create-user-form" style="display: flex; flex-direction: column; gap: 12px;">
+                  <md-outlined-text-field label="Họ tên học sinh" name="full_name" required style="--md-outlined-text-field-container-shape: 8px;"></md-outlined-text-field>
+                  <md-outlined-text-field label="Email đăng nhập" name="email" type="email" required style="--md-outlined-text-field-container-shape: 8px;"></md-outlined-text-field>
+                  <md-outlined-text-field label="Mật khẩu tạm" name="password" required style="--md-outlined-text-field-container-shape: 8px;"></md-outlined-text-field>
+                  <md-filled-button type="submit" style="--md-filled-button-container-shape: 8px; height: 44px;"><md-icon slot="icon">person_add</md-icon>Tạo tài khoản</md-filled-button>
+                </form>
+              </div>
+            </details>
+
+          </div>
+
+          <!-- Right Column (Main Panel): Detailed View of Selected Student -->
+          <div class="student-details-pane panel" style="flex: 1; min-width: 320px; padding: 24px; border-radius: var(--md-sys-shape-corner-large, 16px); display: flex; flex-direction: column; gap: 24px; background: var(--md-sys-color-surface-container-low); min-height: 480px;">
+            <!-- Details populated by JS -->
+          </div>
+
+        </div>
+      </section>
+    `;
+
+    // Render left sidebar items
+    function renderSidebarList(studentsList) {
+      const listContainer = document.querySelector('.students-sidebar-list');
+      if (!listContainer) return;
+      listContainer.innerHTML = studentsList.map((student) => {
+        const isSelected = student.id === selectedStudentId;
+        return `
+          <div class="student-sidebar-item" data-student-id="${student.id}" style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: var(--md-sys-shape-corner-medium, 12px); cursor: pointer; background: ${isSelected ? 'var(--md-sys-color-secondary-container)' : 'transparent'}; color: ${isSelected ? 'var(--md-sys-color-on-secondary-container)' : 'var(--md-sys-color-on-surface)'}; transition: all 0.2s ease; border: 1px solid ${isSelected ? 'var(--md-sys-color-outline)' : 'transparent'};">
+            ${renderAccountAvatar(student, 'account-avatar')}
+            <div style="flex: 1; min-width: 0;">
+              <h4 style="margin: 0; font-size: 0.9rem; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(student.full_name ?? '')}</h4>
+              <p style="margin: 2px 0 0 0; font-size: 0.75rem; color: var(--md-sys-color-on-surface-variant); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(student.email ?? '')}</p>
+            </div>
+            ${student.status === 'disabled' ? `<span style="font-size: 0.7rem; background: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container); padding: 2px 6px; border-radius: 4px; font-weight: 500;">Khóa</span>` : ''}
+          </div>
+        `;
+      }).join('') || '<div style="font-size: 0.85rem; color: var(--md-sys-color-outline); text-align: center; padding: 12px 0;">Chưa có học sinh nào.</div>';
+
+      // Attach click listeners to sidebar items
+      listContainer.querySelectorAll('.student-sidebar-item').forEach((item) => {
+        item.addEventListener('click', () => {
+          selectedStudentId = item.dataset.studentId;
+          renderSidebarList(studentsList);
+          renderStudentDetails(selectedStudentId, studentsList, allAttempts);
+        });
+      });
+    }
+
+    // Render detailed student view on the right
+    function renderStudentDetails(studentId, studentsList, attempts) {
+      const pane = document.querySelector('.student-details-pane');
+      if (!pane) return;
+
+      const student = studentsList.find((s) => s.id === studentId);
+      if (!student) {
+        pane.innerHTML = `
+          <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; min-height: 380px; color: var(--md-sys-color-outline); gap: 12px; text-align: center;">
+            <md-icon style="font-size: 3.5rem;">supervised_user_circle</md-icon>
+            <p style="margin: 0; font-weight: 500; font-size: 0.95rem;">Chọn một học sinh từ danh sách để xem chi tiết học tập</p>
+          </div>
+        `;
+        return;
+      }
+
+      const studentAttempts = attempts.filter((a) => a.student_id === student.id);
       const totalSubmissions = studentAttempts.length;
       const scores = studentAttempts.map((a) => Number(a.score_10 ?? 0));
       const averageScore = totalSubmissions ? (scores.reduce((sum, score) => sum + score, 0) / totalSubmissions) : 0;
@@ -1701,86 +1888,227 @@ async function mountDashboard() {
         </div>
       `).join('');
 
-      return `
-        <article class="student-detail-card panel" data-student-id="${student.id}" style="margin: 0; display: flex; flex-direction: column; gap: 18px; padding: 24px; border-radius: 16px; background: var(--md-sys-color-surface-container-low); min-height: 580px;">
-          <div style="display: flex; align-items: center; gap: 16px;">
-            ${renderAccountAvatar(student, 'account-avatar large')}
-            <div style="flex: 1; min-width: 0;">
-              <h3 style="margin: 0; font-size: 1.25rem; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(student.full_name ?? '')}</h3>
-              <p style="margin: 2px 0 0 0; font-size: 0.85rem; color: var(--md-sys-color-on-surface-variant); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(student.email ?? '')}</p>
+      pane.innerHTML = `
+        <div style="display: flex; flex-direction: column; gap: 24px; animation: panel-enter 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) both; width: 100%;">
+          <!-- Top Profile Header -->
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid var(--md-sys-color-outline-variant); padding-bottom: 16px;">
+            <div style="display: flex; align-items: center; gap: 16px;">
+              ${renderAccountAvatar(student, 'account-avatar large')}
+              <div>
+                <h2 style="margin: 0; font-size: 1.35rem; font-weight: 600; color: var(--md-sys-color-on-surface);">${escapeHtml(student.full_name ?? '')}</h2>
+                <p style="margin: 4px 0 0 0; font-size: 0.8rem; color: var(--md-sys-color-on-surface-variant);">${escapeHtml(student.email ?? '')}</p>
+              </div>
             </div>
-            <select class="field compact" name="status" style="width: auto; height: 36px; min-height: 36px; padding: 4px 32px 4px 12px; font-size: 0.85rem;" data-status-student="${student.id}">
-              ${option('active', 'Đang học', student.status)}
-              ${option('disabled', 'Tạm khóa', student.status)}
-            </select>
-          </div>
-
-          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; background: var(--md-sys-color-surface-container-high); padding: 12px; border-radius: 12px; text-align: center;">
-            <div>
-              <span style="font-size: 0.8rem; font-weight: 500; color: var(--md-sys-color-on-surface-variant);">Đã nộp</span>
-              <div style="font-size: 1.15rem; font-weight: 700; margin-top: 4px;">${totalSubmissions} bài</div>
-            </div>
-            <div>
-              <span style="font-size: 0.8rem; font-weight: 500; color: var(--md-sys-color-on-surface-variant);">Điểm TB</span>
-              <div style="font-size: 1.15rem; font-weight: 700; margin-top: 4px; color: var(--md-sys-color-primary);">${formatScore(averageScore)}</div>
-            </div>
-            <div>
-              <span style="font-size: 0.8rem; font-weight: 500; color: var(--md-sys-color-on-surface-variant);">Cao nhất</span>
-              <div style="font-size: 1.15rem; font-weight: 700; margin-top: 4px; color: var(--md-sys-color-tertiary);">${formatScore(bestScore)}</div>
+            
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span style="font-size: 0.85rem; color: var(--md-sys-color-on-surface-variant);">Trạng thái học tập:</span>
+              <select class="field compact" name="status" style="width: auto; height: 44px; min-height: 44px; padding: 4px 32px 4px 12px; font-size: 0.85rem; border-radius: var(--md-sys-shape-corner-small, 8px);" data-status-student="${student.id}">
+                ${option('active', 'Đang học', student.status)}
+                ${option('disabled', 'Tạm khóa', student.status)}
+              </select>
             </div>
           </div>
 
-          <div style="display: flex; flex-direction: column; flex: 1;">
-            <h4 style="margin: 0 0 8px 0; font-size: 0.95rem; font-weight: 600; display: flex; justify-content: space-between; align-items: center; color: var(--md-sys-color-on-surface);">
-              <span>Bài làm gần đây</span>
-              ${totalSubmissions > 0 ? `<span style="font-size: 0.8rem; font-weight: 500; color: var(--md-sys-color-outline);">Tất cả (${totalSubmissions})</span>` : ''}
-            </h4>
-            <div class="attempts-list-container" style="height: 180px; overflow-y: auto; padding-right: 4px; border: 1px dashed var(--md-sys-color-outline-variant); border-radius: 8px; padding: 4px 12px; background: var(--md-sys-color-surface-container-lowest);">
-              ${attemptsListMarkup || '<div class="empty-state compact" style="padding: 16px 0; border: 0; background: transparent; text-align: center;">Chưa nộp bài nào.</div>'}
+          <!-- Key Metrics / Stats Cards -->
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+            <div class="panel" style="background: var(--md-sys-color-surface-container-high); padding: 12px; border-radius: var(--md-sys-shape-corner-medium, 12px); display: flex; flex-direction: column; gap: 4px; border: 1px solid var(--md-sys-color-outline-variant); text-align: center;">
+              <span style="font-size: 0.8rem; font-weight: 500; color: var(--md-sys-color-on-surface-variant); display: flex; align-items: center; justify-content: center; gap: 4px;"><md-icon style="font-size: 1.1rem;">assignment_turned_in</md-icon> Đã nộp</span>
+              <div style="font-size: 1.3rem; font-weight: 700; color: var(--md-sys-color-on-surface); margin-top: 4px;">${totalSubmissions} bài</div>
+            </div>
+            <div class="panel" style="background: var(--md-sys-color-surface-container-high); padding: 12px; border-radius: var(--md-sys-shape-corner-medium, 12px); display: flex; flex-direction: column; gap: 4px; border: 1px solid var(--md-sys-color-outline-variant); text-align: center;">
+              <span style="font-size: 0.8rem; font-weight: 500; color: var(--md-sys-color-on-surface-variant); display: flex; align-items: center; justify-content: center; gap: 4px;"><md-icon style="font-size: 1.1rem; color: var(--md-sys-color-primary);">analytics</md-icon> Điểm TB</span>
+              <div style="font-size: 1.3rem; font-weight: 700; color: var(--md-sys-color-primary); margin-top: 4px;">${formatScore(averageScore)}</div>
+            </div>
+            <div class="panel" style="background: var(--md-sys-color-surface-container-high); padding: 12px; border-radius: var(--md-sys-shape-corner-medium, 12px); display: flex; flex-direction: column; gap: 4px; border: 1px solid var(--md-sys-color-outline-variant); text-align: center;">
+              <span style="font-size: 0.8rem; font-weight: 500; color: var(--md-sys-color-on-surface-variant); display: flex; align-items: center; justify-content: center; gap: 4px;"><md-icon style="font-size: 1.1rem; color: var(--md-sys-color-tertiary);">emoji_events</md-icon> Cao nhất</span>
+              <div style="font-size: 1.3rem; font-weight: 700; color: var(--md-sys-color-tertiary); margin-top: 4px;">${formatScore(bestScore)}</div>
             </div>
           </div>
 
-          <div style="border-top: 1px dashed var(--md-sys-color-outline-variant); padding-top: 16px; display: flex; flex-direction: column; gap: 12px;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <md-outlined-text-field label="Họ tên mới" value="${escapeHtml(student.full_name ?? '')}" style="flex: 1; --md-outlined-text-field-container-shape: 8px;" data-name-input="${student.id}"></md-outlined-text-field>
-              <md-filled-tonal-button style="--md-filled-tonal-button-container-shape: 8px; height: 56px;" data-save-btn="${student.id}">
-                Lưu
-              </md-filled-tonal-button>
+          <!-- Content Split: Recent attempts list & Account settings -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 8px;">
+            <!-- Left side: attempts -->
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <h3 style="margin: 0; font-size: 0.95rem; font-weight: 600; display: flex; justify-content: space-between; align-items: center; color: var(--md-sys-color-on-surface);">
+                <span>Bài làm gần đây</span>
+                ${totalSubmissions > 0 ? `<span style="font-size: 0.8rem; font-weight: 500; color: var(--md-sys-color-outline);">Tất cả (${totalSubmissions})</span>` : ''}
+              </h3>
+              <div class="attempts-list-container" style="height: 220px; overflow-y: auto; padding-right: 4px; border: 1px dashed var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-small, 8px); padding: 4px 12px; background: var(--md-sys-color-surface-container-lowest);">
+                ${attemptsListMarkup || '<div class="empty-state compact" style="padding: 16px 0; border: 0; background: transparent; text-align: center;">Chưa nộp bài nào.</div>'}
+              </div>
             </div>
-            <div style="display: flex; gap: 12px;">
-              <md-filled-tonal-button style="flex: 1; --md-filled-tonal-button-container-shape: 8px;" data-reset-btn="${student.id}">
-                <md-icon slot="icon">lock_reset</md-icon> Đặt lại mật khẩu
-              </md-filled-tonal-button>
-              <md-filled-button style="flex: 1; --md-filled-button-container-shape: 8px; --md-filled-button-container-color: var(--md-sys-color-error); --md-filled-button-label-text-color: var(--md-sys-color-on-error);" data-delete-btn="${student.id}">
-                <md-icon slot="icon">delete</md-icon> Xóa tài khoản
-              </md-filled-button>
+
+            <!-- Right side: settings -->
+            <div style="display: flex; flex-direction: column; gap: 16px; border-left: 1px dashed var(--md-sys-color-outline-variant); padding-left: 24px;">
+              <h3 style="margin: 0; font-size: 0.95rem; font-weight: 600; color: var(--md-sys-color-on-surface);">Quản lý tài khoản</h3>
+              
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <md-outlined-text-field label="Họ tên mới" value="${escapeHtml(student.full_name ?? '')}" style="flex: 1; --md-outlined-text-field-container-shape: 8px;" data-name-input="${student.id}"></md-outlined-text-field>
+                <md-filled-tonal-button style="--md-filled-tonal-button-container-shape: 8px; height: 56px;" data-save-btn="${student.id}">
+                  Lưu
+                </md-filled-tonal-button>
+              </div>
+              
+              <div style="display: flex; flex-direction: column; gap: 12px; margin-top: auto; padding-top: 12px;">
+                <md-filled-tonal-button style="--md-filled-tonal-button-container-shape: 8px;" data-reset-btn="${student.id}">
+                  <md-icon slot="icon">lock_reset</md-icon> Đặt lại mật khẩu
+                </md-filled-tonal-button>
+                <md-filled-button style="--md-filled-button-container-shape: 8px; --md-filled-button-container-color: var(--md-sys-color-error); --md-filled-button-label-text-color: var(--md-sys-color-on-error);" data-delete-btn="${student.id}">
+                  <md-icon slot="icon">delete</md-icon> Xóa tài khoản
+                </md-filled-button>
+              </div>
             </div>
           </div>
-        </article>
+        </div>
       `;
-    }).join('');
 
-    root.innerHTML = `
-      <section class="student-tracker-layout" style="display: flex; flex-direction: column; gap: 24px;">
-        <section class="panel" style="padding: 24px; border-radius: 16px;">
-          <div class="panel-heading" style="margin-bottom: 16px;">
-            <h2 style="margin: 0; font-size: 1.25rem; font-weight: 600; display: flex; align-items: center; gap: 8px; color: var(--md-sys-color-on-surface);"><md-icon>person_add</md-icon>Thêm học sinh mới</h2>
-          </div>
-          <form id="create-user-form" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) auto; gap: 16px; align-items: center;">
-            <md-outlined-text-field label="Họ tên học sinh" name="full_name" required></md-outlined-text-field>
-            <md-outlined-text-field label="Email đăng nhập" name="email" type="email" required></md-outlined-text-field>
-            <md-outlined-text-field label="Mật khẩu tạm" name="password" required></md-outlined-text-field>
-            <md-filled-button type="submit" style="height: 56px;"><md-icon slot="icon">person_add</md-icon>Tạo tài khoản</md-filled-button>
-          </form>
-        </section>
+      wireStudentDetailsEvents(student);
+    }
 
-        <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px;">
-          ${studentsMarkup || '<div class="panel" style="grid-column: 1/-1; padding: 40px; text-align: center;"><div class="empty-state">Chưa có học sinh nào. Thêm học sinh phía trên để bắt đầu theo dõi.</div></div>'}
-        </section>
-      </section>
-    `;
+    // Bind event listeners for the active student details view
+    function wireStudentDetailsEvents(student) {
+      const pane = document.querySelector('.student-details-pane');
+      if (!pane) return;
 
-    wireDashboardManager(students);
+      // Save Name & Status
+      pane.querySelector('[data-save-btn]')?.addEventListener('click', async () => {
+        const nameInput = pane.querySelector('[data-name-input]');
+        const statusSelect = pane.querySelector('[data-status-student]');
+        try {
+          await invokeAdminFunction('admin-update-user', {
+            id: student.id,
+            full_name: nameInput.value,
+            status: statusSelect.value,
+            role: 'student',
+          });
+          toast('Đã cập nhật thông tin học sinh.', 'success');
+          await mountDashboard();
+        } catch (error) {
+          toast(error.message, 'error');
+        }
+      });
+
+      // Auto-update status select change
+      pane.querySelector('[data-status-student]')?.addEventListener('change', async (event) => {
+        const nameInput = pane.querySelector('[data-name-input]');
+        try {
+          await invokeAdminFunction('admin-update-user', {
+            id: student.id,
+            full_name: nameInput.value,
+            status: event.target.value,
+            role: 'student',
+          });
+          toast('Đã cập nhật trạng thái học sinh.', 'success');
+          await mountDashboard();
+        } catch (error) {
+          toast(error.message, 'error');
+        }
+      });
+
+      // Reset Password
+      pane.querySelector('[data-reset-btn]')?.addEventListener('click', async () => {
+        const password = window.prompt('Mật khẩu tạm mới, bỏ trống để hệ thống tự tạo:') || undefined;
+        try {
+          const result = await invokeAdminFunction('admin-reset-password', {
+            id: student.id,
+            password,
+          });
+          toast(`Mật khẩu tạm mới: ${result.temporaryPassword}`, 'success');
+        } catch (error) {
+          toast(error.message, 'error');
+        }
+      });
+
+      // Delete student
+      pane.querySelector('[data-delete-btn]')?.addEventListener('click', async () => {
+        if (!window.confirm(`Xóa tài khoản học sinh "${student.full_name || student.email}"? Hành động này không thể hoàn tác.`)) return;
+        try {
+          await deleteManagedUser(student.id);
+          toast('Đã xóa học sinh.', 'success');
+          selectedStudentId = null;
+          await mountDashboard();
+        } catch (error) {
+          toast(error.message, 'error');
+        }
+      });
+    }
+
+    // Bind add student submit listener and validations
+    const createForm = document.querySelector('#create-user-form');
+    if (createForm) {
+      const nameInput = createForm.querySelector('[name="full_name"]');
+      const emailInput = createForm.querySelector('[name="email"]');
+      const passInput = createForm.querySelector('[name="password"]');
+
+      const validateName = () => {
+        if (!nameInput.value.trim()) {
+          nameInput.error = true;
+          nameInput.errorText = 'Họ tên không được để trống';
+          return false;
+        }
+        nameInput.error = false;
+        nameInput.errorText = '';
+        return true;
+      };
+
+      const validateEmail = () => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailInput.value.trim()) {
+          emailInput.error = true;
+          emailInput.errorText = 'Email không được để trống';
+          return false;
+        } else if (!emailRegex.test(emailInput.value.trim())) {
+          emailInput.error = true;
+          emailInput.errorText = 'Định dạng email không hợp lệ';
+          return false;
+        }
+        emailInput.error = false;
+        emailInput.errorText = '';
+        return true;
+      };
+
+      const validatePass = () => {
+        if (!passInput.value || passInput.value.length < 6) {
+          passInput.error = true;
+          passInput.errorText = 'Mật khẩu phải tối thiểu 6 ký tự';
+          return false;
+        }
+        passInput.error = false;
+        passInput.errorText = '';
+        return true;
+      };
+
+      nameInput?.addEventListener('input', validateName);
+      emailInput?.addEventListener('input', validateEmail);
+      passInput?.addEventListener('input', validatePass);
+
+      createForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const isNameValid = validateName();
+        const isEmailValid = validateEmail();
+        const isPassValid = validatePass();
+        if (!isNameValid || !isEmailValid || !isPassValid) {
+          return;
+        }
+        const restore = setButtonLoading(createForm.querySelector('md-filled-button'));
+        const values = Object.fromEntries(new FormData(createForm).entries());
+        try {
+          await createManagedUser({
+            ...values,
+            role: 'student',
+          });
+          toast('Đã tạo tài khoản học sinh.', 'success');
+          await mountDashboard();
+        } catch (error) {
+          toast(error.message, 'error');
+        } finally {
+          restore();
+        }
+      });
+    }
+
+    renderSidebarList(students);
+    renderStudentDetails(selectedStudentId, students, allAttempts);
     wireMaterialFormButtons(root);
   } catch (error) {
     root.innerHTML = renderErrorState(error);
@@ -1788,99 +2116,11 @@ async function mountDashboard() {
   }
 }
 
-function wireDashboardManager(students) {
-  // Add new student
-  document.querySelector('#create-user-form')?.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const restore = setButtonLoading(form.querySelector('md-filled-button'));
-    const values = Object.fromEntries(new FormData(form).entries());
-    try {
-      await createManagedUser({
-        ...values,
-        role: 'student',
-      });
-      toast('Đã tạo tài khoản học sinh.', 'success');
-      await mountDashboard();
-    } catch (error) {
-      toast(error.message, 'error');
-    } finally {
-      restore();
-    }
-  });
-
-  // Action listeners for each student
-  students.forEach((student) => {
-    const card = document.querySelector(`.student-detail-card[data-student-id="${student.id}"]`);
-    if (!card) return;
-
-    // Save Name
-    card.querySelector('[data-save-btn]')?.addEventListener('click', async () => {
-      const nameInput = card.querySelector('[data-name-input]');
-      const statusSelect = card.querySelector('[data-status-student]');
-      try {
-        await invokeAdminFunction('admin-update-user', {
-          id: student.id,
-          full_name: nameInput.value,
-          status: statusSelect.value,
-          role: 'student',
-        });
-        toast('Đã cập nhật thông tin học sinh.', 'success');
-        await mountDashboard();
-      } catch (error) {
-        toast(error.message, 'error');
-      }
-    });
-
-    // Auto-update on status change
-    card.querySelector('[data-status-student]')?.addEventListener('change', async (event) => {
-      const nameInput = card.querySelector('[data-name-input]');
-      try {
-        await invokeAdminFunction('admin-update-user', {
-          id: student.id,
-          full_name: nameInput.value,
-          status: event.target.value,
-          role: 'student',
-        });
-        toast('Đã cập nhật trạng thái học sinh.', 'success');
-      } catch (error) {
-        toast(error.message, 'error');
-      }
-    });
-
-    // Reset Password
-    card.querySelector('[data-reset-btn]')?.addEventListener('click', async () => {
-      const password = window.prompt('Mật khẩu tạm mới, bỏ trống để hệ thống tự tạo:') || undefined;
-      try {
-        const result = await invokeAdminFunction('admin-reset-password', {
-          id: student.id,
-          password,
-        });
-        toast(`Mật khẩu tạm mới: ${result.temporaryPassword}`, 'success');
-      } catch (error) {
-        toast(error.message, 'error');
-      }
-    });
-
-    // Delete student
-    card.querySelector('[data-delete-btn]')?.addEventListener('click', async () => {
-      if (!window.confirm(`Xóa tài khoản học sinh "${student.full_name || student.email}"? Hành động này không thể hoàn tác.`)) return;
-      try {
-        await deleteManagedUser(student.id);
-        toast('Đã xóa học sinh.', 'success');
-        await mountDashboard();
-      } catch (error) {
-        toast(error.message, 'error');
-      }
-    });
-  });
-}
-
 function mountManageHub() {
   const root = pageRoot();
   const items = [
     { href: '#/content', icon: 'view_list', title: 'Nội dung', description: 'Tạo giai đoạn, chuyên đề, nhóm bài giảng và link bài giảng.' },
-    { href: '#/assignments', icon: 'assignment', title: 'Đề thi / BTVN', description: 'Tạo đề, phiếu trả lời, đáp án và chấm lại bài đã nộp.' },
+    { href: '#/assignments', icon: 'assignment', title: 'Đề thi / Bài tập về nhà', description: 'Tạo đề, phiếu trả lời, đáp án và chấm lại bài đã nộp.' },
     { href: '#/solution-requests', icon: 'rate_review', title: 'Yêu cầu lời giải', description: 'Xem yêu cầu chưa xử lí và các yêu cầu đã gửi lời giải.' },
   ];
   root.innerHTML = `
@@ -2368,7 +2608,7 @@ function emptyEditor() {
 
 async function mountAssignmentManager() {
   const root = pageRoot();
-  root.innerHTML = renderLoading();
+  root.innerHTML = renderSkeletonAssignments();
   try {
     const [path, assignments] = await Promise.all([
       fetchLearningPath(state.profile.role),
@@ -2379,7 +2619,7 @@ async function mountAssignmentManager() {
       <section class="assignment-manager">
         <aside class="panel list-panel">
           <div class="panel-heading">
-            <h2>Đề thi / BTVN</h2>
+            <h2>Đề thi / Bài tập về nhà</h2>
             <md-filled-tonal-button id="new-assignment"><md-icon slot="icon">add</md-icon>Mới</md-filled-tonal-button>
           </div>
           <div class="stack-list">
@@ -2431,70 +2671,143 @@ function normalizeAssignmentEditor(editor) {
   };
 }
 
+function renderPdfPreview(url) {
+  if (!url) {
+    return `
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 40px; text-align: center; color: var(--md-sys-color-outline); height: 100%; width: 100%;">
+        <md-icon style="font-size: 3rem;">picture_as_pdf</md-icon>
+        <p style="margin: 0; font-weight: 500; font-size: 0.9rem;">Chưa có link PDF đề thi</p>
+        <p style="margin: 0; font-size: 0.8rem; max-width: 250px; color: var(--md-sys-color-on-surface-variant);">Hãy nhập link PDF Google Drive ở ô thông tin phía trên để hiển thị bản xem trước tại đây.</p>
+      </div>
+    `;
+  }
+  const preview = toDrivePreviewUrl(url);
+  if (!preview) {
+    return `
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 40px; text-align: center; color: var(--md-sys-color-outline); height: 100%; width: 100%;">
+        <md-icon style="font-size: 3rem;">open_in_new</md-icon>
+        <p style="margin: 0; font-weight: 500; font-size: 0.9rem;">Không thể nhúng link PDF này</p>
+        <a class="text-link" href="${escapeHtml(url)}" target="_blank" rel="noreferrer noopener" style="font-weight: 600;">Mở liên kết trong tab mới</a>
+      </div>
+    `;
+  }
+  return `<iframe src="${escapeHtml(preview)}" style="width: 100%; height: 100%; border: 0; border-radius: 8px;" loading="lazy"></iframe>`;
+}
+
 function renderAssignmentEditor(lectures) {
   const { assignment, questions } = state.assignmentEditor;
   return `
-    <div class="assignment-editor-header">
+    <div class="assignment-editor-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--md-sys-color-outline-variant); padding-bottom: 16px; margin-bottom: 16px;">
       <div>
-        <p class="eyebrow">Đề thi / BTVN</p>
-        <h2>${assignment.id ? 'Chỉnh sửa đề' : 'Tạo đề mới'}</h2>
+        <p class="eyebrow">Đề thi / Bài tập về nhà</p>
+        <h2 style="margin: 0; font-size: 1.35rem; font-weight: 600; color: var(--md-sys-color-on-surface);">${assignment.id ? 'Chỉnh sửa đề' : 'Tạo đề mới'}</h2>
       </div>
-      <div class="button-row">
-        ${assignment.id ? '<md-outlined-button id="delete-assignment" type="button"><md-icon slot="icon">delete</md-icon>Xóa</md-outlined-button>' : ''}
+      <div class="button-row" style="display: flex; gap: 12px;">
+        ${assignment.id ? '<md-outlined-button id="delete-assignment" type="button" style="--md-outlined-button-outline-color: var(--md-sys-color-error); --md-outlined-button-label-text-color: var(--md-sys-color-error);"><md-icon slot="icon">delete</md-icon>Xóa</md-outlined-button>' : ''}
         <md-filled-button type="submit"><md-icon slot="icon">save</md-icon>Lưu đề</md-filled-button>
       </div>
     </div>
+    
     <input type="hidden" name="id" value="${escapeHtml(assignment.id ?? '')}">
     <input type="hidden" name="description" value="${escapeHtml(assignment.description ?? '')}">
     <input type="hidden" name="sort_order" value="${Number(assignment.sort_order ?? 0)}">
     <input type="hidden" name="published" value="true">
-    <section class="assignment-info-panel">
-      <div class="entity-form-heading">
-        <md-icon>picture_as_pdf</md-icon>
-        <h3>Thông tin đề</h3>
+
+    <!-- Top info fields in a clean flex row -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; background: var(--md-sys-color-surface-container-low); padding: 16px; border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant); margin-bottom: 24px;">
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <md-outlined-text-field label="Tên đề thi / Bài tập về nhà" name="title" value="${escapeHtml(assignment.title)}" required style="--md-outlined-text-field-container-shape: 8px; width: 100%;"></md-outlined-text-field>
       </div>
-      <div class="assignment-info-grid">
-        <input class="field" name="title" value="${escapeHtml(assignment.title)}" placeholder="Tên đề thi / BTVN" required>
-        <select class="field" name="lecture_id">
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <span style="font-size: 0.8rem; font-weight: 500; color: var(--md-sys-color-on-surface-variant); padding-left: 4px;">Chuyên đề liên kết</span>
+        <select class="field" name="lecture_id" style="height: 56px; border-radius: 8px; border: 1px solid var(--md-sys-color-outline); padding: 0 12px;">
           <option value="">Bài tập tự do</option>
           ${lectures.map((lecture) => option(lecture.id, lecture.title, assignment.lecture_id)).join('')}
         </select>
-        <input class="field wide" name="pdf_url" value="${escapeHtml(assignment.pdf_url)}" placeholder="Link PDF Google Drive" required>
       </div>
-    </section>
-    <section class="answer-key-panel">
-      <div class="question-builder-header">
-        <div class="qb-title-block">
-          <p class="eyebrow">Phiếu trả lời</p>
-          <h3 class="qb-count">${questions.length} câu hỏi</h3>
+      <div style="display: flex; flex-direction: column; gap: 4px; grid-column: 1 / -1;">
+        <md-outlined-text-field label="Link tài liệu PDF (Google Drive)" id="assignment-pdf-input" name="pdf_url" value="${escapeHtml(assignment.pdf_url)}" required style="--md-outlined-text-field-container-shape: 8px; width: 100%;"></md-outlined-text-field>
+      </div>
+    </div>
+
+    <!-- Main Workspace Split View -->
+    <style>
+      .pdf-viewer-pane {
+        position: sticky;
+        top: 16px;
+        height: calc(100vh - 250px);
+        flex: 1.2;
+        min-width: 400px;
+      }
+      .answer-key-pane {
+        flex: 0.8;
+        min-width: 320px;
+      }
+      @media (max-width: 900px) {
+        .pdf-viewer-pane {
+          position: static !important;
+          height: 450px !important;
+          min-width: 100% !important;
+          flex: none !important;
+        }
+        .answer-key-pane {
+          min-width: 100% !important;
+          flex: none !important;
+        }
+      }
+    </style>
+    <div class="assignment-workspace-split" style="display: flex; flex-wrap: wrap; gap: 24px; min-height: 600px; align-items: stretch;">
+      
+      <!-- Left pane: PDF Viewer -->
+      <div class="pdf-viewer-pane panel" style="border-radius: var(--md-sys-shape-corner-medium, 12px); display: flex; flex-direction: column; gap: 12px; background: var(--md-sys-color-surface-container-lowest); border: 1px solid var(--md-sys-color-outline-variant); padding: 12px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--md-sys-color-outline-variant); padding-bottom: 8px;">
+          <h3 style="margin: 0; font-size: 0.95rem; font-weight: 600; display: flex; align-items: center; gap: 6px; color: var(--md-sys-color-on-surface);"><md-icon>picture_as_pdf</md-icon> Xem đề thi (PDF)</h3>
+          ${assignment.pdf_url ? `<a href="${escapeHtml(assignment.pdf_url)}" target="_blank" class="text-link" style="font-size: 0.85rem; display: flex; align-items: center; gap: 4px;"><md-icon style="font-size: 1rem;">open_in_new</md-icon> Mở link gốc</a>` : ''}
         </div>
-        <div class="qb-toolbar">
-          <div class="qb-single-add">
-            <span class="qb-toolbar-label">Thêm 1 câu</span>
-            <div class="button-row">
-              <md-outlined-button type="button" data-add-question="mcq"><md-icon slot="icon">radio_button_checked</md-icon>Trắc nghiệm</md-outlined-button>
-              <md-outlined-button type="button" data-add-question="tf4"><md-icon slot="icon">fact_check</md-icon>Đúng/Sai</md-outlined-button>
-              <md-outlined-button type="button" data-add-question="short"><md-icon slot="icon">short_text</md-icon>Điền ngắn</md-outlined-button>
+        <div class="pdf-preview-container" style="flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: var(--md-sys-shape-corner-small, 8px); height: 100%;">
+          ${renderPdfPreview(assignment.pdf_url)}
+        </div>
+      </div>
+
+      <!-- Right pane: Answer Sheet Builder -->
+      <div class="answer-key-pane" style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="question-builder-header panel" style="padding: 16px; border-radius: var(--md-sys-shape-corner-medium, 12px); background: var(--md-sys-color-surface-container-low); border: 1px solid var(--md-sys-color-outline-variant); display: flex; flex-direction: column; gap: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--md-sys-color-outline-variant); padding-bottom: 8px;">
+            <h3 style="margin: 0; font-size: 0.95rem; font-weight: 600; color: var(--md-sys-color-on-surface);">Phiếu trả lời (<span class="qb-count">${questions.length} câu hỏi</span>)</h3>
+          </div>
+          
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <!-- Single Add -->
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-size: 0.8rem; font-weight: 500; color: var(--md-sys-color-on-surface-variant);">Thêm 1 câu</span>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <md-outlined-button type="button" style="height: 44px;" data-add-question="mcq"><md-icon slot="icon">radio_button_checked</md-icon>Trắc nghiệm</md-outlined-button>
+                <md-outlined-button type="button" style="height: 44px;" data-add-question="tf4"><md-icon slot="icon">fact_check</md-icon>Đúng/Sai</md-outlined-button>
+                <md-outlined-button type="button" style="height: 44px;" data-add-question="short"><md-icon slot="icon">short_text</md-icon>Điền ngắn</md-outlined-button>
+              </div>
+            </div>
+            
+            <!-- Bulk Add -->
+            <div style="display: flex; flex-direction: column; gap: 6px; border-top: 1px dashed var(--md-sys-color-outline-variant); padding-top: 12px;">
+              <span style="font-size: 0.8rem; font-weight: 500; color: var(--md-sys-color-on-surface-variant);">Thêm hàng loạt</span>
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <input class="field compact-number" name="bulk-question-count" type="number" min="1" max="100" value="20" aria-label="Số câu" style="width: 70px; height: 44px; text-align: center; border-radius: var(--md-sys-shape-corner-small, 8px); border: 1px solid var(--md-sys-color-outline);">
+                <select class="field" name="bulk-question-type" aria-label="Loại câu" style="height: 44px; border-radius: var(--md-sys-shape-corner-small, 8px); border: 1px solid var(--md-sys-color-outline); padding: 0 8px; flex: 1;">
+                  <option value="mcq">Trắc nghiệm (MCQ)</option>
+                  <option value="tf4">Đúng/Sai (TF)</option>
+                  <option value="short">Điền ngắn</option>
+                </select>
+                <md-filled-tonal-button type="button" id="bulk-add-btn" style="height: 44px;"><md-icon slot="icon">playlist_add</md-icon>Thêm</md-filled-tonal-button>
+              </div>
             </div>
           </div>
-          <div class="qb-bulk-add">
-            <span class="qb-toolbar-label">Thêm hàng loạt</span>
-            <div class="qb-bulk-row">
-              <input class="field compact-number" name="bulk-question-count" type="number" min="1" max="100" value="20" aria-label="Số câu">
-              <select class="field" name="bulk-question-type" aria-label="Loại câu">
-                <option value="mcq">Trắc nghiệm</option>
-                <option value="tf4">Đúng/Sai</option>
-                <option value="short">Điền ngắn</option>
-              </select>
-              <md-filled-tonal-button type="button" id="bulk-add-btn"><md-icon slot="icon">playlist_add</md-icon>Thêm</md-filled-tonal-button>
-            </div>
-          </div>
+        </div>
+
+        <div class="question-builder" style="display: flex; flex-direction: column; gap: 12px; max-height: calc(100vh - 350px); overflow-y: auto; padding-right: 4px;">
+          ${questions.length ? questions.map((question, index) => renderQuestionEditor(question, index)).join('') : '<div class="panel empty-state" style="padding: 40px; text-align: center; background: var(--md-sys-color-surface-container-low); border: 1px dashed var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-medium, 12px); color: var(--md-sys-color-outline);">Chưa có câu nào trong phiếu trả lời. Hãy thêm câu hỏi ở trên để bắt đầu nhập đáp án.</div>'}
         </div>
       </div>
-      <div class="question-builder">
-        ${questions.length ? questions.map((question, index) => renderQuestionEditor(question, index)).join('') : '<div class="empty-state compact">Chưa có câu nào trong phiếu trả lời.</div>'}
-      </div>
-    </section>
+
   `;
 }
 
@@ -2628,46 +2941,93 @@ function wireAssignmentEditor(lectures) {
     }
   });
 
-  document.querySelector('#assignment-editor')?.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const restore = setButtonLoading(event.currentTarget.querySelector('md-filled-button'));
-    try {
-      const editor = collectEditor(lectures);
-      const isUpdate = !!editor.assignment.id;
-      const savedAssignment = await saveAssignmentWithQuestions(
-        {
-          ...editor.assignment,
-          id: editor.assignment.id || undefined,
-          lecture_id: editor.assignment.lecture_id || null,
-          owner_id: state.profile.id,
-        },
-        editor.questions,
-      );
-      let regradedCount = 0;
-      if (isUpdate) {
-        regradedCount = await regradeAssignment(savedAssignment.id);
-      }
-      const savedEditor = await fetchAssignmentEditor(savedAssignment.id);
-      state.assignmentEditor = normalizeAssignmentEditor(savedEditor);
-      toast(regradedCount > 0 ? `Đã lưu đề và chấm lại ${regradedCount} bài đã nộp.` : 'Đã lưu đề thi.', 'success');
-      await mountAssignmentManager();
-    } catch (error) {
-      toast(error.message, 'error');
-    } finally {
-      restore();
-    }
-  });
-
   const editorForm = document.querySelector('#assignment-editor');
-  editorForm?.addEventListener('input', () => {
-    state.assignmentEditor = collectEditor(lectures);
-  });
-  editorForm?.addEventListener('change', async (event) => {
-    state.assignmentEditor = collectEditor(lectures);
-    if (event.target?.matches('select[name^="question-type-"]')) {
-      refreshQuestionBuilder(lectures);
-    }
-  });
+  if (editorForm) {
+    const titleInput = editorForm.querySelector('[name="title"]');
+    const pdfInput = editorForm.querySelector('[name="pdf_url"]');
+
+    const validateTitle = () => {
+      if (!titleInput.value.trim()) {
+        titleInput.error = true;
+        titleInput.errorText = 'Tên đề thi không được để trống';
+        return false;
+      }
+      titleInput.error = false;
+      titleInput.errorText = '';
+      return true;
+    };
+
+    const validatePdf = () => {
+      const val = pdfInput.value.trim();
+      if (!val) {
+        pdfInput.error = true;
+        pdfInput.errorText = 'Link PDF không được để trống';
+        return false;
+      }
+      if (!val.startsWith('http://') && !val.startsWith('https://')) {
+        pdfInput.error = true;
+        pdfInput.errorText = 'Link PDF phải bắt đầu bằng http:// hoặc https://';
+        return false;
+      }
+      pdfInput.error = false;
+      pdfInput.errorText = '';
+      return true;
+    };
+
+    titleInput?.addEventListener('input', validateTitle);
+    pdfInput?.addEventListener('input', () => {
+      validatePdf();
+      const previewContainer = document.querySelector('.pdf-preview-container');
+      if (previewContainer) {
+        previewContainer.innerHTML = renderPdfPreview(pdfInput.value);
+      }
+    });
+
+    editorForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const isTitleValid = validateTitle();
+      const isPdfValid = validatePdf();
+      if (!isTitleValid || !isPdfValid) {
+        return;
+      }
+      const restore = setButtonLoading(event.currentTarget.querySelector('md-filled-button'));
+      try {
+        const editor = collectEditor(lectures);
+        const isUpdate = !!editor.assignment.id;
+        const savedAssignment = await saveAssignmentWithQuestions(
+          {
+            ...editor.assignment,
+            id: editor.assignment.id || undefined,
+            lecture_id: editor.assignment.lecture_id || null,
+            owner_id: state.profile.id,
+          },
+          editor.questions,
+        );
+        let regradedCount = 0;
+        if (isUpdate) {
+          regradedCount = await regradeAssignment(savedAssignment.id);
+        }
+        const savedEditor = await fetchAssignmentEditor(savedAssignment.id);
+        state.assignmentEditor = normalizeAssignmentEditor(savedEditor);
+        toast(regradedCount > 0 ? `Đã lưu đề và chấm lại ${regradedCount} bài đã nộp.` : 'Đã lưu đề thi.', 'success');
+        await mountAssignmentManager();
+      } catch (error) {
+        toast(error.message, 'error');
+      } finally {
+        restore();
+      }
+    });
+
+    editorForm.addEventListener('input', () => {
+      state.assignmentEditor = collectEditor(lectures);
+    });
+    editorForm.addEventListener('change', async (event) => {
+      state.assignmentEditor = collectEditor(lectures);
+      if (event.target?.matches('select[name^="question-type-"]')) {
+        refreshQuestionBuilder(lectures);
+      }
+    });
+  }
 }
 
 function defaultQuestion(type) {
