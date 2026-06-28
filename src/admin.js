@@ -740,17 +740,37 @@ export function renderAssignmentEditor(lectures) {
     <input type="hidden" name="published" value="true">
 
     <!-- Top info fields in a clean flex row -->
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; background: var(--md-sys-color-surface-container-low); padding: 16px; border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant); margin-bottom: 24px;">
+    <style>
+      .combo-option:hover {
+        background: var(--md-sys-color-surface-variant);
+      }
+      .combo-option {
+        font-size: 0.9rem;
+        color: var(--md-sys-color-on-surface);
+        transition: background 0.2s;
+      }
+    </style>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; background: var(--md-sys-color-surface-container-low); padding: 16px; border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant); margin-bottom: 24px;">
       <div style="display: flex; flex-direction: column; gap: 4px;">
         <md-outlined-text-field label="Tên đề thi / Bài tập về nhà" name="title" value="${escapeHtml(assignment.title)}" required style="--md-outlined-text-field-container-shape: 8px; width: 100%;"></md-outlined-text-field>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 4px;">
-        <span style="font-size: 0.8rem; font-weight: 500; color: var(--md-sys-color-on-surface-variant); padding-left: 4px;">Chuyên đề liên kết</span>
-        <select class="field" name="lecture_id" style="height: 56px; border-radius: 8px; border: 1px solid var(--md-sys-color-outline); padding: 0 12px;">
-          <option value="">Bài tập tự do</option>
-          ${lectures.map((lecture) => option(lecture.id, lecture.title, assignment.lecture_id)).join('')}
-        </select>
+      
+      <div class="custom-combobox" style="display: flex; flex-direction: column; gap: 4px; position: relative;">
+        <input type="hidden" name="lecture_id" value="${escapeHtml(assignment.lecture_id ?? '')}">
+        <md-outlined-text-field 
+          id="lecture-search-input"
+          label="Chuyên đề liên kết (Gõ để tìm)" 
+          value="${escapeHtml(assignment.lecture_id && lectures.find(l => l.id === assignment.lecture_id) ? lectures.find(l => l.id === assignment.lecture_id).title : (assignment.lecture_id ? '' : 'Bài tập tự do'))}"
+          style="--md-outlined-text-field-container-shape: 8px; width: 100%; cursor: pointer;"
+          autocomplete="off">
+          <md-icon slot="trailing-icon">arrow_drop_down</md-icon>
+        </md-outlined-text-field>
+        <div class="combobox-dropdown" style="display: none; position: absolute; top: calc(100% + 4px); left: 0; right: 0; max-height: 350px; overflow-y: auto; background: var(--md-sys-color-surface-container-high); border-radius: 8px; z-index: 100; box-shadow: 0 8px 24px rgba(0,0,0,0.15); border: 1px solid var(--md-sys-color-outline-variant);">
+          <div class="combo-option" data-value="" style="padding: 14px 16px; cursor: pointer; border-bottom: 1px solid var(--md-sys-color-outline-variant);">Bài tập tự do</div>
+          ${lectures.map((lecture) => `<div class="combo-option" data-value="${escapeHtml(lecture.id)}" data-label="${escapeHtml(lecture.title).toLowerCase()}" style="padding: 14px 16px; cursor: pointer; border-bottom: 1px solid var(--md-sys-color-outline-variant);">${escapeHtml(lecture.title)}</div>`).join('')}
+        </div>
       </div>
+
       <div style="display: flex; flex-direction: column; gap: 4px; grid-column: 1 / -1;">
         <md-outlined-text-field label="Link tài liệu PDF (Google Drive)" id="assignment-pdf-input" name="pdf_url" value="${escapeHtml(assignment.pdf_url)}" required style="--md-outlined-text-field-container-shape: 8px; width: 100%;"></md-outlined-text-field>
       </div>
@@ -917,6 +937,49 @@ export function wireQuestionEditorControls(lectures) {
 }
 
 export function wireAssignmentEditor(lectures) {
+  // Wire Custom Searchable Combobox
+  const searchInput = document.querySelector('#lecture-search-input');
+  const hiddenInput = document.querySelector('input[name="lecture_id"]');
+  const dropdown = document.querySelector('.combobox-dropdown');
+  if (searchInput && dropdown) {
+    const options = dropdown.querySelectorAll('.combo-option');
+    // Mở dropdown khi click/focus
+    const openDropdown = () => {
+      dropdown.style.display = 'block';
+      options.forEach(opt => opt.style.display = 'block'); // reset filter
+    };
+    searchInput.addEventListener('focus', openDropdown);
+    searchInput.addEventListener('click', openDropdown);
+    
+    // Tìm kiếm (filter)
+    searchInput.addEventListener('input', (e) => {
+      dropdown.style.display = 'block';
+      const term = (e.target.value || '').toLowerCase();
+      options.forEach(opt => {
+        if (!opt.dataset.value) return; // Luôn hiện "Bài tập tự do"
+        const label = opt.dataset.label || '';
+        opt.style.display = label.includes(term) ? 'block' : 'none';
+      });
+    });
+
+    // Chọn item
+    options.forEach(opt => {
+      opt.addEventListener('click', () => {
+        hiddenInput.value = opt.dataset.value;
+        searchInput.value = opt.textContent;
+        dropdown.style.display = 'none';
+      });
+    });
+
+    // Bấm ra ngoài để đóng
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.custom-combobox')) {
+        dropdown.style.display = 'none';
+        // Nếu gõ linh tinh mà không chọn, có thể tự động reset về giá trị cũ (tuỳ chọn)
+      }
+    });
+  }
+
   document.querySelector('#new-assignment')?.addEventListener('click', () => {
     state.assignmentEditor = emptyEditor();
     mountAssignmentManager();
