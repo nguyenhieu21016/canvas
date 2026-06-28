@@ -10,7 +10,8 @@ import {
 } from "./services/lmsApi.js";
 import { 
   state, pageRoot, renderLoading, renderErrorState, wireRouteRetry, 
-  escapeHtml, wireTableSearch, toast, isManager, renderAttemptsTable
+  escapeHtml, wireTableSearch, toast, isManager, renderAttemptsTable,
+  renderManagerSolutionRequest, renderMetric, wireSolutionRequestManager
 } from "./main.js";
 import { mountStudentGrades } from "./student.js";
 

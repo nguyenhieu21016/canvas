@@ -7,7 +7,8 @@ import {
 } from "./services/lmsApi.js";
 import { 
   state, pageRoot, renderLoading, renderErrorState, escapeHtml, toast, isManager,
-  renderAccountAvatar, renderSkeletonDashboard, renderStateMessage, wireMaterialFormButtons
+  renderAccountAvatar, renderSkeletonDashboard, renderStateMessage, wireMaterialFormButtons,
+  driveFrame
 } from "./main.js";
 
 let selectedStudentId = null;
