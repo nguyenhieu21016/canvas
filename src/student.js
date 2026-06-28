@@ -1,6 +1,6 @@
 // student.js - Lazy loaded module for student routes
 import { formatDateTime, formatScore } from "./lib/format.js";
-import { setButtonLoading } from "./lib/html.js";
+import { setButtonLoading, option } from "./lib/html.js";
 import { 
   fetchLearningPath, fetchDashboardStats, fetchGradebook, fetchMyHistory,
   fetchStudents, fetchTeachingLogs

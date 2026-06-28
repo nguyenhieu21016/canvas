@@ -1,7 +1,7 @@
 // admin.js - Lazy loaded module for admin routes
 import { supabase } from './services/supabaseClient.js';
 import { formatDateTime, formatScore, roleLabel } from "./lib/format.js";
-import { setButtonLoading } from "./lib/html.js";
+import { setButtonLoading, option } from "./lib/html.js";
 import { 
   fetchSolutionRequestsForManager, fetchLearningPath, fetchAssignmentsForManager,
   fetchStudents, fetchGradebook, upsertPhase, deletePhase, upsertModule, deleteModule,
