@@ -1033,25 +1033,37 @@ export async function deleteSalarySchedule(scheduleId) {
   assertOk({ error });
 }
 
-export async function toggleSalarySession({ scheduleId, sessionDate, taught }) {
+// state: 'none' | 'scheduled' | 'taught'
+// Cycle: none → scheduled → taught → none
+export async function setSessionState({ scheduleId, sessionDate, state }) {
   const client = requireSupabase();
-  if (taught) {
-    const { error } = await withTimeout(
-      client
-        .from('salary_sessions')
-        .insert({ schedule_id: scheduleId, session_date: sessionDate }),
-      'Tick buổi dạy',
-    );
-    assertOk({ error });
-  } else {
+  if (state === 'none') {
     const { error } = await withTimeout(
       client
         .from('salary_sessions')
         .delete()
         .eq('schedule_id', scheduleId)
         .eq('session_date', sessionDate),
-      'Untick buổi dạy',
+      'Xóa buổi dạy',
+    );
+    assertOk({ error });
+  } else {
+    // insert or update
+    const { error } = await withTimeout(
+      client
+        .from('salary_sessions')
+        .upsert(
+          { schedule_id: scheduleId, session_date: sessionDate, taught: state === 'taught' },
+          { onConflict: 'schedule_id,session_date' },
+        ),
+      'Cập nhật buổi dạy',
     );
     assertOk({ error });
   }
 }
+
+// Keep old name as alias for backward compat
+export async function toggleSalarySession({ scheduleId, sessionDate, taught }) {
+  return setSessionState({ scheduleId, sessionDate, state: taught ? 'scheduled' : 'none' });
+}
+

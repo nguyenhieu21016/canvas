@@ -10,7 +10,7 @@ import {
   deleteAssignment, reorderContentNodes as reorderContentNodesApi,
   invokeAdminFunction, createManagedUser, fetchAssignmentEditor, regradeAssignment, 
   deleteManagedUser, saveAssignmentWithQuestions,
-  fetchSalaryMonth, upsertSalarySchedule, deleteSalarySchedule, toggleSalarySession
+  fetchSalaryMonth, upsertSalarySchedule, deleteSalarySchedule, setSessionState
 } from "./services/lmsApi.js";
 import { 
   state, pageRoot, renderLoading, renderErrorState, wireRouteRetry, 
@@ -1396,6 +1396,8 @@ export async function mountGrades() {
 }
 
 
+
+
 // ─── Salary Manager ───────────────────────────────────────────────────────────
 
 function getDaysInMonth(year, month) {
@@ -1408,84 +1410,18 @@ function getDaysInMonth(year, month) {
   return days;
 }
 
-function renderSalaryCalendar(schedule, days) {
-  const taughtDates = new Set((schedule.salary_sessions ?? []).map((s) => s.session_date));
-  const DAY_LABELS = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
-  const rate = Number(schedule.rate_per_session ?? 0);
-  const sessions = taughtDates.size;
-  const total = sessions * rate;
-  const fmt = new Intl.NumberFormat('vi-VN');
-
-  return `
-    <div class="salary-card panel" data-schedule-id="${schedule.id}" style="border-radius: var(--md-sys-shape-corner-large,16px); background: var(--md-sys-color-surface-container-low); border: 1px solid var(--md-sys-color-outline-variant); padding: 20px; display:flex; flex-direction:column; gap:14px;">
-      <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
-        <div>
-          <p style="margin:0; font-weight:700; font-size:1rem;">${escapeHtml(schedule.profiles?.full_name ?? 'Học sinh')}</p>
-          <p style="margin:4px 0 0; font-size:0.82rem; color:var(--md-sys-color-on-surface-variant);">
-            ${sessions} buổi × ${fmt.format(rate)}đ = <strong style="color:var(--md-sys-color-primary)">${fmt.format(total)}đ</strong>
-          </p>
-        </div>
-        <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-          <md-outlined-text-field 
-            type="number" label="Đơn giá/buổi (VND)"
-            value="${rate}"
-            data-rate-field="${schedule.id}"
-            style="width:180px; --md-outlined-text-field-container-shape:8px;"
-          ></md-outlined-text-field>
-          <md-outlined-button type="button" data-delete-schedule="${schedule.id}" style="--md-outlined-button-outline-color:var(--md-sys-color-error); --md-outlined-button-label-text-color:var(--md-sys-color-error);">
-            <md-icon slot="icon">delete</md-icon>Xóa
-          </md-outlined-button>
-        </div>
-      </div>
-
-      <div style="display:grid; grid-template-columns:repeat(7,1fr); gap:5px; text-align:center;">
-        ${DAY_LABELS.map((d) => `<div style="font-size:0.7rem; font-weight:700; color:var(--md-sys-color-on-surface-variant); padding:4px 0;">${d}</div>`).join('')}
-        ${(() => {
-          const firstDow = days[0].getDay();
-          const blanks = Array(firstDow).fill('<div></div>').join('');
-          const cells = days.map((d) => {
-            const iso = d.toISOString().slice(0, 10);
-            const dow = d.getDay();
-            const taught = taughtDates.has(iso);
-            const isWeekend = dow === 0 || dow === 6;
-            return `<button
-              type="button"
-              data-toggle-session="${schedule.id}"
-              data-date="${iso}"
-              style="
-                padding:6px 0; border-radius:50%; border:none; cursor:pointer; font-size:0.82rem; font-weight:600;
-                background:${taught ? 'var(--md-sys-color-primary)' : 'var(--md-sys-color-surface-container)'};
-                color:${taught ? 'var(--md-sys-color-on-primary)' : isWeekend ? 'var(--md-sys-color-error)' : 'var(--md-sys-color-on-surface)'};
-                transition: background 0.15s, transform 0.1s;
-                aspect-ratio: 1;
-              "
-            >${d.getDate()}</button>`;
-          }).join('');
-          return blanks + cells;
-        })()}
-      </div>
-    </div>
-  `;
-}
-
 export async function mountSalaryManager() {
   const root = pageRoot();
-
   const now = new Date();
   let year = now.getFullYear();
-  let month = now.getMonth(); // 0-indexed
+  let month = now.getMonth();
 
-  async function render() {
+  async function rerender() {
     const monthStr = `${year}-${String(month + 1).padStart(2, '0')}-01`;
-    root.innerHTML = renderLoading('Đang tải lịch lương…');
-
-    let schedules = [];
-    let students = [];
+    root.innerHTML = renderLoading('Đang tải lịch dạy…');
+    let schedules = [], students = [];
     try {
-      [schedules, students] = await Promise.all([
-        fetchSalaryMonth(monthStr),
-        fetchStudents(),
-      ]);
+      [schedules, students] = await Promise.all([fetchSalaryMonth(monthStr), fetchStudents()]);
     } catch (err) {
       root.innerHTML = renderErrorState(err);
       wireRouteRetry(root);
@@ -1493,110 +1429,173 @@ export async function mountSalaryManager() {
     }
 
     const days = getDaysInMonth(year, month);
-    const totalSalary = schedules.reduce((sum, s) => {
-      const sessions = (s.salary_sessions ?? []).length;
-      return sum + sessions * Number(s.rate_per_session ?? 0);
-    }, 0);
     const fmt = new Intl.NumberFormat('vi-VN');
+    const DAY_SHORT = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
 
-    // Students not yet in this month
+    const totalSalary = schedules.reduce((sum, s) => {
+      const taughtCount = (s.salary_sessions ?? []).filter(x => x.taught).length;
+      return sum + taughtCount * Number(s.rate_per_session ?? 0);
+    }, 0);
+
     const scheduledIds = new Set(schedules.map((s) => s.student_id));
     const unscheduled = students.filter((s) => !scheduledIds.has(s.id));
-
     const monthLabel = new Date(year, month, 1).toLocaleDateString('vi-VN', { month: 'long', year: 'numeric' });
+
+    function renderStudentTracker(s) {
+      // Build maps: date → 'scheduled' | 'taught'
+      const sessionMap = {};
+      for (const x of (s.salary_sessions ?? [])) {
+        sessionMap[x.session_date] = x.taught ? 'taught' : 'scheduled';
+      }
+      const taughtCount = Object.values(sessionMap).filter(v => v === 'taught').length;
+      const scheduledCount = Object.values(sessionMap).filter(v => v === 'scheduled').length;
+      const rate = Number(s.rate_per_session ?? 0);
+      const total = taughtCount * rate;
+      const firstDow = days[0].getDay();
+
+      function cellStyle(cellState, isWeekend) {
+        if (cellState === 'taught') return `background:var(--md-sys-color-primary); color:var(--md-sys-color-on-primary); border:2px solid var(--md-sys-color-primary);`;
+        if (cellState === 'scheduled') return `background:transparent; color:${isWeekend ? 'var(--md-sys-color-error)' : 'var(--md-sys-color-primary)'}; border:2px solid var(--md-sys-color-primary);`;
+        return `background:var(--md-sys-color-surface-container); color:${isWeekend ? 'var(--md-sys-color-error)' : 'var(--md-sys-color-on-surface-variant)'}; border:2px solid transparent;`;
+      }
+
+      return `
+        <div class="panel" data-schedule="${s.id}" style="
+          border-radius: var(--md-sys-shape-corner-large,16px);
+          background: var(--md-sys-color-surface-container-low);
+          border: 1px solid var(--md-sys-color-outline-variant);
+          padding: 18px 20px; display:flex; flex-direction:column; gap:12px;
+        ">
+          <!-- Header row -->
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+            <div>
+              <p style="margin:0; font-weight:700; font-size:1rem; color:var(--md-sys-color-on-surface);">${escapeHtml(s.profiles?.full_name ?? 'Học sinh')}</p>
+              <p style="margin:4px 0 0; font-size:0.83rem; color:var(--md-sys-color-on-surface-variant);">
+                Lịch: <strong>${scheduledCount + taughtCount}</strong> buổi &nbsp;·&nbsp;
+                Đã dạy: <strong><span data-count="${s.id}">${taughtCount}</span></strong> buổi &nbsp;·&nbsp;
+                Lương: <strong style="color:var(--md-sys-color-primary);" data-total="${s.id}">${fmt.format(total)}đ</strong>
+              </p>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <label style="font-size:0.78rem; color:var(--md-sys-color-on-surface-variant);">đ/buổi</label>
+              <input type="number" class="field rate-input" data-rate-for="${s.id}" value="${rate}" min="0" step="10000"
+                style="width:130px; height:36px; border-radius:8px; border:1px solid var(--md-sys-color-outline); padding:0 10px; font-size:0.9rem; background:var(--md-sys-color-surface);">
+              <button type="button" data-delete-schedule="${s.id}" style="
+                background:none; border:1px solid var(--md-sys-color-error); border-radius:8px;
+                color:var(--md-sys-color-error); cursor:pointer; padding:6px 10px;
+                display:flex; align-items:center;
+              "><md-icon style="font-size:1rem;">delete</md-icon></button>
+            </div>
+          </div>
+
+          <!-- Legend -->
+          <div style="display:flex; gap:14px; font-size:0.75rem; color:var(--md-sys-color-on-surface-variant);">
+            <span style="display:flex;align-items:center;gap:5px;"><span style="width:14px;height:14px;border-radius:3px;background:var(--md-sys-color-surface-container);border:2px solid var(--md-sys-color-outline-variant);display:inline-block;"></span> Trống</span>
+            <span style="display:flex;align-items:center;gap:5px;"><span style="width:14px;height:14px;border-radius:3px;background:transparent;border:2px solid var(--md-sys-color-primary);display:inline-block;"></span> Có lịch</span>
+            <span style="display:flex;align-items:center;gap:5px;"><span style="width:14px;height:14px;border-radius:3px;background:var(--md-sys-color-primary);display:inline-block;"></span> Đã dạy</span>
+          </div>
+
+          <!-- Calendar grid -->
+          <div style="display:grid; grid-template-columns:repeat(7,1fr); gap:4px; text-align:center;">
+            ${DAY_SHORT.map((d, i) => `<div style="font-size:0.68rem; font-weight:700; color:${i===0||i===6 ? 'var(--md-sys-color-error)' : 'var(--md-sys-color-on-surface-variant)'}; padding:3px 0;">${d}</div>`).join('')}
+            ${Array(firstDow).fill('<div></div>').join('')}
+            ${days.map((d) => {
+              const iso = d.toISOString().slice(0, 10);
+              const cellState = sessionMap[iso] ?? 'none';
+              const dow = d.getDay();
+              const isWeekend = dow === 0 || dow === 6;
+              return `<button
+                type="button"
+                class="day-cell"
+                data-toggle="${s.id}"
+                data-date="${iso}"
+                data-state="${cellState}"
+                style="
+                  padding:0; border-radius:6px; cursor:pointer; font-size:0.82rem; font-weight:600;
+                  aspect-ratio:1; display:flex; align-items:center; justify-content:center;
+                  ${cellStyle(cellState, isWeekend)}
+                  transition: all 0.12s;
+                "
+              >${d.getDate()}</button>`;
+            }).join('')}
+          </div>
+        </div>
+      `;
+    }
+
 
     root.innerHTML = `
       <style>
-        .salary-card button[data-toggle-session]:hover { transform: scale(1.15); }
+        .day-cell:hover { transform: scale(1.12); }
+        .day-cell:active { transform: scale(0.95); }
       </style>
-      <section style="max-width:900px; padding:var(--page-gutter,24px); display:flex; flex-direction:column; gap:24px;">
+      <section style="max-width:1200px; padding:var(--page-gutter,24px); display:flex; flex-direction:column; gap:20px;">
 
-        <!-- Month picker + summary bar -->
+        <!-- Top bar -->
         <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
-          <div style="display:flex; align-items:center; gap:8px;">
-            <md-icon-button id="salary-prev-month"><md-icon>chevron_left</md-icon></md-icon-button>
-            <h2 style="margin:0; font-size:1.3rem; font-weight:700; min-width:180px; text-align:center;">${monthLabel}</h2>
-            <md-icon-button id="salary-next-month"><md-icon>chevron_right</md-icon></md-icon-button>
+          <div style="display:flex; align-items:center; gap:6px;">
+            <button id="prev-month" style="background:none; border:none; cursor:pointer; padding:6px; border-radius:50%; color:var(--md-sys-color-on-surface);">
+              <md-icon>chevron_left</md-icon>
+            </button>
+            <h2 style="margin:0; font-size:1.15rem; font-weight:700; min-width:160px; text-align:center;">${monthLabel}</h2>
+            <button id="next-month" style="background:none; border:none; cursor:pointer; padding:6px; border-radius:50%; color:var(--md-sys-color-on-surface);">
+              <md-icon>chevron_right</md-icon>
+            </button>
           </div>
-          <div style="background:var(--md-sys-color-primary-container); color:var(--md-sys-color-on-primary-container); border-radius:12px; padding:10px 20px; font-weight:700; font-size:1rem;">
-            Tổng lương tháng: ${fmt.format(totalSalary)}đ
+          <div style="background:var(--md-sys-color-primary-container); color:var(--md-sys-color-on-primary-container); border-radius:12px; padding:8px 18px; font-weight:700;">
+            Tổng: ${fmt.format(totalSalary)}đ
           </div>
         </div>
 
-        <!-- Add student to this month -->
-        ${unscheduled.length > 0 ? `
-          <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-            <select id="salary-add-student" class="field" style="height:40px; border-radius:8px; border:1px solid var(--md-sys-color-outline); padding:0 12px; flex:1; min-width:180px;">
-              <option value="">-- Chọn học sinh --</option>
-              ${unscheduled.map((s) => `<option value="${escapeHtml(s.id)}">${escapeHtml(s.full_name)}</option>`).join('')}
-            </select>
-            <md-filled-button id="salary-add-btn" type="button">
-              <md-icon slot="icon">add</md-icon>Thêm học sinh vào tháng
-            </md-filled-button>
-          </div>
-        ` : '<p style="margin:0; color:var(--md-sys-color-on-surface-variant); font-size:0.9rem;">✅ Tất cả học sinh đã có lịch tháng này.</p>'}
-
-        <!-- Per-student calendars -->
-        <div id="salary-cards" style="display:flex; flex-direction:column; gap:16px;">
+        <!-- Student trackers -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(360px, 1fr)); gap:16px; align-items:start;" id="tracker-list">
           ${schedules.length
-            ? schedules.map((s) => renderSalaryCalendar(s, days)).join('')
-            : '<p style="color:var(--md-sys-color-on-surface-variant);">Chưa có học sinh nào trong tháng này. Thêm học sinh ở trên.</p>'
+            ? schedules.map(renderStudentTracker).join('')
+            : `<div style="color:var(--md-sys-color-on-surface-variant); text-align:center; padding:32px 0; font-size:0.95rem;">
+                Chưa có học sinh nào trong tháng này.<br>Thêm học sinh bên dưới để bắt đầu tick lịch.
+              </div>`
           }
         </div>
+
+        <!-- Add student -->
+        ${unscheduled.length ? `
+          <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; padding-top:8px; border-top:1px solid var(--md-sys-color-outline-variant);">
+            <select id="add-student-sel" class="field" style="flex:1; min-width:180px; height:40px; border-radius:8px; border:1px solid var(--md-sys-color-outline); padding:0 12px;">
+              <option value="">-- Thêm học sinh vào tháng --</option>
+              ${unscheduled.map((s) => `<option value="${escapeHtml(s.id)}">${escapeHtml(s.full_name)}</option>`).join('')}
+            </select>
+            <md-filled-button id="add-student-btn" type="button">
+              <md-icon slot="icon">add</md-icon>Thêm
+            </md-filled-button>
+          </div>
+        ` : ''}
 
       </section>
     `;
 
-    wireSalaryManager(month, year, render);
-  }
-
-  function wireSalaryManager(_month, _year, rerender) {
-    document.getElementById('salary-prev-month')?.addEventListener('click', () => {
-      month--;
-      if (month < 0) { month = 11; year--; }
-      rerender();
+    // Wire month navigation
+    document.getElementById('prev-month')?.addEventListener('click', () => {
+      month--; if (month < 0) { month = 11; year--; } rerender();
     });
-    document.getElementById('salary-next-month')?.addEventListener('click', () => {
-      month++;
-      if (month > 11) { month = 0; year++; }
-      rerender();
+    document.getElementById('next-month')?.addEventListener('click', () => {
+      month++; if (month > 11) { month = 0; year++; } rerender();
     });
 
-    document.getElementById('salary-add-btn')?.addEventListener('click', async () => {
-      const studentId = document.getElementById('salary-add-student')?.value;
+    // Wire add student
+    document.getElementById('add-student-btn')?.addEventListener('click', async () => {
+      const sel = document.getElementById('add-student-sel');
+      const studentId = sel?.value;
       if (!studentId) { toast('Chọn học sinh trước!', 'error'); return; }
       try {
-        const monthStr = `${_year}-${String(_month + 1).padStart(2, '0')}-01`;
         await upsertSalarySchedule({ studentId, month: monthStr, ratePerSession: 0, notes: '' });
         await rerender();
       } catch (err) { toast(err.message, 'error'); }
     });
 
-    // Rate field: save on blur
-    document.querySelectorAll('[data-rate-field]').forEach((field) => {
-      field.addEventListener('change', async () => {
-        const scheduleId = field.dataset.rateField;
-        const rate = Number(field.value) || 0;
-        // find schedule to get studentId
-        const card = field.closest('[data-schedule-id]');
-        const deleteBtn = card?.querySelector('[data-delete-schedule]');
-        if (!deleteBtn) return;
-        // upsert rate update — fetch month from DOM heading
-        const monthStr = `${_year}-${String(_month + 1).padStart(2, '0')}-01`;
-        const studentId = card?.dataset?.studentId;
-        // We update via direct supabase in admin — just update rate
-        try {
-          const { supabase: sb } = await import('./services/supabaseClient.js');
-          await sb.from('salary_schedules').update({ rate_per_session: rate }).eq('id', scheduleId);
-          await rerender();
-        } catch (err) { toast(err.message, 'error'); }
-      });
-    });
-
-    // Delete schedule
+    // Wire delete schedule
     document.querySelectorAll('[data-delete-schedule]').forEach((btn) => {
       btn.addEventListener('click', async () => {
-        if (!confirm('Xóa lịch của học sinh này trong tháng?')) return;
+        if (!confirm('Xóa lịch dạy của học sinh này trong tháng?')) return;
         try {
           await deleteSalarySchedule(btn.dataset.deleteSchedule);
           await rerender();
@@ -1604,43 +1603,82 @@ export async function mountSalaryManager() {
       });
     });
 
-    // Toggle session (tick/untick date)
-    document.querySelectorAll('[data-toggle-session]').forEach((btn) => {
-      btn.addEventListener('click', async () => {
-        const scheduleId = btn.dataset.toggleSession;
-        const sessionDate = btn.dataset.date;
-        const isTaught = btn.style.background.includes('primary') && !btn.style.background.includes('container');
+    // Wire rate input (update on blur/enter)
+    document.querySelectorAll('.rate-input').forEach((input) => {
+      const save = async () => {
+        const scheduleId = input.dataset.rateFor;
+        const rate = Number(input.value) || 0;
         try {
-          await toggleSalarySession({ scheduleId, sessionDate, taught: !isTaught });
-          // Optimistic UI: toggle immediately
-          if (!isTaught) {
-            btn.style.background = 'var(--md-sys-color-primary)';
-            btn.style.color = 'var(--md-sys-color-on-primary)';
-          } else {
-            btn.style.background = 'var(--md-sys-color-surface-container)';
-            btn.style.color = 'var(--md-sys-color-on-surface)';
-          }
-          // Update summary label in card
-          const card = btn.closest('[data-schedule-id]');
-          if (card) {
-            const allBtns = card.querySelectorAll('[data-toggle-session]');
-            let count = 0;
-            allBtns.forEach((b) => {
-              if (b.style.background.includes('primary') && !b.style.background.includes('container')) count++;
-            });
-            const rateField = card.querySelector('[data-rate-field]');
-            const rate = Number(rateField?.value ?? 0);
-            const fmt2 = new Intl.NumberFormat('vi-VN');
-            const summaryEl = card.querySelector('p[data-summary]') ?? card.querySelectorAll('p')[1];
-            if (summaryEl) {
-              const name = card.querySelector('p:first-child')?.textContent ?? '';
-              summaryEl.innerHTML = `${count} buổi × ${fmt2.format(rate)}đ = <strong style="color:var(--md-sys-color-primary)">${fmt2.format(count * rate)}đ</strong>`;
-            }
-          }
+          const { supabase: sb } = await import('./services/supabaseClient.js');
+          await sb.from('salary_schedules').update({ rate_per_session: rate }).eq('id', scheduleId);
+          // Update summary inline without full rerender
+          const fmtNew = new Intl.NumberFormat('vi-VN');
+          const countEl = document.querySelector(`[data-count="${scheduleId}"]`);
+          const totalEl = document.querySelector(`[data-total="${scheduleId}"]`);
+          const rateDisp = document.querySelector(`.rate-display[data-for="${scheduleId}"]`);
+          const count = Number(countEl?.textContent ?? 0);
+          if (rateDisp) rateDisp.textContent = fmtNew.format(rate);
+          if (totalEl) totalEl.textContent = `${fmtNew.format(count * rate)}đ`;
         } catch (err) { toast(err.message, 'error'); }
+      };
+      input.addEventListener('blur', save);
+      input.addEventListener('keydown', (e) => { if (e.key === 'Enter') save(); });
+    });
+
+    // Wire day cell toggle: none → scheduled → taught → none
+    document.querySelectorAll('.day-cell').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const scheduleId = btn.dataset.toggle;
+        const sessionDate = btn.dataset.date;
+        const prevState = btn.dataset.state ?? 'none';
+        // none → scheduled, scheduled → taught, taught → none
+        const nextState = prevState === 'none' ? 'scheduled' : prevState === 'scheduled' ? 'taught' : 'none';
+        const dow = new Date(sessionDate + 'T00:00:00').getDay();
+        const isWeekend = dow === 0 || dow === 6;
+
+        // Optimistic update
+        btn.dataset.state = nextState;
+        if (nextState === 'taught') {
+          btn.style.background = 'var(--md-sys-color-primary)';
+          btn.style.color = 'var(--md-sys-color-on-primary)';
+          btn.style.border = '2px solid var(--md-sys-color-primary)';
+        } else if (nextState === 'scheduled') {
+          btn.style.background = 'transparent';
+          btn.style.color = isWeekend ? 'var(--md-sys-color-error)' : 'var(--md-sys-color-primary)';
+          btn.style.border = '2px solid var(--md-sys-color-primary)';
+        } else {
+          btn.style.background = 'var(--md-sys-color-surface-container)';
+          btn.style.color = isWeekend ? 'var(--md-sys-color-error)' : 'var(--md-sys-color-on-surface-variant)';
+          btn.style.border = '2px solid transparent';
+        }
+
+        // Update taught count + total (only changes when going to/from taught)
+        const card = btn.closest('[data-schedule]');
+        const countEl = card?.querySelector(`[data-count="${scheduleId}"]`);
+        const totalEl = card?.querySelector(`[data-total="${scheduleId}"]`);
+        const rateInput = card?.querySelector(`[data-rate-for="${scheduleId}"]`);
+        const rate = Number(rateInput?.value ?? 0);
+        if (countEl) {
+          const delta = nextState === 'taught' ? 1 : (prevState === 'taught' ? -1 : 0);
+          const newCount = Math.max(0, Number(countEl.textContent) + delta);
+          countEl.textContent = newCount;
+          if (totalEl) totalEl.textContent = `${new Intl.NumberFormat('vi-VN').format(newCount * rate)}đ`;
+        }
+
+        try {
+          await setSessionState({ scheduleId, sessionDate, state: nextState });
+        } catch (err) {
+          btn.dataset.state = prevState;
+          toast(err.message, 'error');
+          await rerender();
+        }
       });
     });
   }
 
-  await render();
+
+  await rerender();
 }
+
+
+
