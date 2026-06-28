@@ -21,31 +21,169 @@ import { mountStudentGrades } from "./student.js";
 
 export function mountManageHub() {
   const root = pageRoot();
-  const items = [
-    { href: '#/progress', icon: 'track_changes', title: 'Tiến độ học', description: 'Theo dõi bài giảng trực tiếp đã dạy cho từng học sinh.' },
-    { href: '#/content', icon: 'view_list', title: 'Nội dung', description: 'Tạo giai đoạn, chuyên đề, nhóm bài giảng và link bài giảng.' },
-    { href: '#/assignments', icon: 'assignment', title: 'Đề thi / Bài tập về nhà', description: 'Tạo đề, phiếu trả lời, đáp án và chấm lại bài đã nộp.' },
-    { href: '#/solution-requests', icon: 'rate_review', title: 'Yêu cầu lời giải', description: 'Xem yêu cầu chưa xử lí và các yêu cầu đã gửi lời giải.' },
+  const name = state.profile?.full_name?.split(' ').at(-1) ?? 'Thầy/Cô';
+  const hour = new Date().getHours();
+  const greeting = hour < 12 ? 'Chào buổi sáng' : hour < 18 ? 'Chào buổi chiều' : 'Chào buổi tối';
+
+  const primaryItems = [
+    {
+      href: '#/progress',
+      icon: 'track_changes',
+      title: 'Tiến độ học',
+      description: 'Theo dõi bài giảng trực tiếp đã dạy. Xem chi tiết từng học sinh.',
+      color: 'var(--md-sys-color-primary)',
+      bg: 'var(--md-sys-color-primary-container)',
+    },
+    {
+      href: '#/content',
+      icon: 'view_list',
+      title: 'Quản lý Nội dung',
+      description: 'Tạo giai đoạn, chuyên đề, nhóm bài giảng và link bài giảng.',
+      color: 'var(--md-sys-color-tertiary)',
+      bg: 'var(--md-sys-color-tertiary-container)',
+    },
   ];
+
+  const secondaryItems = [
+    {
+      href: '#/assignments',
+      icon: 'assignment',
+      title: 'Đề thi & Bài tập',
+      description: 'Tạo đề, phiếu trả lời, đáp án và chấm lại bài đã nộp.',
+      color: 'var(--md-sys-color-secondary)',
+      bg: 'var(--md-sys-color-secondary-container)',
+    },
+    {
+      href: '#/solution-requests',
+      icon: 'rate_review',
+      title: 'Yêu cầu lời giải',
+      description: 'Xem và xử lí yêu cầu lời giải từ học sinh.',
+      color: '#9C27B0',
+      bg: '#F3E5F5',
+    },
+    {
+      href: '#/students',
+      icon: 'group',
+      title: 'Học sinh',
+      description: 'Quản lý tài khoản, xem bảng điểm và tiến độ từng học sinh.',
+      color: '#E65100',
+      bg: '#FFF3E0',
+    },
+  ];
+
   root.innerHTML = `
-    <section class="manage-hub">
-      ${items
-        .map(
-          (item) => `
-            <a class="phase-card manage-hub-card" href="${item.href}">
+    <style>
+      .hub-hero-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-radius: 20px;
+        padding: 28px;
+        text-decoration: none;
+        color: var(--md-sys-color-on-surface);
+        background: var(--md-sys-color-surface-container-low);
+        border: 1px solid var(--md-sys-color-outline-variant);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        min-height: 200px;
+      }
+      .hub-hero-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+        text-decoration: none;
+      }
+      .hub-hero-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        margin-bottom: 16px;
+        flex-shrink: 0;
+      }
+      .hub-secondary-card {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        border-radius: 16px;
+        padding: 20px;
+        text-decoration: none;
+        color: var(--md-sys-color-on-surface);
+        background: var(--md-sys-color-surface-container-low);
+        border: 1px solid var(--md-sys-color-outline-variant);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .hub-secondary-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        text-decoration: none;
+      }
+      .hub-secondary-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        flex-shrink: 0;
+      }
+    </style>
+
+    <section style="max-width: 1000px; padding: var(--page-gutter, 24px); display: flex; flex-direction: column; gap: 32px;">
+
+      <!-- Greeting -->
+      <div>
+        <p style="margin: 0 0 4px; font-size: 0.95rem; color: var(--md-sys-color-on-surface-variant);">${greeting},</p>
+        <h2 style="margin: 0; font-size: 2rem; font-weight: 700; color: var(--md-sys-color-on-surface);">${escapeHtml(name)} 👋</h2>
+        <p style="margin: 8px 0 0; font-size: 0.9rem; color: var(--md-sys-color-on-surface-variant);">Hôm nay bạn muốn làm gì?</p>
+      </div>
+
+      <!-- Primary actions (large cards) -->
+      <div>
+        <p style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--md-sys-color-on-surface-variant); margin: 0 0 14px;">Thao tác chính</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+          ${primaryItems.map((item) => `
+            <a class="hub-hero-card" href="${item.href}">
               <div>
-                <p class="eyebrow">Quản trị</p>
-                <h2><md-icon>${item.icon}</md-icon>${escapeHtml(item.title)}</h2>
-                <p class="muted">${escapeHtml(item.description)}</p>
+                <div class="hub-hero-icon" style="background: ${item.bg}; color: ${item.color};">
+                  <md-icon>${item.icon}</md-icon>
+                </div>
+                <h3 style="margin: 0 0 8px; font-size: 1.2rem; font-weight: 700;">${escapeHtml(item.title)}</h3>
+                <p style="margin: 0; font-size: 0.88rem; color: var(--md-sys-color-on-surface-variant); line-height: 1.5;">${escapeHtml(item.description)}</p>
               </div>
-              <span class="phase-card-action">Mở<md-icon>arrow_forward</md-icon></span>
+              <span style="display: flex; align-items: center; gap: 4px; margin-top: 24px; font-size: 0.85rem; font-weight: 600; color: ${item.color};">
+                Mở <md-icon style="font-size: 1.1rem;">arrow_forward</md-icon>
+              </span>
             </a>
-          `,
-        )
-        .join('')}
+          `).join('')}
+        </div>
+      </div>
+
+      <!-- Secondary actions (compact list) -->
+      <div>
+        <p style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--md-sys-color-on-surface-variant); margin: 0 0 14px;">Quản lý nhanh</p>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          ${secondaryItems.map((item) => `
+            <a class="hub-secondary-card" href="${item.href}">
+              <div class="hub-secondary-icon" style="background: ${item.bg}; color: ${item.color};">
+                <md-icon>${item.icon}</md-icon>
+              </div>
+              <div style="flex: 1; min-width: 0;">
+                <p style="margin: 0 0 3px; font-weight: 600; font-size: 0.95rem;">${escapeHtml(item.title)}</p>
+                <p style="margin: 0; font-size: 0.82rem; color: var(--md-sys-color-on-surface-variant); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(item.description)}</p>
+              </div>
+              <md-icon style="color: var(--md-sys-color-outline); flex-shrink: 0;">chevron_right</md-icon>
+            </a>
+          `).join('')}
+        </div>
+      </div>
+
     </section>
   `;
 }
+
 
 export async function mountSolutionRequestsManager() {
   const root = pageRoot();
