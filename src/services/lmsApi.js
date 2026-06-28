@@ -998,13 +998,14 @@ export async function fetchSalaryMonth(month) {
   const { data, error } = await withTimeout(
     client
       .from('salary_schedules')
-      .select('*, profiles(full_name), salary_sessions(id, session_date)')
+      .select('*, profiles(full_name), salary_sessions(id, session_date, taught)')
       .eq('month', month)
       .order('created_at'),
     'Tải lịch lương',
   );
-  assertOk({ error });
-  return data ?? [];
+
+  if (error) throw new Error(error.message);
+  return data || [];
 }
 
 export async function upsertSalarySchedule({ studentId, month, ratePerSession, notes }) {
