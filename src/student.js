@@ -3,12 +3,12 @@ import { formatDateTime, formatScore } from "./lib/format.js";
 import { setButtonLoading, option } from "./lib/html.js";
 import { 
   fetchLearningPath, fetchDashboardStats, fetchGradebook, fetchMyHistory,
-  fetchStudents, fetchTeachingLogs
+  fetchStudents, fetchTeachingLogs, invokeAdminFunction, createManagedUser, deleteManagedUser
 } from "./services/lmsApi.js";
 import { 
   state, pageRoot, renderLoading, renderErrorState, escapeHtml, toast, isManager,
   renderAccountAvatar, renderSkeletonDashboard, renderStateMessage, wireMaterialFormButtons,
-  driveFrame
+  driveFrame, wireRouteRetry
 } from "./main.js";
 
 let selectedStudentId = null;

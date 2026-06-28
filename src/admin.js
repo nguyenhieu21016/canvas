@@ -2,16 +2,20 @@
 import { supabase } from './services/supabaseClient.js';
 import { formatDateTime, formatScore, roleLabel } from "./lib/format.js";
 import { setButtonLoading, option } from "./lib/html.js";
+import { toDrivePreviewUrl } from './lib/drive.js';
 import { 
   fetchSolutionRequestsForManager, fetchLearningPath, fetchAssignmentsForManager,
   fetchStudents, fetchGradebook, upsertPhase, deletePhase, upsertModule, deleteModule,
   upsertLecture, deleteLecture, upsertLectureGroup, deleteLectureGroup,
-  deleteAssignment
+  deleteAssignment,
+  invokeAdminFunction, createManagedUser, fetchAssignmentEditor, regradeAssignment, 
+  deleteManagedUser, saveAssignmentWithQuestions
 } from "./services/lmsApi.js";
 import { 
   state, pageRoot, renderLoading, renderErrorState, wireRouteRetry, 
   escapeHtml, wireTableSearch, toast, isManager, renderAttemptsTable,
-  renderManagerSolutionRequest, renderMetric, wireSolutionRequestManager
+  renderManagerSolutionRequest, renderMetric, wireSolutionRequestManager,
+  wireMaterialFormButtons, isAdmin, renderSkeletonAssignments
 } from "./main.js";
 import { mountStudentGrades } from "./student.js";
 

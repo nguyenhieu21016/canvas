@@ -2123,5 +2123,6 @@ export {
   state, pageRoot, renderLoading, renderErrorState, wireRouteRetry, 
   escapeHtml, wireTableSearch, toast, isManager, renderAttemptsTable,
   renderAccountAvatar, renderSkeletonDashboard, renderStateMessage, wireMaterialFormButtons,
-  driveFrame, renderManagerSolutionRequest, renderMetric, wireSolutionRequestManager
+  driveFrame, renderManagerSolutionRequest, renderMetric, wireSolutionRequestManager,
+  isAdmin, renderSkeletonAssignments
 };
