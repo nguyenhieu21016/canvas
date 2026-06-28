@@ -10,6 +10,8 @@ import {
   renderAccountAvatar, renderSkeletonDashboard, renderStateMessage, wireMaterialFormButtons
 } from "./main.js";
 
+let selectedStudentId = null;
+
 export async function mountLearn() {
   const root = pageRoot();
   root.innerHTML = renderLoading();

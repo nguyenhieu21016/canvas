@@ -64,7 +64,8 @@ const AVATAR_SIZE = 320;
 const APP_VERSION = '1.3.3';
 const APP_LAST_UPDATE = 'Đập đi xây lại giao diện Bảng điểm: Hiển thị dạng danh sách thẻ (card-based) trực quan hơn, và tự động phân nhóm bài tập theo từng Giai đoạn.';
 let renderGeneration = 0;
-let selectedStudentId = null;
+let assignmentsForManagerList = [];
+let pendingSolutionRequests = [];
 let appElementsPromise = null;
 const detachedPageRoot = {
   isConnected: false,
