@@ -61,8 +61,8 @@ const toastEl = document.querySelector('#toast');
 const MAX_AVATAR_SOURCE_BYTES = 5 * 1024 * 1024;
 const MAX_AVATAR_UPLOAD_BYTES = 250 * 1024;
 const AVATAR_SIZE = 320;
-const APP_VERSION = '1.3.2';
-const APP_LAST_UPDATE = 'Khắc phục lỗi mất dữ liệu Form khi token làm mới ngầm, và thiết kế lại màu đồng bộ cho thanh tiến độ.';
+const APP_VERSION = '1.3.3';
+const APP_LAST_UPDATE = 'Đập đi xây lại giao diện Bảng điểm: Hiển thị dạng danh sách thẻ (card-based) trực quan hơn, và tự động phân nhóm bài tập theo từng Giai đoạn.';
 let renderGeneration = 0;
 let selectedStudentId = null;
 let appElementsPromise = null;
@@ -3839,16 +3839,24 @@ async function mountStudentGrades() {
   root.innerHTML = renderLoading('Đang tải bảng điểm');
   try {
     const data = await fetchLearningPath(state.profile.role);
-    const assignments = collectLearningPathAssignments(data);
+    const assignmentGroups = collectLearningPathAssignments(data);
+    const totalAssignments = assignmentGroups.reduce((sum, g) => sum + g.assignments.length, 0);
+    
     root.innerHTML = `
       <section class="panel">
         <div class="panel-heading">
           <div>
             <p class="eyebrow">Bảng điểm</p>
-            <h2>${assignments.length} bài tập về nhà</h2>
+            <h2>${totalAssignments} bài tập về nhà</h2>
           </div>
         </div>
-        ${renderStudentGradesTable(assignments)}
+        ${assignmentGroups.length === 0 ? '<div class="empty-state">Chưa có bài tập về nhà.</div>' : ''}
+        ${assignmentGroups.map(group => `
+          <div style="margin-top: 32px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--md-sys-color-surface-container-highest);">
+            <h3 style="margin: 0; font-size: 1.15rem; font-weight: 800; color: var(--md-sys-color-primary);">${escapeHtml(group.title)}</h3>
+          </div>
+          ${renderStudentGradesTable(group.assignments)}
+        `).join('')}
       </section>
     `;
   } catch (error) {
@@ -3858,17 +3866,19 @@ async function mountStudentGrades() {
 }
 
 function collectLearningPathAssignments(data) {
-  const rowsById = new Map();
+  const groups = [];
   const scoreOf = (assignment) => Number(assignment.progress?.bestScore ?? -1);
-  const pushAssignment = (assignment, context = 'Bài tập tự do') => {
-    const row = { ...assignment, context };
-    const current = rowsById.get(assignment.id);
-    if (!current || scoreOf(row) > scoreOf(current)) {
-      rowsById.set(assignment.id, row);
-    }
-  };
 
   for (const phase of data.phases ?? []) {
+    const rowsById = new Map();
+    const pushAssignment = (assignment, context) => {
+      const row = { ...assignment, context };
+      const current = rowsById.get(assignment.id);
+      if (!current || scoreOf(row) > scoreOf(current)) {
+        rowsById.set(assignment.id, row);
+      }
+    };
+
     for (const module of phase.modules ?? []) {
       for (const lecture of module.lectures ?? []) {
         for (const assignment of lecture.assignments ?? []) {
@@ -3883,52 +3893,64 @@ function collectLearningPathAssignments(data) {
         }
       }
     }
+    
+    if (rowsById.size > 0) {
+      groups.push({
+        title: phase.title,
+        assignments: Array.from(rowsById.values()).sort((a, b) => a.title.localeCompare(b.title, 'vi'))
+      });
+    }
   }
 
+  const freeById = new Map();
   for (const assignment of data.freeAssignments ?? []) {
-    pushAssignment(assignment);
+    const row = { ...assignment, context: 'Bài tập tự do' };
+    const current = freeById.get(assignment.id);
+    if (!current || scoreOf(row) > scoreOf(current)) {
+      freeById.set(assignment.id, row);
+    }
+  }
+  
+  if (freeById.size > 0) {
+    groups.push({
+      title: 'Bài tập tự do',
+      assignments: Array.from(freeById.values()).sort((a, b) => a.title.localeCompare(b.title, 'vi'))
+    });
   }
 
-  return Array.from(rowsById.values()).sort((a, b) => a.title.localeCompare(b.title, 'vi'));
+  return groups;
 }
 
 function renderStudentGradesTable(assignments) {
   if (!assignments.length) return '<div class="empty-state">Chưa có bài tập về nhà.</div>';
   return `
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Bài tập</th>
-            <th>Thuộc bài</th>
-            <th>Trạng thái</th>
-            <th>Điểm cao nhất</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          ${assignments
-            .map((assignment) => {
-              const hasSubmitted = assignment.progress?.status === 'submitted';
-              return `
-                <tr>
-                  <td><strong>${escapeHtml(assignment.title)}</strong></td>
-                  <td>${escapeHtml(assignment.context ?? '-')}</td>
-                  <td><span class="status">${hasSubmitted ? 'Đã làm' : 'Chưa làm'}</span></td>
-                  <td>
-                    ${
-                      hasSubmitted
-                        ? `<div class="score-progress-block"><span>${formatScore(assignment.progress.bestScore)}/10</span>${renderScoreProgress(assignment.progress.bestScore)}</div>`
-                        : '-'
-                    }
-                  </td>
-                  <td><a class="text-link" href="#/assignment/${assignment.id}">${hasSubmitted ? 'Làm lại' : 'Làm bài'}</a></td>
-                </tr>
-              `;
-            })
-            .join('')}
-        </tbody>
-      </table>
+    <div class="assignments-list">
+      ${assignments
+        .map((assignment) => {
+          const hasSubmitted = assignment.progress?.status === 'submitted';
+          return `
+            <div class="assignment-row">
+              <div class="assignment-info">
+                <h3>${escapeHtml(assignment.title)}</h3>
+                <p>${escapeHtml(assignment.context ?? '-')}</p>
+              </div>
+              <div class="assignment-stats">
+                <span class="assignment-status-badge ${hasSubmitted ? 'done' : 'pending'}">${hasSubmitted ? 'Đã làm' : 'Chưa làm'}</span>
+                <div class="assignment-score">
+                  ${
+                    hasSubmitted
+                      ? `<div class="score-progress-block"><span>${formatScore(assignment.progress.bestScore)}/10</span>${renderScoreProgress(assignment.progress.bestScore)}</div>`
+                      : '<span class="muted">-</span>'
+                  }
+                </div>
+                <md-filled-tonal-button href="#/assignment/${assignment.id}">
+                  ${hasSubmitted ? 'Làm lại' : 'Làm bài'}
+                </md-filled-tonal-button>
+              </div>
+            </div>
+          `;
+        })
+        .join('')}
     </div>
   `;
 }
