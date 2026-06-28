@@ -1921,7 +1921,10 @@ function mountSettings() {
       <div class="panel settings-panel app-info-panel">
         <div>
           <p class="eyebrow">Canvas</p>
-          <h2>Canvas</h2>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 style="margin: 0;">Canvas</h2>
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--md-sys-color-primary); background: var(--md-sys-color-primary-container); padding: 4px 10px; border-radius: 6px;">@nguyenhieu21016</span>
+          </div>
         </div>
         <div class="app-info-list">
           <div>
