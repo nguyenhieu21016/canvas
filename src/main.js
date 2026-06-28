@@ -470,7 +470,7 @@ function renderShell() {
 function pageTitle(name) {
   return (
     {
-      learn: 'Lộ trình ôn thi 2027',
+      learn: 'Lộ trình ôn thi',
       phase: 'Chi tiết giai đoạn',
       history: 'Lịch sử học tập',
       countdown: 'Đếm ngược THPTQG',
@@ -485,7 +485,7 @@ function pageTitle(name) {
       students: 'Quản lý học sinh',
       'solution-requests': 'Quản lý yêu cầu',
       grades: 'Bảng điểm',
-    }[name] ?? 'Lộ trình ôn thi 2027'
+    }[name] ?? 'Lộ trình ôn thi'
   );
 }
 
