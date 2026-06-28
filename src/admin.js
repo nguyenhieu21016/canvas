@@ -56,7 +56,6 @@ export function mountManageHub() {
   ];
   root.innerHTML = `
     <div style="max-width: 1000px; margin: 0 auto; padding: var(--page-gutter, 32px 24px);">
-      <h1 style="margin:0 0 24px; font-size:1.8rem; font-weight:800; color:var(--md-sys-color-on-surface);">Trang Quản Trị</h1>
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
         ${items.map((item) => `
           <a class="phase-card" href="${item.href}" style="display: flex; flex-direction: column; justify-content: space-between; padding: 24px;">
