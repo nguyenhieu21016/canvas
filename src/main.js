@@ -2633,6 +2633,7 @@ function wireAssignmentEditor(lectures) {
     const restore = setButtonLoading(event.currentTarget.querySelector('md-filled-button'));
     try {
       const editor = collectEditor(lectures);
+      const isUpdate = !!editor.assignment.id;
       const savedAssignment = await saveAssignmentWithQuestions(
         {
           ...editor.assignment,
@@ -2642,7 +2643,10 @@ function wireAssignmentEditor(lectures) {
         },
         editor.questions,
       );
-      const regradedCount = await regradeAssignment(savedAssignment.id);
+      let regradedCount = 0;
+      if (isUpdate) {
+        regradedCount = await regradeAssignment(savedAssignment.id);
+      }
       const savedEditor = await fetchAssignmentEditor(savedAssignment.id);
       state.assignmentEditor = normalizeAssignmentEditor(savedEditor);
       toast(regradedCount > 0 ? `Đã lưu đề và chấm lại ${regradedCount} bài đã nộp.` : 'Đã lưu đề thi.', 'success');
