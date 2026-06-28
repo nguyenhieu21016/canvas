@@ -1465,6 +1465,7 @@ export async function mountSalaryManager() {
           background: var(--md-sys-color-surface-container-low);
           border: 1px solid var(--md-sys-color-outline-variant);
           padding: 24px; display:flex; flex-direction:column; gap:16px;
+          height: 100%; box-sizing: border-box;
         ">
           <!-- Top Row: Name & Delete -->
           <div style="display:flex; align-items:center; justify-content:space-between;">
@@ -1508,7 +1509,7 @@ export async function mountSalaryManager() {
           </div>
 
           <!-- Calendar grid -->
-          <div style="display:grid; grid-template-columns:repeat(7,1fr); gap:4px; text-align:center;">
+          <div style="display:grid; grid-template-columns:repeat(7,1fr); gap:4px; text-align:center; margin-top:auto;">
             ${DAY_SHORT.map((d, i) => `<div style="font-size:0.68rem; font-weight:700; color:${i===5||i===6 ? 'var(--md-sys-color-error)' : 'var(--md-sys-color-on-surface-variant)'}; padding:3px 0;">${d}</div>`).join('')}
             ${Array(firstDow).fill('<div></div>').join('')}
             ${days.map((d) => {
