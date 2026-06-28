@@ -55,17 +55,23 @@ export function mountManageHub() {
     },
   ];
   root.innerHTML = `
-    <div class="phase-card-grid" style="padding: var(--page-gutter, 24px);">
-      ${items.map((item) => `
-        <a class="phase-card" href="${item.href}">
-          <div>
-            <p class="eyebrow">Quản trị</p>
-            <h2><md-icon>${item.icon}</md-icon>${escapeHtml(item.title)}</h2>
-            <p class="muted" style="margin: 10px 0 0; font-size: 0.9rem; line-height: 1.5;">${escapeHtml(item.description)}</p>
-          </div>
-          <span class="phase-card-action">Mở <md-icon>arrow_forward</md-icon></span>
-        </a>
-      `).join('')}
+    <div style="max-width: 1000px; margin: 0 auto; padding: var(--page-gutter, 32px 24px);">
+      <h1 style="margin:0 0 24px; font-size:1.8rem; font-weight:800; color:var(--md-sys-color-on-surface);">Trang Quản Trị</h1>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
+        ${items.map((item) => `
+          <a class="phase-card" href="${item.href}" style="display: flex; flex-direction: column; justify-content: space-between; padding: 24px;">
+            <div>
+              <p class="eyebrow">Quản trị</p>
+              <h2 style="display: flex; align-items: center; gap: 10px; margin: 8px 0; font-size: 1.25rem;">
+                <md-icon style="color: var(--md-sys-color-primary);">${item.icon}</md-icon>
+                ${escapeHtml(item.title)}
+              </h2>
+              <p class="muted" style="margin: 10px 0 0; font-size: 0.95rem; line-height: 1.5;">${escapeHtml(item.description)}</p>
+            </div>
+            <span class="phase-card-action" style="margin-top: 24px; font-weight: 600;">Mở <md-icon>arrow_forward</md-icon></span>
+          </a>
+        `).join('')}
+      </div>
     </div>
   `;
 }
