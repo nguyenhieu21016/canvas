@@ -27,6 +27,9 @@ import {
   fetchSolutionRequestsForAttempt,
   fetchStudentAssignmentOverview,
   fetchStudents,
+  fetchTeachingLogs,
+  upsertTeachingLog,
+  deleteTeachingLog,
   getCurrentProfile,
   getSession,
   invokeAdminFunction,
@@ -58,8 +61,8 @@ const toastEl = document.querySelector('#toast');
 const MAX_AVATAR_SOURCE_BYTES = 5 * 1024 * 1024;
 const MAX_AVATAR_UPLOAD_BYTES = 250 * 1024;
 const AVATAR_SIZE = 320;
-const APP_VERSION = '1.3.1';
-const APP_LAST_UPDATE = 'Sửa lỗi 3 ô thống kê học sinh (Đã nộp, Điểm TB, Cao nhất) không đều nhau do xung đột CSS class panel.';
+const APP_VERSION = '1.3.2';
+const APP_LAST_UPDATE = 'Khắc phục lỗi mất dữ liệu Form khi token làm mới ngầm, và thiết kế lại màu đồng bộ cho thanh tiến độ.';
 let renderGeneration = 0;
 let selectedStudentId = null;
 let appElementsPromise = null;
@@ -70,6 +73,8 @@ const detachedPageRoot = {
     return '';
   },
 };
+
+// (Removed temp fix)
 
 const colorThemes = [
   { id: 'blue', label: 'Xanh biển', color: '#d3e4ff' },
@@ -411,7 +416,7 @@ function renderShell() {
   const current = route().name;
   const activeNav = ['phase', 'assignment', 'review', 'solution'].includes(current)
     ? 'learn'
-    : ['content', 'assignments', 'students', 'solution-requests', 'manage'].includes(current)
+    : ['content', 'assignments', 'students', 'solution-requests', 'manage', 'progress'].includes(current)
       ? 'manage'
       : current;
   const navMarkup = navItems()
@@ -653,12 +658,18 @@ async function mountLearn() {
   root.innerHTML = renderLoading();
   try {
     const data = await fetchLearningPath(state.profile.role);
+    let taughtSet = new Set();
+    if (state.profile.role === 'student') {
+      const teachingLogs = await fetchTeachingLogs(state.profile.id);
+      taughtSet = new Set(teachingLogs.map((l) => l.lecture_id));
+    }
+    
     root.innerHTML = `
       <section class="learn-layout">
         <div class="phase-card-grid">
           ${
             data.phases.length
-              ? data.phases.map(renderPhaseCard).join('')
+              ? data.phases.map(p => renderPhaseCard(p, taughtSet)).join('')
               : renderStateMessage({
                   title: 'Chưa có lộ trình học',
                   message: isManager() ? 'Tạo giai đoạn đầu tiên để học sinh nhìn thấy kế hoạch học.' : 'Giáo viên chưa mở nội dung cho lớp này.',
@@ -702,21 +713,64 @@ async function mountPhaseDetail(id) {
       root.innerHTML = '<div class="empty-state">Không tìm thấy giai đoạn.</div>';
       return;
     }
+    
+    let taughtSet = new Set();
+    let taughtMap = new Map();
+    let taughtCount = 0;
+    let totalLectures = 0;
+    let totalAssignments = 0;
+    let completedAssignments = 0;
+    
+    if (state.profile.role === 'student') {
+      const teachingLogs = await fetchTeachingLogs(state.profile.id);
+      taughtSet = new Set(teachingLogs.map((l) => l.lecture_id));
+      taughtMap = new Map(teachingLogs.map((l) => [l.lecture_id, l]));
+    }
+    
+    phase.modules.forEach(mod => {
+      mod.lectures.forEach(l => {
+        totalLectures++;
+        if (taughtSet.has(l.id)) taughtCount++;
+        if (l.assignments) {
+          l.assignments.forEach(a => {
+            totalAssignments++;
+            if (a.progress?.status === 'submitted') completedAssignments++;
+          });
+        }
+      });
+    });
+
+    const progressMarkup = state.profile.role === 'student' ? `
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <span style="font-size: 0.85rem; font-weight: 600; color: var(--md-sys-color-primary); background: color-mix(in srgb, var(--md-sys-color-primary) 12%, transparent); padding: 4px 12px; border-radius: 16px;">
+          Đã học: ${taughtCount}/${totalLectures} bài
+        </span>
+        ${totalAssignments > 0 ? `
+        <span style="font-size: 0.85rem; font-weight: 600; color: var(--md-sys-color-on-tertiary-container); background: var(--md-sys-color-tertiary-container); padding: 4px 12px; border-radius: 16px;">
+          BTVN: ${completedAssignments}/${totalAssignments}
+        </span>
+        ` : ''}
+      </div>
+    ` : '';
+
     root.innerHTML = `
       <section class="phase-detail-panel">
         <a class="text-link back-link" href="#/learn">
           <md-icon>arrow_back</md-icon>
           Lộ trình
         </a>
-        <div class="phase-detail-heading">
-          <p class="eyebrow">Giai đoạn</p>
-          <h2>${escapeHtml(phase.title)}</h2>
+        <div class="phase-detail-heading" style="display: flex; justify-content: space-between; align-items: flex-end;">
+          <div>
+            <p class="eyebrow">Giai đoạn</p>
+            <h2>${escapeHtml(phase.title)}</h2>
+          </div>
+          ${progressMarkup}
         </div>
         ${phase.description ? `<p class="muted">${escapeHtml(phase.description)}</p>` : ''}
         <div class="module-stack phase-module-stack">
           ${
             phase.modules.length
-              ? phase.modules.map(renderModule).join('')
+              ? phase.modules.map(m => renderModule(m, taughtSet, taughtMap)).join('')
               : '<div class="empty-state compact">Chưa có chuyên đề.</div>'
           }
         </div>
@@ -752,29 +806,73 @@ function wireAnimatedDetails(root) {
   });
 }
 
-function renderPhaseCard(phase) {
+function renderPhaseCard(phase, taughtSet = new Set()) {
   const lectureCount = phase.modules.reduce((sum, module) => sum + module.lectures.length, 0);
   const groupCount = phase.modules.reduce((sum, module) => sum + module.lecture_groups.length, 0);
   const assignmentCount = phase.modules.reduce(
     (sum, module) => sum + module.lectures.reduce((total, lecture) => total + lecture.assignments.length, 0),
     0,
   );
+  
+  let taughtCount = 0;
+  let totalAssignments = 0;
+  let completedAssignments = 0;
+  phase.modules.forEach(mod => {
+    mod.lectures.forEach(l => {
+      if (taughtSet.has(l.id)) taughtCount++;
+      if (l.assignments) {
+        l.assignments.forEach(a => {
+          totalAssignments++;
+          if (a.progress?.status === 'submitted') completedAssignments++;
+        });
+      }
+    });
+  });
+  
+  const pct = lectureCount > 0 ? Math.round((taughtCount / lectureCount) * 100) : 0;
+  const hwPct = totalAssignments > 0 ? Math.round((completedAssignments / totalAssignments) * 100) : 0;
+  
+  const progressMarkup = state.profile.role === 'student' ? `
+    <div style="margin-top: 16px; margin-bottom: 8px;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 6px;">
+        <span style="font-size: 0.8rem; font-weight: 600; color: var(--md-sys-color-on-surface);">Tiến độ học</span>
+        <span style="font-size: 0.8rem; font-weight: 600; color: var(--md-sys-color-primary);">${taughtCount}/${lectureCount} bài (${pct}%)</span>
+      </div>
+      <div style="background: var(--md-sys-color-surface-container-high); border-radius: 100px; height: 6px; overflow: hidden; margin-bottom: ${totalAssignments > 0 ? '12px' : '0'};">
+        <div style="height: 100%; width: ${pct}%; background: var(--md-sys-color-primary); border-radius: 100px; transition: width 0.4s ease;"></div>
+      </div>
+      
+      ${totalAssignments > 0 ? `
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 6px;">
+        <span style="font-size: 0.8rem; font-weight: 600; color: var(--md-sys-color-on-surface);">Tiến độ làm BTVN</span>
+        <span style="font-size: 0.8rem; font-weight: 600; color: var(--md-sys-color-primary);">${completedAssignments}/${totalAssignments} bài (${hwPct}%)</span>
+      </div>
+      <div style="background: var(--md-sys-color-surface-container-high); border-radius: 100px; height: 6px; overflow: hidden;">
+        <div style="height: 100%; width: ${hwPct}%; background: var(--md-sys-color-primary); border-radius: 100px; transition: width 0.4s ease;"></div>
+      </div>
+      ` : ''}
+    </div>
+  ` : '';
+
   return `
-    <a class="phase-card" href="#/phase/${phase.id}">
+    <a class="phase-card" href="#/phase/${phase.id}" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
       <div>
         <p class="eyebrow">Giai đoạn</p>
         <h2>${escapeHtml(phase.title)}</h2>
+        ${progressMarkup}
       </div>
-      <div class="phase-card-meta">
-        <span><md-icon>folder_open</md-icon>${phase.modules.length} chuyên đề</span>
-        <span><md-icon>library_books</md-icon>${groupCount} nhóm bài giảng</span>
-        <span><md-icon>menu_book</md-icon>${lectureCount} bài giảng</span>
-        <span><md-icon>quiz</md-icon>${assignmentCount} bài tập</span>
+      <div style="margin-top: auto;">
+        <div class="phase-card-meta" style="margin-bottom: 16px; margin-top: 12px;">
+          <span><md-icon>folder_open</md-icon>${phase.modules.length} chuyên đề</span>
+          <span><md-icon>library_books</md-icon>${groupCount} nhóm bài giảng</span>
+          <span><md-icon>menu_book</md-icon>${lectureCount} bài giảng</span>
+          <span><md-icon>quiz</md-icon>${assignmentCount} bài tập</span>
+        </div>
+        <span class="phase-card-action">
+          Mở giai đoạn
+          <md-icon>arrow_forward</md-icon>
+        </span>
       </div>
-      <span class="phase-card-action">
-        Mở giai đoạn
-        <md-icon>arrow_forward</md-icon>
-      </span>
     </a>
   `;
 }
@@ -802,20 +900,31 @@ function renderPhase(phase) {
 }
 
 
-function renderModule(module) {
+function renderModule(module, taughtSet = new Set(), taughtMap = new Map()) {
   const ungroupedLectures = module.lectures.filter((lecture) => !lecture.group_id);
+  
+  let taughtCount = 0;
+  const total = module.lectures.length;
+  module.lectures.forEach(l => { if (taughtSet.has(l.id)) taughtCount++; });
+  const isCompleted = total > 0 && taughtCount === total;
+  
+  const progressMarkup = state.profile.role === 'student' ? `<span style="font-size: 0.75rem; background: ${isCompleted ? 'var(--md-sys-color-primary)' : 'var(--md-sys-color-surface-container-highest)'}; color: ${isCompleted ? 'var(--md-sys-color-on-primary)' : 'var(--md-sys-color-on-surface)'}; padding: 2px 8px; border-radius: 12px; font-weight: 600; flex-shrink: 0;">${taughtCount}/${total}</span>` : '';
+  
   return `
-    <article class="module-block">
-      <div class="module-title">
-        <md-icon>folder_open</md-icon>
-        <h3>${escapeHtml(module.title)}</h3>
+    <article class="module-block" ${state.profile.role === 'student' && isCompleted ? 'style="opacity: 0.8;"' : ''}>
+      <div class="module-title" style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+        <div style="display: flex; align-items: center; gap: 8px; min-width: 0;">
+          <md-icon>folder_open</md-icon>
+          <h3 style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(module.title)}</h3>
+        </div>
+        ${progressMarkup}
       </div>
       <div class="lecture-list">
         ${
           module.lecture_groups.length || ungroupedLectures.length
             ? `
-              ${module.lecture_groups.map(renderLectureGroup).join('')}
-              ${ungroupedLectures.length ? renderLectureGroup({ title: 'Bài giảng chưa nhóm', lectures: ungroupedLectures }, true) : ''}
+              ${module.lecture_groups.map(g => renderLectureGroup(g, false, taughtSet, taughtMap)).join('')}
+              ${ungroupedLectures.length ? renderLectureGroup({ title: 'Bài giảng chưa nhóm', lectures: ungroupedLectures }, true, taughtSet, taughtMap) : ''}
             `
             : '<div class="empty-state compact">Chưa có nhóm bài giảng.</div>'
         }
@@ -824,7 +933,7 @@ function renderModule(module) {
   `;
 }
 
-function renderLectureGroup(group, isUngrouped = false) {
+function renderLectureGroup(group, isUngrouped = false, taughtSet = new Set(), taughtMap = new Map()) {
   return `
     <details class="lecture-group-block ${isUngrouped ? 'ungrouped' : ''}">
       <summary class="lecture-group-title">
@@ -837,7 +946,7 @@ function renderLectureGroup(group, isUngrouped = false) {
       <div class="lecture-list">
         ${
           group.lectures.length
-            ? group.lectures.map(renderLecture).join('')
+            ? group.lectures.map(l => renderLecture(l, taughtSet, taughtMap)).join('')
             : '<div class="empty-state compact">Chưa có bài giảng trong nhóm.</div>'
         }
       </div>
@@ -845,15 +954,35 @@ function renderLectureGroup(group, isUngrouped = false) {
   `;
 }
 
-function renderLecture(lecture) {
+function renderLecture(lecture, taughtSet = new Set(), taughtMap = new Map()) {
+  const isTaught = taughtSet.has(lecture.id);
+  
+  const taughtMarkup = state.profile.role === 'student' 
+    ? (isTaught ? `<span style="font-size: 0.7rem; color: var(--md-sys-color-primary); background: color-mix(in srgb, var(--md-sys-color-primary) 12%, transparent); padding: 2px 8px; border-radius: 12px; font-weight: 600; white-space: nowrap;">Đã học</span>` : `<span style="font-size: 0.7rem; color: var(--md-sys-color-on-surface-variant); background: var(--md-sys-color-surface-container-high); padding: 2px 8px; border-radius: 12px; white-space: nowrap;">Chưa học</span>`)
+    : '';
+
+  let hwMarkup = '';
+  if (state.profile.role === 'student' && lecture.assignments && lecture.assignments.length > 0) {
+    const hw = lecture.assignments[0];
+    const hasSubmitted = hw.progress?.status === 'submitted';
+    if (hasSubmitted) {
+      hwMarkup = `<span style="font-size: 0.7rem; color: var(--md-sys-color-on-tertiary-container); background: var(--md-sys-color-tertiary-container); padding: 2px 8px; border-radius: 12px; font-weight: 600; white-space: nowrap; margin-left: 8px;">Điểm BTVN: ${formatScore(hw.progress.bestScore)}/10</span>`;
+    } else {
+      hwMarkup = `<span style="font-size: 0.7rem; color: var(--md-sys-color-on-error-container); background: var(--md-sys-color-error-container); padding: 2px 8px; border-radius: 12px; font-weight: 600; white-space: nowrap; margin-left: 8px;">Chưa làm BTVN</span>`;
+    }
+  }
+
   return `
     <details class="lecture-row">
-      <summary>
-        <span>
-          <md-icon>menu_book</md-icon>
-          ${escapeHtml(lecture.title)}
+      <summary style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+        <span style="display: flex; align-items: center; gap: 8px; min-width: 0; color: ${state.profile.role === 'student' && !isTaught ? 'var(--md-sys-color-on-surface-variant)' : 'inherit'};">
+          <md-icon style="flex-shrink: 0;">menu_book</md-icon>
+          <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(lecture.title)}</span>
         </span>
-        <md-icon>expand_more</md-icon>
+        <div style="display: flex; align-items: center; flex-shrink: 0;">
+          ${taughtMarkup}${hwMarkup}
+          <md-icon style="margin-left: 8px; flex-shrink: 0;">expand_more</md-icon>
+        </div>
       </summary>
       <div class="lecture-body">
         ${lecture.description ? `<p>${escapeHtml(lecture.description)}</p>` : ''}
@@ -871,18 +1000,16 @@ function renderLecture(lecture) {
 }
 
 function renderAssignmentChip(assignment) {
-  const progress = assignment.progress;
-  const hasSubmitted = progress?.status === 'submitted';
+  const hasSubmitted = assignment.progress?.status === 'submitted';
   return `
     <div class="assignment-action ${hasSubmitted ? 'completed' : 'pending'}">
-      <a class="assignment-chip" href="#/assignment/${assignment.id}">
-        <md-icon>quiz</md-icon>
-        <span>${escapeHtml(assignment.title)}</span>
+      <a class="assignment-chip" href="#/assignment/${assignment.id}" style="width: 100%; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <md-icon>quiz</md-icon>
+          <span>${escapeHtml(assignment.title)}</span>
+        </div>
+        <md-icon style="font-size: 1.1rem; color: var(--md-sys-color-primary);">arrow_forward</md-icon>
       </a>
-      <span class="assignment-chip-progress">
-        <span>${hasSubmitted ? `Cao nhất: ${formatScore(progress.bestScore)}/10` : 'Chưa làm'}</span>
-        ${hasSubmitted ? renderScoreProgress(progress.bestScore) : ''}
-      </span>
     </div>
   `;
 }
@@ -1941,14 +2068,14 @@ async function mountDashboard() {
             <!-- Right side: settings -->
             <div style="display: flex; flex-direction: column; gap: 16px; border-left: 1px dashed var(--md-sys-color-outline-variant); padding-left: 24px;">
               <h3 style="margin: 0; font-size: 0.95rem; font-weight: 600; color: var(--md-sys-color-on-surface);">Quản lý tài khoản</h3>
-              
+
               <div style="display: flex; align-items: center; gap: 8px;">
                 <md-outlined-text-field label="Họ tên mới" value="${escapeHtml(student.full_name ?? '')}" style="flex: 1; --md-outlined-text-field-container-shape: 8px;" data-name-input="${student.id}"></md-outlined-text-field>
                 <md-filled-tonal-button style="--md-filled-tonal-button-container-shape: 8px; height: 56px;" data-save-btn="${student.id}">
                   Lưu
                 </md-filled-tonal-button>
               </div>
-              
+
               <div style="display: flex; flex-direction: column; gap: 12px; margin-top: auto; padding-top: 12px;">
                 <md-filled-tonal-button style="--md-filled-tonal-button-container-shape: 8px;" data-reset-btn="${student.id}">
                   <md-icon slot="icon">lock_reset</md-icon> Đặt lại mật khẩu
@@ -2116,9 +2243,275 @@ async function mountDashboard() {
   }
 }
 
+async function mountProgress() {
+  const root = pageRoot();
+  root.innerHTML = renderSkeletonDashboard();
+
+  let selectedProgressStudentId = null;
+
+  try {
+    const [students, learningPath] = await Promise.all([
+      fetchStudents(),
+      fetchLearningPath(state.profile.role),
+    ]);
+
+    selectedProgressStudentId = students[0]?.id ?? null;
+
+    // Build flat lecture map by module (no duplicates)
+    const lecturesByModuleId = new Map();
+    for (const lecture of learningPath.lectures) {
+      if (!lecturesByModuleId.has(lecture.module_id)) lecturesByModuleId.set(lecture.module_id, []);
+      lecturesByModuleId.get(lecture.module_id).push(lecture);
+    }
+    const totalLectures = learningPath.lectures.length;
+
+    root.innerHTML = `
+      <section class="student-tracker-layout" style="display: flex; flex-direction: column; gap: 20px;">
+        <style>
+          .progress-sidebar-item:hover { background: var(--md-sys-color-surface-container-high) !important; }
+          .teaching-lecture-row:hover { background: color-mix(in srgb, var(--md-sys-color-primary) 6%, transparent) !important; }
+          details > summary::-webkit-details-marker { display: none; }
+          details > summary { list-style: none; }
+          details[open] > summary .dropdown-icon { transform: rotate(90deg); }
+        </style>
+        <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: start;">
+
+          <!-- Sidebar: students list -->
+          <div style="display: flex; flex-direction: column; gap: 12px; width: 280px; min-width: 280px; flex-shrink: 0;">
+            <div class="panel" style="padding: 16px; border-radius: var(--md-sys-shape-corner-large, 16px); background: var(--md-sys-color-surface-container-low); display: flex; flex-direction: column; gap: 10px;">
+              <h3 style="margin: 0; font-size: 0.95rem; font-weight: 600; color: var(--md-sys-color-on-surface);">Học sinh</h3>
+              <div class="progress-sidebar-list" style="display: flex; flex-direction: column; gap: 6px;"></div>
+            </div>
+          </div>
+
+          <!-- Main: lecture checklist -->
+          <div class="progress-detail-pane panel" style="flex: 1; min-width: 320px; padding: 24px; border-radius: var(--md-sys-shape-corner-large, 16px); background: var(--md-sys-color-surface-container-low); min-height: 480px; display: flex; flex-direction: column; gap: 20px;">
+            <div class="progress-detail-loading" style="display: flex; align-items: center; justify-content: center; min-height: 200px; color: var(--md-sys-color-outline);">
+              <md-circular-progress indeterminate></md-circular-progress>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    `;
+
+    async function renderProgressDetail(studentId) {
+      const pane = document.querySelector('.progress-detail-pane');
+      if (!pane) return;
+      pane.innerHTML = `<div style="display: flex; align-items: center; justify-content: center; min-height: 200px;"><md-circular-progress indeterminate></md-circular-progress></div>`;
+
+      const student = students.find((s) => s.id === studentId);
+      if (!student) return;
+
+      try {
+        const teachingLogs = await fetchTeachingLogs(studentId);
+        const taughtSet = new Set(teachingLogs.map((l) => l.lecture_id));
+        const taughtMap = new Map(teachingLogs.map((l) => [l.lecture_id, l]));
+        const taughtCount = learningPath.lectures.filter((l) => taughtSet.has(l.id)).length;
+        const progressPct = totalLectures > 0 ? Math.round((taughtCount / totalLectures) * 100) : 0;
+
+        const phasesMarkup = learningPath.phases.map((phase) => {
+          let phaseTaught = 0;
+          let phaseTotal = 0;
+          
+          const modulesMarkup = phase.modules.map((mod) => {
+            let modTaught = 0;
+            const lectures = lecturesByModuleId.get(mod.id) ?? [];
+            if (lectures.length === 0) return '';
+            const modTotal = lectures.length;
+            phaseTotal += modTotal;
+            
+              const renderRow = (lecture) => {
+              const isTaught = taughtSet.has(lecture.id);
+              if (isTaught) { modTaught++; phaseTaught++; }
+              return `
+                <div class="teaching-lecture-row" data-lecture-id="${lecture.id}" data-student-id="${studentId}" data-taught="${isTaught}"
+                  style="display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 8px; cursor: pointer; transition: background 0.15s; margin-bottom: 2px;
+                         background: ${isTaught ? 'color-mix(in srgb, var(--md-sys-color-primary) 8%, transparent)' : 'transparent'};">
+                  <div class="lecture-checkbox" style="width: 20px; height: 20px; border-radius: 4px; flex-shrink: 0; transition: all 0.15s;
+                    border: 2px solid ${isTaught ? 'var(--md-sys-color-primary)' : 'var(--md-sys-color-outline)'};
+                    background: ${isTaught ? 'var(--md-sys-color-primary)' : 'transparent'};
+                    display: flex; align-items: center; justify-content: center;">
+                    ${isTaught ? '<md-icon style="font-size: 14px; color: var(--md-sys-color-on-primary);">check</md-icon>' : ''}
+                  </div>
+                  <div style="flex: 1; min-width: 0;">
+                    <div style="font-size: 0.88rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+                      font-weight: ${isTaught ? '600' : '400'};
+                      color: ${isTaught ? 'var(--md-sys-color-on-surface)' : 'var(--md-sys-color-on-surface-variant)'};">  
+                      ${escapeHtml(lecture.title)}
+                    </div>
+                  </div>
+                </div>
+              `;
+            };
+            
+            const groupsMarkup = (mod.lecture_groups || []).map(group => {
+              const groupLectures = (group.lectures || []).map(renderRow).join('');
+              if (!groupLectures) return '';
+              return `
+                <div style="margin-left: 12px; margin-bottom: 6px; border-left: 2px solid var(--md-sys-color-surface-container-highest); padding-left: 12px;">
+                  <div style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--md-sys-color-outline); margin-bottom: 4px;">
+                    ${escapeHtml(group.title)}
+                  </div>
+                  ${groupLectures}
+                </div>
+              `;
+            }).join('');
+            
+            const ungrouped = lectures.filter(l => !l.group_id).map(renderRow).join('');
+            
+            return `
+              <details class="progress-module-details" ${modTaught < modTotal ? 'open' : ''} style="margin-bottom: 6px; border: 1px solid var(--md-sys-color-outline-variant); border-radius: 8px; overflow: hidden;">
+                <summary style="padding: 10px 14px; background: var(--md-sys-color-surface-container); font-weight: 600; font-size: 0.85rem; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 8px; user-select: none;">
+                  <md-icon style="font-size: 1.1rem; color: var(--md-sys-color-outline); transition: transform 0.2s;" class="dropdown-icon">arrow_right</md-icon>
+                  <md-icon style="font-size: 1rem; color: var(--md-sys-color-primary);">folder</md-icon>
+                  <span style="flex: 1;">${escapeHtml(mod.title)}</span>
+                  <span style="font-size: 0.75rem; background: ${modTaught === modTotal ? 'var(--md-sys-color-primary)' : 'var(--md-sys-color-surface-container-highest)'}; color: ${modTaught === modTotal ? 'var(--md-sys-color-on-primary)' : 'var(--md-sys-color-on-surface)'}; padding: 2px 8px; border-radius: 12px;">${modTaught}/${modTotal}</span>
+                </summary>
+                <div style="padding: 12px 14px; background: var(--md-sys-color-surface-container-lowest);">
+                  ${groupsMarkup}
+                  ${ungrouped}
+                </div>
+              </details>
+            `;
+          }).join('');
+
+          if (!modulesMarkup.trim()) return '';
+          return `
+            <details class="progress-phase-details" ${phaseTaught < phaseTotal ? 'open' : ''} style="margin-bottom: 16px; border: 1px solid var(--md-sys-color-outline-variant); border-radius: 12px; overflow: hidden;">
+              <summary style="padding: 12px 16px; background: var(--md-sys-color-surface-container-high); font-weight: 700; font-size: 0.95rem; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px; user-select: none;">
+                <md-icon style="font-size: 1.2rem; color: var(--md-sys-color-outline); transition: transform 0.2s;" class="dropdown-icon">arrow_right</md-icon>
+                <md-icon style="font-size: 1.2rem; color: var(--md-sys-color-primary);">layers</md-icon>
+                <span style="flex: 1; color: var(--md-sys-color-on-surface);">${escapeHtml(phase.title)}</span>
+                <span style="font-size: 0.8rem; background: ${phaseTaught === phaseTotal ? 'var(--md-sys-color-primary)' : 'var(--md-sys-color-surface-container)'}; color: ${phaseTaught === phaseTotal ? 'var(--md-sys-color-on-primary)' : 'var(--md-sys-color-on-surface)'}; padding: 4px 10px; border-radius: 16px;">${phaseTaught}/${phaseTotal}</span>
+              </summary>
+              <div style="padding: 14px; background: var(--md-sys-color-surface-container-lowest);">
+                ${modulesMarkup}
+              </div>
+            </details>
+          `;
+        }).join('');
+
+        pane.innerHTML = `
+          <!-- Student header -->
+          <div style="display: flex; align-items: center; gap: 14px; padding-bottom: 16px; border-bottom: 1px solid var(--md-sys-color-outline-variant);">
+            ${renderAccountAvatar(student, 'account-avatar')}
+            <div>
+              <div style="font-size: 1.1rem; font-weight: 700; color: var(--md-sys-color-on-surface);">${escapeHtml(student.full_name ?? '')}</div>
+              <div style="font-size: 0.8rem; color: var(--md-sys-color-on-surface-variant);">${escapeHtml(student.email ?? '')}</div>
+            </div>
+          </div>
+
+          <!-- Progress bar -->
+          <div style="background: var(--md-sys-color-surface-container-high); border-radius: 12px; padding: 14px 16px;
+            display: flex; align-items: center; gap: 16px; border: 1px solid var(--md-sys-color-outline-variant);">
+            <div style="flex: 1;">
+              <div style="font-size: 0.85rem; font-weight: 600; color: var(--md-sys-color-on-surface); margin-bottom: 8px;">Tiến độ bài giảng</div>
+              <div style="background: var(--md-sys-color-surface-container); border-radius: 100px; height: 8px; overflow: hidden;">
+                <div style="height: 100%; width: ${progressPct}%; background: var(--md-sys-color-primary); border-radius: 100px; transition: width 0.4s ease;"></div>
+              </div>
+            </div>
+            <div style="text-align: center; min-width: 60px;">
+              <div style="font-size: 1.5rem; font-weight: 700; color: var(--md-sys-color-primary); line-height: 1;">${taughtCount}</div>
+              <div style="font-size: 0.75rem; color: var(--md-sys-color-outline); margin-top: 2px;">/ ${totalLectures} bài</div>
+            </div>
+          </div>
+
+          <!-- Lecture checklist -->
+          <div style="display: flex; flex-direction: column; gap: 10px; overflow-y: auto; flex: 1;">
+            ${phasesMarkup || '<div style="text-align: center; padding: 32px; color: var(--md-sys-color-outline);">Chưa có bài giảng nào.</div>'}
+          </div>
+        `;
+
+        // Wire checkbox toggles
+        pane.querySelectorAll('.teaching-lecture-row').forEach((row) => {
+          row.addEventListener('click', async () => {
+            const lectureId = row.dataset.lectureId;
+            const sid = row.dataset.studentId;
+            const wasTaught = row.dataset.taught === 'true';
+            row.dataset.taught = String(!wasTaught);
+
+            const checkbox = row.querySelector('.lecture-checkbox');
+            const titleDiv = row.querySelector('[style*="overflow: hidden"]');
+            if (!wasTaught) {
+              checkbox.style.cssText += '; background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary);';
+              checkbox.innerHTML = '<md-icon style="font-size: 14px; color: var(--md-sys-color-on-primary);">check</md-icon>';
+              row.style.background = 'color-mix(in srgb, var(--md-sys-color-primary) 8%, transparent)';
+              if (titleDiv) { titleDiv.style.fontWeight = '600'; titleDiv.style.color = 'var(--md-sys-color-on-surface)'; }
+            } else {
+              checkbox.style.cssText += '; background: transparent; border-color: var(--md-sys-color-outline);';
+              checkbox.innerHTML = '';
+              row.style.background = 'transparent';
+              if (titleDiv) { titleDiv.style.fontWeight = '400'; titleDiv.style.color = 'var(--md-sys-color-on-surface-variant)'; }
+            }
+
+            try {
+              if (!wasTaught) await upsertTeachingLog({ studentId: sid, lectureId });
+              else await deleteTeachingLog({ studentId: sid, lectureId });
+              // Refresh sidebar progress
+              renderProgressSidebar();
+            } catch (err) {
+              toast(err.message, 'error');
+              row.dataset.taught = String(wasTaught);
+              renderProgressDetail(sid);
+            }
+          });
+        });
+
+      } catch (err) {
+        pane.innerHTML = `<div style="color: var(--md-sys-color-error); padding: 24px;">${escapeHtml(err.message)}</div>`;
+      }
+    }
+
+    async function renderProgressSidebar() {
+      const list = document.querySelector('.progress-sidebar-list');
+      if (!list) return;
+      // For each student, show name + mini progress
+      const logsPerStudent = await Promise.all(
+        students.map((s) => fetchTeachingLogs(s.id).then((logs) => ({ student: s, count: logs.length })))
+      );
+      list.innerHTML = logsPerStudent.map(({ student, count }) => {
+        const pct = totalLectures > 0 ? Math.round((count / totalLectures) * 100) : 0;
+        const isSelected = student.id === selectedProgressStudentId;
+        return `
+          <div class="progress-sidebar-item" data-sid="${student.id}"
+            style="padding: 10px 12px; border-radius: 10px; cursor: pointer; transition: background 0.15s;
+              background: ${isSelected ? 'var(--md-sys-color-secondary-container)' : 'transparent'};
+              border: 1px solid ${isSelected ? 'var(--md-sys-color-outline)' : 'transparent'};">
+            <div style="font-size: 0.88rem; font-weight: 600; color: var(--md-sys-color-on-surface);
+              overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(student.full_name ?? student.email)}</div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-top: 5px;">
+              <div style="flex: 1; background: var(--md-sys-color-surface-container-high); border-radius: 100px; height: 5px; overflow: hidden;">
+                <div style="height: 100%; width: ${pct}%; background: var(--md-sys-color-primary); border-radius: 100px;"></div>
+              </div>
+              <span style="font-size: 0.75rem; color: var(--md-sys-color-outline); min-width: 32px; text-align: right;">${count}/${totalLectures}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      list.querySelectorAll('.progress-sidebar-item').forEach((item) => {
+        item.addEventListener('click', () => {
+          selectedProgressStudentId = item.dataset.sid;
+          renderProgressSidebar();
+          renderProgressDetail(selectedProgressStudentId);
+        });
+      });
+    }
+
+    await renderProgressSidebar();
+    if (selectedProgressStudentId) await renderProgressDetail(selectedProgressStudentId);
+
+  } catch (error) {
+    root.innerHTML = renderErrorState(error);
+    wireRouteRetry(root);
+  }
+}
+
 function mountManageHub() {
   const root = pageRoot();
   const items = [
+    { href: '#/progress', icon: 'track_changes', title: 'Tiến độ học', description: 'Theo dõi bài giảng trực tiếp đã dạy cho từng học sinh.' },
     { href: '#/content', icon: 'view_list', title: 'Nội dung', description: 'Tạo giai đoạn, chuyên đề, nhóm bài giảng và link bài giảng.' },
     { href: '#/assignments', icon: 'assignment', title: 'Đề thi / Bài tập về nhà', description: 'Tạo đề, phiếu trả lời, đáp án và chấm lại bài đã nộp.' },
     { href: '#/solution-requests', icon: 'rate_review', title: 'Yêu cầu lời giải', description: 'Xem yêu cầu chưa xử lí và các yêu cầu đã gửi lời giải.' },
@@ -2250,18 +2643,21 @@ async function mountContentManager() {
         <div class="content-create-grid four">
           ${renderPhaseForm()}
           ${renderModuleForm(data.phases)}
-          ${renderLectureGroupForm(data.modules)}
-          ${renderLectureForm(data.modules, data.lectureGroups)}
+          ${renderLectureGroupForm(data.phases, data.modules)}
+          ${renderLectureForm(data.phases, data.modules, data.lectureGroups)}
         </div>
       </section>
       <section class="panel">
         <div class="panel-heading">
           <h2>Cấu trúc hiện tại</h2>
         </div>
-        ${data.phases.length ? data.phases.map(renderManagePhase).join('') : '<div class="empty-state">Chưa có nội dung.</div>'}
+        <div id="manage-structure-container">
+          ${data.phases.length ? data.phases.map(renderManagePhase).join('') : '<div class="empty-state">Chưa có nội dung.</div>'}
+        </div>
       </section>
     `;
     wireContentForms(data);
+    wireCascadingDropdowns(root);
     wireMaterialFormButtons(root);
   } catch (error) {
     root.innerHTML = renderErrorState(error);
@@ -2313,7 +2709,7 @@ function renderModuleForm(phases) {
   `;
 }
 
-function renderLectureGroupForm(modules) {
+function renderLectureGroupForm(phases, modules) {
   return `
     <form class="entity-form compact-entity-form" data-entity="lectureGroup">
       <div class="entity-form-heading">
@@ -2324,9 +2720,13 @@ function renderLectureGroupForm(modules) {
       <input type="hidden" name="description" value="">
       <input type="hidden" name="sort_order" value="0">
       <input type="hidden" name="published" value="true">
-      <select class="field" name="module_id" required>
+      <select class="field cascade-phase" name="phase_id" required>
+        <option value="">Chọn giai đoạn</option>
+        ${phases.map((phase) => option(phase.id, phase.title)).join('')}
+      </select>
+      <select class="field cascade-module" name="module_id" required disabled>
         <option value="">Chọn chuyên đề</option>
-        ${modules.map((module) => option(module.id, module.title)).join('')}
+        ${modules.map((module) => `<option value="${escapeHtml(module.id)}" data-phase-id="${escapeHtml(module.phase_id)}">${escapeHtml(module.title)}</option>`).join('')}
       </select>
       <input class="field" name="title" placeholder="Tên nhóm, ví dụ: Bài giảng 1" required>
       <div class="button-row">
@@ -2337,7 +2737,7 @@ function renderLectureGroupForm(modules) {
   `;
 }
 
-function renderLectureForm(modules, lectureGroups) {
+function renderLectureForm(phases, modules, lectureGroups) {
   return `
     <form class="entity-form compact-entity-form" data-entity="lecture">
       <div class="entity-form-heading">
@@ -2348,13 +2748,17 @@ function renderLectureForm(modules, lectureGroups) {
       <input type="hidden" name="description" value="">
       <input type="hidden" name="sort_order" value="0">
       <input type="hidden" name="published" value="true">
-      <select class="field" name="module_id" required>
-        <option value="">Chọn chuyên đề</option>
-        ${modules.map((module) => option(module.id, module.title)).join('')}
+      <select class="field cascade-phase" name="phase_id" required>
+        <option value="">Chọn giai đoạn</option>
+        ${phases.map((phase) => option(phase.id, phase.title)).join('')}
       </select>
-      <select class="field" name="group_id">
+      <select class="field cascade-module" name="module_id" required disabled>
+        <option value="">Chọn chuyên đề</option>
+        ${modules.map((module) => `<option value="${escapeHtml(module.id)}" data-phase-id="${escapeHtml(module.phase_id)}">${escapeHtml(module.title)}</option>`).join('')}
+      </select>
+      <select class="field cascade-group" name="group_id" disabled>
         <option value="">Chưa nhóm</option>
-        ${lectureGroups.map((group) => option(group.id, group.title)).join('')}
+        ${lectureGroups.map((group) => `<option value="${escapeHtml(group.id)}" data-module-id="${escapeHtml(group.module_id)}">${escapeHtml(group.title)}</option>`).join('')}
       </select>
       <input class="field" name="title" placeholder="Tên bài giảng" required>
       <input class="field" name="slide_url" placeholder="Link Google Drive slide">
@@ -2446,27 +2850,80 @@ function wireContentForms(pathData) {
       const sortOrder = values.id
         ? Number(values.sort_order || 0)
         : nextContentSortOrder(form.dataset.entity, values, pathData);
+        
+      // Optimistically bump sort order in local pathData to ensure quick consecutive saves keep correct order
+      if (!values.id) {
+        if (form.dataset.entity === 'phase') pathData.phases.push({sort_order: sortOrder});
+        if (form.dataset.entity === 'module') pathData.modules.push({phase_id: values.phase_id, sort_order: sortOrder});
+        if (form.dataset.entity === 'lectureGroup') pathData.lectureGroups.push({module_id: values.module_id, sort_order: sortOrder});
+        if (form.dataset.entity === 'lecture') pathData.lectures.push({module_id: values.module_id, group_id: values.group_id, sort_order: sortOrder});
+      }
+
       const payload = {
         ...values,
-        id: values.id || undefined,
+        id: values.id || crypto.randomUUID(),
         sort_order: sortOrder,
         published: form.querySelector('[name="published"]')?.type === 'checkbox'
           ? form.querySelector('[name="published"]').checked
           : values.published !== 'false',
         owner_id: state.profile.id,
       };
+      
       const restore = setButtonLoading(form.querySelector('md-filled-button'));
       form.dataset.saving = 'true';
+      
       try {
-        if (form.dataset.entity === 'phase') await upsertPhase(payload);
-        if (form.dataset.entity === 'module') await upsertModule(payload);
-        if (form.dataset.entity === 'lectureGroup') await upsertLectureGroup(payload);
-        if (form.dataset.entity === 'lecture') await upsertLecture({ ...payload, group_id: payload.group_id || null });
-        toast('Đã lưu nội dung.', 'success');
-        restore();
-        await mountContentManager();
+        if (form.dataset.entity === 'phase') {
+          await upsertPhase(payload);
+        } else if (form.dataset.entity === 'module') {
+          await upsertModule(payload);
+        } else if (form.dataset.entity === 'lectureGroup') {
+          delete payload.phase_id;
+          await upsertLectureGroup(payload);
+        } else if (form.dataset.entity === 'lecture') {
+          delete payload.phase_id;
+          await upsertLecture({ ...payload, group_id: payload.group_id || null });
+        }
+        
+        const isUpdate = !!values.id;
+        toast(isUpdate ? 'Đã cập nhật nội dung.' : 'Đã lưu thành công.', 'success');
+        
+        // Clear text inputs but keep context
+        const titleInput = form.querySelector('[name="title"]');
+        const idInput = form.querySelector('[name="id"]');
+        const urlInput = form.querySelector('[name="slide_url"]');
+        if (titleInput) titleInput.value = '';
+        if (idInput) idInput.value = '';
+        if (urlInput) urlInput.value = '';
+        
+        // Add new item to dropdowns so it can be selected immediately
+        if (!isUpdate && values.title) {
+          const fakeId = payload.id;
+          if (form.dataset.entity === 'phase') {
+            document.querySelectorAll('.cascade-phase').forEach(sel => {
+              sel.insertAdjacentHTML('beforeend', `<option value="${fakeId}">${escapeHtml(values.title)}</option>`);
+            });
+          }
+          if (form.dataset.entity === 'module') {
+            document.querySelectorAll('.cascade-module').forEach(sel => {
+              sel.insertAdjacentHTML('beforeend', `<option value="${fakeId}" data-phase-id="${escapeHtml(values.phase_id)}">${escapeHtml(values.title)}</option>`);
+            });
+          }
+          if (form.dataset.entity === 'lectureGroup') {
+            document.querySelectorAll('.cascade-group').forEach(sel => {
+              sel.insertAdjacentHTML('beforeend', `<option value="${fakeId}" data-module-id="${escapeHtml(values.module_id)}">${escapeHtml(values.title)}</option>`);
+            });
+          }
+        }
+        
+        const newData = await fetchLearningPath(state.profile.role);
+        const container = document.querySelector('#manage-structure-container');
+        if (container) {
+          container.innerHTML = newData.phases.length ? newData.phases.map(renderManagePhase).join('') : '<div class="empty-state">Chưa có nội dung.</div>';
+          wireStructureEvents();
+        }
       } catch (error) {
-        toast(error.message, 'error');
+        toast(`Lỗi lưu: ${error.message}`, 'error');
       } finally {
         delete form.dataset.saving;
         restore();
@@ -2474,6 +2931,11 @@ function wireContentForms(pathData) {
     });
   });
 
+  wireStructureEvents();
+}
+
+function wireStructureEvents() {
+  // Bind Edit Buttons
   document.querySelectorAll('button[data-payload]').forEach((button) => {
     button.addEventListener('click', () => {
       const payload = JSON.parse(button.dataset.payload);
@@ -2485,31 +2947,119 @@ function wireContentForms(pathData) {
             ? 'lectureGroup'
             : 'lecture';
       const form = document.querySelector(`[data-entity="${kind}"]`);
+      if (!form) return;
       Object.entries(payload).forEach(([key, value]) => {
         const input = form.querySelector(`[name="${key}"]`);
         if (!input) return;
         if (input.type === 'checkbox') input.checked = Boolean(value);
         else input.value = value ?? '';
       });
+      
+      // Force trigger cascading dropdowns manually if needed
+      const phaseSelect = form.querySelector('.cascade-phase');
+      const moduleSelect = form.querySelector('.cascade-module');
+      if (phaseSelect && moduleSelect && payload.phase_id) {
+        phaseSelect.value = payload.phase_id;
+        phaseSelect.dispatchEvent(new Event('change'));
+        setTimeout(() => {
+          moduleSelect.value = payload.module_id;
+          moduleSelect.dispatchEvent(new Event('change'));
+          const groupSelect = form.querySelector('.cascade-group');
+          if (groupSelect && payload.group_id) {
+            setTimeout(() => {
+              groupSelect.value = payload.group_id;
+            }, 0);
+          }
+        }, 0);
+      }
+      
       form.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
   });
 
+  // Bind Drag & Drop
   wireContentDragSort();
 
+  // Bind Delete Buttons
   document.querySelectorAll('[data-delete-phase],[data-delete-module],[data-delete-lecture-group],[data-delete-lecture]').forEach((button) => {
     button.addEventListener('click', async () => {
-      if (!window.confirm('Xóa mục này?')) return;
+      if (!window.confirm('Xóa mục này? Hành động này không thể hoàn tác.')) return;
       try {
         if (button.dataset.deletePhase) await deletePhase(button.dataset.deletePhase);
         if (button.dataset.deleteModule) await deleteModule(button.dataset.deleteModule);
         if (button.dataset.deleteLectureGroup) await deleteLectureGroup(button.dataset.deleteLectureGroup);
         if (button.dataset.deleteLecture) await deleteLecture(button.dataset.deleteLecture);
         toast('Đã xóa.', 'success');
-        await mountContentManager();
+        const newData = await fetchLearningPath(state.profile.role);
+        const container = document.querySelector('#manage-structure-container');
+        if (container) {
+          container.innerHTML = newData.phases.length ? newData.phases.map(renderManagePhase).join('') : '<div class="empty-state">Chưa có nội dung.</div>';
+          wireStructureEvents();
+        }
       } catch (error) {
         toast(error.message, 'error');
       }
+    });
+  });
+}
+
+function wireCascadingDropdowns(root) {
+  root.querySelectorAll('.entity-form').forEach((form) => {
+    const phaseSelect = form.querySelector('.cascade-phase');
+    const moduleSelect = form.querySelector('.cascade-module');
+    const groupSelect = form.querySelector('.cascade-group');
+
+    if (phaseSelect && moduleSelect) {
+      phaseSelect.addEventListener('change', () => {
+        const phaseId = phaseSelect.value;
+        moduleSelect.value = '';
+        if (groupSelect) groupSelect.value = '';
+        
+        let hasModules = false;
+        Array.from(moduleSelect.options).forEach((opt) => {
+          if (!opt.value) return; // Skip placeholder
+          if (opt.dataset.phaseId === phaseId) {
+            opt.style.display = '';
+            hasModules = true;
+          } else {
+            opt.style.display = 'none';
+          }
+        });
+        
+        moduleSelect.disabled = !phaseId || !hasModules;
+        if (groupSelect) groupSelect.disabled = true;
+      });
+    }
+
+    if (moduleSelect && groupSelect) {
+      moduleSelect.addEventListener('change', () => {
+        const moduleId = moduleSelect.value;
+        groupSelect.value = '';
+        
+        let hasGroups = false;
+        Array.from(groupSelect.options).forEach((opt) => {
+          if (!opt.value) return; // Skip placeholder
+          if (opt.dataset.moduleId === moduleId) {
+            opt.style.display = '';
+            hasGroups = true;
+          } else {
+            opt.style.display = 'none';
+          }
+        });
+        
+        groupSelect.disabled = !moduleId || !hasGroups;
+      });
+    }
+    
+    // Also handle reset button
+    form.addEventListener('reset', () => {
+      setTimeout(() => {
+        if (moduleSelect) moduleSelect.disabled = true;
+        if (groupSelect) groupSelect.disabled = true;
+        
+        Array.from(moduleSelect?.options || []).forEach(o => o.style.display = '');
+        Array.from(groupSelect?.options || []).forEach(o => o.style.display = '');
+      }, 0);
     });
   });
 }
@@ -2570,7 +3120,12 @@ function wireContentDragSort() {
       try {
         await reorderContentNodes(dragged, node);
         toast('Đã cập nhật thứ tự.', 'success');
-        await mountContentManager();
+        const newData = await fetchLearningPath(state.profile.role);
+        const container = document.querySelector('#manage-structure-container');
+        if (container) {
+          container.innerHTML = newData.phases.length ? newData.phases.map(renderManagePhase).join('') : '<div class="empty-state">Chưa có nội dung.</div>';
+          wireStructureEvents();
+        }
       } catch (error) {
         toast(error.message, 'error');
       }
@@ -3567,7 +4122,7 @@ function wireTableSearch(inputSelector, rowSelector) {
 
 async function mountCurrentRoute() {
   const current = route();
-  if (!isManager() && ['dashboard', 'content', 'assignments', 'students', 'solution-requests', 'manage'].includes(current.name)) {
+  if (!isManager() && ['dashboard', 'content', 'assignments', 'students', 'solution-requests', 'manage', 'progress'].includes(current.name)) {
     go('learn');
     return;
   }
@@ -3581,6 +4136,7 @@ async function mountCurrentRoute() {
   if (current.name === 'solution') return mountSolution(current.id);
   if (current.name === 'dashboard') return mountDashboard();
   if (current.name === 'manage') return mountManageHub();
+  if (current.name === 'progress') return mountProgress();
   if (current.name === 'content') return mountContentManager();
   if (current.name === 'assignments') return mountAssignmentManager();
   if (current.name === 'solution-requests') return mountSolutionRequestsManager();
@@ -3633,11 +4189,27 @@ async function bootstrap() {
         renderAuth();
         return;
       }
-      state.profile = session ? await getCurrentProfile(session.user) : null;
+      
+      // Prevent unnecessary fetches and DOM nuking on token refreshes
+      if (event === 'TOKEN_REFRESHED' || event === 'USER_UPDATED') {
+        return;
+      }
+      
+      // Only re-fetch if we actually have a new user session or no profile yet
+      if (session) {
+        if (!state.profile || state.profile.id !== session.user.id) {
+          state.profile = await getCurrentProfile(session.user);
+          render();
+        }
+      } else {
+        if (state.profile) {
+          state.profile = null;
+          render();
+        }
+      }
     } catch (error) {
       toast(error.message, 'error');
     }
-    render();
   });
 
   window.addEventListener('hashchange', renderRouteTransition);

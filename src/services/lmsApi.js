@@ -84,14 +84,25 @@ function hydrateLearningPath(raw) {
     modulesByPhase.get(module.phase_id).push({ ...module, lecture_groups: [], lectures: [] });
   }
 
+  const groupModuleMap = new Map();
+
   for (const group of raw.lectureGroups ?? raw.lecture_groups ?? []) {
     if (!groupsByModule.has(group.module_id)) groupsByModule.set(group.module_id, []);
     groupsByModule.get(group.module_id).push({ ...group, lectures: [] });
+    groupModuleMap.set(group.id, group.module_id);
   }
 
   for (const lecture of raw.lectures ?? []) {
+    if (lecture.group_id) {
+      const groupModuleId = groupModuleMap.get(lecture.group_id);
+      if (groupModuleId && groupModuleId !== lecture.module_id) {
+        lecture.module_id = groupModuleId;
+      }
+    }
+    
     if (!lecturesByModule.has(lecture.module_id)) lecturesByModule.set(lecture.module_id, []);
     lecturesByModule.get(lecture.module_id).push({ ...lecture, assignments: [] });
+    
     if (lecture.group_id) {
       if (!lecturesByGroup.has(lecture.group_id)) lecturesByGroup.set(lecture.group_id, []);
       lecturesByGroup.get(lecture.group_id).push({ ...lecture, assignments: [] });
@@ -921,4 +932,60 @@ export async function invokeAdminFunction(name, body) {
   assertOk({ error });
   if (data?.error) throw new Error(data.error);
   return data;
+}
+
+export async function fetchTeachingLogs(studentId) {
+  const cacheKey = `teaching-logs:${studentId}`;
+  const cached = getCached(cacheKey);
+  if (cached) return cached;
+
+  const client = requireSupabase();
+  const { data, error } = await withTimeout(
+    client
+      .from('teaching_logs')
+      .select('id, lecture_id, taught_at, note')
+      .eq('student_id', studentId)
+      .order('taught_at', { ascending: false }),
+    'Tải tiến độ bài giảng',
+  );
+  assertOk({ error });
+  return setCached(cacheKey, data ?? []);
+}
+
+export async function upsertTeachingLog({ studentId, lectureId, note = null }) {
+  const client = requireSupabase();
+  const { data, error } = await withTimeout(
+    client
+      .from('teaching_logs')
+      .upsert(
+        {
+          teacher_id: (await client.auth.getUser()).data.user?.id,
+          student_id: studentId,
+          lecture_id: lectureId,
+          note,
+          taught_at: new Date().toISOString(),
+        },
+        { onConflict: 'student_id,lecture_id' },
+      )
+      .select()
+      .single(),
+    'Lưu tiến độ bài giảng',
+  );
+  assertOk({ error });
+  cache.delete(`teaching-logs:${studentId}`);
+  return data;
+}
+
+export async function deleteTeachingLog({ studentId, lectureId }) {
+  const client = requireSupabase();
+  const { error } = await withTimeout(
+    client
+      .from('teaching_logs')
+      .delete()
+      .eq('student_id', studentId)
+      .eq('lecture_id', lectureId),
+    'Xóa tiến độ bài giảng',
+  );
+  assertOk({ error });
+  cache.delete(`teaching-logs:${studentId}`);
 }

@@ -13,11 +13,21 @@ export function option(value, label, selectedValue) {
 
 export function setButtonLoading(button, loadingText = 'Đang xử lý...') {
   if (!button) return () => {};
-  const previous = button.innerHTML;
+  
+  // Backup previous children to preserve DOM nodes (important for Lit slots)
+  const previousNodes = Array.from(button.childNodes);
+  
+  const loadingSpan = document.createElement('span');
+  loadingSpan.textContent = loadingText;
+  loadingSpan.style.display = 'flex';
+  loadingSpan.style.alignItems = 'center';
+  loadingSpan.style.gap = '8px';
+
   button.disabled = true;
-  button.textContent = loadingText;
+  button.replaceChildren(loadingSpan);
+
   return () => {
     button.disabled = false;
-    button.innerHTML = previous;
+    button.replaceChildren(...previousNodes);
   };
 }

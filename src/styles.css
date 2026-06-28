@@ -3053,3 +3053,29 @@ tbody tr:hover {
   animation: skeleton-pulse 1.5s infinite ease-in-out;
   border-radius: 4px;
 }
+
+.donut-tooltip {
+  position: relative;
+}
+.donut-tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  background: var(--md-sys-color-on-surface);
+  color: var(--md-sys-color-surface);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 10;
+  font-weight: 500;
+}
+.donut-tooltip:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-4px);
+}
