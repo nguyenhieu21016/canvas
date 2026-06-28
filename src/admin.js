@@ -7,7 +7,7 @@ import {
   fetchSolutionRequestsForManager, fetchLearningPath, fetchAssignmentsForManager,
   fetchStudents, fetchGradebook, upsertPhase, deletePhase, upsertModule, deleteModule,
   upsertLecture, deleteLecture, upsertLectureGroup, deleteLectureGroup,
-  deleteAssignment,
+  deleteAssignment, reorderContentNodes as reorderContentNodesApi,
   invokeAdminFunction, createManagedUser, fetchAssignmentEditor, regradeAssignment, 
   deleteManagedUser, saveAssignmentWithQuestions
 } from "./services/lmsApi.js";

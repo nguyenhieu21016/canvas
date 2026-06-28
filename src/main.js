@@ -2124,5 +2124,5 @@ export {
   escapeHtml, wireTableSearch, toast, isManager, renderAttemptsTable,
   renderAccountAvatar, renderSkeletonDashboard, renderStateMessage, wireMaterialFormButtons,
   driveFrame, renderManagerSolutionRequest, renderMetric, wireSolutionRequestManager,
-  isAdmin, renderSkeletonAssignments
+  isAdmin, renderSkeletonAssignments, renderScoreProgress
 };

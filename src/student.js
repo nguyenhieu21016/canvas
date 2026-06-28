@@ -8,7 +8,7 @@ import {
 import { 
   state, pageRoot, renderLoading, renderErrorState, escapeHtml, toast, isManager,
   renderAccountAvatar, renderSkeletonDashboard, renderStateMessage, wireMaterialFormButtons,
-  driveFrame, wireRouteRetry
+  driveFrame, wireRouteRetry, renderScoreProgress
 } from "./main.js";
 
 let selectedStudentId = null;
