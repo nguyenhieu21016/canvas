@@ -1430,7 +1430,7 @@ export async function mountSalaryManager() {
 
     const days = getDaysInMonth(year, month);
     const fmt = new Intl.NumberFormat('vi-VN');
-    const DAY_SHORT = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
+    const DAY_SHORT = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];
 
     const totalSalary = schedules.reduce((sum, s) => {
       const taughtCount = (s.salary_sessions ?? []).filter(x => x.taught).length;
@@ -1451,7 +1451,7 @@ export async function mountSalaryManager() {
       const scheduledCount = Object.values(sessionMap).filter(v => v === 'scheduled').length;
       const rate = Number(s.rate_per_session ?? 0);
       const total = taughtCount * rate;
-      const firstDow = days[0].getDay();
+      const firstDow = (days[0].getDay() + 6) % 7;
 
       function cellStyle(cellState, isWeekend) {
         if (cellState === 'taught') return `background:var(--md-sys-color-primary); color:var(--md-sys-color-on-primary); border:2px solid var(--md-sys-color-primary);`;
@@ -1497,7 +1497,7 @@ export async function mountSalaryManager() {
 
           <!-- Calendar grid -->
           <div style="display:grid; grid-template-columns:repeat(7,1fr); gap:4px; text-align:center;">
-            ${DAY_SHORT.map((d, i) => `<div style="font-size:0.68rem; font-weight:700; color:${i===0||i===6 ? 'var(--md-sys-color-error)' : 'var(--md-sys-color-on-surface-variant)'}; padding:3px 0;">${d}</div>`).join('')}
+            ${DAY_SHORT.map((d, i) => `<div style="font-size:0.68rem; font-weight:700; color:${i===5||i===6 ? 'var(--md-sys-color-error)' : 'var(--md-sys-color-on-surface-variant)'}; padding:3px 0;">${d}</div>`).join('')}
             ${Array(firstDow).fill('<div></div>').join('')}
             ${days.map((d) => {
               const iso = d.toISOString().slice(0, 10);
