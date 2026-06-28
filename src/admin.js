@@ -1465,7 +1465,7 @@ export async function mountSalaryManager() {
           background: var(--md-sys-color-surface-container-low);
           border: 1px solid var(--md-sys-color-outline-variant);
           padding: 24px; display:flex; flex-direction:column; gap:16px;
-          height: 100%; box-sizing: border-box;
+          box-sizing: border-box; margin: 0;
         ">
           <!-- Top Row: Name & Delete -->
           <div style="display:flex; align-items:center; justify-content:space-between;">
