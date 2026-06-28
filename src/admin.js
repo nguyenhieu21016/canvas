@@ -9,7 +9,8 @@ import {
   upsertLecture, deleteLecture, upsertLectureGroup, deleteLectureGroup,
   deleteAssignment, reorderContentNodes as reorderContentNodesApi,
   invokeAdminFunction, createManagedUser, fetchAssignmentEditor, regradeAssignment, 
-  deleteManagedUser, saveAssignmentWithQuestions
+  deleteManagedUser, saveAssignmentWithQuestions,
+  fetchSalaryMonth, upsertSalarySchedule, deleteSalarySchedule, toggleSalarySession
 } from "./services/lmsApi.js";
 import { 
   state, pageRoot, renderLoading, renderErrorState, wireRouteRetry, 
@@ -45,6 +46,12 @@ export function mountManageHub() {
       icon: 'rate_review',
       title: 'Yêu cầu lời giải',
       description: 'Xem yêu cầu chưa xử lí và các yêu cầu đã gửi lời giải.',
+    },
+    {
+      href: '#/salary',
+      icon: 'payments',
+      title: 'Lịch dạy & Lương',
+      description: 'Tick lịch dạy từng học sinh theo tháng và xem tổng lương.',
     },
   ];
   root.innerHTML = `
@@ -1388,3 +1395,252 @@ export async function mountGrades() {
   }
 }
 
+
+// ─── Salary Manager ───────────────────────────────────────────────────────────
+
+function getDaysInMonth(year, month) {
+  const days = [];
+  const date = new Date(year, month, 1);
+  while (date.getMonth() === month) {
+    days.push(new Date(date));
+    date.setDate(date.getDate() + 1);
+  }
+  return days;
+}
+
+function renderSalaryCalendar(schedule, days) {
+  const taughtDates = new Set((schedule.salary_sessions ?? []).map((s) => s.session_date));
+  const DAY_LABELS = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
+  const rate = Number(schedule.rate_per_session ?? 0);
+  const sessions = taughtDates.size;
+  const total = sessions * rate;
+  const fmt = new Intl.NumberFormat('vi-VN');
+
+  return `
+    <div class="salary-card panel" data-schedule-id="${schedule.id}" style="border-radius: var(--md-sys-shape-corner-large,16px); background: var(--md-sys-color-surface-container-low); border: 1px solid var(--md-sys-color-outline-variant); padding: 20px; display:flex; flex-direction:column; gap:14px;">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+        <div>
+          <p style="margin:0; font-weight:700; font-size:1rem;">${escapeHtml(schedule.profiles?.full_name ?? 'Học sinh')}</p>
+          <p style="margin:4px 0 0; font-size:0.82rem; color:var(--md-sys-color-on-surface-variant);">
+            ${sessions} buổi × ${fmt.format(rate)}đ = <strong style="color:var(--md-sys-color-primary)">${fmt.format(total)}đ</strong>
+          </p>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+          <md-outlined-text-field 
+            type="number" label="Đơn giá/buổi (VND)"
+            value="${rate}"
+            data-rate-field="${schedule.id}"
+            style="width:180px; --md-outlined-text-field-container-shape:8px;"
+          ></md-outlined-text-field>
+          <md-outlined-button type="button" data-delete-schedule="${schedule.id}" style="--md-outlined-button-outline-color:var(--md-sys-color-error); --md-outlined-button-label-text-color:var(--md-sys-color-error);">
+            <md-icon slot="icon">delete</md-icon>Xóa
+          </md-outlined-button>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(7,1fr); gap:5px; text-align:center;">
+        ${DAY_LABELS.map((d) => `<div style="font-size:0.7rem; font-weight:700; color:var(--md-sys-color-on-surface-variant); padding:4px 0;">${d}</div>`).join('')}
+        ${(() => {
+          const firstDow = days[0].getDay();
+          const blanks = Array(firstDow).fill('<div></div>').join('');
+          const cells = days.map((d) => {
+            const iso = d.toISOString().slice(0, 10);
+            const dow = d.getDay();
+            const taught = taughtDates.has(iso);
+            const isWeekend = dow === 0 || dow === 6;
+            return `<button
+              type="button"
+              data-toggle-session="${schedule.id}"
+              data-date="${iso}"
+              style="
+                padding:6px 0; border-radius:50%; border:none; cursor:pointer; font-size:0.82rem; font-weight:600;
+                background:${taught ? 'var(--md-sys-color-primary)' : 'var(--md-sys-color-surface-container)'};
+                color:${taught ? 'var(--md-sys-color-on-primary)' : isWeekend ? 'var(--md-sys-color-error)' : 'var(--md-sys-color-on-surface)'};
+                transition: background 0.15s, transform 0.1s;
+                aspect-ratio: 1;
+              "
+            >${d.getDate()}</button>`;
+          }).join('');
+          return blanks + cells;
+        })()}
+      </div>
+    </div>
+  `;
+}
+
+export async function mountSalaryManager() {
+  const root = pageRoot();
+
+  const now = new Date();
+  let year = now.getFullYear();
+  let month = now.getMonth(); // 0-indexed
+
+  async function render() {
+    const monthStr = `${year}-${String(month + 1).padStart(2, '0')}-01`;
+    root.innerHTML = renderLoading('Đang tải lịch lương…');
+
+    let schedules = [];
+    let students = [];
+    try {
+      [schedules, students] = await Promise.all([
+        fetchSalaryMonth(monthStr),
+        fetchStudents(),
+      ]);
+    } catch (err) {
+      root.innerHTML = renderErrorState(err);
+      wireRouteRetry(root);
+      return;
+    }
+
+    const days = getDaysInMonth(year, month);
+    const totalSalary = schedules.reduce((sum, s) => {
+      const sessions = (s.salary_sessions ?? []).length;
+      return sum + sessions * Number(s.rate_per_session ?? 0);
+    }, 0);
+    const fmt = new Intl.NumberFormat('vi-VN');
+
+    // Students not yet in this month
+    const scheduledIds = new Set(schedules.map((s) => s.student_id));
+    const unscheduled = students.filter((s) => !scheduledIds.has(s.id));
+
+    const monthLabel = new Date(year, month, 1).toLocaleDateString('vi-VN', { month: 'long', year: 'numeric' });
+
+    root.innerHTML = `
+      <style>
+        .salary-card button[data-toggle-session]:hover { transform: scale(1.15); }
+      </style>
+      <section style="max-width:900px; padding:var(--page-gutter,24px); display:flex; flex-direction:column; gap:24px;">
+
+        <!-- Month picker + summary bar -->
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <md-icon-button id="salary-prev-month"><md-icon>chevron_left</md-icon></md-icon-button>
+            <h2 style="margin:0; font-size:1.3rem; font-weight:700; min-width:180px; text-align:center;">${monthLabel}</h2>
+            <md-icon-button id="salary-next-month"><md-icon>chevron_right</md-icon></md-icon-button>
+          </div>
+          <div style="background:var(--md-sys-color-primary-container); color:var(--md-sys-color-on-primary-container); border-radius:12px; padding:10px 20px; font-weight:700; font-size:1rem;">
+            Tổng lương tháng: ${fmt.format(totalSalary)}đ
+          </div>
+        </div>
+
+        <!-- Add student to this month -->
+        ${unscheduled.length > 0 ? `
+          <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+            <select id="salary-add-student" class="field" style="height:40px; border-radius:8px; border:1px solid var(--md-sys-color-outline); padding:0 12px; flex:1; min-width:180px;">
+              <option value="">-- Chọn học sinh --</option>
+              ${unscheduled.map((s) => `<option value="${escapeHtml(s.id)}">${escapeHtml(s.full_name)}</option>`).join('')}
+            </select>
+            <md-filled-button id="salary-add-btn" type="button">
+              <md-icon slot="icon">add</md-icon>Thêm học sinh vào tháng
+            </md-filled-button>
+          </div>
+        ` : '<p style="margin:0; color:var(--md-sys-color-on-surface-variant); font-size:0.9rem;">✅ Tất cả học sinh đã có lịch tháng này.</p>'}
+
+        <!-- Per-student calendars -->
+        <div id="salary-cards" style="display:flex; flex-direction:column; gap:16px;">
+          ${schedules.length
+            ? schedules.map((s) => renderSalaryCalendar(s, days)).join('')
+            : '<p style="color:var(--md-sys-color-on-surface-variant);">Chưa có học sinh nào trong tháng này. Thêm học sinh ở trên.</p>'
+          }
+        </div>
+
+      </section>
+    `;
+
+    wireSalaryManager(month, year, render);
+  }
+
+  function wireSalaryManager(_month, _year, rerender) {
+    document.getElementById('salary-prev-month')?.addEventListener('click', () => {
+      month--;
+      if (month < 0) { month = 11; year--; }
+      rerender();
+    });
+    document.getElementById('salary-next-month')?.addEventListener('click', () => {
+      month++;
+      if (month > 11) { month = 0; year++; }
+      rerender();
+    });
+
+    document.getElementById('salary-add-btn')?.addEventListener('click', async () => {
+      const studentId = document.getElementById('salary-add-student')?.value;
+      if (!studentId) { toast('Chọn học sinh trước!', 'error'); return; }
+      try {
+        const monthStr = `${_year}-${String(_month + 1).padStart(2, '0')}-01`;
+        await upsertSalarySchedule({ studentId, month: monthStr, ratePerSession: 0, notes: '' });
+        await rerender();
+      } catch (err) { toast(err.message, 'error'); }
+    });
+
+    // Rate field: save on blur
+    document.querySelectorAll('[data-rate-field]').forEach((field) => {
+      field.addEventListener('change', async () => {
+        const scheduleId = field.dataset.rateField;
+        const rate = Number(field.value) || 0;
+        // find schedule to get studentId
+        const card = field.closest('[data-schedule-id]');
+        const deleteBtn = card?.querySelector('[data-delete-schedule]');
+        if (!deleteBtn) return;
+        // upsert rate update — fetch month from DOM heading
+        const monthStr = `${_year}-${String(_month + 1).padStart(2, '0')}-01`;
+        const studentId = card?.dataset?.studentId;
+        // We update via direct supabase in admin — just update rate
+        try {
+          const { supabase: sb } = await import('./services/supabaseClient.js');
+          await sb.from('salary_schedules').update({ rate_per_session: rate }).eq('id', scheduleId);
+          await rerender();
+        } catch (err) { toast(err.message, 'error'); }
+      });
+    });
+
+    // Delete schedule
+    document.querySelectorAll('[data-delete-schedule]').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        if (!confirm('Xóa lịch của học sinh này trong tháng?')) return;
+        try {
+          await deleteSalarySchedule(btn.dataset.deleteSchedule);
+          await rerender();
+        } catch (err) { toast(err.message, 'error'); }
+      });
+    });
+
+    // Toggle session (tick/untick date)
+    document.querySelectorAll('[data-toggle-session]').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const scheduleId = btn.dataset.toggleSession;
+        const sessionDate = btn.dataset.date;
+        const isTaught = btn.style.background.includes('primary') && !btn.style.background.includes('container');
+        try {
+          await toggleSalarySession({ scheduleId, sessionDate, taught: !isTaught });
+          // Optimistic UI: toggle immediately
+          if (!isTaught) {
+            btn.style.background = 'var(--md-sys-color-primary)';
+            btn.style.color = 'var(--md-sys-color-on-primary)';
+          } else {
+            btn.style.background = 'var(--md-sys-color-surface-container)';
+            btn.style.color = 'var(--md-sys-color-on-surface)';
+          }
+          // Update summary label in card
+          const card = btn.closest('[data-schedule-id]');
+          if (card) {
+            const allBtns = card.querySelectorAll('[data-toggle-session]');
+            let count = 0;
+            allBtns.forEach((b) => {
+              if (b.style.background.includes('primary') && !b.style.background.includes('container')) count++;
+            });
+            const rateField = card.querySelector('[data-rate-field]');
+            const rate = Number(rateField?.value ?? 0);
+            const fmt2 = new Intl.NumberFormat('vi-VN');
+            const summaryEl = card.querySelector('p[data-summary]') ?? card.querySelectorAll('p')[1];
+            if (summaryEl) {
+              const name = card.querySelector('p:first-child')?.textContent ?? '';
+              summaryEl.innerHTML = `${count} buổi × ${fmt2.format(rate)}đ = <strong style="color:var(--md-sys-color-primary)">${fmt2.format(count * rate)}đ</strong>`;
+            }
+          }
+        } catch (err) { toast(err.message, 'error'); }
+      });
+    });
+  }
+
+  await render();
+}

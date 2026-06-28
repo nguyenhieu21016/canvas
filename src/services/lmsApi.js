@@ -989,3 +989,69 @@ export async function deleteTeachingLog({ studentId, lectureId }) {
   assertOk({ error });
   cache.delete(`teaching-logs:${studentId}`);
 }
+
+// ─── Salary Management ────────────────────────────────────────────────────────
+
+export async function fetchSalaryMonth(month) {
+  // month: 'YYYY-MM-DD' (first day of month)
+  const client = requireSupabase();
+  const { data, error } = await withTimeout(
+    client
+      .from('salary_schedules')
+      .select('*, profiles(full_name), salary_sessions(id, session_date)')
+      .eq('month', month)
+      .order('created_at'),
+    'Tải lịch lương',
+  );
+  assertOk({ error });
+  return data ?? [];
+}
+
+export async function upsertSalarySchedule({ studentId, month, ratePerSession, notes }) {
+  const client = requireSupabase();
+  const { data, error } = await withTimeout(
+    client
+      .from('salary_schedules')
+      .upsert(
+        { student_id: studentId, month, rate_per_session: ratePerSession, notes },
+        { onConflict: 'student_id,month' },
+      )
+      .select('id')
+      .single(),
+    'Lưu lịch lương',
+  );
+  assertOk({ error });
+  return data;
+}
+
+export async function deleteSalarySchedule(scheduleId) {
+  const client = requireSupabase();
+  const { error } = await withTimeout(
+    client.from('salary_schedules').delete().eq('id', scheduleId),
+    'Xóa lịch lương',
+  );
+  assertOk({ error });
+}
+
+export async function toggleSalarySession({ scheduleId, sessionDate, taught }) {
+  const client = requireSupabase();
+  if (taught) {
+    const { error } = await withTimeout(
+      client
+        .from('salary_sessions')
+        .insert({ schedule_id: scheduleId, session_date: sessionDate }),
+      'Tick buổi dạy',
+    );
+    assertOk({ error });
+  } else {
+    const { error } = await withTimeout(
+      client
+        .from('salary_sessions')
+        .delete()
+        .eq('schedule_id', scheduleId)
+        .eq('session_date', sessionDate),
+      'Untick buổi dạy',
+    );
+    assertOk({ error });
+  }
+}

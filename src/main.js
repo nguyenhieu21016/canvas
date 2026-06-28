@@ -2022,7 +2022,7 @@ function wireTableSearch(inputSelector, rowSelector) {
 
 async function mountCurrentRoute() {
   const current = route();
-  if (!isManager() && ['dashboard', 'content', 'assignments', 'students', 'solution-requests', 'manage', 'progress'].includes(current.name)) {
+  if (!isManager() && ['dashboard', 'content', 'assignments', 'students', 'solution-requests', 'manage', 'progress', 'salary'].includes(current.name)) {
     go('learn');
     return;
   }
@@ -2040,6 +2040,7 @@ async function mountCurrentRoute() {
   if (current.name === 'content') return (await import('./admin.js')).mountContentManager();
   if (current.name === 'assignments') return (await import('./admin.js')).mountAssignmentManager();
   if (current.name === 'solution-requests') return (await import('./admin.js')).mountSolutionRequestsManager();
+  if (current.name === 'salary') return (await import('./admin.js')).mountSalaryManager();
   if (current.name === 'students') return (await import('./admin.js')).mountStudents();
   if (current.name === 'grades') return (await import('./admin.js')).mountGrades();
   return (await import('./student.js')).mountLearn();
