@@ -1558,7 +1558,7 @@ export async function mountSalaryManager() {
         </div>
 
         <!-- Add student -->
-        ${unscheduled.length ? `
+        ${(unscheduled.length > 0 && schedules.length < 2) ? `
           <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; padding-top:8px; border-top:1px solid var(--md-sys-color-outline-variant);">
             <select id="add-student-sel" class="field" style="flex:1; min-width:180px; height:40px; border-radius:8px; border:1px solid var(--md-sys-color-outline); padding:0 12px;">
               <option value="">-- Thêm học sinh vào tháng --</option>
