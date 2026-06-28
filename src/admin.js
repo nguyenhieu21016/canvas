@@ -1461,38 +1461,50 @@ export async function mountSalaryManager() {
 
       return `
         <div class="panel" data-schedule="${s.id}" style="
-          border-radius: var(--md-sys-shape-corner-large,16px);
+          border-radius: var(--md-sys-shape-corner-large, 16px);
           background: var(--md-sys-color-surface-container-low);
           border: 1px solid var(--md-sys-color-outline-variant);
-          padding: 18px 20px; display:flex; flex-direction:column; gap:12px;
+          padding: 24px; display:flex; flex-direction:column; gap:16px;
         ">
-          <!-- Header row -->
-          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
-            <div>
-              <p style="margin:0; font-weight:700; font-size:1rem; color:var(--md-sys-color-on-surface);">${escapeHtml(s.profiles?.full_name ?? 'Học sinh')}</p>
-              <p style="margin:4px 0 0; font-size:0.83rem; color:var(--md-sys-color-on-surface-variant);">
-                Lịch: <strong>${scheduledCount + taughtCount}</strong> buổi &nbsp;·&nbsp;
-                Đã dạy: <strong><span data-count="${s.id}">${taughtCount}</span></strong> buổi &nbsp;·&nbsp;
-                Lương: <strong style="color:var(--md-sys-color-primary);" data-total="${s.id}">${fmt.format(total)}đ</strong>
-              </p>
-            </div>
+          <!-- Top Row: Name & Delete -->
+          <div style="display:flex; align-items:center; justify-content:space-between;">
+            <h3 style="margin:0; font-size:1.15rem; font-weight:700; color:var(--md-sys-color-on-surface);">${escapeHtml(s.profiles?.full_name ?? 'Học sinh')}</h3>
+            <button type="button" data-delete-schedule="${s.id}" style="
+              background:none; border:none; border-radius:50%;
+              color:var(--md-sys-color-on-surface-variant); cursor:pointer; padding:6px;
+              display:flex; align-items:center; justify-content:center;
+              transition: background 0.2s, color 0.2s;
+            " onmouseover="this.style.background='var(--md-sys-color-error-container)'; this.style.color='var(--md-sys-color-error)';" onmouseout="this.style.background='none'; this.style.color='var(--md-sys-color-on-surface-variant)';">
+              <md-icon style="font-size:1.2rem;">delete</md-icon>
+            </button>
+          </div>
+
+          <!-- Stats Row -->
+          <div style="display:flex; align-items:center; gap:16px; font-size:0.88rem; color:var(--md-sys-color-on-surface-variant); background:var(--md-sys-color-surface-container-lowest); padding:10px 14px; border-radius:8px;">
+            <span>Lịch: <strong>${scheduledCount + taughtCount}</strong></span>
+            <span style="width:1px; height:12px; background:var(--md-sys-color-outline-variant);"></span>
+            <span>Đã dạy: <strong><span data-count="${s.id}">${taughtCount}</span></strong></span>
+            <span style="width:1px; height:12px; background:var(--md-sys-color-outline-variant);"></span>
+            <span>Lương: <strong style="color:var(--md-sys-color-primary);" data-total="${s.id}">${fmt.format(total)}đ</strong></span>
+          </div>
+
+          <!-- Rate Row -->
+          <div style="display:flex; align-items:center; justify-content:space-between; font-size:0.9rem;">
+            <label style="color:var(--md-sys-color-on-surface-variant); font-weight:500;">Đơn giá / buổi</label>
             <div style="display:flex; align-items:center; gap:8px;">
-              <label style="font-size:0.78rem; color:var(--md-sys-color-on-surface-variant);">đ/buổi</label>
               <input type="number" class="field rate-input" data-rate-for="${s.id}" value="${rate}" min="0" step="10000"
-                style="width:130px; height:36px; border-radius:8px; border:1px solid var(--md-sys-color-outline); padding:0 10px; font-size:0.9rem; background:var(--md-sys-color-surface);">
-              <button type="button" data-delete-schedule="${s.id}" style="
-                background:none; border:1px solid var(--md-sys-color-error); border-radius:8px;
-                color:var(--md-sys-color-error); cursor:pointer; padding:6px 10px;
-                display:flex; align-items:center;
-              "><md-icon style="font-size:1rem;">delete</md-icon></button>
+                style="width:120px; height:36px; border-radius:8px; border:1px solid var(--md-sys-color-outline); padding:0 12px; font-size:0.95rem; text-align:right; font-weight:600; background:var(--md-sys-color-surface); color:var(--md-sys-color-on-surface);">
+              <span style="color:var(--md-sys-color-on-surface-variant);">đ</span>
             </div>
           </div>
 
+          <hr style="border:none; border-top:1px dashed var(--md-sys-color-outline-variant); margin:4px 0;">
+
           <!-- Legend -->
-          <div style="display:flex; gap:14px; font-size:0.75rem; color:var(--md-sys-color-on-surface-variant);">
-            <span style="display:flex;align-items:center;gap:5px;"><span style="width:14px;height:14px;border-radius:3px;background:var(--md-sys-color-surface-container);border:2px solid var(--md-sys-color-outline-variant);display:inline-block;"></span> Trống</span>
-            <span style="display:flex;align-items:center;gap:5px;"><span style="width:14px;height:14px;border-radius:3px;background:transparent;border:2px solid var(--md-sys-color-primary);display:inline-block;"></span> Có lịch</span>
-            <span style="display:flex;align-items:center;gap:5px;"><span style="width:14px;height:14px;border-radius:3px;background:var(--md-sys-color-primary);display:inline-block;"></span> Đã dạy</span>
+          <div style="display:flex; justify-content:space-between; gap:10px; font-size:0.75rem; color:var(--md-sys-color-on-surface-variant); padding:0 8px;">
+            <span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:12px;border-radius:3px;background:var(--md-sys-color-surface-container);border:1px solid var(--md-sys-color-outline-variant);display:inline-block;"></span> Trống</span>
+            <span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:12px;border-radius:3px;background:transparent;border:2px solid var(--md-sys-color-primary);display:inline-block;"></span> Có lịch</span>
+            <span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:12px;border-radius:3px;background:var(--md-sys-color-primary);display:inline-block;"></span> Đã dạy</span>
           </div>
 
           <!-- Calendar grid -->
