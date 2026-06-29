@@ -53,6 +53,7 @@ export function mountManageHub() {
       icon: 'payments',
       title: 'Lịch dạy & Lương',
       description: 'Tick lịch dạy từng học sinh theo tháng và xem tổng lương.',
+    },
     {
       href: '#/online',
       icon: 'people_alt',
