@@ -1,5 +1,42 @@
 import { supabase } from './supabaseClient.js';
 
+export const presenceTarget = new EventTarget();
+let presenceChannel = null;
+const onlineUsersMap = new Map();
+
+export function initPresence(profile) {
+  if (presenceChannel) return;
+  const client = requireSupabase();
+  presenceChannel = client.channel('online-users', {
+    config: { presence: { key: profile.id } }
+  });
+
+  presenceChannel.on('presence', { event: 'sync' }, () => {
+    const newState = presenceChannel.presenceState();
+    onlineUsersMap.clear();
+    for (const [key, state] of Object.entries(newState)) {
+      if (state.length > 0) onlineUsersMap.set(key, state[0]);
+    }
+    presenceTarget.dispatchEvent(new Event('change'));
+  });
+
+  presenceChannel.subscribe(async (status) => {
+    if (status === 'SUBSCRIBED') {
+      await presenceChannel.track({
+        user_id: profile.id,
+        full_name: profile.full_name || profile.email || 'Không tên',
+        role: profile.role,
+        avatar_url: profile.avatar_url,
+        online_at: new Date().toISOString(),
+      });
+    }
+  });
+}
+
+export function getOnlineUsers() {
+  return Array.from(onlineUsersMap.values());
+}
+
 const CACHE_TTL_MS = 120_000;
 const LEARNING_PATH_CACHE_TTL_MS = 10 * 60_000;
 const STALE_CACHE_TTL_MS = 30 * 60_000;

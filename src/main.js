@@ -50,6 +50,7 @@ import {
   upsertLectureGroup,
   upsertModule,
   upsertPhase,
+  initPresence,
 } from './services/lmsApi.js';
 import { clearDraft, loadDraft, saveDraft } from './lib/draft.js';
 import { toDrivePreviewUrl } from './lib/drive.js';
@@ -417,7 +418,7 @@ function renderShell() {
   const current = route().name;
   const activeNav = ['phase', 'assignment', 'review', 'solution'].includes(current)
     ? 'learn'
-    : ['content', 'assignments', 'students', 'solution-requests', 'manage', 'progress'].includes(current)
+    : ['content', 'assignments', 'students', 'solution-requests', 'manage', 'progress', 'online', 'salary'].includes(current)
       ? 'manage'
       : current;
   const navMarkup = navItems()
@@ -491,6 +492,7 @@ function pageTitle(name) {
       students: 'Quản lý học sinh',
       'solution-requests': 'Quản lý yêu cầu',
       grades: 'Bảng điểm',
+      online: 'Đang hoạt động',
     }[name] ?? 'Lộ trình ôn thi'
   );
 }
@@ -2045,6 +2047,7 @@ async function mountCurrentRoute() {
   if (current.name === 'solution-requests') return (await import('./admin.js')).mountSolutionRequestsManager();
   if (current.name === 'salary') return (await import('./admin.js')).mountSalaryManager();
   if (current.name === 'students') return (await import('./admin.js')).mountStudents();
+  if (current.name === 'online') return (await import('./admin.js')).mountOnlineUsers();
   if (current.name === 'grades') return (await import('./admin.js')).mountGrades();
   return (await import('./student.js')).mountLearn();
 }
@@ -2078,7 +2081,10 @@ async function bootstrap() {
 
   try {
     state.session = await getSession();
-    if (state.session) state.profile = await getCurrentProfile(state.session.user);
+    if (state.session) {
+      state.profile = await getCurrentProfile(state.session.user);
+      initPresence(state.profile);
+    }
   } catch (error) {
     toast(error.message, 'error');
   }
@@ -2103,6 +2109,7 @@ async function bootstrap() {
       if (session) {
         if (!state.profile || state.profile.id !== session.user.id) {
           state.profile = await getCurrentProfile(session.user);
+          initPresence(state.profile);
           render();
         }
       } else {

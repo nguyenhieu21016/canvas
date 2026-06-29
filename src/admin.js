@@ -10,13 +10,14 @@ import {
   deleteAssignment, reorderContentNodes as reorderContentNodesApi,
   invokeAdminFunction, createManagedUser, fetchAssignmentEditor, regradeAssignment, 
   deleteManagedUser, saveAssignmentWithQuestions,
-  fetchSalaryMonth, upsertSalarySchedule, deleteSalarySchedule, setSessionState
+  fetchSalaryMonth, upsertSalarySchedule, deleteSalarySchedule, setSessionState,
+  getOnlineUsers, presenceTarget
 } from "./services/lmsApi.js";
 import { 
   state, pageRoot, renderLoading, renderErrorState, wireRouteRetry, 
   escapeHtml, wireTableSearch, toast, isManager, renderAttemptsTable,
   renderManagerSolutionRequest, renderMetric, wireSolutionRequestManager,
-  wireMaterialFormButtons, isAdmin, renderSkeletonAssignments
+  wireMaterialFormButtons, isAdmin, renderSkeletonAssignments, renderAccountAvatar
 } from "./main.js";
 import { mountStudentGrades } from "./student.js";
 
@@ -52,6 +53,11 @@ export function mountManageHub() {
       icon: 'payments',
       title: 'Lịch dạy & Lương',
       description: 'Tick lịch dạy từng học sinh theo tháng và xem tổng lương.',
+    {
+      href: '#/online',
+      icon: 'people_alt',
+      title: 'Đang hoạt động',
+      description: 'Xem danh sách học sinh đang online trên hệ thống.',
     },
   ];
   root.innerHTML = `
@@ -1698,5 +1704,50 @@ export async function mountSalaryManager() {
   await rerender();
 }
 
+export function mountOnlineUsers() {
+  const root = pageRoot();
 
+  function renderOnlineUsers() {
+    const users = getOnlineUsers();
+    root.innerHTML = `
+      <section class="panel">
+        <div class="panel-heading">
+          <div>
+            <h2>Học sinh đang online (${users.length})</h2>
+            <p class="muted">Danh sách những người đang mở ứng dụng.</p>
+          </div>
+        </div>
+        ${users.length > 0 ? `
+          <div class="student-list" style="padding: 20px;">
+            ${users.map(u => `
+              <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--md-sys-color-surface-container-low); border-radius: 8px; margin-bottom: 8px;">
+                ${renderAccountAvatar(u)}
+                <div>
+                  <div style="font-weight: 500;">${escapeHtml(u.full_name)}</div>
+                  <div style="font-size: 0.85rem; color: var(--md-sys-color-on-surface-variant); display: flex; align-items: center; gap: 6px;">
+                    <div style="width: 8px; height: 8px; border-radius: 50%; background: #4caf50;"></div>
+                    Online từ ${new Date(u.online_at).toLocaleTimeString('vi-VN')}
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        ` : `
+          <div class="empty-state">Hiện không có ai đang online.</div>
+        `}
+      </section>
+    `;
+  }
 
+  renderOnlineUsers();
+  const onChange = () => renderOnlineUsers();
+  presenceTarget.addEventListener('change', onChange);
+  
+  const observer = new MutationObserver(() => {
+    if (!document.body.contains(root)) {
+      presenceTarget.removeEventListener('change', onChange);
+      observer.disconnect();
+    }
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+}
