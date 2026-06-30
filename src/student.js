@@ -507,8 +507,21 @@ export async function mountDashboard() {
       const uncompletedAssignments = assignments.filter(a => {
         if (attemptedAssignmentIds.has(a.id)) return false;
         
-        const phaseStudentIds = a.lectures?.modules?.phases?.student_ids;
-        if (phaseStudentIds && phaseStudentIds.length > 0 && !phaseStudentIds.includes(studentId)) {
+        let phaseStudentIds = null;
+        if (a.lectures) {
+          const l = Array.isArray(a.lectures) ? a.lectures[0] : a.lectures;
+          if (l && l.modules) {
+            const m = Array.isArray(l.modules) ? l.modules[0] : l.modules;
+            if (m && m.phases) {
+              const p = Array.isArray(m.phases) ? m.phases[0] : m.phases;
+              if (p && p.student_ids) {
+                phaseStudentIds = p.student_ids;
+              }
+            }
+          }
+        }
+        
+        if (phaseStudentIds && Array.isArray(phaseStudentIds) && phaseStudentIds.length > 0 && !phaseStudentIds.includes(studentId)) {
           return false;
         }
         
