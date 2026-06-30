@@ -3,7 +3,8 @@ import { formatDateTime, formatScore } from "./lib/format.js";
 import { setButtonLoading, option } from "./lib/html.js";
 import { 
   fetchLearningPath, fetchDashboardStats, fetchGradebook, fetchMyHistory,
-  fetchStudents, fetchTeachingLogs, invokeAdminFunction, createManagedUser, deleteManagedUser
+  fetchStudents, fetchTeachingLogs, invokeAdminFunction, createManagedUser, deleteManagedUser,
+  fetchAssignmentsForManager
 } from "./services/lmsApi.js";
 import { 
   state, pageRoot, renderLoading, renderErrorState, escapeHtml, toast, isManager,
@@ -378,9 +379,10 @@ export async function mountDashboard() {
   const root = pageRoot();
   root.innerHTML = renderSkeletonDashboard();
   try {
-    const [students, allAttempts] = await Promise.all([
+    const [students, allAttempts, allAssignments] = await Promise.all([
       fetchStudents(),
       fetchGradebook(),
+      fetchAssignmentsForManager({ limit: 1000 }),
     ]);
 
     // Default to first student if none selected or selected student no longer exists
@@ -464,13 +466,13 @@ export async function mountDashboard() {
         item.addEventListener('click', () => {
           selectedStudentId = item.dataset.studentId;
           renderSidebarList(studentsList);
-          renderStudentDetails(selectedStudentId, studentsList, allAttempts);
+          renderStudentDetails(selectedStudentId, studentsList, allAttempts, allAssignments);
         });
       });
     }
 
     // Render detailed student view on the right
-    function renderStudentDetails(studentId, studentsList, attempts) {
+    function renderStudentDetails(studentId, studentsList, attempts, assignments = []) {
       const pane = document.querySelector('.student-details-pane');
       if (!pane) return;
 
@@ -498,6 +500,18 @@ export async function mountDashboard() {
             <strong style="color: var(--md-sys-color-primary);">${formatScore(a.score_10)}/10</strong>
             <a class="text-link" href="#/review/${a.id}" style="font-size: 0.85rem; font-weight: 600;">Chi tiết</a>
           </div>
+        </div>
+      `).join('');
+
+      const attemptedAssignmentIds = new Set(studentAttempts.map(a => a.assignment_id));
+      const uncompletedAssignments = assignments.filter(a => !attemptedAssignmentIds.has(a.id));
+      const uncompletedListMarkup = uncompletedAssignments.map(a => `
+        <div class="attempt-item-row" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--md-sys-color-outline-variant); font-size: 0.9rem;">
+          <div style="display: flex; flex-direction: column; overflow: hidden; max-width: 80%;">
+            <span style="font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(a.title ?? '-')}</span>
+            <span style="font-size: 0.75rem; color: var(--md-sys-color-on-surface-variant);">${a.lectures?.title ? escapeHtml(a.lectures.title) : 'Chưa xếp nhóm'}</span>
+          </div>
+          <span style="font-size: 0.8rem; font-weight: 500; color: var(--md-sys-color-error);">Chưa làm</span>
         </div>
       `).join('');
 
@@ -548,6 +562,13 @@ export async function mountDashboard() {
               </h3>
               <div class="attempts-list-container" style="height: 220px; overflow-y: auto; padding-right: 4px; border: 1px dashed var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-small, 8px); padding: 4px 12px; background: var(--md-sys-color-surface-container-lowest);">
                 ${attemptsListMarkup || '<div class="empty-state compact" style="padding: 16px 0; border: 0; background: transparent; text-align: center;">Chưa nộp bài nào.</div>'}
+              </div>
+              <h3 style="margin: 16px 0 0 0; font-size: 0.95rem; font-weight: 600; display: flex; justify-content: space-between; align-items: center; color: var(--md-sys-color-on-surface);">
+                <span>Bài tập chưa làm</span>
+                ${uncompletedAssignments.length > 0 ? `<span style="font-size: 0.8rem; font-weight: 500; color: var(--md-sys-color-error);">${uncompletedAssignments.length} bài</span>` : ''}
+              </h3>
+              <div class="attempts-list-container" style="height: 220px; overflow-y: auto; padding-right: 4px; border: 1px dashed var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-small, 8px); padding: 4px 12px; background: var(--md-sys-color-surface-container-lowest);">
+                ${uncompletedListMarkup || '<div class="empty-state compact" style="padding: 16px 0; border: 0; background: transparent; text-align: center;">Đã hoàn thành tất cả.</div>'}
               </div>
             </div>
 
@@ -721,7 +742,10 @@ export async function mountDashboard() {
     }
 
     renderSidebarList(students);
-    renderStudentDetails(selectedStudentId, students, allAttempts);
+    if (selectedStudentId) {
+      const allAssignments = await fetchAssignmentsForManager();
+      renderStudentDetails(selectedStudentId, students, allAttempts, allAssignments);
+    }
     wireMaterialFormButtons(root);
   } catch (error) {
     root.innerHTML = renderErrorState(error);
