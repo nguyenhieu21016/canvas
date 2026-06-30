@@ -468,6 +468,12 @@ export function wireStructureEvents() {
       // Force trigger cascading dropdowns manually if needed
       const phaseSelect = form.querySelector('.cascade-phase');
       const moduleSelect = form.querySelector('.cascade-module');
+      
+      if (!payload.phase_id && payload.module_id && moduleSelect) {
+        const option = moduleSelect.querySelector(`option[value="${payload.module_id}"]`);
+        if (option) payload.phase_id = option.dataset.phaseId;
+      }
+
       if (phaseSelect && moduleSelect && payload.phase_id) {
         phaseSelect.value = payload.phase_id;
         phaseSelect.dispatchEvent(new Event('change'));
