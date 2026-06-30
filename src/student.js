@@ -521,6 +521,8 @@ export async function mountDashboard() {
           }
         }
         
+        a._debugPhaseIds = phaseStudentIds;
+        
         if (phaseStudentIds && Array.isArray(phaseStudentIds) && phaseStudentIds.length > 0 && !phaseStudentIds.includes(studentId)) {
           return false;
         }
@@ -531,7 +533,7 @@ export async function mountDashboard() {
         <div class="attempt-item-row" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--md-sys-color-outline-variant); font-size: 0.9rem;">
           <div style="display: flex; flex-direction: column; overflow: hidden; max-width: 80%;">
             <span style="font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(a.title ?? '-')}</span>
-            <span style="font-size: 0.75rem; color: var(--md-sys-color-on-surface-variant);">${a.lectures?.title ? escapeHtml(a.lectures.title) : 'Chưa xếp nhóm'}</span>
+            <span style="font-size: 0.75rem; color: var(--md-sys-color-on-surface-variant);">${a.lectures?.title ? escapeHtml(a.lectures.title) : 'Chưa xếp nhóm'} (Debug: ids=${a._debugPhaseIds ? a._debugPhaseIds.length : 'null'})</span>
           </div>
           <span style="font-size: 0.8rem; font-weight: 500; color: var(--md-sys-color-error);">Chưa làm</span>
         </div>
