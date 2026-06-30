@@ -388,7 +388,7 @@ export async function fetchLearningPath(role = 'student') {
 
     let phasesQuery = client
       .from('phases')
-      .select('id, owner_id, title, description, sort_order, published, created_at')
+      .select('id, owner_id, title, description, sort_order, published, created_at, student_ids')
       .order('sort_order')
       .order('created_at');
     let modulesQuery = client
@@ -547,7 +547,7 @@ export async function fetchAssignmentsForManager({ limit = 100, offset = 0 } = {
   const client = requireSupabase();
   const { data, error } = await withTimeout(client
     .from('assignments')
-    .select('id, lecture_id, owner_id, title, description, pdf_url, sort_order, published, created_at, lectures(title), profiles(full_name)')
+    .select('id, lecture_id, owner_id, title, description, pdf_url, sort_order, published, created_at, lectures(title, modules(phases(student_ids))), profiles(full_name)')
     .order('created_at', { ascending: false })
     .range(offset, offset + limit - 1), 'Tải danh sách đề');
   assertOk({ error });

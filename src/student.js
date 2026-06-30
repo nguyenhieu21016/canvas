@@ -504,7 +504,16 @@ export async function mountDashboard() {
       `).join('');
 
       const attemptedAssignmentIds = new Set(studentAttempts.map(a => a.assignment_id));
-      const uncompletedAssignments = assignments.filter(a => !attemptedAssignmentIds.has(a.id));
+      const uncompletedAssignments = assignments.filter(a => {
+        if (attemptedAssignmentIds.has(a.id)) return false;
+        
+        const phaseStudentIds = a.lectures?.modules?.phases?.student_ids;
+        if (phaseStudentIds && phaseStudentIds.length > 0 && !phaseStudentIds.includes(studentId)) {
+          return false;
+        }
+        
+        return true;
+      });
       const uncompletedListMarkup = uncompletedAssignments.map(a => `
         <div class="attempt-item-row" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--md-sys-color-outline-variant); font-size: 0.9rem;">
           <div style="display: flex; flex-direction: column; overflow: hidden; max-width: 80%;">

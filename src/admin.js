@@ -144,14 +144,17 @@ export async function mountContentManager() {
   const root = pageRoot();
   root.innerHTML = renderLoading();
   try {
-    const data = await fetchLearningPath(state.profile.role);
+    const [data, students] = await Promise.all([
+      fetchLearningPath(state.profile.role),
+      fetchStudents()
+    ]);
     root.innerHTML = `
       <section class="panel content-create-panel">
         <div class="panel-heading">
           <h2>Tạo nội dung</h2>
         </div>
         <div class="content-create-grid four">
-          ${renderPhaseForm()}
+          ${renderPhaseForm(students)}
           ${renderModuleForm(data.phases)}
           ${renderLectureGroupForm(data.phases, data.modules)}
           ${renderLectureForm(data.phases, data.modules, data.lectureGroups)}
@@ -175,7 +178,7 @@ export async function mountContentManager() {
   }
 }
 
-export function renderPhaseForm() {
+export function renderPhaseForm(students = []) {
   return `
     <form class="entity-form compact-entity-form" data-entity="phase">
       <div class="entity-form-heading">
@@ -187,6 +190,15 @@ export function renderPhaseForm() {
       <input type="hidden" name="sort_order" value="0">
       <input type="hidden" name="published" value="true">
       <input class="field" name="title" placeholder="Tên giai đoạn" required>
+      <div class="field" style="max-height: 120px; overflow-y: auto; border: 1px solid var(--md-sys-color-outline-variant); padding: 8px; border-radius: 8px;">
+        <div style="font-size: 0.85rem; font-weight: 500; margin-bottom: 8px; color: var(--md-sys-color-on-surface-variant);">Hiển thị cho học sinh (để trống = tất cả):</div>
+        ${students.map(s => `
+          <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px; font-size: 0.9rem; cursor: pointer;">
+            <input type="checkbox" name="student_ids" value="${escapeHtml(s.id)}">
+            ${escapeHtml(s.full_name)}
+          </label>
+        `).join('')}
+      </div>
       <div class="button-row">
         <md-filled-button type="submit"><md-icon slot="icon">save</md-icon>Lưu</md-filled-button>
         <md-outlined-button type="reset">Mới</md-outlined-button>
@@ -356,7 +368,12 @@ export function wireContentForms(pathData) {
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       if (form.dataset.saving === 'true') return;
-      const values = Object.fromEntries(new FormData(form).entries());
+      const formData = new FormData(form);
+      const values = Object.fromEntries(formData.entries());
+      if (form.dataset.entity === 'phase') {
+        const studentIds = formData.getAll('student_ids');
+        values.student_ids = studentIds.length > 0 ? studentIds : null;
+      }
       const sortOrder = values.id
         ? Number(values.sort_order || 0)
         : nextContentSortOrder(form.dataset.entity, values, pathData);
@@ -459,6 +476,14 @@ export function wireStructureEvents() {
       const form = document.querySelector(`[data-entity="${kind}"]`);
       if (!form) return;
       Object.entries(payload).forEach(([key, value]) => {
+        if (key === 'student_ids' && Array.isArray(value)) {
+          form.querySelectorAll('[name="student_ids"]').forEach(cb => cb.checked = false);
+          value.forEach(id => {
+            const cb = form.querySelector(`[name="student_ids"][value="${id}"]`);
+            if (cb) cb.checked = true;
+          });
+          return;
+        }
         const input = form.querySelector(`[name="${key}"]`);
         if (!input) return;
         if (input.type === 'checkbox') input.checked = Boolean(value);
