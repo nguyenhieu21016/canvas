@@ -56,6 +56,7 @@ import { clearDraft, loadDraft, saveDraft } from './lib/draft.js';
 import { toDrivePreviewUrl } from './lib/drive.js';
 import { formatDateTime, formatScore, roleLabel } from './lib/format.js';
 import { escapeHtml, option, setButtonLoading } from './lib/html.js';
+import { normalizeAssignmentEditor } from './admin.js';
 
 const app = document.querySelector('#app');
 const toastEl = document.querySelector('#toast');
