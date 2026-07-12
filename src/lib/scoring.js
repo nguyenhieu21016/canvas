@@ -1,8 +1,3 @@
-export const QUESTION_TYPES = Object.freeze({
-  MCQ: 'mcq',
-  TF4: 'tf4',
-  SHORT: 'short',
-});
 
 export function normalizeShortAnswer(value) {
   return String(value ?? '')

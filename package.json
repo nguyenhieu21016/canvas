@@ -23,9 +23,7 @@
   "dependencies": {
     "@material/web": "^2.4.1",
     "@prisma/client": "^7.8.0",
-    "@supabase/supabase-js": "^2.106.2",
-    "pg": "^8.21.0",
-    "run": "^1.5.0"
+    "@supabase/supabase-js": "^2.106.2"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",

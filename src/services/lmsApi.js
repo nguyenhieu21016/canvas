@@ -1014,8 +1014,5 @@ export async function setSessionState({ scheduleId, sessionDate, state }) {
   }
 }
 
-// Keep old name as alias for backward compat
-export async function toggleSalarySession({ scheduleId, sessionDate, taught }) {
-  return setSessionState({ scheduleId, sessionDate, state: taught ? 'scheduled' : 'none' });
-}
+
 
