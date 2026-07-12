@@ -11,20 +11,15 @@ import {
   deleteModule,
   deletePhase,
   createManagedUser,
-  createSolutionRequest,
   fetchAssignmentEditor,
   fetchAssignmentForStudent,
   fetchAssignmentInsights,
-  fetchAssignmentSolutionRequests,
   fetchAssignmentsForManager,
   fetchAttemptReview,
   fetchDashboardStats,
   fetchGradebook,
   fetchLearningPath,
   fetchMyHistory,
-  fetchSolutionRequest,
-  fetchSolutionRequestsForManager,
-  fetchSolutionRequestsForAttempt,
   fetchStudentAssignmentOverview,
   fetchStudents,
   fetchTeachingLogs,
@@ -45,7 +40,6 @@ import {
   updateCurrentUserPassword,
   updateProfileAvatar,
   updateProfileName,
-  updateSolutionRequest,
   upsertLecture,
   upsertLectureGroup,
   upsertModule,
@@ -67,7 +61,6 @@ const APP_VERSION = '1.4.0';
 const APP_LAST_UPDATE = 'Hỗ trợ parse và render đề thi chuẩn LaTeX (MathJax) trực tiếp trên trình duyệt, kèm theo lời giải chi tiết và hệ thống điều hướng thông minh.';
 let renderGeneration = 0;
 let assignmentsForManagerList = [];
-let pendingSolutionRequests = [];
 let appElementsPromise = null;
 const detachedPageRoot = {
   isConnected: false,
@@ -417,9 +410,9 @@ function navItems() {
 
 function renderShell() {
   const current = route().name;
-  const activeNav = ['phase', 'assignment', 'review', 'solution'].includes(current)
+  const activeNav = ['phase', 'assignment', 'review'].includes(current)
     ? 'learn'
-    : ['content', 'assignments', 'students', 'solution-requests', 'manage', 'progress', 'online', 'salary'].includes(current)
+    : ['content', 'assignments', 'students', 'manage', 'progress', 'online', 'salary'].includes(current)
       ? 'manage'
       : current;
   const navMarkup = navItems()
@@ -484,14 +477,12 @@ function pageTitle(name) {
       countdown: 'Đếm ngược THPTQG',
       settings: 'Cài đặt',
       assignment: 'Làm bài',
-      review: 'Xem lại bài',
-      solution: 'Lời giải chi tiết',
+      review: 'Xem lại bài làm',
       dashboard: 'Theo dõi học sinh',
-      manage: 'Quản trị',
+      manage: 'Quản lý giảng dạy',
       content: 'Quản lý nội dung',
       assignments: 'Quản lý đề thi',
       students: 'Quản lý học sinh',
-      'solution-requests': 'Quản lý yêu cầu',
       grades: 'Bảng điểm',
       online: 'Đang hoạt động',
     }[name] ?? 'Lộ trình ôn thi'
@@ -669,10 +660,8 @@ async function mountStudentAssignmentOverview(id) {
   try {
     const { assignment, attempts } = await fetchStudentAssignmentOverview(id);
     const latest = attempts[0];
-    const solutionRequests = latest ? await fetchSolutionRequestsForAttempt(latest.id) : [];
-    const fulfilledSolution = fulfilledSolutionRequest(solutionRequests);
     root.innerHTML = `
-      <section class="assignment-start">
+      <section class="assignment-start" ${assignment.pdf_url === 'latex' ? 'style="max-width: 760px; margin: 0 auto; width: 100%;"' : ''}>
         <div class="panel assignment-start-hero">
           <div>
             <p class="eyebrow">Bài tập về nhà</p>
@@ -684,22 +673,10 @@ async function mountStudentAssignmentOverview(id) {
               <md-icon slot="icon">${latest ? 'restart_alt' : 'play_arrow'}</md-icon>
               ${latest ? 'Làm lại' : 'Làm bài'}
             </md-filled-button>
-            ${latest ? `<md-filled-tonal-button id="request-solution-button"><md-icon slot="icon">rate_review</md-icon>Yêu cầu giải chi tiết</md-filled-tonal-button>` : ''}
-            ${fulfilledSolution ? `<md-outlined-button id="view-solution-button"><md-icon slot="icon">description</md-icon>Xem lời giải chi tiết</md-outlined-button>` : ''}
             ${latest ? `<md-outlined-button id="review-latest-attempt"><md-icon slot="icon">visibility</md-icon>Xem bài mới nhất</md-outlined-button>` : ''}
           </div>
         </div>
-        ${latest ? renderSolutionRequestDialog(solutionRequests) : ''}
-        <section class="exam-shell assignment-preview-shell">
-          <div class="exam-paper">
-            <div class="split-heading">
-              <div>
-                <p class="eyebrow">Đề bài</p>
-                <h2>${escapeHtml(assignment.title)}</h2>
-              </div>
-            </div>
-            ${driveFrame(assignment.pdf_url, assignment.title, true)}
-          </div>
+        ${assignment.pdf_url === 'latex' ? `
           <div class="panel assignment-history-panel">
             <div class="panel-heading">
               <div>
@@ -707,69 +684,41 @@ async function mountStudentAssignmentOverview(id) {
                 <h2>${attempts.length} lần nộp</h2>
               </div>
             </div>
-            ${renderStudentAssignmentHistory(attempts)}
+            ${attempts.length > 0 ? renderStudentAssignmentHistory(attempts) : '<div class="empty-state" style="padding: 48px 0; background: transparent; border: 1px dashed var(--md-sys-color-outline-variant); border-radius: 16px; margin-top: 16px;"><md-icon style="font-size: 48px; color: var(--md-sys-color-outline); margin-bottom: 16px;">history</md-icon><p style="color: var(--md-sys-color-on-surface-variant);">Bạn chưa làm bài tập này lần nào.</p></div>'}
           </div>
-        </section>
+        ` : `
+          <section class="exam-shell assignment-preview-shell">
+            <div class="exam-paper">
+              <div class="split-heading">
+                <div>
+                  <p class="eyebrow">Đề bài</p>
+                  <h2>${escapeHtml(assignment.title)}</h2>
+                </div>
+              </div>
+              ${driveFrame(assignment.pdf_url, assignment.title, true)}
+            </div>
+            <div class="panel assignment-history-panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Lịch sử làm bài</p>
+                  <h2>${attempts.length} lần nộp</h2>
+                </div>
+              </div>
+              ${renderStudentAssignmentHistory(attempts)}
+            </div>
+          </section>
+        `}
       </section>
     `;
     wireMaterialFormButtons(root);
     document.querySelector('#start-assignment')?.addEventListener('click', () => mountAssignmentExam(id));
-    document.querySelector('#view-solution-button')?.addEventListener('click', () => go(`solution/${fulfilledSolution.id}`));
     document.querySelector('#review-latest-attempt')?.addEventListener('click', () => go(`review/${latest.id}`));
-    document.querySelector('#request-solution-button')?.addEventListener('click', () => {
-      const dialog = document.querySelector('#solution-request-dialog');
-      openSolutionRequestDialog(dialog);
-    });
-    document.querySelector('#close-solution-request-dialog')?.addEventListener('click', () => {
-      closeSolutionRequestDialog(document.querySelector('#solution-request-dialog'));
-    });
-    document.querySelector('#solution-request-dialog')?.addEventListener('click', (event) => {
-      if (event.target === event.currentTarget) closeSolutionRequestDialog(event.currentTarget);
-    });
-    document.querySelector('#solution-request-dialog')?.addEventListener('cancel', (event) => {
-      event.preventDefault();
-      closeSolutionRequestDialog(event.currentTarget);
-    });
-    wireSolutionRequestForm('#overview-solution-request-form', {
-      assignmentId: assignment.id,
-      attemptId: latest?.id,
-      onSaved: (request) => {
-        prependStudentSolutionHistory(request);
-        closeSolutionRequestDialog(document.querySelector('#solution-request-dialog'));
-      },
-    });
   } catch (error) {
     root.innerHTML = renderErrorState(error);
     wireRouteRetry(root);
   }
 }
 
-function openSolutionRequestDialog(dialog) {
-  if (!dialog || dialog.open) return;
-  dialog.dataset.closing = 'false';
-  dialog.showModal();
-  window.requestAnimationFrame(() => {
-    dialog.classList.add('open');
-    dialog.querySelector('[name="requested_questions"]')?.focus();
-  });
-}
-
-function closeSolutionRequestDialog(dialog) {
-  if (!dialog || !dialog.open || dialog.dataset.closing === 'true') return;
-  dialog.dataset.closing = 'true';
-  dialog.classList.remove('open');
-  dialog.classList.add('closing');
-  const surface = dialog.querySelector('.dialog-surface');
-  const finish = () => {
-    dialog.classList.remove('closing');
-    dialog.dataset.closing = 'false';
-    dialog.close();
-  };
-  surface?.addEventListener('animationend', finish, { once: true });
-  window.setTimeout(() => {
-    if (dialog.open && dialog.dataset.closing === 'true') finish();
-  }, 240);
-}
 
 function renderStudentAssignmentHistory(attempts) {
   if (!attempts.length) return '<div class="empty-state compact">Chưa có lần nộp nào.</div>';
@@ -805,18 +754,18 @@ async function mountAssignmentExam(id) {
     const answers = draft?.answers ?? {};
     root.innerHTML = `
       ${assignment.pdf_url === 'latex' ? `
-        <section class="exam-shell" style="flex-direction: row; align-items: flex-start; max-width: 1280px; width: 100%; margin: 0 auto; padding: 32px 24px; gap: 32px;">
-          <form id="answer-form" style="flex: 1; min-width: 0; max-width: 850px; display: flex; flex-direction: column; gap: 32px; padding-bottom: 80px; margin: 0 auto;">
+        <section class="exam-shell" style="height: auto; max-width: 1400px; width: 100%; margin: 0 auto; padding: 32px 24px; align-items: start; grid-template-columns: minmax(0, 1fr) 340px; gap: 40px;">
+          <form id="answer-form" style="min-width: 0; max-width: 900px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 32px; padding-bottom: 80px;">
             ${questions.map((q, i) => {
               const cleanPrompt = q.prompt ? q.prompt.replace(/^Câu\\s*\\d+[\\.\\:\\s]*/i, '') : '';
               return `
               <article class="latex-exam-card panel" data-question-id="${q.id}" data-type="${q.type}" style="padding: 32px; border-radius: 16px; background: var(--md-sys-color-surface-container-lowest); border: 1px solid var(--md-sys-color-outline-variant); box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
-                <div style="margin-bottom: 24px; font-size: 1.15rem; color: var(--md-sys-color-on-surface); display: flex; flex-direction: column; gap: 12px;">
+                <div style="margin-bottom: 24px; font-size: 1rem; color: var(--md-sys-color-on-surface); display: flex; flex-direction: column; gap: 12px;">
                   <div style="display: flex; align-items: center; gap: 12px; border-bottom: 1px dashed var(--md-sys-color-outline-variant); padding-bottom: 16px;">
                     <div style="font-weight: 700; padding: 6px 16px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); border-radius: 8px; font-size: 1rem; letter-spacing: 0.5px;">CÂU ${i + 1}</div>
                     <div style="flex: 1; color: var(--md-sys-color-outline); font-size: 0.9rem; text-align: right;">Chọn một đáp án đúng</div>
                   </div>
-                  <div style="font-weight: normal; line-height: 1.7; padding-top: 8px;">${escapeHtml(cleanPrompt).replace(/\\n/g, '<br>')}</div>
+                  <div style="font-weight: normal; line-height: 1.5; padding-top: 8px;">${escapeHtml(cleanPrompt).replace(/\\n/g, '<br>')}</div>
                 </div>
                 
                 <div class="choice-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
@@ -828,7 +777,7 @@ async function mountAssignmentExam(id) {
                           <input type="radio" name="q-${q.id}" value="${value}" ${answers[q.id] === value ? 'checked' : ''} style="opacity: 0; position: absolute;">
                           <div class="latex-radio-circle" style="width: 32px; height: 32px; border-radius: 50%; background: var(--md-sys-color-surface-container-high); color: var(--md-sys-color-on-surface-variant); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 1rem; transition: all 0.2s;">${value}</div>
                         </div>
-                        <div style="flex: 1; padding-top: 4px; font-size: 1.05rem; line-height: 1.5; color: var(--md-sys-color-on-surface);">${escapeHtml(choice).replace(/\\n/g, '<br>')}</div>
+                        <div style="flex: 1; padding-top: 4px; font-size: 1rem; line-height: 1.5; color: var(--md-sys-color-on-surface);">${escapeHtml(choice).replace(/\\n/g, '<br>')}</div>
                       </label>
                     `;
                   }).join('')}
@@ -838,7 +787,7 @@ async function mountAssignmentExam(id) {
           </form>
 
           <!-- Right Sidebar: Navigator -->
-          <aside class="exam-navigator panel" style="width: 320px; flex-shrink: 0; position: sticky; top: 24px; background: var(--md-sys-color-surface-container-lowest); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant); padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+          <aside class="exam-navigator panel" style="position: sticky; top: 112px; background: var(--md-sys-color-surface-container-lowest); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant); padding: 24px; display: flex; flex-direction: column; gap: 16px;">
             <div style="font-weight: 600; margin-bottom: 8px;">Danh sách câu hỏi</div>
             <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;">
               ${questions.map((q, i) => `
@@ -925,9 +874,8 @@ async function mountAssignmentManagerView(id) {
   const root = pageRoot();
   root.innerHTML = renderLoading('Đang tải thống kê bài tập');
   try {
-    const [{ assignment, submittedStudents, pendingStudents, stats }, solutionRequests] = await Promise.all([
+    const [{ assignment, submittedStudents, pendingStudents, stats }] = await Promise.all([
       fetchAssignmentInsights(id),
-      fetchAssignmentSolutionRequests(id),
     ]);
     root.innerHTML = `
       <section class="assignment-insights">
@@ -979,7 +927,6 @@ async function mountAssignmentManagerView(id) {
             ${renderPendingStudents(pendingStudents)}
           </div>
         </section>
-        ${renderAssignmentSolutionRequests(solutionRequests)}
       </section>
     `;
 
@@ -993,7 +940,6 @@ async function mountAssignmentManagerView(id) {
       }
     });
     document.querySelector('#all-assignments-from-insights')?.addEventListener('click', () => go('assignments'));
-    wireSolutionRequestManager();
     wireMaterialFormButtons(root);
   } catch (error) {
     root.innerHTML = renderErrorState(error);
@@ -1074,98 +1020,6 @@ function renderPendingStudents(rows) {
 
 function relationOne(value) {
   return Array.isArray(value) ? value[0] : value;
-}
-
-function solutionStatusText(request) {
-  return request.status === 'fulfilled' && request.solution_pdf_url ? 'Đã có lời giải' : 'Đang chờ lời giải';
-}
-
-function fulfilledSolutionRequest(requests) {
-  return requests.find((request) => request.status === 'fulfilled' && request.solution_pdf_url);
-}
-
-function renderAssignmentSolutionRequests(requests) {
-  return `
-    <section class="panel solution-requests-panel">
-      <div class="panel-heading">
-        <div>
-          <p class="eyebrow">Yêu cầu lời giải</p>
-          <h2>${requests.length} yêu cầu</h2>
-        </div>
-      </div>
-      ${
-        requests.length
-          ? `<div class="solution-request-list">${requests.map(renderManagerSolutionRequest).join('')}</div>`
-          : '<div class="empty-state compact">Chưa có học sinh yêu cầu lời giải chi tiết.</div>'
-      }
-    </section>
-  `;
-}
-
-function renderManagerSolutionRequest(request) {
-  const student = relationOne(request.profiles) ?? {};
-  const attempt = relationOne(request.attempts) ?? {};
-  const assignment = relationOne(request.assignments) ?? {};
-  return `
-    <article class="solution-request-card" data-solution-request-status="${escapeHtml(request.status)}">
-      <div class="solution-request-main">
-        <div>
-          <p class="eyebrow">${escapeHtml(solutionStatusText(request))}</p>
-          <h3>${escapeHtml(student.full_name || student.email || 'Học sinh')}</h3>
-          <p class="muted">
-            ${assignment.title ? `${escapeHtml(assignment.title)} · ` : ''}Gửi ${formatDateTime(request.created_at)}${attempt.submitted_at ? ` · Nộp bài ${formatDateTime(attempt.submitted_at)}` : ''}${attempt.score_10 != null ? ` · ${formatScore(attempt.score_10)}/10` : ''}
-          </p>
-        </div>
-        <span class="status">${escapeHtml(request.status === 'fulfilled' ? 'Đã gửi' : 'Đang chờ')}</span>
-      </div>
-      <dl class="solution-request-details">
-        <dt>Câu cần giải</dt>
-        <dd>${escapeHtml(request.requested_questions)}</dd>
-        ${request.note ? `<dt>Ghi chú</dt><dd>${escapeHtml(request.note)}</dd>` : ''}
-      </dl>
-      <form class="solution-link-form" data-solution-request-id="${request.id}">
-        <input class="field" name="solution_pdf_url" value="${escapeHtml(request.solution_pdf_url ?? '')}" placeholder="Dán link PDF Google Drive lời giải">
-        <md-filled-tonal-button type="submit">
-          <md-icon slot="icon">upload_file</md-icon>
-          Lưu lời giải
-        </md-filled-tonal-button>
-      </form>
-    </article>
-  `;
-}
-
-function wireSolutionRequestManager({ onSaved } = {}) {
-  document.querySelectorAll('.solution-link-form').forEach((form) => {
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const restore = setButtonLoading(form.querySelector('md-filled-tonal-button'), 'Đang lưu...');
-      try {
-        const values = Object.fromEntries(new FormData(form).entries());
-        const updated = await updateSolutionRequest(form.dataset.solutionRequestId, {
-          solutionPdfUrl: values.solution_pdf_url,
-        });
-        updateSolutionRequestCardState(form, updated);
-        await onSaved?.(updated);
-        toast('Đã lưu lời giải.', 'success');
-      } catch (error) {
-        toast(error.message, 'error');
-      } finally {
-        restore();
-      }
-    });
-  });
-}
-
-function updateSolutionRequestCardState(form, request) {
-  const card = form.closest('.solution-request-card');
-  if (!card) return;
-  const statusText = request.status === 'fulfilled' && request.solution_pdf_url ? 'Đã có lời giải' : 'Đang chờ lời giải';
-  const statusLabel = request.status === 'fulfilled' ? 'Đã gửi' : 'Đang chờ';
-  const eyebrow = card.querySelector('.solution-request-main .eyebrow');
-  const status = card.querySelector('.solution-request-main .status');
-  if (eyebrow) eyebrow.textContent = statusText;
-  if (status) status.textContent = statusLabel;
-  card.dataset.solutionRequestStatus = request.status;
 }
 
 function renderQuestionInput(question, index, answer) {
@@ -1434,7 +1288,7 @@ async function mountReview(id) {
                     <div style="font-weight: 700; padding: 6px 16px; border-radius: 8px; background: ${isCorrect ? 'var(--md-sys-color-primary-container)' : 'var(--md-sys-color-error-container)'}; color: ${isCorrect ? 'var(--md-sys-color-on-primary-container)' : 'var(--md-sys-color-on-error-container)'}; font-size: 1rem; letter-spacing: 0.5px;">CÂU ${index + 1}</div>
                     <md-icon style="color: ${isCorrect ? 'var(--md-sys-color-primary)' : 'var(--md-sys-color-error)'}; font-size: 28px;">${isCorrect ? 'check_circle' : 'cancel'}</md-icon>
                   </div>
-                  <div style="font-weight: normal; font-size: 1rem; line-height: 1.5; color: var(--md-sys-color-on-surface); margin-bottom: 24px; overflow-x: auto; max-width: 100%;">
+                  <div style="font-weight: normal; font-size: 1rem; line-height: 1.5; color: var(--md-sys-color-on-surface); margin-bottom: 24px; overflow-wrap: break-word;">
                     ${escapeHtml(item.prompt).replace(/\n/g, '<br>')}
                   </div>
                   
@@ -1622,161 +1476,6 @@ async function mountReview(id) {
   }
 }
 
-async function mountSolution(id) {
-  const root = pageRoot();
-  root.innerHTML = renderLoading('Đang tải lời giải');
-  try {
-    const request = await fetchSolutionRequest(id);
-    const assignment = relationOne(request.assignments) ?? {};
-    root.innerHTML = `
-      <section class="solution-page">
-        <div class="panel solution-page-hero">
-          <div>
-            <p class="eyebrow">Lời giải chi tiết</p>
-            <h2>${escapeHtml(assignment.title ?? 'Lời giải')}</h2>
-          </div>
-          <div class="insight-actions">
-            <md-outlined-button id="back-to-assignment">
-              <md-icon slot="icon">arrow_back</md-icon>
-              Quay lại bài
-            </md-outlined-button>
-          </div>
-        </div>
-        <section class="solution-layout">
-          <aside class="panel solution-info-panel">
-            <div>
-              <p class="eyebrow">Yêu cầu</p>
-              <h3>Câu ${escapeHtml(request.requested_questions)}</h3>
-            </div>
-            <dl class="solution-info-list">
-              <dt>Trạng thái</dt>
-              <dd>${escapeHtml(solutionStatusText(request))}</dd>
-              <dt>Gửi lúc</dt>
-              <dd>${formatDateTime(request.created_at)}</dd>
-              ${request.fulfilled_at ? `<dt>Phản hồi</dt><dd>${formatDateTime(request.fulfilled_at)}</dd>` : ''}
-              ${request.note ? `<dt>Ghi chú</dt><dd>${escapeHtml(request.note)}</dd>` : ''}
-            </dl>
-          </aside>
-          <section class="panel solution-document-panel">
-            ${
-              request.solution_pdf_url
-                ? driveFrame(request.solution_pdf_url, `Lời giải ${assignment.title ?? ''}`, true)
-                : '<div class="empty-state compact">Lời giải chưa được tải lên.</div>'
-            }
-          </section>
-        </section>
-      </section>
-    `;
-    document.querySelector('#back-to-assignment')?.addEventListener('click', () => {
-      if (request.assignment_id) go(`assignment/${request.assignment_id}`);
-      else window.history.back();
-    });
-  } catch (error) {
-    root.innerHTML = renderErrorState(error);
-    wireRouteRetry(root);
-  }
-}
-
-function renderSolutionRequestDialog(requests) {
-  return `
-    <dialog id="solution-request-dialog" class="solution-request-dialog">
-      <div class="dialog-surface">
-        <div class="dialog-heading">
-          <div>
-            <p class="eyebrow">Lời giải</p>
-            <h2>Yêu cầu giải chi tiết</h2>
-          </div>
-          <button type="button" id="close-solution-request-dialog" aria-label="Đóng"><md-icon>close</md-icon></button>
-        </div>
-        ${renderSolutionRequestForm('overview-solution-request-form')}
-        <div id="solution-request-history-slot">
-          ${requests.length ? renderStudentSolutionHistory(requests) : ''}
-        </div>
-      </div>
-    </dialog>
-  `;
-}
-
-function renderSolutionRequestForm(formId) {
-  return `
-    <form id="${escapeHtml(formId)}" class="solution-request-form">
-      <input class="field" name="requested_questions" placeholder="Ví dụ: 1, 3, 5-8, 12" required>
-      <textarea class="field" name="note" placeholder="Ghi chú thêm nếu cần"></textarea>
-      <md-filled-button type="submit">
-        <md-icon slot="icon">rate_review</md-icon>
-        Gửi yêu cầu
-      </md-filled-button>
-    </form>
-  `;
-}
-
-function wireSolutionRequestForm(formSelector, { assignmentId, attemptId, onSaved }) {
-  document.querySelector(formSelector)?.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const restore = setButtonLoading(form.querySelector('md-filled-button'), 'Đang gửi...');
-    try {
-      const values = Object.fromEntries(new FormData(form).entries());
-      const requestedQuestions = String(values.requested_questions ?? '').trim();
-      if (!requestedQuestions) {
-        throw new Error('Nhập câu cần giải trước nhé.');
-      }
-      const request = await createSolutionRequest({
-        assignmentId,
-        attemptId,
-        requestedQuestions,
-        note: values.note,
-      });
-      form.reset();
-      toast('Đã gửi yêu cầu lời giải.', 'success');
-      await onSaved?.(request);
-    } catch (error) {
-      toast(error.message, 'error');
-    } finally {
-      restore();
-    }
-  });
-}
-
-function renderStudentSolutionHistory(requests) {
-  return `
-    <div class="solution-request-history">
-      ${requests
-        .map(
-          (request) => `
-            <article class="solution-history-row">
-              <div>
-                <strong>${escapeHtml(request.requested_questions)}</strong>
-                <small>${formatDateTime(request.created_at)}</small>
-              </div>
-              <span class="status">${escapeHtml(solutionStatusText(request))}</span>
-            </article>
-          `,
-        )
-        .join('')}
-    </div>
-  `;
-}
-
-function prependStudentSolutionHistory(request) {
-  const slot = document.querySelector('#solution-request-history-slot');
-  if (!slot) return;
-  const current = slot.querySelector('.solution-request-history');
-  const row = `
-    <article class="solution-history-row">
-      <div>
-        <strong>${escapeHtml(request.requested_questions)}</strong>
-        <small>${formatDateTime(request.created_at)}</small>
-      </div>
-      <span class="status">${escapeHtml(solutionStatusText(request))}</span>
-    </article>
-  `;
-  if (!current) {
-    slot.innerHTML = `<div class="solution-request-history">${row}</div>`;
-    return;
-  }
-  current.insertAdjacentHTML('afterbegin', row);
-}
 
 function formatAnswer(answer) {
   if (Array.isArray(answer)) {
@@ -2285,7 +1984,7 @@ function wireTableSearch(inputSelector, rowSelector) {
 
 async function mountCurrentRoute() {
   const current = route();
-  if (!isManager() && ['dashboard', 'content', 'assignments', 'students', 'solution-requests', 'manage', 'progress', 'salary'].includes(current.name)) {
+  if (!isManager() && ['dashboard', 'content', 'assignments', 'students', 'manage', 'progress', 'salary'].includes(current.name)) {
     go('learn');
     return;
   }
@@ -2296,14 +1995,11 @@ async function mountCurrentRoute() {
   if (current.name === 'countdown') return mountCountdown();
   if (current.name === 'settings') return mountSettings();
   if (current.name === 'review') return mountReview(current.id);
-  if (current.name === 'solution') return mountSolution(current.id);
   if (current.name === 'dashboard') return (await import('./student.js')).mountDashboard();
   if (current.name === 'manage') return (await import('./admin.js')).mountManageHub();
   if (current.name === 'progress') return mountProgress();
   if (current.name === 'content') return (await import('./admin.js')).mountContentManager();
   if (current.name === 'assignments') return (await import('./admin.js')).mountAssignmentManager();
-  if (current.name === 'solution-requests') return (await import('./admin.js')).mountSolutionRequestsManager();
-  if (current.name === 'salary') return (await import('./admin.js')).mountSalaryManager();
   if (current.name === 'students') return (await import('./admin.js')).mountStudents();
   if (current.name === 'online') return (await import('./admin.js')).mountOnlineUsers();
   if (current.name === 'grades') return (await import('./admin.js')).mountGrades();
@@ -2392,6 +2088,6 @@ export {
   state, pageRoot, renderLoading, renderErrorState, wireRouteRetry, 
   escapeHtml, wireTableSearch, toast, isManager, renderAttemptsTable,
   renderAccountAvatar, renderSkeletonDashboard, renderStateMessage, wireMaterialFormButtons,
-  driveFrame, renderManagerSolutionRequest, renderMetric, wireSolutionRequestManager,
+  driveFrame, renderMetric,
   isAdmin, renderSkeletonAssignments, renderScoreProgress
 };

@@ -1712,27 +1712,9 @@ textarea.field {
   gap: 18px;
 }
 
-.solution-page {
-  display: grid;
-  gap: 18px;
-}
-
-.solution-layout {
-  display: grid;
-  grid-template-columns: minmax(260px, 0.42fr) minmax(420px, 1fr);
-  align-items: stretch;
-  gap: 18px;
-  height: min(820px, calc(100vh - 210px));
-  min-height: 640px;
-}
-
-.solution-layout .panel + .panel {
-  margin-top: 0;
-}
 
 .assignment-insights-hero,
 .assignment-start-hero,
-.solution-page-hero,
 .insight-actions {
   display: flex;
   align-items: center;
@@ -1748,12 +1730,7 @@ textarea.field {
   padding: 20px;
 }
 
-.solution-page-hero {
-  padding: 20px;
-}
-
-.assignment-start-hero:hover,
-.solution-page-hero:hover {
+.assignment-start-hero:hover {
   box-shadow: none;
 }
 
@@ -1775,51 +1752,7 @@ textarea.field {
   height: auto;
 }
 
-.solution-document-panel {
-  height: 100%;
-  padding: 0;
-  border: 0;
-  background: transparent;
-}
 
-.solution-document-panel:hover {
-  border-color: transparent;
-  box-shadow: none;
-}
-
-.solution-document-panel .doc-frame {
-  display: block;
-  height: 100%;
-  min-height: 0;
-}
-
-.solution-info-panel {
-  height: 100%;
-  display: grid;
-  align-content: start;
-  gap: 18px;
-}
-
-.solution-info-panel h3 {
-  margin: 0;
-  font-size: 1.45rem;
-}
-
-.solution-info-list {
-  display: grid;
-  grid-template-columns: 96px minmax(0, 1fr);
-  gap: 10px 12px;
-  margin: 0;
-}
-
-.solution-info-list dt {
-  color: var(--md-sys-color-on-surface-variant);
-  font-weight: 800;
-}
-
-.solution-info-list dd {
-  margin: 0;
-}
 
 .assignment-history-panel {
   min-height: 0;
@@ -1922,172 +1855,6 @@ td small {
   font-size: 0.82rem;
 }
 
-.solution-requests-panel,
-.solution-request-panel {
-  display: grid;
-  gap: 14px;
-}
-
-.solution-requests-page {
-  display: grid;
-  gap: 18px;
-}
-
-.solution-requests-board {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 18px;
-  align-items: start;
-}
-
-.solution-request-list,
-.solution-request-history,
-.solution-request-form {
-  display: grid;
-  gap: 12px;
-}
-
-.solution-request-card,
-.solution-history-row {
-  display: grid;
-  gap: 12px;
-  padding: 14px;
-  border: 1px solid var(--md-sys-color-outline-variant);
-  border-radius: 8px;
-  background: var(--md-sys-color-surface-container-low);
-}
-
-.solution-request-main,
-.solution-history-row {
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: start;
-}
-
-.solution-request-main {
-  display: grid;
-  gap: 12px;
-}
-
-.solution-request-main h3 {
-  margin: 0;
-}
-
-.solution-request-details {
-  display: grid;
-  grid-template-columns: 120px minmax(0, 1fr);
-  gap: 8px 12px;
-  margin: 0;
-}
-
-.solution-request-details dt {
-  color: var(--md-sys-color-on-surface-variant);
-  font-weight: 800;
-}
-
-.solution-request-details dd {
-  margin: 0;
-}
-
-.solution-link-form {
-  display: grid;
-  grid-template-columns: minmax(220px, 1fr) auto;
-  gap: 10px;
-  align-items: center;
-}
-
-.solution-request-panel {
-  margin-top: 18px;
-  padding-top: 18px;
-  border-top: 1px solid var(--md-sys-color-outline-variant);
-}
-
-.solution-frame {
-  display: grid;
-  gap: 10px;
-}
-
-.solution-history-row {
-  display: grid;
-}
-
-.solution-history-row div {
-  display: grid;
-  gap: 2px;
-}
-
-.solution-history-row small {
-  color: var(--md-sys-color-on-surface-variant);
-  font-size: 0.82rem;
-}
-
-.solution-request-dialog {
-  width: min(620px, calc(100vw - 28px));
-  border: 0;
-  border-radius: 8px;
-  padding: 0;
-  background: transparent;
-  color: var(--md-sys-color-on-surface);
-}
-
-.solution-request-dialog::backdrop {
-  background: color-mix(in srgb, var(--md-sys-color-inverse-surface) 42%, transparent);
-  animation: dialog-backdrop-enter var(--motion-duration-short4) var(--motion-easing-standard-decelerate) both;
-}
-
-.solution-request-dialog.closing::backdrop {
-  animation: dialog-backdrop-exit var(--motion-duration-short3) var(--motion-easing-standard-accelerate) both;
-}
-
-.dialog-surface {
-  display: grid;
-  gap: 14px;
-  padding: 18px;
-  border: 1px solid var(--md-sys-color-outline-variant);
-  border-radius: 8px;
-  background: var(--md-sys-color-surface-container-lowest);
-  box-shadow: var(--md-sys-elevation-level3);
-  transform-origin: center top;
-  animation: dialog-surface-enter var(--motion-duration-medium1) var(--motion-easing-emphasized-decelerate) both;
-}
-
-.solution-request-dialog.closing .dialog-surface {
-  animation: dialog-surface-exit var(--motion-duration-short3) var(--motion-easing-emphasized-accelerate) both;
-}
-
-.dialog-heading {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.dialog-heading h2 {
-  margin: 0;
-  font-size: 1.3rem;
-}
-
-.dialog-heading button {
-  width: 40px;
-  height: 40px;
-  display: inline-grid;
-  place-items: center;
-  border: 1px solid var(--md-sys-color-outline-variant);
-  border-radius: 8px;
-  background: var(--md-sys-color-surface-container-low);
-  color: var(--md-sys-color-on-surface);
-  cursor: pointer;
-  transition:
-    background-color var(--motion-fast),
-    transform var(--motion-fast);
-}
-
-.dialog-heading button:hover {
-  background: var(--md-sys-state-hover);
-}
-
-.dialog-heading button:active {
-  transform: scale(0.94);
-}
 
 .manager-grid {
   display: grid;
@@ -2617,9 +2384,6 @@ tbody tr:hover {
 :root[data-theme='dark'] .module-block,
 :root[data-theme='dark'] .question-editor,
 :root[data-theme='dark'] .question-card,
-:root[data-theme='dark'] .solution-request-card,
-:root[data-theme='dark'] .solution-history-row,
-:root[data-theme='dark'] .dialog-surface,
 :root[data-theme='dark'] .lecture-group-block,
 :root[data-theme='dark'] .assignment-info-panel,
 :root[data-theme='dark'] .answer-key-panel,
@@ -2775,54 +2539,7 @@ tbody tr:hover {
   }
 }
 
-@keyframes dialog-surface-enter {
-  from {
-    opacity: 0;
-    transform: translateY(14px) scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
 
-@keyframes dialog-surface-exit {
-  from {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(10px) scale(0.97);
-  }
-}
-
-@keyframes dialog-backdrop-enter {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes dialog-backdrop-exit {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .solution-request-dialog::backdrop,
-  .solution-request-dialog.closing::backdrop,
-  .dialog-surface,
-  .solution-request-dialog.closing .dialog-surface {
-    animation-duration: 1ms;
-  }
-}
 
 @media (max-width: 1100px) {
   .brand-subtitle {
@@ -2858,7 +2575,6 @@ tbody tr:hover {
   .settings-page,
   .assignment-insights-grid,
   .assignment-manager,
-  .solution-layout,
   .exam-shell {
     grid-template-columns: 1fr;
   }
@@ -2878,14 +2594,6 @@ tbody tr:hover {
 
   .list-panel {
     position: static;
-  }
-
-  .solution-info-panel {
-    height: auto;
-  }
-
-  .solution-layout {
-    height: auto;
   }
 }
 
@@ -2911,7 +2619,6 @@ tbody tr:hover {
   .topbar,
   .assignment-insights-hero,
   .assignment-start-hero,
-  .solution-page-hero,
   .panel-heading,
   .split-heading,
   .question-builder-header {
@@ -2966,12 +2673,6 @@ tbody tr:hover {
   .tf-row,
   .attempt-history-row,
   .student-status-row,
-  .solution-link-form,
-  .solution-request-details,
-  .solution-request-main,
-  .solution-requests-board,
-  .solution-history-row,
-  .solution-info-list,
   .dialog-heading,
   .review-item {
     grid-template-columns: 1fr;

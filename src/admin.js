@@ -4,7 +4,7 @@ import { formatDateTime, formatScore, roleLabel } from "./lib/format.js";
 import { setButtonLoading, option, renderLatexText } from "./lib/html.js";
 import { toDrivePreviewUrl } from './lib/drive.js';
 import { 
-  fetchSolutionRequestsForManager, fetchLearningPath, fetchAssignmentsForManager,
+  fetchLearningPath, fetchAssignmentsForManager,
   fetchStudents, fetchGradebook, upsertPhase, deletePhase, upsertModule, deleteModule,
   upsertLecture, deleteLecture, upsertLectureGroup, deleteLectureGroup,
   deleteAssignment, reorderContentNodes as reorderContentNodesApi,
@@ -16,7 +16,7 @@ import {
 import { 
   state, pageRoot, renderLoading, renderErrorState, wireRouteRetry, 
   escapeHtml, wireTableSearch, toast, isManager, renderAttemptsTable,
-  renderManagerSolutionRequest, renderMetric, wireSolutionRequestManager,
+  renderMetric,
   wireMaterialFormButtons, isAdmin, renderSkeletonAssignments, renderAccountAvatar
 } from "./main.js";
 import { mountStudentGrades } from "./student.js";
@@ -42,12 +42,7 @@ export function mountManageHub() {
       title: 'Đề thi & Bài tập',
       description: 'Tạo đề, phiếu trả lời, đáp án và chấm lại bài đã nộp.',
     },
-    {
-      href: '#/solution-requests',
-      icon: 'rate_review',
-      title: 'Yêu cầu lời giải',
-      description: 'Xem yêu cầu chưa xử lí và các yêu cầu đã gửi lời giải.',
-    },
+
     {
       href: '#/salary',
       icon: 'payments',
@@ -85,60 +80,6 @@ export function mountManageHub() {
 
 
 
-
-export async function mountSolutionRequestsManager() {
-  const root = pageRoot();
-  root.innerHTML = renderLoading('Đang tải yêu cầu lời giải');
-  try {
-    const requests = await fetchSolutionRequestsForManager();
-    const pendingRequests = requests.filter((request) => request.status !== 'fulfilled' || !request.solution_pdf_url);
-    const fulfilledRequests = requests.filter((request) => request.status === 'fulfilled' && request.solution_pdf_url);
-    root.innerHTML = `
-      <section class="solution-requests-page">
-        <section class="metric-grid">
-          ${renderMetric('Chưa xử lí', pendingRequests.length, 'pending_actions')}
-          ${renderMetric('Đã xử lí', fulfilledRequests.length, 'task_alt')}
-          ${renderMetric('Tổng yêu cầu', requests.length, 'rate_review')}
-        </section>
-        <section class="solution-requests-board">
-          <div class="panel solution-requests-panel">
-            <div class="panel-heading">
-              <div>
-                <p class="eyebrow">Cần phản hồi</p>
-                <h2>${pendingRequests.length} yêu cầu chưa xử lí</h2>
-              </div>
-            </div>
-            ${
-              pendingRequests.length
-                ? `<div class="solution-request-list">${pendingRequests.map(renderManagerSolutionRequest).join('')}</div>`
-                : '<div class="empty-state compact">Không còn yêu cầu nào đang chờ.</div>'
-            }
-          </div>
-          <div class="panel solution-requests-panel">
-            <div class="panel-heading">
-              <div>
-                <p class="eyebrow">Đã phản hồi</p>
-                <h2>${fulfilledRequests.length} yêu cầu đã xử lí</h2>
-              </div>
-            </div>
-            ${
-              fulfilledRequests.length
-                ? `<div class="solution-request-list">${fulfilledRequests.map(renderManagerSolutionRequest).join('')}</div>`
-                : '<div class="empty-state compact">Chưa có yêu cầu nào được xử lí.</div>'
-            }
-          </div>
-        </section>
-      </section>
-    `;
-    wireSolutionRequestManager({
-      onSaved: () => mountSolutionRequestsManager(),
-    });
-    wireMaterialFormButtons(root);
-  } catch (error) {
-    root.innerHTML = renderErrorState(error);
-    wireRouteRetry(root);
-  }
-}
 
 export async function mountContentManager() {
   const root = pageRoot();
