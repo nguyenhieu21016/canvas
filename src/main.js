@@ -5,6 +5,7 @@ import './styles.css';
 import { hasSupabaseConfig, supabase } from './services/supabaseClient.js';
 import { renderAuth } from './pages/Auth.js';
 import { addRoute, mountCurrentRoute as routerMount, route, go } from './router.js';
+import { state, colorThemes, isManager, isAdmin, pageRoot as storePageRoot } from './store.js';
 import {
   deleteAssignment,
   deleteLecture,
@@ -74,25 +75,6 @@ const detachedPageRoot = {
 
 // (Removed temp fix)
 
-const colorThemes = [
-  { id: 'blue', label: 'Xanh biển', color: '#d3e4ff' },
-  { id: 'yellow', label: 'Vàng', color: '#f8e287' },
-  { id: 'green', label: 'Xanh lá', color: '#d9f0c3' },
-  { id: 'lavender', label: 'Tím', color: '#eaddff' },
-  { id: 'pink', label: 'Hồng', color: '#ffd8e4' },
-];
-
-const storedColorTheme = localStorage.getItem('lms:colorTheme');
-const state = {
-  session: null,
-  profile: null,
-  authMode: 'login',
-  passwordRecovery: false,
-  assignmentEditor: null,
-  theme: localStorage.getItem('lms:theme') || 'light',
-  colorTheme: colorThemes.some((theme) => theme.id === storedColorTheme) ? storedColorTheme : 'blue',
-};
-
 function applyTheme() {
   document.documentElement.dataset.theme = state.theme;
   document.documentElement.dataset.color = state.colorTheme;
@@ -144,16 +126,6 @@ function wireMaterialFormButtons(root = document) {
   });
 }
 
-function isManager() {
-  return state.profile?.role === 'teacher' || state.profile?.role === 'admin';
-}
-
-function isAdmin() {
-  return state.profile?.role === 'admin';
-}
-
-
-
 function toast(message, tone = 'info') {
   toastEl.textContent = message;
   toastEl.dataset.tone = tone;
@@ -191,9 +163,7 @@ function daysUntilExam() {
   return Math.max(0, Math.ceil((examDate - start) / 86_400_000));
 }
 
-function pageRoot() {
-  return document.querySelector('#page-root') ?? detachedPageRoot;
-}
+function pageRoot() { return storePageRoot(); }
 
 function renderLoading(label = 'Đang tải dữ liệu') {
   return `
@@ -1617,35 +1587,7 @@ async function mountProgress() {
   }
 }
 
-function mountCountdown() {
-  const root = pageRoot();
-  const days = daysUntilExam();
-  const examDate = new Date(2027, 5, 11);
-  const formattedExamDate = examDate.toLocaleDateString('vi-VN', {
-    weekday: 'long',
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-  });
-  root.innerHTML = `
-    <section class="countdown-page">
-      <div class="countdown-hero">
-        <div>
-          <p class="eyebrow">THPTQG 2027</p>
-          <h2>${days}</h2>
-          <span>ngày</span>
-        </div>
-        <md-icon>event</md-icon>
-      </div>
-      <div class="countdown-details">
-        <article>
-          <span>Ngày thi dự kiến</span>
-          <strong>${escapeHtml(formattedExamDate)}</strong>
-        </article>
-      </div>
-    </section>
-  `;
-}
+
 
 function renderMetric(label, value, icon) {
   return `
@@ -1657,182 +1599,7 @@ function renderMetric(label, value, icon) {
   `;
 }
 
-function mountSettings() {
-  const root = pageRoot();
-  const profileName = state.profile?.full_name ?? '';
-  root.innerHTML = `
-    <section class="settings-page">
-      <div class="settings-main-column">
-        <div class="panel settings-panel">
-          <div class="panel-heading">
-            <div>
-              <p class="eyebrow">Tài khoản</p>
-              <h2>Thông tin cá nhân</h2>
-            </div>
-          </div>
-          <div class="avatar-settings">
-            ${renderAccountAvatar(state.profile, 'settings-avatar-preview')}
-            <div class="avatar-settings-copy">
-              <strong>Avatar</strong>
-              <p class="muted">Ảnh sẽ được crop vuông và nén nhẹ trước khi lưu.</p>
-            </div>
-            <input id="avatar-input" type="file" accept="image/png,image/jpeg,image/webp" hidden>
-            <div class="avatar-actions">
-              <md-outlined-button id="avatar-upload-button" type="button">
-                <md-icon slot="icon">photo_camera</md-icon>
-                Đổi ảnh
-              </md-outlined-button>
-              <md-outlined-button id="avatar-remove-button" type="button" ${state.profile?.avatar_url ? '' : 'disabled'}>
-                <md-icon slot="icon">person</md-icon>
-                Gỡ ảnh
-              </md-outlined-button>
-            </div>
-          </div>
-          <form id="profile-name-form" class="settings-form">
-            <md-outlined-text-field
-              name="full_name"
-              label="Tên hiển thị"
-              value="${escapeHtml(profileName)}"
-              required
-            ></md-outlined-text-field>
-            <md-filled-button type="submit">
-              <md-icon slot="icon">save</md-icon>
-              Lưu tên
-            </md-filled-button>
-          </form>
-        </div>
-        <div class="panel settings-panel">
-          <div class="panel-heading">
-            <div>
-              <p class="eyebrow">Giao diện</p>
-              <h2>Cài đặt hiển thị</h2>
-            </div>
-          </div>
-          <div class="settings-row">
-            <div>
-              <strong>Dark mode</strong>
-              <p class="muted">Chuyển giao diện sang nền tối.</p>
-            </div>
-            <md-switch id="settings-dark-mode" ${state.theme === 'dark' ? 'selected' : ''} aria-label="Dark mode"></md-switch>
-          </div>
-          <div class="settings-color-row">
-            <div>
-              <strong>Màu giao diện</strong>
-              <p class="muted">Chọn tông màu chính của web.</p>
-            </div>
-            <div class="theme-color-options" role="radiogroup" aria-label="Màu giao diện">
-              ${colorThemes
-                .map(
-                  (theme) => `
-                    <button
-                      class="theme-color-option ${state.colorTheme === theme.id ? 'active' : ''}"
-                      type="button"
-                      data-color-theme="${escapeHtml(theme.id)}"
-                      role="radio"
-                      aria-checked="${state.colorTheme === theme.id ? 'true' : 'false'}"
-                      aria-label="${escapeHtml(theme.label)}"
-                      title="${escapeHtml(theme.label)}"
-                    >
-                      <span style="--swatch-color: ${escapeHtml(theme.color)}"></span>
-                    </button>
-                  `,
-                )
-                .join('')}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="panel settings-panel app-info-panel">
-        <div>
-          <p class="eyebrow">Canvas</p>
-          <div style="display: flex; align-items: center; gap: 12px;">
-            <h2 style="margin: 0;">Canvas</h2>
-            <span style="font-size: 0.8rem; font-weight: 700; color: var(--md-sys-color-primary); background: var(--md-sys-color-primary-container); padding: 4px 10px; border-radius: 6px;">@nguyenhieu21016</span>
-          </div>
-        </div>
-        <div class="app-info-list">
-          <div>
-            <span>Phiên bản</span>
-            <strong>${escapeHtml(APP_VERSION)}</strong>
-          </div>
-          <div>
-            <span>Cập nhật gần nhất</span>
-            <strong>${escapeHtml(APP_LAST_UPDATE)}</strong>
-          </div>
-        </div>
-      </div>
-    </section>
-  `;
 
-  const avatarInput = document.querySelector('#avatar-input');
-  const avatarButton = document.querySelector('#avatar-upload-button');
-  const removeAvatarButton = document.querySelector('#avatar-remove-button');
-  avatarButton?.addEventListener('click', () => avatarInput?.click());
-  avatarInput?.addEventListener('change', async (event) => {
-    const file = event.currentTarget.files?.[0];
-    if (!file) return;
-    const restore = setButtonLoading(avatarButton, 'Đang lưu...');
-
-    try {
-      const avatarBlob = await resizeAvatarFile(file);
-      const updatedProfile = await updateProfileAvatar(state.profile?.id, avatarBlob);
-      state.profile = updatedProfile;
-      restore();
-      toast('Đã cập nhật avatar.', 'success');
-      render();
-    } catch (error) {
-      restore();
-      toast(error.message, 'error');
-    } finally {
-      event.currentTarget.value = '';
-    }
-  });
-  removeAvatarButton?.addEventListener('click', async () => {
-    if (!state.profile?.avatar_url) return;
-    const restore = setButtonLoading(removeAvatarButton, 'Đang gỡ...');
-
-    try {
-      const updatedProfile = await removeProfileAvatar(state.profile?.id);
-      state.profile = updatedProfile;
-      restore();
-      toast('Đã gỡ avatar.', 'success');
-      render();
-    } catch (error) {
-      restore();
-      toast(error.message, 'error');
-    }
-  });
-
-  document.querySelector('#profile-name-form')?.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const field = form.elements.full_name;
-    const button = form.querySelector('md-filled-button');
-    const nextName = field.value.trim();
-    const restore = setButtonLoading(button, 'Đang lưu...');
-
-    try {
-      const updatedProfile = await updateProfileName(state.profile?.id, nextName);
-      state.profile = updatedProfile;
-      restore();
-      toast('Đã cập nhật tên hiển thị.', 'success');
-      render();
-    } catch (error) {
-      restore();
-      toast(error.message, 'error');
-    }
-  });
-
-  document.querySelector('#settings-dark-mode')?.addEventListener('change', (event) => {
-    setThemeMode(event.currentTarget.selected ? 'dark' : 'light');
-  });
-  document.querySelectorAll('[data-color-theme]').forEach((button) => {
-    button.addEventListener('click', () => {
-      setColorTheme(button.dataset.colorTheme);
-      render();
-    });
-  });
-}
 
 function wireTableSearch(inputSelector, rowSelector) {
   const input = document.querySelector(inputSelector);
@@ -1930,8 +1697,8 @@ async function bootstrap() {
 addRoute('learn', () => import('./student.js').then(m => m.mountLearn()));
 addRoute('assignment/:id', (id) => mountAssignment(id));
 addRoute('phase/:id', (id) => import('./student.js').then(m => m.mountPhaseDetail(id)));
-addRoute('countdown', mountCountdown);
-addRoute('settings', mountSettings);
+addRoute('countdown', () => import('./pages/Countdown.js').then(m => m.mountCountdown()));
+addRoute('settings', () => import('./pages/Settings.js').then(m => m.mountSettings()));
 addRoute('review/:id', (id) => mountReview(id));
 addRoute('dashboard', () => import('./student.js').then(m => m.mountDashboard()));
 addRoute('manage', () => import('./admin.js').then(m => m.mountManageHub()));
@@ -1951,5 +1718,6 @@ export {
   escapeHtml, wireTableSearch, toast, isManager, renderAttemptsTable,
   renderAccountAvatar, renderSkeletonDashboard, renderStateMessage, wireMaterialFormButtons,
   driveFrame, renderMetric, render,
-  isAdmin, renderSkeletonAssignments, renderScoreProgress
+  isAdmin, renderSkeletonAssignments, renderScoreProgress,
+  daysUntilExam, setThemeMode, setColorTheme
 };
