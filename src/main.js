@@ -3,6 +3,8 @@ import '@material/web/icon/icon.js';
 import '@material/web/textfield/outlined-text-field.js';
 import './styles.css';
 import { hasSupabaseConfig, supabase } from './services/supabaseClient.js';
+import { renderAuth } from './pages/Auth.js';
+import { addRoute, mountCurrentRoute as routerMount, route, go } from './router.js';
 import {
   deleteAssignment,
   deleteLecture,
@@ -150,15 +152,7 @@ function isAdmin() {
   return state.profile?.role === 'admin';
 }
 
-function route() {
-  const hash = window.location.hash.replace(/^#\/?/, '');
-  const [name = 'learn', id = null] = hash.split('/');
-  return { name: name || 'learn', id };
-}
 
-function go(path) {
-  window.location.hash = `#/${path}`;
-}
 
 function toast(message, tone = 'info') {
   toastEl.textContent = message;
@@ -403,7 +397,7 @@ function navItems() {
     { path: 'learn', icon: 'school', label: 'Học tập' },
     { path: 'grades', icon: 'grade', label: 'Bảng điểm' },
     { path: 'countdown', icon: 'event', label: 'Đếm ngược' },
-    { path: 'history', icon: 'history', label: 'Lịch sử' },
+
     { path: 'settings', icon: 'settings', label: 'Cài đặt' },
   ];
 }
@@ -489,137 +483,8 @@ function pageTitle(name) {
   );
 }
 
-function renderAuth() {
-  const isReset = state.authMode === 'reset';
-  const isUpdatePassword = state.authMode === 'updatePassword';
-  const primaryLabel = isUpdatePassword
-    ? 'Cập nhật mật khẩu'
-    : isReset
-      ? 'Gửi link đặt lại'
-      : state.authMode === 'login'
-        ? 'Đăng nhập'
-        : 'Tạo tài khoản học sinh';
-  const primaryIcon = isUpdatePassword ? 'lock_reset' : isReset ? 'mail' : state.authMode === 'login' ? 'login' : 'person_add';
-  app.innerHTML = `
-    <main class="auth-screen">
-      <section class="auth-panel">
-        <div class="auth-copy">
-          <span class="auth-eyebrow">Hướng tới kì thi THPTQG 2027</span>
-          <h1>Canvas</h1>
-          <p>If you can get 1 percent better each day for one year, you’ll end up 37 times better by the time you’re done.</p>
-        </div>
-        <form id="auth-form" class="auth-form">
-          ${
-            isUpdatePassword || isReset
-              ? `
-                <div class="auth-form-heading">
-                  <p class="eyebrow">Khôi phục tài khoản</p>
-                  <h2>${isReset ? 'Đặt lại mật khẩu' : 'Tạo mật khẩu mới'}</h2>
-                  <p class="muted">${isReset ? 'Nhập email tài khoản, hệ thống sẽ gửi link đặt lại mật khẩu.' : 'Nhập mật khẩu mới để hoàn tất khôi phục tài khoản.'}</p>
-                </div>
-              `
-              : `
-                <div class="segmented" role="tablist" aria-label="Chọn chế độ đăng nhập">
-                  <button type="button" role="tab" aria-selected="${state.authMode === 'login'}" aria-pressed="${state.authMode === 'login'}" data-mode="login" class="${state.authMode === 'login' ? 'selected' : ''}">Đăng nhập</button>
-                  <button type="button" role="tab" aria-selected="${state.authMode === 'register'}" aria-pressed="${state.authMode === 'register'}" data-mode="register" class="${state.authMode === 'register' ? 'selected' : ''}">Đăng ký</button>
-                </div>
-              `
-          }
-          ${!hasSupabaseConfig ? '<div class="notice">Cần cấu hình Supabase trong .env để đăng nhập và lưu dữ liệu.</div>' : ''}
-          ${
-            state.authMode === 'register'
-              ? '<md-outlined-text-field name="full_name" label="Họ tên" autocomplete="name" required></md-outlined-text-field>'
-              : ''
-          }
-          ${
-            isUpdatePassword
-              ? ''
-              : '<md-outlined-text-field name="email" label="Email" type="email" autocomplete="email" required></md-outlined-text-field>'
-          }
-          ${
-            isReset
-              ? ''
-              : `<md-outlined-text-field name="password" label="${isUpdatePassword ? 'Mật khẩu mới' : 'Mật khẩu'}" type="password" autocomplete="${isUpdatePassword || state.authMode === 'register' ? 'new-password' : 'current-password'}" required></md-outlined-text-field>`
-          }
-          ${isUpdatePassword ? '<md-outlined-text-field name="confirm_password" label="Nhập lại mật khẩu mới" type="password" autocomplete="new-password" required></md-outlined-text-field>' : ''}
-          <md-filled-button type="submit" ${!hasSupabaseConfig ? 'disabled' : ''}>
-            <md-icon slot="icon">${primaryIcon}</md-icon>
-            ${primaryLabel}
-          </md-filled-button>
-          <div class="auth-secondary-actions">
-            ${
-              state.authMode === 'login'
-                ? '<button class="text-link" type="button" data-mode="reset">Quên mật khẩu?</button>'
-                : ''
-            }
-            ${
-              isReset
-                ? '<button class="text-link" type="button" data-mode="login"><md-icon>arrow_back</md-icon>Quay lại đăng nhập</button>'
-                : ''
-            }
-          </div>
-        </form>
-      </section>
-    </main>
-  `;
 
-  document.querySelectorAll('[data-mode]').forEach((button) => {
-    button.addEventListener('click', () => {
-      state.authMode = button.dataset.mode;
-      renderAuth();
-    });
-  });
-  wireMaterialFormButtons(document.querySelector('#auth-form'));
 
-  document.querySelector('#auth-form')?.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    if (!hasSupabaseConfig) return;
-    const form = event.currentTarget;
-    const restore = setButtonLoading(form.querySelector('md-filled-button'));
-
-    try {
-      const email = form.querySelector('[name="email"]')?.value.trim() ?? '';
-      const password = form.querySelector('[name="password"]')?.value;
-      if (state.authMode === 'reset') {
-        await requestPasswordReset(email);
-        state.authMode = 'login';
-        toast('Đã gửi email đặt lại mật khẩu. Kiểm tra hộp thư của bạn nhé.', 'success');
-        renderAuth();
-        return;
-      }
-      if (state.authMode === 'updatePassword') {
-        const confirmPassword = form.querySelector('[name="confirm_password"]').value;
-        if (password !== confirmPassword) throw new Error('Hai mật khẩu chưa khớp.');
-        await updateCurrentUserPassword(password);
-        state.passwordRecovery = false;
-        toast('Đã cập nhật mật khẩu. Bạn có thể tiếp tục học.', 'success');
-        state.profile = await getCurrentProfile(state.session?.user);
-        render();
-        return;
-      }
-      if (state.authMode === 'login') {
-        state.session = await signIn(email, password);
-        state.profile = await getCurrentProfile(state.session?.user);
-      } else {
-        const fullName = form.querySelector('[name="full_name"]').value.trim();
-        const signup = await signUpStudent({ email, password, fullName });
-        state.session = signup.session ?? (await getSession());
-        if (!state.session) {
-          state.authMode = 'login';
-          toast('Tài khoản đã tạo. Vui lòng xác nhận email rồi đăng nhập.', 'success');
-          renderAuth();
-          return;
-        }
-        state.profile = await getCurrentProfile(state.session.user);
-      }
-      render();
-    } catch (error) {
-      toast(error.message, 'error');
-    } finally {
-      restore();
-    }
-  });
-}
 
 function driveFrame(url, title, embed = false) {
   if (!url) return '<div class="empty-state">Chưa có tài liệu.</div>';
@@ -1983,28 +1848,7 @@ function wireTableSearch(inputSelector, rowSelector) {
 }
 
 async function mountCurrentRoute() {
-  const current = route();
-  if (!isManager() && ['dashboard', 'content', 'assignments', 'students', 'manage', 'progress', 'salary'].includes(current.name)) {
-    go('learn');
-    return;
-  }
-
-  if (current.name === 'assignment') return mountAssignment(current.id);
-  if (current.name === 'phase') return (await import('./student.js')).mountPhaseDetail(current.id);
-  if (current.name === 'history') return mountHistory();
-  if (current.name === 'countdown') return mountCountdown();
-  if (current.name === 'settings') return mountSettings();
-  if (current.name === 'review') return mountReview(current.id);
-  if (current.name === 'dashboard') return (await import('./student.js')).mountDashboard();
-  if (current.name === 'manage') return (await import('./admin.js')).mountManageHub();
-  if (current.name === 'progress') return mountProgress();
-  if (current.name === 'content') return (await import('./admin.js')).mountContentManager();
-  if (current.name === 'assignments') return (await import('./admin.js')).mountAssignmentManager();
-  if (current.name === 'students') return (await import('./admin.js')).mountStudents();
-  if (current.name === 'online') return (await import('./admin.js')).mountOnlineUsers();
-  if (current.name === 'grades') return (await import('./admin.js')).mountGrades();
-  if (current.name === 'salary') return (await import('./admin.js')).mountSalaryManager();
-  return (await import('./student.js')).mountLearn();
+  return routerMount();
 }
 
 async function render() {
@@ -2082,6 +1926,23 @@ async function bootstrap() {
   render();
 }
 
+// Register routes
+addRoute('learn', () => import('./student.js').then(m => m.mountLearn()));
+addRoute('assignment/:id', (id) => mountAssignment(id));
+addRoute('phase/:id', (id) => import('./student.js').then(m => m.mountPhaseDetail(id)));
+addRoute('countdown', mountCountdown);
+addRoute('settings', mountSettings);
+addRoute('review/:id', (id) => mountReview(id));
+addRoute('dashboard', () => import('./student.js').then(m => m.mountDashboard()));
+addRoute('manage', () => import('./admin.js').then(m => m.mountManageHub()));
+addRoute('progress', mountProgress);
+addRoute('content', () => import('./admin.js').then(m => m.mountContentManager()));
+addRoute('assignments', () => import('./admin.js').then(m => m.mountAssignmentManager()));
+addRoute('students', () => import('./admin.js').then(m => m.mountStudents()));
+addRoute('online', () => import('./admin.js').then(m => m.mountOnlineUsers()));
+addRoute('grades', () => import('./admin.js').then(m => m.mountGrades()));
+addRoute('salary', () => import('./admin.js').then(m => m.mountSalaryManager()));
+
 bootstrap();
 
 // Exported for lazy loaded modules
@@ -2089,6 +1950,6 @@ export {
   state, pageRoot, renderLoading, renderErrorState, wireRouteRetry, 
   escapeHtml, wireTableSearch, toast, isManager, renderAttemptsTable,
   renderAccountAvatar, renderSkeletonDashboard, renderStateMessage, wireMaterialFormButtons,
-  driveFrame, renderMetric,
+  driveFrame, renderMetric, render,
   isAdmin, renderSkeletonAssignments, renderScoreProgress
 };
