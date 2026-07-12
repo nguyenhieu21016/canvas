@@ -1,4 +1,4 @@
-import { isManager } from './store.js';
+import { isManager } from './main.js';
 
 export const routes = [];
 
@@ -23,7 +23,7 @@ export function go(path) {
 export async function mountCurrentRoute() {
   const current = route();
   
-  if (!isManager() && ['dashboard', 'content', 'assignments', 'students', 'manage', 'progress', 'salary', 'online', 'grades'].includes(current.name)) {
+  if (!isManager() && ['dashboard', 'content', 'assignments', 'students', 'manage', 'progress', 'salary', 'online'].includes(current.name)) {
     go('learn');
     return;
   }
