@@ -2003,6 +2003,7 @@ async function mountCurrentRoute() {
   if (current.name === 'students') return (await import('./admin.js')).mountStudents();
   if (current.name === 'online') return (await import('./admin.js')).mountOnlineUsers();
   if (current.name === 'grades') return (await import('./admin.js')).mountGrades();
+  if (current.name === 'salary') return (await import('./admin.js')).mountSalaryManager();
   return (await import('./student.js')).mountLearn();
 }
 
