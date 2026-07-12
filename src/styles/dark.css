@@ -1,0 +1,129 @@
+/* ── Dark Theme Overrides ── */
+
+:root[data-theme='dark'] .auth-panel,
+:root[data-theme='dark'] .panel,
+:root[data-theme='dark'] .phase-card,
+:root[data-theme='dark'] .phase-detail-panel,
+:root[data-theme='dark'] .lecture-row,
+:root[data-theme='dark'] .exam-paper,
+:root[data-theme='dark'] .answer-sheet,
+:root[data-theme='dark'] .list-row,
+:root[data-theme='dark'] .field,
+:root[data-theme='dark'] .table-input {
+  border-color: var(--md-sys-color-outline-variant);
+  background: var(--md-sys-color-surface-container);
+  color: var(--md-sys-color-on-surface);
+}
+
+:root[data-theme='dark'] .nav-list,
+:root[data-theme='dark'] .topbar {
+  border-color: var(--md-sys-color-outline-variant);
+  background: var(--md-sys-color-surface-container);
+}
+
+:root[data-theme='dark'] .topbar {
+  background: color-mix(in srgb, var(--md-sys-color-surface) 88%, transparent);
+}
+
+:root[data-theme='dark'] .auth-copy {
+  background: linear-gradient(140deg, var(--md-sys-color-primary-container), var(--md-sys-color-secondary-container));
+}
+
+:root[data-theme='dark'] .auth-copy p,
+:root[data-theme='dark'] .nav-item,
+:root[data-theme='dark'] .muted,
+:root[data-theme='dark'] .list-row small,
+:root[data-theme='dark'] .module-title,
+:root[data-theme='dark'] .manage-node span,
+:root[data-theme='dark'] .metric span {
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+:root[data-theme='dark'] .nav-item.active,
+:root[data-theme='dark'] .nav-item:hover {
+  color: var(--md-sys-color-on-secondary-container);
+}
+
+:root[data-theme='dark'] .module-block,
+:root[data-theme='dark'] .question-editor,
+:root[data-theme='dark'] .question-card,
+:root[data-theme='dark'] .lecture-group-block,
+:root[data-theme='dark'] .assignment-info-panel,
+:root[data-theme='dark'] .answer-key-panel,
+:root[data-theme='dark'] .assignment-editor-header,
+:root[data-theme='dark'] .compact-entity-form {
+  border-color: var(--md-sys-color-outline-variant);
+  background: var(--md-sys-color-surface-container-high);
+}
+
+:root[data-theme='dark'] .choice-tile,
+:root[data-theme='dark'] .assignment-chip,
+:root[data-theme='dark'] .segmented .selected {
+  border-color: var(--md-sys-color-outline-variant);
+  background: var(--md-sys-color-surface-container);
+}
+
+:root[data-theme='dark'] .segmented,
+:root[data-theme='dark'] .icon-actions button,
+:root[data-theme='dark'] .row-actions button,
+:root[data-theme='dark'] .editor-heading button,
+:root[data-theme='dark'] .doc-frame {
+  border-color: var(--md-sys-color-outline-variant);
+  background: var(--md-sys-color-surface-container-high);
+}
+
+:root[data-theme='dark'] .review-item {
+  border-color: color-mix(in srgb, #ffb4ab 28%, var(--md-sys-color-outline-variant));
+  background: color-mix(in srgb, #5b1f24 42%, var(--md-sys-color-surface-container-high));
+}
+
+:root[data-theme='dark'] .review-item.correct {
+  border-color: color-mix(in srgb, #9bd6a8 28%, var(--md-sys-color-outline-variant));
+  background: color-mix(in srgb, #173f2b 46%, var(--md-sys-color-surface-container-high));
+}
+
+:root[data-theme='dark'] select.field,
+:root[data-theme='dark'] select.table-input {
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--md-sys-color-on-surface) 50%),
+    linear-gradient(135deg, var(--md-sys-color-on-surface) 50%, transparent 50%);
+}
+
+:root[data-theme='dark'] .empty-state,
+:root[data-theme='dark'] .notice {
+  border-color: var(--md-sys-color-outline-variant);
+  background: var(--md-sys-color-surface-container);
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+:root[data-theme='dark'] .sticky-submit-bar {
+  border-color: var(--md-sys-color-outline-variant);
+  background: var(--md-sys-color-surface-container);
+}
+
+:root[data-theme='dark'] .account-avatar {
+  border-color: var(--md-sys-color-outline);
+  background: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+}
+
+:root[data-theme='dark'] .brand-mark {
+  background: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+}
+
+:root[data-theme='dark'] .brand:hover {
+  background: color-mix(in srgb, var(--md-sys-color-primary-container) 72%, transparent);
+}
+
+:root[data-theme='dark'] .text-link,
+:root[data-theme='dark'] .phase-card-action {
+  color: var(--md-sys-color-primary);
+}
+
+:root[data-theme='dark'] .manage-node,
+:root[data-theme='dark'] th,
+:root[data-theme='dark'] td {
+  border-color: var(--md-sys-color-outline-variant);
+}
+
