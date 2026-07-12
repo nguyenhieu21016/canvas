@@ -55,7 +55,7 @@ import {
 import { clearDraft, loadDraft, saveDraft } from './lib/draft.js';
 import { toDrivePreviewUrl } from './lib/drive.js';
 import { formatDateTime, formatScore, roleLabel } from './lib/format.js';
-import { escapeHtml, option, setButtonLoading } from './lib/html.js';
+import { escapeHtml, option, setButtonLoading, renderLatexText } from './lib/html.js';
 import { normalizeAssignmentEditor } from './admin.js';
 
 const app = document.querySelector('#app');
@@ -63,8 +63,8 @@ const toastEl = document.querySelector('#toast');
 const MAX_AVATAR_SOURCE_BYTES = 5 * 1024 * 1024;
 const MAX_AVATAR_UPLOAD_BYTES = 250 * 1024;
 const AVATAR_SIZE = 320;
-const APP_VERSION = '1.3.5';
-const APP_LAST_UPDATE = 'Giao diện Quản lý Đề thi mới: Tích hợp Combobox tìm kiếm thông minh, tối ưu không gian hiển thị và độ mượt mà.';
+const APP_VERSION = '1.4.0';
+const APP_LAST_UPDATE = 'Hỗ trợ parse và render đề thi chuẩn LaTeX (MathJax) trực tiếp trên trình duyệt, kèm theo lời giải chi tiết và hệ thống điều hướng thông minh.';
 let renderGeneration = 0;
 let assignmentsForManagerList = [];
 let pendingSolutionRequests = [];
@@ -804,44 +804,117 @@ async function mountAssignmentExam(id) {
     const draft = loadDraft(localStorage, state.profile.id, id);
     const answers = draft?.answers ?? {};
     root.innerHTML = `
-      <section class="exam-shell">
-        <div class="exam-paper">
-          <div class="split-heading">
-            <div>
-              <p class="eyebrow">Đề bài</p>
-              <h2>${escapeHtml(assignment.title)}</h2>
+      ${assignment.pdf_url === 'latex' ? `
+        <section class="exam-shell" style="flex-direction: row; align-items: flex-start; max-width: 1280px; width: 100%; margin: 0 auto; padding: 32px 24px; gap: 32px;">
+          <form id="answer-form" style="flex: 1; min-width: 0; max-width: 850px; display: flex; flex-direction: column; gap: 32px; padding-bottom: 80px; margin: 0 auto;">
+            ${questions.map((q, i) => {
+              const cleanPrompt = q.prompt ? q.prompt.replace(/^Câu\\s*\\d+[\\.\\:\\s]*/i, '') : '';
+              return `
+              <article class="latex-exam-card panel" data-question-id="${q.id}" data-type="${q.type}" style="padding: 32px; border-radius: 16px; background: var(--md-sys-color-surface-container-lowest); border: 1px solid var(--md-sys-color-outline-variant); box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
+                <div style="margin-bottom: 24px; font-size: 1.15rem; color: var(--md-sys-color-on-surface); display: flex; flex-direction: column; gap: 12px;">
+                  <div style="display: flex; align-items: center; gap: 12px; border-bottom: 1px dashed var(--md-sys-color-outline-variant); padding-bottom: 16px;">
+                    <div style="font-weight: 700; padding: 6px 16px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); border-radius: 8px; font-size: 1rem; letter-spacing: 0.5px;">CÂU ${i + 1}</div>
+                    <div style="flex: 1; color: var(--md-sys-color-outline); font-size: 0.9rem; text-align: right;">Chọn một đáp án đúng</div>
+                  </div>
+                  <div style="font-weight: normal; line-height: 1.7; padding-top: 8px;">${escapeHtml(cleanPrompt).replace(/\\n/g, '<br>')}</div>
+                </div>
+                
+                <div class="choice-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+                  ${(q.choices ?? []).map((choice, cIdx) => {
+                    const value = String.fromCharCode(65 + cIdx);
+                    return `
+                      <label class="latex-choice-tile" style="display: flex; gap: 16px; align-items: flex-start; cursor: pointer; padding: 16px; border: 2px solid var(--md-sys-color-surface-variant); background: var(--md-sys-color-surface-container-lowest); border-radius: 12px; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);">
+                        <div style="position: relative; flex-shrink: 0;">
+                          <input type="radio" name="q-${q.id}" value="${value}" ${answers[q.id] === value ? 'checked' : ''} style="opacity: 0; position: absolute;">
+                          <div class="latex-radio-circle" style="width: 32px; height: 32px; border-radius: 50%; background: var(--md-sys-color-surface-container-high); color: var(--md-sys-color-on-surface-variant); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 1rem; transition: all 0.2s;">${value}</div>
+                        </div>
+                        <div style="flex: 1; padding-top: 4px; font-size: 1.05rem; line-height: 1.5; color: var(--md-sys-color-on-surface);">${escapeHtml(choice).replace(/\\n/g, '<br>')}</div>
+                      </label>
+                    `;
+                  }).join('')}
+                </div>
+              </article>
+            `}).join('')}
+          </form>
+
+          <!-- Right Sidebar: Navigator -->
+          <aside class="exam-navigator panel" style="width: 320px; flex-shrink: 0; position: sticky; top: 24px; background: var(--md-sys-color-surface-container-lowest); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant); padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+            <div style="font-weight: 600; margin-bottom: 8px;">Danh sách câu hỏi</div>
+            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;">
+              ${questions.map((q, i) => `
+                <button type="button" class="nav-btn ${answers[q.id] ? 'answered' : ''}" data-nav="${q.id}" onclick="document.querySelector('[data-question-id=\\'${q.id}\\']').scrollIntoView({behavior: 'smooth', block: 'center'})" style="padding: 10px 0; border-radius: 8px; border: 1px solid var(--md-sys-color-outline-variant); background: ${answers[q.id] ? 'var(--md-sys-color-primary)' : 'transparent'}; color: ${answers[q.id] ? 'var(--md-sys-color-on-primary)' : 'inherit'}; cursor: pointer; font-family: monospace; font-size: 1rem; transition: all 0.2s;">
+                  ${String(i + 1).padStart(2, '0')}
+                </button>
+              `).join('')}
             </div>
-            ${draft ? `<span class="status">Đã lưu ${formatDateTime(draft.savedAt)}</span>` : ''}
-          </div>
-          ${driveFrame(assignment.pdf_url, assignment.title, true)}
-        </div>
-        <form id="answer-form" class="answer-sheet">
-          <div class="split-heading">
-            <div>
-              <p class="eyebrow">Phiếu trả lời</p>
-              <h2>${questions.length} câu</h2>
-              <p id="autosave-status" class="autosave-status">${draft ? `Đã khôi phục bản nháp lưu lúc ${formatDateTime(draft.savedAt)}` : 'Tự động lưu khi bạn chọn đáp án.'}</p>
+            <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 12px;">
+              <p id="autosave-status" class="autosave-status" style="font-size: 0.85rem; text-align: center; color: var(--md-sys-color-outline);">${draft ? `Đã lưu ${formatDateTime(draft.savedAt)}` : 'Tự động lưu khi bạn chọn đáp án'}</p>
+              <md-filled-button type="button" onclick="document.querySelector('#answer-form').requestSubmit()" style="height: 48px;">
+                <md-icon slot="icon">send</md-icon> Nộp bài
+              </md-filled-button>
             </div>
-            <md-filled-button type="submit" data-submit-assignment>
-              <md-icon slot="icon">send</md-icon>
-              Nộp bài
-            </md-filled-button>
+          </aside>
+        </section>
+        <style>
+          .latex-choice-tile:has(input:checked) {
+            border-color: var(--md-sys-color-primary) !important;
+            background: var(--md-sys-color-surface-container-low) !important;
+          }
+          .latex-choice-tile:has(input:checked) .latex-radio-circle {
+            border-color: var(--md-sys-color-primary) !important;
+            background: var(--md-sys-color-primary) !important;
+            color: var(--md-sys-color-on-primary) !important;
+          }
+          .exam-shell {
+            @media (max-width: 900px) {
+              flex-direction: column-reverse !important;
+              .exam-navigator {
+                width: 100% !important;
+                position: static !important;
+              }
+            }
+          }
+        </style>
+      ` : `
+        <section class="exam-shell">
+          <div class="exam-paper">
+            <div class="split-heading">
+              <div>
+                <p class="eyebrow">Đề bài</p>
+                <h2>${escapeHtml(assignment.title)}</h2>
+              </div>
+              ${draft ? `<span class="status">Đã lưu ${formatDateTime(draft.savedAt)}</span>` : ''}
+            </div>
+            ${driveFrame(assignment.pdf_url, assignment.title, true)}
           </div>
-          <div class="question-stack">
-            ${questions.map((question, index) => renderQuestionInput(question, index, answers[question.id])).join('')}
-          </div>
-          <div class="sticky-submit-bar">
-            <span id="sticky-autosave-status">${draft ? 'Bản nháp đã sẵn sàng' : 'Câu trả lời sẽ được lưu tự động'}</span>
-            <md-filled-button type="submit" data-submit-assignment>
-              <md-icon slot="icon">send</md-icon>
-              Nộp bài
-            </md-filled-button>
-          </div>
-        </form>
-      </section>
+          <form id="answer-form" class="answer-sheet">
+            <div class="split-heading">
+              <div>
+                <p class="eyebrow">Phiếu trả lời</p>
+                <h2>${questions.length} câu</h2>
+                <p id="autosave-status" class="autosave-status">${draft ? `Đã khôi phục bản nháp lưu lúc ${formatDateTime(draft.savedAt)}` : 'Tự động lưu khi bạn chọn đáp án.'}</p>
+              </div>
+              <md-filled-button type="submit" data-submit-assignment>
+                <md-icon slot="icon">send</md-icon>
+                Nộp bài
+              </md-filled-button>
+            </div>
+            <div class="question-stack">
+              ${questions.map((question, index) => renderQuestionInput(question, index, answers[question.id])).join('')}
+            </div>
+            <div class="sticky-submit-bar">
+              <span id="sticky-autosave-status">${draft ? 'Bản nháp đã sẵn sàng' : 'Câu trả lời sẽ được lưu tự động'}</span>
+              <md-filled-button type="submit" data-submit-assignment>
+                <md-icon slot="icon">send</md-icon>
+                Nộp bài
+              </md-filled-button>
+            </div>
+          </form>
+        </section>
+      `}
     `;
     wireMaterialFormButtons(root);
-    wireAnswerAutosave(id);
+    wireAnswerAutosave(assignment, id);
   } catch (error) {
     root.innerHTML = renderErrorState(error);
     wireRouteRetry(root);
@@ -1162,7 +1235,7 @@ function renderQuestionInput(question, index, answer) {
 
 function collectAnswers() {
   const answers = {};
-  document.querySelectorAll('.question-card').forEach((card) => {
+  document.querySelectorAll('.question-card, .latex-exam-card').forEach((card) => {
     answers[card.dataset.questionId] = collectAnswerFromCard(card);
   });
   return answers;
@@ -1184,8 +1257,13 @@ function collectAnswerFromCard(card) {
   return card.querySelector(`input[name="q-${id}"]`)?.value ?? '';
 }
 
-function wireAnswerAutosave(assignmentId) {
+function wireAnswerAutosave(assignment, assignmentId) {
   const form = document.querySelector('#answer-form');
+  
+  if (assignment.pdf_url === 'latex' && window.MathJax) {
+    window.MathJax.typesetPromise();
+  }
+
   const autosaveStatus = document.querySelector('#autosave-status');
   const stickyAutosaveStatus = document.querySelector('#sticky-autosave-status');
   let autosaveTimer;
@@ -1195,8 +1273,18 @@ function wireAnswerAutosave(assignmentId) {
     if (stickyAutosaveStatus) stickyAutosaveStatus.textContent = message;
   };
   const persist = (event) => {
-    const card = event.target?.closest?.('.question-card');
-    if (card?.dataset.questionId) {
+    if (assignment.pdf_url === 'latex' && event.target?.type === 'radio') {
+      const qId = event.target.name.replace('q-', '');
+      const navBtn = document.querySelector(`.nav-btn[data-nav="${qId}"]`);
+      if (navBtn) {
+        navBtn.classList.add('answered');
+        navBtn.style.background = 'var(--md-sys-color-primary)';
+        navBtn.style.color = 'var(--md-sys-color-on-primary)';
+      }
+    }
+
+    const card = event.target?.closest?.('.question-card') || event.target?.closest?.('.latex-exam-card');
+    if (card?.dataset?.questionId) {
       draftAnswers[card.dataset.questionId] = collectAnswerFromCard(card);
     } else {
       draftAnswers = collectAnswers();
@@ -1296,57 +1384,226 @@ async function mountReview(id) {
   try {
     const review = await fetchAttemptReview(id);
     const items = review.items ?? [];
-    root.innerHTML = `
-      <section class="exam-shell">
-        <div class="exam-paper">
-          <div class="split-heading">
-            <div>
-              <p class="eyebrow">Đề bài</p>
-              <h2>${escapeHtml(review.assignment?.title ?? 'Bài làm')}</h2>
+    
+    // Fetch full questions to get choices and settings (explanation)
+    let questions = [];
+    if (review.assignment?.id) {
+      const assignmentData = await fetchAssignmentForStudent(review.assignment.id);
+      questions = assignmentData.questions || [];
+    }
+    
+    // Map items with questions
+    const itemsWithQuestions = items.map(item => {
+      const q = questions.find(q => q.id === item.question_id);
+      return { ...item, choices: q?.choices, settings: q?.settings };
+    });
+    
+    if (review.assignment?.pdf_url === 'latex') {
+      root.innerHTML = `
+        <section class="exam-shell" style="height: auto; max-width: 1400px; margin: 0 auto; padding: 24px; align-items: start; grid-template-columns: minmax(0, 1fr) 300px; gap: 32px;">
+          <div class="review-main-content" style="display: flex; flex-direction: column; gap: 24px;">
+            <div class="split-heading panel" style="display: flex; justify-content: space-between; align-items: center; background: var(--md-sys-color-surface-container-low); padding: 24px 32px; border-radius: 16px; border: 1px solid var(--md-sys-color-outline-variant);">
+              <div>
+                <p class="eyebrow" style="color: var(--md-sys-color-primary);">Kết quả làm bài</p>
+                <h2 style="margin: 0; font-size: 1.25rem; color: var(--md-sys-color-on-surface);">${escapeHtml(review.assignment?.title ?? 'Đề bài')}</h2>
+              </div>
+              <div style="display: flex; gap: 32px; align-items: center;">
+                <div style="font-weight: 500; font-size: 1rem; display: flex; flex-direction: column; align-items: flex-end;">
+                  <span style="font-size: 0.8rem; color: var(--md-sys-color-on-surface-variant); text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Số câu đúng</span>
+                  <span style="color: var(--md-sys-color-primary); font-size: 1.15rem;">${items.filter(i => i.is_correct).length} / ${items.length}</span>
+                </div>
+                <div class="score-badge" style="font-size: 1.5rem; padding: 12px 24px; border-radius: 16px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); font-weight: 800;">${formatScore(review.attempt?.score_10)}</div>
+                ${isManager() ? `
+                  <md-outlined-button id="regrade-review-button" type="button">
+                    <md-icon slot="icon">refresh</md-icon>
+                    Chấm lại
+                  </md-outlined-button>
+                ` : ''}
+              </div>
             </div>
-          </div>
-          ${driveFrame(review.assignment?.pdf_url, review.assignment?.title ?? 'Đề bài', true)}
-        </div>
-        <div class="answer-sheet">
-          <div class="split-heading">
-            <div>
-              <p class="eyebrow">Kết quả</p>
-              <h2>${items.length} câu</h2>
-            </div>
-            <div class="review-heading-actions">
-              ${isManager() ? `
-                <md-outlined-button id="regrade-review-button" type="button">
-                  <md-icon slot="icon">refresh</md-icon>
-                  Chấm lại
-                </md-outlined-button>
-              ` : ''}
-              <div class="score-badge">${formatScore(review.attempt?.score_10)}/10</div>
-            </div>
-          </div>
-          <div class="review-list">
-            ${items
-              .map(
-              (item, index) => `
-                <article class="review-item ${item.is_correct ? 'correct' : 'wrong'}">
-                  <div>
-                    <p class="eyebrow">Câu ${index + 1}</p>
-                    ${item.prompt && item.prompt !== `Câu ${index + 1}` ? `<h3>${escapeHtml(item.prompt)}</h3>` : ''}
+            
+            <div class="latex-review-list" style="display: flex; flex-direction: column; gap: 20px;">
+            ${itemsWithQuestions.map((item, index) => {
+              const isCorrect = item.is_correct;
+              const chosenAnswer = formatAnswer(item.answer);
+              const correctAnswer = formatAnswer(item.correct_answer ?? item.accepted_answers);
+              
+              return `
+                <div id="latex-review-q${index}" class="latex-question-review panel" style="background: var(--md-sys-color-surface-container-lowest); border-radius: 16px; border: 1px solid ${isCorrect ? 'var(--md-sys-color-primary)' : 'var(--md-sys-color-error)'}; padding: 32px;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--md-sys-color-surface-variant);">
+                    <div style="font-weight: 700; padding: 6px 16px; border-radius: 8px; background: ${isCorrect ? 'var(--md-sys-color-primary-container)' : 'var(--md-sys-color-error-container)'}; color: ${isCorrect ? 'var(--md-sys-color-on-primary-container)' : 'var(--md-sys-color-on-error-container)'}; font-size: 1rem; letter-spacing: 0.5px;">CÂU ${index + 1}</div>
+                    <md-icon style="color: ${isCorrect ? 'var(--md-sys-color-primary)' : 'var(--md-sys-color-error)'}; font-size: 28px;">${isCorrect ? 'check_circle' : 'cancel'}</md-icon>
                   </div>
-                  <dl>
-                    <dt>Bài làm</dt>
-                    <dd>${escapeHtml(formatAnswer(item.answer))}</dd>
-                    <dt>Đáp án</dt>
-                    <dd>${escapeHtml(formatAnswer(item.correct_answer ?? item.accepted_answers))}</dd>
-                  </dl>
-                </article>
-              `,
-            )
-            .join('')}
+                  <div style="font-weight: normal; font-size: 1rem; line-height: 1.5; color: var(--md-sys-color-on-surface); margin-bottom: 24px; overflow-x: auto; max-width: 100%;">
+                    ${escapeHtml(item.prompt).replace(/\n/g, '<br>')}
+                  </div>
+                  
+                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(max(250px, calc(50% - 16px)), 1fr)); gap: 16px; margin-bottom: 24px;">
+                    ${(item.choices ?? []).map((choice, cIdx) => {
+                      const letter = ['A', 'B', 'C', 'D'][cIdx];
+                      const isChosen = chosenAnswer === letter;
+                      const isCorrectChoice = correctAnswer === letter;
+                      
+                      let bg = 'var(--md-sys-color-surface-container-lowest)';
+                      let border = '2px solid var(--md-sys-color-surface-variant)';
+                      let icon = '<div style="width: 24px;"></div>';
+                      
+                      if (isCorrectChoice) {
+                        bg = 'var(--md-sys-color-primary-container)';
+                        border = '2px solid var(--md-sys-color-primary)';
+                        icon = '<md-icon style="color: var(--md-sys-color-primary); font-size: 20px; margin-right: 12px; flex-shrink: 0;">check_circle</md-icon>';
+                      } else if (isChosen && !isCorrectChoice) {
+                        bg = 'var(--md-sys-color-error-container)';
+                        border = '2px solid var(--md-sys-color-error)';
+                        icon = '<md-icon style="color: var(--md-sys-color-error); font-size: 20px; margin-right: 12px; flex-shrink: 0;">cancel</md-icon>';
+                      }
+                      
+                      return `
+                        <div style="padding: 16px; border-radius: 12px; border: ${border}; background: ${bg}; display: flex; align-items: flex-start;">
+                          ${icon}
+                          <div style="line-height: 1.5; color: var(--md-sys-color-on-surface); font-size: 1rem;"><b>${letter}.</b> ${escapeHtml(choice).replace(/\n/g, '<br>')}</div>
+                        </div>
+                      `;
+                    }).join('')}
+                  </div>
+                  
+                  <details style="background: var(--md-sys-color-surface-container); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant); overflow: hidden;">
+                    <summary style="padding: 16px 24px; font-weight: 500; cursor: pointer; color: var(--md-sys-color-on-surface); list-style: none; display: flex; justify-content: space-between; align-items: center; user-select: none;">
+                      <div style="display: flex; align-items: center; gap: 12px;">
+                        <md-icon style="color: var(--md-sys-color-primary);">lightbulb</md-icon> Lời giải chi tiết
+                      </div>
+                      <div style="display: flex; align-items: center; gap: 24px; color: var(--md-sys-color-on-surface-variant);">
+                        <div style="display: flex; gap: 8px; align-items: center;">
+                          <span style="font-size: 0.9em; font-weight: 500;">Đáp án đúng:</span>
+                          <strong style="color: var(--md-sys-color-primary); font-size: 1rem;">${correctAnswer}</strong>
+                        </div>
+                        ${!isCorrect ? `
+                          <div style="display: flex; gap: 8px; align-items: center;">
+                            <span style="font-size: 0.9em; font-weight: 500;">Bạn chọn:</span>
+                            <strong style="color: var(--md-sys-color-error); font-size: 1rem;">${chosenAnswer || 'Chưa làm'}</strong>
+                          </div>
+                        ` : ''}
+                        <md-icon class="expand-icon" style="color: var(--md-sys-color-on-surface-variant);">expand_more</md-icon>
+                      </div>
+                    </summary>
+                    <div style="padding: 24px; border-top: 1px solid var(--md-sys-color-outline-variant); font-size: 1rem; line-height: 1.6; color: var(--md-sys-color-on-surface-variant); background: var(--md-sys-color-surface-container-lowest); overflow-x: auto; max-width: 100%;">
+                      ${item.settings?.explanation ? renderLatexText(item.settings.explanation) : '<i style="color: var(--md-sys-color-outline);">Không có lời giải chi tiết.</i>'}
+                    </div>
+                  </details>
+                </div>
+              `;
+            }).join('')}
           </div>
         </div>
-      </section>
-    `;
+        
+        <div class="review-navigation-panel panel" style="position: sticky; top: 112px; background: var(--md-sys-color-surface-container); border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 20px; border: none;">
+          <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--md-sys-color-outline-variant); padding-bottom: 16px;">
+            <h3 style="margin: 0; font-size: 1.15rem; color: var(--md-sys-color-on-surface); font-weight: 600;">Bạn trả lời đúng</h3>
+            <span style="font-size: 1.5rem; font-weight: 800; color: var(--md-sys-color-primary);">${items.filter(i => i.is_correct).length}/${items.length}</span>
+          </div>
+          
+          <div style="font-weight: 600; font-size: 0.95rem; color: var(--md-sys-color-on-surface-variant); display: flex; align-items: center; gap: 8px;">
+            <div style="width: 24px; height: 24px; border-radius: 50%; background: var(--md-sys-color-surface-variant); color: var(--md-sys-color-on-surface-variant); display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">I</div>
+            Trắc nghiệm
+          </div>
+          
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            ${items.map((i, idx) => {
+              const isCorrect = i.is_correct;
+              const bg = isCorrect ? 'var(--md-sys-color-primary-container)' : 'var(--md-sys-color-error-container)';
+              const color = isCorrect ? 'var(--md-sys-color-on-primary-container)' : 'var(--md-sys-color-on-error-container)';
+              return `
+                <button type="button" onclick="document.getElementById('latex-review-q${idx}').scrollIntoView({behavior: 'smooth', block: 'center'})" style="width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: ${bg}; color: ${color}; font-weight: 600; font-size: 0.95rem; border: none; cursor: pointer; transition: filter 0.2s; font-family: inherit;" onmouseover="this.style.filter='brightness(0.9)'" onmouseout="this.style.filter='none'">
+                  ${(idx + 1).toString().padStart(2, '0')}
+                </button>
+              `;
+            }).join('')}
+          </div>
+          
+          <div style="margin-top: 8px; border-top: 1px solid var(--md-sys-color-outline-variant); padding-top: 20px; display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div style="width: 16px; height: 16px; border-radius: 50%; background: var(--md-sys-color-primary-container);"></div>
+              <span style="font-size: 0.9rem; color: var(--md-sys-color-on-surface-variant); font-weight: 500;">Câu trả lời đúng</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div style="width: 16px; height: 16px; border-radius: 50%; background: var(--md-sys-color-error-container);"></div>
+              <span style="font-size: 0.9rem; color: var(--md-sys-color-on-surface-variant); font-weight: 500;">Câu trả lời sai</span>
+            </div>
+          </div>
+        </div>
+        </section>
+        <style>
+          details summary::-webkit-details-marker { display: none; }
+          details[open] summary .expand-icon { transform: rotate(180deg); }
+          .expand-icon { transition: transform 0.2s ease; }
+          .latex-question-review details { transition: all 0.2s ease; }
+          .latex-question-review details[open] { background: var(--md-sys-color-surface-container-low); }
+        </style>
+      `;
+    } else {
+      root.innerHTML = `
+        <section class="exam-shell">
+          <div class="exam-paper">
+            <div class="split-heading">
+              <div>
+                <p class="eyebrow">Đề bài</p>
+                <h2>${escapeHtml(review.assignment?.title ?? 'Bài làm')}</h2>
+              </div>
+            </div>
+            ${driveFrame(review.assignment?.pdf_url, review.assignment?.title ?? 'Đề bài', true)}
+          </div>
+          <div class="answer-sheet">
+            <div class="split-heading">
+              <div>
+                <p class="eyebrow">Kết quả</p>
+                <h2>${items.length} câu</h2>
+              </div>
+              <div class="review-heading-actions">
+                ${isManager() ? `
+                  <md-outlined-button id="regrade-review-button" type="button">
+                    <md-icon slot="icon">refresh</md-icon>
+                    Chấm lại
+                  </md-outlined-button>
+                ` : ''}
+                <div class="score-badge">${formatScore(review.attempt?.score_10)}/10</div>
+              </div>
+            </div>
+            <div class="review-list">
+              ${itemsWithQuestions
+                .map(
+                (item, index) => `
+                  <article class="review-item ${item.is_correct ? 'correct' : 'wrong'}">
+                    <div>
+                      <p class="eyebrow">Câu ${index + 1}</p>
+                      ${item.prompt && item.prompt !== `Câu ${index + 1}` && review.assignment?.pdf_url !== 'latex' ? `<h3>${escapeHtml(item.prompt)}</h3>` : ''}
+                    </div>
+                    <dl>
+                      <dt>Bài làm</dt>
+                      <dd>${escapeHtml(formatAnswer(item.answer))}</dd>
+                      <dt>Đáp án</dt>
+                      <dd>${escapeHtml(formatAnswer(item.correct_answer ?? item.accepted_answers))}</dd>
+                    </dl>
+                    ${item.settings?.explanation ? `
+                      <div class="explanation-box" style="margin-top: 12px; padding: 12px; background: var(--md-sys-color-surface-variant); border-radius: 8px; font-size: 0.95rem; border-left: 4px solid var(--md-sys-color-primary);">
+                        <strong>Lời giải:</strong><br>
+                        ${renderLatexText(item.settings.explanation)}
+                      </div>
+                    ` : ''}
+                  </article>
+                `,
+              )
+              .join('')}
+            </div>
+          </div>
+        </section>
+      `;
+    }
     wireMaterialFormButtons(root);
+    
+    if (review.assignment?.pdf_url === 'latex' && window.MathJax) {
+      window.MathJax.typesetPromise();
+    }
+    
     document.querySelector('#regrade-review-button')?.addEventListener('click', async (event) => {
       const restore = setButtonLoading(event.currentTarget, 'Đang chấm...');
       try {

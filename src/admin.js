@@ -1,7 +1,7 @@
 // admin.js - Lazy loaded module for admin routes
 import { supabase } from './services/supabaseClient.js';
 import { formatDateTime, formatScore, roleLabel } from "./lib/format.js";
-import { setButtonLoading, option } from "./lib/html.js";
+import { setButtonLoading, option, renderLatexText } from "./lib/html.js";
 import { toDrivePreviewUrl } from './lib/drive.js';
 import { 
   fetchSolutionRequestsForManager, fetchLearningPath, fetchAssignmentsForManager,
@@ -688,6 +688,88 @@ export async function reorderContentNodes(sourceNode, targetNode) {
   await reorderContentNodesApi(kind, ordered);
 }
 
+export function parseLatexAssignment(latexText) {
+  const regex = /\\begin\{ex\}([\s\S]*?)\\end\{ex\}/g;
+  let match;
+  const questions = [];
+
+  const extractBracketMatch = (text, startIndex) => {
+    let depth = 0;
+    let start = startIndex + 1;
+    for (let i = start; i < text.length; i++) {
+      if (text[i] === '{') depth++;
+      else if (text[i] === '}') {
+        if (depth === 0) {
+          return { content: text.substring(start, i), endIndex: i };
+        }
+        depth--;
+      }
+    }
+    return null;
+  };
+
+  while ((match = regex.exec(latexText)) !== null) {
+    let rawContent = match[1].trim();
+    let explanation = '';
+    
+    // Parse \loigiai{}
+    const loigiaiIdx = rawContent.indexOf('\\loigiai');
+    if (loigiaiIdx !== -1) {
+      const openBracketIdx = rawContent.indexOf('{', loigiaiIdx);
+      if (openBracketIdx !== -1) {
+        const loigiaiMatch = extractBracketMatch(rawContent, openBracketIdx);
+        if (loigiaiMatch) {
+          explanation = loigiaiMatch.content.trim();
+          rawContent = rawContent.substring(0, loigiaiIdx) + rawContent.substring(loigiaiMatch.endIndex + 1);
+        }
+      }
+    }
+
+    let choices = [];
+    let correctAnswer = 'A';
+    
+    // Parse \choice{A}{B}{C}{D}
+    const choiceIdx = rawContent.indexOf('\\choice');
+    let prompt = rawContent.trim();
+    
+    if (choiceIdx !== -1) {
+      prompt = rawContent.substring(0, choiceIdx).trim();
+      let currentIdx = choiceIdx + '\\choice'.length;
+      
+      for (let c = 0; c < 4; c++) {
+        while (currentIdx < rawContent.length && /\s/.test(rawContent[currentIdx])) currentIdx++;
+        if (rawContent[currentIdx] === '{') {
+          const choiceMatch = extractBracketMatch(rawContent, currentIdx);
+          if (choiceMatch) {
+            choices.push(choiceMatch.content.trim());
+            currentIdx = choiceMatch.endIndex + 1;
+          } else {
+            break;
+          }
+        } else {
+          break;
+        }
+      }
+
+      const correctIndex = choices.findIndex(c => c.includes('\\True'));
+      if (correctIndex !== -1) {
+        correctAnswer = ['A', 'B', 'C', 'D'][correctIndex];
+        choices[correctIndex] = choices[correctIndex].replace(/\\True\s*/, '').trim();
+      }
+    }
+
+    questions.push({
+      type: 'mcq',
+      prompt: prompt,
+      choices: choices,
+      settings: { explanation },
+      answer_key: { correct_answer: correctAnswer }
+    });
+  }
+  
+  return questions;
+}
+
 export function emptyEditor() {
   return {
     assignment: {
@@ -764,6 +846,7 @@ export function normalizeAssignmentEditor(editor) {
   return {
     assignment: editor.assignment,
     questions: editor.questions.map(normalizeEditorQuestion),
+    latexSource: editor.assignment.pdf_url === 'latex' ? editor.assignment.description : '',
   };
 }
 
@@ -848,25 +931,28 @@ export function renderAssignmentEditor(lectures) {
 
     <!-- Main Workspace Split View -->
     <style>
-      .pdf-viewer-pane {
+      .left-pane {
         position: sticky;
         top: 16px;
         height: calc(100vh - 250px);
         flex: 1.2;
         min-width: 400px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        overflow-y: auto;
       }
-      .answer-key-pane {
+      .right-pane {
         flex: 0.8;
         min-width: 320px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
       }
       @media (max-width: 900px) {
-        .pdf-viewer-pane {
+        .left-pane, .right-pane {
           position: static !important;
-          height: 450px !important;
-          min-width: 100% !important;
-          flex: none !important;
-        }
-        .answer-key-pane {
+          height: auto !important;
           min-width: 100% !important;
           flex: none !important;
         }
@@ -874,22 +960,11 @@ export function renderAssignmentEditor(lectures) {
     </style>
     <div class="assignment-workspace-split" style="display: flex; flex-wrap: wrap; gap: 24px; min-height: 600px; align-items: stretch;">
       
-      <!-- Left pane: PDF Viewer -->
-      <div class="pdf-viewer-pane panel" style="border-radius: var(--md-sys-shape-corner-medium, 12px); display: flex; flex-direction: column; gap: 12px; background: var(--md-sys-color-surface-container-lowest); border: 1px solid var(--md-sys-color-outline-variant); padding: 12px;">
-        <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--md-sys-color-outline-variant); padding-bottom: 8px;">
-          <h3 style="margin: 0; font-size: 0.95rem; font-weight: 600; display: flex; align-items: center; gap: 6px; color: var(--md-sys-color-on-surface);"><md-icon>picture_as_pdf</md-icon> Xem đề thi (PDF)</h3>
-          ${assignment.pdf_url ? `<a href="${escapeHtml(assignment.pdf_url)}" target="_blank" class="text-link" style="font-size: 0.85rem; display: flex; align-items: center; gap: 4px;"><md-icon style="font-size: 1rem;">open_in_new</md-icon> Mở link gốc</a>` : ''}
-        </div>
-        <div class="pdf-preview-container" style="flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: var(--md-sys-shape-corner-small, 8px); height: 100%;">
-          ${renderPdfPreview(assignment.pdf_url)}
-        </div>
-      </div>
-
-      <!-- Right pane: Answer Sheet Builder -->
-      <div class="answer-key-pane" style="display: flex; flex-direction: column; gap: 16px;">
+      <!-- Left pane: Answer Sheet Builder & Rendered Questions -->
+      <div class="left-pane" style="padding-right: 8px;">
         <div class="question-builder-header panel" style="padding: 16px; border-radius: var(--md-sys-shape-corner-medium, 12px); background: var(--md-sys-color-surface-container-low); border: 1px solid var(--md-sys-color-outline-variant); display: flex; flex-direction: column; gap: 16px;">
           <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--md-sys-color-outline-variant); padding-bottom: 8px;">
-            <h3 style="margin: 0; font-size: 0.95rem; font-weight: 600; color: var(--md-sys-color-on-surface);">Phiếu trả lời (<span class="qb-count">${questions.length} câu hỏi</span>)</h3>
+            <h3 style="margin: 0; font-size: 0.95rem; font-weight: 600; color: var(--md-sys-color-on-surface);">Nội dung bài tập (<span class="qb-count">${questions.length} câu</span>)</h3>
           </div>
           
           <div style="display: flex; flex-direction: column; gap: 12px;">
@@ -914,34 +989,100 @@ export function renderAssignmentEditor(lectures) {
                   <option value="short">Điền ngắn</option>
                 </select>
                 <md-filled-tonal-button type="button" id="bulk-add-btn" style="height: 44px;"><md-icon slot="icon">playlist_add</md-icon>Thêm</md-filled-tonal-button>
+                <md-filled-button type="button" id="latex-mode-btn" style="height: 44px; margin-left: 8px;" ${assignment.pdf_url === 'latex' ? 'disabled' : ''}><md-icon slot="icon">code</md-icon>Soạn LaTeX</md-filled-button>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="question-builder" style="display: flex; flex-direction: column; gap: 12px; max-height: calc(100vh - 350px); overflow-y: auto; padding-right: 4px;">
-          ${questions.length ? questions.map((question, index) => renderQuestionEditor(question, index)).join('') : '<div class="panel empty-state" style="padding: 40px; text-align: center; background: var(--md-sys-color-surface-container-low); border: 1px dashed var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-medium, 12px); color: var(--md-sys-color-outline);">Chưa có câu nào trong phiếu trả lời. Hãy thêm câu hỏi ở trên để bắt đầu nhập đáp án.</div>'}
+        <div class="question-builder" style="display: flex; flex-direction: column; gap: 12px;">
+          ${questions.length ? questions.map((question, index) => renderQuestionEditor(question, index)).join('') : '<div class="panel empty-state" style="padding: 40px; text-align: center; background: var(--md-sys-color-surface-container-low); border: 1px dashed var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-medium, 12px); color: var(--md-sys-color-outline);">Chưa có câu nào.</div>'}
         </div>
       </div>
 
+      <!-- Right pane: PDF Viewer OR LaTeX Editor -->
+      <div class="right-pane panel" style="border-radius: var(--md-sys-shape-corner-medium, 12px); display: flex; flex-direction: column; gap: 12px; background: var(--md-sys-color-surface-container-lowest); border: 1px solid var(--md-sys-color-outline-variant); padding: 12px;">
+        ${assignment.pdf_url === 'latex' ? `
+          <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--md-sys-color-outline-variant); padding-bottom: 8px;">
+            <h3 style="margin: 0; font-size: 0.95rem; font-weight: 600; display: flex; align-items: center; gap: 6px; color: var(--md-sys-color-on-surface);"><md-icon>functions</md-icon> Soạn thảo LaTeX</h3>
+            <md-filled-button type="button" id="latex-live-parse-btn"><md-icon slot="icon">auto_fix_high</md-icon> Cập nhật & Xem trước</md-filled-button>
+          </div>
+          <div style="flex: 1; display: flex; flex-direction: column;">
+            <textarea id="latex-live-input" style="flex: 1; min-height: 500px; width: 100%; padding: 16px; font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 1.5; border: 1px solid var(--md-sys-color-outline-variant); border-radius: 8px; resize: none; background: var(--md-sys-color-surface-container-low); color: var(--md-sys-color-on-surface);" placeholder="Dán mã LaTeX vào đây... (Ví dụ: \\begin{ex}...\\end{ex})">${escapeHtml(state.assignmentEditor.latexSource || '')}</textarea>
+          </div>
+        ` : `
+          <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--md-sys-color-outline-variant); padding-bottom: 8px;">
+            <h3 style="margin: 0; font-size: 0.95rem; font-weight: 600; display: flex; align-items: center; gap: 6px; color: var(--md-sys-color-on-surface);"><md-icon>picture_as_pdf</md-icon> Xem đề thi (PDF)</h3>
+            ${assignment.pdf_url ? `<a href="${escapeHtml(assignment.pdf_url)}" target="_blank" class="text-link" style="font-size: 0.85rem; display: flex; align-items: center; gap: 4px;"><md-icon style="font-size: 1rem;">open_in_new</md-icon> Mở link gốc</a>` : ''}
+          </div>
+          <div class="pdf-preview-container" style="flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: var(--md-sys-shape-corner-small, 8px); min-height: 500px;">
+            ${renderPdfPreview(assignment.pdf_url)}
+          </div>
+        `}
+      </div>
+
+
+    <!-- LaTeX Import Dialog -->
+    <dialog id="latex-import-dialog" style="padding: 24px; border-radius: 12px; border: none; box-shadow: 0 4px 24px rgba(0,0,0,0.2); width: 800px; max-width: 90vw;">
+      <h3 style="margin-top: 0;">Nhập đề thi từ LaTeX (Chuẩn EX_TEST)</h3>
+      <p style="color: var(--md-sys-color-outline); margin-bottom: 16px; font-size: 0.9rem;">
+        Dán mã LaTeX vào đây. Hệ thống sẽ phân tích cấu trúc <code>\\begin{ex}...\\end{ex}</code>, <code>\\choice</code>, <code>\\True</code>, và <code>\\loigiai{...}</code>.
+        Chế độ này sẽ thay thế file PDF bằng nội dung LaTeX render trực tiếp trên màn hình của học sinh.
+      </p>
+      <textarea id="latex-input" style="width: 100%; height: 300px; padding: 12px; font-family: monospace; border: 1px solid var(--md-sys-color-outline-variant); border-radius: 8px; resize: vertical;" placeholder="\\begin{ex}...\n\\choice\n{A}\n{\\True B}\n{C}\n{D}\n\\loigiai{...}\n\\end{ex}"></textarea>
+      <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 16px;">
+        <md-outlined-button id="latex-cancel-btn" type="button">Hủy</md-outlined-button>
+        <md-filled-button id="latex-parse-btn" type="button">Phân tích</md-filled-button>
+      </div>
+    </dialog>
   `;
 }
 
 export function renderQuestionEditor(question, index) {
   return `
-    <article class="question-editor" data-index="${index}">
-      <div class="editor-heading">
+    <article class="question-editor" data-index="${index}" style="${state.assignmentEditor.assignment.pdf_url === 'latex' ? 'display: flex; flex-direction: column; gap: 12px;' : ''}">
+      <div class="editor-heading" style="${state.assignmentEditor.assignment.pdf_url === 'latex' ? 'border-bottom: 1px dashed var(--md-sys-color-outline-variant); padding-bottom: 8px;' : ''}">
         <strong>Câu ${index + 1}</strong>
-        <button type="button" data-remove-question="${index}" aria-label="Xóa câu"><md-icon>close</md-icon></button>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <select class="field" name="question-type-${index}" style="height: 32px; padding: 0 8px; font-size: 0.85rem; border-radius: 6px;">
+            ${['mcq', 'tf4', 'short'].map((type) => option(type, type.toUpperCase(), question.type)).join('')}
+          </select>
+          <input class="field" name="question-sort-${index}" type="number" value="${Number(question.sort_order ?? index + 1)}" placeholder="Thứ tự" style="width: 60px; height: 32px; text-align: center; font-size: 0.85rem; border-radius: 6px;">
+          <button type="button" data-remove-question="${index}" aria-label="Xóa câu" class="icon-button"><md-icon>close</md-icon></button>
+        </div>
       </div>
+      
+      ${state.assignmentEditor.assignment.pdf_url === 'latex' && question.prompt ? `
+        <div class="latex-preview-block" style="padding: 12px; background: var(--md-sys-color-surface-container-lowest); border-radius: 8px; border: 1px solid var(--md-sys-color-outline-variant);">
+          <div style="margin-bottom: 12px; font-size: 1.05rem; line-height: 1.6;">${escapeHtml(question.prompt).replace(/\n/g, '<br>')}</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            ${(question.choices ?? []).map((c, i) => `
+              <div style="padding: 8px; border: 1px solid ${question.answer_key?.correct_answer === ['A','B','C','D'][i] ? 'var(--md-sys-color-primary)' : 'var(--md-sys-color-outline-variant)'}; border-radius: 8px; background: ${question.answer_key?.correct_answer === ['A','B','C','D'][i] ? 'var(--md-sys-color-primary-container)' : 'transparent'};">
+                <b>${['A','B','C','D'][i]}.</b> ${escapeHtml(c).replace(/\n/g, '<br>')}
+              </div>
+            `).join('')}
+          </div>
+          ${question.settings?.explanation ? `
+            <div style="margin-top: 12px; font-size: 0.9em; color: var(--md-sys-color-on-surface-variant); padding: 8px; background: var(--md-sys-color-surface-variant); border-radius: 8px; border-left: 4px solid var(--md-sys-color-primary);">
+              <strong>Lời giải:</strong><br>${renderLatexText(question.settings.explanation)}
+            </div>
+          ` : ''}
+        </div>
+      ` : ''}
+
       <input type="hidden" name="question-id-${index}" value="${escapeHtml(question.id ?? '')}">
-      <div class="form-grid two">
-        <select class="field" name="question-type-${index}">
-          ${['mcq', 'tf4', 'short'].map((type) => option(type, type.toUpperCase(), question.type)).join('')}
-        </select>
-        <input class="field" name="question-sort-${index}" type="number" value="${Number(question.sort_order ?? index + 1)}" placeholder="Thứ tự">
+      ${state.assignmentEditor.assignment.pdf_url !== 'latex' ? `
+        <div class="form-grid two">
+          <select class="field" name="question-type-${index}">
+            ${['mcq', 'tf4', 'short'].map((type) => option(type, type.toUpperCase(), question.type)).join('')}
+          </select>
+          <input class="field" name="question-sort-${index}" type="number" value="${Number(question.sort_order ?? index + 1)}" placeholder="Thứ tự">
+        </div>
+      ` : ''}
+      
+      <div style="${state.assignmentEditor.assignment.pdf_url === 'latex' ? 'padding: 8px; background: var(--md-sys-color-surface-container-low); border-radius: 8px;' : ''}">
+        ${renderQuestionKeyEditor(question, index)}
       </div>
-      ${renderQuestionKeyEditor(question, index)}
     </article>
   `;
 }
@@ -989,7 +1130,7 @@ export function refreshQuestionBuilder(lectures) {
   if (builder) {
     builder.innerHTML = questions.length
       ? questions.map((question, index) => renderQuestionEditor(question, index)).join('')
-      : '<div class="empty-state compact">Chưa có câu nào trong phiếu trả lời.</div>';
+      : '<div class="panel empty-state" style="padding: 40px; text-align: center; background: var(--md-sys-color-surface-container-low); border: 1px dashed var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-medium, 12px); color: var(--md-sys-color-outline);">Chưa có câu nào trong phiếu trả lời. Hãy thêm câu hỏi ở trên để bắt đầu nhập đáp án.</div>';
   }
   wireQuestionEditorControls(lectures);
 }
@@ -1088,6 +1229,33 @@ export function wireAssignmentEditor(lectures) {
 
   wireQuestionEditorControls(lectures);
 
+  if (state.assignmentEditor.assignment.pdf_url === 'latex' && window.MathJax) {
+    setTimeout(() => window.MathJax.typesetPromise(), 50);
+  }
+
+  document.querySelector('#latex-mode-btn')?.addEventListener('click', () => {
+    state.assignmentEditor = collectEditor(lectures);
+    state.assignmentEditor.assignment.pdf_url = 'latex';
+    mountAssignmentManager();
+  });
+
+  document.querySelector('#latex-live-parse-btn')?.addEventListener('click', () => {
+    const text = document.querySelector('#latex-live-input').value;
+    const parsedQuestions = parseLatexAssignment(text);
+    
+    if (parsedQuestions.length === 0) {
+      toast('Không tìm thấy câu hỏi nào hợp lệ (cần dùng \\begin{ex}...\\end{ex}).', 'error');
+      return;
+    }
+    
+    state.assignmentEditor = collectEditor(lectures);
+    state.assignmentEditor.questions = parsedQuestions;
+    state.assignmentEditor.latexSource = text;
+    
+    toast(`Đã nhận diện thành công ${parsedQuestions.length} câu hỏi.`, 'success');
+    mountAssignmentManager();
+  });
+
   document.querySelector('#delete-assignment')?.addEventListener('click', async () => {
     if (!window.confirm('Xóa đề này?')) return;
     try {
@@ -1123,6 +1291,11 @@ export function wireAssignmentEditor(lectures) {
         pdfInput.errorText = 'Link PDF không được để trống';
         return false;
       }
+      if (val === 'latex') {
+        pdfInput.error = false;
+        pdfInput.errorText = '';
+        return true;
+      }
       if (!val.startsWith('http://') && !val.startsWith('https://')) {
         pdfInput.error = true;
         pdfInput.errorText = 'Link PDF phải bắt đầu bằng http:// hoặc https://';
@@ -1138,7 +1311,14 @@ export function wireAssignmentEditor(lectures) {
       validatePdf();
       const previewContainer = document.querySelector('.pdf-preview-container');
       if (previewContainer) {
-        previewContainer.innerHTML = renderPdfPreview(pdfInput.value);
+        if (pdfInput.value === 'latex') {
+          // Trigger full re-render so it shows the latex questions logic
+          state.assignmentEditor = collectEditor(lectures);
+          state.assignmentEditor.assignment.pdf_url = 'latex';
+          mountAssignmentManager();
+        } else {
+          previewContainer.innerHTML = renderPdfPreview(pdfInput.value);
+        }
       }
     });
 
@@ -1214,27 +1394,30 @@ export function defaultQuestion(type) {
 export function collectEditor() {
   const form = document.querySelector('#assignment-editor');
   const values = Object.fromEntries(new FormData(form).entries());
+  const existingQuestions = state.assignmentEditor?.questions || [];
+  
   const questions = Array.from(document.querySelectorAll('.question-editor')).map((card) => {
     const index = Number(card.dataset.index);
+    const existing = existingQuestions[index] || {};
     const type = values[`question-type-${index}`];
     const base = {
       id: values[`question-id-${index}`] || undefined,
       type,
-      prompt: `Câu ${index + 1}`,
+      prompt: existing.prompt || `Câu ${index + 1}`,
       points: 1,
       sort_order: Number(values[`question-sort-${index}`] || index + 1),
-      choices: [],
-      settings: {},
+      choices: existing.choices || [],
+      settings: existing.settings || {},
       answer_key: {},
     };
 
     if (type === 'mcq') {
-      base.choices = [];
       base.answer_key = { correct_answer: values[`mcq-answer-${index}`] || 'A' };
     }
 
     if (type === 'tf4') {
       base.settings = {
+        ...base.settings,
         statements: [0, 1, 2, 3].map((item) => values[`tf-statement-${index}-${item}`] || `Ý ${item + 1}`),
       };
       base.answer_key = {
@@ -1259,13 +1442,14 @@ export function collectEditor() {
     assignment: {
       id: values.id || undefined,
       title: values.title,
-      description: values.description,
+      description: values.pdf_url === 'latex' ? (state.assignmentEditor?.latexSource || '') : values.description,
       pdf_url: values.pdf_url,
       lecture_id: values.lecture_id,
       sort_order: Number(values.sort_order || 0),
       published: values.published !== 'false',
     },
     questions,
+    latexSource: state.assignmentEditor?.latexSource || '',
   };
 }
 

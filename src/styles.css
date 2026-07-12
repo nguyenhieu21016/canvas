@@ -815,7 +815,7 @@ md-icon {
 
 .phase-card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(max(320px, calc(33.333% - 12px)), 1fr));
   gap: 18px;
 }
 

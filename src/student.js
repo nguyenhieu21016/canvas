@@ -175,52 +175,11 @@ export function renderPhaseCard(phase, taughtSet = new Set()) {
     0,
   );
   
-  let taughtCount = 0;
-  let totalAssignments = 0;
-  let completedAssignments = 0;
-  phase.modules.forEach(mod => {
-    mod.lectures.forEach(l => {
-      if (taughtSet.has(l.id)) taughtCount++;
-      if (l.assignments) {
-        l.assignments.forEach(a => {
-          totalAssignments++;
-          if (a.progress?.status === 'submitted') completedAssignments++;
-        });
-      }
-    });
-  });
-  
-  const pct = lectureCount > 0 ? Math.round((taughtCount / lectureCount) * 100) : 0;
-  const hwPct = totalAssignments > 0 ? Math.round((completedAssignments / totalAssignments) * 100) : 0;
-  
-  const progressMarkup = state.profile.role === 'student' ? `
-    <div style="margin-top: 16px; margin-bottom: 8px;">
-      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 6px;">
-        <span style="font-size: 0.8rem; font-weight: 600; color: var(--md-sys-color-on-surface);">Tiến độ học</span>
-        <span style="font-size: 0.8rem; font-weight: 600; color: var(--md-sys-color-primary);">${taughtCount}/${lectureCount} bài (${pct}%)</span>
-      </div>
-      <div style="background: var(--md-sys-color-surface-container-high); border-radius: 100px; height: 6px; overflow: hidden; margin-bottom: ${totalAssignments > 0 ? '12px' : '0'};">
-        <div style="height: 100%; width: ${pct}%; background: var(--md-sys-color-primary); border-radius: 100px; transition: width 0.4s ease;"></div>
-      </div>
-      
-      ${totalAssignments > 0 ? `
-      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 6px;">
-        <span style="font-size: 0.8rem; font-weight: 600; color: var(--md-sys-color-on-surface);">Tiến độ làm BTVN</span>
-        <span style="font-size: 0.8rem; font-weight: 600; color: var(--md-sys-color-primary);">${completedAssignments}/${totalAssignments} bài (${hwPct}%)</span>
-      </div>
-      <div style="background: var(--md-sys-color-surface-container-high); border-radius: 100px; height: 6px; overflow: hidden;">
-        <div style="height: 100%; width: ${hwPct}%; background: var(--md-sys-color-primary); border-radius: 100px; transition: width 0.4s ease;"></div>
-      </div>
-      ` : ''}
-    </div>
-  ` : '';
-
   return `
-    <a class="phase-card" href="#/phase/${phase.id}" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+    <a class="phase-card" href="#/phase/${phase.id}" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%; min-height: 260px;">
       <div>
         <p class="eyebrow">Giai đoạn</p>
         <h2>${escapeHtml(phase.title)}</h2>
-        ${progressMarkup}
       </div>
       <div style="margin-top: auto;">
         <div class="phase-card-meta" style="margin-bottom: 16px; margin-top: 12px;">
