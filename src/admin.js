@@ -634,6 +634,16 @@ export function parseLatexAssignment(latexText) {
     let depth = 0;
     let start = startIndex + 1;
     for (let i = start; i < text.length; i++) {
+      let backslashCount = 0;
+      let j = i - 1;
+      while (j >= 0 && text[j] === '\\') {
+        backslashCount++;
+        j--;
+      }
+      if (backslashCount % 2 === 1) {
+        continue;
+      }
+      
       if (text[i] === '{') depth++;
       else if (text[i] === '}') {
         if (depth === 0) {
@@ -1332,6 +1342,7 @@ export function wireAssignmentEditor(lectures) {
     };
 
     const validatePdf = () => {
+      if (!pdfInput) return true;
       const val = pdfInput.value.trim();
       if (!val) {
         pdfInput.error = true;
