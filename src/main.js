@@ -1712,5 +1712,6 @@ export {
   renderAccountAvatar, renderSkeletonDashboard, renderStateMessage, wireMaterialFormButtons,
   driveFrame, renderMetric, render,
   isAdmin, renderSkeletonAssignments, renderScoreProgress,
-  daysUntilExam, setThemeMode, setColorTheme
+  daysUntilExam, setThemeMode, setColorTheme,
+  APP_VERSION, APP_LAST_UPDATE
 };
