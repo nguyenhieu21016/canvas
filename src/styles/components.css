@@ -409,8 +409,20 @@
 
 .phase-card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(max(320px, calc(33.333% - 12px)), 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 18px;
+}
+
+@media (max-width: 1024px) {
+  .phase-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .phase-card-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .phase-card {
