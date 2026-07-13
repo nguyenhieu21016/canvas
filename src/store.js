@@ -26,7 +26,14 @@ export function isAdmin() {
   return state.profile?.role === 'admin';
 }
 
+const detachedPageRoot = {
+  isConnected: false,
+  set innerHTML(_value) {},
+  get innerHTML() {
+    return '';
+  },
+};
+
 export function pageRoot() {
-  const shell = document.querySelector('.app-shell');
-  return shell || document.querySelector('#app');
+  return document.querySelector('#page-root') ?? detachedPageRoot;
 }

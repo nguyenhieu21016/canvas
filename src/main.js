@@ -65,13 +65,6 @@ const APP_LAST_UPDATE = 'Hỗ trợ parse và render đề thi chuẩn LaTeX (Ma
 let renderGeneration = 0;
 let assignmentsForManagerList = [];
 let appElementsPromise = null;
-const detachedPageRoot = {
-  isConnected: false,
-  set innerHTML(_value) {},
-  get innerHTML() {
-    return '';
-  },
-};
 
 // (Removed temp fix)
 
