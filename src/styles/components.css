@@ -180,6 +180,13 @@
   animation: topbar-enter var(--motion-duration-medium1) var(--motion-easing-standard-decelerate) both;
 }
 
+.topbar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
 .topbar-main {
   display: flex;
   align-items: center;
@@ -317,6 +324,9 @@
 .page-root {
   padding: var(--page-gutter);
   padding-bottom: calc(var(--page-gutter) + 78px);
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .page-root > * {

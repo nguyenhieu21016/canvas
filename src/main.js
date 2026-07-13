@@ -53,7 +53,7 @@ import { clearDraft, loadDraft, saveDraft } from './lib/draft.js';
 import { toDrivePreviewUrl } from './lib/drive.js';
 import { formatDateTime, formatScore, roleLabel } from './lib/format.js';
 import { escapeHtml, option, setButtonLoading, renderLatexText } from './lib/html.js';
-import { normalizeAssignmentEditor } from './admin.js';
+import { normalizeAssignmentEditor } from './lib/assignment.js';
 
 const app = document.querySelector('#app');
 const toastEl = document.querySelector('#toast');
@@ -1707,7 +1707,7 @@ addRoute('content', () => import('./admin.js').then(m => m.mountContentManager()
 addRoute('assignments', () => import('./admin.js').then(m => m.mountAssignmentManager()));
 addRoute('students', () => import('./admin.js').then(m => m.mountStudents()));
 addRoute('online', () => import('./admin.js').then(m => m.mountOnlineUsers()));
-addRoute('grades', () => import('./admin.js').then(m => m.mountGrades()));
+addRoute('grades', () => isManager() ? import('./admin.js').then(m => m.mountGrades()) : import('./student.js').then(m => m.mountStudentGrades()));
 addRoute('salary', () => import('./admin.js').then(m => m.mountSalaryManager()));
 
 bootstrap();

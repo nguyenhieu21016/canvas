@@ -1,3 +1,4 @@
+import { normalizeAssignmentEditor, normalizeEditorQuestion } from './lib/assignment.js';
 // admin.js - Lazy loaded module for admin routes
 import { supabase } from './services/supabaseClient.js';
 import { formatDateTime, formatScore, roleLabel } from "./lib/format.js";
@@ -19,7 +20,6 @@ import {
   renderMetric,
   wireMaterialFormButtons, isAdmin, renderSkeletonAssignments, renderAccountAvatar
 } from "./main.js";
-import { mountStudentGrades } from "./student.js";
 
 export function mountManageHub() {
   const root = pageRoot();
@@ -765,30 +765,6 @@ export async function mountAssignmentManager() {
     root.innerHTML = renderErrorState(error);
     wireRouteRetry(root);
   }
-}
-
-export function normalizeEditorQuestion(raw) {
-  const key = Array.isArray(raw.answer_keys)
-    ? raw.answer_keys[0]
-    : raw.answer_keys ?? raw.answer_key;
-  return {
-    id: raw.id,
-    type: raw.type,
-    prompt: raw.prompt,
-    points: raw.points,
-    sort_order: raw.sort_order,
-    choices: raw.choices ?? [],
-    settings: raw.settings ?? {},
-    answer_key: key ?? {},
-  };
-}
-
-export function normalizeAssignmentEditor(editor) {
-  return {
-    assignment: editor.assignment,
-    questions: editor.questions.map(normalizeEditorQuestion),
-    latexSource: editor.assignment.pdf_url === 'latex' ? editor.assignment.description : '',
-  };
 }
 
 export function renderPdfPreview(url) {
@@ -1541,8 +1517,6 @@ export function wireStudentManager() {
 }
 
 export async function mountGrades() {
-  if (!isManager()) return mountStudentGrades();
-
   const root = pageRoot();
   root.innerHTML = renderLoading();
   try {
