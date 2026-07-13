@@ -1,7 +1,8 @@
 import { state, colorThemes } from '../store.js';
 import { pageRoot } from '../main.js';
 import { escapeHtml, setButtonLoading } from '../lib/html.js';
-import { renderAccountAvatar, render, toast, setThemeMode, setColorTheme, APP_VERSION, APP_LAST_UPDATE } from '../main.js';
+import { render, setThemeMode, setColorTheme, APP_VERSION, APP_LAST_UPDATE } from '../main.js';
+import { renderAccountAvatar, toast } from '../lib/ui.js';
 import { updateProfileAvatar, removeProfileAvatar, updateProfileName } from '../services/lmsApi.js';
 
 export function mountSettings() {

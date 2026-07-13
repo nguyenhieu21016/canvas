@@ -14,12 +14,8 @@ import {
   fetchSalaryMonth, upsertSalarySchedule, deleteSalarySchedule, setSessionState,
   getOnlineUsers, presenceTarget
 } from "./services/lmsApi.js";
-import { 
-  state, pageRoot, renderLoading, renderErrorState, wireRouteRetry, 
-  escapeHtml, wireTableSearch, toast, isManager, renderAttemptsTable,
-  renderMetric,
-  wireMaterialFormButtons, isAdmin, renderSkeletonAssignments, renderAccountAvatar
-} from "./main.js";
+import { state, pageRoot, wireRouteRetry, escapeHtml, isManager, renderAttemptsTable, isAdmin } from './main.js';
+import { renderLoading, renderErrorState, wireTableSearch, toast, renderMetric, wireMaterialFormButtons, renderSkeletonAssignments, renderAccountAvatar } from './lib/ui.js';
 
 export function mountManageHub() {
   const root = pageRoot();

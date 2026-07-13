@@ -1,4 +1,5 @@
-import { state, isManager, pageRoot, toast, wireMaterialFormButtons, render } from '../main.js';
+import { state, isManager, pageRoot, render } from '../main.js';
+import { toast, wireMaterialFormButtons } from '../lib/ui.js';
 import { hasSupabaseConfig } from '../services/supabaseClient.js';
 import { setButtonLoading } from '../lib/html.js';
 import { requestPasswordReset, updateCurrentUserPassword, getCurrentProfile, getSession, signIn, signUpStudent } from '../services/lmsApi.js';

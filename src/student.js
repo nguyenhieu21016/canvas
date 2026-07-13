@@ -6,11 +6,8 @@ import {
   fetchStudents, fetchTeachingLogs, invokeAdminFunction, createManagedUser, deleteManagedUser,
   fetchAssignmentsForManager
 } from "./services/lmsApi.js";
-import { 
-  state, pageRoot, renderLoading, renderErrorState, escapeHtml, toast, isManager,
-  renderAccountAvatar, renderSkeletonDashboard, renderStateMessage, wireMaterialFormButtons,
-  driveFrame, wireRouteRetry, renderScoreProgress
-} from "./main.js";
+import { state, pageRoot, escapeHtml, isManager, driveFrame, wireRouteRetry } from './main.js';
+import { renderLoading, renderErrorState, toast, renderAccountAvatar, renderSkeletonDashboard, renderStateMessage, wireMaterialFormButtons, renderScoreProgress } from './lib/ui.js';
 
 let selectedStudentId = null;
 
