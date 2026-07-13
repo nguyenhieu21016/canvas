@@ -36,7 +36,8 @@ export default [
       }
     },
     rules: {
-      "no-undef": "error"
+      "no-undef": "error",
+      "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
     }
   }
 ];

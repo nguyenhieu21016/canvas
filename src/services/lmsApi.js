@@ -1016,3 +1016,25 @@ export async function setSessionState({ scheduleId, sessionDate, state }) {
 
 
 
+
+export async function uploadAssignmentImage(file) {
+  const client = requireSupabase();
+  const fileExt = file.name.split('.').pop();
+  const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+  const filePath = `images/${fileName}`;
+
+  const { error: uploadError } = await withTimeout(
+    client.storage.from('assignments').upload(filePath, file, {
+      cacheControl: '3600',
+      upsert: false
+    })
+  );
+
+  assertOk({ error: uploadError });
+
+  const { data: { publicUrl } } = client.storage
+    .from('assignments')
+    .getPublicUrl(filePath);
+
+  return publicUrl;
+}

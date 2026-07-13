@@ -10,7 +10,7 @@ import {
   upsertLecture, deleteLecture, upsertLectureGroup, deleteLectureGroup,
   deleteAssignment, reorderContentNodes as reorderContentNodesApi,
   invokeAdminFunction, createManagedUser, fetchAssignmentEditor, regradeAssignment, 
-  deleteManagedUser, saveAssignmentWithQuestions, uploadAssignmentImage,
+  deleteManagedUser, saveAssignmentWithQuestions,
   fetchSalaryMonth, upsertSalarySchedule, deleteSalarySchedule, setSessionState,
   getOnlineUsers, presenceTarget
 } from "./services/lmsApi.js";
@@ -730,45 +730,31 @@ export async function mountAssignmentManager() {
       fetchAssignmentsForManager(),
     ]);
     if (!state.assignmentEditor) state.assignmentEditor = emptyEditor();
-    if (state.isEditingAssignment) {
-      root.innerHTML = `
-        <section class="assignment-editor-view" style="padding: 16px 24px; width: 100%; height: 100%; display: flex; flex-direction: column;">
-          <div style="margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
-            <md-icon-button id="back-to-list-btn"><md-icon>arrow_back</md-icon></md-icon-button>
-            <span style="font-size: 1.1rem; font-weight: 500; color: var(--md-sys-color-on-surface); cursor: pointer;" onclick="document.getElementById('back-to-list-btn').click()">Quay lại danh sách</span>
+    root.innerHTML = `
+      <section class="assignment-manager">
+        <aside class="panel list-panel">
+          <div class="panel-heading">
+            <h2>Đề thi / Bài tập về nhà</h2>
+            <md-filled-tonal-button id="new-assignment"><md-icon slot="icon">add</md-icon>Mới</md-filled-tonal-button>
           </div>
-          <form id="assignment-editor" class="panel editor-panel" style="flex: 1; display: flex; flex-direction: column;">
-            ${renderAssignmentEditor(path.lectures)}
-          </form>
-        </section>
-      `;
-    } else {
-      root.innerHTML = `
-        <style>
-          .list-row:hover { background: var(--md-sys-color-surface-container-highest) !important; }
-        </style>
-        <section class="assignment-list-view" style="padding: 24px;">
-          <aside class="panel list-panel" style="max-width: 800px; margin: 0 auto; width: 100%; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-            <div class="panel-heading" style="padding: 24px; border-bottom: 1px solid var(--md-sys-color-outline-variant); display: flex; justify-content: space-between; align-items: center;">
-              <h2 style="margin: 0; font-size: 1.5rem; font-weight: 600; color: var(--md-sys-color-on-surface);">Đề thi / Bài tập về nhà</h2>
-              <md-filled-tonal-button id="new-assignment" style="--md-filled-tonal-button-container-color: #e8f0fe; --md-filled-tonal-button-label-text-color: #1a73e8;"><md-icon slot="icon">add</md-icon>Mới</md-filled-tonal-button>
-            </div>
-            <div class="stack-list" style="padding: 12px;">
-              ${assignments.length ? assignments
-                .map(
-                  (assignment) => `
-                    <button class="list-row" data-load-assignment="${assignment.id}" style="padding: 16px; margin-bottom: 8px; border-radius: 12px; border: 1px solid transparent; background: transparent; transition: all 0.2s; text-align: left; display: flex; flex-direction: column; gap: 4px; cursor: pointer; width: 100%;">
-                      <span style="font-size: 1.05rem; font-weight: 500; color: var(--md-sys-color-on-surface);">${escapeHtml(assignment.title)}</span>
-                      <small style="font-size: 0.85rem; color: var(--md-sys-color-on-surface-variant);">${escapeHtml(assignment.lectures?.title ?? 'Bài tập tự do')}</small>
-                    </button>
-                  `,
-                )
-                .join('') : '<div style="padding: 40px; text-align: center; color: var(--md-sys-color-outline);">Chưa có đề thi nào. Hãy tạo mới!</div>'}
-            </div>
-          </aside>
-        </section>
-      `;
-    }
+          <div class="stack-list">
+            ${assignments
+              .map(
+                (assignment) => `
+                  <button class="list-row" data-load-assignment="${assignment.id}">
+                    <span>${escapeHtml(assignment.title)}</span>
+                    <small>${escapeHtml(assignment.lectures?.title ?? 'Bài tập tự do')}</small>
+                  </button>
+                `,
+              )
+              .join('')}
+          </div>
+        </aside>
+        <form id="assignment-editor" class="panel editor-panel">
+          ${renderAssignmentEditor(path.lectures)}
+        </form>
+      </section>
+    `;
     wireAssignmentEditor(path.lectures);
     wireMaterialFormButtons(root);
   } catch (error) {
@@ -809,7 +795,7 @@ export function renderAssignmentEditor(lectures) {
         <h2 style="margin: 0; font-size: 1.35rem; font-weight: 600; color: var(--md-sys-color-on-surface);">${assignment.id ? 'Chỉnh sửa đề' : 'Tạo đề mới'}</h2>
       </div>
       <div class="button-row" style="display: flex; gap: 12px;">
-        ${assignment.id ? '<md-filled-button id="delete-assignment" type="button" style="--md-filled-button-container-color: var(--md-sys-color-error); --md-filled-button-label-text-color: var(--md-sys-color-on-error); --md-filled-button-icon-color: var(--md-sys-color-on-error);"><md-icon slot="icon">delete</md-icon>Xóa</md-filled-button>' : ''}
+        ${assignment.id ? '<md-outlined-button id="delete-assignment" type="button" style="--md-outlined-button-outline-color: var(--md-sys-color-error); --md-outlined-button-label-text-color: var(--md-sys-color-error);"><md-icon slot="icon">delete</md-icon>Xóa</md-outlined-button>' : ''}
         <md-filled-button type="submit"><md-icon slot="icon">save</md-icon>Lưu đề</md-filled-button>
       </div>
     </div>
@@ -851,26 +837,23 @@ export function renderAssignmentEditor(lectures) {
         </div>
       </div>
 
-      ${assignment.pdf_url !== 'latex' ? `
       <div style="display: flex; flex-direction: column; gap: 4px; grid-column: 1 / -1;">
         <md-outlined-text-field label="Link tài liệu PDF (Google Drive)" id="assignment-pdf-input" name="pdf_url" value="${escapeHtml(assignment.pdf_url)}" required style="--md-outlined-text-field-container-shape: 8px; width: 100%;"></md-outlined-text-field>
       </div>
-      ` : ''}
     </div>
 
     <!-- Main Workspace Split View -->
     <style>
       .left-pane {
         position: sticky;
-        top: 24px;
-        align-self: start;
-        flex: 1;
+        top: 16px;
+        height: calc(100vh - 250px);
+        flex: 1.2;
         min-width: 400px;
-        max-height: calc(100vh - 48px);
-        overflow-y: auto;
         display: flex;
         flex-direction: column;
         gap: 16px;
+        overflow-y: auto;
       }
       .right-pane {
         flex: 0.8;
@@ -935,12 +918,7 @@ export function renderAssignmentEditor(lectures) {
         ${assignment.pdf_url === 'latex' ? `
           <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--md-sys-color-outline-variant); padding-bottom: 8px;">
             <h3 style="margin: 0; font-size: 0.95rem; font-weight: 600; display: flex; align-items: center; gap: 6px; color: var(--md-sys-color-on-surface);"><md-icon>functions</md-icon> Soạn thảo LaTeX</h3>
-            <div style="display: flex; gap: 8px; align-items: center;">
-              <input type="file" id="latex-image-upload" accept="image/*" style="display: none;">
-              <md-filled-tonal-button type="button" id="latex-image-btn"><md-icon slot="icon">image</md-icon>Chèn ảnh</md-filled-tonal-button>
-              <span id="latex-upload-status" style="font-size: 0.85rem; color: var(--md-sys-color-primary); display: none;">Đang tải lên...</span>
-              <md-filled-button type="button" id="latex-live-parse-btn"><md-icon slot="icon">auto_fix_high</md-icon> Cập nhật & Xem trước</md-filled-button>
-            </div>
+            <md-filled-button type="button" id="latex-live-parse-btn"><md-icon slot="icon">auto_fix_high</md-icon> Cập nhật & Xem trước</md-filled-button>
           </div>
           <div style="flex: 1; display: flex; flex-direction: column;">
             <textarea id="latex-live-input" style="flex: 1; min-height: 500px; width: 100%; padding: 16px; font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 1.5; border: 1px solid var(--md-sys-color-outline-variant); border-radius: 8px; resize: none; background: var(--md-sys-color-surface-container-low); color: var(--md-sys-color-on-surface);" placeholder="Dán mã LaTeX vào đây... (Ví dụ: \\begin{ex}...\\end{ex})">${escapeHtml(state.assignmentEditor.latexSource || '')}</textarea>
@@ -988,64 +966,32 @@ export function renderQuestionEditor(question, index) {
       </div>
       
       ${state.assignmentEditor.assignment.pdf_url === 'latex' && question.prompt ? `
-        <div class="latex-preview-block panel" data-source-index="${question.sourceIndex ?? ''}" title="Bấm để cuộn đến đoạn code tương ứng" style="background: var(--md-sys-color-surface-container-lowest); border-radius: 16px; border: 1px solid var(--md-sys-color-outline-variant); padding: 32px; cursor: pointer; transition: border-color 0.2s; margin-top: 12px;" onmouseover="this.style.borderColor='var(--md-sys-color-primary)'" onmouseout="this.style.borderColor='var(--md-sys-color-outline-variant)'">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--md-sys-color-surface-variant);">
-            <div style="font-weight: 700; padding: 6px 16px; border-radius: 8px; background: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container); font-size: 1rem; letter-spacing: 0.5px;">CÂU ${index + 1}</div>
+        <div class="latex-preview-block" style="padding: 12px; background: var(--md-sys-color-surface-container-lowest); border-radius: 8px; border: 1px solid var(--md-sys-color-outline-variant);">
+          <div style="margin-bottom: 12px; font-size: 1.05rem; line-height: 1.6;">${escapeHtml(question.prompt).replace(/\n/g, '<br>')}</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            ${(question.choices ?? []).map((c, i) => `
+              <div style="padding: 8px; border: 1px solid ${question.answer_key?.correct_answer === ['A','B','C','D'][i] ? 'var(--md-sys-color-primary)' : 'var(--md-sys-color-outline-variant)'}; border-radius: 8px; background: ${question.answer_key?.correct_answer === ['A','B','C','D'][i] ? 'var(--md-sys-color-primary-container)' : 'transparent'};">
+                <b>${['A','B','C','D'][i]}.</b> ${escapeHtml(c).replace(/\n/g, '<br>')}
+              </div>
+            `).join('')}
           </div>
-          <div style="font-weight: normal; font-size: 1rem; line-height: 1.5; color: var(--md-sys-color-on-surface); margin-bottom: 24px; overflow-wrap: break-word;">
-            ${renderLatexText(question.prompt)}
-          </div>
-          
-          ${question.choices && question.choices.length > 0 ? `
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(max(250px, calc(50% - 16px)), 1fr)); gap: 16px; margin-bottom: 24px;">
-            ${question.choices.map((choice, cIdx) => {
-              const letter = ['A', 'B', 'C', 'D'][cIdx];
-              const isCorrectChoice = question.answer_key?.correct_answer === letter;
-              
-              let bg = 'var(--md-sys-color-surface-container-lowest)';
-              let border = '2px solid var(--md-sys-color-surface-variant)';
-              let icon = '<div style="width: 24px;"></div>';
-              
-              if (isCorrectChoice) {
-                bg = 'var(--md-sys-color-primary-container)';
-                border = '2px solid var(--md-sys-color-primary)';
-                icon = '<md-icon style="color: var(--md-sys-color-primary); font-size: 20px; margin-right: 12px; flex-shrink: 0;">check_circle</md-icon>';
-              }
-              
-              return `
-                <div style="padding: 16px; border-radius: 12px; border: ${border}; background: ${bg}; display: flex; align-items: flex-start;">
-                  ${icon}
-                  <div style="line-height: 1.5; color: var(--md-sys-color-on-surface); font-size: 1rem;"><b>${letter}.</b> ${renderLatexText(choice)}</div>
-                </div>
-              `;
-            }).join('')}
-          </div>
-          ` : ''}
-          
           ${question.settings?.explanation ? `
-          <details open style="background: var(--md-sys-color-surface-container); border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant); overflow: hidden;">
-            <summary style="padding: 16px 24px; font-weight: 500; cursor: pointer; color: var(--md-sys-color-on-surface); list-style: none; display: flex; justify-content: space-between; align-items: center; user-select: none;">
-              <div style="display: flex; align-items: center; gap: 12px;">
-                <md-icon style="color: var(--md-sys-color-primary);">lightbulb</md-icon> Lời giải chi tiết
-              </div>
-              <div style="display: flex; align-items: center; gap: 24px; color: var(--md-sys-color-on-surface-variant);">
-                <div style="display: flex; gap: 8px; align-items: center;">
-                  <span style="font-size: 0.9em; font-weight: 500;">Đáp án đúng:</span>
-                  <strong style="color: var(--md-sys-color-primary); font-size: 1rem;">${question.answer_key?.correct_answer ?? ''}</strong>
-                </div>
-                <md-icon class="expand-icon" style="color: var(--md-sys-color-on-surface-variant);">expand_more</md-icon>
-              </div>
-            </summary>
-            <div style="padding: 24px; border-top: 1px solid var(--md-sys-color-outline-variant); font-size: 1rem; line-height: 1.6; color: var(--md-sys-color-on-surface-variant); background: var(--md-sys-color-surface-container-lowest); overflow-x: auto; max-width: 100%;">
-              ${renderLatexText(question.settings.explanation)}
+            <div style="margin-top: 12px; font-size: 0.9em; color: var(--md-sys-color-on-surface-variant); padding: 8px; background: var(--md-sys-color-surface-variant); border-radius: 8px; border-left: 4px solid var(--md-sys-color-primary);">
+              <strong>Lời giải:</strong><br>${renderLatexText(question.settings.explanation)}
             </div>
-          </details>
           ` : ''}
         </div>
       ` : ''}
 
       <input type="hidden" name="question-id-${index}" value="${escapeHtml(question.id ?? '')}">
-
+      ${state.assignmentEditor.assignment.pdf_url !== 'latex' ? `
+        <div class="form-grid two">
+          <select class="field" name="question-type-${index}">
+            ${['mcq', 'tf4', 'short'].map((type) => option(type, type.toUpperCase(), question.type)).join('')}
+          </select>
+          <input class="field" name="question-sort-${index}" type="number" value="${Number(question.sort_order ?? index + 1)}" placeholder="Thứ tự">
+        </div>
+      ` : ''}
       
       <div style="${state.assignmentEditor.assignment.pdf_url === 'latex' ? 'padding: 8px; background: var(--md-sys-color-surface-container-low); border-radius: 8px;' : ''}">
         ${renderQuestionKeyEditor(question, index)}
@@ -1158,15 +1104,8 @@ export function wireAssignmentEditor(lectures) {
     });
   }
 
-  document.querySelector('#back-to-list-btn')?.addEventListener('click', () => {
-    state.isEditingAssignment = false;
-    state.assignmentEditor = emptyEditor();
-    mountAssignmentManager();
-  });
-
   document.querySelector('#new-assignment')?.addEventListener('click', () => {
     state.assignmentEditor = emptyEditor();
-    state.isEditingAssignment = true;
     mountAssignmentManager();
   });
 
@@ -1175,7 +1114,6 @@ export function wireAssignmentEditor(lectures) {
       try {
         const editor = await fetchAssignmentEditor(button.dataset.loadAssignment);
         state.assignmentEditor = normalizeAssignmentEditor(editor);
-        state.isEditingAssignment = true;
         await mountAssignmentManager();
       } catch (error) {
         toast(error.message, 'error');
@@ -1231,83 +1169,11 @@ export function wireAssignmentEditor(lectures) {
     mountAssignmentManager();
   });
 
-  const uploadInput = document.querySelector('#latex-image-upload');
-  const uploadBtn = document.querySelector('#latex-image-btn');
-  const uploadStatus = document.querySelector('#latex-upload-status');
-  const latexInput = document.querySelector('#latex-live-input');
-  
-  let cm = null;
-  if (latexInput) {
-    cm = window.CodeMirror?.fromTextArea(latexInput, {
-      lineNumbers: true,
-      mode: 'stex',
-      lineWrapping: true,
-      theme: 'default'
-    });
-    cm?.on('change', () => {
-      latexInput.value = cm.getValue();
-      state.assignmentEditor.latexSource = cm.getValue();
-    });
-  }
-
-  async function handleImageUpload(file) {
-    if (!file) return;
-    uploadStatus.style.display = 'inline-block';
-    uploadBtn.disabled = true;
-    try {
-      const url = await uploadAssignmentImage(file);
-      const insertText = `\n![image](${url})\n`;
-      if (cm) {
-        const doc = cm.getDoc();
-        const cursor = doc.getCursor();
-        doc.replaceRange(insertText, cursor);
-      } else {
-        const startPos = latexInput.selectionStart;
-        const endPos = latexInput.selectionEnd;
-        latexInput.value = latexInput.value.substring(0, startPos) + insertText + latexInput.value.substring(endPos);
-        latexInput.selectionStart = latexInput.selectionEnd = startPos + insertText.length;
-        state.assignmentEditor.latexSource = latexInput.value;
-      }
-    } catch (err) {
-      toast('Tải ảnh lên thất bại: ' + err.message, 'error');
-    } finally {
-      uploadStatus.style.display = 'none';
-      uploadBtn.disabled = false;
-      uploadInput.value = ''; // reset
-    }
-  }
-
-  uploadBtn?.addEventListener('click', () => uploadInput.click());
-  uploadInput?.addEventListener('change', (e) => {
-    if (e.target.files.length > 0) {
-      handleImageUpload(e.target.files[0]);
-    }
-  });
-
-  const handlePaste = (e) => {
-    const items = (e.clipboardData || e.originalEvent?.clipboardData).items;
-    for (const item of items) {
-      if (item.type.indexOf('image') === 0) {
-        e.preventDefault();
-        const file = item.getAsFile();
-        handleImageUpload(file);
-        break;
-      }
-    }
-  };
-
-  if (cm) {
-    cm.on('paste', (instance, e) => handlePaste(e));
-  } else {
-    latexInput?.addEventListener('paste', handlePaste);
-  }
-
   document.querySelector('#delete-assignment')?.addEventListener('click', async () => {
     if (!window.confirm('Xóa đề này?')) return;
     try {
       await deleteAssignment(state.assignmentEditor.assignment.id);
       state.assignmentEditor = emptyEditor();
-      state.isEditingAssignment = false;
       toast('Đã xóa đề.', 'success');
       await mountAssignmentManager();
     } catch (error) {
@@ -1490,7 +1356,7 @@ export function collectEditor() {
       id: values.id || undefined,
       title: values.title,
       description: values.pdf_url === 'latex' ? (state.assignmentEditor?.latexSource || '') : values.description,
-      pdf_url: values.pdf_url !== undefined ? values.pdf_url : (state.assignmentEditor?.assignment?.pdf_url || 'latex'),
+      pdf_url: values.pdf_url,
       lecture_id: values.lecture_id,
       sort_order: Number(values.sort_order || 0),
       published: values.published !== 'false',

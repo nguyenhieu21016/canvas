@@ -1,4 +1,11 @@
 import { escapeHtml } from './html.js';
+import { formatScore } from './format.js';
+
+export function accountInitial(profile) {
+  const name = (profile?.full_name || profile?.email || 'U').trim();
+  const lastWord = name.split(/\s+/).filter(Boolean).at(-1) || name;
+  return lastWord.charAt(0).toUpperCase();
+}
 
 export function wireMaterialFormButtons(root = document) {
   if (!root) return;
@@ -23,6 +30,8 @@ export function wireMaterialFormButtons(root = document) {
 }
 
 export function toast(message, tone = 'info') {
+  const toastEl = document.querySelector('#toast');
+  if (!toastEl) return;
   toastEl.textContent = message;
   toastEl.dataset.tone = tone;
   toastEl.classList.add('show');
