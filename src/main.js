@@ -438,7 +438,7 @@ async function mountAssignmentExam(id) {
                     <div style="font-weight: 700; padding: 6px 16px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); border-radius: 8px; font-size: 1rem; letter-spacing: 0.5px;">CÂU ${i + 1}</div>
                     <div style="flex: 1; color: var(--md-sys-color-outline); font-size: 0.9rem; text-align: right;">Chọn một đáp án đúng</div>
                   </div>
-                  <div style="font-weight: normal; line-height: 1.5; padding-top: 8px;">${escapeHtml(cleanPrompt).replace(/\\n/g, '<br>')}</div>
+                  <div style="font-weight: normal; line-height: 1.5; padding-top: 8px;">${renderLatexText(cleanPrompt)}</div>
                 </div>
                 
                 <div class="choice-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
@@ -450,7 +450,7 @@ async function mountAssignmentExam(id) {
                           <input type="radio" name="q-${q.id}" value="${value}" ${answers[q.id] === value ? 'checked' : ''} style="opacity: 0; position: absolute;">
                           <div class="latex-radio-circle" style="width: 32px; height: 32px; border-radius: 50%; background: var(--md-sys-color-surface-container-high); color: var(--md-sys-color-on-surface-variant); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 1rem; transition: all 0.2s;">${value}</div>
                         </div>
-                        <div style="flex: 1; padding-top: 4px; font-size: 1rem; line-height: 1.5; color: var(--md-sys-color-on-surface);">${escapeHtml(choice).replace(/\\n/g, '<br>')}</div>
+                        <div style="flex: 1; padding-top: 4px; font-size: 1rem; line-height: 1.5; color: var(--md-sys-color-on-surface);">${renderLatexText(choice)}</div>
                       </label>
                     `;
                   }).join('')}
@@ -695,7 +695,7 @@ function renderQuestionInput(question, index, answer) {
   const prompt = `
     <div class="question-prompt">
       <span>Câu ${index + 1}</span>
-      ${displayPrompt ? `<p>${escapeHtml(question.prompt)}</p>` : ''}
+      ${displayPrompt ? `<p>${renderLatexText(question.prompt)}</p>` : ''}
     </div>
   `;
 
@@ -711,7 +711,7 @@ function renderQuestionInput(question, index, answer) {
                 return `
                   <label class="choice-tile">
                     <input type="radio" name="q-${question.id}" value="${value}" ${answer === value ? 'checked' : ''}>
-                    <span>${escapeHtml(choice)}</span>
+                    <span>${renderLatexText(choice)}</span>
                   </label>
                 `;
               },
@@ -1073,7 +1073,7 @@ async function mountReview(id) {
                       <md-icon style="color: ${isCorrect ? 'var(--md-sys-color-primary)' : 'var(--md-sys-color-error)'}; font-size: 28px;">${isCorrect ? 'check_circle' : 'cancel'}</md-icon>
                     </div>
                     <div style="font-weight: normal; font-size: 1rem; line-height: 1.5; color: var(--md-sys-color-on-surface); margin-bottom: 24px; overflow-wrap: break-word;">
-                      ${escapeHtml(item.prompt).replace(/\n/g, '<br>')}
+                      ${renderLatexText(item.prompt)}
                     </div>
                   
                   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(max(250px, calc(50% - 16px)), 1fr)); gap: 16px; margin-bottom: 24px;">
@@ -1099,7 +1099,7 @@ async function mountReview(id) {
                       return `
                         <div style="padding: 16px; border-radius: 12px; border: ${border}; background: ${bg}; display: flex; align-items: flex-start;">
                           ${icon}
-                          <div style="line-height: 1.5; color: var(--md-sys-color-on-surface); font-size: 1rem;"><b>${letter}.</b> ${escapeHtml(choice).replace(/\n/g, '<br>')}</div>
+                          <div style="line-height: 1.5; color: var(--md-sys-color-on-surface); font-size: 1rem;"><b>${letter}.</b> ${renderLatexText(choice)}</div>
                         </div>
                       `;
                     }).join('')}
@@ -1214,7 +1214,7 @@ async function mountReview(id) {
                   <article class="review-item ${item.is_correct ? 'correct' : 'wrong'}">
                     <div>
                       <p class="eyebrow">Câu ${index + 1}</p>
-                      ${item.prompt && item.prompt !== `Câu ${index + 1}` && review.assignment?.pdf_url !== 'latex' ? `<h3>${escapeHtml(item.prompt)}</h3>` : ''}
+                      ${item.prompt && item.prompt !== `Câu ${index + 1}` && review.assignment?.pdf_url !== 'latex' ? `<h3>${renderLatexText(item.prompt)}</h3>` : ''}
                     </div>
                     <dl>
                       <dt>Bài làm</dt>
