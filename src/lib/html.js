@@ -106,7 +106,7 @@ export function renderLatexText(raw) {
       return applyTextCommands(seg.value).replace(/\\\\(\s*\n)?/g, '\n');
     })
     .join('')
-    .replace(/!\[([^\]]*?)\]\(([^)]+?)\)/g, (match, alt, url) => {
+    .replace(/!\s*\[([^\]]*?)\]\(([^)]+?)\)/g, (match, alt, url) => {
       return `<img src="${url}" alt="${alt}" style="max-width: 100%; height: auto; border-radius: 8px; margin: 8px 0;">`;
     })
     .replace(/\n/g, '<br>');
