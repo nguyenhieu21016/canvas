@@ -357,7 +357,7 @@ async function mountStudentAssignmentOverview(id) {
                 <h2>${attempts.length} lần nộp</h2>
               </div>
             </div>
-            ${attempts.length > 0 ? renderStudentAssignmentHistory(attempts) : '<div class="empty-state" style="padding: 48px 0; background: transparent; border: 1px dashed var(--md-sys-color-outline-variant); border-radius: 16px; margin-top: 16px;"><md-icon style="font-size: 48px; color: var(--md-sys-color-outline); margin-bottom: 16px;">history</md-icon><p style="color: var(--md-sys-color-on-surface-variant);">Bạn chưa làm bài tập này lần nào.</p></div>'}
+            ${attempts.length > 0 ? renderStudentAssignmentHistory(attempts) : '<div class="empty-state" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px 0; background: transparent; border: 1px dashed var(--md-sys-color-outline-variant); border-radius: 16px; margin-top: 16px;"><md-icon style="width: 48px; height: 48px; font-size: 48px; color: var(--md-sys-color-outline); margin-bottom: 16px;">history</md-icon><p style="color: var(--md-sys-color-on-surface-variant); margin: 0;">Bạn chưa làm bài tập này lần nào.</p></div>'}
           </div>
         ` : `
           <section class="exam-shell assignment-preview-shell">
