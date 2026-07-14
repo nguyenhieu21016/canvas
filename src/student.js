@@ -368,26 +368,6 @@ export async function mountDashboard() {
                 <!-- Sidebar items populated by JS -->
               </div>
             </div>
-
-            <!-- Add student form (Collapsible) -->
-            <details class="panel add-student-details" style="padding: 16px; border-radius: var(--md-sys-shape-corner-large, 16px); border: 1px solid var(--md-sys-color-outline-variant); background: var(--md-sys-color-surface-container-low);">
-              <summary style="display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none;">
-                <div style="display: flex; align-items: center; gap: 8px; color: var(--md-sys-color-on-surface);">
-                  <md-icon style="font-size: 1.2rem;">person_add</md-icon>
-                  <span style="font-weight: 600; font-size: 0.9rem;">Thêm học sinh mới</span>
-                </div>
-                <md-icon style="font-size: 1.2rem; color: var(--md-sys-color-outline);">expand_more</md-icon>
-              </summary>
-              <div style="padding-top: 16px; border-top: 1px dashed var(--md-sys-color-outline-variant); margin-top: 16px;">
-                <form id="create-user-form" style="display: flex; flex-direction: column; gap: 12px;">
-                  <md-outlined-text-field label="Họ tên học sinh" name="full_name" required style="--md-outlined-text-field-container-shape: 8px;"></md-outlined-text-field>
-                  <md-outlined-text-field label="Email đăng nhập" name="email" type="email" required style="--md-outlined-text-field-container-shape: 8px;"></md-outlined-text-field>
-                  <md-outlined-text-field label="Mật khẩu tạm" name="password" required style="--md-outlined-text-field-container-shape: 8px;"></md-outlined-text-field>
-                  <md-filled-button type="submit" style="--md-filled-button-container-shape: 8px; height: 44px;"><md-icon slot="icon">person_add</md-icon>Tạo tài khoản</md-filled-button>
-                </form>
-              </div>
-            </details>
-
           </div>
 
           <!-- Right Column (Main Panel): Detailed View of Selected Student -->
@@ -503,14 +483,6 @@ export async function mountDashboard() {
                 <h2 style="margin: 0; font-size: 1.35rem; font-weight: 600; color: var(--md-sys-color-on-surface);">${escapeHtml(student.full_name ?? '')}</h2>
                 <p style="margin: 4px 0 0 0; font-size: 0.8rem; color: var(--md-sys-color-on-surface-variant);">${escapeHtml(student.email ?? '')}</p>
               </div>
-            </div>
-            
-            <div style="display: flex; align-items: center; gap: 12px;">
-              <span style="font-size: 0.85rem; color: var(--md-sys-color-on-surface-variant);">Trạng thái học tập:</span>
-              <select class="field compact" name="status" style="width: auto; height: 44px; min-height: 44px; padding: 4px 32px 4px 12px; font-size: 0.85rem; border-radius: var(--md-sys-shape-corner-small, 8px);" data-status-student="${student.id}">
-                ${option('active', 'Đang học', student.status)}
-                ${option('disabled', 'Tạm khóa', student.status)}
-              </select>
             </div>
           </div>
 

@@ -1,6 +1,8 @@
 import { normalizeAssignmentEditor, normalizeEditorQuestion } from './lib/assignment.js';
 // admin.js - Lazy loaded module for admin routes
 import '@material/web/iconbutton/icon-button.js';
+import '@material/web/select/outlined-select.js';
+import '@material/web/select/select-option.js';
 import { supabase } from './services/supabaseClient.js';
 import { formatDateTime, formatScore, roleLabel } from "./lib/format.js";
 import { setButtonLoading, option, renderLatexText } from "./lib/html.js";
@@ -561,12 +563,15 @@ export function wireContentForms(pathData) {
         : nextContentSortOrder(form.dataset.entity, values, pathData);
       const payload = {
         ...values,
-        sort_order: Number(values.sort_order),
+        sort_order: sortOrder,
         published: form.querySelector('[name="published"]')?.type === 'checkbox'
           ? form.querySelector('[name="published"]').checked
           : values.published !== 'false',
         owner_id: state.profile.id,
       };
+      if (!payload.id) {
+        delete payload.id;
+      }
       if (form.dataset.entity === 'phase') {
         payload.student_ids = formData.getAll('student_ids');
       }
@@ -946,9 +951,8 @@ export async function mountAssignmentManager() {
     if (state.isEditingAssignment) {
       root.innerHTML = `
         <section class="assignment-editor-view" style="padding: 16px 24px; width: 100%; height: 100%; display: flex; flex-direction: column;">
-          <div style="margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
-            <md-icon-button id="back-to-list-btn"><md-icon>arrow_back</md-icon></md-icon-button>
-            <span style="font-size: 1.1rem; font-weight: 500; color: var(--md-sys-color-on-surface); cursor: pointer;" onclick="document.getElementById('back-to-list-btn').click()">Quay lại danh sách</span>
+          <div style="margin-bottom: 16px; display: flex; align-items: center;">
+            <md-text-button id="back-to-list-btn" style="margin-left: -16px;"><md-icon slot="icon">arrow_back</md-icon>Quay lại danh sách</md-text-button>
           </div>
           <form id="assignment-editor" class="panel editor-panel" style="flex: 1; display: flex; flex-direction: column;">
             ${renderAssignmentEditor(path.lectures)}
@@ -1131,9 +1135,9 @@ export function renderAssignmentEditor(lectures) {
             <div style="display: flex; flex-direction: column; gap: 6px;">
               <span style="font-size: 0.8rem; font-weight: 500; color: var(--md-sys-color-on-surface-variant);">Thêm 1 câu</span>
               <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <md-outlined-button type="button" style="height: 44px;" data-add-question="mcq"><md-icon slot="icon">radio_button_checked</md-icon>Trắc nghiệm</md-outlined-button>
-                <md-outlined-button type="button" style="height: 44px;" data-add-question="tf4"><md-icon slot="icon">fact_check</md-icon>Đúng/Sai</md-outlined-button>
-                <md-outlined-button type="button" style="height: 44px;" data-add-question="short"><md-icon slot="icon">short_text</md-icon>Điền ngắn</md-outlined-button>
+                <md-outlined-button type="button" style="height: 44px;" data-add-question="mcq"><md-icon slot="icon">add_circle</md-icon>Trắc nghiệm</md-outlined-button>
+                <md-outlined-button type="button" style="height: 44px;" data-add-question="tf4"><md-icon slot="icon">add_circle</md-icon>Đúng/Sai</md-outlined-button>
+                <md-outlined-button type="button" style="height: 44px;" data-add-question="short"><md-icon slot="icon">add_circle</md-icon>Điền ngắn</md-outlined-button>
               </div>
             </div>
             
@@ -1141,12 +1145,12 @@ export function renderAssignmentEditor(lectures) {
             <div style="display: flex; flex-direction: column; gap: 6px; border-top: 1px dashed var(--md-sys-color-outline-variant); padding-top: 12px;">
               <span style="font-size: 0.8rem; font-weight: 500; color: var(--md-sys-color-on-surface-variant);">Thêm hàng loạt</span>
               <div style="display: flex; gap: 8px; align-items: center;">
-                <input class="field compact-number" name="bulk-question-count" type="number" min="1" max="100" value="20" aria-label="Số câu" style="width: 70px; height: 44px; text-align: center; border-radius: var(--md-sys-shape-corner-small, 8px); border: 1px solid var(--md-sys-color-outline);">
-                <select class="field" name="bulk-question-type" aria-label="Loại câu" style="height: 44px; border-radius: var(--md-sys-shape-corner-small, 8px); border: 1px solid var(--md-sys-color-outline); padding: 0 8px; flex: 1;">
-                  <option value="mcq">Trắc nghiệm (MCQ)</option>
-                  <option value="tf4">Đúng/Sai (TF)</option>
-                  <option value="short">Điền ngắn</option>
-                </select>
+                <md-outlined-text-field type="number" class="compact-number" name="bulk-question-count" min="1" max="100" value="20" aria-label="Số câu" style="width: 70px; --md-outlined-text-field-container-shape: 8px;"></md-outlined-text-field>
+                <md-outlined-select name="bulk-question-type" aria-label="Loại câu" style="flex: 1; --md-outlined-select-text-field-container-shape: 8px;">
+                  <md-select-option value="mcq" selected><div slot="headline">Trắc nghiệm (MCQ)</div></md-select-option>
+                  <md-select-option value="tf4"><div slot="headline">Đúng/Sai (TF)</div></md-select-option>
+                  <md-select-option value="short"><div slot="headline">Điền ngắn</div></md-select-option>
+                </md-outlined-select>
                 <md-filled-tonal-button type="button" id="bulk-add-btn" style="height: 44px;"><md-icon slot="icon">playlist_add</md-icon>Thêm</md-filled-tonal-button>
                 <md-filled-button type="button" id="latex-mode-btn" style="height: 44px; margin-left: 8px;" ${assignment.pdf_url === 'latex' ? 'disabled' : ''}><md-icon slot="icon">code</md-icon>Soạn LaTeX</md-filled-button>
               </div>
@@ -1208,11 +1212,11 @@ export function renderQuestionEditor(question, index) {
       <div class="editor-heading" style="${state.assignmentEditor.assignment.pdf_url === 'latex' ? 'border-bottom: 1px dashed var(--md-sys-color-outline-variant); padding-bottom: 8px;' : ''}">
         <strong>Câu ${index + 1}</strong>
         <div style="display: flex; gap: 8px; align-items: center;">
-          <select class="field" name="question-type-${index}" style="height: 32px; padding: 0 8px; font-size: 0.85rem; border-radius: 6px;">
-            ${['mcq', 'tf4', 'short'].map((type) => option(type, type.toUpperCase(), question.type)).join('')}
-          </select>
-          <input class="field" name="question-sort-${index}" type="number" value="${Number(question.sort_order ?? index + 1)}" placeholder="Thứ tự" style="width: 60px; height: 32px; text-align: center; font-size: 0.85rem; border-radius: 6px;">
-          <button type="button" data-remove-question="${index}" aria-label="Xóa câu" class="icon-button"><md-icon>close</md-icon></button>
+          <md-outlined-select name="question-type-${index}" style="width: 120px; --md-outlined-select-text-field-container-shape: 6px;">
+            ${['mcq', 'tf4', 'short'].map((type) => `<md-select-option value="${type}" ${question.type === type ? 'selected' : ''}><div slot="headline">${type.toUpperCase()}</div></md-select-option>`).join('')}
+          </md-outlined-select>
+          <md-outlined-text-field type="number" name="question-sort-${index}" value="${Number(question.sort_order ?? index + 1)}" placeholder="Thứ tự" style="width: 70px; --md-outlined-text-field-container-shape: 6px;"></md-outlined-text-field>
+          <md-icon-button type="button" data-remove-question="${index}" aria-label="Xóa câu"><md-icon>close</md-icon></md-icon-button>
         </div>
       </div>
       
@@ -1744,13 +1748,15 @@ export function collectEditor() {
     return base;
   });
 
+  const resolvedPdfUrl = values.pdf_url !== undefined ? values.pdf_url : (state.assignmentEditor?.assignment?.pdf_url || 'latex');
+
   return {
     assignment: {
       id: values.id || undefined,
       title: values.title,
-      description: values.pdf_url === 'latex' ? (state.assignmentEditor?.latexSource || '') : values.description,
-      pdf_url: values.pdf_url !== undefined ? values.pdf_url : (state.assignmentEditor?.assignment?.pdf_url || 'latex'),
-      lecture_id: values.lecture_id,
+      description: resolvedPdfUrl === 'latex' ? (state.assignmentEditor?.latexSource || '') : values.description,
+      pdf_url: resolvedPdfUrl,
+      lecture_id: values.lecture_id || null,
       sort_order: Number(values.sort_order || 0),
       published: values.published !== 'false',
     },
