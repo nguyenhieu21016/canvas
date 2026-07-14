@@ -689,11 +689,12 @@ export async function fetchStudentAssignmentOverview(assignmentId) {
   };
 }
 
-export async function submitAssignmentAttempt({ assignmentId, answers }) {
+export async function submitAssignmentAttempt({ assignmentId, answers, timeSpent }) {
   const client = requireSupabase();
   const { data: submitted, error } = await withTimeout(client.rpc('submit_assignment_attempt', {
     p_assignment_id: assignmentId,
     p_answers: answers ?? {},
+    p_time_spent: timeSpent ?? {}
   }), 'Nộp bài', 20_000);
   assertOk({ error });
   clearLmsCache();

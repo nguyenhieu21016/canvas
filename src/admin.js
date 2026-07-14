@@ -1,5 +1,6 @@
 import { normalizeAssignmentEditor, normalizeEditorQuestion } from './lib/assignment.js';
 // admin.js - Lazy loaded module for admin routes
+import '@material/web/iconbutton/icon-button.js';
 import { supabase } from './services/supabaseClient.js';
 import { formatDateTime, formatScore, roleLabel } from "./lib/format.js";
 import { setButtonLoading, option, renderLatexText } from "./lib/html.js";
@@ -77,6 +78,8 @@ export function mountManageHub() {
 
 
 
+let currentContentPhaseId = null;
+
 export async function mountContentManager() {
   const root = pageRoot();
   root.innerHTML = renderLoading();
@@ -85,34 +88,245 @@ export async function mountContentManager() {
       fetchLearningPath(state.profile.role),
       fetchStudents()
     ]);
+    
+    if (data.phases.length > 0 && !currentContentPhaseId) {
+      currentContentPhaseId = data.phases[0].id;
+    }
+    
     root.innerHTML = `
-      <section class="panel content-create-panel">
-        <div class="panel-heading">
-          <h2>Tạo nội dung</h2>
-        </div>
-        <div class="content-create-grid four">
-          ${renderPhaseForm(students)}
-          ${renderModuleForm(data.phases)}
-          ${renderLectureGroupForm(data.phases, data.modules)}
-          ${renderLectureForm(data.phases, data.modules, data.lectureGroups)}
-        </div>
-      </section>
-      <section class="panel">
-        <div class="panel-heading">
-          <h2>Cấu trúc hiện tại</h2>
-        </div>
-        <div id="manage-structure-container">
-          ${data.phases.length ? data.phases.map(renderManagePhase).join('') : '<div class="empty-state">Chưa có nội dung.</div>'}
-        </div>
-      </section>
+      <style>
+        .content-manager-layout {
+          display: flex;
+          flex-wrap: wrap; /* Fix cutoff on smaller screens */
+          gap: 24px;
+          align-items: flex-start;
+          padding: 24px;
+          width: 100%;
+          box-sizing: border-box;
+          height: calc(100vh - var(--actual-topbar-height, 88px));
+          overflow: hidden;
+        }
+        .phase-list-column {
+          width: 280px;
+          flex-shrink: 0;
+          background: var(--md-sys-color-surface);
+          border-radius: 16px;
+          border: 1px solid var(--md-sys-color-outline-variant);
+          padding: 16px;
+          max-height: 100%;
+          height: fit-content;
+          overflow-y: auto;
+        }
+        .phase-list-item {
+          padding: 12px 24px;
+          border-radius: 100px;
+          cursor: pointer;
+          margin-bottom: 8px;
+          font-weight: 500;
+          transition: background 0.2s, color 0.2s;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          color: var(--md-sys-color-on-surface-variant);
+        }
+        .phase-list-item:hover {
+          background: var(--md-sys-color-surface-container-highest);
+          color: var(--md-sys-color-on-surface);
+        }
+        .phase-list-item.active {
+          background: var(--md-sys-color-secondary-container);
+          color: var(--md-sys-color-on-secondary-container);
+          font-weight: 600;
+        }
+        .phase-list-item .active-icon { display: none; }
+        .phase-list-item.active .active-icon { display: block; }
+        .structure-column {
+          flex: 1;
+          min-width: 300px;
+          background: var(--md-sys-color-surface);
+          border-radius: 16px;
+          border: 1px solid var(--md-sys-color-outline-variant);
+          padding: 24px;
+          height: 100%;
+          overflow-y: auto;
+        }
+        /* Tree Hierarchy Styles */
+        .structure-children {
+          margin-left: 20px;
+          padding-left: 16px;
+          border-left: 2px solid var(--md-sys-color-surface-container-highest);
+          position: relative;
+        }
+        .manage-node {
+          padding: 12px 0;
+          border-bottom: 1px solid var(--md-sys-color-outline-variant);
+          display: flex;
+          align-items: flex-start;
+          gap: 12px;
+        }
+        .manage-node:last-child {
+          border-bottom: none;
+        }
+        .toggle-children {
+          display: flex;
+          align-items: flex-start;
+          cursor: pointer;
+          flex: 1;
+          min-width: 0;
+        }
+        .toggle-children strong {
+          white-space: normal;
+          word-break: break-word;
+          margin-top: 2px;
+          line-height: 1.4;
+        }
+        .node-meta {
+          margin-left: 8px;
+          margin-top: 4px;
+          white-space: nowrap;
+          color: var(--md-sys-color-on-surface-variant);
+          font-size: 0.85rem;
+        }
+        /* Level Colors & Typography */
+        .manage-node[data-entity="phase"] strong { font-size: 1.1rem; color: var(--md-sys-color-primary); }
+        .manage-node[data-entity="module"] strong { font-size: 1rem; color: var(--md-sys-color-on-surface); font-weight: 600; }
+        .manage-node[data-entity="lectureGroup"] strong { font-size: 0.95rem; color: var(--md-sys-color-on-surface); font-weight: 600; }
+        .manage-node[data-entity="lecture"] strong { font-size: 0.95rem; font-weight: 400; color: var(--md-sys-color-on-surface); }
+        
+        .icon-actions {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+        }
+        
+        .editor-column {
+          width: 360px;
+          flex-shrink: 0;
+          background: var(--md-sys-color-surface-container-low);
+          border-radius: 16px;
+          padding: 24px;
+          max-height: 100%;
+          height: fit-content;
+          overflow-y: auto;
+        }
+        .editor-column .entity-form { display: none; }
+        .editor-column .entity-form.active { display: grid; }
+        .editor-placeholder {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          color: var(--md-sys-color-on-surface-variant);
+          background: var(--md-sys-color-surface-container);
+          border-radius: 24px;
+          padding: 60px 24px;
+          gap: 16px;
+        }
+        .editor-placeholder.hidden { display: none; }
+        
+        /* Responsive */
+        @media (max-width: 1100px) {
+          .editor-column { width: 100%; position: static; }
+        }
+      </style>
+      <div class="content-manager-layout">
+        <aside class="phase-list-column">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h2 style="margin: 0; font-size: 1.2rem; font-weight: 600;">Giai đoạn</h2>
+            <md-icon-button data-create="phase" aria-label="Thêm Giai đoạn"><md-icon>add</md-icon></md-icon-button>
+          </div>
+          <div id="phase-list-container">
+            ${renderPhaseList(data.phases, currentContentPhaseId)}
+          </div>
+        </aside>
+
+        <section class="structure-column">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
+            <h2 style="margin: 0; font-size: 1.5rem; font-weight: 600; color: var(--md-sys-color-on-surface);">Cấu trúc chi tiết</h2>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <md-outlined-button data-create="module"><md-icon slot="icon">add</md-icon>Chuyên đề</md-outlined-button>
+              <md-outlined-button data-create="lectureGroup"><md-icon slot="icon">add</md-icon>Nhóm</md-outlined-button>
+              <md-outlined-button data-create="lecture"><md-icon slot="icon">add</md-icon>Bài giảng</md-outlined-button>
+            </div>
+          </div>
+          <div id="manage-structure-container">
+            ${renderActivePhaseStructure(data.phases, currentContentPhaseId)}
+          </div>
+        </section>
+
+        <aside class="editor-column panel">
+          <div class="editor-placeholder" id="content-editor-placeholder">
+            <md-icon style="font-size: 48px; width: 48px; height: 48px; color: var(--md-sys-color-outline-variant);">edit_note</md-icon>
+            <p style="margin: 0; font-size: 0.95rem; color: var(--md-sys-color-on-surface-variant);">Chọn một mục bên trái để sửa hoặc bấm nút Thêm mới.</p>
+          </div>
+          <div id="content-forms-container">
+            ${renderPhaseForm(students)}
+            ${renderModuleForm(data.phases)}
+            ${renderLectureGroupForm(data.phases, data.modules)}
+            ${renderLectureForm(data.phases, data.modules, data.lectureGroups)}
+          </div>
+        </aside>
+      </div>
     `;
+    
+    // Dynamically calculate topbar height for perfect sticky offset
+    setTimeout(() => {
+      const topbar = document.querySelector('.topbar');
+      if (topbar) {
+        document.documentElement.style.setProperty('--actual-topbar-height', topbar.getBoundingClientRect().height + 'px');
+      }
+    }, 50);
+
     wireContentForms(data);
+    wirePhaseSelection(data);
     wireCascadingDropdowns(root);
     wireMaterialFormButtons(root);
   } catch (error) {
     root.innerHTML = renderErrorState(error);
     wireRouteRetry(root);
   }
+}
+
+export function renderPhaseList(phases, activeId) {
+  if (!phases.length) return '<div class="empty-state" style="padding: 16px;">Chưa có Giai đoạn</div>';
+  return phases.map(p => `
+    <div class="phase-list-item ${p.id === activeId ? 'active' : ''}" data-phase-id="${p.id}">
+      <span>${escapeHtml(p.title)}</span>
+      <md-icon class="active-icon" style="font-size: 20px;">chevron_right</md-icon>
+    </div>
+  `).join('');
+}
+
+export function renderActivePhaseStructure(phases, activeId) {
+  const activePhase = phases.find(p => p.id === activeId);
+  if (!activePhase) return '<div class="empty-state">Vui lòng chọn một giai đoạn.</div>';
+  return renderManagePhase(activePhase);
+}
+
+export function wirePhaseSelection(pathData) {
+  document.querySelectorAll('.phase-list-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const phaseId = item.dataset.phaseId;
+      if (phaseId === currentContentPhaseId) return;
+      currentContentPhaseId = phaseId;
+      
+      // Update list active state
+      document.querySelectorAll('.phase-list-item').forEach(el => el.classList.remove('active'));
+      item.classList.add('active');
+      
+      // Update middle column
+      const container = document.getElementById('manage-structure-container');
+      if (container) {
+        container.innerHTML = renderActivePhaseStructure(pathData.phases, currentContentPhaseId);
+        wireStructureEvents();
+      }
+      
+      // Reset right column form
+      document.getElementById('content-editor-placeholder')?.classList.remove('hidden');
+      document.querySelectorAll('.editor-column .entity-form').forEach(f => f.classList.remove('active'));
+    });
+  });
 }
 
 export function renderPhaseForm(students = []) {
@@ -231,76 +445,107 @@ export function renderLectureForm(phases, modules, lectureGroups) {
 
 export function renderManagePhase(phase) {
   return `
-    <div class="manage-node" draggable="true" data-entity="phase" data-parent="root" data-id="${phase.id}" data-payload="${escapeHtml(JSON.stringify(phase))}">
-      <div>
-        <md-icon class="drag-handle" aria-hidden="true">drag_indicator</md-icon>
+    <div class="manage-node" data-entity="phase" data-parent="root" data-id="${phase.id}" data-payload="${escapeHtml(JSON.stringify(phase))}">
+      <div class="toggle-children" aria-expanded="true">
+        <md-icon class="expand-icon" style="margin-right: 4px; transition: transform 0.2s; color: var(--md-sys-color-outline);">expand_more</md-icon>
         <strong>${escapeHtml(phase.title)}</strong>
-        <span>${phase.modules.length} chuyên đề</span>
+        <span class="node-meta">${phase.modules.length} chuyên đề</span>
       </div>
       <div class="icon-actions">
-        <button data-edit-phase="${phase.id}" data-payload="${escapeHtml(JSON.stringify(phase))}" aria-label="Sửa giai đoạn"><md-icon>edit</md-icon></button>
-        <button data-delete-phase="${phase.id}" aria-label="Xóa giai đoạn"><md-icon>delete</md-icon></button>
+        <md-icon-button data-edit-phase="${phase.id}" data-payload="${escapeHtml(JSON.stringify(phase))}" aria-label="Sửa giai đoạn"><md-icon>edit</md-icon></md-icon-button>
+        <md-icon-button data-delete-phase="${phase.id}" aria-label="Xóa giai đoạn"><md-icon>delete</md-icon></md-icon-button>
       </div>
     </div>
+    <div class="structure-children">
     ${phase.modules
       .map(
         (module) => `
-          <div class="manage-node child" draggable="true" data-entity="module" data-parent="${phase.id}" data-id="${module.id}" data-payload="${escapeHtml(JSON.stringify(module))}">
-            <div>
-              <md-icon class="drag-handle" aria-hidden="true">drag_indicator</md-icon>
+          <div class="manage-node child" data-entity="module" data-parent="${phase.id}" data-id="${module.id}" data-payload="${escapeHtml(JSON.stringify(module))}">
+            <div class="toggle-children" aria-expanded="true">
+              <md-icon class="expand-icon" style="margin-right: 4px; transition: transform 0.2s; color: var(--md-sys-color-outline);">expand_more</md-icon>
               <strong>${escapeHtml(module.title)}</strong>
-              <span>${module.lecture_groups.length} nhóm · ${module.lectures.length} bài giảng</span>
+              <span class="node-meta">${module.lecture_groups.length} nhóm · ${module.lectures.length} bài giảng</span>
             </div>
             <div class="icon-actions">
-              <button data-edit-module="${module.id}" data-payload="${escapeHtml(JSON.stringify(module))}" aria-label="Sửa chuyên đề"><md-icon>edit</md-icon></button>
-              <button data-delete-module="${module.id}" aria-label="Xóa chuyên đề"><md-icon>delete</md-icon></button>
+              <md-icon-button data-edit-module="${module.id}" data-payload="${escapeHtml(JSON.stringify(module))}" aria-label="Sửa chuyên đề"><md-icon>edit</md-icon></md-icon-button>
+              <md-icon-button data-delete-module="${module.id}" aria-label="Xóa chuyên đề"><md-icon>delete</md-icon></md-icon-button>
             </div>
           </div>
+          <div class="structure-children">
           ${module.lecture_groups
             .map(
               (group) => `
-                <div class="manage-node grandchild" draggable="true" data-entity="lectureGroup" data-parent="${module.id}" data-id="${group.id}" data-payload="${escapeHtml(JSON.stringify(group))}">
-                  <div>
-                    <md-icon class="drag-handle" aria-hidden="true">drag_indicator</md-icon>
+                <div class="manage-node grandchild" data-entity="lectureGroup" data-parent="${module.id}" data-id="${group.id}" data-payload="${escapeHtml(JSON.stringify(group))}">
+                  <div class="toggle-children" aria-expanded="false">
+                    <md-icon class="expand-icon" style="margin-right: 4px; transition: transform 0.2s; transform: rotate(-90deg); color: var(--md-sys-color-outline);">expand_more</md-icon>
                     <strong>${escapeHtml(group.title)}</strong>
-                    <span>${group.lectures.length} bài giảng</span>
+                    <span class="node-meta">${group.lectures.length} bài giảng</span>
                   </div>
                   <div class="icon-actions">
-                    <button data-edit-lecture-group="${group.id}" data-payload="${escapeHtml(JSON.stringify(group))}" aria-label="Sửa nhóm bài giảng"><md-icon>edit</md-icon></button>
-                    <button data-delete-lecture-group="${group.id}" aria-label="Xóa nhóm bài giảng"><md-icon>delete</md-icon></button>
+                    <md-icon-button data-edit-lecture-group="${group.id}" data-payload="${escapeHtml(JSON.stringify(group))}" aria-label="Sửa nhóm bài giảng"><md-icon>edit</md-icon></md-icon-button>
+                    <md-icon-button data-delete-lecture-group="${group.id}" aria-label="Xóa nhóm bài giảng"><md-icon>delete</md-icon></md-icon-button>
                   </div>
                 </div>
+                <div class="structure-children" style="display: none;">
                 ${(group.lectures ?? []).map((lecture) => renderManageLecture(lecture, group.id, 'Trong nhóm')).join('')}
+                </div>
               `,
             )
             .join('')}
+          <div class="structure-children" style="display: none;">
           ${module.lectures
             .filter((lecture) => !lecture.group_id)
             .map((lecture) => renderManageLecture(lecture, `module:${module.id}`, 'Chưa nhóm'))
             .join('')}
+          </div>
+          </div>
         `,
       )
       .join('')}
+    </div>
   `;
 }
 
 export function renderManageLecture(lecture, parent, statusText) {
   return `
-    <div class="manage-node greatgrandchild" draggable="true" data-entity="lecture" data-parent="${escapeHtml(parent)}" data-id="${lecture.id}" data-payload="${escapeHtml(JSON.stringify(lecture))}">
-      <div>
-        <md-icon class="drag-handle" aria-hidden="true">drag_indicator</md-icon>
-        <strong>${escapeHtml(lecture.title)}</strong>
-        <span>${escapeHtml(statusText)}</span>
+    <div class="manage-node greatgrandchild" data-entity="lecture" data-parent="${escapeHtml(parent)}" data-id="${lecture.id}" data-payload="${escapeHtml(JSON.stringify(lecture))}">
+      <div style="display: flex; align-items: flex-start; flex: 1; padding-left: 28px; min-width: 0;">
+        <strong style="white-space: normal; word-break: break-word; line-height: 1.4; margin-top: 2px;">${escapeHtml(lecture.title)}</strong>
+        <span class="node-meta">${escapeHtml(statusText)}</span>
       </div>
       <div class="icon-actions">
-        <button data-edit-lecture="${lecture.id}" data-payload="${escapeHtml(JSON.stringify(lecture))}" aria-label="Sửa bài giảng"><md-icon>edit</md-icon></button>
-        <button data-delete-lecture="${lecture.id}" aria-label="Xóa bài giảng"><md-icon>delete</md-icon></button>
+        <md-icon-button data-edit-lecture="${lecture.id}" data-payload="${escapeHtml(JSON.stringify(lecture))}" aria-label="Sửa bài giảng"><md-icon>edit</md-icon></md-icon-button>
+        <md-icon-button data-delete-lecture="${lecture.id}" aria-label="Xóa bài giảng"><md-icon>delete</md-icon></md-icon-button>
       </div>
     </div>
   `;
 }
 
+export function showContentForm(kind) {
+  const placeholder = document.getElementById('content-editor-placeholder');
+  if (placeholder) placeholder.classList.add('hidden');
+  document.querySelectorAll('.editor-column .entity-form').forEach(f => f.classList.remove('active'));
+  const target = document.querySelector(`.editor-column [data-entity="${kind}"]`);
+  if (target) target.classList.add('active');
+}
+
 export function wireContentForms(pathData) {
+  document.querySelectorAll('[data-create]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const kind = btn.dataset.create;
+      const form = document.querySelector(`.editor-column [data-entity="${kind}"]`);
+      if (form) {
+        form.reset();
+        const idInput = form.querySelector('[name="id"]');
+        if (idInput) idInput.value = '';
+        if (kind === 'phase') {
+          form.querySelectorAll('[name="student_ids"]').forEach(cb => cb.checked = false);
+        }
+      }
+      showContentForm(kind);
+    });
+  });
+
   document.querySelectorAll('.entity-form').forEach((form) => {
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -314,24 +559,17 @@ export function wireContentForms(pathData) {
       const sortOrder = values.id
         ? Number(values.sort_order || 0)
         : nextContentSortOrder(form.dataset.entity, values, pathData);
-        
-      // Optimistically bump sort order in local pathData to ensure quick consecutive saves keep correct order
-      if (!values.id) {
-        if (form.dataset.entity === 'phase') pathData.phases.push({sort_order: sortOrder});
-        if (form.dataset.entity === 'module') pathData.modules.push({phase_id: values.phase_id, sort_order: sortOrder});
-        if (form.dataset.entity === 'lectureGroup') pathData.lectureGroups.push({module_id: values.module_id, sort_order: sortOrder});
-        if (form.dataset.entity === 'lecture') pathData.lectures.push({module_id: values.module_id, group_id: values.group_id, sort_order: sortOrder});
-      }
-
       const payload = {
         ...values,
-        id: values.id || crypto.randomUUID(),
-        sort_order: sortOrder,
+        sort_order: Number(values.sort_order),
         published: form.querySelector('[name="published"]')?.type === 'checkbox'
           ? form.querySelector('[name="published"]').checked
           : values.published !== 'false',
         owner_id: state.profile.id,
       };
+      if (form.dataset.entity === 'phase') {
+        payload.student_ids = formData.getAll('student_ids');
+      }
       
       const restore = setButtonLoading(form.querySelector('md-filled-button'));
       form.dataset.saving = 'true';
@@ -359,6 +597,9 @@ export function wireContentForms(pathData) {
         if (titleInput) titleInput.value = '';
         if (idInput) idInput.value = '';
         if (urlInput) urlInput.value = '';
+        if (form.dataset.entity === 'phase') {
+          form.querySelectorAll('[name="student_ids"]').forEach(cb => cb.checked = false);
+        }
         
         // Add new item to dropdowns so it can be selected immediately
         if (!isUpdate && values.title) {
@@ -383,8 +624,13 @@ export function wireContentForms(pathData) {
         const newData = await fetchLearningPath(state.profile.role);
         const container = document.querySelector('#manage-structure-container');
         if (container) {
-          container.innerHTML = newData.phases.length ? newData.phases.map(renderManagePhase).join('') : '<div class="empty-state">Chưa có nội dung.</div>';
+          container.innerHTML = renderActivePhaseStructure(newData.phases, currentContentPhaseId);
           wireStructureEvents();
+        }
+        const phaseListContainer = document.querySelector('#phase-list-container');
+        if (phaseListContainer) {
+          phaseListContainer.innerHTML = renderPhaseList(newData.phases, currentContentPhaseId);
+          wirePhaseSelection(newData);
         }
       } catch (error) {
         toast(`Lỗi lưu: ${error.message}`, 'error');
@@ -399,8 +645,30 @@ export function wireContentForms(pathData) {
 }
 
 export function wireStructureEvents() {
+  // Bind Accordion Toggles
+  document.querySelectorAll('.toggle-children').forEach(el => {
+    // Prevent binding multiple times if wireStructureEvents is called multiple times
+    if (el.dataset.wired) return;
+    el.dataset.wired = 'true';
+    el.addEventListener('click', (e) => {
+      // Don't toggle if dragging or clicking buttons inside
+      if (e.target.closest('button, md-icon-button')) return;
+      const node = e.target.closest('.manage-node');
+      const childrenContainer = node.nextElementSibling;
+      if (childrenContainer && childrenContainer.classList.contains('structure-children')) {
+        const isExpanded = el.getAttribute('aria-expanded') === 'true';
+        el.setAttribute('aria-expanded', !isExpanded);
+        const icon = el.querySelector('.expand-icon');
+        if (icon) {
+          icon.style.transform = isExpanded ? 'rotate(-90deg)' : '';
+        }
+        childrenContainer.style.display = isExpanded ? 'none' : 'block';
+      }
+    });
+  });
+
   // Bind Edit Buttons
-  document.querySelectorAll('button[data-payload]').forEach((button) => {
+  document.querySelectorAll('md-icon-button[data-payload], button[data-payload]').forEach((button) => {
     button.addEventListener('click', () => {
       const payload = JSON.parse(button.dataset.payload);
       const kind = button.dataset.editPhase
@@ -410,8 +678,9 @@ export function wireStructureEvents() {
           : button.dataset.editLectureGroup
             ? 'lectureGroup'
             : 'lecture';
-      const form = document.querySelector(`[data-entity="${kind}"]`);
+      const form = document.querySelector(`.editor-column [data-entity="${kind}"]`);
       if (!form) return;
+      showContentForm(kind);
       Object.entries(payload).forEach(([key, value]) => {
         if (key === 'student_ids' && Array.isArray(value)) {
           form.querySelectorAll('[name="student_ids"]').forEach(cb => cb.checked = false);
@@ -455,9 +724,6 @@ export function wireStructureEvents() {
     });
   });
 
-  // Bind Drag & Drop
-  wireContentDragSort();
-
   // Bind Delete Buttons
   document.querySelectorAll('[data-delete-phase],[data-delete-module],[data-delete-lecture-group],[data-delete-lecture]').forEach((button) => {
     button.addEventListener('click', async () => {
@@ -471,8 +737,13 @@ export function wireStructureEvents() {
         const newData = await fetchLearningPath(state.profile.role);
         const container = document.querySelector('#manage-structure-container');
         if (container) {
-          container.innerHTML = newData.phases.length ? newData.phases.map(renderManagePhase).join('') : '<div class="empty-state">Chưa có nội dung.</div>';
+          container.innerHTML = renderActivePhaseStructure(newData.phases, currentContentPhaseId);
           wireStructureEvents();
+        }
+        const phaseListContainer = document.querySelector('#phase-list-container');
+        if (phaseListContainer) {
+          phaseListContainer.innerHTML = renderPhaseList(newData.phases, currentContentPhaseId);
+          wirePhaseSelection(newData);
         }
       } catch (error) {
         toast(error.message, 'error');
@@ -555,74 +826,6 @@ export function nextContentSortOrder(kind, values, pathData) {
 
   const maxSortOrder = byParent.reduce((max, item) => Math.max(max, Number(item.sort_order ?? 0)), 0);
   return maxSortOrder + 10;
-}
-
-export function wireContentDragSort() {
-  let dragged = null;
-
-  document.querySelectorAll('.manage-node[draggable="true"]').forEach((node) => {
-    node.addEventListener('dragstart', (event) => {
-      dragged = node;
-      node.classList.add('dragging');
-      event.dataTransfer.effectAllowed = 'move';
-      event.dataTransfer.setData('text/plain', node.dataset.id);
-    });
-
-    node.addEventListener('dragend', () => {
-      node.classList.remove('dragging');
-      document.querySelectorAll('.manage-node.drop-target').forEach((item) => item.classList.remove('drop-target'));
-      dragged = null;
-    });
-
-    node.addEventListener('dragover', (event) => {
-      if (!dragged || dragged === node) return;
-      if (dragged.dataset.entity !== node.dataset.entity || dragged.dataset.parent !== node.dataset.parent) return;
-      event.preventDefault();
-      node.classList.add('drop-target');
-      event.dataTransfer.dropEffect = 'move';
-    });
-
-    node.addEventListener('dragleave', () => {
-      node.classList.remove('drop-target');
-    });
-
-    node.addEventListener('drop', async (event) => {
-      event.preventDefault();
-      node.classList.remove('drop-target');
-      if (!dragged || dragged === node) return;
-      if (dragged.dataset.entity !== node.dataset.entity || dragged.dataset.parent !== node.dataset.parent) {
-        toast('Chỉ kéo thả trong cùng một cấp.', 'error');
-        return;
-      }
-
-      try {
-        await reorderContentNodes(dragged, node);
-        toast('Đã cập nhật thứ tự.', 'success');
-        const newData = await fetchLearningPath(state.profile.role);
-        const container = document.querySelector('#manage-structure-container');
-        if (container) {
-          container.innerHTML = newData.phases.length ? newData.phases.map(renderManagePhase).join('') : '<div class="empty-state">Chưa có nội dung.</div>';
-          wireStructureEvents();
-        }
-      } catch (error) {
-        toast(error.message, 'error');
-      }
-    });
-  });
-}
-
-export async function reorderContentNodes(sourceNode, targetNode) {
-  const kind = sourceNode.dataset.entity;
-  const parent = sourceNode.dataset.parent;
-  const nodes = Array.from(document.querySelectorAll(`.manage-node[data-entity="${kind}"][data-parent="${parent}"]`));
-  const from = nodes.indexOf(sourceNode);
-  const to = nodes.indexOf(targetNode);
-  if (from < 0 || to < 0 || from === to) return;
-
-  const ordered = nodes.map((node) => node.dataset.id);
-  const [moved] = ordered.splice(from, 1);
-  ordered.splice(to, 0, moved);
-  await reorderContentNodesApi(kind, ordered);
 }
 
 export function parseLatexAssignment(latexText) {
@@ -758,19 +961,35 @@ export async function mountAssignmentManager() {
           .list-row:hover { background: var(--md-sys-color-surface-container-highest) !important; }
         </style>
         <section class="assignment-list-view" style="padding: 24px;">
-          <aside class="panel list-panel" style="max-width: 800px; margin: 0 auto; width: 100%; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-            <div class="panel-heading" style="padding: 24px; border-bottom: 1px solid var(--md-sys-color-outline-variant); display: flex; justify-content: space-between; align-items: center;">
+          <aside class="panel list-panel" style="max-width: 1000px; margin: 0 auto; width: 100%; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+            <div class="panel-heading" style="padding: 24px; border-bottom: 1px solid var(--md-sys-color-outline-variant); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
               <h2 style="margin: 0; font-size: 1.5rem; font-weight: 600; color: var(--md-sys-color-on-surface);">Đề thi / Bài tập về nhà</h2>
-              <md-filled-tonal-button id="new-assignment" style="--md-filled-tonal-button-container-color: #e8f0fe; --md-filled-tonal-button-label-text-color: #1a73e8;"><md-icon slot="icon">add</md-icon>Mới</md-filled-tonal-button>
+              <div style="display: flex; gap: 16px; align-items: center; flex: 1; justify-content: flex-end;">
+                <md-outlined-text-field id="assignment-search" placeholder="Tìm kiếm đề thi..." style="max-width: 300px; width: 100%; --md-outlined-text-field-container-shape: 24px;">
+                  <md-icon slot="leading-icon">search</md-icon>
+                </md-outlined-text-field>
+                <md-filled-button id="new-assignment"><md-icon slot="icon">add</md-icon>Mới</md-filled-button>
+              </div>
             </div>
             <div class="stack-list" style="padding: 12px;">
               ${assignments.length ? assignments
                 .map(
                   (assignment) => `
-                    <button class="list-row" data-load-assignment="${assignment.id}" style="padding: 16px; margin-bottom: 8px; border-radius: 12px; border: 1px solid transparent; background: transparent; transition: all 0.2s; text-align: left; display: flex; flex-direction: column; gap: 4px; cursor: pointer; width: 100%;">
-                      <span style="font-size: 1.05rem; font-weight: 500; color: var(--md-sys-color-on-surface);">${escapeHtml(assignment.title)}</span>
-                      <small style="font-size: 0.85rem; color: var(--md-sys-color-on-surface-variant);">${escapeHtml(assignment.lectures?.title ?? 'Bài tập tự do')}</small>
-                    </button>
+                    <div class="list-row assignment-row" style="padding: 16px; margin-bottom: 8px; border-radius: 12px; border: 1px solid transparent; background: transparent; transition: all 0.2s; display: flex; align-items: center; justify-content: space-between; gap: 16px; cursor: pointer; width: 100%;" onclick="document.querySelector('[data-load-assignment=\\'${assignment.id}\\']').click()">
+                      <div style="display: flex; align-items: center; gap: 16px; flex: 1;">
+                        <div style="width: 44px; height: 44px; border-radius: 12px; background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                          <md-icon>assignment</md-icon>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 2px;">
+                          <span style="font-size: 1.05rem; font-weight: 600; color: var(--md-sys-color-on-surface); line-height: 1.3;">${escapeHtml(assignment.title)}</span>
+                          <span style="font-size: 0.85rem; color: var(--md-sys-color-on-surface-variant);">${escapeHtml(assignment.lectures?.title ?? 'Bài tập tự do')}</span>
+                        </div>
+                      </div>
+                      <div style="display: flex; gap: 8px;" onclick="event.stopPropagation()">
+                        <md-icon-button data-load-assignment="${assignment.id}" title="Chỉnh sửa"><md-icon>edit</md-icon></md-icon-button>
+                        <md-icon-button data-delete-assignment="${assignment.id}" title="Xóa"><md-icon>delete</md-icon></md-icon-button>
+                      </div>
+                    </div>
                   `,
                 )
                 .join('') : '<div style="padding: 40px; text-align: center; color: var(--md-sys-color-outline);">Chưa có đề thi nào. Hãy tạo mới!</div>'}
@@ -1180,12 +1399,41 @@ export function wireAssignmentEditor(lectures) {
     mountAssignmentManager();
   });
 
+  const assignmentSearchInput = document.querySelector('#assignment-search');
+  if (assignmentSearchInput) {
+    assignmentSearchInput.addEventListener('input', (e) => {
+      const term = (e.target.value || '').toLowerCase();
+      document.querySelectorAll('.assignment-row').forEach(row => {
+        const text = row.textContent.toLowerCase();
+        if (text.includes(term)) {
+          row.style.display = 'flex';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    });
+  }
+
   document.querySelectorAll('[data-load-assignment]').forEach((button) => {
     button.addEventListener('click', async () => {
       try {
         const editor = await fetchAssignmentEditor(button.dataset.loadAssignment);
         state.assignmentEditor = normalizeAssignmentEditor(editor);
         state.isEditingAssignment = true;
+        await mountAssignmentManager();
+      } catch (error) {
+        toast(error.message, 'error');
+      }
+    });
+  });
+
+  document.querySelectorAll('[data-delete-assignment]').forEach((button) => {
+    button.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      if (!window.confirm('Xóa đề này?')) return;
+      try {
+        await deleteAssignment(button.dataset.deleteAssignment);
+        toast('Đã xóa đề thi.', 'success');
         await mountAssignmentManager();
       } catch (error) {
         toast(error.message, 'error');
@@ -1577,9 +1825,9 @@ export function renderStudentRows(students) {
                     </select>
                   </td>
                   <td class="row-actions">
-                    <button data-save-student="${student.id}" aria-label="Lưu"><md-icon>save</md-icon></button>
-                    <button data-reset-student="${student.id}" aria-label="Reset mật khẩu"><md-icon>key</md-icon></button>
-                    <button data-delete-student="${student.id}" aria-label="Xóa"><md-icon>delete</md-icon></button>
+                    <md-icon-button data-save-student="${student.id}" aria-label="Lưu"><md-icon>save</md-icon></md-icon-button>
+                    <md-icon-button data-reset-student="${student.id}" aria-label="Reset mật khẩu"><md-icon>key</md-icon></md-icon-button>
+                    <md-icon-button data-delete-student="${student.id}" aria-label="Xóa"><md-icon>delete</md-icon></md-icon-button>
                   </td>
                 </tr>
               `,

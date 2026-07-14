@@ -2,10 +2,10 @@ export function draftKey(userId, assignmentId) {
   return `lms:draft:${userId}:${assignmentId}`;
 }
 
-export function saveDraft(storage, userId, assignmentId, answers) {
+export function saveDraft(storage, userId, assignmentId, answers, timeSpent = {}) {
   storage.setItem(
     draftKey(userId, assignmentId),
-    JSON.stringify({ answers, savedAt: new Date().toISOString() }),
+    JSON.stringify({ answers, timeSpent, savedAt: new Date().toISOString() }),
   );
 }
 

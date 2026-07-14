@@ -18,3 +18,4 @@ export function roleLabel(role) {
     admin: 'Giáo viên',
   }[role] ?? role;
 }
+export function formatDuration(ms) { if (!ms || ms < 0) return '-'; const m = Math.floor(ms / 60000); const s = Math.floor((ms % 60000) / 1000); return `${m}p ${s}s`; }

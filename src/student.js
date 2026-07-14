@@ -530,47 +530,59 @@ export async function mountDashboard() {
             </div>
           </div>
 
-          <!-- Content Split: Recent attempts list & Account settings -->
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 8px;">
+          <!-- Content Split: Recent attempts list & Uncompleted list -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 16px;">
             <!-- Left side: attempts -->
             <div style="display: flex; flex-direction: column; gap: 12px;">
               <h3 style="margin: 0; font-size: 0.95rem; font-weight: 600; display: flex; justify-content: space-between; align-items: center; color: var(--md-sys-color-on-surface);">
                 <span>Bài làm gần đây</span>
                 ${totalSubmissions > 0 ? `<span style="font-size: 0.8rem; font-weight: 500; color: var(--md-sys-color-outline);">Tất cả (${totalSubmissions})</span>` : ''}
               </h3>
-              <div class="attempts-list-container" style="height: 220px; overflow-y: auto; padding-right: 4px; border: 1px dashed var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-small, 8px); padding: 4px 12px; background: var(--md-sys-color-surface-container-lowest);">
+              <div class="attempts-list-container" style="flex: 1; min-height: 400px; max-height: 500px; overflow-y: auto; padding-right: 4px; border: 1px dashed var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-small, 8px); padding: 4px 12px; background: var(--md-sys-color-surface-container-lowest);">
                 ${attemptsListMarkup || '<div class="empty-state compact" style="padding: 16px 0; border: 0; background: transparent; text-align: center;">Chưa nộp bài nào.</div>'}
-              </div>
-              <h3 style="margin: 16px 0 0 0; font-size: 0.95rem; font-weight: 600; display: flex; justify-content: space-between; align-items: center; color: var(--md-sys-color-on-surface);">
-                <span>Bài tập chưa làm</span>
-                ${uncompletedAssignments.length > 0 ? `<span style="font-size: 0.8rem; font-weight: 500; color: var(--md-sys-color-error);">${uncompletedAssignments.length} bài</span>` : ''}
-              </h3>
-              <div class="attempts-list-container" style="height: 220px; overflow-y: auto; padding-right: 4px; border: 1px dashed var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-small, 8px); padding: 4px 12px; background: var(--md-sys-color-surface-container-lowest);">
-                ${uncompletedListMarkup || '<div class="empty-state compact" style="padding: 16px 0; border: 0; background: transparent; text-align: center;">Đã hoàn thành tất cả.</div>'}
               </div>
             </div>
 
-            <!-- Right side: settings -->
-            <div style="display: flex; flex-direction: column; gap: 16px; border-left: 1px dashed var(--md-sys-color-outline-variant); padding-left: 24px;">
-              <h3 style="margin: 0; font-size: 0.95rem; font-weight: 600; color: var(--md-sys-color-on-surface);">Quản lý tài khoản</h3>
+            <!-- Right side: uncompleted -->
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <h3 style="margin: 0; font-size: 0.95rem; font-weight: 600; display: flex; justify-content: space-between; align-items: center; color: var(--md-sys-color-on-surface);">
+                <span>Bài tập chưa làm</span>
+                ${uncompletedAssignments.length > 0 ? `<span style="font-size: 0.8rem; font-weight: 500; color: var(--md-sys-color-error);">${uncompletedAssignments.length} bài</span>` : ''}
+              </h3>
+              <div class="attempts-list-container" style="flex: 1; min-height: 400px; max-height: 500px; overflow-y: auto; padding-right: 4px; border: 1px dashed var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-small, 8px); padding: 4px 12px; background: var(--md-sys-color-surface-container-lowest);">
+                ${uncompletedListMarkup || '<div class="empty-state compact" style="padding: 16px 0; border: 0; background: transparent; text-align: center;">Đã hoàn thành tất cả.</div>'}
+              </div>
+            </div>
+          </div>
 
-              <div style="display: flex; align-items: center; gap: 8px;">
+          <!-- Account settings details accordion -->
+          <details style="margin-top: 24px; border: 1px solid var(--md-sys-color-outline-variant); border-radius: 12px; background: var(--md-sys-color-surface-container-low); transition: all 0.2s ease-in-out;">
+            <summary style="padding: 16px; font-weight: 600; cursor: pointer; color: var(--md-sys-color-on-surface); outline: none; list-style: none;">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <md-icon style="color: var(--md-sys-color-primary);">manage_accounts</md-icon> Quản lý tài khoản
+                </div>
+                <md-icon style="color: var(--md-sys-color-outline);">expand_more</md-icon>
+              </div>
+            </summary>
+            <div style="padding: 0 16px 16px 16px; display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; border-top: 1px solid var(--md-sys-color-outline-variant); margin-top: 8px; padding-top: 16px;">
+              <div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 300px;">
                 <md-outlined-text-field label="Họ tên mới" value="${escapeHtml(student.full_name ?? '')}" style="flex: 1; --md-outlined-text-field-container-shape: 8px;" data-name-input="${student.id}"></md-outlined-text-field>
                 <md-filled-tonal-button style="--md-filled-tonal-button-container-shape: 8px; height: 56px;" data-save-btn="${student.id}">
                   Lưu
                 </md-filled-tonal-button>
               </div>
 
-              <div style="display: flex; flex-direction: column; gap: 12px; margin-top: auto; padding-top: 12px;">
-                <md-filled-tonal-button style="--md-filled-tonal-button-container-shape: 8px;" data-reset-btn="${student.id}">
+              <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                <md-filled-tonal-button style="--md-filled-tonal-button-container-shape: 8px; height: 56px;" data-reset-btn="${student.id}">
                   <md-icon slot="icon">lock_reset</md-icon> Đặt lại mật khẩu
                 </md-filled-tonal-button>
-                <md-filled-button style="--md-filled-button-container-shape: 8px; --md-filled-button-container-color: var(--md-sys-color-error); --md-filled-button-label-text-color: var(--md-sys-color-on-error);" data-delete-btn="${student.id}">
+                <md-filled-button style="--md-filled-button-container-shape: 8px; height: 56px; --md-filled-button-container-color: var(--md-sys-color-error); --md-filled-button-label-text-color: var(--md-sys-color-on-error);" data-delete-btn="${student.id}">
                   <md-icon slot="icon">delete</md-icon> Xóa tài khoản
                 </md-filled-button>
               </div>
             </div>
-          </div>
+          </details>
         </div>
       `;
 

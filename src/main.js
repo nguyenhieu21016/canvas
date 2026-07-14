@@ -536,7 +536,7 @@ async function mountAssignmentExam(id) {
       `}
     `;
     wireMaterialFormButtons(root);
-    wireAnswerAutosave(assignment, id);
+    wireAnswerAutosave(assignment, id, draft);
   } catch (error) {
     root.innerHTML = renderErrorState(error);
     wireRouteRetry(root);
@@ -777,7 +777,7 @@ function collectAnswerFromCard(card) {
   return card.querySelector(`input[name="q-${id}"]`)?.value ?? '';
 }
 
-function wireAnswerAutosave(assignment, assignmentId) {
+function wireAnswerAutosave(assignment, assignmentId, draft) {
   const form = document.querySelector('#answer-form');
   
   if (assignment.pdf_url === 'latex' && window.MathJax) {
@@ -788,6 +788,40 @@ function wireAnswerAutosave(assignment, assignmentId) {
   const stickyAutosaveStatus = document.querySelector('#sticky-autosave-status');
   let autosaveTimer;
   let draftAnswers = collectAnswers();
+  let timeSpent = draft?.timeSpent ?? {};
+  
+  // Time tracking logic
+  let activeQuestionId = null;
+  let timeTrackingInterval = null;
+
+  const startTracking = () => {
+    if (timeTrackingInterval) clearInterval(timeTrackingInterval);
+    timeTrackingInterval = setInterval(() => {
+      if (activeQuestionId && document.visibilityState === 'visible') {
+        timeSpent[activeQuestionId] = (timeSpent[activeQuestionId] || 0) + 1000;
+      }
+    }, 1000);
+  };
+  startTracking();
+
+  const observer = new IntersectionObserver((entries) => {
+    // Find the most visible question
+    let maxRatio = 0;
+    let mostVisibleId = null;
+    entries.forEach(entry => {
+      if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
+        maxRatio = entry.intersectionRatio;
+        mostVisibleId = entry.target.dataset.questionId;
+      }
+    });
+    if (mostVisibleId) {
+      activeQuestionId = mostVisibleId;
+    }
+  }, { threshold: [0.1, 0.5, 0.9] });
+
+  const cards = document.querySelectorAll('.latex-exam-card, .question-card');
+  cards.forEach(card => observer.observe(card));
+
   const setAutosaveStatus = (message) => {
     if (autosaveStatus) autosaveStatus.textContent = message;
     if (stickyAutosaveStatus) stickyAutosaveStatus.textContent = message;
@@ -812,14 +846,21 @@ function wireAnswerAutosave(assignment, assignmentId) {
     setAutosaveStatus('Đang lưu bản nháp...');
     window.clearTimeout(autosaveTimer);
     autosaveTimer = window.setTimeout(() => {
-      saveDraft(localStorage, state.profile.id, assignmentId, draftAnswers);
+      saveDraft(localStorage, state.profile.id, assignmentId, draftAnswers, timeSpent);
       setAutosaveStatus(`Đã lưu bản nháp lúc ${new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}`);
     }, 250);
   };
+  
+  // Also save periodically even without clicks to save timeSpent
+  setInterval(() => {
+    saveDraft(localStorage, state.profile.id, assignmentId, draftAnswers, timeSpent);
+  }, 10000);
+
   form.addEventListener('input', persist);
   form.addEventListener('change', persist);
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
+    if (timeTrackingInterval) clearInterval(timeTrackingInterval);
     const buttons = Array.from(form.querySelectorAll('[data-submit-assignment]'));
     const button = buttons[0];
     buttons.forEach((item) => {
@@ -830,6 +871,7 @@ function wireAnswerAutosave(assignment, assignmentId) {
       const submitted = await submitAssignmentAttempt({
         assignmentId,
         answers: collectAnswers(),
+        timeSpent,
       });
       clearDraft(localStorage, state.profile.id, assignmentId);
       toast('Đã nộp bài và chấm điểm.', 'success');
@@ -918,23 +960,86 @@ async function mountReview(id) {
       return { ...item, choices: q?.choices, settings: q?.settings };
     });
     
+    // Fetch student info
+    let studentName = 'Học sinh';
+    if (review.attempt?.student_id) {
+      const { data: userData } = await supabase.from('profiles').select('full_name, email').eq('id', review.attempt.student_id).single();
+      if (userData) studentName = userData.full_name || userData.email;
+    }
+    
+    const startedAt = review.attempt?.started_at ? new Date(review.attempt.started_at) : null;
+    const completedAt = review.attempt?.submitted_at ? new Date(review.attempt.submitted_at) : null;
+    
+    let durationStr = '-';
+    // Calculate from per-question time_spent_ms if available, otherwise fallback to start/end time
+    const totalTimeSpentMs = itemsWithQuestions.reduce((sum, item) => sum + (item.time_spent_ms || 0), 0);
+    if (totalTimeSpentMs > 0) {
+      const m = Math.floor(totalTimeSpentMs / 60000);
+      const s = Math.floor((totalTimeSpentMs % 60000) / 1000);
+      durationStr = `${m}p ${s}s`;
+    } else if (startedAt && completedAt) {
+      const ms = completedAt - startedAt;
+      const m = Math.floor(ms / 60000);
+      const s = Math.floor((ms % 60000) / 1000);
+      durationStr = `${m}p ${s}s`;
+    }
+    
     if (review.assignment?.pdf_url === 'latex') {
       root.innerHTML = `
         <section class="exam-shell" style="height: auto; max-width: 1400px; margin: 0 auto; padding: 24px; align-items: start; grid-template-columns: minmax(0, 1fr) 300px; gap: 32px;">
           <div class="review-main-content" style="display: flex; flex-direction: column; gap: 24px;">
-            <div class="split-heading panel" style="display: flex; justify-content: space-between; align-items: center; background: var(--md-sys-color-surface-container-low); padding: 24px 32px; border-radius: 16px; border: 1px solid var(--md-sys-color-outline-variant);">
-              <div>
-                <p class="eyebrow" style="color: var(--md-sys-color-primary);">Kết quả làm bài</p>
-                <h2 style="margin: 0; font-size: 1.25rem; color: var(--md-sys-color-on-surface);">${escapeHtml(review.assignment?.title ?? 'Đề bài')}</h2>
-              </div>
-              <div style="display: flex; gap: 32px; align-items: center;">
-                <div style="font-weight: 500; font-size: 1rem; display: flex; flex-direction: column; align-items: flex-end;">
-                  <span style="font-size: 0.8rem; color: var(--md-sys-color-on-surface-variant); text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Số câu đúng</span>
-                  <span style="color: var(--md-sys-color-primary); font-size: 1.15rem;">${items.filter(i => i.is_correct).length} / ${items.length}</span>
+            <div class="split-heading panel" style="display: flex; justify-content: space-between; align-items: stretch; background: var(--md-sys-color-surface-container-low); padding: 24px 32px; border-radius: 16px; border: 1px solid var(--md-sys-color-outline-variant); flex-wrap: wrap; gap: 24px;">
+              <div style="display: flex; flex-direction: column; gap: 16px; flex: 1; min-width: 300px;">
+                <div>
+                  <p class="eyebrow" style="color: var(--md-sys-color-primary);">Kết quả làm bài</p>
+                  <h2 style="margin: 0; font-size: 1.25rem; color: var(--md-sys-color-on-surface);">${escapeHtml(review.assignment?.title ?? 'Đề bài')}</h2>
                 </div>
-                <div class="score-badge" style="font-size: 1.5rem; padding: 12px 24px; border-radius: 16px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); font-weight: 800;">${formatScore(review.attempt?.score_10)}</div>
+                
+                <!-- Detailed Statistics Grid -->
                 ${isManager() ? `
-                  <md-outlined-button id="regrade-review-button" type="button">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; background: var(--md-sys-color-surface); padding: 16px; border-radius: 12px; border: 1px solid var(--md-sys-color-outline-variant);">
+                  <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <span style="font-size: 0.8rem; font-weight: 600; color: var(--md-sys-color-on-surface-variant); text-transform: uppercase;">Học sinh</span>
+                    <div style="font-size: 0.95rem; font-weight: 500; color: var(--md-sys-color-on-surface); display: flex; align-items: center; gap: 6px;">
+                      <md-icon style="font-size: 1.2rem; color: var(--md-sys-color-primary);">person</md-icon>
+                      <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;">${escapeHtml(studentName)}</span>
+                    </div>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <span style="font-size: 0.8rem; font-weight: 600; color: var(--md-sys-color-on-surface-variant); text-transform: uppercase;">Thời gian</span>
+                    <div style="font-size: 0.95rem; font-weight: 500; color: var(--md-sys-color-on-surface); display: flex; align-items: center; gap: 6px;">
+                      <md-icon style="font-size: 1.2rem; color: var(--md-sys-color-secondary);">timer</md-icon>
+                      <span>${durationStr}</span>
+                    </div>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <span style="font-size: 0.8rem; font-weight: 600; color: var(--md-sys-color-on-surface-variant); text-transform: uppercase;">Bắt đầu lúc</span>
+                    <div style="font-size: 0.95rem; font-weight: 500; color: var(--md-sys-color-on-surface); display: flex; align-items: center; gap: 6px;">
+                      <md-icon style="font-size: 1.2rem; color: var(--md-sys-color-tertiary);">play_circle</md-icon>
+                      <span>${startedAt ? formatDateTime(startedAt) : '-'}</span>
+                    </div>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <span style="font-size: 0.8rem; font-weight: 600; color: var(--md-sys-color-on-surface-variant); text-transform: uppercase;">Nộp bài lúc</span>
+                    <div style="font-size: 0.95rem; font-weight: 500; color: var(--md-sys-color-on-surface); display: flex; align-items: center; gap: 6px;">
+                      <md-icon style="font-size: 1.2rem; color: var(--md-sys-color-primary);">check_circle</md-icon>
+                      <span>${completedAt ? formatDateTime(completedAt) : '-'}</span>
+                    </div>
+                  </div>
+                </div>
+                ` : ''}
+              </div>
+              
+              <div style="display: flex; flex-direction: column; justify-content: center; align-items: flex-end; gap: 16px; border-left: 1px solid var(--md-sys-color-outline-variant); padding-left: 24px;">
+                <div style="display: flex; gap: 32px; align-items: center;">
+                  <div style="font-weight: 500; font-size: 1rem; display: flex; flex-direction: column; align-items: flex-end;">
+                    <span style="font-size: 0.8rem; color: var(--md-sys-color-on-surface-variant); text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Số câu đúng</span>
+                    <span style="color: var(--md-sys-color-primary); font-size: 1.25rem; font-weight: 700;">${items.filter(i => i.is_correct).length} / ${items.length}</span>
+                  </div>
+                  <div class="score-badge" style="font-size: 1.75rem; padding: 12px 24px; border-radius: 16px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); font-weight: 800;">${formatScore(review.attempt?.score_10)}</div>
+                </div>
+                ${isManager() ? `
+                  <md-outlined-button id="regrade-review-button" type="button" style="width: 100%;">
                     <md-icon slot="icon">refresh</md-icon>
                     Chấm lại
                   </md-outlined-button>
@@ -943,20 +1048,33 @@ async function mountReview(id) {
             </div>
             
             <div class="latex-review-list" style="display: flex; flex-direction: column; gap: 20px;">
-            ${itemsWithQuestions.map((item, index) => {
-              const isCorrect = item.is_correct;
-              const chosenAnswer = formatAnswer(item.answer);
-              const correctAnswer = formatAnswer(item.correct_answer ?? item.accepted_answers);
-              
-              return `
-                <div id="latex-review-q${index}" class="latex-question-review panel" style="background: var(--md-sys-color-surface-container-lowest); border-radius: 16px; border: 1px solid ${isCorrect ? 'var(--md-sys-color-primary)' : 'var(--md-sys-color-error)'}; padding: 32px;">
-                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--md-sys-color-surface-variant);">
-                    <div style="font-weight: 700; padding: 6px 16px; border-radius: 8px; background: ${isCorrect ? 'var(--md-sys-color-primary-container)' : 'var(--md-sys-color-error-container)'}; color: ${isCorrect ? 'var(--md-sys-color-on-primary-container)' : 'var(--md-sys-color-on-error-container)'}; font-size: 1rem; letter-spacing: 0.5px;">CÂU ${index + 1}</div>
-                    <md-icon style="color: ${isCorrect ? 'var(--md-sys-color-primary)' : 'var(--md-sys-color-error)'}; font-size: 28px;">${isCorrect ? 'check_circle' : 'cancel'}</md-icon>
-                  </div>
-                  <div style="font-weight: normal; font-size: 1rem; line-height: 1.5; color: var(--md-sys-color-on-surface); margin-bottom: 24px; overflow-wrap: break-word;">
-                    ${escapeHtml(item.prompt).replace(/\n/g, '<br>')}
-                  </div>
+            ${(() => {
+              const maxTimeSpent = Math.max(...itemsWithQuestions.map(i => i.time_spent_ms || 0), 1);
+              return itemsWithQuestions.map((item, index) => {
+                const isCorrect = item.is_correct;
+                const chosenAnswer = formatAnswer(item.answer);
+                const correctAnswer = formatAnswer(item.correct_answer ?? item.accepted_answers);
+                const timeSpentMs = item.time_spent_ms || 0;
+                const isLongest = timeSpentMs > 0 && timeSpentMs === maxTimeSpent;
+                const timeSpentStr = timeSpentMs > 0 ? `${Math.floor(timeSpentMs / 60000)}p ${Math.floor((timeSpentMs % 60000) / 1000)}s` : '0s';
+                
+                return `
+                  <div id="latex-review-q${index}" class="latex-question-review panel ${isLongest ? 'longest-time' : ''}" style="background: var(--md-sys-color-surface-container-lowest); border-radius: 16px; border: 1px solid ${isCorrect ? 'var(--md-sys-color-primary)' : 'var(--md-sys-color-error)'}; padding: 32px; ${isLongest ? 'box-shadow: 0 4px 20px rgba(var(--md-sys-color-error-rgb), 0.1); border-color: var(--md-sys-color-error);' : ''}">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--md-sys-color-surface-variant); flex-wrap: wrap; gap: 16px;">
+                      <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="font-weight: 700; padding: 6px 16px; border-radius: 8px; background: ${isCorrect ? 'var(--md-sys-color-primary-container)' : 'var(--md-sys-color-error-container)'}; color: ${isCorrect ? 'var(--md-sys-color-on-primary-container)' : 'var(--md-sys-color-on-error-container)'}; font-size: 1rem; letter-spacing: 0.5px;">CÂU ${index + 1}</div>
+                        ${isManager() ? `
+                          <div style="display: flex; align-items: center; gap: 4px; padding: 6px 12px; border-radius: 100px; font-size: 0.85rem; font-weight: 600; background: ${isLongest ? 'var(--md-sys-color-error-container)' : 'var(--md-sys-color-surface-container)'}; color: ${isLongest ? 'var(--md-sys-color-on-error-container)' : 'var(--md-sys-color-on-surface-variant)'};">
+                            <md-icon style="font-size: 1.1rem;">${isLongest ? 'warning' : 'timer'}</md-icon>
+                            ${timeSpentStr} ${isLongest ? '(Lâu nhất)' : ''}
+                          </div>
+                        ` : ''}
+                      </div>
+                      <md-icon style="color: ${isCorrect ? 'var(--md-sys-color-primary)' : 'var(--md-sys-color-error)'}; font-size: 28px;">${isCorrect ? 'check_circle' : 'cancel'}</md-icon>
+                    </div>
+                    <div style="font-weight: normal; font-size: 1rem; line-height: 1.5; color: var(--md-sys-color-on-surface); margin-bottom: 24px; overflow-wrap: break-word;">
+                      ${escapeHtml(item.prompt).replace(/\n/g, '<br>')}
+                    </div>
                   
                   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(max(250px, calc(50% - 16px)), 1fr)); gap: 16px; margin-bottom: 24px;">
                     ${(item.choices ?? []).map((choice, cIdx) => {
@@ -1012,7 +1130,8 @@ async function mountReview(id) {
                   </details>
                 </div>
               `;
-            }).join('')}
+            }).join('');
+            })()}
           </div>
         </div>
         
