@@ -1463,12 +1463,14 @@ async function mountProgress() {
             const checkbox = row.querySelector('.lecture-checkbox');
             const titleDiv = row.querySelector('[style*="overflow: hidden"]');
             if (!wasTaught) {
-              checkbox.style.cssText += '; background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary);';
+              checkbox.style.background = 'var(--md-sys-color-primary)';
+              checkbox.style.borderColor = 'var(--md-sys-color-primary)';
               checkbox.innerHTML = '<md-icon style="font-size: 14px; color: var(--md-sys-color-on-primary);">check</md-icon>';
               row.style.background = 'color-mix(in srgb, var(--md-sys-color-primary) 8%, transparent)';
               if (titleDiv) { titleDiv.style.fontWeight = '600'; titleDiv.style.color = 'var(--md-sys-color-on-surface)'; }
             } else {
-              checkbox.style.cssText += '; background: transparent; border-color: var(--md-sys-color-outline);';
+              checkbox.style.background = 'transparent';
+              checkbox.style.borderColor = 'var(--md-sys-color-outline)';
               checkbox.innerHTML = '';
               row.style.background = 'transparent';
               if (titleDiv) { titleDiv.style.fontWeight = '400'; titleDiv.style.color = 'var(--md-sys-color-on-surface-variant)'; }

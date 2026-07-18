@@ -580,16 +580,19 @@ export function wireContentForms(pathData) {
       form.dataset.saving = 'true';
       
       try {
+        let savedResult;
         if (form.dataset.entity === 'phase') {
-          await upsertPhase(payload);
+          savedResult = await upsertPhase(payload);
         } else if (form.dataset.entity === 'module') {
-          await upsertModule(payload);
+          savedResult = await upsertModule(payload);
         } else if (form.dataset.entity === 'lectureGroup') {
           delete payload.phase_id;
-          await upsertLectureGroup(payload);
+          savedResult = await upsertLectureGroup(payload);
         } else if (form.dataset.entity === 'lecture') {
           delete payload.phase_id;
-          await upsertLecture({ ...payload, group_id: payload.group_id || null });
+          let group_id = payload.group_id || null;
+          if (group_id === 'undefined') group_id = null;
+          savedResult = await upsertLecture({ ...payload, group_id });
         }
         
         const isUpdate = !!values.id;
@@ -607,21 +610,21 @@ export function wireContentForms(pathData) {
         }
         
         // Add new item to dropdowns so it can be selected immediately
-        if (!isUpdate && values.title) {
-          const fakeId = payload.id;
+        if (!isUpdate && values.title && savedResult) {
+          const actualId = savedResult.id;
           if (form.dataset.entity === 'phase') {
             document.querySelectorAll('.cascade-phase').forEach(sel => {
-              sel.insertAdjacentHTML('beforeend', `<option value="${fakeId}">${escapeHtml(values.title)}</option>`);
+              sel.insertAdjacentHTML('beforeend', `<option value="${actualId}">${escapeHtml(values.title)}</option>`);
             });
           }
           if (form.dataset.entity === 'module') {
             document.querySelectorAll('.cascade-module').forEach(sel => {
-              sel.insertAdjacentHTML('beforeend', `<option value="${fakeId}" data-phase-id="${escapeHtml(values.phase_id)}">${escapeHtml(values.title)}</option>`);
+              sel.insertAdjacentHTML('beforeend', `<option value="${actualId}" data-phase-id="${escapeHtml(values.phase_id)}">${escapeHtml(values.title)}</option>`);
             });
           }
           if (form.dataset.entity === 'lectureGroup') {
             document.querySelectorAll('.cascade-group').forEach(sel => {
-              sel.insertAdjacentHTML('beforeend', `<option value="${fakeId}" data-module-id="${escapeHtml(values.module_id)}">${escapeHtml(values.title)}</option>`);
+              sel.insertAdjacentHTML('beforeend', `<option value="${actualId}" data-module-id="${escapeHtml(values.module_id)}">${escapeHtml(values.title)}</option>`);
             });
           }
         }
@@ -1166,9 +1169,10 @@ export function renderAssignmentEditor(lectures) {
       <!-- Right pane: PDF Viewer OR LaTeX Editor -->
       <div class="right-pane panel" style="border-radius: var(--md-sys-shape-corner-medium, 12px); display: flex; flex-direction: column; gap: 12px; background: var(--md-sys-color-surface-container-lowest); border: 1px solid var(--md-sys-color-outline-variant); padding: 12px;">
         ${assignment.pdf_url === 'latex' ? `
-          <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--md-sys-color-outline-variant); padding-bottom: 8px;">
+          <div style="position: sticky; top: 88px; z-index: 10; background: var(--md-sys-color-surface-container-lowest); display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--md-sys-color-outline-variant); padding-bottom: 8px; margin: -12px -12px 12px -12px; padding: 12px 12px 8px 12px;">
             <h3 style="margin: 0; font-size: 0.95rem; font-weight: 600; display: flex; align-items: center; gap: 6px; color: var(--md-sys-color-on-surface);"><md-icon>functions</md-icon> Soạn thảo LaTeX</h3>
             <div style="display: flex; gap: 8px; align-items: center;">
+              <div style="font-size: 0.8rem; color: var(--md-sys-color-outline); margin-right: 8px; display: none;" class="desktop-only">Phím tắt: Ctrl+S</div>
               <input type="file" id="latex-image-upload" accept="image/*" style="display: none;">
               <md-filled-tonal-button type="button" id="latex-image-btn"><md-icon slot="icon">image</md-icon>Chèn ảnh</md-filled-tonal-button>
               <span id="latex-upload-status" style="font-size: 0.85rem; color: var(--md-sys-color-primary); display: none;">Đang tải lên...</span>
@@ -1504,7 +1508,11 @@ export function wireAssignmentEditor(lectures) {
       lineNumbers: true,
       mode: 'stex',
       lineWrapping: true,
-      theme: 'default'
+      theme: 'default',
+      extraKeys: {
+        'Cmd-S': function() { document.querySelector('#latex-live-parse-btn')?.click(); },
+        'Ctrl-S': function() { document.querySelector('#latex-live-parse-btn')?.click(); }
+      }
     });
     cm?.on('change', () => {
       latexInput.value = cm.getValue();
