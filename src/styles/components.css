@@ -2162,6 +2162,35 @@ tbody tr:hover {
   color: #333333;
 }
 
+.nh-admin-badge-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: #f0f4e8;
+  color: #455120;
+  border: 1px solid #d8e2ca;
+  border-radius: 9999px;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.nh-admin-badge-btn:hover {
+  background: #455120;
+  color: #ffffff;
+  border-color: #455120;
+  box-shadow: 0 2px 8px rgba(69, 81, 32, 0.18);
+}
+
+.nh-admin-badge-btn.active {
+  background: #455120;
+  color: #ffffff;
+  border-color: #455120;
+}
+
 .nh-nav-tabs {
   display: flex;
   align-items: center;

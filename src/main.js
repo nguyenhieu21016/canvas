@@ -229,16 +229,13 @@ function renderShell() {
           </div>
         </div>
 
-        <nav class="nh-nav-tabs">
+        <div class="nh-header-right">
           ${isManager() ? `
-            <a class="nh-nav-tab ${['manage', 'content', 'assignments', 'students', 'progress', 'online', 'salary'].includes(current) ? 'active' : ''}" href="#/manage">
-              <md-icon style="font-size: 20px;">admin_panel_settings</md-icon>
-              Quản lý
+            <a class="nh-admin-badge-btn ${['manage', 'content', 'assignments', 'students', 'progress', 'online', 'salary'].includes(current) ? 'active' : ''}" href="#/manage">
+              <md-icon style="font-size: 17px;">shield</md-icon>
+              <span>Quản lý</span>
             </a>
           ` : ''}
-        </nav>
-
-        <div class="nh-header-right">
 
           <div class="nh-user-avatar" id="nh-avatar-trigger" title="Hồ sơ cá nhân">
             ${initial}
@@ -254,6 +251,13 @@ function renderShell() {
               </div>
             </div>
             <div class="nh-dropdown-menu">
+              ${isManager() ? `
+                <a href="#/manage" class="nh-dropdown-item" style="color: #455120; font-weight: 700;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                  Trang Quản lý Admin
+                </a>
+                <div style="height: 1px; background: #e2e8f0; margin: 4px 0;"></div>
+              ` : ''}
               <a href="#/learn" class="nh-dropdown-item">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                 Danh mục khóa học
