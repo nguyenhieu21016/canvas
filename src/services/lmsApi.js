@@ -487,7 +487,7 @@ export async function deletePhase(id) {
 
 export async function upsertModule(payload) {
   const client = requireSupabase();
-  const { data, error } = await withTimeout(client.from('modules').upsert(payload).select().single(), 'Lưu chuyên đề');
+  const { data, error } = await withTimeout(client.from('modules').upsert(payload).select().single(), 'Lưu Chương');
   assertOk({ error });
   clearLmsCache();
   return data;
@@ -495,7 +495,7 @@ export async function upsertModule(payload) {
 
 export async function deleteModule(id) {
   const client = requireSupabase();
-  const { error } = await withTimeout(client.from('modules').delete().eq('id', id), 'Xóa chuyên đề');
+  const { error } = await withTimeout(client.from('modules').delete().eq('id', id), 'Xóa Chương');
   assertOk({ error });
   clearLmsCache();
 }
@@ -504,7 +504,7 @@ export async function upsertLectureGroup(payload) {
   const client = requireSupabase();
   const { data, error } = await withTimeout(
     client.from('lecture_groups').upsert(payload).select().single(),
-    'Lưu nhóm bài giảng',
+    'Lưu Bài học',
   );
   assertOk({ error });
   clearLmsCache();
@@ -513,7 +513,7 @@ export async function upsertLectureGroup(payload) {
 
 export async function deleteLectureGroup(id) {
   const client = requireSupabase();
-  const { error } = await withTimeout(client.from('lecture_groups').delete().eq('id', id), 'Xóa nhóm bài giảng');
+  const { error } = await withTimeout(client.from('lecture_groups').delete().eq('id', id), 'Xóa Bài học');
   assertOk({ error });
   clearLmsCache();
 }
@@ -671,7 +671,7 @@ export async function fetchAssignmentForStudent(assignmentId) {
 
 export async function fetchStudentAssignmentOverview(assignmentId) {
   const client = requireSupabase();
-  const [assignmentResult, attemptsResult] = await withTimeout(Promise.all([
+  const [assignmentResult, attemptsResult, questionsResult] = await withTimeout(Promise.all([
     client.from('assignments').select('*').eq('id', assignmentId).single(),
     client
       .from('attempts')
@@ -679,12 +679,19 @@ export async function fetchStudentAssignmentOverview(assignmentId) {
       .eq('assignment_id', assignmentId)
       .eq('status', 'submitted')
       .order('submitted_at', { ascending: false }),
+    client
+      .from('questions')
+      .select('id', { count: 'exact' })
+      .eq('assignment_id', assignmentId),
   ]), 'Tải lịch sử bài tập');
   assertOk(assignmentResult);
   assertOk(attemptsResult);
 
   return {
-    assignment: assignmentResult.data,
+    assignment: {
+      ...assignmentResult.data,
+      question_count: questionsResult.count ?? (questionsResult.data ? questionsResult.data.length : 0),
+    },
     attempts: attemptsResult.data ?? [],
   };
 }

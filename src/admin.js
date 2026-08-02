@@ -7,12 +7,12 @@ import { supabase } from './services/supabaseClient.js';
 import { formatDateTime, formatScore, roleLabel } from "./lib/format.js";
 import { setButtonLoading, option, renderLatexText } from "./lib/html.js";
 import { toDrivePreviewUrl } from './lib/drive.js';
-import { 
+import {
   fetchLearningPath, fetchAssignmentsForManager,
   fetchStudents, fetchGradebook, upsertPhase, deletePhase, upsertModule, deleteModule,
   upsertLecture, deleteLecture, upsertLectureGroup, deleteLectureGroup,
   deleteAssignment, reorderContentNodes as reorderContentNodesApi,
-  invokeAdminFunction, createManagedUser, fetchAssignmentEditor, regradeAssignment, 
+  invokeAdminFunction, createManagedUser, fetchAssignmentEditor, regradeAssignment,
   deleteManagedUser, saveAssignmentWithQuestions, uploadAssignmentImage,
   fetchSalaryMonth, upsertSalarySchedule, deleteSalarySchedule, setSessionState,
   getOnlineUsers, presenceTarget
@@ -33,7 +33,7 @@ export function mountManageHub() {
       href: '#/content',
       icon: 'view_list',
       title: 'Nội dung',
-      description: 'Tạo giai đoạn, chuyên đề, nhóm bài giảng và link bài giảng.',
+      description: 'Tạo giai đoạn, Chương, Bài học và link bài giảng.',
     },
     {
       href: '#/assignments',
@@ -90,11 +90,11 @@ export async function mountContentManager() {
       fetchLearningPath(state.profile.role),
       fetchStudents()
     ]);
-    
+
     if (data.phases.length > 0 && !currentContentPhaseId) {
       currentContentPhaseId = data.phases[0].id;
     }
-    
+
     root.innerHTML = `
       <style>
         .content-manager-layout {
@@ -247,7 +247,7 @@ export async function mountContentManager() {
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
             <h2 style="margin: 0; font-size: 1.5rem; font-weight: 600; color: var(--md-sys-color-on-surface);">Cấu trúc chi tiết</h2>
             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-              <md-outlined-button data-create="module"><md-icon slot="icon">add</md-icon>Chuyên đề</md-outlined-button>
+              <md-outlined-button data-create="module"><md-icon slot="icon">add</md-icon>Chương</md-outlined-button>
               <md-outlined-button data-create="lectureGroup"><md-icon slot="icon">add</md-icon>Nhóm</md-outlined-button>
               <md-outlined-button data-create="lecture"><md-icon slot="icon">add</md-icon>Bài giảng</md-outlined-button>
             </div>
@@ -271,7 +271,7 @@ export async function mountContentManager() {
         </aside>
       </div>
     `;
-    
+
     // Dynamically calculate topbar height for perfect sticky offset
     setTimeout(() => {
       const topbar = document.querySelector('.topbar');
@@ -312,18 +312,18 @@ export function wirePhaseSelection(pathData) {
       const phaseId = item.dataset.phaseId;
       if (phaseId === currentContentPhaseId) return;
       currentContentPhaseId = phaseId;
-      
+
       // Update list active state
       document.querySelectorAll('.phase-list-item').forEach(el => el.classList.remove('active'));
       item.classList.add('active');
-      
+
       // Update middle column
       const container = document.getElementById('manage-structure-container');
       if (container) {
         container.innerHTML = renderActivePhaseStructure(pathData.phases, currentContentPhaseId);
         wireStructureEvents();
       }
-      
+
       // Reset right column form
       document.getElementById('content-editor-placeholder')?.classList.remove('hidden');
       document.querySelectorAll('.editor-column .entity-form').forEach(f => f.classList.remove('active'));
@@ -364,8 +364,8 @@ export function renderModuleForm(phases) {
   return `
     <form class="entity-form compact-entity-form" data-entity="module">
       <div class="entity-form-heading">
-        <md-icon>folder_open</md-icon>
-        <h3>Chuyên đề</h3>
+        <md-icon>folder</md-icon>
+        <h3>Chương</h3>
       </div>
       <input type="hidden" name="id">
       <input type="hidden" name="description" value="">
@@ -375,7 +375,7 @@ export function renderModuleForm(phases) {
         <option value="">Chọn giai đoạn</option>
         ${phases.map((phase) => option(phase.id, phase.title)).join('')}
       </select>
-      <input class="field" name="title" placeholder="Tên chuyên đề" required>
+      <input class="field" name="title" placeholder="Tên Chương" required>
       <div class="button-row">
         <md-filled-button type="submit"><md-icon slot="icon">save</md-icon>Lưu</md-filled-button>
         <md-outlined-button type="reset">Mới</md-outlined-button>
@@ -388,8 +388,8 @@ export function renderLectureGroupForm(phases, modules) {
   return `
     <form class="entity-form compact-entity-form" data-entity="lectureGroup">
       <div class="entity-form-heading">
-        <md-icon>library_books</md-icon>
-        <h3>Nhóm bài giảng</h3>
+        <md-icon>auto_stories</md-icon>
+        <h3>Bài học</h3>
       </div>
       <input type="hidden" name="id">
       <input type="hidden" name="description" value="">
@@ -400,7 +400,7 @@ export function renderLectureGroupForm(phases, modules) {
         ${phases.map((phase) => option(phase.id, phase.title)).join('')}
       </select>
       <select class="field cascade-module" name="module_id" required disabled>
-        <option value="">Chọn chuyên đề</option>
+        <option value="">Chọn Chương</option>
         ${modules.map((module) => `<option value="${escapeHtml(module.id)}" data-phase-id="${escapeHtml(module.phase_id)}">${escapeHtml(module.title)}</option>`).join('')}
       </select>
       <input class="field" name="title" placeholder="Tên nhóm, ví dụ: Bài giảng 1" required>
@@ -416,7 +416,7 @@ export function renderLectureForm(phases, modules, lectureGroups) {
   return `
     <form class="entity-form compact-entity-form" data-entity="lecture">
       <div class="entity-form-heading">
-        <md-icon>menu_book</md-icon>
+        <md-icon>article</md-icon>
         <h3>Bài giảng</h3>
       </div>
       <input type="hidden" name="id">
@@ -428,7 +428,7 @@ export function renderLectureForm(phases, modules, lectureGroups) {
         ${phases.map((phase) => option(phase.id, phase.title)).join('')}
       </select>
       <select class="field cascade-module" name="module_id" required disabled>
-        <option value="">Chọn chuyên đề</option>
+        <option value="">Chọn Chương</option>
         ${modules.map((module) => `<option value="${escapeHtml(module.id)}" data-phase-id="${escapeHtml(module.phase_id)}">${escapeHtml(module.title)}</option>`).join('')}
       </select>
       <select class="field cascade-group" name="group_id" disabled>
@@ -451,7 +451,7 @@ export function renderManagePhase(phase) {
       <div class="toggle-children" aria-expanded="true">
         <md-icon class="expand-icon" style="margin-right: 4px; transition: transform 0.2s; color: var(--md-sys-color-outline);">expand_more</md-icon>
         <strong>${escapeHtml(phase.title)}</strong>
-        <span class="node-meta">${phase.modules.length} chuyên đề</span>
+        <span class="node-meta">${phase.modules.length} Chương</span>
       </div>
       <div class="icon-actions">
         <md-icon-button data-edit-phase="${phase.id}" data-payload="${escapeHtml(JSON.stringify(phase))}" aria-label="Sửa giai đoạn"><md-icon>edit</md-icon></md-icon-button>
@@ -469,8 +469,8 @@ export function renderManagePhase(phase) {
               <span class="node-meta">${module.lecture_groups.length} nhóm · ${module.lectures.length} bài giảng</span>
             </div>
             <div class="icon-actions">
-              <md-icon-button data-edit-module="${module.id}" data-payload="${escapeHtml(JSON.stringify(module))}" aria-label="Sửa chuyên đề"><md-icon>edit</md-icon></md-icon-button>
-              <md-icon-button data-delete-module="${module.id}" aria-label="Xóa chuyên đề"><md-icon>delete</md-icon></md-icon-button>
+              <md-icon-button data-edit-module="${module.id}" data-payload="${escapeHtml(JSON.stringify(module))}" aria-label="Sửa Chương"><md-icon>edit</md-icon></md-icon-button>
+              <md-icon-button data-delete-module="${module.id}" aria-label="Xóa Chương"><md-icon>delete</md-icon></md-icon-button>
             </div>
           </div>
           <div class="structure-children">
@@ -484,8 +484,8 @@ export function renderManagePhase(phase) {
                     <span class="node-meta">${group.lectures.length} bài giảng</span>
                   </div>
                   <div class="icon-actions">
-                    <md-icon-button data-edit-lecture-group="${group.id}" data-payload="${escapeHtml(JSON.stringify(group))}" aria-label="Sửa nhóm bài giảng"><md-icon>edit</md-icon></md-icon-button>
-                    <md-icon-button data-delete-lecture-group="${group.id}" aria-label="Xóa nhóm bài giảng"><md-icon>delete</md-icon></md-icon-button>
+                    <md-icon-button data-edit-lecture-group="${group.id}" data-payload="${escapeHtml(JSON.stringify(group))}" aria-label="Sửa Bài học"><md-icon>edit</md-icon></md-icon-button>
+                    <md-icon-button data-delete-lecture-group="${group.id}" aria-label="Xóa Bài học"><md-icon>delete</md-icon></md-icon-button>
                   </div>
                 </div>
                 <div class="structure-children" style="display: none;">
@@ -575,10 +575,10 @@ export function wireContentForms(pathData) {
       if (form.dataset.entity === 'phase') {
         payload.student_ids = formData.getAll('student_ids');
       }
-      
+
       const restore = setButtonLoading(form.querySelector('md-filled-button'));
       form.dataset.saving = 'true';
-      
+
       try {
         let savedResult;
         if (form.dataset.entity === 'phase') {
@@ -594,10 +594,10 @@ export function wireContentForms(pathData) {
           if (group_id === 'undefined') group_id = null;
           savedResult = await upsertLecture({ ...payload, group_id });
         }
-        
+
         const isUpdate = !!values.id;
         toast(isUpdate ? 'Đã cập nhật nội dung.' : 'Đã lưu thành công.', 'success');
-        
+
         // Clear text inputs but keep context
         const titleInput = form.querySelector('[name="title"]');
         const idInput = form.querySelector('[name="id"]');
@@ -608,7 +608,7 @@ export function wireContentForms(pathData) {
         if (form.dataset.entity === 'phase') {
           form.querySelectorAll('[name="student_ids"]').forEach(cb => cb.checked = false);
         }
-        
+
         // Add new item to dropdowns so it can be selected immediately
         if (!isUpdate && values.title && savedResult) {
           const actualId = savedResult.id;
@@ -628,7 +628,7 @@ export function wireContentForms(pathData) {
             });
           }
         }
-        
+
         const newData = await fetchLearningPath(state.profile.role);
         const container = document.querySelector('#manage-structure-container');
         if (container) {
@@ -703,11 +703,11 @@ export function wireStructureEvents() {
         if (input.type === 'checkbox') input.checked = Boolean(value);
         else input.value = value ?? '';
       });
-      
+
       // Force trigger cascading dropdowns manually if needed
       const phaseSelect = form.querySelector('.cascade-phase');
       const moduleSelect = form.querySelector('.cascade-module');
-      
+
       if (!payload.phase_id && payload.module_id && moduleSelect) {
         const option = moduleSelect.querySelector(`option[value="${payload.module_id}"]`);
         if (option) payload.phase_id = option.dataset.phaseId;
@@ -727,7 +727,7 @@ export function wireStructureEvents() {
           }
         }, 0);
       }
-      
+
       form.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
   });
@@ -771,7 +771,7 @@ export function wireCascadingDropdowns(root) {
         const phaseId = phaseSelect.value;
         moduleSelect.value = '';
         if (groupSelect) groupSelect.value = '';
-        
+
         let hasModules = false;
         Array.from(moduleSelect.options).forEach((opt) => {
           if (!opt.value) return; // Skip placeholder
@@ -782,7 +782,7 @@ export function wireCascadingDropdowns(root) {
             opt.style.display = 'none';
           }
         });
-        
+
         moduleSelect.disabled = !phaseId || !hasModules;
         if (groupSelect) groupSelect.disabled = true;
       });
@@ -792,7 +792,7 @@ export function wireCascadingDropdowns(root) {
       moduleSelect.addEventListener('change', () => {
         const moduleId = moduleSelect.value;
         groupSelect.value = '';
-        
+
         let hasGroups = false;
         Array.from(groupSelect.options).forEach((opt) => {
           if (!opt.value) return; // Skip placeholder
@@ -803,17 +803,17 @@ export function wireCascadingDropdowns(root) {
             opt.style.display = 'none';
           }
         });
-        
+
         groupSelect.disabled = !moduleId || !hasGroups;
       });
     }
-    
+
     // Also handle reset button
     form.addEventListener('reset', () => {
       setTimeout(() => {
         if (moduleSelect) moduleSelect.disabled = true;
         if (groupSelect) groupSelect.disabled = true;
-        
+
         Array.from(moduleSelect?.options || []).forEach(o => o.style.display = '');
         Array.from(groupSelect?.options || []).forEach(o => o.style.display = '');
       }, 0);
@@ -854,7 +854,7 @@ export function parseLatexAssignment(latexText) {
       if (backslashCount % 2 === 1) {
         continue;
       }
-      
+
       if (text[i] === '{') depth++;
       else if (text[i] === '}') {
         if (depth === 0) {
@@ -869,7 +869,7 @@ export function parseLatexAssignment(latexText) {
   while ((match = regex.exec(latexText)) !== null) {
     let rawContent = match[1].trim();
     let explanation = '';
-    
+
     // Parse \loigiai{}
     const loigiaiIdx = rawContent.indexOf('\\loigiai');
     if (loigiaiIdx !== -1) {
@@ -885,15 +885,15 @@ export function parseLatexAssignment(latexText) {
 
     let choices = [];
     let correctAnswer = 'A';
-    
+
     // Parse \choice{A}{B}{C}{D}
     const choiceIdx = rawContent.indexOf('\\choice');
     let prompt = rawContent.trim();
-    
+
     if (choiceIdx !== -1) {
       prompt = rawContent.substring(0, choiceIdx).trim();
       let currentIdx = choiceIdx + '\\choice'.length;
-      
+
       for (let c = 0; c < 4; c++) {
         while (currentIdx < rawContent.length && /\s/.test(rawContent[currentIdx])) currentIdx++;
         if (rawContent[currentIdx] === '{') {
@@ -924,7 +924,7 @@ export function parseLatexAssignment(latexText) {
       answer_key: { correct_answer: correctAnswer }
     });
   }
-  
+
   return questions;
 }
 
@@ -980,8 +980,8 @@ export async function mountAssignmentManager() {
             </div>
             <div class="stack-list" style="padding: 12px;">
               ${assignments.length ? assignments
-                .map(
-                  (assignment) => `
+          .map(
+            (assignment) => `
                     <div class="list-row assignment-row" style="padding: 16px; margin-bottom: 8px; border-radius: 12px; border: 1px solid transparent; background: transparent; transition: all 0.2s; display: flex; align-items: center; justify-content: space-between; gap: 16px; cursor: pointer; width: 100%;" onclick="document.querySelector('[data-load-assignment=\\'${assignment.id}\\']').click()">
                       <div style="display: flex; align-items: center; gap: 16px; flex: 1;">
                         <div style="width: 44px; height: 44px; border-radius: 12px; background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
@@ -998,8 +998,8 @@ export async function mountAssignmentManager() {
                       </div>
                     </div>
                   `,
-                )
-                .join('') : '<div style="padding: 40px; text-align: center; color: var(--md-sys-color-outline);">Chưa có đề thi nào. Hãy tạo mới!</div>'}
+          )
+          .join('') : '<div style="padding: 40px; text-align: center; color: var(--md-sys-color-outline);">Chưa có đề thi nào. Hãy tạo mới!</div>'}
             </div>
           </aside>
         </section>
@@ -1075,7 +1075,7 @@ export function renderAssignmentEditor(lectures) {
         <input type="hidden" name="lecture_id" value="${escapeHtml(assignment.lecture_id ?? '')}">
         <md-outlined-text-field 
           id="lecture-search-input"
-          label="Chuyên đề liên kết (Gõ để tìm)" 
+          label="Chương liên kết (Gõ để tìm)" 
           value="${escapeHtml(assignment.lecture_id && lectures.find(l => l.id === assignment.lecture_id) ? lectures.find(l => l.id === assignment.lecture_id).title : (assignment.lecture_id ? '' : 'Bài tập tự do'))}"
           style="--md-outlined-text-field-container-shape: 8px; width: 100%; cursor: pointer;"
           autocomplete="off">
@@ -1236,26 +1236,26 @@ export function renderQuestionEditor(question, index) {
           ${question.choices && question.choices.length > 0 ? `
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(max(250px, calc(50% - 16px)), 1fr)); gap: 16px; margin-bottom: 24px;">
             ${question.choices.map((choice, cIdx) => {
-              const letter = ['A', 'B', 'C', 'D'][cIdx];
-              const isCorrectChoice = question.answer_key?.correct_answer === letter;
-              
-              let bg = 'var(--md-sys-color-surface-container-lowest)';
-              let border = '2px solid var(--md-sys-color-surface-variant)';
-              let icon = '<div style="width: 24px;"></div>';
-              
-              if (isCorrectChoice) {
-                bg = 'var(--md-sys-color-primary-container)';
-                border = '2px solid var(--md-sys-color-primary)';
-                icon = '<md-icon style="color: var(--md-sys-color-primary); font-size: 20px; margin-right: 12px; flex-shrink: 0;">check_circle</md-icon>';
-              }
-              
-              return `
+    const letter = ['A', 'B', 'C', 'D'][cIdx];
+    const isCorrectChoice = question.answer_key?.correct_answer === letter;
+
+    let bg = 'var(--md-sys-color-surface-container-lowest)';
+    let border = '2px solid var(--md-sys-color-surface-variant)';
+    let icon = '<div style="width: 24px;"></div>';
+
+    if (isCorrectChoice) {
+      bg = 'var(--md-sys-color-primary-container)';
+      border = '2px solid var(--md-sys-color-primary)';
+      icon = '<md-icon style="color: var(--md-sys-color-primary); font-size: 20px; margin-right: 12px; flex-shrink: 0;">check_circle</md-icon>';
+    }
+
+    return `
                 <div style="padding: 16px; border-radius: 12px; border: ${border}; background: ${bg}; display: flex; align-items: flex-start;">
                   ${icon}
                   <div style="line-height: 1.5; color: var(--md-sys-color-on-surface); font-size: 1rem;"><b>${letter}.</b> ${renderLatexText(choice)}</div>
                 </div>
               `;
-            }).join('')}
+  }).join('')}
           </div>
           ` : ''}
           
@@ -1299,8 +1299,8 @@ export function renderQuestionKeyEditor(question, index) {
     return `
       <div class="tf-editor">
         ${[0, 1, 2, 3]
-          .map(
-            (itemIndex) => `
+        .map(
+          (itemIndex) => `
               <div class="tf-row">
                 <input class="field" name="tf-statement-${index}-${itemIndex}" value="${escapeHtml(statements[itemIndex] ?? '')}" placeholder="Ý ${itemIndex + 1}">
                 <select class="field" name="tf-answer-${index}-${itemIndex}">
@@ -1309,8 +1309,8 @@ export function renderQuestionKeyEditor(question, index) {
                 </select>
               </div>
             `,
-          )
-          .join('')}
+        )
+        .join('')}
       </div>
     `;
   }
@@ -1365,7 +1365,7 @@ export function wireAssignmentEditor(lectures) {
     };
     searchInput.addEventListener('focus', openDropdown);
     searchInput.addEventListener('click', openDropdown);
-    
+
     // Tìm kiếm (filter)
     searchInput.addEventListener('input', (e) => {
       dropdown.style.display = 'block';
@@ -1483,16 +1483,16 @@ export function wireAssignmentEditor(lectures) {
   document.querySelector('#latex-live-parse-btn')?.addEventListener('click', () => {
     const text = document.querySelector('#latex-live-input').value;
     const parsedQuestions = parseLatexAssignment(text);
-    
+
     if (parsedQuestions.length === 0) {
       toast('Không tìm thấy câu hỏi nào hợp lệ (cần dùng \\begin{ex}...\\end{ex}).', 'error');
       return;
     }
-    
+
     state.assignmentEditor = collectEditor(lectures);
     state.assignmentEditor.questions = parsedQuestions;
     state.assignmentEditor.latexSource = text;
-    
+
     toast(`Đã nhận diện thành công ${parsedQuestions.length} câu hỏi.`, 'success');
     mountAssignmentManager();
   });
@@ -1501,7 +1501,7 @@ export function wireAssignmentEditor(lectures) {
   const uploadBtn = document.querySelector('#latex-image-btn');
   const uploadStatus = document.querySelector('#latex-upload-status');
   const latexInput = document.querySelector('#latex-live-input');
-  
+
   let cm = null;
   if (latexInput) {
     cm = window.CodeMirror?.fromTextArea(latexInput, {
@@ -1510,8 +1510,8 @@ export function wireAssignmentEditor(lectures) {
       lineWrapping: true,
       theme: 'default',
       extraKeys: {
-        'Cmd-S': function() { document.querySelector('#latex-live-parse-btn')?.click(); },
-        'Ctrl-S': function() { document.querySelector('#latex-live-parse-btn')?.click(); }
+        'Cmd-S': function () { document.querySelector('#latex-live-parse-btn')?.click(); },
+        'Ctrl-S': function () { document.querySelector('#latex-live-parse-btn')?.click(); }
       }
     });
     cm?.on('change', () => {
@@ -1713,7 +1713,7 @@ export function collectEditor() {
   const form = document.querySelector('#assignment-editor');
   const values = Object.fromEntries(new FormData(form).entries());
   const existingQuestions = state.assignmentEditor?.questions || [];
-  
+
   const questions = Array.from(document.querySelectorAll('.question-editor')).map((card) => {
     const index = Number(card.dataset.index);
     const existing = existingQuestions[index] || {};
@@ -1827,8 +1827,8 @@ export function renderStudentRows(students) {
         </thead>
         <tbody>
           ${students
-            .map(
-              (student) => `
+      .map(
+        (student) => `
                 <tr data-student-id="${student.id}" data-search="${escapeHtml(`${student.full_name ?? ''} ${student.email ?? ''}`)}">
                   <td><input class="table-input" name="full_name" value="${escapeHtml(student.full_name ?? '')}"></td>
                   <td>${escapeHtml(student.email ?? '')}</td>
@@ -1845,8 +1845,8 @@ export function renderStudentRows(students) {
                   </td>
                 </tr>
               `,
-            )
-            .join('')}
+      )
+      .join('')}
         </tbody>
       </table>
     </div>
@@ -2055,14 +2055,14 @@ export async function mountSalaryManager() {
 
           <!-- Calendar grid -->
           <div style="display:grid; grid-template-columns:repeat(7,1fr); gap:4px; text-align:center; margin-top:auto;">
-            ${DAY_SHORT.map((d, i) => `<div style="font-size:0.68rem; font-weight:700; color:${i===5||i===6 ? 'var(--md-sys-color-error)' : 'var(--md-sys-color-on-surface-variant)'}; padding:3px 0;">${d}</div>`).join('')}
+            ${DAY_SHORT.map((d, i) => `<div style="font-size:0.68rem; font-weight:700; color:${i === 5 || i === 6 ? 'var(--md-sys-color-error)' : 'var(--md-sys-color-on-surface-variant)'}; padding:3px 0;">${d}</div>`).join('')}
             ${Array(firstDow).fill('<div></div>').join('')}
             ${days.map((d) => {
-              const iso = d.toISOString().slice(0, 10);
-              const cellState = sessionMap[iso] ?? 'none';
-              const dow = d.getDay();
-              const isWeekend = dow === 0 || dow === 6;
-              return `<button
+        const iso = d.toISOString().slice(0, 10);
+        const cellState = sessionMap[iso] ?? 'none';
+        const dow = d.getDay();
+        const isWeekend = dow === 0 || dow === 6;
+        return `<button
                 type="button"
                 class="day-cell"
                 data-toggle="${s.id}"
@@ -2075,7 +2075,7 @@ export async function mountSalaryManager() {
                   transition: all 0.12s;
                 "
               >${d.getDate()}</button>`;
-            }).join('')}
+      }).join('')}
           </div>
         </div>
       `;
@@ -2108,11 +2108,11 @@ export async function mountSalaryManager() {
         <!-- Student trackers -->
         <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(360px, 1fr)); gap:16px; align-items:stretch;" id="tracker-list">
           ${schedules.length
-            ? schedules.map(renderStudentTracker).join('')
-            : `<div style="color:var(--md-sys-color-on-surface-variant); text-align:center; padding:32px 0; font-size:0.95rem;">
+        ? schedules.map(renderStudentTracker).join('')
+        : `<div style="color:var(--md-sys-color-on-surface-variant); text-align:center; padding:32px 0; font-size:0.95rem;">
                 Chưa có học sinh nào trong tháng này.<br>Thêm học sinh bên dưới để bắt đầu tick lịch.
               </div>`
-          }
+      }
         </div>
 
         <!-- Add student -->
@@ -2276,7 +2276,7 @@ export function mountOnlineUsers() {
   renderOnlineUsers();
   const onChange = () => renderOnlineUsers();
   presenceTarget.addEventListener('change', onChange);
-  
+
   const observer = new MutationObserver(() => {
     if (!document.body.contains(root)) {
       presenceTarget.removeEventListener('change', onChange);

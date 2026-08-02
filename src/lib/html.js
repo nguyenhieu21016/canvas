@@ -109,6 +109,7 @@ export function renderLatexText(raw) {
     .replace(/!\s*\[([^\]]*?)\]\(([^)]+?)\)/g, (match, alt, url) => {
       return `<img src="${url}" alt="${alt}" style="max-width: 100%; height: auto; border-radius: 8px; margin: 8px 0;">`;
     })
+    .replace(/(\n\s*){2,}/g, '\n')
     .replace(/\n/g, '<br>');
 }
 

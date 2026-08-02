@@ -15,7 +15,7 @@ export const state = {
   authMode: 'login', // 'login' | 'signup' | 'forgotPassword' | 'updatePassword'
   assignmentEditor: null,
   isEditingAssignment: false,
-  theme: localStorage.getItem('lms:theme') || 'light',
+  theme: 'light',
   colorTheme: colorThemes.some((theme) => theme.id === storedColorTheme) ? storedColorTheme : 'blue',
 };
 

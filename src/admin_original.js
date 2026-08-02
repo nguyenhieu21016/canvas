@@ -30,7 +30,7 @@ export function mountManageHub() {
       href: '#/content',
       icon: 'view_list',
       title: 'Nội dung',
-      description: 'Tạo giai đoạn, chuyên đề, nhóm bài giảng và link bài giảng.',
+      description: 'Tạo giai đoạn, Chương, Bài học và link bài giảng.',
     },
     {
       href: '#/assignments',
@@ -149,7 +149,7 @@ export function renderModuleForm(phases) {
     <form class="entity-form compact-entity-form" data-entity="module">
       <div class="entity-form-heading">
         <md-icon>folder_open</md-icon>
-        <h3>Chuyên đề</h3>
+        <h3>Chương</h3>
       </div>
       <input type="hidden" name="id">
       <input type="hidden" name="description" value="">
@@ -159,7 +159,7 @@ export function renderModuleForm(phases) {
         <option value="">Chọn giai đoạn</option>
         ${phases.map((phase) => option(phase.id, phase.title)).join('')}
       </select>
-      <input class="field" name="title" placeholder="Tên chuyên đề" required>
+      <input class="field" name="title" placeholder="Tên Chương" required>
       <div class="button-row">
         <md-filled-button type="submit"><md-icon slot="icon">save</md-icon>Lưu</md-filled-button>
         <md-outlined-button type="reset">Mới</md-outlined-button>
@@ -173,7 +173,7 @@ export function renderLectureGroupForm(phases, modules) {
     <form class="entity-form compact-entity-form" data-entity="lectureGroup">
       <div class="entity-form-heading">
         <md-icon>library_books</md-icon>
-        <h3>Nhóm bài giảng</h3>
+        <h3>Bài học</h3>
       </div>
       <input type="hidden" name="id">
       <input type="hidden" name="description" value="">
@@ -184,7 +184,7 @@ export function renderLectureGroupForm(phases, modules) {
         ${phases.map((phase) => option(phase.id, phase.title)).join('')}
       </select>
       <select class="field cascade-module" name="module_id" required disabled>
-        <option value="">Chọn chuyên đề</option>
+        <option value="">Chọn Chương</option>
         ${modules.map((module) => `<option value="${escapeHtml(module.id)}" data-phase-id="${escapeHtml(module.phase_id)}">${escapeHtml(module.title)}</option>`).join('')}
       </select>
       <input class="field" name="title" placeholder="Tên nhóm, ví dụ: Bài giảng 1" required>
@@ -212,7 +212,7 @@ export function renderLectureForm(phases, modules, lectureGroups) {
         ${phases.map((phase) => option(phase.id, phase.title)).join('')}
       </select>
       <select class="field cascade-module" name="module_id" required disabled>
-        <option value="">Chọn chuyên đề</option>
+        <option value="">Chọn Chương</option>
         ${modules.map((module) => `<option value="${escapeHtml(module.id)}" data-phase-id="${escapeHtml(module.phase_id)}">${escapeHtml(module.title)}</option>`).join('')}
       </select>
       <select class="field cascade-group" name="group_id" disabled>
@@ -235,7 +235,7 @@ export function renderManagePhase(phase) {
       <div>
         <md-icon class="drag-handle" aria-hidden="true">drag_indicator</md-icon>
         <strong>${escapeHtml(phase.title)}</strong>
-        <span>${phase.modules.length} chuyên đề</span>
+        <span>${phase.modules.length} Chương</span>
       </div>
       <div class="icon-actions">
         <button data-edit-phase="${phase.id}" data-payload="${escapeHtml(JSON.stringify(phase))}" aria-label="Sửa giai đoạn"><md-icon>edit</md-icon></button>
@@ -252,8 +252,8 @@ export function renderManagePhase(phase) {
               <span>${module.lecture_groups.length} nhóm · ${module.lectures.length} bài giảng</span>
             </div>
             <div class="icon-actions">
-              <button data-edit-module="${module.id}" data-payload="${escapeHtml(JSON.stringify(module))}" aria-label="Sửa chuyên đề"><md-icon>edit</md-icon></button>
-              <button data-delete-module="${module.id}" aria-label="Xóa chuyên đề"><md-icon>delete</md-icon></button>
+              <button data-edit-module="${module.id}" data-payload="${escapeHtml(JSON.stringify(module))}" aria-label="Sửa Chương"><md-icon>edit</md-icon></button>
+              <button data-delete-module="${module.id}" aria-label="Xóa Chương"><md-icon>delete</md-icon></button>
             </div>
           </div>
           ${module.lecture_groups
@@ -266,8 +266,8 @@ export function renderManagePhase(phase) {
                     <span>${group.lectures.length} bài giảng</span>
                   </div>
                   <div class="icon-actions">
-                    <button data-edit-lecture-group="${group.id}" data-payload="${escapeHtml(JSON.stringify(group))}" aria-label="Sửa nhóm bài giảng"><md-icon>edit</md-icon></button>
-                    <button data-delete-lecture-group="${group.id}" aria-label="Xóa nhóm bài giảng"><md-icon>delete</md-icon></button>
+                    <button data-edit-lecture-group="${group.id}" data-payload="${escapeHtml(JSON.stringify(group))}" aria-label="Sửa Bài học"><md-icon>edit</md-icon></button>
+                    <button data-delete-lecture-group="${group.id}" aria-label="Xóa Bài học"><md-icon>delete</md-icon></button>
                   </div>
                 </div>
                 ${(group.lectures ?? []).map((lecture) => renderManageLecture(lecture, group.id, 'Trong nhóm')).join('')}
@@ -825,7 +825,7 @@ export function renderAssignmentEditor(lectures) {
         <input type="hidden" name="lecture_id" value="${escapeHtml(assignment.lecture_id ?? '')}">
         <md-outlined-text-field 
           id="lecture-search-input"
-          label="Chuyên đề liên kết (Gõ để tìm)" 
+          label="Chương liên kết (Gõ để tìm)" 
           value="${escapeHtml(assignment.lecture_id && lectures.find(l => l.id === assignment.lecture_id) ? lectures.find(l => l.id === assignment.lecture_id).title : (assignment.lecture_id ? '' : 'Bài tập tự do'))}"
           style="--md-outlined-text-field-container-shape: 8px; width: 100%; cursor: pointer;"
           autocomplete="off">

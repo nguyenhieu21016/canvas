@@ -1,7 +1,7 @@
 // student.js - Lazy loaded module for student routes
 import { formatDateTime, formatScore } from "./lib/format.js";
 import { setButtonLoading, option } from "./lib/html.js";
-import { 
+import {
   fetchLearningPath, fetchDashboardStats, fetchGradebook, fetchMyHistory,
   fetchStudents, fetchTeachingLogs, invokeAdminFunction, createManagedUser, deleteManagedUser,
   fetchAssignmentsForManager
@@ -21,27 +21,59 @@ export async function mountLearn() {
       const teachingLogs = await fetchTeachingLogs(state.profile.id);
       taughtSet = new Set(teachingLogs.map((l) => l.lecture_id));
     }
-    
+
+    const phases = data.phases || [];
+
     root.innerHTML = `
-      <section class="learn-layout">
-        <div class="phase-card-grid">
-          ${
-            data.phases.length
-              ? data.phases.map(p => renderPhaseCard(p, taughtSet)).join('')
-              : renderStateMessage({
-                  title: 'Chưa có lộ trình học',
-                  message: isManager() ? 'Tạo giai đoạn đầu tiên để học sinh nhìn thấy kế hoạch học.' : 'Giáo viên chưa mở nội dung cho lớp này.',
-                  actionHref: isManager() ? '#/content' : '',
-                  actionLabel: isManager() ? 'Tạo lộ trình' : '',
-                  actionIcon: 'add',
-                })
-          }
-        </div>
-        <div class="path-list">
-          ${
-            data.freeAssignments.length
-              ? `
-                <section class="panel">
+      <section class="nh-body-container">
+        <!-- Sidebar -->
+        <aside class="nh-sidebar">
+          <div class="nh-sidebar-header-pill">
+            <div class="nh-header-icon-circle">
+              <md-icon style="font-size: 18px; color: #ffffff;">grid_view</md-icon>
+            </div>
+            <span class="nh-header-pill-title">Danh mục khóa học</span>
+          </div>
+
+          <hr class="nh-sidebar-divider" />
+
+          <div class="nh-sidebar-menu" id="nh-category-menu">
+            <span class="nh-sidebar-item active" data-filter="all">Tất cả khóa học</span>
+            <span class="nh-sidebar-item" data-filter="free">Bài tập tự do</span>
+          </div>
+
+          <!-- Lịch thi Widget -->
+          <div class="nh-countdown-widget">
+            <div style="display: flex; align-items: center; gap: 6px; font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 15px; font-weight: 700; margin-bottom: 6px; line-height: 1;">
+              <md-icon style="font-size: 19px; display: inline-flex; align-items: center; justify-content: center; transform: translateY(-1px);">calendar_month</md-icon>
+              <span style="line-height: 1; display: inline-block;">Lịch thi</span>
+            </div>
+            <div style="font-size: 26px; font-weight: 900; letter-spacing: -0.5px; margin-top: 4px; display: flex; align-items: baseline; gap: 6px;">
+              ${Math.max(0, Math.ceil((new Date(2027, 5, 11) - new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate())) / 86400000))}
+              <span style="font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 13px; font-weight: 700; opacity: 0.95;">ngày nữa</span>
+            </div>
+            <p style="font-size: 11px; margin: 4px 0 0; opacity: 0.88; font-family: 'Be Vietnam Pro', sans-serif;">Đếm ngược kỳ thi THPTQG 2027</p>
+          </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="nh-main-content">
+          <div class="nh-course-grid" id="nh-course-grid">
+            ${phases.length
+        ? phases.map((p, idx) => renderPhaseCard(p, idx, taughtSet)).join('')
+        : renderStateMessage({
+          title: 'Chưa có lộ trình học',
+          message: isManager() ? 'Tạo giai đoạn đầu tiên để học sinh nhìn thấy kế hoạch học.' : 'Giáo viên chưa mở nội dung cho lớp này.',
+          actionHref: isManager() ? '#/content' : '',
+          actionLabel: isManager() ? 'Tạo lộ trình' : '',
+          actionIcon: 'add',
+        })
+      }
+          </div>
+
+          ${data.freeAssignments && data.freeAssignments.length
+        ? `
+                <section class="panel nh-free-assignments" style="margin-top: 24px;">
                   <div class="panel-heading">
                     <h2>Bài tập tự do</h2>
                   </div>
@@ -50,11 +82,33 @@ export async function mountLearn() {
                   </div>
                 </section>
               `
-              : ''
-          }
-        </div>
+        : ''
+      }
+        </main>
       </section>
     `;
+
+    // Category Filter Interaction
+    const filterItems = root.querySelectorAll('.nh-sidebar-item');
+    filterItems.forEach(item => {
+      item.addEventListener('click', () => {
+        filterItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        const filter = item.dataset.filter;
+
+        const grid = root.querySelector('#nh-course-grid');
+        const freeSection = root.querySelector('.nh-free-assignments');
+
+        if (filter === 'all') {
+          if (grid) grid.style.display = 'grid';
+          if (freeSection) freeSection.style.display = 'block';
+        } else if (filter === 'free') {
+          if (grid) grid.style.display = 'none';
+          if (freeSection) freeSection.style.display = 'block';
+        }
+      });
+    });
+
   } catch (error) {
     root.innerHTML = renderErrorState(error);
     wireRouteRetry(root);
@@ -71,24 +125,46 @@ export async function mountPhaseDetail(id) {
       root.innerHTML = '<div class="empty-state">Không tìm thấy giai đoạn.</div>';
       return;
     }
-    
+
     let taughtSet = new Set();
     let taughtMap = new Map();
     let taughtCount = 0;
     let totalLectures = 0;
     let totalAssignments = 0;
     let completedAssignments = 0;
-    
+    let firstUnfinishedLecture = null;
+    let recentActivity = null; // { lecture, assignment } — most recently worked assignment
+
     if (state.profile.role === 'student') {
       const teachingLogs = await fetchTeachingLogs(state.profile.id);
       taughtSet = new Set(teachingLogs.map((l) => l.lecture_id));
       taughtMap = new Map(teachingLogs.map((l) => [l.lecture_id, l]));
+
+      // Build a lookup map: lectureId -> lecture object, for finding recentActivity
+      const lectureById = new Map();
+      phase.modules.forEach(mod => mod.lectures.forEach(l => lectureById.set(l.id, l)));
+
+      // Teaching logs are ordered desc by taught_at — walk through to find most recent
+      // lecture (in this phase) that has at least one assignment
+      for (const log of teachingLogs) {
+        const lec = lectureById.get(log.lecture_id);
+        if (lec && lec.assignments && lec.assignments.length > 0) {
+          // Find the most recently submitted assignment, or just first one
+          const submitted = lec.assignments.find(a => a.progress?.status === 'submitted');
+          recentActivity = { lecture: lec, assignment: submitted || lec.assignments[0], log };
+          break;
+        }
+      }
     }
-    
+
     phase.modules.forEach(mod => {
       mod.lectures.forEach(l => {
         totalLectures++;
-        if (taughtSet.has(l.id)) taughtCount++;
+        if (taughtSet.has(l.id)) {
+          taughtCount++;
+        } else if (!firstUnfinishedLecture) {
+          firstUnfinishedLecture = l;
+        }
         if (l.assignments) {
           l.assignments.forEach(a => {
             totalAssignments++;
@@ -98,43 +174,119 @@ export async function mountPhaseDetail(id) {
       });
     });
 
-    const progressMarkup = state.profile.role === 'student' ? `
-      <div style="display: flex; gap: 8px; align-items: center;">
-        <span style="font-size: 0.85rem; font-weight: 600; color: var(--md-sys-color-primary); background: color-mix(in srgb, var(--md-sys-color-primary) 12%, transparent); padding: 4px 12px; border-radius: 16px;">
-          Đã học: ${taughtCount}/${totalLectures} bài
-        </span>
-        ${totalAssignments > 0 ? `
-        <span style="font-size: 0.85rem; font-weight: 600; color: var(--md-sys-color-on-tertiary-container); background: var(--md-sys-color-tertiary-container); padding: 4px 12px; border-radius: 16px;">
-          BTVN: ${completedAssignments}/${totalAssignments}
-        </span>
-        ` : ''}
-      </div>
-    ` : '';
+    let recentStepIndex = 1;
+    let recentGroupTitle = '';
+    if (recentActivity) {
+      let found = false;
+      for (const mod of phase.modules) {
+        let idx = 0;
+        if (mod.lecture_groups && mod.lecture_groups.length > 0) {
+          for (const group of mod.lecture_groups) {
+            for (const l of (group.lectures || [])) {
+              idx++;
+              if (l.id === recentActivity.lecture.id) {
+                recentStepIndex = idx;
+                recentGroupTitle = group.title || '';
+                found = true;
+                break;
+              }
+            }
+            if (found) break;
+          }
+        } else {
+          for (const l of mod.lectures) {
+            idx++;
+            if (l.id === recentActivity.lecture.id) {
+              recentStepIndex = idx;
+              recentGroupTitle = '';
+              found = true;
+              break;
+            }
+          }
+        }
+        if (found) break;
+      }
+    }
 
     root.innerHTML = `
-      <section class="phase-detail-panel">
-        <a class="text-link back-link" href="#/learn">
-          <md-icon>arrow_back</md-icon>
-          Lộ trình
-        </a>
-        <div class="phase-detail-heading" style="display: flex; justify-content: space-between; align-items: flex-end;">
-          <div>
-            <p class="eyebrow">Giai đoạn</p>
-            <h2>${escapeHtml(phase.title)}</h2>
+      <div style="background: #EDF2E4; min-height: calc(100vh - 64px); padding: 24px max(var(--page-gutter), 24px);">
+        <div class="nh-course-detail-container">
+          <!-- Breadcrumb & Header Hero Card -->
+          <div class="nh-course-hero-card">
+            <div class="nh-breadcrumb">
+              <a href="#/learn">Lộ trình học tập</a>
+              <span>/</span>
+              <span>${escapeHtml(phase.title)}</span>
+            </div>
+
+            <div class="nh-course-title-row">
+              <div>
+                <h1 class="nh-course-main-title">${escapeHtml(phase.title)}</h1>
+                ${phase.description ? `<p style="margin: 6px 0 0 0; font-size: 13px; color: #667085; font-family: 'Be Vietnam Pro', sans-serif;">${escapeHtml(phase.description)}</p>` : ''}
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <span style="background: #F0F4E8; color: #455120; font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: 9999px; border: 1px solid #D8E2CA; display: inline-flex; align-items: center; gap: 4px;">
+                  <md-icon style="font-size: 16px;">article</md-icon>
+                  Đã học: ${taughtCount}/${totalLectures} bài
+                </span>
+                ${totalAssignments > 0 ? `
+                  <span style="background: #F0F4E8; color: #455120; font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: 9999px; border: 1px solid #D8E2CA; display: inline-flex; align-items: center; gap: 4px;">
+                    <md-icon style="font-size: 16px;">edit_note</md-icon>
+                    Bài tập: ${completedAssignments}/${totalAssignments}
+                  </span>
+                ` : ''}
+              </div>
+            </div>
+
+            <!-- Bài học gần đây — render nguyên ô bài học gốc -->
+            ${recentActivity ? `
+              <div class="nh-recent-activity-section">
+                <h2 class="nh-recent-activity-label">Bài học gần đây</h2>
+                <div class="nh-recent-activity-wrapper" style="background: #ffffff; border: 1px solid #D8E2C4; border-radius: 14px; padding: 4px 12px; box-shadow: 0 2px 10px rgba(69, 81, 32, 0.03);">
+                  ${renderLectureNode(recentActivity.lecture, recentStepIndex, taughtSet, taughtMap, recentGroupTitle)}
+                </div>
+              </div>
+            ` : ''}
           </div>
-          ${progressMarkup}
+
+          <!-- Course Search & Filter Bar -->
+          <div style="background: #ffffff; border-radius: 18px; padding: 20px 24px; border: 1px solid #D8E2C4; box-shadow: 0 4px 14px rgba(69, 81, 32, 0.03);">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
+              <strong style="font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 17px; font-weight: 700; color: #455120; white-space: nowrap;">Danh sách bài học</strong>
+              <div style="position: relative; flex: 1; max-width: 420px; min-width: 280px; margin-left: auto;">
+                <md-icon style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 18px; color: #667085; pointer-events: none;">search</md-icon>
+                <input type="text" id="nh-course-search-input" class="nh-course-search-input" placeholder="Tìm kiếm Bài giảng - Bài tập tại đây" />
+              </div>
+            </div>
+
+            <div class="module-stack phase-module-stack">
+              ${phase.modules.length
+        ? phase.modules.map(m => renderModule(m, taughtSet, taughtMap)).join('')
+        : '<div class="empty-state compact">Chưa có Chương.</div>'
+      }
+            </div>
+          </div>
         </div>
-        ${phase.description ? `<p class="muted">${escapeHtml(phase.description)}</p>` : ''}
-        <div class="module-stack phase-module-stack">
-          ${
-            phase.modules.length
-              ? phase.modules.map(m => renderModule(m, taughtSet, taughtMap)).join('')
-              : '<div class="empty-state compact">Chưa có chuyên đề.</div>'
-          }
-        </div>
-      </section>
+      </div>
     `;
     wireAnimatedDetails(root);
+
+    // Wire live in-course search
+    const searchInput = root.querySelector('#nh-course-search-input');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.trim().toLowerCase();
+        root.querySelectorAll('.lecture-row').forEach((row) => {
+          const text = row.textContent.toLowerCase();
+          const match = text.includes(query);
+          row.style.display = match ? '' : 'none';
+          if (match) {
+            const parentDetails = row.closest('details');
+            if (parentDetails) parentDetails.open = true;
+          }
+        });
+      });
+    }
   } catch (error) {
     root.innerHTML = renderErrorState(error);
     wireRouteRetry(root);
@@ -164,31 +316,43 @@ export function wireAnimatedDetails(root) {
   });
 }
 
-export function renderPhaseCard(phase, taughtSet = new Set()) {
+const CARO_GRID_PATTERN = {
+  pattern: 'linear-gradient(to right, rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.2) 1px, transparent 1px)',
+  size: '16px 16px'
+};
+
+export function renderPhaseCard(phase, idx = 0, taughtSet = new Set()) {
   const lectureCount = phase.modules.reduce((sum, module) => sum + module.lectures.length, 0);
-  const groupCount = phase.modules.reduce((sum, module) => sum + module.lecture_groups.length, 0);
+  const groupCount = phase.modules.reduce((sum, module) => sum + (module.lecture_groups?.length || 0), 0);
   const assignmentCount = phase.modules.reduce(
-    (sum, module) => sum + module.lectures.reduce((total, lecture) => total + lecture.assignments.length, 0),
+    (sum, module) => sum + module.lectures.reduce((total, lecture) => total + (lecture.assignments?.length || 0), 0),
     0,
   );
-  
+
+  const title = phase.title || 'Giai đoạn học tập';
+
   return `
-    <a class="phase-card" href="#/phase/${phase.id}" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%; min-height: 260px;">
-      <div>
-        <p class="eyebrow">Giai đoạn</p>
-        <h2>${escapeHtml(phase.title)}</h2>
+    <a class="nh-course-card" href="#/phase/${phase.id}">
+      <div class="nh-card-banner" style="background-color: #455120; background-image: ${CARO_GRID_PATTERN.pattern}; background-size: ${CARO_GRID_PATTERN.size};">
       </div>
-      <div style="margin-top: auto;">
-        <div class="phase-card-meta" style="margin-bottom: 16px; margin-top: 12px;">
-          <span><md-icon>folder_open</md-icon>${phase.modules.length} chuyên đề</span>
-          <span><md-icon>library_books</md-icon>${groupCount} nhóm bài giảng</span>
-          <span><md-icon>menu_book</md-icon>${lectureCount} bài giảng</span>
-          <span><md-icon>quiz</md-icon>${assignmentCount} bài tập</span>
+
+      <div class="nh-card-body">
+        <h3 class="nh-card-title">${escapeHtml(title)}</h3>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; font-size: 13px; color: #475467; margin-bottom: 4px;">
+          <span style="display: flex; align-items: center; gap: 6px;"><md-icon style="font-size: 16px; color: #455120;">folder</md-icon>${phase.modules.length} Chương</span>
+          <span style="display: flex; align-items: center; gap: 6px;"><md-icon style="font-size: 16px; color: #455120;">article</md-icon>${lectureCount} Bài giảng</span>
+          <span style="display: flex; align-items: center; gap: 6px;"><md-icon style="font-size: 16px; color: #455120;">auto_stories</md-icon>${groupCount} Bài học</span>
+          <span style="display: flex; align-items: center; gap: 6px;"><md-icon style="font-size: 16px; color: #455120;">edit_note</md-icon>${assignmentCount} Bài tập</span>
         </div>
-        <span class="phase-card-action">
-          Mở giai đoạn
-          <md-icon>arrow_forward</md-icon>
-        </span>
+
+        <hr class="nh-card-dashed-line" />
+
+        <div class="nh-card-footer">
+          <span class="nh-card-blue-price" style="font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 14px; font-weight: 700; color: #455120; display: flex; align-items: center; gap: 4px;">
+            Mở giai đoạn <md-icon style="font-size: 16px;">arrow_forward</md-icon>
+          </span>
+        </div>
       </div>
     </a>
   `;
@@ -206,11 +370,10 @@ export function renderPhase(phase) {
       </div>
       ${phase.description ? `<p class="muted">${escapeHtml(phase.description)}</p>` : ''}
       <div class="module-stack">
-        ${
-          phase.modules.length
-            ? phase.modules.map(renderModule).join('')
-            : '<div class="empty-state compact">Chưa có chuyên đề.</div>'
-        }
+        ${phase.modules.length
+      ? phase.modules.map(renderModule).join('')
+      : '<div class="empty-state compact">Chưa có Chương.</div>'
+    }
       </div>
     </section>
   `;
@@ -218,114 +381,155 @@ export function renderPhase(phase) {
 
 
 export function renderModule(module, taughtSet = new Set(), taughtMap = new Map()) {
-  const ungroupedLectures = module.lectures.filter((lecture) => !lecture.group_id);
-  
   let taughtCount = 0;
   const total = module.lectures.length;
-  module.lectures.forEach(l => { if (taughtSet.has(l.id)) taughtCount++; });
-  const isCompleted = total > 0 && taughtCount === total;
-  
-  const progressMarkup = state.profile.role === 'student' ? `<span style="font-size: 0.75rem; background: ${isCompleted ? 'var(--md-sys-color-primary)' : 'var(--md-sys-color-surface-container-highest)'}; color: ${isCompleted ? 'var(--md-sys-color-on-primary)' : 'var(--md-sys-color-on-surface)'}; padding: 2px 8px; border-radius: 12px; font-weight: 600; flex-shrink: 0;">${taughtCount}/${total}</span>` : '';
-  
-  return `
-    <article class="module-block" ${state.profile.role === 'student' && isCompleted ? 'style="opacity: 0.8;"' : ''}>
-      <div class="module-title" style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
-        <div style="display: flex; align-items: center; gap: 8px; min-width: 0;">
-          <md-icon>folder_open</md-icon>
-          <h3 style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(module.title)}</h3>
-        </div>
-        ${progressMarkup}
-      </div>
-      <div class="lecture-list">
-        ${
-          module.lecture_groups.length || ungroupedLectures.length
-            ? `
-              ${module.lecture_groups.map(g => renderLectureGroup(g, false, taughtSet, taughtMap)).join('')}
-              ${ungroupedLectures.length ? renderLectureGroup({ title: 'Bài giảng chưa nhóm', lectures: ungroupedLectures }, true, taughtSet, taughtMap) : ''}
-            `
-            : '<div class="empty-state compact">Chưa có nhóm bài giảng.</div>'
-        }
-      </div>
-    </article>
-  `;
-}
+  let assignmentTotal = 0;
 
-export function renderLectureGroup(group, isUngrouped = false, taughtSet = new Set(), taughtMap = new Map()) {
-  return `
-    <details class="lecture-group-block ${isUngrouped ? 'ungrouped' : ''}">
-      <summary class="lecture-group-title">
-        <span>
-          <md-icon>library_books</md-icon>
-          <h4>${escapeHtml(group.title)}</h4>
-        </span>
-        <md-icon>expand_more</md-icon>
-      </summary>
-      <div class="lecture-list">
-        ${
-          group.lectures.length
-            ? group.lectures.map(l => renderLecture(l, taughtSet, taughtMap)).join('')
-            : '<div class="empty-state compact">Chưa có bài giảng trong nhóm.</div>'
-        }
-      </div>
-    </details>
-  `;
-}
+  module.lectures.forEach(l => {
+    if (taughtSet.has(l.id)) taughtCount++;
+    if (l.assignments) assignmentTotal += l.assignments.length;
+  });
 
-export function renderLecture(lecture, taughtSet = new Set(), taughtMap = new Map()) {
-  const isTaught = taughtSet.has(lecture.id);
-  
-  const taughtMarkup = state.profile.role === 'student' 
-    ? (isTaught ? `<span style="font-size: 0.7rem; color: var(--md-sys-color-primary); background: color-mix(in srgb, var(--md-sys-color-primary) 12%, transparent); padding: 2px 8px; border-radius: 12px; font-weight: 600; white-space: nowrap;">Đã học</span>` : `<span style="font-size: 0.7rem; color: var(--md-sys-color-on-surface-variant); background: var(--md-sys-color-surface-container-high); padding: 2px 8px; border-radius: 12px; white-space: nowrap;">Chưa học</span>`)
-    : '';
+  const hasGroups = module.lecture_groups && module.lecture_groups.length > 0;
+  const orphanLectures = module.lectures.filter(l => !l.group_id);
 
-  let hwMarkup = '';
-  if (state.profile.role === 'student' && lecture.assignments && lecture.assignments.length > 0) {
-    const hw = lecture.assignments[0];
-    const hasSubmitted = hw.progress?.status === 'submitted';
-    if (hasSubmitted) {
-      hwMarkup = `<span style="font-size: 0.7rem; color: var(--md-sys-color-on-tertiary-container); background: var(--md-sys-color-tertiary-container); padding: 2px 8px; border-radius: 12px; font-weight: 600; white-space: nowrap; margin-left: 8px;">Điểm BTVN: ${formatScore(hw.progress.bestScore)}/10</span>`;
-    } else {
-      hwMarkup = `<span style="font-size: 0.7rem; color: var(--md-sys-color-on-error-container); background: var(--md-sys-color-error-container); padding: 2px 8px; border-radius: 12px; font-weight: 600; white-space: nowrap; margin-left: 8px;">Chưa làm BTVN</span>`;
+  let lectureIdx = 0;
+  let lectureListHtml = '';
+
+  if (hasGroups) {
+    for (const group of module.lecture_groups) {
+      const groupLectures = group.lectures ?? [];
+      lectureListHtml += groupLectures.map(l => {
+        lectureIdx++;
+        return renderLectureNode(l, lectureIdx, taughtSet, taughtMap, group.title);
+      }).join('');
     }
+    orphanLectures.forEach(l => {
+      lectureIdx++;
+      lectureListHtml += renderLectureNode(l, lectureIdx, taughtSet, taughtMap, '');
+    });
+  } else {
+    lectureListHtml = module.lectures.map((l, idx) =>
+      renderLectureNode(l, idx + 1, taughtSet, taughtMap, '')
+    ).join('');
   }
 
   return `
-    <details class="lecture-row">
-      <summary style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
-        <span style="display: flex; align-items: center; gap: 8px; min-width: 0; color: ${state.profile.role === 'student' && !isTaught ? 'var(--md-sys-color-on-surface-variant)' : 'inherit'};">
-          <md-icon style="flex-shrink: 0;">menu_book</md-icon>
-          <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(lecture.title)}</span>
+    <details class="nh-chapter-accordion" open>
+      <summary class="nh-chapter-summary">
+        <span class="nh-chapter-toggle-icon">
+          <svg aria-hidden="true" viewBox="0 0 24 24" style="width:20px;height:20px;flex-shrink:0;">
+            <path fill="currentColor" d="M6.41 6 5 7.41 9.58 12 5 16.59 6.41 18l6-6z"></path>
+            <path fill="currentColor" d="m13 6-1.41 1.41L16.17 12l-4.58 4.59L13 18l6-6z"></path>
+          </svg>
         </span>
-        <div style="display: flex; align-items: center; flex-shrink: 0;">
-          ${taughtMarkup}${hwMarkup}
-          <md-icon style="margin-left: 8px; flex-shrink: 0;">expand_more</md-icon>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+          <h3 class="nh-chapter-title">${escapeHtml(module.title)}</h3>
+          <span class="nh-chapter-subtext">${total} Bài giảng${assignmentTotal > 0 ? ` / ${assignmentTotal} Bài tập` : ''}</span>
         </div>
+        ${state.profile.role === 'student' ? `<span class="nh-chapter-progress-pill">${taughtCount}/${total}</span>` : ''}
       </summary>
-      <div class="lecture-body">
-        ${lecture.description ? `<p>${escapeHtml(lecture.description)}</p>` : ''}
-        <div class="lecture-actions">
-          ${driveFrame(lecture.slide_url, lecture.title)}
-          ${
-            lecture.assignments.length
-              ? `<div class="assignment-action-list">${lecture.assignments.map(renderAssignmentChip).join('')}</div>`
-              : ''
-          }
-        </div>
+
+      <div class="nh-ref-lecture-list">
+        ${total || hasGroups
+      ? lectureListHtml
+      : '<div class="empty-state compact" style="padding: 16px;">Chưa có bài học trong Chương.</div>'
+    }
       </div>
     </details>
+  `;
+}
+
+export function renderLectureNode(lecture, stepIndex, taughtSet = new Set(), taughtMap = new Map(), moduleName = '') {
+  const isTaught = taughtSet.has(lecture.id);
+  const hasSlide = !!lecture.slide_url;
+  const assignmentCount = lecture.assignments ? lecture.assignments.length : 0;
+  const hasAssignments = assignmentCount > 0;
+  const hasContent = hasSlide || hasAssignments || !!lecture.description;
+
+  const metaParts = [];
+  if (hasSlide) metaParts.push('1 Bài giảng');
+  if (assignmentCount > 0) metaParts.push(`${assignmentCount} Bài tập`);
+  if (metaParts.length === 0) metaParts.push('0 Bài giảng / 0 Bài tập');
+
+  const metaText = metaParts.join(' / ');
+
+  const badgeStatus = state.profile.role === 'student' && isTaught
+    ? '<span class="nh-badge-taught">ĐÃ HỌC</span>'
+    : '';
+
+  const titleBlock = `
+    <div class="nh-ref-title-stack">
+      ${moduleName ? `<div class="nh-ref-module-label">${escapeHtml(moduleName)}</div>` : ''}
+      <h4 class="nh-ref-title ${isTaught ? 'is-taught' : ''}">${escapeHtml(lecture.title)}</h4>
+      <div class="nh-ref-submeta">${metaText}</div>
+    </div>
+  `;
+
+  return `
+    <div class="nh-ref-row lecture-row">
+      <!-- Left: vertical line + number badge -->
+      <div class="nh-ref-badge-col">
+        <span class="nh-ref-num-badge ${isTaught ? 'completed' : ''}">${stepIndex}</span>
+      </div>
+      <!-- Right: content -->
+      <div class="nh-ref-row-body">
+        <details style="display: contents;">
+          <summary class="nh-ref-summary" style="${hasContent ? '' : 'cursor: default;'}">
+            <div class="nh-ref-row-main">
+              ${titleBlock}
+              <div class="nh-ref-badges">
+                ${badgeStatus}
+                <md-icon style="color: ${hasContent ? '#aaa' : '#ccc'}; font-size: 16px; ${hasContent ? '' : 'opacity: 0.4;'}">expand_more</md-icon>
+              </div>
+            </div>
+          </summary>
+          ${hasContent ? `
+            <div class="nh-timeline-body">
+              ${lecture.description ? `<p style="margin: 0 0 12px 0; font-size: 13px; color: #475467; font-family: 'Be Vietnam Pro', sans-serif;">${escapeHtml(lecture.description)}</p>` : ''}
+              <div class="lecture-actions">
+                ${driveFrame(lecture.slide_url, lecture.title)}
+                ${hasAssignments
+        ? `<div class="assignment-action-list">${lecture.assignments.map(renderAssignmentChip).join('')}</div>`
+        : ''
+      }
+              </div>
+            </div>
+          ` : ''}
+        </details>
+      </div>
+    </div>
   `;
 }
 
 export function renderAssignmentChip(assignment) {
   const hasSubmitted = assignment.progress?.status === 'submitted';
+  const cleanedTitle = (assignment.title || '').replace(/Bài tập về nhà/gi, 'Bài tập');
+  const isPdfAssignment = assignment.pdf_url && assignment.pdf_url !== 'latex';
+  const isStudent = state.profile?.role === 'student';
+
+  if (isStudent && isPdfAssignment) {
+    return `
+      <div class="assignment-action ${hasSubmitted ? 'completed' : 'pending'}">
+        <a class="assignment-chip locked-pdf-chip" href="javascript:void(0)" data-pdf-locked="true" style="width: 100%; justify-content: space-between;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <md-icon>edit_note</md-icon>
+            <span>${escapeHtml(cleanedTitle)}</span>
+          </div>
+          <md-icon style="font-size: 1.1rem; color: #455120;">arrow_forward</md-icon>
+        </a>
+      </div>
+    `;
+  }
+
   return `
     <div class="assignment-action ${hasSubmitted ? 'completed' : 'pending'}">
       <a class="assignment-chip" href="#/assignment/${assignment.id}" style="width: 100%; justify-content: space-between;">
         <div style="display: flex; align-items: center; gap: 8px;">
-          <md-icon>quiz</md-icon>
-          <span>${escapeHtml(assignment.title)}</span>
+          <md-icon>edit_note</md-icon>
+          <span>${escapeHtml(cleanedTitle)}</span>
         </div>
-        <md-icon style="font-size: 1.1rem; color: var(--md-sys-color-primary);">arrow_forward</md-icon>
+        <md-icon style="font-size: 1.1rem; color: #455120;">arrow_forward</md-icon>
       </a>
     </div>
   `;
@@ -442,7 +646,7 @@ export async function mountDashboard() {
       const attemptedAssignmentIds = new Set(studentAttempts.map(a => a.assignment_id));
       const uncompletedAssignments = assignments.filter(a => {
         if (attemptedAssignmentIds.has(a.id)) return false;
-        
+
         let phaseStudentIds = null;
         if (a.lectures) {
           const l = Array.isArray(a.lectures) ? a.lectures[0] : a.lectures;
@@ -456,11 +660,11 @@ export async function mountDashboard() {
             }
           }
         }
-        
+
         if (phaseStudentIds && Array.isArray(phaseStudentIds) && phaseStudentIds.length > 0 && !phaseStudentIds.includes(studentId)) {
           return false;
         }
-        
+
         return true;
       });
       const uncompletedListMarkup = uncompletedAssignments.map(a => `
@@ -717,28 +921,35 @@ export async function mountDashboard() {
 
 export async function mountStudentGrades() {
   const root = pageRoot();
-  root.innerHTML = renderLoading('Đang tải bảng điểm');
+  root.innerHTML = renderLoading('Đang tải bảng điểm cá nhân...');
   try {
     const data = await fetchLearningPath(state.profile.role);
     const assignmentGroups = collectLearningPathAssignments(data);
     const totalAssignments = assignmentGroups.reduce((sum, g) => sum + g.assignments.length, 0);
-    
+
     root.innerHTML = `
-      <section class="panel">
-        <div class="panel-heading">
-          <div>
-            <p class="eyebrow">Bảng điểm</p>
-            <h2>${totalAssignments} bài tập về nhà</h2>
+      <div style="background: #EDF2E4; min-height: calc(100vh - 64px); padding: 28px max(var(--page-gutter), 24px);">
+        <div style="max-width: 1040px; margin: 0 auto; background: #ffffff; border-radius: 18px; padding: 28px 32px; border: 1px solid #D8E2C4; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid #D8E2C4;">
+            <div>
+              <h2 style="font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 26px; font-weight: 700; color: #455120; margin: 0;">Bảng điểm cá nhân</h2>
+              <p style="margin: 4px 0 0; font-size: 13px; color: #667085; font-family: 'Be Vietnam Pro', sans-serif;">Theo dõi tiến độ và kết quả làm bài tập</p>
+            </div>
+            <span style="background: #F0F4E8; color: #455120; font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 14px; font-weight: 700; padding: 6px 16px; border-radius: 9999px; border: 1px solid #D8E2CA;">
+              ${totalAssignments} bài tập
+            </span>
           </div>
+
+          ${assignmentGroups.length === 0 ? '<div class="empty-state">Chưa có bài tập về nhà.</div>' : ''}
+          ${assignmentGroups.map(group => `
+            <div style="margin-top: 28px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+              <div style="width: 4px; height: 18px; background: #455120; border-radius: 2px;"></div>
+              <h3 style="margin: 0; font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 17px; font-weight: 700; color: #455120;">${escapeHtml(group.title)}</h3>
+            </div>
+            ${renderStudentGradesTable(group.assignments)}
+          `).join('')}
         </div>
-        ${assignmentGroups.length === 0 ? '<div class="empty-state">Chưa có bài tập về nhà.</div>' : ''}
-        ${assignmentGroups.map(group => `
-          <div style="margin-top: 32px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--md-sys-color-surface-container-highest);">
-            <h3 style="margin: 0; font-size: 1.15rem; font-weight: 800; color: var(--md-sys-color-primary);">${escapeHtml(group.title)}</h3>
-          </div>
-          ${renderStudentGradesTable(group.assignments)}
-        `).join('')}
-      </section>
+      </div>
     `;
   } catch (error) {
     root.innerHTML = renderErrorState(error);
@@ -774,7 +985,7 @@ export function collectLearningPathAssignments(data) {
         }
       }
     }
-    
+
     if (rowsById.size > 0) {
       groups.push({
         title: phase.title,
@@ -791,7 +1002,7 @@ export function collectLearningPathAssignments(data) {
       freeById.set(assignment.id, row);
     }
   }
-  
+
   if (freeById.size > 0) {
     groups.push({
       title: 'Bài tập tự do',
@@ -805,33 +1016,39 @@ export function collectLearningPathAssignments(data) {
 export function renderStudentGradesTable(assignments) {
   if (!assignments.length) return '<div class="empty-state">Chưa có bài tập về nhà.</div>';
   return `
-    <div class="assignments-list">
+    <div style="display: flex; flex-direction: column; gap: 10px;">
       ${assignments
-        .map((assignment) => {
-          const hasSubmitted = assignment.progress?.status === 'submitted';
-          return `
-            <div class="assignment-row">
-              <div class="assignment-info">
-                <h3>${escapeHtml(assignment.title)}</h3>
-                <p>${escapeHtml(assignment.context ?? '-')}</p>
+      .map((assignment) => {
+        const hasSubmitted = assignment.progress?.status === 'submitted';
+        const score = assignment.progress?.bestScore;
+        return `
+            <div style="background: #F7F9F4; border-radius: 12px; padding: 14px 18px; border: 1px solid #E5ECD9; display: flex; align-items: center; justify-content: space-between; gap: 16px; transition: all 0.15s ease;" onmouseover="this.style.borderColor='#455120'" onmouseout="this.style.borderColor='#E5ECD9'">
+              <div style="min-width: 0; flex: 1;">
+                <h4 style="margin: 0 0 4px 0; font-size: 14px; font-weight: 700; color: #101828; font-family: 'Be Vietnam Pro', sans-serif;">${escapeHtml(assignment.title)}</h4>
+                <p style="margin: 0; font-size: 12px; color: #667085; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(assignment.context ?? '-')}</p>
               </div>
-              <div class="assignment-stats">
-                <span class="assignment-status-badge ${hasSubmitted ? 'done' : 'pending'}">${hasSubmitted ? 'Đã làm' : 'Chưa làm'}</span>
-                <div class="assignment-score">
-                  ${
-                    hasSubmitted
-                      ? `<div class="score-progress-block"><span>${formatScore(assignment.progress.bestScore)}/10</span>${renderScoreProgress(assignment.progress.bestScore)}</div>`
-                      : '<span class="muted">-</span>'
-                  }
+
+              <div style="display: flex; align-items: center; gap: 16px; flex-shrink: 0;">
+                <span style="font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 9999px; ${hasSubmitted ? 'background: #F0F4E8; color: #455120;' : 'background: #EAECF0; color: #667085;'}">
+                  ${hasSubmitted ? 'Đã làm' : 'Chưa làm'}
+                </span>
+
+                <div style="min-width: 60px; text-align: right;">
+                  ${hasSubmitted
+            ? `<span style="font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 16px; font-weight: 800; color: #455120;">${formatScore(score)}/10</span>`
+            : '<span style="color: #98A2B3; font-weight: 600;">-</span>'
+          }
                 </div>
-                <md-filled-tonal-button href="#/assignment/${assignment.id}">
+
+                <a href="#/assignment/${assignment.id}" style="text-decoration: none; background: ${hasSubmitted ? '#F0F4E8' : '#455120'}; color: ${hasSubmitted ? '#455120' : '#ffffff'}; border: 1px solid ${hasSubmitted ? '#D8E2CA' : '#455120'}; padding: 6px 14px; border-radius: 9999px; font-size: 12px; font-weight: 700; transition: all 0.15s ease; display: inline-flex; align-items: center; gap: 4px;">
                   ${hasSubmitted ? 'Làm lại' : 'Làm bài'}
-                </md-filled-tonal-button>
+                  <md-icon style="font-size: 14px;">arrow_forward</md-icon>
+                </a>
               </div>
             </div>
           `;
-        })
-        .join('')}
+      })
+      .join('')}
     </div>
   `;
 }

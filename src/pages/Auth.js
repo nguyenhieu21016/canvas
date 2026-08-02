@@ -18,49 +18,90 @@ function renderAuth() {
   document.querySelector('#app').innerHTML = `
     <main class="auth-screen">
       <section class="auth-panel">
+        <!-- Left Brand Banner -->
         <div class="auth-copy">
-          <span class="auth-eyebrow">Hướng tới kì thi THPTQG 2027</span>
-          <h1>Canvas</h1>
-          <p>If you can get 1 percent better each day for one year, you’ll end up 37 times better by the time you’re done.</p>
+          <div class="auth-copy-inner">
+            <div class="auth-logo">
+              <img src="/logo.png" alt="Canvas Logo" style="width: 40px; height: 40px; border-radius: 10px; object-fit: contain;" />
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <span class="auth-eyebrow">HƯỚNG TỚI KÌ THI THPTQG 2027</span>
+              <h1 class="auth-brand-name">CANVAS</h1>
+            </div>
+          </div>
         </div>
+
+        <!-- Right Form Panel -->
         <form id="auth-form" class="auth-form">
           ${
             isUpdatePassword || isReset
               ? `
                 <div class="auth-form-heading">
-                  <p class="eyebrow">Khôi phục tài khoản</p>
-                  <h2>${isReset ? 'Đặt lại mật khẩu' : 'Tạo mật khẩu mới'}</h2>
-                  <p class="muted">${isReset ? 'Nhập email tài khoản, hệ thống sẽ gửi link đặt lại mật khẩu.' : 'Nhập mật khẩu mới để hoàn tất khôi phục tài khoản.'}</p>
+                  <p class="eyebrow" style="font-family: 'Be Vietnam Pro', sans-serif; color: #455120; font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 0.08em; margin: 0 0 4px 0;">Khôi phục tài khoản</p>
+                  <h2 style="font-family: 'Beautique Display', serif; font-size: 24px; font-weight: 700; color: #1e293b; margin: 0;">${isReset ? 'Đặt lại mật khẩu' : 'Tạo mật khẩu mới'}</h2>
+                  <p class="muted" style="font-size: 13px; color: #64748b; margin: 6px 0 0 0; line-height: 1.5;">${isReset ? 'Nhập email tài khoản, hệ thống sẽ gửi link đặt lại mật khẩu.' : 'Nhập mật khẩu mới để hoàn tất khôi phục tài khoản.'}</p>
                 </div>
               `
               : `
+                <div>
+                  <h2 class="auth-form-title">${state.authMode === 'login' ? 'Đăng nhập' : 'Tạo tài khoản'}</h2>
+                </div>
                 <div class="segmented" role="tablist" aria-label="Chọn chế độ đăng nhập">
                   <button type="button" role="tab" aria-selected="${state.authMode === 'login'}" aria-pressed="${state.authMode === 'login'}" data-mode="login" class="${state.authMode === 'login' ? 'selected' : ''}">Đăng nhập</button>
                   <button type="button" role="tab" aria-selected="${state.authMode === 'register'}" aria-pressed="${state.authMode === 'register'}" data-mode="register" class="${state.authMode === 'register' ? 'selected' : ''}">Đăng ký</button>
                 </div>
               `
           }
-          ${!hasSupabaseConfig ? '<div class="notice">Cần cấu hình Supabase trong .env để đăng nhập và lưu dữ liệu.</div>' : ''}
-          ${
-            state.authMode === 'register'
-              ? '<md-outlined-text-field name="full_name" label="Họ tên" autocomplete="name" required></md-outlined-text-field>'
-              : ''
-          }
-          ${
-            isUpdatePassword
-              ? ''
-              : '<md-outlined-text-field name="email" label="Email" type="email" autocomplete="email" required></md-outlined-text-field>'
-          }
-          ${
-            isReset
-              ? ''
-              : `<md-outlined-text-field name="password" label="${isUpdatePassword ? 'Mật khẩu mới' : 'Mật khẩu'}" type="password" autocomplete="${isUpdatePassword || state.authMode === 'register' ? 'new-password' : 'current-password'}" required></md-outlined-text-field>`
-          }
-          ${isUpdatePassword ? '<md-outlined-text-field name="confirm_password" label="Nhập lại mật khẩu mới" type="password" autocomplete="new-password" required></md-outlined-text-field>' : ''}
-          <md-filled-button type="submit" ${!hasSupabaseConfig ? 'disabled' : ''}>
-            <md-icon slot="icon">${primaryIcon}</md-icon>
-            ${primaryLabel}
-          </md-filled-button>
+          ${!hasSupabaseConfig ? '<div class="notice" style="background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; padding: 10px 14px; border-radius: 10px; font-size: 13px;">Cần cấu hình Supabase trong .env để đăng nhập và lưu dữ liệu.</div>' : ''}
+          
+          <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 4px;">
+            ${
+              state.authMode === 'register'
+                ? `
+                  <div class="auth-field-group">
+                    <label class="auth-field-label">Họ tên</label>
+                    <input type="text" name="full_name" class="auth-input-field" placeholder="Nhập họ và tên" autocomplete="name" required />
+                  </div>
+                `
+                : ''
+            }
+            ${
+              isUpdatePassword
+                ? ''
+                : `
+                  <div class="auth-field-group">
+                    <label class="auth-field-label">Email</label>
+                    <input type="email" name="email" class="auth-input-field" placeholder="nhapemail@gmail.com" autocomplete="email" required />
+                  </div>
+                `
+            }
+            ${
+              isReset
+                ? ''
+                : `
+                  <div class="auth-field-group">
+                    <label class="auth-field-label">${isUpdatePassword ? 'Mật khẩu mới' : 'Mật khẩu'}</label>
+                    <input type="password" name="password" class="auth-input-field" placeholder="••••••••" autocomplete="${isUpdatePassword || state.authMode === 'register' ? 'new-password' : 'current-password'}" required />
+                  </div>
+                `
+            }
+            ${
+              isUpdatePassword
+                ? `
+                  <div class="auth-field-group">
+                    <label class="auth-field-label">Nhập lại mật khẩu mới</label>
+                    <input type="password" name="confirm_password" class="auth-input-field" placeholder="••••••••" autocomplete="new-password" required />
+                  </div>
+                `
+                : ''
+            }
+          </div>
+
+          <button type="submit" class="auth-submit-btn" ${!hasSupabaseConfig ? 'disabled' : ''}>
+            <md-icon style="font-size: 18px;">${primaryIcon}</md-icon>
+            <span>${primaryLabel}</span>
+          </button>
+
           <div class="auth-secondary-actions">
             ${
               state.authMode === 'login'
@@ -69,7 +110,7 @@ function renderAuth() {
             }
             ${
               isReset
-                ? '<button class="text-link" type="button" data-mode="login"><md-icon>arrow_back</md-icon>Quay lại đăng nhập</button>'
+                ? '<button class="text-link" type="button" data-mode="login"><md-icon style="font-size: 16px;">arrow_back</md-icon>Quay lại đăng nhập</button>'
                 : ''
             }
           </div>

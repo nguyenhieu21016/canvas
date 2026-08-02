@@ -32,7 +32,11 @@ export function wireMaterialFormButtons(root = document) {
 export function toast(message, tone = 'info') {
   const toastEl = document.querySelector('#toast');
   if (!toastEl) return;
-  toastEl.textContent = message;
+  let iconName = 'info';
+  if (tone === 'error') iconName = 'lock';
+  else if (tone === 'success') iconName = 'check_circle';
+
+  toastEl.innerHTML = `<md-icon style="font-size: 18px; flex-shrink: 0;">${iconName}</md-icon><span>${message}</span>`;
   toastEl.dataset.tone = tone;
   toastEl.classList.add('show');
   window.clearTimeout(toastEl._timer);

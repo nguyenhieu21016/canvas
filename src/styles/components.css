@@ -1,3 +1,44 @@
+/* ── Beautique Display Font Family (Ngọc Huyền LB Official Font) ── */
+@font-face {
+  font-family: 'Beautique Display';
+  src: url('/fonts/BeautiqueDisplay-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Beautique Display';
+  src: url('/fonts/BeautiqueDisplay-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Beautique Display';
+  src: url('/fonts/BeautiqueDisplay-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Beautique Display';
+  src: url('/fonts/BeautiqueDisplay-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Beautique Display Condensed';
+  src: url('/fonts/BeautiqueDisplayCondensed-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ── Components: Shell, Nav, Panels, Tables, Forms, Views ── */
 
 .notice,
@@ -27,7 +68,7 @@
   gap: 14px;
 }
 
-.state-message > md-icon {
+.state-message>md-icon {
   width: 40px;
   height: 40px;
   display: grid;
@@ -37,7 +78,7 @@
   color: var(--md-sys-color-primary);
 }
 
-.error-state.state-message > md-icon {
+.error-state.state-message>md-icon {
   background: color-mix(in srgb, var(--md-sys-color-on-error-container) 12%, transparent);
   color: var(--md-sys-color-on-error-container);
 }
@@ -125,7 +166,7 @@
   font-size: 24px;
 }
 
-.nav-item > span:last-child {
+.nav-item>span:last-child {
   max-width: 100%;
   overflow: hidden;
   font-size: 0.75rem;
@@ -195,7 +236,7 @@
   flex: 1 1 auto;
 }
 
-.topbar-main > div:last-child {
+.topbar-main>div:last-child {
   min-width: 0;
 }
 
@@ -294,7 +335,7 @@
   background: linear-gradient(145deg, var(--md-sys-color-primary-container), var(--md-sys-color-secondary-container));
   color: var(--md-sys-color-primary);
   font-size: 0.95rem;
-  font-weight: 800;
+  font-weight: 400;
 }
 
 .account-avatar img,
@@ -322,11 +363,11 @@
 }
 
 .page-root {
-  padding: var(--page-gutter);
+  padding: 0;
   padding-bottom: calc(var(--page-gutter) + 78px);
 }
 
-.page-root > * {
+.page-root>* {
   animation: page-enter var(--motion-enter) both;
 }
 
@@ -379,7 +420,7 @@
   box-shadow: var(--md-sys-elevation-level1);
 }
 
-.panel + .panel {
+.panel+.panel {
   margin-top: 18px;
 }
 
@@ -521,47 +562,47 @@
   gap: 10px;
 }
 
-.module-stack > *,
-.lecture-list > *,
-.question-stack > *,
-.review-list > *,
-.stack-list > *,
-.metric-grid > *,
-.item-grid > *,
-.manager-grid > * {
+.module-stack>*,
+.lecture-list>*,
+.question-stack>*,
+.review-list>*,
+.stack-list>*,
+.metric-grid>*,
+.item-grid>*,
+.manager-grid>* {
   animation: item-enter var(--motion-enter) both;
 }
 
-.module-stack > :nth-child(2),
-.lecture-list > :nth-child(2),
-.question-stack > :nth-child(2),
-.review-list > :nth-child(2),
-.stack-list > :nth-child(2),
-.metric-grid > :nth-child(2),
-.item-grid > :nth-child(2),
-.manager-grid > :nth-child(2) {
+.module-stack> :nth-child(2),
+.lecture-list> :nth-child(2),
+.question-stack> :nth-child(2),
+.review-list> :nth-child(2),
+.stack-list> :nth-child(2),
+.metric-grid> :nth-child(2),
+.item-grid> :nth-child(2),
+.manager-grid> :nth-child(2) {
   animation-delay: 45ms;
 }
 
-.module-stack > :nth-child(3),
-.lecture-list > :nth-child(3),
-.question-stack > :nth-child(3),
-.review-list > :nth-child(3),
-.stack-list > :nth-child(3),
-.metric-grid > :nth-child(3),
-.item-grid > :nth-child(3),
-.manager-grid > :nth-child(3) {
+.module-stack> :nth-child(3),
+.lecture-list> :nth-child(3),
+.question-stack> :nth-child(3),
+.review-list> :nth-child(3),
+.stack-list> :nth-child(3),
+.metric-grid> :nth-child(3),
+.item-grid> :nth-child(3),
+.manager-grid> :nth-child(3) {
   animation-delay: 90ms;
 }
 
-.module-stack > :nth-child(n + 4),
-.lecture-list > :nth-child(n + 4),
-.question-stack > :nth-child(n + 4),
-.review-list > :nth-child(n + 4),
-.stack-list > :nth-child(n + 4),
-.metric-grid > :nth-child(n + 4),
-.item-grid > :nth-child(n + 4),
-.manager-grid > :nth-child(n + 4) {
+.module-stack> :nth-child(n + 4),
+.lecture-list> :nth-child(n + 4),
+.question-stack> :nth-child(n + 4),
+.review-list> :nth-child(n + 4),
+.stack-list> :nth-child(n + 4),
+.metric-grid> :nth-child(n + 4),
+.item-grid> :nth-child(n + 4),
+.manager-grid> :nth-child(n + 4) {
   animation-delay: 130ms;
 }
 
@@ -644,29 +685,29 @@
   color: var(--md-sys-color-primary);
 }
 
-.lecture-group-title > md-icon:last-child {
+.lecture-group-title>md-icon:last-child {
   transition: transform var(--motion-fast);
 }
 
-.lecture-group-block[open] .lecture-group-title > md-icon:last-child {
+.lecture-group-block[open] .lecture-group-title>md-icon:last-child {
   transform: rotate(180deg);
 }
 
-.lecture-group-block.closing .lecture-group-title > md-icon:last-child,
-.lecture-row.closing summary > md-icon:last-child {
+.lecture-group-block.closing .lecture-group-title>md-icon:last-child,
+.lecture-row.closing summary>md-icon:last-child {
   transform: rotate(0deg);
 }
 
-.lecture-group-block > .lecture-list {
+.lecture-group-block>.lecture-list {
   padding: 0 14px 14px;
 }
 
-.lecture-group-block.opening > .lecture-list,
+.lecture-group-block.opening>.lecture-list,
 .lecture-row.opening .lecture-body {
   animation: details-enter var(--motion-duration-medium1) var(--motion-easing-emphasized-decelerate) both;
 }
 
-.lecture-group-block.closing > .lecture-list,
+.lecture-group-block.closing>.lecture-list,
 .lecture-row.closing .lecture-body {
   animation: details-exit var(--motion-duration-short3) var(--motion-easing-emphasized-accelerate) both;
 }
@@ -692,11 +733,11 @@
   gap: 10px;
 }
 
-.lecture-row summary > md-icon:last-child {
+.lecture-row summary>md-icon:last-child {
   transition: transform var(--motion-fast);
 }
 
-.lecture-row[open] summary > md-icon:last-child {
+.lecture-row[open] summary>md-icon:last-child {
   transform: rotate(180deg);
 }
 
@@ -752,31 +793,59 @@
   min-width: 0;
 }
 
+.lecture-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.nh-lecture-slide-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 16px;
+  border: 1px solid #D8E2C4;
+  border-radius: 9999px;
+  background: #ffffff;
+  color: #455120;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 1px 4px rgba(69, 81, 32, 0.04);
+  transition: all 0.15s ease;
+}
+
+.nh-lecture-slide-btn:hover {
+  border-color: #455120;
+  background: #ffffff;
+  color: #455120;
+  box-shadow: 0 3px 12px rgba(69, 81, 32, 0.1);
+}
+
 .assignment-chip {
-  min-height: 40px;
+  min-height: 38px;
   max-width: min(560px, 58vw);
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 0 12px;
-  border: 1px solid var(--md-sys-color-outline);
-  border-radius: 999px;
-  background: transparent;
-  color: var(--md-sys-color-primary);
-  font-size: 0.875rem;
-  font-weight: 500;
+  padding: 0 16px;
+  border: 1px solid #D8E2C4;
+  border-radius: 9999px;
+  background: #ffffff;
+  color: #101828;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
   text-decoration: none;
-  transition:
-    background-color var(--motion-fast),
-    border-color var(--motion-fast),
-    box-shadow var(--motion-fast),
-    transform var(--motion-fast);
+  box-shadow: 0 1px 4px rgba(69, 81, 32, 0.04);
+  transition: all 0.15s ease;
 }
 
-.assignment-chip > span {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.assignment-chip md-icon {
+  color: #455120;
 }
 
 .assignment-chip-progress {
@@ -1289,7 +1358,7 @@ textarea.field {
   gap: 12px;
 }
 
-.app-info-list > div {
+.app-info-list>div {
   display: grid;
   gap: 4px;
   padding: 14px 16px;
@@ -1402,7 +1471,7 @@ textarea.field {
   background: var(--md-sys-color-surface-container-highest);
 }
 
-.score-progress > span {
+.score-progress>span {
   display: block;
   height: 100%;
   border-radius: inherit;
@@ -1912,35 +1981,44 @@ tbody tr:hover {
 
 .toast {
   position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: 20;
-  max-width: min(420px, calc(100vw - 40px));
-  transform: translateY(18px) scale(0.98);
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-24px) scale(0.95);
+  z-index: 99999;
+  max-width: min(560px, calc(100vw - 32px));
   opacity: 0;
   pointer-events: none;
-  border-radius: 8px;
-  padding: 14px 16px;
-  background: var(--md-sys-color-inverse-surface);
-  color: var(--md-sys-color-surface-container-lowest);
-  box-shadow: 0 12px 32px color-mix(in srgb, var(--md-sys-color-inverse-surface) 22%, transparent);
-  transition:
-    opacity var(--motion-fast),
-    transform var(--motion-fast),
-    background-color var(--motion-fast);
+  border-radius: 9999px;
+  padding: 10px 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(69, 81, 32, 0.08);
+  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  background: #ffffff;
+  border: 1px solid #D8E2C4;
+  color: #101828;
 }
 
 .toast.show {
-  transform: translateY(0) scale(1);
+  transform: translateX(-50%) translateY(0) scale(1);
   opacity: 1;
+  pointer-events: auto;
 }
 
 .toast[data-tone='success'] {
-  background: var(--md-sys-color-tertiary);
+  background: #F0F4E8;
+  border: 1px solid #D8E2CA;
+  color: #455120;
 }
 
 .toast[data-tone='error'] {
-  background: var(--md-sys-color-error);
+  background: #FEF3F2;
+  border: 1px solid #FECDCA;
+  color: #B42318;
 }
 
 /* CodeMirror overrides */
@@ -1957,24 +2035,1442 @@ tbody tr:hover {
   color: var(--md-sys-color-on-surface);
   padding: 8px 0;
 }
+
 .CodeMirror-gutters {
   background: var(--md-sys-color-surface-container-lowest);
   border-right: 1px solid var(--md-sys-color-outline-variant);
   padding-right: 8px;
 }
+
 .CodeMirror-linenumber {
   color: var(--md-sys-color-outline);
 }
+
 .CodeMirror-cursor {
   border-left: 2px solid var(--md-sys-color-primary) !important;
 }
-:root[data-theme='dark'] .cm-s-default .cm-builtin { color: #79b8ff; }
-:root[data-theme='dark'] .cm-s-default .cm-keyword { color: #f97583; }
-:root[data-theme='dark'] .cm-s-default .cm-string { color: #85e89d; }
-:root[data-theme='dark'] .cm-s-default .cm-atom { color: #b392f0; }
 
-:root[data-theme='light'] .cm-s-default .cm-builtin { color: #005cc5; }
-:root[data-theme='light'] .cm-s-default .cm-keyword { color: #d73a49; }
-:root[data-theme='light'] .cm-s-default .cm-string { color: #22863a; }
-:root[data-theme='light'] .cm-s-default .cm-atom { color: #6f42c1; }
+:root[data-theme='dark'] .cm-s-default .cm-builtin {
+  color: #79b8ff;
+}
 
+:root[data-theme='dark'] .cm-s-default .cm-keyword {
+  color: #f97583;
+}
+
+:root[data-theme='dark'] .cm-s-default .cm-string {
+  color: #85e89d;
+}
+
+:root[data-theme='dark'] .cm-s-default .cm-atom {
+  color: #b392f0;
+}
+
+:root[data-theme='light'] .cm-s-default .cm-builtin {
+  color: #005cc5;
+}
+
+:root[data-theme='light'] .cm-s-default .cm-keyword {
+  color: #d73a49;
+}
+
+:root[data-theme='light'] .cm-s-default .cm-string {
+  color: #22863a;
+}
+
+:root[data-theme='light'] .cm-s-default .cm-atom {
+  color: #6f42c1;
+}
+
+/* ── NGỌC HUYỀN LB DESIGN SYSTEM STYLES ── */
+.nh-header,
+.nh-nav-tab,
+.nh-sidebar,
+.nh-course-card,
+.nh-analytics-panel {
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.nh-header {
+  height: 64px;
+  background: #EDF2E4;
+  border-bottom: 1px solid rgba(69, 81, 32, 0.08);
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: none;
+}
+
+.nh-header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nh-logo-box {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.nh-logo-title {
+  font-family: 'Beautique Display', 'Beautique Display Condensed', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #455120;
+  letter-spacing: 0.5px;
+}
+
+.nh-logo-sub {
+  font-size: 10px;
+  font-weight: 600;
+  color: #667085;
+  letter-spacing: 0.2px;
+  margin-top: 3px;
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.nh-search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #F4F6F0;
+  border-radius: 20px;
+  padding: 6px 14px;
+  width: 220px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.nh-search-box:focus-within {
+  background: #ffffff;
+  border-color: #455120;
+  box-shadow: 0 0 0 3px rgba(69, 81, 32, 0.15);
+}
+
+.nh-search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 13px;
+  width: 100%;
+  color: #333333;
+}
+
+.nh-nav-tabs {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nh-nav-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #475467;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.nh-nav-tab:hover {
+  color: #455120;
+  background: #f0f4e8;
+}
+
+.nh-nav-tab.active {
+  color: #455120;
+  font-weight: 700;
+}
+
+.nh-nav-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #455120;
+  border-radius: 3px 3px 0 0;
+}
+
+.nh-header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.nh-theme-toggle-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #E5EEF0;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease;
+}
+
+.nh-theme-toggle-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nh-icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  background: #F2F8F9;
+  color: #475467;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.nh-icon-btn:hover {
+  background: #E5F4F6;
+  color: #00A3B4;
+}
+
+.nh-badge-count {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background: #00A3B4;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 2px solid #ffffff;
+}
+
+.nh-user-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #455120;
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 16px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(69, 81, 32, 0.25);
+  flex-shrink: 0;
+  aspect-ratio: 1 / 1;
+}
+
+.nh-user-avatar:hover {
+  transform: scale(1.05);
+}
+
+/* Profile Dropdown Card */
+.nh-user-dropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 240px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  border: 1px solid #F0F4F6;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.2s ease;
+  z-index: 200;
+}
+
+.nh-user-dropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nh-dropdown-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #F0F4F6;
+}
+
+.nh-dropdown-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #455120;
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 18px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  aspect-ratio: 1 / 1;
+}
+
+.nh-dropdown-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.nh-dropdown-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: #101828;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nh-dropdown-email {
+  font-size: 12px;
+  color: #667085;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nh-dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.nh-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #344054;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.nh-dropdown-item:hover {
+  background: #F9FAFB;
+  color: #101828;
+}
+
+/* ── Main Body & Workspace Layout ── */
+.nh-body-container {
+  background: #EDF2E4;
+  min-height: calc(100vh - 64px);
+  padding: 24px max(var(--page-gutter), 24px);
+  display: flex;
+  gap: 24px;
+}
+
+/* Sidebar */
+.nh-sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 16px;
+  border: 1px solid #D8E2C4;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  height: fit-content;
+}
+
+.nh-sidebar-header-pill {
+  background: #F0F4E8;
+  border: 1px solid #D8E2C4;
+  border-radius: 9999px;
+  padding: 5px 16px 5px 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+}
+
+.nh-header-icon-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #455120;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.nh-header-pill-title {
+  font-family: 'Beautique Display', 'Beautique Display Condensed', serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #455120;
+}
+
+.nh-sidebar-divider {
+  border: none;
+  border-top: 1px solid #E5ECD9;
+  margin: 14px 0 10px 0;
+}
+
+.nh-sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nh-sidebar-item {
+  padding: 10px 18px;
+  border-radius: 9999px;
+  font-family: 'Beautique Display', 'Beautique Display Condensed', serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #475467;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  cursor: pointer;
+  display: block;
+}
+
+.nh-sidebar-item:hover {
+  background: #FAFBF8;
+  color: #455120;
+}
+
+.nh-sidebar-item.active {
+  background: #F0F4E8;
+  color: #455120;
+  font-weight: 700;
+}
+
+.nh-countdown-widget {
+  background: #455120 !important;
+  border-radius: 16px;
+  padding: 16px;
+  color: #ffffff;
+  margin-top: 16px;
+  box-shadow: 0 4px 14px rgba(69, 81, 32, 0.2);
+}
+
+/* Main Content Area */
+.nh-main-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.nh-course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* Course Card */
+.nh-course-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  border: 1px solid #EBF2F4;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+}
+
+.nh-course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(69, 81, 32, 0.18);
+}
+
+.nh-card-banner {
+  height: 155px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: #455120;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.nh-card-body {
+  padding: 12px 6px 4px 6px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.nh-card-title {
+  font-family: 'Beautique Display', 'Beautique Display Condensed', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.35;
+  margin: 0 0 10px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 40px;
+}
+
+.nh-card-dashed-line {
+  border: none;
+  border-top: 1px dashed #E2E8F0;
+  margin: 12px 0 8px 0;
+}
+
+.nh-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.nh-card-blue-price {
+  font-size: 14px;
+  font-weight: 700;
+  color: #455120;
+  margin-left: auto;
+  font-family: 'Beautique Display', 'Beautique Display Condensed', serif;
+  letter-spacing: -0.2px;
+}
+
+/* Floating Zalo Button */
+.nh-zalo-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #0084FF;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 16px rgba(0, 132, 255, 0.4);
+  cursor: pointer;
+  z-index: 999;
+  transition: transform 0.2s ease;
+  text-decoration: none;
+}
+
+.nh-zalo-btn:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 900px) {
+  .nh-body-container {
+    flex-direction: column;
+  }
+
+  .nh-sidebar {
+    width: 100%;
+  }
+
+  .nh-nav-tabs {
+    display: none;
+  }
+}
+
+/* ── Profile & Account Settings (Ngọc Huyền LB Style) ── */
+.nh-profile-user-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.nh-profile-avatar-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #455120;
+  color: #ffffff;
+  font-size: 34px;
+  font-weight: 400;
+  display: grid;
+  place-items: center;
+  margin-bottom: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(69, 81, 32, 0.25);
+  flex-shrink: 0;
+  aspect-ratio: 1 / 1;
+}
+
+.nh-profile-avatar-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nh-profile-name {
+  font-size: 16px;
+  font-weight: 800;
+  color: #1D2939;
+  margin-bottom: 2px;
+}
+
+.nh-profile-email {
+  font-size: 12px;
+  color: #667085;
+  margin-bottom: 12px;
+}
+
+.nh-btn-edit-info {
+  background: #455120;
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(69, 81, 32, 0.2);
+}
+
+.nh-btn-edit-info:hover {
+  background: #353F18;
+  transform: translateY(-1px);
+}
+
+.nh-analytics-panel {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 24px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  margin-bottom: 20px;
+}
+
+.nh-panel-title-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Beautique Display', 'Beautique Display Condensed', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #455120;
+  margin-bottom: 16px;
+}
+
+.nh-activity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.nh-activity-card {
+  background: #F7F9F4;
+  border: 1px solid #E5ECD9;
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all 0.15s ease;
+}
+
+.nh-activity-card:hover {
+  background: #ffffff;
+  border-color: #455120;
+  box-shadow: 0 4px 12px rgba(69, 81, 32, 0.08);
+}
+
+.nh-activity-text {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #101828;
+  line-height: 1.45;
+}
+
+.nh-activity-time {
+  font-size: 11px;
+  color: #98A2B3;
+  align-self: flex-end;
+}
+
+.nh-table-styled {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 13px;
+}
+
+.nh-table-styled th {
+  background: #F8F9FA;
+  padding: 10px 14px;
+  color: #475467;
+  font-family: 'Beautique Display', 'Beautique Display Condensed', serif;
+  font-weight: 700;
+  font-size: 13px;
+  text-align: left;
+  border-radius: 8px;
+}
+
+.nh-table-styled td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #F0F4F6;
+  color: #1D2939;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.nh-table-styled tr:last-child td {
+  border-bottom: none;
+}
+
+/* Modal dialog for editing profile */
+.nh-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: modal-fade 0.2s ease;
+}
+
+.nh-modal-card {
+  background: #ffffff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 480px;
+  padding: 24px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── UPGRADED COURSE DETAIL PAGE (Ngọc Huyền LB Inspired) ── */
+.nh-course-detail-container {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.nh-course-hero-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 24px 28px;
+  border: 1px solid #D8E2C4;
+  box-shadow: 0 4px 16px rgba(69, 81, 32, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.nh-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #667085;
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.nh-breadcrumb a {
+  color: #455120;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.nh-course-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.nh-course-main-title {
+  font-family: 'Beautique Display', 'Beautique Display Condensed', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #455120;
+  margin: 0;
+}
+
+.nh-course-nav-tabs {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 2px solid #EDF2E4;
+  padding-bottom: 8px;
+  margin-top: 4px;
+}
+
+.nh-course-tab {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #667085;
+  cursor: pointer;
+  padding-bottom: 8px;
+  position: relative;
+  transition: all 0.15s ease;
+}
+
+.nh-course-tab.active {
+  color: #455120;
+  font-weight: 700;
+}
+
+.nh-course-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #455120;
+  border-radius: 3px 3px 0 0;
+}
+
+/* Resume Learning Highlights Card */
+.nh-resume-card {
+  background: #F7F9F4;
+  border: 1px solid #D8E2C4;
+  border-radius: 14px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.nh-resume-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.nh-resume-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #455120;
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.nh-resume-title {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #101828;
+}
+
+.nh-resume-sub {
+  font-size: 12px;
+  color: #667085;
+  margin-top: 2px;
+}
+
+/* Course Search & Filter Bar */
+.nh-course-toolbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.nh-course-search-input {
+  width: 100%;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid #D8E2C4;
+  border-radius: 9999px;
+  padding: 10px 18px 10px 42px;
+  font-size: 13px;
+  outline: none;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  color: #101828;
+  transition: all 0.15s ease;
+}
+
+.nh-course-search-input:focus {
+  border-color: #455120;
+  box-shadow: 0 0 0 3px rgba(69, 81, 32, 0.12);
+}
+
+/* Lesson Step Rows */
+.nh-lesson-node {
+  background: #ffffff;
+  border: 1px solid #E5ECD9;
+  border-radius: 14px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 10px;
+  transition: all 0.15s ease;
+}
+
+.nh-lesson-node:hover {
+  border-color: #455120;
+  box-shadow: 0 4px 14px rgba(69, 81, 32, 0.06);
+}
+
+.nh-lesson-step-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #F0F4E8;
+  color: #455120;
+  font-weight: 700;
+  font-size: 12px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #D8E2C4;
+  flex-shrink: 0;
+}
+
+.nh-lesson-step-badge.completed {
+  background: #455120;
+  color: #ffffff;
+}
+
+/* ── NUMBERED TIMELINE CHAPTER ACCORDIONS (Ngọc Huyền LB Benchmark) ── */
+.nh-chapter-accordion {
+  border: 1px solid #D8E2C4;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(69, 81, 32, 0.04);
+  transition: all 0.2s ease;
+}
+
+.nh-chapter-accordion[open] {
+  border-color: #D8E2C4;
+  box-shadow: 0 4px 16px rgba(69, 81, 32, 0.06);
+}
+
+.nh-chapter-summary {
+  background: #F4F8EE;
+  padding: 14px 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  user-select: none;
+  list-style: none;
+  border-bottom: 1px solid transparent;
+}
+
+.nh-chapter-accordion[open]>.nh-chapter-summary {
+  border-bottom: 1px solid #D8E2C4;
+  background: #F4F8EE;
+}
+
+.nh-chapter-summary::-webkit-details-marker {
+  display: none;
+}
+
+.nh-chapter-toggle-icon {
+  color: #455120;
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.nh-chapter-accordion[open] .nh-chapter-toggle-icon {
+  transform: rotate(90deg);
+}
+
+.nh-chapter-title {
+  font-family: 'Beautique Display', 'Beautique Display Condensed', serif;
+  font-size: 15px;
+  font-weight: 800;
+  color: #455120;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+.nh-chapter-subtext {
+  font-size: 12px;
+  color: #667085;
+  margin-top: 2px;
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.nh-chapter-progress-pill {
+  background: #F0F4E8;
+  color: #455120;
+  border: 1px solid #D8E2C4;
+  font-family: 'Beautique Display', 'Beautique Display Condensed', serif;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+/* Timeline Step Nodes */
+.nh-timeline-container {
+  position: relative;
+  padding: 16px 20px 16px 48px;
+}
+
+.nh-timeline-line {
+  position: absolute;
+  left: 28px;
+  top: 32px;
+  bottom: 32px;
+  width: 2px;
+  background: #D8E2C4;
+  z-index: 1;
+}
+
+.nh-timeline-item {
+  position: relative;
+  margin-bottom: 0;
+  border-bottom: 1px solid #E5ECD9;
+}
+
+.nh-timeline-item:last-child {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.nh-timeline-badge {
+  position: absolute;
+  left: -34px;
+  top: 10px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #455120;
+  color: #ffffff;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  display: grid;
+  place-items: center;
+  z-index: 2;
+  box-shadow: 0 2px 6px rgba(69, 81, 32, 0.2);
+}
+
+.nh-timeline-badge.completed {
+  background: #353F18;
+}
+
+.nh-timeline-content {
+  background: #ffffff;
+  border: none;
+  border-radius: 0;
+  overflow: hidden;
+  transition: all 0.15s ease;
+}
+
+.nh-timeline-content:hover {
+  border-color: #455120;
+}
+
+.nh-timeline-header {
+  padding: 12px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  list-style: none;
+}
+
+.nh-timeline-header::-webkit-details-marker {
+  display: none;
+}
+
+.nh-timeline-title {
+  font-family: 'Beautique Display', 'Beautique Display Condensed', serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #101828;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nh-timeline-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.nh-timeline-subinfo {
+  font-size: 12px;
+  color: #667085;
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.nh-badge-taught {
+  font-size: 11px;
+  font-weight: 700;
+  color: #455120;
+  background: transparent;
+  border: 1.5px solid #455120;
+  padding: 2px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.nh-badge-untaught {
+  font-size: 11px;
+  font-weight: 600;
+  color: #667085;
+  background: #F2F4F7;
+  padding: 2px 10px;
+  border-radius: 9999px;
+}
+
+.nh-timeline-body {
+  padding: 14px 18px;
+  border-top: 1px dashed #D8E2C4;
+  background: #F8FAF4;
+}
+
+
+
+/* Lecture list container: no extra padding, pure white seamless list */
+.nh-ref-lecture-list {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  padding-bottom: 8px;
+}
+
+/* Empty state inside chapter accordion — matches green palette */
+.nh-ref-lecture-list .empty-state {
+  margin: 12px 16px;
+  background: #F4F8EE;
+  border: 1.5px dashed #C5D6A0;
+  border-radius: 10px;
+  color: #6B7E3F;
+  font-size: 13px;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-style: italic;
+  text-align: center;
+  padding: 14px 18px;
+}
+
+/* Each row: flex with badge col on left, content on right */
+.nh-ref-row.lecture-row {
+  display: flex;
+  align-items: stretch;
+  border: none;
+  border-radius: 0;
+  background: #ffffff;
+  box-shadow: none;
+}
+
+/* Badge column: vertical line + number circle */
+.nh-ref-badge-col {
+  position: relative;
+  width: 56px;
+  min-width: 56px;
+  margin-left: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 0;
+}
+
+.nh-ref-badge-col::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #455120;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.nh-ref-row:last-child .nh-ref-badge-col::before {
+  bottom: auto;
+  height: 50%;
+}
+
+.nh-ref-num-badge {
+  position: relative;
+  z-index: 2;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #455120;
+  color: #ffffff;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 2px 6px rgba(69, 81, 32, 0.2);
+  flex-shrink: 0;
+}
+
+.nh-ref-num-badge.completed {
+  background: #353F18;
+}
+
+/* Row body: takes remaining width, has border-bottom to separate content */
+.nh-ref-row-body {
+  flex: 1;
+  min-width: 0;
+  border-bottom: 1px solid #E5ECD9;
+}
+
+.nh-ref-row.lecture-row:last-child .nh-ref-row-body {
+  border-bottom: none;
+}
+
+/* details with display:contents — pass-through container */
+.nh-ref-row-body details[style="display: contents;"] {
+  display: contents;
+}
+
+/* The clickable summary row */
+.nh-ref-summary {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  outline: none !important;
+  list-style: none !important;
+  padding-inline-start: 0 !important;
+  margin-inline-start: 0 !important;
+  cursor: pointer;
+}
+
+.nh-ref-summary::-webkit-details-marker,
+.nh-ref-summary::marker {
+  display: none !important;
+}
+
+/* The row inner layout */
+.nh-ref-row-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px 10px 0;
+  transition: color 0.12s ease;
+  cursor: pointer;
+}
+
+.nh-ref-summary:hover .nh-ref-row-main,
+.nh-ref-row-main:hover {
+  background: rgba(69, 81, 32, 0.03);
+}
+
+.nh-ref-title {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #475467;
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+  transition: color 0.12s ease;
+}
+
+.nh-ref-summary:hover .nh-ref-title {
+  color: #455120;
+}
+
+.nh-ref-title.is-taught {
+  color: #667085;
+}
+
+/* Two-line title stack: group label bold on top, lecture title lighter below */
+.nh-ref-title-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+  min-width: 0;
+}
+
+.nh-ref-module-label {
+  font-family: 'Beautique Display', 'Beautique Display Condensed', serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #101828;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.12s ease;
+}
+
+.nh-ref-submeta {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 12px;
+  color: #667085;
+  margin-top: 2px;
+}
+
+.nh-ref-play-icon {
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  font-size: 16px;
+  color: #667085;
+  background: #ffffff;
+  border-radius: 50%;
+}
+
+.nh-ref-summary:hover .nh-ref-module-label {
+  color: #455120;
+}
+
+.nh-ref-badges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+/* ── BÀI HỌC GẦN ĐÂY ── */
+.nh-recent-activity-section {
+  padding-top: 16px;
+  border-top: 1px solid #E5ECD9;
+  margin-top: 4px;
+}
+
+.nh-recent-activity-label {
+  font-family: 'Beautique Display', 'Beautique Display Condensed', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #455120;
+  margin: 0 0 10px 0;
+}
+
+.nh-recent-activity-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #ffffff;
+  border: 1px solid #D8E2C4;
+  border-radius: 14px;
+  padding: 14px 18px;
+  text-decoration: none;
+  box-shadow: 0 2px 10px rgba(69, 81, 32, 0.04);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.nh-recent-activity-card:hover {
+  border-color: #455120;
+  box-shadow: 0 4px 16px rgba(69, 81, 32, 0.1);
+}
+
+.nh-recent-num-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #455120;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.nh-recent-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nh-recent-lecture-title {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #344054;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nh-recent-assignment-name {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #101828;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nh-recent-meta {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 12px;
+  color: #667085;
+  margin-top: 1px;
+}
