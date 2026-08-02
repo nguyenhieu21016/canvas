@@ -232,7 +232,7 @@ function renderShell() {
         <div class="nh-header-right">
           ${isManager() ? `
             <a class="nh-admin-badge-btn ${['manage', 'content', 'assignments', 'students', 'progress', 'online', 'salary'].includes(current) ? 'active' : ''}" href="#/manage">
-              <md-icon style="font-size: 17px;">shield</md-icon>
+              <md-icon style="font-size: 16px;">tune</md-icon>
               <span>Quản lý</span>
             </a>
           ` : ''}
