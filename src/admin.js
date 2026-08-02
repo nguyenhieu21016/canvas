@@ -2072,7 +2072,6 @@ export async function mountSalaryManager() {
     const monthLabel = `${month + 1}/${year}`;
 
     function renderStudentTracker(s) {
-      // Build maps: date → 'scheduled' | 'taught'
       const sessionMap = {};
       for (const x of (s.salary_sessions ?? [])) {
         sessionMap[x.session_date] = x.taught ? 'taught' : 'scheduled';
@@ -2090,126 +2089,118 @@ export async function mountSalaryManager() {
       }
 
       return `
-        <div class="panel" data-schedule="${s.id}" style="
-          border-radius: var(--md-sys-shape-corner-large, 16px);
-          background: var(--md-sys-color-surface-container-low);
-          border: 1px solid var(--md-sys-color-outline-variant);
-          padding: 24px; display:flex; flex-direction:column; gap:16px;
-          box-sizing: border-box; margin: 0;
-        ">
-          <!-- Top Row: Name & Delete -->
+        <div class="panel" data-schedule="${s.id}" style="padding: 20px; display:flex; flex-direction:column; gap:14px; box-sizing:border-box; margin:0;">
+          <!-- Name row -->
           <div style="display:flex; align-items:center; justify-content:space-between;">
-            <h3 style="margin:0; font-size:1.15rem; font-weight:700; color:var(--md-sys-color-on-surface);">${escapeHtml(s.profiles?.full_name ?? 'Học sinh')}</h3>
-            <button type="button" data-delete-schedule="${s.id}" style="
-              background:none; border:none; border-radius:50%;
-              color:var(--md-sys-color-on-surface-variant); cursor:pointer; padding:6px;
-              display:flex; align-items:center; justify-content:center;
-              transition: background 0.2s, color 0.2s;
-            " onmouseover="this.style.background='var(--md-sys-color-error-container)'; this.style.color='var(--md-sys-color-error)';" onmouseout="this.style.background='none'; this.style.color='var(--md-sys-color-on-surface-variant)';">
-              <md-icon style="font-size:1.2rem;">delete</md-icon>
+            <h3 style="margin:0; font-size:15px; font-weight:700; color:var(--md-sys-color-on-surface);">${escapeHtml(s.profiles?.full_name ?? 'Học sinh')}</h3>
+            <button type="button" data-delete-schedule="${s.id}" title="Xóa lịch tháng này"
+              style="background:none; border:1px solid var(--md-sys-color-outline-variant); border-radius:6px; color:var(--md-sys-color-on-surface-variant); cursor:pointer; padding:4px 8px; font-size:12px; transition: all 0.15s;"
+              onmouseover="this.style.borderColor='var(--md-sys-color-error)'; this.style.color='var(--md-sys-color-error)';"
+              onmouseout="this.style.borderColor='var(--md-sys-color-outline-variant)'; this.style.color='var(--md-sys-color-on-surface-variant)';">
+              Xóa
             </button>
           </div>
 
-          <!-- Stats Row -->
-          <div style="display:flex; align-items:center; gap:16px; font-size:0.88rem; color:var(--md-sys-color-on-surface-variant); background:var(--md-sys-color-surface-container-lowest); padding:10px 14px; border-radius:8px;">
-            <span>Lịch: <strong>${scheduledCount + taughtCount}</strong></span>
-            <span style="width:1px; height:12px; background:var(--md-sys-color-outline-variant);"></span>
-            <span>Đã dạy: <strong><span data-count="${s.id}">${taughtCount}</span></strong></span>
-            <span style="width:1px; height:12px; background:var(--md-sys-color-outline-variant);"></span>
-            <span>Lương: <strong style="color:var(--md-sys-color-primary);" data-total="${s.id}">${fmt.format(total)}đ</strong></span>
-          </div>
-
-          <!-- Rate Row -->
-          <div style="display:flex; align-items:center; justify-content:space-between; font-size:0.9rem;">
-            <label style="color:var(--md-sys-color-on-surface-variant); font-weight:500;">Đơn giá / buổi</label>
-            <div style="display:flex; align-items:center; gap:8px;">
-              <input type="number" class="field rate-input" data-rate-for="${s.id}" value="${rate}" min="0" step="10000"
-                style="width:120px; height:36px; border-radius:8px; border:1px solid var(--md-sys-color-outline); padding:0 12px; font-size:0.95rem; text-align:right; font-weight:600; background:var(--md-sys-color-surface); color:var(--md-sys-color-on-surface);">
-              <span style="color:var(--md-sys-color-on-surface-variant);">đ</span>
+          <!-- Stats row -->
+          <div style="display:flex; align-items:center; gap:0; background:var(--md-sys-color-surface-container-lowest); border:1px solid var(--md-sys-color-outline-variant); border-radius:8px; overflow:hidden; font-size:13px;">
+            <div style="flex:1; padding:8px 12px; border-right:1px solid var(--md-sys-color-outline-variant);">
+              <div style="color:var(--md-sys-color-on-surface-variant); font-size:11px; margin-bottom:1px;">Lịch</div>
+              <strong style="font-size:15px;">${scheduledCount + taughtCount}</strong>
+            </div>
+            <div style="flex:1; padding:8px 12px; border-right:1px solid var(--md-sys-color-outline-variant);">
+              <div style="color:var(--md-sys-color-on-surface-variant); font-size:11px; margin-bottom:1px;">Đã dạy</div>
+              <strong style="font-size:15px;" data-count="${s.id}">${taughtCount}</strong>
+            </div>
+            <div style="flex:1; padding:8px 12px;">
+              <div style="color:var(--md-sys-color-on-surface-variant); font-size:11px; margin-bottom:1px;">Lương</div>
+              <strong style="font-size:15px; color:var(--md-sys-color-primary);" data-total="${s.id}">${fmt.format(total)}đ</strong>
             </div>
           </div>
 
-          <hr style="border:none; border-top:1px dashed var(--md-sys-color-outline-variant); margin:4px 0;">
-
-          <!-- Legend -->
-          <div style="display:flex; justify-content:space-between; gap:10px; font-size:0.75rem; color:var(--md-sys-color-on-surface-variant); padding:0 8px;">
-            <span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:12px;border-radius:3px;background:var(--md-sys-color-surface-container);border:1px solid var(--md-sys-color-outline-variant);display:inline-block;"></span> Trống</span>
-            <span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:12px;border-radius:3px;background:transparent;border:2px solid var(--md-sys-color-primary);display:inline-block;"></span> Có lịch</span>
-            <span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:12px;border-radius:3px;background:var(--md-sys-color-primary);display:inline-block;"></span> Đã dạy</span>
+          <!-- Rate row -->
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
+            <label style="font-size:12px; font-weight:600; color:var(--md-sys-color-on-surface-variant);">Đơn giá / buổi</label>
+            <div style="display:flex; align-items:center; gap:6px;">
+              <input type="number" class="field rate-input" data-rate-for="${s.id}" value="${rate}" min="0" step="10000"
+                style="width:110px; height:34px; border-radius:6px; padding:0 10px; font-size:13px; text-align:right; font-weight:600;">
+              <span style="font-size:13px; color:var(--md-sys-color-on-surface-variant);">đ</span>
+            </div>
           </div>
 
-          <!-- Calendar grid -->
-          <div style="display:grid; grid-template-columns:repeat(7,1fr); gap:4px; text-align:center; margin-top:auto;">
-            ${DAY_SHORT.map((d, i) => `<div style="font-size:0.68rem; font-weight:700; color:${i === 5 || i === 6 ? 'var(--md-sys-color-error)' : 'var(--md-sys-color-on-surface-variant)'}; padding:3px 0;">${d}</div>`).join('')}
+          <hr style="border:none; border-top:1px solid var(--md-sys-color-outline-variant); margin:0;">
+
+          <!-- Legend -->
+          <div style="display:flex; gap:14px; font-size:11px; color:var(--md-sys-color-on-surface-variant);">
+            <span style="display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;border-radius:2px;background:var(--md-sys-color-surface-container);border:1px solid var(--md-sys-color-outline-variant);display:inline-block;"></span>Trống</span>
+            <span style="display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;border-radius:2px;background:transparent;border:2px solid var(--md-sys-color-primary);display:inline-block;"></span>Có lịch</span>
+            <span style="display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;border-radius:2px;background:var(--md-sys-color-primary);display:inline-block;"></span>Đã dạy</span>
+          </div>
+
+          <!-- Calendar -->
+          <div style="display:grid; grid-template-columns:repeat(7,1fr); gap:3px; text-align:center;">
+            ${DAY_SHORT.map((d, i) => `<div style="font-size:10px; font-weight:700; color:${i >= 5 ? 'var(--md-sys-color-error)' : 'var(--md-sys-color-on-surface-variant)'}; padding:3px 0;">${d}</div>`).join('')}
             ${Array(firstDow).fill('<div></div>').join('')}
             ${days.map((d) => {
-        const iso = d.toISOString().slice(0, 10);
-        const cellState = sessionMap[iso] ?? 'none';
-        const dow = d.getDay();
-        const isWeekend = dow === 0 || dow === 6;
-        return `<button
-                type="button"
-                class="day-cell"
-                data-toggle="${s.id}"
-                data-date="${iso}"
-                data-state="${cellState}"
-                style="
-                  padding:0; border-radius:6px; cursor:pointer; font-size:0.82rem; font-weight:600;
-                  aspect-ratio:1; display:flex; align-items:center; justify-content:center;
-                  ${cellStyle(cellState, isWeekend)}
-                  transition: all 0.12s;
-                "
+              const iso = d.toISOString().slice(0, 10);
+              const cellState = sessionMap[iso] ?? 'none';
+              const dow = d.getDay();
+              const isWeekend = dow === 0 || dow === 6;
+              return `<button type="button" class="day-cell" data-toggle="${s.id}" data-date="${iso}" data-state="${cellState}"
+                style="padding:0; border-radius:5px; cursor:pointer; font-size:12px; font-weight:600; aspect-ratio:1; display:flex; align-items:center; justify-content:center; ${cellStyle(cellState, isWeekend)} transition: all 0.1s;"
               >${d.getDate()}</button>`;
-      }).join('')}
+            }).join('')}
           </div>
         </div>
       `;
     }
 
-
     root.innerHTML = `
       <style>
-        .day-cell:hover { transform: scale(1.12); }
-        .day-cell:active { transform: scale(0.95); }
+        .day-cell:hover { transform: scale(1.1); }
+        .day-cell:active { transform: scale(0.94); }
+        .salary-nav-btn { background: var(--md-sys-color-surface-container-lowest); border: 1px solid var(--md-sys-color-outline-variant); border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 18px; line-height: 1; color: var(--md-sys-color-on-surface); transition: background 0.15s; }
+        .salary-nav-btn:hover { background: var(--md-sys-color-surface-container); }
       </style>
-      <section style="max-width:860px; margin:0 auto; padding:var(--page-gutter,24px); display:flex; flex-direction:column; gap:20px;">
+      <section style="max-width:900px; margin:0 auto; padding:var(--page-gutter,24px); display:flex; flex-direction:column; gap:20px;">
 
         <!-- Top bar -->
         <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
-          <div style="display:flex; align-items:center; gap:6px;">
-            <button id="prev-month" style="background:none; border:none; cursor:pointer; padding:6px; border-radius:50%; color:var(--md-sys-color-on-surface);">
-              <md-icon>chevron_left</md-icon>
-            </button>
-            <h2 style="margin:0; font-size:1.15rem; font-weight:700; min-width:160px; text-align:center;">${monthLabel}</h2>
-            <button id="next-month" style="background:none; border:none; cursor:pointer; padding:6px; border-radius:50%; color:var(--md-sys-color-on-surface);">
-              <md-icon>chevron_right</md-icon>
-            </button>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <button id="prev-month" class="salary-nav-btn" title="Tháng trước">‹</button>
+            <div style="min-width:90px; text-align:center;">
+              <div style="font-size:11px; font-weight:600; color:var(--md-sys-color-on-surface-variant); text-transform:uppercase; letter-spacing:.5px;">Tháng</div>
+              <div style="font-size:20px; font-weight:800; color:var(--md-sys-color-on-surface);">${monthLabel}</div>
+            </div>
+            <button id="next-month" class="salary-nav-btn" title="Tháng sau">›</button>
           </div>
-          <div style="background:var(--md-sys-color-primary-container); color:var(--md-sys-color-on-primary-container); border-radius:12px; padding:8px 18px; font-weight:700;">
-            Tổng: ${fmt.format(totalSalary)}đ
+          <div style="background:var(--md-sys-color-primary-container); color:var(--md-sys-color-on-primary-container); border-radius:10px; padding:10px 20px; font-weight:700; font-size:15px;">
+            Tổng: <span style="font-size:18px;">${fmt.format(totalSalary)}đ</span>
           </div>
         </div>
 
-        <!-- Student trackers -->
-        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(360px, 1fr)); gap:16px; align-items:stretch;" id="tracker-list">
+        <!-- Tracker grid -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(340px, 1fr)); gap:16px; align-items:start;" id="tracker-list">
           ${schedules.length
-        ? schedules.map(renderStudentTracker).join('')
-        : `<div style="color:var(--md-sys-color-on-surface-variant); text-align:center; padding:32px 0; font-size:0.95rem;">
+            ? schedules.map(renderStudentTracker).join('')
+            : `<div style="color:var(--md-sys-color-on-surface-variant); text-align:center; padding:40px 0; font-size:14px; grid-column:1/-1;">
                 Chưa có học sinh nào trong tháng này.<br>Thêm học sinh bên dưới để bắt đầu tick lịch.
               </div>`
-      }
+          }
         </div>
 
         <!-- Add student -->
         ${(unscheduled.length > 0 && schedules.length < 2) ? `
-          <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; padding-top:8px; border-top:1px solid var(--md-sys-color-outline-variant);">
-            <select id="add-student-sel" class="field" style="flex:1; min-width:180px; height:40px; border-radius:8px; border:1px solid var(--md-sys-color-outline); padding:0 12px;">
-              <option value="">-- Thêm học sinh vào tháng --</option>
-              ${unscheduled.map((s) => `<option value="${escapeHtml(s.id)}">${escapeHtml(s.full_name)}</option>`).join('')}
-            </select>
-            <md-filled-button id="add-student-btn" type="button">
-              <md-icon slot="icon">add</md-icon>Thêm
-            </md-filled-button>
+          <div class="panel" style="padding: 16px; display:flex; gap:10px; align-items:flex-end; flex-wrap:wrap; border-style:dashed;">
+            <div style="flex:1; min-width:180px;">
+              <label class="field-label" style="display:block; font-size:12px; font-weight:600; color:var(--md-sys-color-on-surface-variant); margin-bottom:5px;">Thêm học sinh vào tháng ${monthLabel}</label>
+              <select id="add-student-sel" class="field" style="height:38px; border-radius:6px; padding:0 10px;">
+                <option value="">-- Chọn học sinh --</option>
+                ${unscheduled.map((s) => `<option value="${escapeHtml(s.id)}">${escapeHtml(s.full_name)}</option>`).join('')}
+              </select>
+            </div>
+            <button id="add-student-btn" type="button" style="height:38px; padding:0 18px; background:var(--md-sys-color-primary); color:var(--md-sys-color-on-primary); border:0; border-radius:6px; font-size:13px; font-weight:600; cursor:pointer; white-space:nowrap; transition:opacity 0.15s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+              + Thêm
+            </button>
           </div>
         ` : ''}
 
@@ -2246,7 +2237,7 @@ export async function mountSalaryManager() {
       });
     });
 
-    // Wire rate input (update on blur/enter)
+    // Wire rate input
     document.querySelectorAll('.rate-input').forEach((input) => {
       const save = async () => {
         const scheduleId = input.dataset.rateFor;
@@ -2254,13 +2245,10 @@ export async function mountSalaryManager() {
         try {
           const { supabase: sb } = await import('./services/supabaseClient.js');
           await sb.from('salary_schedules').update({ rate_per_session: rate }).eq('id', scheduleId);
-          // Update summary inline without full rerender
           const fmtNew = new Intl.NumberFormat('vi-VN');
           const countEl = document.querySelector(`[data-count="${scheduleId}"]`);
           const totalEl = document.querySelector(`[data-total="${scheduleId}"]`);
-          const rateDisp = document.querySelector(`.rate-display[data-for="${scheduleId}"]`);
           const count = Number(countEl?.textContent ?? 0);
-          if (rateDisp) rateDisp.textContent = fmtNew.format(rate);
           if (totalEl) totalEl.textContent = `${fmtNew.format(count * rate)}đ`;
         } catch (err) { toast(err.message, 'error'); }
       };
@@ -2274,12 +2262,10 @@ export async function mountSalaryManager() {
         const scheduleId = btn.dataset.toggle;
         const sessionDate = btn.dataset.date;
         const prevState = btn.dataset.state ?? 'none';
-        // none → scheduled, scheduled → taught, taught → none
         const nextState = prevState === 'none' ? 'scheduled' : prevState === 'scheduled' ? 'taught' : 'none';
         const dow = new Date(sessionDate + 'T00:00:00').getDay();
         const isWeekend = dow === 0 || dow === 6;
 
-        // Optimistic update
         btn.dataset.state = nextState;
         if (nextState === 'taught') {
           btn.style.background = 'var(--md-sys-color-primary)';
@@ -2295,7 +2281,6 @@ export async function mountSalaryManager() {
           btn.style.border = '2px solid transparent';
         }
 
-        // Update taught count + total (only changes when going to/from taught)
         const card = btn.closest('[data-schedule]');
         const countEl = card?.querySelector(`[data-count="${scheduleId}"]`);
         const totalEl = card?.querySelector(`[data-total="${scheduleId}"]`);
@@ -2319,9 +2304,9 @@ export async function mountSalaryManager() {
     });
   }
 
-
   await rerender();
 }
+
 
 export function mountOnlineUsers() {
   const root = pageRoot();
