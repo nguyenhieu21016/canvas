@@ -1,8 +1,5 @@
 import { normalizeAssignmentEditor, normalizeEditorQuestion } from './lib/assignment.js';
 // admin.js - Lazy loaded module for admin routes
-import '@material/web/iconbutton/icon-button.js';
-import '@material/web/select/outlined-select.js';
-import '@material/web/select/select-option.js';
 import { supabase } from './services/supabaseClient.js';
 import { formatDateTime, formatScore, roleLabel } from "./lib/format.js";
 import { setButtonLoading, option, renderLatexText } from "./lib/html.js";
