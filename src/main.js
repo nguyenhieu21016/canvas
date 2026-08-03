@@ -51,7 +51,7 @@ import {
 } from './services/lmsApi.js';
 import { clearDraft, loadDraft, saveDraft } from './lib/draft.js';
 import { toDrivePreviewUrl } from './lib/drive.js';
-import { formatDateTime, formatScore, roleLabel } from './lib/format.js';
+import { formatDateTime, formatScore, roleLabel, formatAnswer } from './lib/format.js';
 import { escapeHtml, option, setButtonLoading, renderLatexText } from './lib/html.js';
 import { normalizeAssignmentEditor } from './lib/assignment.js';
 

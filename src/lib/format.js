@@ -18,4 +18,10 @@ export function roleLabel(role) {
     admin: 'Giáo viên',
   }[role] ?? role;
 }
-export function formatDuration(ms) { if (!ms || ms < 0) return '-'; const m = Math.floor(ms / 60000); const s = Math.floor((ms % 60000) / 1000); return `${m}p ${s}s`; }
+export function formatAnswer(val) {
+  if (val === null || val === undefined || val === '') return 'Chưa trả lời';
+  if (typeof val === 'boolean') return val ? 'Đúng' : 'Sai';
+  if (Array.isArray(val)) return val.map(formatAnswer).join(', ');
+  if (typeof val === 'object') return JSON.stringify(val);
+  return String(val);
+}
