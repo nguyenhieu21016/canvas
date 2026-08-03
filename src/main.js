@@ -1,8 +1,5 @@
-import { renderLoading, renderErrorState, wireTableSearch, toast, renderAccountAvatar, renderSkeletonDashboard, renderStateMessage, wireMaterialFormButtons, renderMetric, renderSkeletonAssignments, renderScoreProgress } from './lib/ui.js';
+import { renderLoading, renderErrorState, wireTableSearch, toast, renderAccountAvatar, renderSkeletonDashboard, renderStateMessage, renderMetric, renderSkeletonAssignments, renderScoreProgress } from './lib/ui.js';
 import { initSessionTracker } from './lib/sessionTracker.js';
-import '@material/web/button/filled-button.js';
-import '@material/web/icon/icon.js';
-import '@material/web/textfield/outlined-text-field.js';
 import './styles.css';
 import { hasSupabaseConfig, supabase } from './services/supabaseClient.js';
 import { renderAuth } from './pages/Auth.js';
@@ -27,6 +24,7 @@ import {
   fetchMyHistory,
   fetchStudentAssignmentOverview,
   fetchStudents,
+  getOnlineUsers,
   fetchTeachingLogs,
   upsertTeachingLog,
   deleteTeachingLog,
@@ -93,8 +91,7 @@ function setColorTheme(colorTheme) {
 applyTheme();
 
 function ensureAppElements() {
-  appElementsPromise ??= import('./material/app.js');
-  return appElementsPromise;
+  return Promise.resolve();
 }
 
 
@@ -230,13 +227,6 @@ function renderShell() {
         </div>
 
         <div class="nh-header-right">
-          ${isManager() ? `
-            <a class="nh-admin-badge-btn ${['manage', 'content', 'assignments', 'students', 'progress', 'online', 'salary'].includes(current) ? 'active' : ''}" href="#/manage">
-              <md-icon style="font-size: 16px;">tune</md-icon>
-              <span>Quản lý</span>
-            </a>
-          ` : ''}
-
           <div class="nh-user-avatar" id="nh-avatar-trigger" title="Hồ sơ cá nhân">
             ${initial}
           </div>
@@ -252,26 +242,23 @@ function renderShell() {
             </div>
             <div class="nh-dropdown-menu">
               ${isManager() ? `
-                <a href="#/manage" class="nh-dropdown-item" style="color: #455120; font-weight: 700;">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                  Trang Quản lý Admin
+                <a href="#/manage" class="nh-dropdown-item" style="color: var(--md-sys-color-primary); font-weight: 600;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                  Trang Quản lý
                 </a>
-                <div style="height: 1px; background: #e2e8f0; margin: 4px 0;"></div>
+                <div style="height: 1px; background: #f0f2f5; margin: 2px 0;"></div>
               ` : ''}
-              <a href="#/learn" class="nh-dropdown-item">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-                Danh mục khóa học
-              </a>
-              <a href="#/grades" class="nh-dropdown-item">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                Bảng điểm cá nhân
-              </a>
               <a href="#/settings" class="nh-dropdown-item">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                 Trang cá nhân
               </a>
-              <button id="nh-logout-btn" class="nh-dropdown-item" style="color: #D92D20;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D92D20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+              <a href="#/learn" class="nh-dropdown-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                Khoá học của tôi
+              </a>
+              <div style="height: 1px; background: #f0f2f5; margin: 2px 0;"></div>
+              <button id="nh-logout-btn" class="nh-dropdown-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
                 Đăng xuất
               </button>
             </div>
@@ -478,7 +465,6 @@ async function mountStudentAssignmentOverview(id) {
       </div>
     </div>
     `;
-    wireMaterialFormButtons(root);
     document.querySelector('#start-assignment')?.addEventListener('click', () => mountAssignmentExam(id));
   } catch (error) {
     root.innerHTML = renderErrorState(error);
@@ -563,7 +549,7 @@ async function mountAssignmentExam(id) {
 
           <section class="exam-shell" style="height: auto; max-width: 1420px; width: 100%; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: minmax(0, 1fr) 290px; gap: 24px; align-items: start;">
             <!-- Left Main Content Column -->
-            <form id="answer-form" style="min-width: 0; width: 100%; display: flex; flex-direction: column; gap: 28px; background: #ffffff; padding: 32px 40px; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 2px 12px rgba(0,0,0,0.02);">
+            <form id="answer-form" style="min-width: 0; width: 100%; display: flex; flex-direction: column; gap: 28px; background: #ffffff; padding: 32px 40px; border-radius: 16px; border: 1px solid #D8E2C4; box-shadow: 0 2px 12px rgba(69, 81, 32, 0.02);">
               
               <!-- Section Header I. Trắc nghiệm -->
               <div style="display: flex; align-items: center; justify-content: flex-start; gap: 10px; padding: 4px 16px 4px 4px; background: #f0f4e8; border: 1px solid #d8e2ca; border-radius: 9999px; color: #455120; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 700; font-size: 15px; box-sizing: border-box; width: 100%;">
@@ -738,7 +724,6 @@ async function mountAssignmentExam(id) {
         </section>
       `}
     `;
-    wireMaterialFormButtons(root);
     wireAnswerAutosave(assignment, id, draft);
   } catch (error) {
     root.innerHTML = renderErrorState(error);
@@ -816,7 +801,6 @@ async function mountAssignmentManagerView(id) {
       }
     });
     document.querySelector('#all-assignments-from-insights')?.addEventListener('click', () => go('assignments'));
-    wireMaterialFormButtons(root);
   } catch (error) {
     root.innerHTML = renderErrorState(error);
     wireRouteRetry(root);
@@ -1247,9 +1231,9 @@ async function mountReview(id) {
     if (review.assignment?.pdf_url === 'latex') {
       const score10 = review.attempt?.score_10 ?? 0;
       root.innerHTML = `
-        <div style="background-color: #EDF2E4; min-height: 100vh; padding: 0 0 60px 0; margin: 0; font-family: 'Be Vietnam Pro', sans-serif;">
+        <div style="background-color: #ebf1eb; min-height: 100vh; padding: 0 0 60px 0; margin: 0; font-family: 'Be Vietnam Pro', sans-serif;">
           <!-- Top Breadcrumb Bar -->
-          <div style="background: #DCE8CC; color: #455120; border-bottom: 1px solid #D1DFC0; padding: 12px 0; margin-bottom: 24px;">
+          <div style="background: #e2e8f0; color: #455120; border-bottom: 1px solid #cbd5e1; padding: 12px 0; margin-bottom: 24px;">
             <div style="max-width: 1420px; width: 100%; margin: 0 auto; padding: 0 40px; font-size: 13.5px; font-weight: 500; display: flex; align-items: center; gap: 8px;">
               <a href="#/learn" style="color: #455120; text-decoration: none; font-weight: 500;">Danh mục khóa học</a>
               <span style="opacity: 0.6; font-size: 13px;">&rsaquo;</span>
@@ -1262,13 +1246,13 @@ async function mountReview(id) {
             <div style="min-width: 0; width: 100%; display: flex; flex-direction: column; gap: 24px;">
               
               <!-- Clean 1-Card Stats Block (Score, Questions, Time) -->
-              <div style="background: #ffffff; border-radius: 16px; border: 1px solid #D8E2C4; padding: 32px 36px; display: flex; align-items: center; gap: 48px; box-shadow: 0 2px 8px rgba(69, 81, 32, 0.04);">
+              <div style="background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; padding: 32px 36px; display: flex; align-items: center; gap: 48px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);">
                 
                 <!-- Score Circle -->
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; flex-shrink: 0;">
                   <div style="position: relative; width: 160px; height: 160px; display: flex; align-items: center; justify-content: center;">
                     <svg viewBox="0 0 36 36" style="position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg);">
-                      <path stroke="#EDF2E4" stroke-width="3" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                      <path stroke="#e2e8f0" stroke-width="3" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
                       <path stroke="#455120" stroke-width="3" stroke-dasharray="${score10 * 10}, 100" stroke-linecap="round" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
                     </svg>
                     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1;">
@@ -1499,56 +1483,36 @@ async function mountReview(id) {
         </section>
       `;
     }
-    wireMaterialFormButtons(root);
     
     if (review.assignment?.pdf_url === 'latex' && window.MathJax) {
       window.MathJax.typesetPromise();
     }
-    
-    document.querySelector('#regrade-review-button')?.addEventListener('click', async (event) => {
-      const restore = setButtonLoading(event.currentTarget, 'Đang chấm...');
-      try {
-        const regradedCount = await regradeAssignment(review.assignment?.id);
-        toast(`Đã chấm lại ${regradedCount} bài đã nộp.`, 'success');
-        await mountReview(id);
-      } catch (error) {
-        toast(error.message, 'error');
-      } finally {
-        restore();
-      }
-    });
   } catch (error) {
     root.innerHTML = renderErrorState(error);
     wireRouteRetry(root);
   }
 }
 
-
-function formatAnswer(answer) {
-  if (Array.isArray(answer)) {
-    const isTrueFalseSet = answer.every((item) => item === true || item === false || item == null);
-    if (isTrueFalseSet) return answer.map((item) => (item === true ? 'Đúng' : item === false ? 'Sai' : '-')).join(', ');
-    return answer.map((item) => String(item ?? '-')).join(', ');
-  }
-  if (answer && typeof answer === 'object') return JSON.stringify(answer);
-  return answer ?? '-';
-}
-
-async function mountProgress() {
+async function mountProgressManager() {
   const root = pageRoot();
   root.innerHTML = renderSkeletonDashboard();
 
-  let selectedProgressStudentId = null;
-
   try {
-    const [students, learningPath] = await Promise.all([
+    const [students, learningPath, gradebook] = await Promise.all([
       fetchStudents(),
       fetchLearningPath(state.profile.role),
+      fetchGradebook(),
     ]);
 
-    selectedProgressStudentId = students[0]?.id ?? null;
+    if (!students.length) {
+      root.innerHTML = renderErrorState(new Error('Chưa có học sinh nào trong hệ thống.'));
+      return;
+    }
 
-    // Build flat lecture map by module (no duplicates)
+    let selectedStudentId = students[0].id;
+    let activeTab = 'progress'; // 'progress' | 'grades' | 'account'
+
+    // Build flat lecture map by module
     const lecturesByModuleId = new Map();
     for (const lecture of learningPath.lectures) {
       if (!lecturesByModuleId.has(lecture.module_id)) lecturesByModuleId.set(lecture.module_id, []);
@@ -1557,243 +1521,610 @@ async function mountProgress() {
     const totalLectures = learningPath.lectures.length;
 
     root.innerHTML = `
-      <section class="student-tracker-layout" style="display: flex; flex-direction: column; gap: 20px;">
-        <style>
-          .progress-sidebar-item:hover { background: var(--md-sys-color-surface-container-high) !important; }
-          .teaching-lecture-row:hover { background: color-mix(in srgb, var(--md-sys-color-primary) 6%, transparent) !important; }
-          details > summary::-webkit-details-marker { display: none; }
-          details > summary { list-style: none; }
-          details[open] > summary .dropdown-icon { transform: rotate(90deg); }
-        </style>
-        <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: start;">
-
-          <!-- Sidebar: students list -->
-          <div style="display: flex; flex-direction: column; gap: 12px; width: 280px; min-width: 280px; flex-shrink: 0;">
-            <div class="panel" style="padding: 16px; border-radius: var(--md-sys-shape-corner-large, 16px); background: var(--md-sys-color-surface-container-low); display: flex; flex-direction: column; gap: 10px;">
-              <h3 style="margin: 0; font-size: 0.95rem; font-weight: 600; color: var(--md-sys-color-on-surface);">Học sinh</h3>
-              <div class="progress-sidebar-list" style="display: flex; flex-direction: column; gap: 6px;"></div>
-            </div>
+      <div style="background-color: #EDF2E4; min-height: calc(100vh - 64px); padding: 0 0 60px 0; margin: 0; font-family: 'Be Vietnam Pro', sans-serif;">
+        <!-- Top Breadcrumb Bar -->
+        <div class="nh-admin-breadcrumb-bar" style="margin-bottom: 24px;">
+          <div class="nh-admin-breadcrumb-inner" style="max-width: 1140px;">
+            <a href="#/manage">Trung tâm Quản trị</a>
+            <span class="sep">&rsaquo;</span>
+            <span class="active">Theo dõi & Quản lý Học sinh</span>
           </div>
-
-          <!-- Main: lecture checklist -->
-          <div class="progress-detail-pane panel" style="flex: 1; min-width: 320px; padding: 24px; border-radius: var(--md-sys-shape-corner-large, 16px); background: var(--md-sys-color-surface-container-low); min-height: 480px; display: flex; flex-direction: column; gap: 20px;">
-            <div class="progress-detail-loading" style="display: flex; align-items: center; justify-content: center; min-height: 200px; color: var(--md-sys-color-outline);">
-              <md-circular-progress indeterminate></md-circular-progress>
-            </div>
-          </div>
-
         </div>
-      </section>
+
+        <section style="max-width: 1140px; margin: 0 auto; padding: 0 max(var(--page-gutter), 24px);">
+          <style>
+            .progress-sidebar-item {
+              padding: 10px 14px;
+              border-radius: 9999px;
+              cursor: pointer;
+              transition: all 0.15s ease;
+              font-family: 'Be Vietnam Pro', sans-serif;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            }
+            .progress-sidebar-item:hover {
+              background: #f1f5f9 !important;
+            }
+            .progress-sidebar-item.selected {
+              background: #F0F4E8 !important;
+            }
+            .teaching-lecture-row:hover {
+              background: #f8faf5 !important;
+            }
+            .nh-tab-btn {
+              padding: 9px 18px;
+              border-radius: 9999px;
+              border: 1px solid #D8E2C4;
+              background: #ffffff;
+              color: #475569;
+              font-size: 13px;
+              font-weight: 600;
+              cursor: pointer;
+              transition: all 0.15s ease;
+              display: inline-flex;
+              align-items: center;
+              gap: 6px;
+            }
+            .nh-tab-btn:hover {
+              background: #f8fafc;
+              color: #455120;
+            }
+            .nh-tab-btn.active {
+              background: #455120;
+              color: #ffffff;
+              border-color: #455120;
+            }
+            details > summary::-webkit-details-marker { display: none; }
+            details > summary { list-style: none; }
+            details[open] > summary .dropdown-icon { transform: rotate(90deg); }
+          </style>
+
+          <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: start;">
+
+            <!-- Sidebar: students list -->
+            <div style="display: flex; flex-direction: column; gap: 12px; width: 290px; min-width: 290px; flex-shrink: 0;">
+              <div class="panel" style="padding: 20px 16px; border-radius: 18px; background: #ffffff; border: 1px solid #D8E2C4; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03); display: flex; flex-direction: column; gap: 12px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 0 4px;">
+                  <h3 style="margin: 0; font-family: 'Beautique Display', serif; font-size: 17px; font-weight: 700; color: #455120;">Danh sách Học sinh</h3>
+                  <button id="nh-add-student-trigger" type="button" style="border: none; background: #F0F4E8; color: #455120; border: 1px solid #D8E2CA; border-radius: 9999px; padding: 4px 10px; font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 4px; transition: all 0.15s ease;" onmouseover="this.style.background='#e2ebda'" onmouseout="this.style.background='#F0F4E8'">
+                    + Tạo mới
+                  </button>
+                </div>
+
+                <div style="position: relative; width: 100%;">
+                  <input id="student-search-input" type="text" placeholder="Tìm tên học sinh..." style="width: 100%; padding: 8px 12px 8px 32px; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 13px; font-family: 'Be Vietnam Pro', sans-serif; outline: none; box-sizing: border-box;" />
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 10px; top: 10px;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </div>
+
+                <div class="progress-sidebar-list" style="display: flex; flex-direction: column; gap: 4px; max-height: 520px; overflow-y: auto;"></div>
+              </div>
+            </div>
+
+            <!-- Main: detail pane -->
+            <div class="progress-detail-pane panel" style="flex: 1; min-width: 320px; padding: 28px; border-radius: 18px; background: #ffffff; border: 1px solid #D8E2C4; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03); min-height: 520px; display: flex; flex-direction: column; gap: 20px;">
+              <div class="progress-detail-loading" style="display: flex; align-items: center; justify-content: center; min-height: 200px; color: #64748b;">
+                <md-circular-progress indeterminate></md-circular-progress>
+              </div>
+            </div>
+
+          </div>
+        </section>
+      </div>
+
+      <!-- Modal: Tạo học sinh mới -->
+      <div class="nh-modal-overlay" id="nh-create-student-modal" style="display: none;">
+        <div class="nh-modal-card">
+          <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 14px;">
+            <h3 style="font-family: 'Beautique Display', serif; font-size: 17px; font-weight: 700; color: #455120; margin: 0;">Tạo tài khoản Học sinh mới</h3>
+            <button id="nh-close-create-modal" type="button" style="border: none; background: transparent; cursor: pointer; color: #94a3b8; padding: 4px; border-radius: 50%;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          </div>
+          <form id="create-student-form-modal" style="display: flex; flex-direction: column; gap: 16px; margin-top: 8px;">
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <label style="font-size: 13px; font-weight: 600; color: #334155;">Họ và tên <span style="color: #ef4444;">*</span></label>
+              <input name="full_name" class="nh-form-input-clean" placeholder="Nhập họ tên..." required />
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <label style="font-size: 13px; font-weight: 600; color: #334155;">Email <span style="color: #ef4444;">*</span></label>
+              <input name="email" type="email" class="nh-form-input-clean" placeholder="Nhập địa chỉ email..." required />
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <label style="font-size: 13px; font-weight: 600; color: #334155;">Mật khẩu tạm <span style="color: #ef4444;">*</span></label>
+              <input name="password" type="text" class="nh-form-input-clean" value="123456" placeholder="Mật khẩu khởi tạo" required />
+            </div>
+            <input type="hidden" name="role" value="student" />
+            <div style="display: flex; justify-content: flex-end; margin-top: 8px;">
+              <button type="submit" class="nh-modal-btn-primary">Tạo tài khoản</button>
+            </div>
+          </form>
+        </div>
+      </div>
     `;
 
-    async function renderProgressDetail(studentId) {
+    async function renderStudentDetail(studentId) {
       const pane = document.querySelector('.progress-detail-pane');
       if (!pane) return;
-      pane.innerHTML = `<div style="display: flex; align-items: center; justify-content: center; min-height: 200px;"><md-circular-progress indeterminate></md-circular-progress></div>`;
 
       const student = students.find((s) => s.id === studentId);
       if (!student) return;
 
-      try {
-        const teachingLogs = await fetchTeachingLogs(studentId);
-        const taughtSet = new Set(teachingLogs.map((l) => l.lecture_id));
-        const taughtMap = new Map(teachingLogs.map((l) => [l.lecture_id, l]));
-        const taughtCount = learningPath.lectures.filter((l) => taughtSet.has(l.id)).length;
-        const progressPct = totalLectures > 0 ? Math.round((taughtCount / totalLectures) * 100) : 0;
+      const onlineUsers = getOnlineUsers();
+      const onlineUserMap = new Map(onlineUsers.map((u) => [u.id, u]));
+      const onlineData = onlineUserMap.get(studentId);
+      const isOnline = !!onlineData;
 
-        const phasesMarkup = learningPath.phases.map((phase) => {
-          let phaseTaught = 0;
-          let phaseTotal = 0;
-          
-          const modulesMarkup = phase.modules.map((mod) => {
-            let modTaught = 0;
-            const lectures = lecturesByModuleId.get(mod.id) ?? [];
-            if (lectures.length === 0) return '';
-            const modTotal = lectures.length;
-            phaseTotal += modTotal;
+      function formatMessengerStatus(userObj, studentObj) {
+        if (userObj) return { text: 'Đang hoạt động', isOnline: true };
+        const timeVal = studentObj?.updated_at || studentObj?.created_at;
+        if (!timeVal) return { text: 'Ngoại tuyến', isOnline: false };
+        const diffSec = Math.floor((Date.now() - new Date(timeVal).getTime()) / 1000);
+        if (diffSec < 60) return { text: 'Hoạt động vừa xong', isOnline: false };
+        const diffMin = Math.floor(diffSec / 60);
+        if (diffMin < 60) return { text: `Hoạt động ${diffMin} phút trước`, isOnline: false };
+        const diffHours = Math.floor(diffMin / 60);
+        if (diffHours < 24) return { text: `Hoạt động ${diffHours} giờ trước`, isOnline: false };
+        const diffDays = Math.floor(diffHours / 24);
+        if (diffDays < 30) return { text: `Hoạt động ${diffDays} ngày trước`, isOnline: false };
+        return { text: `Ngoại tuyến`, isOnline: false };
+      }
+
+      const statusInfo = formatMessengerStatus(onlineData, student);
+
+      // Header profile + Tabs bar
+      const headerHTML = `
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-bottom: 20px; border-bottom: 1px solid #f1f5f9;">
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <div style="position: relative;">
+              <div style="width: 52px; height: 52px; border-radius: 50%; background: #455120; color: #ffffff; display: grid; place-items: center; font-size: 20px; font-weight: 500; flex-shrink: 0; aspect-ratio: 1/1;">
+                ${escapeHtml((student.full_name || 'U').charAt(0).toUpperCase())}
+              </div>
+              ${isOnline ? '<span style="position: absolute; bottom: 1px; right: 1px; width: 13px; height: 13px; border-radius: 50%; background: #22c55e; border: 2.5px solid #ffffff;" title="Đang hoạt động"></span>' : ''}
+            </div>
+            <div>
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 2px;">
+                <span style="font-family: 'Beautique Display', serif; font-size: 20px; font-weight: 700; color: #455120;">${escapeHtml(student.full_name ?? '')}</span>
+              </div>
+              <div style="font-size: 13px; color: #64748b; font-family: 'Be Vietnam Pro', sans-serif; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <span>${escapeHtml(student.email ?? '')}</span>
+                <span style="color: #cbd5e1;">•</span>
+                <span style="font-weight: 500; color: ${statusInfo.isOnline ? '#16a34a' : '#64748b'}; display: inline-flex; align-items: center; gap: 4px;">
+                  ${statusInfo.isOnline ? '<span style="width: 7px; height: 7px; border-radius: 50%; background: #22c55e; display: inline-block;"></span>' : ''}
+                  ${statusInfo.text}
+                </span>
+                ${student.status === 'disabled' ? '<span style="padding: 2px 8px; border-radius: 9999px; font-size: 11px; font-weight: 600; background: #fef2f2; color: #ef4444;">Vô hiệu</span>' : ''}
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabs Switcher -->
+          <div style="display: flex; gap: 6px; background: #f8fafc; padding: 4px; border-radius: 9999px; border: 1px solid #e2e8f0; flex-wrap: wrap;">
+            <button type="button" class="nh-tab-btn ${activeTab === 'progress' ? 'active' : ''}" data-tab="progress">
+              Tiến độ bài giảng
+            </button>
+            <button type="button" class="nh-tab-btn ${activeTab === 'grades' ? 'active' : ''}" data-tab="grades">
+              Bảng điểm & Bài tập
+            </button>
+            <button type="button" class="nh-tab-btn ${activeTab === 'account' ? 'active' : ''}" data-tab="account">
+              Quản lý tài khoản
+            </button>
+          </div>
+        </div>
+      `;
+
+      if (activeTab === 'progress') {
+        pane.innerHTML = headerHTML + `<div style="display: flex; align-items: center; justify-content: center; min-height: 200px;"><md-circular-progress indeterminate></md-circular-progress></div>`;
+        try {
+          const teachingLogs = await fetchTeachingLogs(studentId);
+          const taughtSet = new Set(teachingLogs.map((l) => l.lecture_id));
+          const taughtCount = learningPath.lectures.filter((l) => taughtSet.has(l.id)).length;
+          const progressPct = totalLectures > 0 ? Math.round((taughtCount / totalLectures) * 100) : 0;
+
+          const phasesMarkup = learningPath.phases.map((phase) => {
+            let phaseTaught = 0;
+            let phaseTotal = 0;
             
+            const modulesMarkup = phase.modules.map((mod) => {
+              let modTaught = 0;
+              const lectures = lecturesByModuleId.get(mod.id) ?? [];
+              if (lectures.length === 0) return '';
+              const modTotal = lectures.length;
+              phaseTotal += modTotal;
+              
               const renderRow = (lecture) => {
-              const isTaught = taughtSet.has(lecture.id);
-              if (isTaught) { modTaught++; phaseTaught++; }
-              return `
-                <div class="teaching-lecture-row" data-lecture-id="${lecture.id}" data-student-id="${studentId}" data-taught="${isTaught}"
-                  style="display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 8px; cursor: pointer; transition: background 0.15s; margin-bottom: 2px;
-                         background: ${isTaught ? 'color-mix(in srgb, var(--md-sys-color-primary) 8%, transparent)' : 'transparent'};">
-                  <div class="lecture-checkbox" style="width: 20px; height: 20px; border-radius: 4px; flex-shrink: 0; transition: all 0.15s;
-                    border: 2px solid ${isTaught ? 'var(--md-sys-color-primary)' : 'var(--md-sys-color-outline)'};
-                    background: ${isTaught ? 'var(--md-sys-color-primary)' : 'transparent'};
-                    display: flex; align-items: center; justify-content: center;">
-                    ${isTaught ? '<md-icon style="font-size: 14px; color: var(--md-sys-color-on-primary);">check</md-icon>' : ''}
-                  </div>
-                  <div style="flex: 1; min-width: 0;">
-                    <div style="font-size: 0.88rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-                      font-weight: ${isTaught ? '600' : '400'};
-                      color: ${isTaught ? 'var(--md-sys-color-on-surface)' : 'var(--md-sys-color-on-surface-variant)'};">  
-                      ${escapeHtml(lecture.title)}
+                const isTaught = taughtSet.has(lecture.id);
+                if (isTaught) { modTaught++; phaseTaught++; }
+                return `
+                  <div class="teaching-lecture-row" data-lecture-id="${lecture.id}" data-student-id="${studentId}" data-taught="${isTaught}"
+                    style="display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 10px; cursor: pointer; transition: all 0.15s ease; margin-bottom: 4px;
+                           background: ${isTaught ? '#F0F4E8' : '#f8fafc'}; border: 1px solid ${isTaught ? '#D8E2CA' : '#f1f5f9'};">
+                    <div class="lecture-checkbox" style="width: 20px; height: 20px; border-radius: 6px; flex-shrink: 0; transition: all 0.15s;
+                      border: 2px solid ${isTaught ? '#455120' : '#cbd5e1'};
+                      background: ${isTaught ? '#455120' : '#ffffff'};
+                      display: flex; align-items: center; justify-content: center;">
+                      ${isTaught ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>' : ''}
+                    </div>
+                    <div style="flex: 1; min-width: 0;">
+                      <div style="font-size: 13.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+                        font-weight: ${isTaught ? '600' : '500'};
+                        color: ${isTaught ? '#455120' : '#334155'};">  
+                        ${escapeHtml(lecture.title)}
+                      </div>
                     </div>
                   </div>
-                </div>
-              `;
-            };
-            
-            const groupsMarkup = (mod.lecture_groups || []).map(group => {
-              const groupLectures = (group.lectures || []).map(renderRow).join('');
-              if (!groupLectures) return '';
-              return `
-                <div style="margin-left: 12px; margin-bottom: 6px; border-left: 2px solid var(--md-sys-color-surface-container-highest); padding-left: 12px;">
-                  <div style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--md-sys-color-outline); margin-bottom: 4px;">
-                    ${escapeHtml(group.title)}
+                `;
+              };
+              
+              const groupsMarkup = (mod.lecture_groups || []).map(group => {
+                const groupLectures = (group.lectures || []).map(renderRow).join('');
+                if (!groupLectures) return '';
+                return `
+                  <div style="margin-left: 12px; margin-bottom: 8px; border-left: 2px solid #D8E2CA; padding-left: 14px;">
+                    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #455120; margin-bottom: 6px;">
+                      ${escapeHtml(group.title)}
+                    </div>
+                    ${groupLectures}
                   </div>
-                  ${groupLectures}
-                </div>
+                `;
+              }).join('');
+              
+              const ungrouped = lectures.filter(l => !l.group_id).map(renderRow).join('');
+              
+              return `
+                <details class="progress-module-details" ${modTaught < modTotal ? 'open' : ''} style="margin-bottom: 10px; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: #ffffff;">
+                  <summary style="padding: 12px 16px; background: #f8fafc; font-weight: 600; font-size: 14px; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px; user-select: none; color: #334155;">
+                    <svg class="dropdown-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition: transform 0.2s ease;"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                    <span style="flex: 1; font-weight: 600;">${escapeHtml(mod.title)}</span>
+                    <span style="font-size: 12px; font-weight: 600; background: ${modTaught === modTotal ? '#455120' : '#e2e8f0'}; color: ${modTaught === modTotal ? '#ffffff' : '#475569'}; padding: 3px 10px; border-radius: 9999px;">${modTaught}/${modTotal}</span>
+                  </summary>
+                  <div style="padding: 14px; background: #ffffff;">
+                    ${groupsMarkup}
+                    ${ungrouped}
+                  </div>
+                </details>
               `;
             }).join('');
-            
-            const ungrouped = lectures.filter(l => !l.group_id).map(renderRow).join('');
-            
+
+            if (!modulesMarkup.trim()) return '';
             return `
-              <details class="progress-module-details" ${modTaught < modTotal ? 'open' : ''} style="margin-bottom: 6px; border: 1px solid var(--md-sys-color-outline-variant); border-radius: 8px; overflow: hidden;">
-                <summary style="padding: 10px 14px; background: var(--md-sys-color-surface-container); font-weight: 600; font-size: 0.85rem; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 8px; user-select: none;">
-                  <md-icon style="font-size: 1.1rem; color: var(--md-sys-color-outline); transition: transform 0.2s;" class="dropdown-icon">arrow_right</md-icon>
-                  <md-icon style="font-size: 1rem; color: var(--md-sys-color-primary);">folder</md-icon>
-                  <span style="flex: 1;">${escapeHtml(mod.title)}</span>
-                  <span style="font-size: 0.75rem; background: ${modTaught === modTotal ? 'var(--md-sys-color-primary)' : 'var(--md-sys-color-surface-container-highest)'}; color: ${modTaught === modTotal ? 'var(--md-sys-color-on-primary)' : 'var(--md-sys-color-on-surface)'}; padding: 2px 8px; border-radius: 12px;">${modTaught}/${modTotal}</span>
+              <details class="progress-phase-details" ${phaseTaught < phaseTotal ? 'open' : ''} style="margin-bottom: 16px; border: 1px solid #D8E2C4; border-radius: 14px; overflow: hidden; background: #ffffff;">
+                <summary style="padding: 14px 18px; background: #F0F4E8; font-weight: 700; font-size: 15px; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px; user-select: none; color: #455120; font-family: 'Beautique Display', serif;">
+                  <svg class="dropdown-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition: transform 0.2s ease;"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                  <span style="flex: 1; font-weight: 700;">${escapeHtml(phase.title)}</span>
+                  <span style="font-size: 12px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif; background: ${phaseTaught === phaseTotal ? '#455120' : '#D8E2CA'}; color: ${phaseTaught === phaseTotal ? '#ffffff' : '#455120'}; padding: 4px 12px; border-radius: 9999px;">${phaseTaught}/${phaseTotal}</span>
                 </summary>
-                <div style="padding: 12px 14px; background: var(--md-sys-color-surface-container-lowest);">
-                  ${groupsMarkup}
-                  ${ungrouped}
+                <div style="padding: 16px; background: #ffffff;">
+                  ${modulesMarkup}
                 </div>
               </details>
             `;
           }).join('');
 
-          if (!modulesMarkup.trim()) return '';
-          return `
-            <details class="progress-phase-details" ${phaseTaught < phaseTotal ? 'open' : ''} style="margin-bottom: 16px; border: 1px solid var(--md-sys-color-outline-variant); border-radius: 12px; overflow: hidden;">
-              <summary style="padding: 12px 16px; background: var(--md-sys-color-surface-container-high); font-weight: 700; font-size: 0.95rem; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px; user-select: none;">
-                <md-icon style="font-size: 1.2rem; color: var(--md-sys-color-outline); transition: transform 0.2s;" class="dropdown-icon">arrow_right</md-icon>
-                <md-icon style="font-size: 1.2rem; color: var(--md-sys-color-primary);">layers</md-icon>
-                <span style="flex: 1; color: var(--md-sys-color-on-surface);">${escapeHtml(phase.title)}</span>
-                <span style="font-size: 0.8rem; background: ${phaseTaught === phaseTotal ? 'var(--md-sys-color-primary)' : 'var(--md-sys-color-surface-container)'}; color: ${phaseTaught === phaseTotal ? 'var(--md-sys-color-on-primary)' : 'var(--md-sys-color-on-surface)'}; padding: 4px 10px; border-radius: 16px;">${phaseTaught}/${phaseTotal}</span>
-              </summary>
-              <div style="padding: 14px; background: var(--md-sys-color-surface-container-lowest);">
-                ${modulesMarkup}
+          pane.innerHTML = headerHTML + `
+            <!-- Progress bar -->
+            <div style="background: #F0F4E8; border-radius: 14px; padding: 18px 20px; display: flex; align-items: center; gap: 20px; border: 1px solid #D8E2CA;">
+              <div style="flex: 1;">
+                <div style="font-size: 14px; font-weight: 600; color: #455120; margin-bottom: 10px;">Tiến độ hoàn thành bài giảng</div>
+                <div style="background: #e2ebda; border-radius: 9999px; height: 10px; overflow: hidden;">
+                  <div style="height: 100%; width: ${progressPct}%; background: #455120; border-radius: 9999px; transition: width 0.4s ease;"></div>
+                </div>
               </div>
-            </details>
+              <div style="text-align: center; min-width: 80px; background: #ffffff; padding: 10px 16px; border-radius: 12px; border: 1px solid #D8E2CA;">
+                <div style="font-size: 22px; font-weight: 800; color: #455120; line-height: 1;">${taughtCount}</div>
+                <div style="font-size: 11px; color: #64748b; margin-top: 4px; font-weight: 500;">/ ${totalLectures} bài</div>
+              </div>
+            </div>
+
+            <!-- Lecture checklist -->
+            <div style="display: flex; flex-direction: column; gap: 10px; overflow-y: auto; flex: 1;">
+              ${phasesMarkup || '<div style="text-align: center; padding: 48px; color: #64748b; background: #f8fafc; border-radius: 14px; border: 1px dashed #cbd5e1;">Chưa có bài giảng nào trong hệ thống.</div>'}
+            </div>
           `;
-        }).join('');
 
-        pane.innerHTML = `
-          <!-- Student header -->
-          <div style="display: flex; align-items: center; gap: 14px; padding-bottom: 16px; border-bottom: 1px solid var(--md-sys-color-outline-variant);">
-            ${renderAccountAvatar(student, 'account-avatar')}
-            <div>
-              <div style="font-size: 1.1rem; font-weight: 700; color: var(--md-sys-color-on-surface);">${escapeHtml(student.full_name ?? '')}</div>
-              <div style="font-size: 0.8rem; color: var(--md-sys-color-on-surface-variant);">${escapeHtml(student.email ?? '')}</div>
+          // Wire teaching log toggles
+          pane.querySelectorAll('.teaching-lecture-row').forEach((row) => {
+            row.addEventListener('click', async () => {
+              const lectureId = row.dataset.lectureId;
+              const sid = row.dataset.studentId;
+              const wasTaught = row.dataset.taught === 'true';
+              row.dataset.taught = String(!wasTaught);
+
+              try {
+                if (!wasTaught) await upsertTeachingLog({ studentId: sid, lectureId });
+                else await deleteTeachingLog({ studentId: sid, lectureId });
+                renderStudentDetail(sid);
+                renderStudentSidebarList();
+              } catch (err) {
+                toast(err.message, 'error');
+                row.dataset.taught = String(wasTaught);
+              }
+            });
+          });
+        } catch (err) {
+          pane.innerHTML = headerHTML + `<div style="color: #ef4444; padding: 24px;">Lỗi: ${escapeHtml(err.message)}</div>`;
+        }
+      } else if (activeTab === 'grades') {
+        const studentGrades = gradebook.filter((g) => g.student_id === studentId);
+
+        let gradesHTML = '';
+        if (!studentGrades.length) {
+          gradesHTML = `
+            <div style="text-align: center; padding: 48px 24px; color: #64748b; background: #f8fafc; border-radius: 14px; border: 1px dashed #cbd5e1;">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5" style="margin-bottom: 8px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+              <div style="font-size: 15px; font-weight: 600; color: #334155; margin-bottom: 4px;">Chưa có bài nộp nào</div>
+              <div style="font-size: 13px;">Học sinh chưa hoàn thành đề thi hoặc bài kiểm tra nào.</div>
             </div>
-          </div>
-
-          <!-- Progress bar -->
-          <div style="background: var(--md-sys-color-surface-container-high); border-radius: 12px; padding: 14px 16px;
-            display: flex; align-items: center; gap: 16px; border: 1px solid var(--md-sys-color-outline-variant);">
-            <div style="flex: 1;">
-              <div style="font-size: 0.85rem; font-weight: 600; color: var(--md-sys-color-on-surface); margin-bottom: 8px;">Tiến độ bài giảng</div>
-              <div style="background: var(--md-sys-color-surface-container); border-radius: 100px; height: 8px; overflow: hidden;">
-                <div style="height: 100%; width: ${progressPct}%; background: var(--md-sys-color-primary); border-radius: 100px; transition: width 0.4s ease;"></div>
+          `;
+        } else {
+          const fmt = new Intl.NumberFormat('vi-VN', { maximumFractionDigits: 1 });
+          const rowsHTML = studentGrades.map((g) => {
+            const dateStr = g.submitted_at ? new Date(g.submitted_at).toLocaleString('vi-VN', { dateStyle: 'short', timeStyle: 'short' }) : '---';
+            const score10 = g.score_10 != null ? Number(g.score_10) : (g.max_points ? (g.score / g.max_points) * 10 : 0);
+            return `
+              <div style="background: #ffffff; border: 1px solid #D8E2C4; border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);">
+                <div style="flex: 1; min-width: 0;">
+                  <div style="font-size: 14.5px; font-weight: 700; color: #455120; margin-bottom: 4px;">${escapeHtml(g.assignments?.title || 'Bài kiểm tra')}</div>
+                  <div style="font-size: 12px; color: #64748b;">Nộp bài lúc: ${dateStr}</div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <div style="text-align: right;">
+                    <div style="font-size: 11px; color: #64748b; font-weight: 500;">Điểm thô: ${g.score ?? 0}/${g.max_points ?? 10}</div>
+                    <div style="font-size: 18px; font-weight: 800; color: ${score10 >= 8 ? '#16a34a' : score10 >= 5 ? '#d97706' : '#dc2626'};">${fmt.format(score10)} / 10</div>
+                  </div>
+                  <a href="#/review/${g.id}" style="padding: 6px 12px; border-radius: 9999px; background: #F0F4E8; color: #455120; border: 1px solid #D8E2CA; font-size: 12px; font-weight: 600; text-decoration: none;">Xem bài làm</a>
+                </div>
               </div>
-            </div>
-            <div style="text-align: center; min-width: 60px;">
-              <div style="font-size: 1.5rem; font-weight: 700; color: var(--md-sys-color-primary); line-height: 1;">${taughtCount}</div>
-              <div style="font-size: 0.75rem; color: var(--md-sys-color-outline); margin-top: 2px;">/ ${totalLectures} bài</div>
-            </div>
-          </div>
+            `;
+          }).join('');
 
-          <!-- Lecture checklist -->
-          <div style="display: flex; flex-direction: column; gap: 10px; overflow-y: auto; flex: 1;">
-            ${phasesMarkup || '<div style="text-align: center; padding: 32px; color: var(--md-sys-color-outline);">Chưa có bài giảng nào.</div>'}
+          gradesHTML = `
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div style="font-size: 14px; font-weight: 600; color: #455120;">Tổng số bài đã làm: ${studentGrades.length} bài</div>
+              ${rowsHTML}
+            </div>
+          `;
+        }
+
+        pane.innerHTML = headerHTML + gradesHTML;
+      } else if (activeTab === 'online') {
+        const onlineUsers = getOnlineUsers();
+        let onlineHTML = '';
+
+        if (!onlineUsers.length) {
+          onlineHTML = `
+            <div style="text-align: center; padding: 48px 24px; color: #64748b; background: #f8fafc; border-radius: 14px; border: 1px dashed #cbd5e1;">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5" style="margin-bottom: 8px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              <div style="font-size: 15px; font-weight: 600; color: #334155; margin-bottom: 4px;">Hiện chưa có ai online</div>
+              <div style="font-size: 13px;">Hệ thống sẽ cập nhật trạng thái ngay khi có học sinh mở ứng dụng.</div>
+            </div>
+          `;
+        } else {
+          const listUsers = onlineUsers.map((u) => {
+            const timeStr = u.online_at ? new Date(u.online_at).toLocaleTimeString('vi-VN') : 'vừa xong';
+            return `
+              <div style="background: #ffffff; border: 1px solid #D8E2C4; border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 14px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <div style="position: relative;">
+                    <div style="width: 40px; height: 40px; border-radius: 50%; background: #455120; color: #ffffff; font-weight: 600; font-size: 16px; display: grid; place-items: center;">
+                      ${escapeHtml((u.full_name || 'U').charAt(0).toUpperCase())}
+                    </div>
+                    <span style="position: absolute; bottom: 0; right: 0; width: 11px; height: 11px; border-radius: 50%; background: #22c55e; border: 2px solid #ffffff;"></span>
+                  </div>
+                  <div>
+                    <div style="font-size: 14px; font-weight: 700; color: #455120;">${escapeHtml(u.full_name || 'Học sinh')}</div>
+                    <div style="font-size: 12px; color: #64748b;">${escapeHtml(u.email || '')}</div>
+                  </div>
+                </div>
+                <div style="font-size: 12px; font-weight: 600; color: #16a34a; background: #F0F4E8; padding: 4px 12px; border-radius: 9999px; border: 1px solid #D8E2CA;">
+                  Online từ ${timeStr}
+                </div>
+              </div>
+            `;
+          }).join('');
+
+          onlineHTML = `
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div style="font-size: 14px; font-weight: 600; color: #455120; display: flex; align-items: center; gap: 6px;">
+                <span style="width: 10px; height: 10px; border-radius: 50%; background: #22c55e; display: inline-block;"></span>
+                Học sinh đang mở ứng dụng (${onlineUsers.length} người)
+              </div>
+              ${listUsers}
+            </div>
+          `;
+        }
+
+        pane.innerHTML = headerHTML + onlineHTML;
+      } else if (activeTab === 'account') {
+        pane.innerHTML = headerHTML + `
+          <div style="background: #ffffff; border: 1px solid #D8E2C4; border-radius: 14px; padding: 24px; display: flex; flex-direction: column; gap: 20px;">
+            <h4 style="margin: 0; font-family: 'Beautique Display', serif; font-size: 16px; color: #455120;">Chỉnh sửa tài khoản Học sinh</h4>
+            
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <label style="font-size: 13px; font-weight: 600; color: #334155;">Họ và tên</label>
+              <input id="edit-student-name" type="text" class="nh-form-input-clean" value="${escapeHtml(student.full_name ?? '')}" />
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <label style="font-size: 13px; font-weight: 600; color: #334155;">Trạng thái tài khoản</label>
+              <select id="edit-student-status" class="nh-form-input-clean" style="height: 40px;">
+                <option value="active" ${student.status !== 'disabled' ? 'selected' : ''}>Hoạt động (Active)</option>
+                <option value="disabled" ${student.status === 'disabled' ? 'selected' : ''}>Vô hiệu (Disabled)</option>
+              </select>
+            </div>
+
+            <div style="display: flex; gap: 12px; margin-top: 8px; flex-wrap: wrap;">
+              <button id="save-student-account-btn" type="button" class="nh-modal-btn-primary">Lưu thay đổi</button>
+              <button id="reset-student-pwd-btn" type="button" class="nh-modal-btn-secondary">Khôi phục mật khẩu tạm</button>
+              <button id="delete-student-account-btn" type="button" class="nh-modal-btn-secondary danger">Xóa tài khoản này</button>
+            </div>
           </div>
         `;
 
-        // Wire checkbox toggles
-        pane.querySelectorAll('.teaching-lecture-row').forEach((row) => {
-          row.addEventListener('click', async () => {
-            const lectureId = row.dataset.lectureId;
-            const sid = row.dataset.studentId;
-            const wasTaught = row.dataset.taught === 'true';
-            row.dataset.taught = String(!wasTaught);
-
-            const checkbox = row.querySelector('.lecture-checkbox');
-            const titleDiv = row.querySelector('[style*="overflow: hidden"]');
-            if (!wasTaught) {
-              checkbox.style.background = 'var(--md-sys-color-primary)';
-              checkbox.style.borderColor = 'var(--md-sys-color-primary)';
-              checkbox.innerHTML = '<md-icon style="font-size: 14px; color: var(--md-sys-color-on-primary);">check</md-icon>';
-              row.style.background = 'color-mix(in srgb, var(--md-sys-color-primary) 8%, transparent)';
-              if (titleDiv) { titleDiv.style.fontWeight = '600'; titleDiv.style.color = 'var(--md-sys-color-on-surface)'; }
-            } else {
-              checkbox.style.background = 'transparent';
-              checkbox.style.borderColor = 'var(--md-sys-color-outline)';
-              checkbox.innerHTML = '';
-              row.style.background = 'transparent';
-              if (titleDiv) { titleDiv.style.fontWeight = '400'; titleDiv.style.color = 'var(--md-sys-color-on-surface-variant)'; }
-            }
-
-            try {
-              if (!wasTaught) await upsertTeachingLog({ studentId: sid, lectureId });
-              else await deleteTeachingLog({ studentId: sid, lectureId });
-              // Refresh sidebar progress
-              renderProgressSidebar();
-            } catch (err) {
-              toast(err.message, 'error');
-              row.dataset.taught = String(wasTaught);
-              renderProgressDetail(sid);
-            }
-          });
+        // Wire account actions
+        pane.querySelector('#save-student-account-btn')?.addEventListener('click', async () => {
+          const name = pane.querySelector('#edit-student-name')?.value;
+          const status = pane.querySelector('#edit-student-status')?.value;
+          try {
+            await invokeAdminFunction('admin-update-user', {
+              id: studentId,
+              full_name: name,
+              status,
+              role: 'student',
+            });
+            student.full_name = name;
+            student.status = status;
+            toast('Đã cập nhật thông tin học sinh.', 'success');
+            renderStudentSidebarList();
+            renderStudentDetail(studentId);
+          } catch (err) {
+            toast(err.message, 'error');
+          }
         });
 
-      } catch (err) {
-        pane.innerHTML = `<div style="color: var(--md-sys-color-error); padding: 24px;">${escapeHtml(err.message)}</div>`;
+        pane.querySelector('#reset-student-pwd-btn')?.addEventListener('click', async () => {
+          const password = window.prompt('Mật khẩu tạm mới, bỏ trống để hệ thống đặt 123456:') || '123456';
+          try {
+            const result = await invokeAdminFunction('admin-reset-password', {
+              id: studentId,
+              password,
+            });
+            toast(`Mật khẩu tạm mới: ${result.temporaryPassword}`, 'success');
+          } catch (err) {
+            toast(err.message, 'error');
+          }
+        });
+
+        pane.querySelector('#delete-student-account-btn')?.addEventListener('click', async () => {
+          if (!window.confirm(`Xóa vĩnh viễn tài khoản của học sinh ${student.full_name}?`)) return;
+          try {
+            await deleteManagedUser(studentId);
+            toast('Đã xóa học sinh.', 'success');
+            mountProgressManager();
+          } catch (err) {
+            toast(err.message, 'error');
+          }
+        });
       }
-    }
 
-    async function renderProgressSidebar() {
-      const list = document.querySelector('.progress-sidebar-list');
-      if (!list) return;
-      // For each student, show name + mini progress
-      const logsPerStudent = await Promise.all(
-        students.map((s) => fetchTeachingLogs(s.id).then((logs) => ({ student: s, count: logs.length })))
-      );
-      list.innerHTML = logsPerStudent.map(({ student, count }) => {
-        const pct = totalLectures > 0 ? Math.round((count / totalLectures) * 100) : 0;
-        const isSelected = student.id === selectedProgressStudentId;
-        return `
-          <div class="progress-sidebar-item" data-sid="${student.id}"
-            style="padding: 10px 12px; border-radius: 10px; cursor: pointer; transition: background 0.15s;
-              background: ${isSelected ? 'var(--md-sys-color-secondary-container)' : 'transparent'};
-              border: 1px solid ${isSelected ? 'var(--md-sys-color-outline)' : 'transparent'};">
-            <div style="font-size: 0.88rem; font-weight: 600; color: var(--md-sys-color-on-surface);
-              overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(student.full_name ?? student.email)}</div>
-            <div style="display: flex; align-items: center; gap: 8px; margin-top: 5px;">
-              <div style="flex: 1; background: var(--md-sys-color-surface-container-high); border-radius: 100px; height: 5px; overflow: hidden;">
-                <div style="height: 100%; width: ${pct}%; background: var(--md-sys-color-primary); border-radius: 100px;"></div>
-              </div>
-              <span style="font-size: 0.75rem; color: var(--md-sys-color-outline); min-width: 32px; text-align: right;">${count}/${totalLectures}</span>
-            </div>
-          </div>
-        `;
-      }).join('');
-
-      list.querySelectorAll('.progress-sidebar-item').forEach((item) => {
-        item.addEventListener('click', () => {
-          selectedProgressStudentId = item.dataset.sid;
-          renderProgressSidebar();
-          renderProgressDetail(selectedProgressStudentId);
+      // Wire Tab Clicks
+      pane.querySelectorAll('.nh-tab-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          activeTab = btn.dataset.tab;
+          renderStudentDetail(studentId);
         });
       });
     }
 
-    await renderProgressSidebar();
-    if (selectedProgressStudentId) await renderProgressDetail(selectedProgressStudentId);
+    function renderStudentSidebarList() {
+      const listContainer = document.querySelector('.progress-sidebar-list');
+      if (!listContainer) return;
+
+      const onlineUsers = getOnlineUsers();
+      const onlineSet = new Set(onlineUsers.map((u) => u.id));
+
+      const searchVal = (document.querySelector('#student-search-input')?.value || '').toLowerCase().trim();
+      const filtered = students.filter((s) => 
+        (s.full_name || '').toLowerCase().includes(searchVal) || 
+        (s.email || '').toLowerCase().includes(searchVal)
+      );
+
+      if (!filtered.length) {
+        listContainer.innerHTML = `<div style="font-size: 13px; color: #94a3b8; padding: 12px 8px; text-align: center;">Không tìm thấy học sinh.</div>`;
+        return;
+      }
+
+      listContainer.innerHTML = filtered.map((s) => {
+        const isSelected = s.id === selectedStudentId;
+        const isOnline = onlineSet.has(s.id);
+        const initial = (s.full_name || 'U').charAt(0).toUpperCase();
+
+        let subtext = 'Ngoại tuyến';
+        if (isOnline) {
+          subtext = 'Đang hoạt động';
+        } else {
+          const timeVal = s.updated_at || s.created_at;
+          if (timeVal) {
+            const diffSec = Math.floor((Date.now() - new Date(timeVal).getTime()) / 1000);
+            if (diffSec < 60) subtext = 'Vừa xong';
+            else {
+              const diffMin = Math.floor(diffSec / 60);
+              if (diffMin < 60) subtext = `${diffMin}p trước`;
+              else {
+                const diffHours = Math.floor(diffMin / 60);
+                if (diffHours < 24) subtext = `${diffHours}h trước`;
+                else subtext = `${Math.floor(diffHours / 24)}d trước`;
+              }
+            }
+          }
+        }
+
+        return `
+          <div class="progress-sidebar-item ${isSelected ? 'selected' : ''}" data-sid="${s.id}" style="padding: 8px 12px;">
+            <div style="display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1;">
+              <div style="position: relative; flex-shrink: 0;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: ${isSelected ? '#455120' : '#cbd5e1'}; color: #ffffff; font-size: 13px; font-weight: 600; display: grid; place-items: center;">
+                  ${escapeHtml(initial)}
+                </div>
+                ${isOnline ? '<span style="position: absolute; bottom: 0; right: 0; width: 9px; height: 9px; border-radius: 50%; background: #22c55e; border: 1.5px solid #ffffff;" title="Đang hoạt động"></span>' : ''}
+              </div>
+              <div style="display: flex; flex-direction: column; min-width: 0; flex: 1;">
+                <span style="font-size: 13.5px; font-weight: ${isSelected ? '700' : '600'}; color: ${isSelected ? '#455120' : '#334155'}; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                  ${escapeHtml(s.full_name || 'Học sinh')}
+                </span>
+                <span style="font-size: 11px; font-weight: 500; color: ${isOnline ? '#16a34a' : '#94a3b8'};">
+                  ${subtext}
+                </span>
+              </div>
+            </div>
+            ${s.status === 'disabled' ? '<span style="font-size: 10px; background: #fee2e2; color: #ef4444; padding: 1px 6px; border-radius: 9999px;">Tắt</span>' : ''}
+          </div>
+        `;
+      }).join('');
+
+      listContainer.querySelectorAll('.progress-sidebar-item').forEach((item) => {
+        item.addEventListener('click', () => {
+          selectedStudentId = item.dataset.sid;
+          renderStudentSidebarList();
+          renderStudentDetail(selectedStudentId);
+        });
+      });
+    }
+
+    // Wire Search Input
+    document.querySelector('#student-search-input')?.addEventListener('input', () => {
+      renderStudentSidebarList();
+    });
+
+    // Wire Create Student Modal
+    const createModal = root.querySelector('#nh-create-student-modal');
+    root.querySelector('#nh-add-student-trigger')?.addEventListener('click', () => { createModal.style.display = 'flex'; });
+    root.querySelector('#nh-close-create-modal')?.addEventListener('click', () => { createModal.style.display = 'none'; });
+    createModal?.addEventListener('click', (e) => { if (e.target === createModal) createModal.style.display = 'none'; });
+
+    root.querySelector('#create-student-form-modal')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.currentTarget;
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const restore = setButtonLoading(submitBtn, 'Đang tạo...');
+      const values = Object.fromEntries(new FormData(form).entries());
+      try {
+        await createManagedUser({ ...values, role: 'student' });
+        toast('Đã tạo tài khoản học sinh mới thành công.', 'success');
+        createModal.style.display = 'none';
+        mountProgressManager();
+      } catch (err) {
+        toast(err.message, 'error');
+      } finally {
+        restore();
+      }
+    });
+
+    // Initial render
+    renderStudentSidebarList();
+    renderStudentDetail(selectedStudentId);
 
   } catch (error) {
     root.innerHTML = renderErrorState(error);
@@ -1908,12 +2239,12 @@ addRoute('settings', () => import('./pages/Settings.js').then(m => m.mountSettin
 addRoute('review/:id', (id) => mountReview(id));
 addRoute('dashboard', () => import('./student.js').then(m => m.mountDashboard()));
 addRoute('manage', () => import('./admin.js').then(m => m.mountManageHub()));
-addRoute('progress', mountProgress);
+addRoute('progress', mountProgressManager);
 addRoute('content', () => import('./admin.js').then(m => m.mountContentManager()));
 addRoute('assignments', () => import('./admin.js').then(m => m.mountAssignmentManager()));
-addRoute('students', () => import('./admin.js').then(m => m.mountStudents()));
+addRoute('students', mountProgressManager);
 addRoute('online', () => import('./admin.js').then(m => m.mountOnlineUsers()));
-addRoute('grades', () => isManager() ? import('./admin.js').then(m => m.mountGrades()) : import('./student.js').then(m => m.mountStudentGrades()));
+addRoute('grades', () => isManager() ? mountProgressManager() : import('./student.js').then(m => m.mountStudentGrades()));
 addRoute('salary', () => import('./admin.js').then(m => m.mountSalaryManager()));
 
 initSessionTracker();

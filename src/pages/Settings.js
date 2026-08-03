@@ -67,14 +67,17 @@ export async function mountSettings() {
           <span class="nh-profile-name">${fullName}</span>
           <span class="nh-profile-email">${email}</span>
           <button class="nh-btn-edit-info" id="nh-edit-profile-trigger">
-            <md-icon style="font-size: 16px;">person_add</md-icon>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
             Sửa thông tin
           </button>
         </div>
 
         <div class="nh-sidebar-menu" style="margin-top: 12px;">
           <span class="nh-sidebar-item active">
-            <md-icon style="font-size: 18px; vertical-align: middle; margin-right: 6px; color: #455120;">home</md-icon>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
             Tổng quan
           </span>
         </div>
@@ -85,7 +88,7 @@ export async function mountSettings() {
         <!-- 1. Hoạt động gần đây -->
         <section class="nh-analytics-panel">
           <div class="nh-panel-title-bar">
-            <md-icon style="color: #455120;">schedule</md-icon>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
             Hoạt động gần đây
           </div>
           ${activityItems.length ? `
@@ -109,7 +112,7 @@ export async function mountSettings() {
         <section class="nh-analytics-panel">
           <div class="nh-panel-title-bar" style="justify-content: space-between;">
             <div style="display: flex; align-items: center; gap: 8px;">
-              <md-icon style="color: #455120;">timer</md-icon>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
               Thời lượng Online
             </div>
           </div>
@@ -170,7 +173,7 @@ export async function mountSettings() {
         <!-- 3. Bài kiểm tra gần đây Table -->
         <section class="nh-analytics-panel">
           <div class="nh-panel-title-bar">
-            <md-icon style="color: #455120;">description</md-icon>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
             Bài kiểm tra gần đây
           </div>
           <table class="nh-table-styled">
@@ -215,7 +218,7 @@ export async function mountSettings() {
         <!-- 4. Tiến độ khóa học Table -->
         <section class="nh-analytics-panel">
           <div class="nh-panel-title-bar">
-            <md-icon style="color: #455120;">bar_chart</md-icon>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
             Tiến độ khóa học
           </div>
           <table class="nh-table-styled">
@@ -248,38 +251,46 @@ export async function mountSettings() {
     <!-- Modal Form for Edit Profile -->
     <div class="nh-modal-overlay" id="nh-profile-modal" style="display: none;">
       <div class="nh-modal-card">
-        <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #F0F4F6; padding-bottom: 12px;">
-          <strong style="font-size: 16px; color: #1D2939;">Chỉnh sửa thông tin cá nhân</strong>
-          <button id="nh-close-modal" style="border: none; background: transparent; cursor: pointer; color: #667085;">
-            <md-icon>close</md-icon>
+        <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 14px;">
+          <h3 style="font-family: 'Beautique Display', serif; font-size: 17px; font-weight: 700; color: #1e293b; margin: 0;">Chỉnh sửa thông tin cá nhân</h3>
+          <button id="nh-close-modal" type="button" style="border: none; background: transparent; cursor: pointer; color: #94a3b8; padding: 4px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.15s ease;" onmouseover="this.style.background='#f1f5f9';this.style.color='#475569';" onmouseout="this.style.background='transparent';this.style.color='#94a3b8';">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
           </button>
         </div>
 
-        <form id="profile-edit-form" style="display: flex; flex-direction: column; gap: 16px;">
+        <form id="profile-edit-form" style="display: flex; flex-direction: column; gap: 20px; margin-top: 6px;">
           <div style="display: flex; align-items: center; gap: 16px;">
             ${renderAccountAvatar(state.profile, 'settings-avatar-preview')}
             <input id="avatar-file-input" type="file" accept="image/png,image/jpeg,image/webp" hidden />
-            <div style="display: flex; gap: 8px;">
-              <md-outlined-button id="avatar-upload-btn" type="button">
-                <md-icon slot="icon">photo_camera</md-icon> Đổi ảnh
-              </md-outlined-button>
-              <md-outlined-button id="avatar-remove-btn" type="button" ${profile.avatar_url ? '' : 'disabled'}>
-                <md-icon slot="icon">delete</md-icon> Gỡ ảnh
-              </md-outlined-button>
+            <div style="display: flex; gap: 10px;">
+              <button id="avatar-upload-btn" type="button" class="nh-modal-btn-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                Đổi ảnh
+              </button>
+              <button id="avatar-remove-btn" type="button" class="nh-modal-btn-secondary danger" ${profile.avatar_url ? '' : 'disabled'}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                Gỡ ảnh
+              </button>
             </div>
           </div>
 
-          <md-outlined-text-field
-            name="full_name"
-            label="Tên hiển thị"
-            value="${escapeHtml(profile.full_name || '')}"
-            required
-          ></md-outlined-text-field>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <label for="full_name_input" style="font-size: 13px; font-weight: 600; color: #334155; font-family: 'Be Vietnam Pro', sans-serif;">Tên hiển thị <span style="color: #ef4444;">*</span></label>
+            <input
+              id="full_name_input"
+              type="text"
+              name="full_name"
+              class="nh-form-input-clean"
+              value="${escapeHtml(profile.full_name || '')}"
+              placeholder="Nhập tên hiển thị..."
+              required
+            />
+          </div>
 
-          <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px;">
-            <md-filled-button type="submit">
-              <md-icon slot="icon">save</md-icon> Lưu thay đổi
-            </md-filled-button>
+          <div style="display: flex; justify-content: flex-end; margin-top: 4px;">
+            <button type="submit" class="nh-modal-btn-primary">
+              Lưu thay đổi
+            </button>
           </div>
         </form>
       </div>

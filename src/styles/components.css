@@ -1212,10 +1212,12 @@ textarea.field {
   place-items: center;
   overflow: hidden;
   border-radius: 50%;
-  background: linear-gradient(145deg, var(--md-sys-color-primary-container), var(--md-sys-color-secondary-container));
-  color: var(--md-sys-color-primary);
-  font-size: 1.35rem;
-  font-weight: 800;
+  background: #455120;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 400;
+  flex-shrink: 0;
+  aspect-ratio: 1 / 1;
 }
 
 .avatar-settings-copy p {
@@ -2309,25 +2311,26 @@ tbody tr:hover {
 }
 
 .nh-user-avatar:hover {
-  transform: scale(1.05);
+  transform: none;
 }
 
 /* Profile Dropdown Card */
 .nh-user-dropdown {
   position: absolute;
-  top: 50px;
+  top: 52px;
   right: 0;
-  width: 240px;
+  width: 260px;
   background: #ffffff;
-  border-radius: 16px;
-  padding: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-  border: 1px solid #F0F4F6;
+  border-radius: 14px;
+  padding: 0;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.13);
+  border: 1px solid #e8ecf0;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-10px);
-  transition: all 0.2s ease;
+  transform: translateY(-8px);
+  transition: all 0.18s ease;
   z-index: 200;
+  overflow: hidden;
 }
 
 .nh-user-dropdown.show {
@@ -2340,18 +2343,18 @@ tbody tr:hover {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #F0F4F6;
+  padding: 16px 16px 14px;
+  border-bottom: 1px solid #f0f2f5;
 }
 
 .nh-dropdown-avatar {
-  width: 42px;
-  height: 42px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: #455120;
   color: #ffffff;
-  font-weight: 400;
-  font-size: 18px;
+  font-weight: 600;
+  font-size: 16px;
   display: grid;
   place-items: center;
   flex-shrink: 0;
@@ -2362,12 +2365,13 @@ tbody tr:hover {
   display: flex;
   flex-direction: column;
   min-width: 0;
+  gap: 1px;
 }
 
 .nh-dropdown-name {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 14px;
-  color: #101828;
+  color: #1a1a2e;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -2375,7 +2379,7 @@ tbody tr:hover {
 
 .nh-dropdown-email {
   font-size: 12px;
-  color: #667085;
+  color: #8a94a6;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -2384,31 +2388,38 @@ tbody tr:hover {
 .nh-dropdown-menu {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  margin-top: 8px;
+  padding: 6px 0;
 }
 
 .nh-dropdown-item {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 12px;
-  border-radius: 10px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #344054;
+  padding: 11px 16px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #2d3748;
   text-decoration: none;
   background: transparent;
   border: none;
   width: 100%;
   text-align: left;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background 0.12s ease;
 }
 
 .nh-dropdown-item:hover {
-  background: #F9FAFB;
-  color: #101828;
+  background: #f5f7fa;
+  color: #1a1a2e;
+}
+
+.nh-dropdown-item svg {
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+.nh-dropdown-item:hover svg {
+  opacity: 0.75;
 }
 
 /* ── Main Body & Workspace Layout ── */
@@ -2428,26 +2439,27 @@ tbody tr:hover {
   flex-direction: column;
   background: #ffffff;
   border-radius: 18px;
-  padding: 16px;
+  padding: 16px 0;
   border: 1px solid #D8E2C4;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
   height: fit-content;
 }
 
 .nh-sidebar-header-pill {
-  background: #F0F4E8;
-  border: 1px solid #D8E2C4;
+  background: #f0f4e8;
+  border: 1px solid #e2e8f0;
   border-radius: 9999px;
   padding: 5px 16px 5px 5px;
   display: flex;
   align-items: center;
   gap: 10px;
   user-select: none;
+  margin: 0 16px;
 }
 
 .nh-header-icon-circle {
-  width: 34px;
-  height: 34px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: #455120;
   color: #ffffff;
@@ -2466,48 +2478,102 @@ tbody tr:hover {
 
 .nh-sidebar-divider {
   border: none;
-  border-top: 1px solid #E5ECD9;
+  border-top: 1px solid #f1f5f9;
   margin: 14px 0 10px 0;
 }
 
 .nh-sidebar-menu {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
+  padding: 0 12px;
 }
 
 .nh-sidebar-item {
-  padding: 10px 18px;
+  padding: 10px 16px;
   border-radius: 9999px;
   font-family: 'Beautique Display', 'Beautique Display Condensed', serif;
   font-size: 14px;
   font-weight: 600;
-  color: #475467;
+  color: #475569;
   text-decoration: none;
   transition: all 0.15s ease;
   cursor: pointer;
   display: block;
+  border-left: none;
 }
 
 .nh-sidebar-item:hover {
-  background: #FAFBF8;
+  background: #f1f5f9;
   color: #455120;
 }
 
 .nh-sidebar-item.active {
-  background: #F0F4E8;
+  background: #EDF2E4;
   color: #455120;
-  font-weight: 700;
+  font-weight: 600;
+  border-left: none;
 }
 
 .nh-countdown-widget {
   background: #455120 !important;
-  border-radius: 16px;
+  border-radius: 12px;
   padding: 16px;
   color: #ffffff;
-  margin-top: 16px;
-  box-shadow: 0 4px 14px rgba(69, 81, 32, 0.2);
+  margin: 16px 16px 0 16px;
+  box-shadow: 0 4px 14px rgba(69, 81, 32, 0.15);
 }
+
+.nh-admin-shortcut-card {
+  background: #f8faf5;
+  border: 1px solid #D8E2C4;
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin: 14px 16px 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nh-admin-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Beautique Display', 'Beautique Display Condensed', serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #455120;
+}
+
+.nh-admin-card-desc {
+  font-size: 11.5px;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.45;
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.nh-admin-shortcut-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: #455120;
+  color: #ffffff;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 9999px;
+  text-decoration: none;
+  margin-top: 4px;
+  transition: all 0.15s ease;
+}
+
+.nh-admin-shortcut-btn:hover {
+  background: #38421a;
+  transform: translateY(-1px);
+}
+
 
 /* Main Content Area */
 .nh-main-content {
@@ -2686,21 +2752,21 @@ tbody tr:hover {
   background: #455120;
   color: #ffffff;
   border: none;
-  border-radius: 20px;
-  padding: 8px 18px;
-  font-size: 13px;
-  font-weight: 700;
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-size: 13.5px;
+  font-weight: 500;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(69, 81, 32, 0.2);
+  box-shadow: none;
 }
 
 .nh-btn-edit-info:hover {
-  background: #353F18;
-  transform: translateY(-1px);
+  background: #38421a;
+  transform: none;
 }
 
 .nh-analytics-panel {
@@ -2806,14 +2872,123 @@ tbody tr:hover {
 
 .nh-modal-card {
   background: #ffffff;
-  border-radius: 20px;
+  border-radius: 16px;
   width: 100%;
-  max-width: 480px;
+  max-width: 440px;
   padding: 24px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.12);
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.nh-form-input-clean {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  font-size: 14px;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  color: #1e293b;
+  outline: none;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+}
+
+.nh-form-input-clean:focus {
+  border-color: #455120;
+  box-shadow: 0 0 0 3px rgba(69, 81, 32, 0.1);
+}
+
+.nh-modal-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 9999px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.nh-modal-btn-secondary:hover:not(:disabled) {
+  background: #f8fafc;
+  color: #1e293b;
+  border-color: #94a3b8;
+}
+
+.nh-modal-btn-secondary.danger:hover:not(:disabled) {
+  background: #fef2f2;
+  color: #ef4444;
+  border-color: #fca5a5;
+}
+
+.nh-modal-btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.nh-modal-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 20px;
+  border-radius: 10px;
+  border: none;
+  background: #455120;
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.nh-modal-btn-primary:hover {
+  background: #38421a;
+}
+
+.nh-admin-breadcrumb-bar {
+  background: #DCE8CC;
+  color: #455120;
+  border-bottom: 1px solid #D1DFC0;
+  padding: 12px 0;
+}
+
+.nh-admin-breadcrumb-inner {
+  max-width: 1420px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 max(var(--page-gutter), 24px);
+  font-size: 13.5px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.nh-admin-breadcrumb-inner a {
+  color: #455120;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nh-admin-breadcrumb-inner a:hover {
+  text-decoration: underline;
+}
+
+.nh-admin-breadcrumb-inner .sep {
+  opacity: 0.65;
+  font-size: 13px;
+}
+
+.nh-admin-breadcrumb-inner .active {
+  font-weight: 700;
+  color: #455120;
 }
 
 /* ── UPGRADED COURSE DETAIL PAGE (Ngọc Huyền LB Inspired) ── */

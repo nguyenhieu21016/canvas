@@ -18,86 +18,155 @@ import {
   getOnlineUsers, presenceTarget
 } from "./services/lmsApi.js";
 import { state, pageRoot, wireRouteRetry, escapeHtml, isManager, renderAttemptsTable, isAdmin } from './main.js';
-import { renderLoading, renderErrorState, wireTableSearch, toast, renderMetric, wireMaterialFormButtons, renderSkeletonAssignments, renderAccountAvatar } from './lib/ui.js';
+import { renderLoading, renderErrorState, wireTableSearch, toast, renderMetric, renderSkeletonAssignments, renderAccountAvatar } from './lib/ui.js';
+
+
+
 
 export function mountManageHub() {
   const root = pageRoot();
   const items = [
     {
-      href: '#/progress',
-      icon: 'track_changes',
-      title: 'Tiến độ học',
-      description: 'Theo dõi tình hình học tập và lộ trình làm bài của từng học sinh.',
-      tag: 'TIẾN ĐỘ'
+      href: '#/students',
+      tag: 'HỌC SINH',
+      title: 'Theo dõi & Quản lý Học sinh',
+      description: 'Theo dõi tiến độ bài giảng, xem bảng điểm, trạng thái online và quản lý tài khoản.',
+      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
     },
     {
       href: '#/content',
-      icon: 'folder',
-      title: 'Nội dung khóa học',
-      description: 'Quản lý cấu trúc giai đoạn, Chương, Bài học và tài liệu bài giảng.',
-      tag: 'KHÓA HỌC'
+      tag: 'KHÓA HỌC',
+      title: 'Quản lý Nội dung khóa học',
+      description: 'Cấu trúc các giai đoạn, chương, bài học và danh sách bài giảng.',
+      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>`,
     },
     {
       href: '#/assignments',
-      icon: 'edit_note',
-      title: 'Đề thi & Bài tập',
-      description: 'Tạo đề kiểm tra, cài đặt đáp án, phiếu trả lời và chấm bài làm.',
-      tag: 'ĐỀ THI'
+      tag: 'ĐỀ THI & BÀI TẬP',
+      title: 'Quản lý Đề thi & Bài tập',
+      description: 'Tạo bài tập, cài đặt đáp án, phiếu trả lời và chấm bài.',
+      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>`,
     },
     {
       href: '#/salary',
-      icon: 'payments',
+      tag: 'LƯƠNG & LỊCH',
       title: 'Lịch dạy & Lương',
-      description: 'Cập nhật điểm danh lịch dạy hàng tháng và tổng hợp thống kê thu nhập.',
-      tag: 'LƯƠNG & LỊCH'
-    },
-    {
-      href: '#/online',
-      icon: 'people_alt',
-      title: 'Đang hoạt động',
-      description: 'Theo dõi danh sách học sinh đang truy cập và học trực tuyến.',
-      tag: 'TRUY CẬP'
+      description: 'Cập nhật điểm danh lịch dạy và tổng hợp thu nhập trợ giảng.',
+      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`,
     },
   ];
 
   root.innerHTML = `
-    <div style="background: #EDF2E4; min-height: calc(100vh - 64px); padding: 36px max(var(--page-gutter), 24px);">
-      <div style="max-width: 1140px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px;">
+    <style>
+      .nh-hub-card {
+        background: #ffffff;
+        border-radius: 16px;
+        border: 1px solid #D8E2C4;
+        padding: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        text-decoration: none;
+        color: inherit;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+        transition: all 0.2s ease;
+        cursor: pointer;
+      }
+      .nh-hub-card:hover {
+        box-shadow: 0 8px 24px rgba(69, 81, 32, 0.09);
+        border-color: #455120;
+        transform: translateY(-2px);
+      }
+      .nh-hub-icon-wrapper {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #F0F4E8;
+        border: 1px solid #D8E2CA;
+        color: #455120;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: all 0.2s ease;
+      }
+      .nh-hub-card:hover .nh-hub-icon-wrapper {
+        background: #455120;
+        color: #ffffff;
+        border-color: #455120;
+      }
+      .nh-hub-arrow-btn {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: #F0F4E8;
+        border: 1px solid #D8E2CA;
+        color: #455120;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: all 0.2s ease;
+      }
+      .nh-hub-card:hover .nh-hub-arrow-btn {
+        background: #455120;
+        color: #ffffff;
+        border-color: #455120;
+        transform: translateX(4px);
+      }
+    </style>
+
+    <div style="min-height: calc(100vh - 64px); background: #EDF2E4; padding: 0 0 60px 0; font-family: 'Be Vietnam Pro', sans-serif;">
+      
+      <!-- Top Breadcrumb Bar -->
+      <div class="nh-admin-breadcrumb-bar" style="margin-bottom: 24px;">
+        <div class="nh-admin-breadcrumb-inner" style="max-width: 1000px;">
+          <a href="#/learn">Trang chủ</a>
+          <span class="sep">&rsaquo;</span>
+          <span class="active">Trung tâm Quản trị</span>
+        </div>
+      </div>
+
+      <div style="max-width: 1000px; margin: 0 auto; padding: 0 max(var(--page-gutter), 24px); display: flex; flex-direction: column; gap: 24px;">
         
-        <!-- Header Banner -->
-        <div style="background: #ffffff; border-radius: 20px; border: 1px solid #D8E2C4; padding: 28px 36px; box-shadow: 0 2px 10px rgba(69, 81, 32, 0.04);">
-          <h1 style="font-family: 'Beautique Display', serif; font-size: 24px; font-weight: 700; color: #101828; margin: 0 0 6px 0;">Trung tâm Quản trị</h1>
-          <p style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 13.5px; color: #667085; margin: 0;">Quản lý toàn bộ hệ thống nội dung khóa học, bài tập, học sinh và giảng dạy</p>
+        <!-- Hero Header Card -->
+        <div style="background: #ffffff; border-radius: 18px; border: 1px solid #D8E2C4; padding: 28px 32px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+          <div>
+            <div style="font-size: 11px; font-weight: 700; color: #455120; letter-spacing: 0.08em; margin-bottom: 6px;">HỆ THỐNG QUẢN TRỊ</div>
+            <h1 style="font-family: 'Beautique Display', serif; font-size: 26px; font-weight: 700; color: #1e293b; margin: 0 0 4px 0;">Trung tâm Quản trị</h1>
+            <p style="font-size: 14px; color: #64748b; margin: 0;">Quản lý toàn bộ hệ thống nội dung khóa học, đề thi, theo dõi học sinh và giảng dạy.</p>
+          </div>
         </div>
 
-        <!-- Cards Grid -->
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-          ${items.map((item) => `
-            <a href="${item.href}" style="text-decoration: none; background: #ffffff; border-radius: 18px; border: 1px solid #D8E2C4; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.2s ease; box-shadow: 0 2px 8px rgba(69, 81, 32, 0.03);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 24px rgba(69, 81, 32, 0.08)'" onmouseout="this.style.transform='none'; this.style.boxShadow='0 2px 8px rgba(69, 81, 32, 0.03)'">
-              <div>
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
-                  <span style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 11px; font-weight: 700; color: #455120; letter-spacing: 0.08em; background: #F0F4E8; padding: 4px 10px; border-radius: 6px;">${item.tag}</span>
-                  <div style="width: 36px; height: 36px; border-radius: 10px; background: #f8fafc; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; color: #455120;">
-                    <md-icon style="font-size: 20px;">${item.icon}</md-icon>
-                  </div>
+        <!-- Cards grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(460px, 1fr)); gap: 20px;">
+          ${items.map(item => `
+            <a href="${item.href}" class="nh-hub-card">
+              <div style="display: flex; align-items: center; gap: 18px; min-width: 0; flex: 1;">
+                <div class="nh-hub-icon-wrapper">
+                  ${item.icon}
                 </div>
-
-                <h3 style="font-family: 'Beautique Display', serif; font-size: 19px; font-weight: 700; color: #101828; margin: 0 0 8px 0;">${escapeHtml(item.title)}</h3>
-                <p style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 13.5px; line-height: 1.5; color: #667085; margin: 0;">${escapeHtml(item.description)}</p>
+                <div style="min-width: 0; flex: 1;">
+                  <div style="font-size: 10.5px; font-weight: 700; color: #455120; letter-spacing: 0.08em; margin-bottom: 2px;">${escapeHtml(item.tag)}</div>
+                  <h3 style="font-family: 'Beautique Display', serif; font-size: 17px; font-weight: 700; color: #455120; margin: 0 0 4px 0;">${escapeHtml(item.title)}</h3>
+                  <p style="font-size: 13px; color: #64748b; margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.4;">${escapeHtml(item.description)}</p>
+                </div>
               </div>
-
-              <div style="margin-top: 24px; padding-top: 16px; border-top: 1px dashed #e2e8f0; display: flex; align-items: center; justify-content: space-between; color: #455120; font-family: 'Beautique Display', serif; font-size: 13.5px; font-weight: 700;">
-                <span>Truy cập quản lý</span>
-                <md-icon style="font-size: 17px;">arrow_forward</md-icon>
+              <div class="nh-hub-arrow-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
               </div>
             </a>
           `).join('')}
         </div>
-
       </div>
     </div>
   `;
 }
+
+
+
+
 
 
 
@@ -108,6 +177,7 @@ let currentContentPhaseId = null;
 export async function mountContentManager() {
   const root = pageRoot();
   root.innerHTML = renderLoading();
+
   try {
     const [data, students] = await Promise.all([
       fetchLearningPath(state.profile.role),
@@ -119,74 +189,109 @@ export async function mountContentManager() {
     }
 
     root.innerHTML = `
+      <!-- Top Breadcrumb Bar -->
+      <div class="nh-admin-breadcrumb-bar">
+        <div class="nh-admin-breadcrumb-inner">
+          <a href="#/manage">Trung tâm Quản trị</a>
+          <span class="sep">&rsaquo;</span>
+          <span class="active">Quản lý Nội dung khóa học</span>
+        </div>
+      </div>
+
       <style>
         .content-manager-layout {
           display: flex;
-          flex-wrap: wrap; /* Fix cutoff on smaller screens */
-          gap: 24px;
-          align-items: flex-start;
-          padding: 24px;
-          width: 100%;
-          box-sizing: border-box;
-          height: calc(100vh - var(--actual-topbar-height, 88px));
+          height: calc(100vh - 110px);
+          background: #EDF2E4;
           overflow: hidden;
         }
         .phase-list-column {
           width: 280px;
           flex-shrink: 0;
-          background: var(--md-sys-color-surface);
-          border-radius: 16px;
-          border: 1px solid var(--md-sys-color-outline-variant);
-          padding: 16px;
-          max-height: 100%;
+          background: #ffffff;
+          border-radius: 18px;
+          padding: 20px 0;
+          border: 1px solid #D8E2C4;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
           height: fit-content;
-          overflow-y: auto;
+          margin: 40px 0 40px 40px;
         }
         .phase-list-item {
-          padding: 12px 24px;
-          border-radius: 100px;
-          cursor: pointer;
-          margin-bottom: 8px;
-          font-weight: 500;
-          transition: background 0.2s, color 0.2s;
           display: flex;
-          justify-content: space-between;
           align-items: center;
-          color: var(--md-sys-color-on-surface-variant);
+          justify-content: space-between;
+          padding: 10px 18px;
+          margin: 0 16px 6px 16px;
+          border-radius: 9999px;
+          cursor: pointer;
+          font-family: 'Beautique Display', 'Beautique Display Condensed', serif;
+          font-size: 14px;
+          font-weight: 600;
+          color: #475467;
+          transition: all 0.15s ease;
         }
         .phase-list-item:hover {
-          background: var(--md-sys-color-surface-container-highest);
-          color: var(--md-sys-color-on-surface);
+          background: #FAFBF8;
+          color: #455120;
         }
         .phase-list-item.active {
-          background: var(--md-sys-color-secondary-container);
-          color: var(--md-sys-color-on-secondary-container);
-          font-weight: 600;
+          background: #F0F4E8;
+          color: #455120;
+          font-weight: 700;
         }
-        .phase-list-item .active-icon { display: none; }
-        .phase-list-item.active .active-icon { display: block; }
+        .phase-list-item svg {
+          opacity: 0.5;
+          transition: opacity 0.15s ease;
+          stroke: currentColor;
+        }
+        .phase-list-item.active svg {
+          opacity: 1;
+          stroke: #455120;
+        }
         .structure-column {
           flex: 1;
-          min-width: 300px;
-          background: var(--md-sys-color-surface);
-          border-radius: 16px;
-          border: 1px solid var(--md-sys-color-outline-variant);
-          padding: 24px;
-          height: 100%;
+          padding: 40px 24px;
           overflow-y: auto;
+          background: transparent;
+        }
+        .structure-card-wrapper {
+          background: #ffffff;
+          border-radius: 18px;
+          border: 1px solid #D8E2C4;
+          box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+          padding: 28px;
+        }
+        .btn-pill-action {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 13px;
+          font-weight: 600;
+          color: #455120;
+          border: 1.5px solid #455120;
+          background: transparent;
+          border-radius: 9999px;
+          padding: 6px 16px;
+          cursor: pointer;
+          transition: all 0.15s ease;
+        }
+        .btn-pill-action:hover {
+          background: #455120;
+          color: #ffffff;
         }
         /* Tree Hierarchy Styles */
         .structure-children {
-          margin-left: 20px;
-          padding-left: 16px;
-          border-left: 2px solid var(--md-sys-color-surface-container-highest);
+          margin-left: 24px;
+          padding-left: 20px;
+          border-left: 1.5px dashed #cbd5e1;
           position: relative;
         }
         .manage-node {
-          padding: 12px 0;
-          border-bottom: 1px solid var(--md-sys-color-outline-variant);
+          padding: 10px 0;
+          border-bottom: 1.5px solid #f1f5f9;
           display: flex;
-          align-items: flex-start;
+          align-items: center;
+          justify-content: space-between;
           gap: 12px;
         }
         .manage-node:last-child {
@@ -194,72 +299,93 @@ export async function mountContentManager() {
         }
         .toggle-children {
           display: flex;
-          align-items: flex-start;
+          align-items: center;
           cursor: pointer;
           flex: 1;
           min-width: 0;
+          gap: 8px;
         }
         .toggle-children strong {
           white-space: normal;
           word-break: break-word;
-          margin-top: 2px;
           line-height: 1.4;
         }
         .node-meta {
           margin-left: 8px;
-          margin-top: 4px;
-          white-space: nowrap;
-          color: var(--md-sys-color-on-surface-variant);
-          font-size: 0.85rem;
+          color: #64748b;
+          font-size: 12px;
+          font-weight: 400;
         }
         /* Level Colors & Typography */
-        .manage-node[data-entity="phase"] strong { font-size: 1.1rem; color: var(--md-sys-color-primary); }
-        .manage-node[data-entity="module"] strong { font-size: 1rem; color: var(--md-sys-color-on-surface); font-weight: 600; }
-        .manage-node[data-entity="lectureGroup"] strong { font-size: 0.95rem; color: var(--md-sys-color-on-surface); font-weight: 600; }
-        .manage-node[data-entity="lecture"] strong { font-size: 0.95rem; font-weight: 400; color: var(--md-sys-color-on-surface); }
+        .manage-node[data-entity="phase"] strong { font-size: 16px; color: #455120; font-weight: 700; }
+        .manage-node[data-entity="module"] strong { font-size: 15px; color: #1e293b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; }
+        .manage-node[data-entity="lectureGroup"] strong { font-size: 14.5px; color: #334155; font-weight: 600; }
+        .manage-node[data-entity="lecture"] strong { font-size: 14px; font-weight: 400; color: #475569; }
         
         .icon-actions {
           display: flex;
           align-items: center;
-          gap: 4px;
+          gap: 2px;
+        }
+        .icon-btn-utility {
+          background: none;
+          border: none;
+          padding: 6px;
+          border-radius: 50%;
+          color: #94a3b8;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.15s ease;
+        }
+        .icon-btn-utility:hover {
+          background: #f1f5f9;
+          color: #475569;
+        }
+        .icon-btn-utility.delete:hover {
+          background: #fef2f2;
+          color: #ef4444;
         }
         
         .editor-column {
           width: 360px;
           flex-shrink: 0;
-          background: var(--md-sys-color-surface-container-low);
-          border-radius: 16px;
-          padding: 24px;
-          max-height: 100%;
-          height: fit-content;
+          background: #ffffff;
+          border-radius: 18px;
+          border: 1px solid #D8E2C4;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+          padding: 32px 24px;
+          max-height: calc(100vh - 144px);
           overflow-y: auto;
+          margin: 40px 40px 40px 0;
         }
         .editor-column .entity-form { display: none; }
-        .editor-column .entity-form.active { display: grid; }
+        .editor-column .entity-form.active { display: grid; gap: 16px; }
         .editor-placeholder {
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
           text-align: center;
-          color: var(--md-sys-color-on-surface-variant);
-          background: var(--md-sys-color-surface-container);
-          border-radius: 24px;
-          padding: 60px 24px;
-          gap: 16px;
+          color: #64748b;
+          border: 1.5px dashed #cbd5e1;
+          border-radius: 12px;
+          padding: 48px 16px;
+          gap: 12px;
         }
         .editor-placeholder.hidden { display: none; }
-        
-        /* Responsive */
-        @media (max-width: 1100px) {
-          .editor-column { width: 100%; position: static; }
-        }
       </style>
       <div class="content-manager-layout">
         <aside class="phase-list-column">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-            <h2 style="margin: 0; font-size: 1.2rem; font-weight: 600;">Giai đoạn</h2>
-            <md-icon-button data-create="phase" aria-label="Thêm Giai đoạn"><md-icon>add</md-icon></md-icon-button>
+          <div style="padding: 0 24px 20px; border-bottom: 1px solid #f1f5f9; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-size: 11px; font-weight: 700; color: #94a3b8; letter-spacing: 0.08em; margin-bottom: 4px;">GIAI ĐOẠN</div>
+              <h2 style="margin: 0; font-size: 18px; font-weight: 700; color: #1e293b;">Danh sách</h2>
+            </div>
+            <button data-create="phase" class="icon-btn-utility" style="border: 1px solid #e2e8f0;" title="Thêm giai đoạn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </button>
           </div>
           <div id="phase-list-container">
             ${renderPhaseList(data.phases, currentContentPhaseId)}
@@ -267,23 +393,37 @@ export async function mountContentManager() {
         </aside>
 
         <section class="structure-column">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
-            <h2 style="margin: 0; font-size: 1.5rem; font-weight: 600; color: var(--md-sys-color-on-surface);">Cấu trúc chi tiết</h2>
-            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-              <md-outlined-button data-create="module"><md-icon slot="icon">add</md-icon>Chương</md-outlined-button>
-              <md-outlined-button data-create="lectureGroup"><md-icon slot="icon">add</md-icon>Nhóm</md-outlined-button>
-              <md-outlined-button data-create="lecture"><md-icon slot="icon">add</md-icon>Bài giảng</md-outlined-button>
+          <div class="structure-card-wrapper">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
+              <div>
+                <h2 style="margin: 0; font-size: 20px; font-weight: 700; color: #1e293b;">Cấu trúc chi tiết</h2>
+                <p style="font-size: 13px; color: #64748b; margin: 4px 0 0 0;">Thiết lập tổ chức chương trình đào tạo của giai đoạn này.</p>
+              </div>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <button data-create="module" class="btn-pill-action">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                  Chương
+                </button>
+                <button data-create="lectureGroup" class="btn-pill-action">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                  Nhóm
+                </button>
+                <button data-create="lecture" class="btn-pill-action">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                  Bài giảng
+                </button>
+              </div>
             </div>
-          </div>
-          <div id="manage-structure-container">
-            ${renderActivePhaseStructure(data.phases, currentContentPhaseId)}
+            <div id="manage-structure-container">
+              ${renderActivePhaseStructure(data.phases, currentContentPhaseId)}
+            </div>
           </div>
         </section>
 
-        <aside class="editor-column panel">
+        <aside class="editor-column">
           <div class="editor-placeholder" id="content-editor-placeholder">
-            <md-icon style="font-size: 48px; width: 48px; height: 48px; color: var(--md-sys-color-outline-variant);">edit_note</md-icon>
-            <p style="margin: 0; font-size: 0.95rem; color: var(--md-sys-color-on-surface-variant);">Chọn một mục bên trái để sửa hoặc bấm nút Thêm mới.</p>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.5;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4z"></path></svg>
+            <p style="margin: 0; font-size: 13.5px; line-height: 1.55;">Chọn một mục bên trái để sửa hoặc bấm nút Thêm mới.</p>
           </div>
           <div id="content-forms-container">
             ${renderPhaseForm(students)}
@@ -306,7 +446,6 @@ export async function mountContentManager() {
     wireContentForms(data);
     wirePhaseSelection(data);
     wireCascadingDropdowns(root);
-    wireMaterialFormButtons(root);
   } catch (error) {
     root.innerHTML = renderErrorState(error);
     wireRouteRetry(root);
@@ -318,7 +457,7 @@ export function renderPhaseList(phases, activeId) {
   return phases.map(p => `
     <div class="phase-list-item ${p.id === activeId ? 'active' : ''}" data-phase-id="${p.id}">
       <span>${escapeHtml(p.title)}</span>
-      <md-icon class="active-icon" style="font-size: 20px;">chevron_right</md-icon>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
     </div>
   `).join('');
 }
@@ -354,30 +493,37 @@ export function wirePhaseSelection(pathData) {
   });
 }
 
+
 export function renderPhaseForm(students = []) {
   return `
-    <form class="entity-form compact-entity-form" data-entity="phase">
-      <div class="entity-form-heading">
-        <md-icon>flag</md-icon>
-        <h3>Giai đoạn</h3>
+    <form class="entity-form compact-entity-form" data-entity="phase" style="display: flex; flex-direction: column; gap: 16px;">
+      <div class="entity-form-heading" style="display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; margin-bottom: 4px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+        <h3 style="font-family: 'Beautique Display', serif; font-size: 17px; font-weight: 700; color: #455120; margin: 0;">Cấu hình Giai đoạn</h3>
       </div>
       <input type="hidden" name="id">
       <input type="hidden" name="description" value="">
       <input type="hidden" name="sort_order" value="0">
       <input type="hidden" name="published" value="true">
-      <input class="field" name="title" placeholder="Tên giai đoạn" required>
-      <div class="field" style="max-height: 120px; overflow-y: auto; border: 1px solid var(--md-sys-color-outline-variant); padding: 8px; border-radius: 8px;">
-        <div style="font-size: 0.85rem; font-weight: 500; margin-bottom: 8px; color: var(--md-sys-color-on-surface-variant);">Hiển thị cho học sinh (để trống = tất cả):</div>
+      
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <label style="font-size: 12.5px; font-weight: 600; color: #334155;">Tên Giai đoạn</label>
+        <input class="nh-form-input-clean" name="title" placeholder="Nhập tên giai đoạn..." required>
+      </div>
+
+      <div style="max-height: 140px; overflow-y: auto; border: 1px solid #cbd5e1; border-radius: 10px; padding: 10px; background: #ffffff;">
+        <div style="font-size: 12px; font-weight: 600; margin-bottom: 8px; color: #455120;">Hiển thị cho học sinh (để trống = tất cả):</div>
         ${students.map(s => `
-          <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px; font-size: 0.9rem; cursor: pointer;">
-            <input type="checkbox" name="student_ids" value="${escapeHtml(s.id)}">
+          <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 13px; color: #334155; cursor: pointer;">
+            <input type="checkbox" name="student_ids" value="${escapeHtml(s.id)}" style="accent-color: #455120; width: 15px; height: 15px;">
             ${escapeHtml(s.full_name)}
           </label>
         `).join('')}
       </div>
-      <div class="button-row">
-        <md-filled-button type="submit"><md-icon slot="icon">save</md-icon>Lưu</md-filled-button>
-        <md-outlined-button type="reset">Mới</md-outlined-button>
+
+      <div style="display: flex; gap: 10px; margin-top: 8px;">
+        <button type="submit" class="nh-modal-btn-primary">Lưu</button>
+        <button type="reset" class="nh-modal-btn-secondary">Thêm mới</button>
       </div>
     </form>
   `;
@@ -385,23 +531,32 @@ export function renderPhaseForm(students = []) {
 
 export function renderModuleForm(phases) {
   return `
-    <form class="entity-form compact-entity-form" data-entity="module">
-      <div class="entity-form-heading">
-        <md-icon>folder</md-icon>
-        <h3>Chương</h3>
+    <form class="entity-form compact-entity-form" data-entity="module" style="display: flex; flex-direction: column; gap: 16px;">
+      <div class="entity-form-heading" style="display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; margin-bottom: 4px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+        <h3 style="font-family: 'Beautique Display', serif; font-size: 17px; font-weight: 700; color: #455120; margin: 0;">Cấu hình Chương</h3>
       </div>
       <input type="hidden" name="id">
       <input type="hidden" name="description" value="">
       <input type="hidden" name="sort_order" value="0">
       <input type="hidden" name="published" value="true">
-      <select class="field" name="phase_id" required>
-        <option value="">Chọn giai đoạn</option>
-        ${phases.map((phase) => option(phase.id, phase.title)).join('')}
-      </select>
-      <input class="field" name="title" placeholder="Tên Chương" required>
-      <div class="button-row">
-        <md-filled-button type="submit"><md-icon slot="icon">save</md-icon>Lưu</md-filled-button>
-        <md-outlined-button type="reset">Mới</md-outlined-button>
+
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <label style="font-size: 12.5px; font-weight: 600; color: #334155;">Thuộc Giai đoạn</label>
+        <select class="nh-form-input-clean" name="phase_id" required style="height: 40px;">
+          <option value="">-- Chọn giai đoạn --</option>
+          ${phases.map((phase) => option(phase.id, phase.title)).join('')}
+        </select>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <label style="font-size: 12.5px; font-weight: 600; color: #334155;">Tên Chương</label>
+        <input class="nh-form-input-clean" name="title" placeholder="Nhập tên chương..." required>
+      </div>
+
+      <div style="display: flex; gap: 10px; margin-top: 8px;">
+        <button type="submit" class="nh-modal-btn-primary">Lưu</button>
+        <button type="reset" class="nh-modal-btn-secondary">Thêm mới</button>
       </div>
     </form>
   `;
@@ -409,27 +564,40 @@ export function renderModuleForm(phases) {
 
 export function renderLectureGroupForm(phases, modules) {
   return `
-    <form class="entity-form compact-entity-form" data-entity="lectureGroup">
-      <div class="entity-form-heading">
-        <md-icon>auto_stories</md-icon>
-        <h3>Bài học</h3>
+    <form class="entity-form compact-entity-form" data-entity="lectureGroup" style="display: flex; flex-direction: column; gap: 16px;">
+      <div class="entity-form-heading" style="display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; margin-bottom: 4px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        <h3 style="font-family: 'Beautique Display', serif; font-size: 17px; font-weight: 700; color: #455120; margin: 0;">Cấu hình Bài học (Nhóm)</h3>
       </div>
       <input type="hidden" name="id">
       <input type="hidden" name="description" value="">
       <input type="hidden" name="sort_order" value="0">
       <input type="hidden" name="published" value="true">
-      <select class="field cascade-phase" name="phase_id" required>
-        <option value="">Chọn giai đoạn</option>
-        ${phases.map((phase) => option(phase.id, phase.title)).join('')}
-      </select>
-      <select class="field cascade-module" name="module_id" required disabled>
-        <option value="">Chọn Chương</option>
-        ${modules.map((module) => `<option value="${escapeHtml(module.id)}" data-phase-id="${escapeHtml(module.phase_id)}">${escapeHtml(module.title)}</option>`).join('')}
-      </select>
-      <input class="field" name="title" placeholder="Tên nhóm, ví dụ: Bài giảng 1" required>
-      <div class="button-row">
-        <md-filled-button type="submit"><md-icon slot="icon">save</md-icon>Lưu</md-filled-button>
-        <md-outlined-button type="reset">Mới</md-outlined-button>
+
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <label style="font-size: 12.5px; font-weight: 600; color: #334155;">Giai đoạn</label>
+        <select class="nh-form-input-clean cascade-phase" name="phase_id" required style="height: 40px;">
+          <option value="">-- Chọn giai đoạn --</option>
+          ${phases.map((phase) => option(phase.id, phase.title)).join('')}
+        </select>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <label style="font-size: 12.5px; font-weight: 600; color: #334155;">Chương</label>
+        <select class="nh-form-input-clean cascade-module" name="module_id" required disabled style="height: 40px;">
+          <option value="">-- Chọn chương --</option>
+          ${modules.map((module) => `<option value="${escapeHtml(module.id)}" data-phase-id="${escapeHtml(module.phase_id)}">${escapeHtml(module.title)}</option>`).join('')}
+        </select>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <label style="font-size: 12.5px; font-weight: 600; color: #334155;">Tên Bài học</label>
+        <input class="nh-form-input-clean" name="title" placeholder="VD: Bài 1: Sự đồng biến..." required>
+      </div>
+
+      <div style="display: flex; gap: 10px; margin-top: 8px;">
+        <button type="submit" class="nh-modal-btn-primary">Lưu</button>
+        <button type="reset" class="nh-modal-btn-secondary">Thêm mới</button>
       </div>
     </form>
   `;
@@ -437,32 +605,53 @@ export function renderLectureGroupForm(phases, modules) {
 
 export function renderLectureForm(phases, modules, lectureGroups) {
   return `
-    <form class="entity-form compact-entity-form" data-entity="lecture">
-      <div class="entity-form-heading">
-        <md-icon>article</md-icon>
-        <h3>Bài giảng</h3>
+    <form class="entity-form compact-entity-form" data-entity="lecture" style="display: flex; flex-direction: column; gap: 16px;">
+      <div class="entity-form-heading" style="display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; margin-bottom: 4px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+        <h3 style="font-family: 'Beautique Display', serif; font-size: 17px; font-weight: 700; color: #455120; margin: 0;">Cấu hình Dạng bài (Bài giảng)</h3>
       </div>
       <input type="hidden" name="id">
       <input type="hidden" name="description" value="">
       <input type="hidden" name="sort_order" value="0">
       <input type="hidden" name="published" value="true">
-      <select class="field cascade-phase" name="phase_id" required>
-        <option value="">Chọn giai đoạn</option>
-        ${phases.map((phase) => option(phase.id, phase.title)).join('')}
-      </select>
-      <select class="field cascade-module" name="module_id" required disabled>
-        <option value="">Chọn Chương</option>
-        ${modules.map((module) => `<option value="${escapeHtml(module.id)}" data-phase-id="${escapeHtml(module.phase_id)}">${escapeHtml(module.title)}</option>`).join('')}
-      </select>
-      <select class="field cascade-group" name="group_id" disabled>
-        <option value="">Chưa nhóm</option>
-        ${lectureGroups.map((group) => `<option value="${escapeHtml(group.id)}" data-module-id="${escapeHtml(group.module_id)}">${escapeHtml(group.title)}</option>`).join('')}
-      </select>
-      <input class="field" name="title" placeholder="Tên bài giảng" required>
-      <input class="field" name="slide_url" placeholder="Link Google Drive slide">
-      <div class="button-row">
-        <md-filled-button type="submit"><md-icon slot="icon">save</md-icon>Lưu</md-filled-button>
-        <md-outlined-button type="reset">Mới</md-outlined-button>
+
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <label style="font-size: 12.5px; font-weight: 600; color: #334155;">Giai đoạn</label>
+        <select class="nh-form-input-clean cascade-phase" name="phase_id" required style="height: 40px;">
+          <option value="">-- Chọn giai đoạn --</option>
+          ${phases.map((phase) => option(phase.id, phase.title)).join('')}
+        </select>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <label style="font-size: 12.5px; font-weight: 600; color: #334155;">Chương</label>
+        <select class="nh-form-input-clean cascade-module" name="module_id" required disabled style="height: 40px;">
+          <option value="">-- Chọn chương --</option>
+          ${modules.map((module) => `<option value="${escapeHtml(module.id)}" data-phase-id="${escapeHtml(module.phase_id)}">${escapeHtml(module.title)}</option>`).join('')}
+        </select>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <label style="font-size: 12.5px; font-weight: 600; color: #334155;">Bài học (Nhóm)</label>
+        <select class="nh-form-input-clean cascade-group" name="group_id" disabled style="height: 40px;">
+          <option value="">-- Chưa chọn nhóm --</option>
+          ${lectureGroups.map((group) => `<option value="${escapeHtml(group.id)}" data-module-id="${escapeHtml(group.module_id)}">${escapeHtml(group.title)}</option>`).join('')}
+        </select>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <label style="font-size: 12.5px; font-weight: 600; color: #334155;">Tên Dạng bài</label>
+        <input class="nh-form-input-clean" name="title" placeholder="VD: 1.1. Dạng 1 - Xét tính đơn điệu..." required>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <label style="font-size: 12.5px; font-weight: 600; color: #334155;">Link Google Drive Slide / Tài liệu</label>
+        <input class="nh-form-input-clean" name="slide_url" placeholder="https://drive.google.com/...">
+      </div>
+
+      <div style="display: flex; gap: 10px; margin-top: 8px;">
+        <button type="submit" class="nh-modal-btn-primary">Lưu</button>
+        <button type="reset" class="nh-modal-btn-secondary">Thêm mới</button>
       </div>
     </form>
   `;
@@ -472,13 +661,17 @@ export function renderManagePhase(phase) {
   return `
     <div class="manage-node" data-entity="phase" data-parent="root" data-id="${phase.id}" data-payload="${escapeHtml(JSON.stringify(phase))}">
       <div class="toggle-children" aria-expanded="true">
-        <md-icon class="expand-icon" style="margin-right: 4px; transition: transform 0.2s; color: var(--md-sys-color-outline);">expand_more</md-icon>
+        <svg class="expand-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; transition: transform 0.2s;"><polyline points="6 9 12 15 18 9"></polyline></svg>
         <strong>${escapeHtml(phase.title)}</strong>
         <span class="node-meta">${phase.modules.length} Chương</span>
       </div>
       <div class="icon-actions">
-        <md-icon-button data-edit-phase="${phase.id}" data-payload="${escapeHtml(JSON.stringify(phase))}" aria-label="Sửa giai đoạn"><md-icon>edit</md-icon></md-icon-button>
-        <md-icon-button data-delete-phase="${phase.id}" aria-label="Xóa giai đoạn"><md-icon>delete</md-icon></md-icon-button>
+        <button class="icon-btn-utility" data-edit-phase="${phase.id}" data-payload="${escapeHtml(JSON.stringify(phase))}" title="Sửa giai đoạn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4z"></path></svg>
+        </button>
+        <button class="icon-btn-utility delete" data-delete-phase="${phase.id}" title="Xóa giai đoạn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+        </button>
       </div>
     </div>
     <div class="structure-children">
@@ -487,13 +680,17 @@ export function renderManagePhase(phase) {
         (module) => `
           <div class="manage-node child" data-entity="module" data-parent="${phase.id}" data-id="${module.id}" data-payload="${escapeHtml(JSON.stringify(module))}">
             <div class="toggle-children" aria-expanded="true">
-              <md-icon class="expand-icon" style="margin-right: 4px; transition: transform 0.2s; color: var(--md-sys-color-outline);">expand_more</md-icon>
+              <svg class="expand-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; transition: transform 0.2s;"><polyline points="6 9 12 15 18 9"></polyline></svg>
               <strong>${escapeHtml(module.title)}</strong>
               <span class="node-meta">${module.lecture_groups.length} nhóm · ${module.lectures.length} bài giảng</span>
             </div>
             <div class="icon-actions">
-              <md-icon-button data-edit-module="${module.id}" data-payload="${escapeHtml(JSON.stringify(module))}" aria-label="Sửa Chương"><md-icon>edit</md-icon></md-icon-button>
-              <md-icon-button data-delete-module="${module.id}" aria-label="Xóa Chương"><md-icon>delete</md-icon></md-icon-button>
+              <button class="icon-btn-utility" data-edit-module="${module.id}" data-payload="${escapeHtml(JSON.stringify(module))}" title="Sửa Chương">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4z"></path></svg>
+              </button>
+              <button class="icon-btn-utility delete" data-delete-module="${module.id}" title="Xóa Chương">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+              </button>
             </div>
           </div>
           <div class="structure-children">
@@ -502,13 +699,17 @@ export function renderManagePhase(phase) {
               (group) => `
                 <div class="manage-node grandchild" data-entity="lectureGroup" data-parent="${module.id}" data-id="${group.id}" data-payload="${escapeHtml(JSON.stringify(group))}">
                   <div class="toggle-children" aria-expanded="false">
-                    <md-icon class="expand-icon" style="margin-right: 4px; transition: transform 0.2s; transform: rotate(-90deg); color: var(--md-sys-color-outline);">expand_more</md-icon>
+                    <svg class="expand-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; transition: transform 0.2s; transform: rotate(-90deg);"><polyline points="6 9 12 15 18 9"></polyline></svg>
                     <strong>${escapeHtml(group.title)}</strong>
                     <span class="node-meta">${group.lectures.length} bài giảng</span>
                   </div>
                   <div class="icon-actions">
-                    <md-icon-button data-edit-lecture-group="${group.id}" data-payload="${escapeHtml(JSON.stringify(group))}" aria-label="Sửa Bài học"><md-icon>edit</md-icon></md-icon-button>
-                    <md-icon-button data-delete-lecture-group="${group.id}" aria-label="Xóa Bài học"><md-icon>delete</md-icon></md-icon-button>
+                    <button class="icon-btn-utility" data-edit-lecture-group="${group.id}" data-payload="${escapeHtml(JSON.stringify(group))}" title="Sửa Bài học">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4z"></path></svg>
+                    </button>
+                    <button class="icon-btn-utility delete" data-delete-lecture-group="${group.id}" title="Xóa Bài học">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                    </button>
                   </div>
                 </div>
                 <div class="structure-children" style="display: none;">
@@ -534,13 +735,18 @@ export function renderManagePhase(phase) {
 export function renderManageLecture(lecture, parent, statusText) {
   return `
     <div class="manage-node greatgrandchild" data-entity="lecture" data-parent="${escapeHtml(parent)}" data-id="${lecture.id}" data-payload="${escapeHtml(JSON.stringify(lecture))}">
-      <div style="display: flex; align-items: flex-start; flex: 1; padding-left: 28px; min-width: 0;">
-        <strong style="white-space: normal; word-break: break-word; line-height: 1.4; margin-top: 2px;">${escapeHtml(lecture.title)}</strong>
+      <div style="display: flex; align-items: center; flex: 1; padding-left: 28px; min-width: 0; gap: 8px;">
+        <span style="width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #94a3b8; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #64748b; flex-shrink: 0;">L</span>
+        <strong style="white-space: normal; word-break: break-word; line-height: 1.4;">${escapeHtml(lecture.title)}</strong>
         <span class="node-meta">${escapeHtml(statusText)}</span>
       </div>
       <div class="icon-actions">
-        <md-icon-button data-edit-lecture="${lecture.id}" data-payload="${escapeHtml(JSON.stringify(lecture))}" aria-label="Sửa bài giảng"><md-icon>edit</md-icon></md-icon-button>
-        <md-icon-button data-delete-lecture="${lecture.id}" aria-label="Xóa bài giảng"><md-icon>delete</md-icon></md-icon-button>
+        <button class="icon-btn-utility" data-edit-lecture="${lecture.id}" data-payload="${escapeHtml(JSON.stringify(lecture))}" title="Sửa bài giảng">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4z"></path></svg>
+        </button>
+        <button class="icon-btn-utility delete" data-delete-lecture="${lecture.id}" title="Xóa bài giảng">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+        </button>
       </div>
     </div>
   `;
@@ -990,7 +1196,18 @@ export async function mountAssignmentManager() {
     if (!state.assignmentEditor) state.assignmentEditor = emptyEditor();
     if (state.isEditingAssignment) {
       root.innerHTML = `
-        <section class="assignment-editor-view" style="background: #EDF2E4; min-height: calc(100vh - 64px); padding: 24px max(var(--page-gutter), 16px);">
+        <!-- Top Breadcrumb Bar -->
+        <div class="nh-admin-breadcrumb-bar">
+          <div class="nh-admin-breadcrumb-inner">
+            <a href="#/manage">Trung tâm Quản trị</a>
+            <span class="sep">&rsaquo;</span>
+            <a href="#/assignments">Quản lý Bài tập & Đề thi</a>
+            <span class="sep">&rsaquo;</span>
+            <span class="active">Chỉnh sửa đề thi</span>
+          </div>
+        </div>
+
+        <section class="assignment-editor-view" style="background: #EDF2E4; min-height: calc(100vh - 110px); padding: 24px max(var(--page-gutter), 16px);">
           <div style="width: 100%; max-width: 98vw; margin: 0 auto;">
             <div style="margin-bottom: 16px;">
               <button type="button" id="back-to-list-btn" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; background: #ffffff; color: #455120; border: 1px solid #D8E2CA; border-radius: 9999px; font-family: 'Be Vietnam Pro', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s ease;" onmouseover="this.style.background='#F0F4E8'" onmouseout="this.style.background='#ffffff'">
@@ -1006,6 +1223,15 @@ export async function mountAssignmentManager() {
       `;
     } else {
       root.innerHTML = `
+        <!-- Top Breadcrumb Bar -->
+        <div class="nh-admin-breadcrumb-bar">
+          <div class="nh-admin-breadcrumb-inner" style="max-width: 1040px;">
+            <a href="#/manage">Trung tâm Quản trị</a>
+            <span class="sep">&rsaquo;</span>
+            <span class="active">Quản lý Bài tập & Đề thi</span>
+          </div>
+        </div>
+
         <style>
           .nh-assignment-row {
             background: #ffffff;
@@ -1027,7 +1253,7 @@ export async function mountAssignmentManager() {
             transform: translateY(-1px);
           }
         </style>
-        <section style="background: #EDF2E4; min-height: calc(100vh - 64px); padding: 32px max(var(--page-gutter), 24px);">
+        <section style="background: #EDF2E4; min-height: calc(100vh - 110px); padding: 32px max(var(--page-gutter), 24px);">
           <div style="max-width: 1040px; margin: 0 auto; width: 100%;">
             
             <!-- White Header Card -->
@@ -1039,11 +1265,11 @@ export async function mountAssignmentManager() {
 
               <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; flex: 1; max-width: 500px; justify-content: flex-end;">
                 <div style="position: relative; flex: 1; min-width: 220px;">
-                  <md-icon style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 18px; color: #667085; pointer-events: none;">search</md-icon>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#667085" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); pointer-events: none;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                   <input type="text" id="assignment-search" placeholder="Tìm kiếm đề thi..." style="width: 100%; box-sizing: border-box; padding: 10px 16px 10px 40px; border-radius: 9999px; border: 1px solid #cbd5e1; font-family: 'Be Vietnam Pro', sans-serif; font-size: 13.5px; outline: none; transition: border-color 0.15s ease;" onfocus="this.style.borderColor='#455120'" onblur="this.style.borderColor='#cbd5e1'" />
                 </div>
                 <button type="button" id="new-assignment" style="display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px; background: #455120; color: #ffffff; border: 0; border-radius: 9999px; font-family: 'Be Vietnam Pro', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: background 0.15s ease; box-shadow: 0 2px 8px rgba(69, 81, 32, 0.15);">
-                  <md-icon style="font-size: 17px;">add</md-icon>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                   <span>Tạo đề mới</span>
                 </button>
               </div>
@@ -1057,7 +1283,7 @@ export async function mountAssignmentManager() {
                     <div class="nh-assignment-row assignment-row" onclick="document.querySelector('[data-load-assignment=\\'${assignment.id}\\']').click()">
                       <div style="display: flex; align-items: center; gap: 16px; flex: 1; min-width: 0;">
                         <div style="width: 42px; height: 42px; border-radius: 12px; background: #F0F4E8; border: 1px solid #D8E2CA; color: #455120; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                          <md-icon style="font-size: 20px;">edit_note</md-icon>
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
                         </div>
                         <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0;">
                           <span style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 15px; font-weight: 700; color: #101828; line-height: 1.3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(assignment.title)}</span>
@@ -1066,10 +1292,10 @@ export async function mountAssignmentManager() {
                       </div>
                       <div style="display: flex; gap: 6px; align-items: center;" onclick="event.stopPropagation()">
                         <button type="button" data-load-assignment="${assignment.id}" title="Chỉnh sửa" style="width: 36px; height: 36px; border-radius: 8px; border: 1px solid #e2e8f0; background: #ffffff; color: #455120; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s ease;" onmouseover="this.style.background='#F0F4E8'" onmouseout="this.style.background='#ffffff'">
-                          <md-icon style="font-size: 18px;">edit</md-icon>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4z"></path></svg>
                         </button>
                         <button type="button" data-delete-assignment="${assignment.id}" title="Xóa" style="width: 36px; height: 36px; border-radius: 8px; border: 1px solid #fecaca; background: #ffffff; color: #d92d20; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s ease;" onmouseover="this.style.background='#fef2f2'" onmouseout="this.style.background='#ffffff'">
-                          <md-icon style="font-size: 18px;">delete</md-icon>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
                         </button>
                       </div>
                     </div>
@@ -1083,7 +1309,6 @@ export async function mountAssignmentManager() {
       `;
     }
     wireAssignmentEditor(path.lectures);
-    wireMaterialFormButtons(root);
   } catch (error) {
     root.innerHTML = renderErrorState(error);
     wireRouteRetry(root);
@@ -1093,18 +1318,18 @@ export async function mountAssignmentManager() {
 export function renderPdfPreview(url) {
   if (!url) {
     return `
-      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 40px; text-align: center; color: var(--md-sys-color-outline); height: 100%; width: 100%;">
-        <md-icon style="font-size: 3rem;">picture_as_pdf</md-icon>
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 40px; text-align: center; color: #94a3b8; height: 100%; width: 100%;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
         <p style="margin: 0; font-weight: 500; font-size: 0.9rem;">Chưa có link PDF đề thi</p>
-        <p style="margin: 0; font-size: 0.8rem; max-width: 250px; color: var(--md-sys-color-on-surface-variant);">Hãy nhập link PDF Google Drive ở ô thông tin phía trên để hiển thị bản xem trước tại đây.</p>
+        <p style="margin: 0; font-size: 0.8rem; max-width: 250px; color: #64748b;">Hãy nhập link PDF Google Drive ở ô thông tin phía trên để hiển thị bản xem trước tại đây.</p>
       </div>
     `;
   }
   const preview = toDrivePreviewUrl(url);
   if (!preview) {
     return `
-      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 40px; text-align: center; color: var(--md-sys-color-outline); height: 100%; width: 100%;">
-        <md-icon style="font-size: 3rem;">open_in_new</md-icon>
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 40px; text-align: center; color: #94a3b8; height: 100%; width: 100%;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
         <p style="margin: 0; font-weight: 500; font-size: 0.9rem;">Không thể nhúng link PDF này</p>
         <a class="text-link" href="${escapeHtml(url)}" target="_blank" rel="noreferrer noopener" style="font-weight: 600;">Mở liên kết trong tab mới</a>
       </div>
@@ -1231,19 +1456,19 @@ export function renderAssignmentEditor(lectures) {
         <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 14px; margin-bottom: 16px;">
           <div style="display: flex; align-items: center; gap: 8px;">
             <div style="width: 32px; height: 32px; border-radius: 8px; background: #F0F4E8; color: #455120; display: flex; align-items: center; justify-content: center;">
-              <md-icon style="font-size: 18px;">functions</md-icon>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="20" y2="15"></line><line x1="10" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="14" y2="21"></line></svg>
             </div>
             <h3 style="margin: 0; font-family: 'Beautique Display', serif; font-size: 17px; font-weight: 700; color: #101828;">Soạn thảo LaTeX (EX_TEST)</h3>
           </div>
           <div style="display: flex; gap: 8px; align-items: center;">
             <input type="file" id="latex-image-upload" accept="image/*" style="display: none;">
             <button type="button" id="latex-image-btn" style="display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; background: #ffffff; color: #455120; border: 1px solid #D8E2CA; border-radius: 9999px; font-family: 'Be Vietnam Pro', sans-serif; font-size: 12.5px; font-weight: 500; cursor: pointer; transition: background 0.15s ease;" onmouseover="this.style.background='#F0F4E8'" onmouseout="this.style.background='#ffffff'">
-              <md-icon style="font-size: 16px;">image</md-icon>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
               <span>Chèn ảnh</span>
             </button>
             <span id="latex-upload-status" style="font-size: 12px; color: #455120; font-family: 'Be Vietnam Pro', sans-serif; display: none;">Đang tải ảnh...</span>
             <button type="button" id="latex-live-parse-btn" style="display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px; background: #455120; color: #ffffff; border: 0; border-radius: 9999px; font-family: 'Be Vietnam Pro', sans-serif; font-size: 12.5px; font-weight: 500; cursor: pointer; box-shadow: 0 2px 6px rgba(69, 81, 32, 0.15);">
-              <md-icon style="font-size: 16px;">auto_fix_high</md-icon>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
               <span>Cập nhật & Xem trước</span>
             </button>
           </div>
@@ -1346,14 +1571,16 @@ export function renderQuestionEditor(question, index) {
 
   return `
     <article class="question-editor" data-index="${index}">
-      <div class="editor-heading">
-        <strong>Câu ${index + 1}</strong>
+      <div class="editor-heading" style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid #f1f5f9;">
+        <strong style="font-size: 15px; font-weight: 700; color: #455120;">Câu ${index + 1}</strong>
         <div style="display: flex; gap: 8px; align-items: center;">
-          <md-outlined-select name="question-type-${index}" style="width: 120px; --md-outlined-select-text-field-container-shape: 6px;">
-            ${['mcq', 'tf4', 'short'].map((type) => `<md-select-option value="${type}" ${question.type === type ? 'selected' : ''}><div slot="headline">${type.toUpperCase()}</div></md-select-option>`).join('')}
-          </md-outlined-select>
-          <md-outlined-text-field type="number" name="question-sort-${index}" value="${Number(question.sort_order ?? index + 1)}" placeholder="Thứ tự" style="width: 70px; --md-outlined-text-field-container-shape: 6px;"></md-outlined-text-field>
-          <md-icon-button type="button" data-remove-question="${index}" aria-label="Xóa câu"><md-icon>close</md-icon></md-icon-button>
+          <select name="question-type-${index}" class="nh-form-input-clean" style="width: 120px; height: 36px; padding: 4px 8px;">
+            ${['mcq', 'tf4', 'short'].map((type) => `<option value="${type}" ${question.type === type ? 'selected' : ''}>${type.toUpperCase()}</option>`).join('')}
+          </select>
+          <input type="number" class="nh-form-input-clean" name="question-sort-${index}" value="${Number(question.sort_order ?? index + 1)}" placeholder="Thứ tự" style="width: 70px; height: 36px; padding: 4px 8px;">
+          <button type="button" data-remove-question="${index}" aria-label="Xóa câu" style="width: 32px; height: 32px; border-radius: 50%; border: 1px solid #cbd5e1; background: #ffffff; color: #ef4444; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
         </div>
       </div>
       <input type="hidden" name="question-id-${index}" value="${escapeHtml(question.id ?? '')}">
@@ -1877,7 +2104,7 @@ export async function mountStudents() {
             ${option('teacher', 'Giáo viên')}
             ${option('admin', 'Admin')}
           </select>
-          <md-filled-button type="submit"><md-icon slot="icon">person_add</md-icon>Tạo</md-filled-button>
+          <button type="submit" class="nh-modal-btn-primary" style="height: 40px;">Tạo</button>
         </form>
       </section>
       <section class="panel">
@@ -1890,7 +2117,6 @@ export async function mountStudents() {
     `;
     wireStudentManager();
     wireTableSearch('#student-search', '[data-student-id]');
-    wireMaterialFormButtons(root);
   } catch (error) {
     root.innerHTML = renderErrorState(error);
     wireRouteRetry(root);
@@ -1923,10 +2149,10 @@ export function renderStudentRows(students) {
                       ${option('disabled', 'Disabled', student.status)}
                     </select>
                   </td>
-                  <td class="row-actions">
-                    <md-icon-button data-save-student="${student.id}" aria-label="Lưu"><md-icon>save</md-icon></md-icon-button>
-                    <md-icon-button data-reset-student="${student.id}" aria-label="Reset mật khẩu"><md-icon>key</md-icon></md-icon-button>
-                    <md-icon-button data-delete-student="${student.id}" aria-label="Xóa"><md-icon>delete</md-icon></md-icon-button>
+                  <td class="row-actions" style="display: flex; gap: 6px;">
+                    <button type="button" data-save-student="${student.id}" title="Lưu" style="padding: 6px 12px; border-radius: 6px; border: 1px solid #455120; background: #455120; color: #fff; cursor: pointer;">Lưu</button>
+                    <button type="button" data-reset-student="${student.id}" title="Reset mật khẩu" style="padding: 6px 12px; border-radius: 6px; border: 1px solid #cbd5e1; background: #fff; color: #334155; cursor: pointer;">Đặt lại MK</button>
+                    <button type="button" data-delete-student="${student.id}" title="Xóa" style="padding: 6px 12px; border-radius: 6px; border: 1px solid #fecaca; background: #fef2f2; color: #ef4444; cursor: pointer;">Xóa</button>
                   </td>
                 </tr>
               `,
@@ -2083,62 +2309,62 @@ export async function mountSalaryManager() {
       const firstDow = (days[0].getDay() + 6) % 7;
 
       function cellStyle(cellState, isWeekend) {
-        if (cellState === 'taught') return `background:var(--md-sys-color-primary); color:var(--md-sys-color-on-primary); border:2px solid var(--md-sys-color-primary);`;
-        if (cellState === 'scheduled') return `background:transparent; color:${isWeekend ? 'var(--md-sys-color-error)' : 'var(--md-sys-color-primary)'}; border:2px solid var(--md-sys-color-primary);`;
-        return `background:var(--md-sys-color-surface-container); color:${isWeekend ? 'var(--md-sys-color-error)' : 'var(--md-sys-color-on-surface-variant)'}; border:2px solid transparent;`;
+        if (cellState === 'taught') return `background: #455120; color: #ffffff; border: 2px solid #455120; font-weight: 700; box-shadow: 0 2px 6px rgba(69, 81, 32, 0.2);`;
+        if (cellState === 'scheduled') return `background: #F0F4E8; color: ${isWeekend ? '#e11d48' : '#455120'}; border: 2px solid #455120; font-weight: 700;`;
+        return `background: #f8fafc; color: ${isWeekend ? '#e11d48' : '#64748b'}; border: 1px solid #f1f5f9; font-weight: 500;`;
       }
 
       return `
-        <div class="panel" data-schedule="${s.id}" style="padding: 20px; display:flex; flex-direction:column; gap:14px; box-sizing:border-box; margin:0;">
+        <div class="panel" data-schedule="${s.id}" style="background: #ffffff; border: 1px solid #D8E2C4; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03); margin: 0;">
           <!-- Name row -->
-          <div style="display:flex; align-items:center; justify-content:space-between;">
-            <h3 style="margin:0; font-size:15px; font-weight:700; color:var(--md-sys-color-on-surface);">${escapeHtml(s.profiles?.full_name ?? 'Học sinh')}</h3>
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <h3 style="margin: 0; font-family: 'Beautique Display', serif; font-size: 16.5px; font-weight: 700; color: #455120;">${escapeHtml(s.profiles?.full_name ?? 'Học sinh')}</h3>
             <button type="button" data-delete-schedule="${s.id}" title="Xóa lịch tháng này"
-              style="background:none; border:1px solid var(--md-sys-color-outline-variant); border-radius:6px; color:var(--md-sys-color-on-surface-variant); cursor:pointer; padding:4px 8px; font-size:12px; transition: all 0.15s;"
-              onmouseover="this.style.borderColor='var(--md-sys-color-error)'; this.style.color='var(--md-sys-color-error)';"
-              onmouseout="this.style.borderColor='var(--md-sys-color-outline-variant)'; this.style.color='var(--md-sys-color-on-surface-variant)';">
+              style="background: #fff; border: 1px solid #fca5a5; border-radius: 9999px; color: #ef4444; cursor: pointer; padding: 3px 10px; font-size: 11.5px; font-weight: 500; transition: all 0.15s ease;"
+              onmouseover="this.style.background='#fef2f2';"
+              onmouseout="this.style.background='#fff';">
               Xóa
             </button>
           </div>
 
           <!-- Stats row -->
-          <div style="display:flex; align-items:center; gap:0; background:var(--md-sys-color-surface-container-lowest); border:1px solid var(--md-sys-color-outline-variant); border-radius:8px; overflow:hidden; font-size:13px;">
-            <div style="flex:1; padding:8px 12px; border-right:1px solid var(--md-sys-color-outline-variant);">
-              <div style="color:var(--md-sys-color-on-surface-variant); font-size:11px; margin-bottom:1px;">Lịch</div>
-              <strong style="font-size:15px;">${scheduledCount + taughtCount}</strong>
+          <div style="display: flex; align-items: center; background: #F0F4E8; border: 1px solid #D8E2CA; border-radius: 10px; overflow: hidden; font-family: 'Be Vietnam Pro', sans-serif;">
+            <div style="flex: 1; padding: 8px 10px; border-right: 1px solid #D8E2CA; text-align: center;">
+              <div style="color: #667085; font-size: 11px; font-weight: 600; margin-bottom: 1px;">Lịch</div>
+              <strong style="font-size: 15px; color: #1e293b;">${scheduledCount + taughtCount}</strong>
             </div>
-            <div style="flex:1; padding:8px 12px; border-right:1px solid var(--md-sys-color-outline-variant);">
-              <div style="color:var(--md-sys-color-on-surface-variant); font-size:11px; margin-bottom:1px;">Đã dạy</div>
-              <strong style="font-size:15px;" data-count="${s.id}">${taughtCount}</strong>
+            <div style="flex: 1; padding: 8px 10px; border-right: 1px solid #D8E2CA; text-align: center;">
+              <div style="color: #667085; font-size: 11px; font-weight: 600; margin-bottom: 1px;">Đã dạy</div>
+              <strong style="font-size: 15px; color: #455120;" data-count="${s.id}">${taughtCount}</strong>
             </div>
-            <div style="flex:1; padding:8px 12px;">
-              <div style="color:var(--md-sys-color-on-surface-variant); font-size:11px; margin-bottom:1px;">Lương</div>
-              <strong style="font-size:15px; color:var(--md-sys-color-primary);" data-total="${s.id}">${fmt.format(total)}đ</strong>
+            <div style="flex: 1; padding: 8px 10px; text-align: center;">
+              <div style="color: #667085; font-size: 11px; font-weight: 600; margin-bottom: 1px;">Lương</div>
+              <strong style="font-size: 15px; color: #455120;" data-total="${s.id}">${fmt.format(total)}đ</strong>
             </div>
           </div>
 
           <!-- Rate row -->
-          <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
-            <label style="font-size:12px; font-weight:600; color:var(--md-sys-color-on-surface-variant);">Đơn giá / buổi</label>
-            <div style="display:flex; align-items:center; gap:6px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+            <label style="font-size: 12.5px; font-weight: 600; color: #334155; font-family: 'Be Vietnam Pro', sans-serif;">Đơn giá / buổi</label>
+            <div style="display: flex; align-items: center; gap: 6px;">
               <input type="number" class="field rate-input" data-rate-for="${s.id}" value="${rate}" min="0" step="10000"
-                style="width:110px; height:34px; border-radius:6px; padding:0 10px; font-size:13px; text-align:right; font-weight:600;">
-              <span style="font-size:13px; color:var(--md-sys-color-on-surface-variant);">đ</span>
+                style="width: 105px; height: 34px; border-radius: 8px; border: 1px solid #cbd5e1; padding: 0 8px; font-size: 13px; text-align: right; font-weight: 600; color: #1e293b; outline: none;">
+              <span style="font-size: 13px; color: #64748b; font-weight: 500;">đ</span>
             </div>
           </div>
 
-          <hr style="border:none; border-top:1px solid var(--md-sys-color-outline-variant); margin:0;">
+          <hr style="border: none; border-top: 1px solid #f1f5f9; margin: 0;">
 
           <!-- Legend -->
-          <div style="display:flex; gap:14px; font-size:11px; color:var(--md-sys-color-on-surface-variant);">
-            <span style="display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;border-radius:2px;background:var(--md-sys-color-surface-container);border:1px solid var(--md-sys-color-outline-variant);display:inline-block;"></span>Trống</span>
-            <span style="display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;border-radius:2px;background:transparent;border:2px solid var(--md-sys-color-primary);display:inline-block;"></span>Có lịch</span>
-            <span style="display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;border-radius:2px;background:var(--md-sys-color-primary);display:inline-block;"></span>Đã dạy</span>
+          <div style="display: flex; gap: 12px; font-size: 11.5px; color: #64748b; font-family: 'Be Vietnam Pro', sans-serif;">
+            <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 9px; height: 9px; border-radius: 2px; background: #f8fafc; border: 1px solid #e2e8f0; display: inline-block;"></span>Trống</span>
+            <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 9px; height: 9px; border-radius: 2px; background: #F0F4E8; border: 1.5px solid #455120; display: inline-block;"></span>Có lịch</span>
+            <span style="display: flex; align-items: center; gap: 5px;"><span style="width: 9px; height: 9px; border-radius: 2px; background: #455120; display: inline-block;"></span>Đã dạy</span>
           </div>
 
-          <!-- Calendar -->
-          <div style="display:grid; grid-template-columns:repeat(7,1fr); gap:3px; text-align:center;">
-            ${DAY_SHORT.map((d, i) => `<div style="font-size:10px; font-weight:700; color:${i >= 5 ? 'var(--md-sys-color-error)' : 'var(--md-sys-color-on-surface-variant)'}; padding:3px 0;">${d}</div>`).join('')}
+          <!-- Calendar Grid -->
+          <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center;">
+            ${DAY_SHORT.map((d, i) => `<div style="font-family: 'Beautique Display', serif; font-size: 11px; font-weight: 700; color: ${i >= 5 ? '#e11d48' : '#455120'}; padding: 2px 0;">${d}</div>`).join('')}
             ${Array(firstDow).fill('<div></div>').join('')}
             ${days.map((d) => {
               const iso = d.toISOString().slice(0, 10);
@@ -2146,7 +2372,7 @@ export async function mountSalaryManager() {
               const dow = d.getDay();
               const isWeekend = dow === 0 || dow === 6;
               return `<button type="button" class="day-cell" data-toggle="${s.id}" data-date="${iso}" data-state="${cellState}"
-                style="padding:0; border-radius:5px; cursor:pointer; font-size:12px; font-weight:600; aspect-ratio:1; display:flex; align-items:center; justify-content:center; ${cellStyle(cellState, isWeekend)} transition: all 0.1s;"
+                style="padding: 0; border-radius: 6px; cursor: pointer; font-size: 12px; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; ${cellStyle(cellState, isWeekend)} transition: all 0.15s ease;"
               >${d.getDate()}</button>`;
             }).join('')}
           </div>
@@ -2156,55 +2382,75 @@ export async function mountSalaryManager() {
 
     root.innerHTML = `
       <style>
-        .day-cell:hover { transform: scale(1.1); }
-        .day-cell:active { transform: scale(0.94); }
-        .salary-nav-btn { background: var(--md-sys-color-surface-container-lowest); border: 1px solid var(--md-sys-color-outline-variant); border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 18px; line-height: 1; color: var(--md-sys-color-on-surface); transition: background 0.15s; }
-        .salary-nav-btn:hover { background: var(--md-sys-color-surface-container); }
+        .day-cell:hover { transform: translateY(-1px); }
+        .day-cell:active { transform: scale(0.95); }
+        .salary-nav-btn { background: #ffffff; border: 1px solid #cbd5e1; border-radius: 50%; width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; font-size: 15px; color: #455120; transition: all 0.15s ease; }
+        .salary-nav-btn:hover { background: #F0F4E8; border-color: #455120; }
       </style>
-      <section style="max-width:900px; margin:0 auto; padding:var(--page-gutter,24px); display:flex; flex-direction:column; gap:20px;">
 
-        <!-- Top bar -->
-        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
-          <div style="display:flex; align-items:center; gap:8px;">
-            <button id="prev-month" class="salary-nav-btn" title="Tháng trước">‹</button>
-            <div style="min-width:90px; text-align:center;">
-              <div style="font-size:11px; font-weight:600; color:var(--md-sys-color-on-surface-variant); text-transform:uppercase; letter-spacing:.5px;">Tháng</div>
-              <div style="font-size:20px; font-weight:800; color:var(--md-sys-color-on-surface);">${monthLabel}</div>
-            </div>
-            <button id="next-month" class="salary-nav-btn" title="Tháng sau">›</button>
-          </div>
-          <div style="background:var(--md-sys-color-primary-container); color:var(--md-sys-color-on-primary-container); border-radius:10px; padding:10px 20px; font-weight:700; font-size:15px;">
-            Tổng: <span style="font-size:18px;">${fmt.format(totalSalary)}đ</span>
+      <div style="background-color: #EDF2E4; min-height: calc(100vh - 64px); padding: 0 0 60px 0; margin: 0; font-family: 'Be Vietnam Pro', sans-serif;">
+        <!-- Top Breadcrumb Bar -->
+        <div class="nh-admin-breadcrumb-bar" style="margin-bottom: 20px;">
+          <div class="nh-admin-breadcrumb-inner" style="max-width: 960px;">
+            <a href="#/manage">Trung tâm Quản trị</a>
+            <span class="sep">&rsaquo;</span>
+            <span class="active">Quản lý Lương & Lịch dạy</span>
           </div>
         </div>
 
-        <!-- Tracker grid -->
-        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(340px, 1fr)); gap:16px; align-items:start;" id="tracker-list">
-          ${schedules.length
-            ? schedules.map(renderStudentTracker).join('')
-            : `<div style="color:var(--md-sys-color-on-surface-variant); text-align:center; padding:40px 0; font-size:14px; grid-column:1/-1;">
-                Chưa có học sinh nào trong tháng này.<br>Thêm học sinh bên dưới để bắt đầu tick lịch.
-              </div>`
-          }
-        </div>
+        <section style="max-width: 960px; margin: 0 auto; padding: 0 max(var(--page-gutter), 20px); display: flex; flex-direction: column; gap: 20px;">
 
-        <!-- Add student -->
-        ${(unscheduled.length > 0 && schedules.length < 2) ? `
-          <div class="panel" style="padding: 16px; display:flex; gap:10px; align-items:flex-end; flex-wrap:wrap; border-style:dashed;">
-            <div style="flex:1; min-width:180px;">
-              <label class="field-label" style="display:block; font-size:12px; font-weight:600; color:var(--md-sys-color-on-surface-variant); margin-bottom:5px;">Thêm học sinh vào tháng ${monthLabel}</label>
-              <select id="add-student-sel" class="field" style="height:38px; border-radius:6px; padding:0 10px;">
-                <option value="">-- Chọn học sinh --</option>
-                ${unscheduled.map((s) => `<option value="${escapeHtml(s.id)}">${escapeHtml(s.full_name)}</option>`).join('')}
-              </select>
+          <!-- Hero Header Card -->
+          <div style="background: #ffffff; border-radius: 16px; border: 1px solid #D8E2C4; padding: 20px 24px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+            <div>
+              <div style="font-size: 11px; font-weight: 700; color: #455120; letter-spacing: 0.08em; margin-bottom: 4px;">QUẢN LÝ TÀI CHÍNH</div>
+              <h1 style="font-family: 'Beautique Display', serif; font-size: 22px; font-weight: 700; color: #1e293b; margin: 0 0 2px 0;">Quản lý Lương & Lịch dạy</h1>
+              <p style="font-size: 13px; color: #64748b; margin: 0;">Theo dõi lịch dạy, chấm công và tổng chi phí lương trợ giảng theo từng tháng.</p>
             </div>
-            <button id="add-student-btn" type="button" style="height:38px; padding:0 18px; background:var(--md-sys-color-primary); color:var(--md-sys-color-on-primary); border:0; border-radius:6px; font-size:13px; font-weight:600; cursor:pointer; white-space:nowrap; transition:opacity 0.15s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
-              + Thêm
-            </button>
-          </div>
-        ` : ''}
 
-      </section>
+            <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+              <!-- Month Navigator -->
+              <div style="display: flex; align-items: center; gap: 8px; background: #f8fafc; border: 1px solid #e2e8f0; padding: 5px 10px; border-radius: 9999px;">
+                <button id="prev-month" class="salary-nav-btn" title="Tháng trước">‹</button>
+                <span style="font-family: 'Beautique Display', serif; font-size: 15px; font-weight: 700; color: #455120; min-width: 70px; text-align: center;">Tháng ${monthLabel}</span>
+                <button id="next-month" class="salary-nav-btn" title="Tháng sau">›</button>
+              </div>
+
+              <!-- Total Salary Badge -->
+              <div style="background: #455120; color: #ffffff; border-radius: 9999px; padding: 8px 18px; font-weight: 600; font-size: 13.5px; box-shadow: 0 4px 12px rgba(69, 81, 32, 0.2); display: flex; align-items: center; gap: 6px;">
+                Tổng: <span style="font-size: 17px; font-weight: 800; font-family: 'Be Vietnam Pro', sans-serif;">${fmt.format(totalSalary)}đ</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tracker grid -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; align-items: flex-start;" id="tracker-list">
+            ${schedules.length
+              ? schedules.map(renderStudentTracker).join('')
+              : `<div style="background: #ffffff; border-radius: 18px; border: 1px solid #D8E2C4; color: #64748b; text-align: center; padding: 48px 24px; font-size: 14px; grid-column: 1/-1; box-shadow: 0 4px 16px rgba(0,0,0,0.03);">
+                  Chưa có lịch dạy trợ giảng nào trong tháng ${monthLabel}.<br>Hãy chọn thêm học sinh phía dưới để bắt đầu chấm công.
+                </div>`
+            }
+          </div>
+
+          <!-- Add student -->
+          ${(unscheduled.length > 0 && schedules.length < 2) ? `
+            <div style="background: #ffffff; border-radius: 18px; border: 1.5px dashed #D8E2C4; padding: 20px 24px; display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 200px;">
+                <label class="field-label" style="display: block; font-size: 13px; font-weight: 600; color: #334155; margin-bottom: 6px;">Thêm lịch trợ giảng tháng ${monthLabel}</label>
+                <select id="add-student-sel" class="field" style="width: 100%; height: 40px; border-radius: 10px; border: 1px solid #cbd5e1; padding: 0 12px; font-size: 14px; font-family: 'Be Vietnam Pro', sans-serif;">
+                  <option value="">-- Chọn học sinh / trợ giảng --</option>
+                  ${unscheduled.map((s) => `<option value="${escapeHtml(s.id)}">${escapeHtml(s.full_name)}</option>`).join('')}
+                </select>
+              </div>
+              <button id="add-student-btn" type="button" style="height: 40px; padding: 0 22px; background: #455120; color: #ffffff; border: 0; border-radius: 10px; font-size: 13.5px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: all 0.15s ease;" onmouseover="this.style.background='#38421a'" onmouseout="this.style.background='#455120'">
+                + Thêm lịch
+              </button>
+            </div>
+          ` : ''}
+
+        </section>
+      </div>
     `;
 
     // Wire month navigation

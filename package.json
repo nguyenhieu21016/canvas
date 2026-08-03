@@ -21,7 +21,6 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "@material/web": "^2.4.1",
     "@prisma/client": "^7.8.0",
     "@supabase/supabase-js": "^2.106.2"
   },

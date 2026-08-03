@@ -1,5 +1,5 @@
 import { state, isManager, pageRoot, render } from '../main.js';
-import { toast, wireMaterialFormButtons } from '../lib/ui.js';
+import { toast } from '../lib/ui.js';
 import { hasSupabaseConfig } from '../services/supabaseClient.js';
 import { setButtonLoading } from '../lib/html.js';
 import { requestPasswordReset, updateCurrentUserPassword, getCurrentProfile, getSession, signIn, signUpStudent } from '../services/lmsApi.js';
@@ -98,7 +98,6 @@ function renderAuth() {
           </div>
 
           <button type="submit" class="auth-submit-btn" ${!hasSupabaseConfig ? 'disabled' : ''}>
-            <md-icon style="font-size: 18px;">${primaryIcon}</md-icon>
             <span>${primaryLabel}</span>
           </button>
 
@@ -110,7 +109,7 @@ function renderAuth() {
             }
             ${
               isReset
-                ? '<button class="text-link" type="button" data-mode="login"><md-icon style="font-size: 16px;">arrow_back</md-icon>Quay lại đăng nhập</button>'
+                ? '<button class="text-link" type="button" data-mode="login">Quay lại đăng nhập</button>'
                 : ''
             }
           </div>
@@ -125,7 +124,6 @@ function renderAuth() {
       renderAuth();
     });
   });
-  wireMaterialFormButtons(document.querySelector('#auth-form'));
 
   document.querySelector('#auth-form')?.addEventListener('submit', async (event) => {
     event.preventDefault();

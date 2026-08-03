@@ -7,7 +7,7 @@ import {
   fetchAssignmentsForManager
 } from "./services/lmsApi.js";
 import { state, pageRoot, escapeHtml, isManager, driveFrame, wireRouteRetry } from './main.js';
-import { renderLoading, renderErrorState, toast, renderAccountAvatar, renderSkeletonDashboard, renderStateMessage, wireMaterialFormButtons, renderScoreProgress } from './lib/ui.js';
+import { renderLoading, renderErrorState, toast, renderAccountAvatar, renderSkeletonDashboard, renderStateMessage, renderScoreProgress } from './lib/ui.js';
 
 let selectedStudentId = null;
 
@@ -30,9 +30,11 @@ export async function mountLearn() {
         <aside class="nh-sidebar">
           <div class="nh-sidebar-header-pill">
             <div class="nh-header-icon-circle">
-              <md-icon style="font-size: 18px; color: #ffffff;">grid_view</md-icon>
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="white">
+                <path d="M11.293 2.293a1 1 0 0 1 1.414 0l8 8A1 1 0 0 1 20 12h-1v7a2 2 0 0 1-2 2h-3a1 1 0 0 1-1-1v-4a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v4a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2v-7H2a1 1 0 0 1-.707-1.707l8-8z"/>
+              </svg>
             </div>
-            <span class="nh-header-pill-title">Danh mục khóa học</span>
+            <span class="nh-header-pill-title">Trang chủ</span>
           </div>
 
           <hr class="nh-sidebar-divider" />
@@ -45,7 +47,7 @@ export async function mountLearn() {
           <!-- Lịch thi Widget -->
           <div class="nh-countdown-widget">
             <div style="display: flex; align-items: center; gap: 6px; font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 15px; font-weight: 700; margin-bottom: 6px; line-height: 1;">
-              <md-icon style="font-size: 19px; display: inline-flex; align-items: center; justify-content: center; transform: translateY(-1px);">calendar_month</md-icon>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-flex; align-items: center; justify-content: center; transform: translateY(-1px);"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
               <span style="line-height: 1; display: inline-block;">Lịch thi</span>
             </div>
             <div style="font-size: 26px; font-weight: 900; letter-spacing: -0.5px; margin-top: 4px; display: flex; align-items: baseline; gap: 6px;">
@@ -54,6 +56,26 @@ export async function mountLearn() {
             </div>
             <p style="font-size: 11px; margin: 4px 0 0; opacity: 0.88; font-family: 'Be Vietnam Pro', sans-serif;">Đếm ngược kỳ thi THPTQG 2027</p>
           </div>
+
+          ${isManager() ? `
+            <!-- Admin Shortcut Card -->
+            <div class="nh-admin-shortcut-card">
+              <div class="nh-admin-card-header">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+                  <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+                  <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+                  <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+                </svg>
+                <span>Quản trị hệ thống</span>
+              </div>
+              <p class="nh-admin-card-desc">Quản lý bài giảng, nội dung khóa học & học sinh</p>
+              <a href="#/manage" class="nh-admin-shortcut-btn">
+                Vào trang quản lý
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+            </div>
+          ` : ''}
         </aside>
 
         <!-- Main Content Area -->
@@ -254,7 +276,7 @@ export async function mountPhaseDetail(id) {
             <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
               <strong style="font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 17px; font-weight: 700; color: #455120; white-space: nowrap;">Danh sách bài học</strong>
               <div style="position: relative; flex: 1; max-width: 420px; min-width: 280px; margin-left: auto;">
-                <md-icon style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 18px; color: #667085; pointer-events: none;">search</md-icon>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#667085" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); pointer-events: none;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 <input type="text" id="nh-course-search-input" class="nh-course-search-input" placeholder="Tìm kiếm Bài giảng - Bài tập tại đây" />
               </div>
             </div>
@@ -340,17 +362,17 @@ export function renderPhaseCard(phase, idx = 0, taughtSet = new Set()) {
         <h3 class="nh-card-title">${escapeHtml(title)}</h3>
         
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; font-size: 13px; color: #475467; margin-bottom: 4px;">
-          <span style="display: flex; align-items: center; gap: 6px;"><md-icon style="font-size: 16px; color: #455120;">folder</md-icon>${phase.modules.length} Chương</span>
-          <span style="display: flex; align-items: center; gap: 6px;"><md-icon style="font-size: 16px; color: #455120;">article</md-icon>${lectureCount} Bài giảng</span>
-          <span style="display: flex; align-items: center; gap: 6px;"><md-icon style="font-size: 16px; color: #455120;">auto_stories</md-icon>${groupCount} Bài học</span>
-          <span style="display: flex; align-items: center; gap: 6px;"><md-icon style="font-size: 16px; color: #455120;">edit_note</md-icon>${assignmentCount} Bài tập</span>
+          <span style="display: flex; align-items: center; gap: 6px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>${phase.modules.length} Chương</span>
+          <span style="display: flex; align-items: center; gap: 6px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>${lectureCount} Bài giảng</span>
+          <span style="display: flex; align-items: center; gap: 6px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>${groupCount} Bài học</span>
+          <span style="display: flex; align-items: center; gap: 6px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4z"></path></svg>${assignmentCount} Bài tập</span>
         </div>
 
         <hr class="nh-card-dashed-line" />
 
         <div class="nh-card-footer">
-          <span class="nh-card-blue-price" style="font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 14px; font-weight: 700; color: #455120; display: flex; align-items: center; gap: 4px;">
-            Mở giai đoạn <md-icon style="font-size: 16px;">arrow_forward</md-icon>
+          <span style="font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 14px; font-weight: 700; color: #455120; display: flex; align-items: center; gap: 4px;">
+            Mở giai đoạn <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </span>
         </div>
       </div>
@@ -513,10 +535,10 @@ export function renderAssignmentChip(assignment) {
       <div class="assignment-action ${hasSubmitted ? 'completed' : 'pending'}">
         <a class="assignment-chip locked-pdf-chip" href="javascript:void(0)" data-pdf-locked="true" style="width: 100%; justify-content: space-between;">
           <div style="display: flex; align-items: center; gap: 8px;">
-            <md-icon>edit_note</md-icon>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4z"></path></svg>
             <span>${escapeHtml(cleanedTitle)}</span>
           </div>
-          <md-icon style="font-size: 1.1rem; color: #455120;">arrow_forward</md-icon>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
       </div>
     `;
@@ -732,30 +754,30 @@ export async function mountDashboard() {
           </div>
 
           <!-- Account settings details accordion -->
-          <details style="margin-top: 24px; border: 1px solid var(--md-sys-color-outline-variant); border-radius: 12px; background: var(--md-sys-color-surface-container-low); transition: all 0.2s ease-in-out;">
-            <summary style="padding: 16px; font-weight: 600; cursor: pointer; color: var(--md-sys-color-on-surface); outline: none; list-style: none;">
+          <details style="margin-top: 24px; border: 1px solid #D8E2C4; border-radius: 12px; background: #ffffff;">
+            <summary style="padding: 16px; font-weight: 600; cursor: pointer; color: #455120; outline: none; list-style: none;">
               <div style="display: flex; align-items: center; justify-content: space-between;">
                 <div style="display: flex; align-items: center; gap: 8px;">
-                  <md-icon style="color: var(--md-sys-color-primary);">manage_accounts</md-icon> Quản lý tài khoản
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> Quản lý tài khoản
                 </div>
-                <md-icon style="color: var(--md-sys-color-outline);">expand_more</md-icon>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
               </div>
             </summary>
-            <div style="padding: 0 16px 16px 16px; display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; border-top: 1px solid var(--md-sys-color-outline-variant); margin-top: 8px; padding-top: 16px;">
+            <div style="padding: 16px; display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; border-top: 1px solid #f1f5f9; margin-top: 8px;">
               <div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 300px;">
-                <md-outlined-text-field label="Họ tên mới" value="${escapeHtml(student.full_name ?? '')}" style="flex: 1; --md-outlined-text-field-container-shape: 8px;" data-name-input="${student.id}"></md-outlined-text-field>
-                <md-filled-tonal-button style="--md-filled-tonal-button-container-shape: 8px; height: 56px;" data-save-btn="${student.id}">
+                <input class="nh-form-input-clean" placeholder="Họ tên mới" value="${escapeHtml(student.full_name ?? '')}" style="flex: 1; height: 40px;" data-name-input="${student.id}" />
+                <button type="button" class="nh-modal-btn-primary" style="height: 40px;" data-save-btn="${student.id}">
                   Lưu
-                </md-filled-tonal-button>
+                </button>
               </div>
 
-              <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                <md-filled-tonal-button style="--md-filled-tonal-button-container-shape: 8px; height: 56px;" data-reset-btn="${student.id}">
-                  <md-icon slot="icon">lock_reset</md-icon> Đặt lại mật khẩu
-                </md-filled-tonal-button>
-                <md-filled-button style="--md-filled-button-container-shape: 8px; height: 56px; --md-filled-button-container-color: var(--md-sys-color-error); --md-filled-button-label-text-color: var(--md-sys-color-on-error);" data-delete-btn="${student.id}">
-                  <md-icon slot="icon">delete</md-icon> Xóa tài khoản
-                </md-filled-button>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button type="button" class="nh-modal-btn-secondary" style="height: 40px;" data-reset-btn="${student.id}">
+                  Đặt lại mật khẩu
+                </button>
+                <button type="button" class="nh-modal-btn-secondary danger" style="height: 40px;" data-delete-btn="${student.id}">
+                  Xóa tài khoản
+                </button>
               </div>
             </div>
           </details>
@@ -912,7 +934,6 @@ export async function mountDashboard() {
       const allAssignments = await fetchAssignmentsForManager();
       renderStudentDetails(selectedStudentId, students, allAttempts, allAssignments);
     }
-    wireMaterialFormButtons(root);
   } catch (error) {
     root.innerHTML = renderErrorState(error);
     wireRouteRetry(root);
