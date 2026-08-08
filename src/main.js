@@ -1297,47 +1297,82 @@ async function mountReview(id) {
 
             ${(() => {
               return itemsWithQuestions.map((item, index) => {
+                const hasAns = item.answer !== null && item.answer !== undefined && String(item.answer).trim() !== '';
                 const isCorrect = item.is_correct;
                 const chosenAnswer = formatAnswer(item.answer);
                 const correctAnswer = formatAnswer(item.correct_answer ?? item.accepted_answers);
                 const cleanPrompt = item.prompt ? item.prompt.replace(/^Câu\s*\d+[\.\:\s]*/i, '') : '';
                 const qNumStr = String(index + 1).padStart(2, '0');
 
+                let badgeHtml = '';
+                if (!hasAns) {
+                  badgeHtml = `<span style="background: #f1f5f9; color: #475467; border: 1px solid #cbd5e1; padding: 4px 12px; border-radius: 9999px; font-size: 12.5px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif;">Chưa trả lời</span>`;
+                } else if (isCorrect) {
+                  badgeHtml = `<span style="background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; padding: 4px 12px; border-radius: 9999px; font-size: 12.5px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif;">Đúng</span>`;
+                } else {
+                  badgeHtml = `<span style="background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; padding: 4px 12px; border-radius: 9999px; font-size: 12.5px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif;">Sai</span>`;
+                }
+
                 return `
                   <article id="latex-review-q${index}" class="latex-exam-card" style="display: flex; flex-direction: column; gap: 14px; padding-bottom: 28px; border-bottom: 1px solid #f1f5f9;">
                     
-                    <!-- Question Title & Prompt -->
-                    <div style="font-size: 15px; color: #1e293b; line-height: 1.6;">
-                      <span style="font-weight: 900; color: #455120; font-size: 17px; font-family: 'Beautique Display', serif; letter-spacing: 0.5px; margin-right: 12px; display: inline-block;">CÂU ${qNumStr}</span>
-                      <span style="font-weight: 500; color: #1e293b; font-size: 15px;">${renderLatexText(cleanPrompt)}</span>
+                    <!-- Question Title & Prompt & Status Badge -->
+                    <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;">
+                      <div style="font-size: 15px; color: #1e293b; line-height: 1.6; flex: 1;">
+                        <span style="font-weight: 900; color: #455120; font-size: 17px; font-family: 'Beautique Display', serif; letter-spacing: 0.5px; margin-right: 12px; display: inline-block;">CÂU ${qNumStr}</span>
+                        <span style="font-weight: 500; color: #1e293b; font-size: 15px;">${renderLatexText(cleanPrompt)}</span>
+                      </div>
+                      <div style="flex-shrink: 0;">${badgeHtml}</div>
                     </div>
                     
-                    <!-- Choice Radio List -->
-                    <div class="choice-grid" style="display: flex; flex-direction: column; gap: 10px; padding-left: 2px; margin-top: 4px;">
+                    <!-- Choice Radio List with Correct/Wrong Feedback -->
+                    <div class="choice-grid" style="display: flex; flex-direction: column; gap: 8px; padding-left: 2px; margin-top: 4px;">
                       ${(item.choices ?? []).map((choice, cIdx) => {
                         const letter = String.fromCharCode(65 + cIdx);
                         const isChosen = chosenAnswer === letter;
                         const isCorrectChoice = correctAnswer === letter;
                         
+                        let wrapperBg = '#ffffff';
+                        let wrapperBorder = 'transparent';
                         let circleBorder = '#cbd5e1';
                         let circleBg = '#ffffff';
                         let dotDisplay = 'none';
                         let dotColor = '#455120';
+                        let tag = '';
 
-                        if (isChosen) {
-                          circleBorder = '#f59e0b';
+                        if (isChosen && isCorrectChoice) {
+                          wrapperBg = '#f0fdf4';
+                          wrapperBorder = '#bbf7d0';
+                          circleBorder = '#166534';
+                          circleBg = '#ffffff';
                           dotDisplay = 'block';
-                          dotColor = '#f59e0b';
+                          dotColor = '#166534';
+                          tag = `<span style="background: #166534; color: #ffffff; padding: 2px 8px; border-radius: 6px; font-size: 11.5px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif; margin-left: auto; flex-shrink: 0;">Bạn chọn (Đúng)</span>`;
+                        } else if (isChosen && !isCorrectChoice) {
+                          wrapperBg = '#fef2f2';
+                          wrapperBorder = '#fecaca';
+                          circleBorder = '#dc2626';
+                          circleBg = '#ffffff';
+                          dotDisplay = 'block';
+                          dotColor = '#dc2626';
+                          tag = `<span style="background: #dc2626; color: #ffffff; padding: 2px 8px; border-radius: 6px; font-size: 11.5px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif; margin-left: auto; flex-shrink: 0;">Bạn chọn (Sai)</span>`;
+                        } else if (isCorrectChoice) {
+                          wrapperBg = '#f0fdf4';
+                          wrapperBorder = '#bbf7d0';
+                          circleBorder = '#166534';
+                          circleBg = '#ffffff';
+                          tag = `<span style="background: #455120; color: #ffffff; padding: 2px 8px; border-radius: 6px; font-size: 11.5px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif; margin-left: auto; flex-shrink: 0;">Đáp án đúng</span>`;
                         }
 
                         return `
-                          <div style="display: flex; gap: 10px; align-items: center; padding: 2px 0;">
+                          <div style="display: flex; gap: 10px; align-items: center; padding: 8px 12px; border-radius: 8px; background: ${wrapperBg}; border: 1px solid ${wrapperBorder}; transition: all 0.15s ease;">
                             <div class="latex-radio-circle" style="width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid ${circleBorder}; background: ${circleBg}; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
                               <div class="dot" style="width: 8px; height: 8px; border-radius: 50%; background: ${dotColor}; display: ${dotDisplay};"></div>
                             </div>
-                            <div style="font-size: 14.5px; line-height: 1.5; color: #1e293b; display: flex; align-items: center; gap: 4px;">
+                            <div style="font-size: 14.5px; line-height: 1.5; color: #1e293b; display: flex; align-items: center; gap: 4px; flex: 1;">
                               <span style="font-weight: 800; color: #1e293b;">${letter}.</span><span>${renderLatexText(choice)}</span>
                             </div>
+                            ${tag}
                           </div>
                         `;
                       }).join('')}
@@ -1370,7 +1405,7 @@ async function mountReview(id) {
               <div style="background: #ffffff; border-radius: 16px; border: 1px solid #e2e8f0; padding: 20px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 2px 10px rgba(0,0,0,0.02);">
                 <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 14px;">
                   <span style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 14px; font-weight: 700; color: #1e293b;">Bạn trả lời đúng</span>
-                  <span style="font-size: 16px; font-weight: 800; color: #455120; font-family: 'Be Vietnam Pro', sans-serif;">${items.filter(i => i.is_correct).length}/${items.length}</span>
+                  <span style="font-size: 16px; font-weight: 800; color: #455120; font-family: 'Be Vietnam Pro', sans-serif;">${items.filter(i => (i.answer !== null && i.answer !== undefined && String(i.answer).trim() !== '') && i.is_correct).length}/${items.length}</span>
                 </div>
           
           <div style="display: flex; flex-direction: column; gap: 12px;">
@@ -1380,10 +1415,24 @@ async function mountReview(id) {
             </div>
             <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px 10px;">
               ${items.map((i, idx) => {
-                const isAns = i.answer !== null && i.answer !== undefined && i.answer !== '';
-                const bg = isAns ? '#455120' : '#ffffff';
-                const border = isAns ? '#455120' : '#cbd5e1';
-                const color = isAns ? '#ffffff' : '#1e293b';
+                const hasAns = i.answer !== null && i.answer !== undefined && String(i.answer).trim() !== '';
+                let bg = '#ffffff';
+                let border = '#cbd5e1';
+                let color = '#475467';
+
+                if (!hasAns) {
+                  bg = '#f1f5f9';
+                  border = '#cbd5e1';
+                  color = '#475467';
+                } else if (i.is_correct) {
+                  bg = '#455120';
+                  border = '#455120';
+                  color = '#ffffff';
+                } else {
+                  bg = '#c62828';
+                  border = '#c62828';
+                  color = '#ffffff';
+                }
                 return `
                   <button type="button" onclick="document.getElementById('latex-review-q${idx}').scrollIntoView({behavior: 'smooth', block: 'center'})" style="width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: ${bg}; color: ${color}; font-weight: 700; font-size: 13px; border: 1px solid ${border}; cursor: pointer; transition: all 0.15s ease; font-family: 'Be Vietnam Pro', sans-serif; margin: 0 auto; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
                     ${(idx + 1).toString().padStart(2, '0')}
@@ -1395,15 +1444,15 @@ async function mountReview(id) {
           
           <div style="margin-top: 8px; border-top: 1px solid #e2e8f0; padding-top: 16px; display: flex; flex-direction: column; gap: 10px;">
             <div style="display: flex; align-items: center; gap: 10px;">
-              <div style="width: 24px; height: 24px; border-radius: 50%; background: #f1f5f9; color: #475467; border: 1px solid #cbd5e1; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; font-family: 'Be Vietnam Pro', sans-serif;">${items.filter(i => !i.answer).length}</div>
+              <div style="width: 24px; height: 24px; border-radius: 50%; background: #f1f5f9; color: #475467; border: 1px solid #cbd5e1; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; font-family: 'Be Vietnam Pro', sans-serif;">${items.filter(i => i.answer === null || i.answer === undefined || String(i.answer).trim() === '').length}</div>
               <span style="font-size: 13.5px; color: #475467; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 500;">Câu chưa trả lời</span>
             </div>
             <div style="display: flex; align-items: center; gap: 10px;">
-              <div style="width: 24px; height: 24px; border-radius: 50%; background: #455120; color: #ffffff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; font-family: 'Be Vietnam Pro', sans-serif;">${items.filter(i => i.is_correct).length}</div>
+              <div style="width: 24px; height: 24px; border-radius: 50%; background: #455120; color: #ffffff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; font-family: 'Be Vietnam Pro', sans-serif;">${items.filter(i => (i.answer !== null && i.answer !== undefined && String(i.answer).trim() !== '') && i.is_correct).length}</div>
               <span style="font-size: 13.5px; color: #475467; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 500;">Câu trả lời đúng</span>
             </div>
             <div style="display: flex; align-items: center; gap: 10px;">
-              <div style="width: 24px; height: 24px; border-radius: 50%; background: #c62828; color: #ffffff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; font-family: 'Be Vietnam Pro', sans-serif;">${items.filter(i => i.answer && !i.is_correct).length}</div>
+              <div style="width: 24px; height: 24px; border-radius: 50%; background: #c62828; color: #ffffff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; font-family: 'Be Vietnam Pro', sans-serif;">${items.filter(i => (i.answer !== null && i.answer !== undefined && String(i.answer).trim() !== '') && !i.is_correct).length}</div>
               <span style="font-size: 13.5px; color: #475467; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 500;">Câu trả lời sai</span>
             </div>
           </div>
