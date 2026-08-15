@@ -408,7 +408,7 @@ export async function fetchLearningPath(role = 'student') {
       .order('created_at');
     let assignmentsQuery = client
       .from('assignments')
-      .select('id, lecture_id, owner_id, title, description, pdf_url, sort_order, published, created_at')
+      .select('id, lecture_id, owner_id, title, description, pdf_url, sort_order, published, created_at, questions(id)')
       .order('sort_order')
       .order('created_at');
 
@@ -448,8 +448,10 @@ export async function fetchLearningPath(role = 'student') {
 
     const assignments = (assignmentsResult.data ?? []).map((assignment) => {
       const bestAttempt = bestAttemptsByAssignment.get(assignment.id);
+      const qCount = Array.isArray(assignment.questions) ? assignment.questions.length : (assignment.questions?.count ?? (assignment.description ? (assignment.description.match(/\\begin\{ex\}/g) || []).length : 0));
       return {
         ...assignment,
+        questions_count: qCount,
         progress: bestAttempt
           ? {
               status: 'submitted',

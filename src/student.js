@@ -95,12 +95,36 @@ export async function mountLearn() {
 
           ${data.freeAssignments && data.freeAssignments.length
         ? `
-                <section class="panel nh-free-assignments" style="margin-top: 24px;">
-                  <div class="panel-heading">
-                    <h2>Bài tập tự do</h2>
+                <section class="panel nh-free-assignments" style="margin-top: 24px; display: none; padding: 24px; border-radius: 20px; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(69, 81, 32, 0.12); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);">
+                  <div class="panel-heading" style="margin-bottom: 18px;">
+                    <h2 style="font-family: 'Beautique Display', serif; font-size: 22px; color: #101828; margin: 0;">Bài tập tự do</h2>
                   </div>
-                  <div class="item-grid">
-                    ${data.freeAssignments.map(renderAssignmentChip).join('')}
+
+                  <!-- Free Assignment Filter Pills -->
+                  <div id="free-category-pills" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;">
+                    <button class="nh-pill-filter active" data-cat="all" style="padding: 6px 14px; border-radius: 20px; font-size: 12.5px; font-weight: 500; font-family: 'Be Vietnam Pro', sans-serif; border: 1px solid #455120; background: #455120; color: #ffffff; cursor: pointer; transition: all 0.2s ease;">Tất cả (${data.freeAssignments.length})</button>
+                    ${(() => {
+                      const cats = new Set();
+                      data.freeAssignments.forEach(a => {
+                        const title = a.title || '';
+                        const tagMatch = title.match(/^\[([^\]]+)\]/);
+                        let cat = tagMatch ? tagMatch[1].trim() : '';
+                        if (!cat) {
+                          if (title.includes('Đại số') || title.toLowerCase().includes('hàm số') || title.toLowerCase().includes('mũ') || title.toLowerCase().includes('logarit')) cat = 'Đại số & Giải tích';
+                          else if (title.includes('Hình học') || title.toLowerCase().includes('tọa độ') || title.toLowerCase().includes('khối đa diện')) cat = 'Hình học';
+                          else if (title.toLowerCase().includes('xác suất') || title.toLowerCase().includes('tổ hợp')) cat = 'Xác suất & Thống kê';
+                          else if (title.toLowerCase().includes('đề') || title.toLowerCase().includes('luyện') || title.toLowerCase().includes('kiểm tra')) cat = 'Đề luyện tập';
+                          else cat = 'Khác';
+                        }
+                        if (cat) cats.add(cat);
+                      });
+                      return Array.from(cats).map(c => `<button class="nh-pill-filter" data-cat="${escapeHtml(c)}" style="padding: 6px 14px; border-radius: 20px; font-size: 12.5px; font-weight: 500; font-family: 'Be Vietnam Pro', sans-serif; border: 1px solid #d0d5dd; background: #ffffff; color: #344054; cursor: pointer; transition: all 0.2s ease;">${escapeHtml(c)}</button>`).join('');
+                    })()}
+                  </div>
+
+                  <!-- Free Assignment Grid -->
+                  <div class="item-grid" id="free-assignments-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px;">
+                    ${data.freeAssignments.map(renderEnhancedFreeAssignmentCard).join('')}
                   </div>
                 </section>
               `
@@ -109,6 +133,57 @@ export async function mountLearn() {
         </main>
       </section>
     `;
+
+    // Free assignment filter events
+    const pills = root.querySelectorAll('.nh-pill-filter');
+    const freeGrid = root.querySelector('#free-assignments-grid');
+
+    const filterFreeAssignments = () => {
+      if (!freeGrid || !data.freeAssignments) return;
+      const activePill = root.querySelector('.nh-pill-filter.active');
+      const selectedCat = activePill ? activePill.dataset.cat : 'all';
+
+      const filtered = data.freeAssignments.filter(a => {
+        const title = a.title || '';
+        const tagMatch = title.match(/^\[([^\]]+)\]/);
+        let cat = tagMatch ? tagMatch[1].trim() : '';
+        if (!cat) {
+          if (title.includes('Đại số') || title.toLowerCase().includes('hàm số') || title.toLowerCase().includes('mũ') || title.toLowerCase().includes('logarit')) cat = 'Đại số & Giải tích';
+          else if (title.includes('Hình học') || title.toLowerCase().includes('tọa độ') || title.toLowerCase().includes('khối đa diện')) cat = 'Hình học';
+          else if (title.toLowerCase().includes('xác suất') || title.toLowerCase().includes('tổ hợp')) cat = 'Xác suất & Thống kê';
+          else if (title.toLowerCase().includes('đề') || title.toLowerCase().includes('luyện') || title.toLowerCase().includes('kiểm tra')) cat = 'Đề luyện tập';
+          else cat = 'Khác';
+        }
+
+        return selectedCat === 'all' || cat === selectedCat;
+      });
+
+      if (filtered.length === 0) {
+        freeGrid.innerHTML = `
+          <div style="grid-column: 1 / -1; padding: 32px; text-align: center; color: #667085; font-family: 'Be Vietnam Pro', sans-serif;">
+            <p style="margin: 0; font-size: 14px; font-weight: 500;">Không có bài tập tự do phù hợp</p>
+          </div>
+        `;
+      } else {
+        freeGrid.innerHTML = filtered.map(renderEnhancedFreeAssignmentCard).join('');
+      }
+    };
+
+    pills.forEach(p => {
+      p.addEventListener('click', () => {
+        pills.forEach(item => {
+          item.classList.remove('active');
+          item.style.background = '#ffffff';
+          item.style.color = '#344054';
+          item.style.borderColor = '#d0d5dd';
+        });
+        p.classList.add('active');
+        p.style.background = '#455120';
+        p.style.color = '#ffffff';
+        p.style.borderColor = '#455120';
+        filterFreeAssignments();
+      });
+    });
 
     // Category Filter Interaction
     const filterItems = root.querySelectorAll('.nh-sidebar-item');
@@ -123,7 +198,7 @@ export async function mountLearn() {
 
         if (filter === 'all') {
           if (grid) grid.style.display = 'grid';
-          if (freeSection) freeSection.style.display = 'block';
+          if (freeSection) freeSection.style.display = 'none';
         } else if (filter === 'free') {
           if (grid) grid.style.display = 'none';
           if (freeSection) freeSection.style.display = 'block';
@@ -519,6 +594,81 @@ export function renderLectureNode(lecture, stepIndex, taughtSet = new Set(), tau
             </div>
           ` : ''}
         </details>
+      </div>
+    </div>
+  `;
+}
+
+export function renderEnhancedFreeAssignmentCard(assignment) {
+  const hasSubmitted = assignment.progress?.status === 'submitted';
+  let cleanedTitle = (assignment.title || '').replace(/Bài tập về nhà/gi, 'Bài tập');
+  const isPdfAssignment = assignment.pdf_url && assignment.pdf_url !== 'latex';
+  const isStudent = state.profile?.role === 'student';
+  const countFromDesc = assignment.description ? (assignment.description.match(/\\begin\{ex\}/g) || []).length : 0;
+  const questionsCount = assignment.questions_count || (Array.isArray(assignment.questions) ? assignment.questions.length : 0) || countFromDesc || 20;
+  const timeLimit = assignment.time_limit ? `${assignment.time_limit} phút` : '';
+
+  const tagMatch = cleanedTitle.match(/^\[([^\]]+)\]/);
+  let catTag = tagMatch ? tagMatch[1].trim() : '';
+  if (tagMatch) {
+    cleanedTitle = cleanedTitle.replace(/^\[[^\]]+\]\s*/, '');
+  }
+
+  if (!catTag) {
+    const lower = cleanedTitle.toLowerCase();
+    if (cleanedTitle.includes('Đại số') || lower.includes('hàm số') || lower.includes('mũ') || lower.includes('logarit')) catTag = 'Đại số';
+    else if (cleanedTitle.includes('Hình học') || lower.includes('tọa độ') || lower.includes('khối đa diện')) catTag = 'Hình học';
+    else if (lower.includes('xác suất') || lower.includes('tổ hợp')) catTag = 'Xác suất';
+    else if (lower.includes('đề') || lower.includes('luyện') || lower.includes('kiểm tra')) catTag = 'Đề thi';
+    else catTag = 'Luyện tập';
+  }
+
+  if (isStudent && isPdfAssignment) {
+    return `
+      <div class="nh-free-card ${hasSubmitted ? 'completed' : ''}" style="background: #ffffff; border-radius: 16px; padding: 16px; border: 1px solid #eaecf0; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; transition: all 0.2s ease; position: relative;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <span style="font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 12px; background: #f2f4f7; color: #344054; font-family: 'Be Vietnam Pro', sans-serif;">${escapeHtml(catTag)}</span>
+            <span style="font-size: 11px; font-weight: 600; color: ${hasSubmitted ? '#455120' : '#d97706'}; display: flex; align-items: center; gap: 4px; font-family: 'Be Vietnam Pro', sans-serif;">
+              <span style="width: 6px; height: 6px; border-radius: 50%; background: currentColor;"></span>
+              ${hasSubmitted ? 'Đã làm' : 'Chưa hoàn thành'}
+            </span>
+          </div>
+          <h3 style="font-size: 14.5px; font-weight: 600; color: #101828; margin: 0 0 6px 0; line-height: 1.4; font-family: 'Be Vietnam Pro', sans-serif;">${escapeHtml(cleanedTitle)}</h3>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f2f4f7; margin-top: 4px; padding-top: 8px;">
+          <div style="font-size: 12px; color: #667085; display: flex; gap: 8px; font-family: 'Be Vietnam Pro', sans-serif;">
+            <span>${questionsCount} câu</span>
+            ${timeLimit ? `<span>•</span><span>${timeLimit}</span>` : ''}
+          </div>
+          <a class="locked-pdf-chip" href="javascript:void(0)" data-pdf-locked="true" style="font-size: 12.5px; font-weight: 600; color: #455120; text-decoration: none; display: flex; align-items: center; gap: 4px; font-family: 'Be Vietnam Pro', sans-serif;">
+            Chi tiết <md-icon style="font-size: 16px;">arrow_forward</md-icon>
+          </a>
+        </div>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="nh-free-card ${hasSubmitted ? 'completed' : ''}" style="background: #ffffff; border-radius: 16px; padding: 16px; border: 1px solid #eaecf0; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; transition: all 0.2s ease; position: relative;">
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 12px; background: #f2f4f7; color: #344054; font-family: 'Be Vietnam Pro', sans-serif;">${escapeHtml(catTag)}</span>
+          <span style="font-size: 11px; font-weight: 600; color: ${hasSubmitted ? '#455120' : '#d97706'}; display: flex; align-items: center; gap: 4px; font-family: 'Be Vietnam Pro', sans-serif;">
+            <span style="width: 6px; height: 6px; border-radius: 50%; background: currentColor;"></span>
+            ${hasSubmitted ? 'Đã làm' : 'Chưa làm'}
+          </span>
+        </div>
+        <h3 style="font-size: 14.5px; font-weight: 600; color: #101828; margin: 0 0 6px 0; line-height: 1.4; font-family: 'Be Vietnam Pro', sans-serif;">${escapeHtml(cleanedTitle)}</h3>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f2f4f7; margin-top: 4px; padding-top: 8px;">
+        <div style="font-size: 12px; color: #667085; display: flex; gap: 8px; font-family: 'Be Vietnam Pro', sans-serif;">
+          <span>${questionsCount} câu</span>
+          ${timeLimit ? `<span>•</span><span>${timeLimit}</span>` : ''}
+        </div>
+        <a href="#/assignment/${assignment.id}" style="font-size: 12.5px; font-weight: 600; color: #455120; text-decoration: none; display: flex; align-items: center; gap: 4px; font-family: 'Be Vietnam Pro', sans-serif;">
+          Làm bài <md-icon style="font-size: 16px;">arrow_forward</md-icon>
+        </a>
       </div>
     </div>
   `;

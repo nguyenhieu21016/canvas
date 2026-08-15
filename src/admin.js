@@ -1161,7 +1161,8 @@ export function parseLatexAssignment(latexText) {
       points: 1,
       sort_order: questions.length + 1,
       settings: { explanation },
-      answer_key: { correct_answer: correctAnswer }
+      answer_key: { correct_answer: correctAnswer },
+      startIndex: match.index,
     });
   }
 
@@ -1260,8 +1261,13 @@ export async function mountAssignmentManager() {
                 <p style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 13.5px; color: #667085; margin: 0;">Danh sách tất cả đề thi trắc nghiệm và bài tập trong hệ thống</p>
               </div>
 
-              <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; flex: 1; max-width: 500px; justify-content: flex-end;">
-                <div style="position: relative; flex: 1; min-width: 220px;">
+              <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; flex: 1; max-width: 600px; justify-content: flex-end;">
+                <select id="assignment-type-filter" style="padding: 10px 14px; border-radius: 9999px; border: 1px solid #cbd5e1; font-family: 'Be Vietnam Pro', sans-serif; font-size: 13px; color: #344054; outline: none; background: #ffffff; cursor: pointer;">
+                  <option value="all">Tất cả đề bài</option>
+                  <option value="lecture">Theo bài giảng</option>
+                  <option value="free">Bài tập tự do</option>
+                </select>
+                <div style="position: relative; flex: 1; min-width: 200px;">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#667085" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); pointer-events: none;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                   <input type="text" id="assignment-search" placeholder="Tìm kiếm đề thi..." style="width: 100%; box-sizing: border-box; padding: 10px 16px 10px 40px; border-radius: 9999px; border: 1px solid #cbd5e1; font-family: 'Be Vietnam Pro', sans-serif; font-size: 13.5px; outline: none; transition: border-color 0.15s ease;" onfocus="this.style.borderColor='#455120'" onblur="this.style.borderColor='#cbd5e1'" />
                 </div>
@@ -1359,7 +1365,19 @@ export function renderAssignmentEditor(lectures) {
           <input class="field" name="title" value="${escapeHtml(assignment.title)}" placeholder="Nhập tên đề thi..." required>
         </div>
 
-        <div class="custom-combobox" style="position: relative;">
+        <div>
+          <label class="field-label">Chủ đề / Phân loại (Tùy chọn tạo Pill lọc)</label>
+          <input class="field" name="category_tag" list="category-suggestions" value="${escapeHtml(assignment.category || (assignment.description && assignment.description.startsWith('__CAT__:') ? assignment.description.replace('__CAT__:', '').trim() : ''))}" placeholder="Ví dụ: Đại số, Hình học, Xác suất, Luyện đề...">
+          <datalist id="category-suggestions">
+            <option value="Đại số & Giải tích"></option>
+            <option value="Hình học"></option>
+            <option value="Xác suất & Thống kê"></option>
+            <option value="Đề luyện tập"></option>
+            <option value="Vận dụng cao"></option>
+          </datalist>
+        </div>
+
+        <div class="custom-combobox" style="position: relative; grid-column: 1 / -1;">
           <input type="hidden" name="lecture_id" value="${escapeHtml(assignment.lecture_id ?? '')}">
           <label class="field-label">Chương liên kết</label>
           <input
@@ -1404,31 +1422,86 @@ export function renderAssignmentEditor(lectures) {
     <!-- Main Workspace Split View -->
     <style>
       .left-pane {
-        position: sticky;
-        top: 24px;
-        align-self: start;
         flex: 1;
         min-width: 380px;
-        max-height: calc(100vh - 48px);
+        height: calc(100vh - 140px);
         overflow-y: auto;
         display: flex;
         flex-direction: column;
         gap: 16px;
+        padding-right: 6px;
       }
       .right-pane {
         flex: 1.1;
         min-width: 420px;
+        height: calc(100vh - 140px);
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        background: #ffffff;
+        border: 1px solid #D8E2C4;
+        border-radius: 16px;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      .cm-wrapper-box {
+        flex: 1;
+        min-height: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .CodeMirror {
+        height: 100% !important;
+        font-family: 'JetBrains Mono', 'Fira Code', monospace;
+        font-size: 13.5px;
+        line-height: 1.6;
+        border-radius: 12px;
+        border: 1px solid #cbd5e1;
+      }
+      .CodeMirror-scroll {
+        height: 100% !important;
+        overflow-y: auto !important;
+        overflow-x: auto !important;
       }
       @media (max-width: 900px) {
         .left-pane, .right-pane {
-          position: static !important;
           height: auto !important;
           min-width: 100% !important;
           flex: none !important;
         }
+      }
+      .cm-question-line-highlight {
+        background: rgba(69, 81, 32, 0.08) !important;
+        border-left: 3px solid #455120 !important;
+      }
+      .cm-question-marker-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        background: #455120;
+        color: #ffffff;
+        font-family: 'Be Vietnam Pro', sans-serif;
+        font-weight: 700;
+        font-size: 11px;
+        padding: 2px 8px;
+        border-radius: 6px;
+        margin-bottom: 6px;
+        user-select: none;
+        box-shadow: 0 1px 4px rgba(69, 81, 32, 0.25);
+      }
+      .latex-review-q-block {
+        transition: all 0.2s ease;
+        border-radius: 8px;
+        padding: 12px;
+        margin: -12px;
+      }
+      .latex-review-q-block:hover {
+        background: #fafcf7;
+      }
+      .latex-review-q-block.active-q {
+        background: #f2f7ec;
+        border: 1px solid #d8e2ca;
       }
     </style>
     <div class="assignment-workspace-split" style="display: flex; flex-wrap: wrap; gap: 20px; min-height: 600px; align-items: stretch;">
@@ -1471,7 +1544,7 @@ export function renderAssignmentEditor(lectures) {
           </div>
         </div>
         
-        <div style="flex: 1; display: flex; flex-direction: column;">
+        <div class="cm-wrapper-box" style="flex: 1; min-height: 0; display: flex; flex-direction: column; height: 100%;">
           <textarea id="latex-live-input" style="flex: 1; min-height: 520px; width: 100%; box-sizing: border-box; padding: 18px; font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 13.5px; line-height: 1.6; border: 1px solid #cbd5e1; border-radius: 12px; resize: vertical; background: #f8fafc; color: #0f172a; outline: none; transition: border-color 0.15s ease;" onfocus="this.style.borderColor='#455120'; this.style.background='#ffffff';" onblur="this.style.borderColor='#cbd5e1'; this.style.background='#f8fafc';" placeholder="Dán mã LaTeX chuẩn EX_TEST vào đây...&#10;Ví dụ:&#10;\begin{ex}[1D1-1]&#10;Cho hàm số y = f(x)...&#10;\choice&#10;{A. y = 1}&#10;{\True B. y = 2}&#10;{C. y = 3}&#10;{D. y = 4}&#10;\loigiai{Hướng dẫn giải...}&#10;\end{ex}">${escapeHtml(state.assignmentEditor.latexSource || '')}</textarea>
         </div>
       </div>
@@ -1503,7 +1576,7 @@ export function renderQuestionEditor(question, index) {
     const qNumStr = String(index + 1).padStart(2, '0');
 
     return `
-      <article class="latex-review-q-block" data-source-index="${question.sourceIndex ?? ''}" title="Bấm để cuộn đến đoạn code tương ứng" style="display: flex; flex-direction: column; gap: 14px; padding-bottom: 24px; border-bottom: 1px solid #f1f5f9; cursor: pointer;">
+      <article class="latex-review-q-block" data-question-index="${index}" data-source-index="${question.sourceIndex ?? ''}" title="Bấm để cuộn đến đoạn code tương ứng" style="display: flex; flex-direction: column; gap: 14px; padding-bottom: 24px; border-bottom: 1px solid #f1f5f9; cursor: pointer;">
         
         <!-- Question Title & Prompt -->
         <div style="font-size: 15px; color: #1e293b; line-height: 1.6;">
@@ -1705,18 +1778,37 @@ export function wireAssignmentEditor(lectures) {
   });
 
   const assignmentSearchInput = document.querySelector('#assignment-search');
-  if (assignmentSearchInput) {
-    assignmentSearchInput.addEventListener('input', (e) => {
-      const term = (e.target.value || '').toLowerCase();
-      document.querySelectorAll('.assignment-row').forEach(row => {
-        const text = row.textContent.toLowerCase();
-        if (text.includes(term)) {
-          row.style.display = 'flex';
-        } else {
-          row.style.display = 'none';
-        }
-      });
+  const assignmentTypeFilter = document.querySelector('#assignment-type-filter');
+
+  const filterAssignmentList = () => {
+    const term = (assignmentSearchInput?.value || '').toLowerCase();
+    const typeFilter = assignmentTypeFilter?.value || 'all';
+
+    document.querySelectorAll('.assignment-row').forEach(row => {
+      const text = row.textContent.toLowerCase();
+      const isFree = text.includes('bài tập tự do');
+      const matchesSearch = text.includes(term);
+      let matchesType = true;
+
+      if (typeFilter === 'free') {
+        matchesType = isFree;
+      } else if (typeFilter === 'lecture') {
+        matchesType = !isFree;
+      }
+
+      if (matchesSearch && matchesType) {
+        row.style.display = 'flex';
+      } else {
+        row.style.display = 'none';
+      }
     });
+  };
+
+  if (assignmentSearchInput) {
+    assignmentSearchInput.addEventListener('input', filterAssignmentList);
+  }
+  if (assignmentTypeFilter) {
+    assignmentTypeFilter.addEventListener('change', filterAssignmentList);
   }
 
   document.querySelectorAll('[data-load-assignment]').forEach((button) => {
@@ -1777,97 +1869,238 @@ export function wireAssignmentEditor(lectures) {
     mountAssignmentManager();
   });
 
-  document.querySelector('#latex-live-parse-btn')?.addEventListener('click', () => {
-    const text = document.querySelector('#latex-live-input').value;
-    const parsedQuestions = parseLatexAssignment(text);
+    const uploadInput = document.querySelector('#latex-image-upload');
+    const uploadBtn = document.querySelector('#latex-image-btn');
+    const uploadStatus = document.querySelector('#latex-upload-status');
+    const latexInput = document.querySelector('#latex-live-input');
 
-    if (parsedQuestions.length === 0) {
-      toast('Không tìm thấy câu hỏi nào hợp lệ (cần dùng \\begin{ex}...\\end{ex}).', 'error');
-      return;
+    const syncPreviewScroll = () => {
+      if (!cm) return;
+      const scrollInfo = cm.getScrollInfo();
+      const topVisibleLine = cm.lineAtHeight(scrollInfo.top + 20, 'local');
+      const doc = cm.getDoc();
+      const parsedQuestions = state.assignmentEditor?.questions || [];
+
+      let currentQIdx = 0;
+      for (let i = 0; i < parsedQuestions.length; i++) {
+        const q = parsedQuestions[i];
+        if (q.startIndex !== undefined) {
+          const qLine = doc.posFromIndex(q.startIndex).line;
+          if (qLine <= topVisibleLine) {
+            currentQIdx = i;
+          } else {
+            break;
+          }
+        }
+      }
+
+      const targetCard = document.querySelector(`.latex-review-q-block[data-question-index="${currentQIdx}"]`);
+      const leftPane = document.querySelector('.left-pane');
+      if (targetCard && leftPane) {
+        const cardTop = targetCard.offsetTop - 24;
+        leftPane.scrollTo({ top: Math.max(0, cardTop), behavior: 'smooth' });
+      }
+    };
+
+    let cm = null;
+    if (latexInput) {
+      cm = window.CodeMirror?.fromTextArea(latexInput, {
+        lineNumbers: true,
+        mode: 'stex',
+        lineWrapping: true,
+        theme: 'default',
+        extraKeys: {
+          'Cmd-S': function () { updateLatexPreview(false); },
+          'Ctrl-S': function () { updateLatexPreview(false); }
+        }
+      });
+      let changeDebounce = null;
+      cm?.on('change', () => {
+        latexInput.value = cm.getValue();
+        state.assignmentEditor.latexSource = cm.getValue();
+        clearTimeout(changeDebounce);
+        changeDebounce = setTimeout(() => {
+          updateLatexPreview(true);
+        }, 400);
+      });
+
+      let scrollTimeout = null;
+      cm?.on('scroll', () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(syncPreviewScroll, 40);
+      });
+      cm?.on('cursorActivity', () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(syncPreviewScroll, 60);
+      });
     }
 
-    state.assignmentEditor = collectEditor(lectures);
-    state.assignmentEditor.questions = parsedQuestions;
-    state.assignmentEditor.latexSource = text;
+    let cmLineWidgets = [];
+    const refreshCodeMirrorQuestionMarkers = (parsedQuestions) => {
+      if (!cm) return;
+      // Clear previous widgets
+      cmLineWidgets.forEach(w => w.clear());
+      cmLineWidgets = [];
 
-    toast(`Đã nhận diện thành công ${parsedQuestions.length} câu hỏi.`, 'success');
-    mountAssignmentManager();
-  });
+      const doc = cm.getDoc();
+      const text = doc.getValue();
 
-  const uploadInput = document.querySelector('#latex-image-upload');
-  const uploadBtn = document.querySelector('#latex-image-btn');
-  const uploadStatus = document.querySelector('#latex-upload-status');
-  const latexInput = document.querySelector('#latex-live-input');
+      parsedQuestions.forEach((q, idx) => {
+        const qNumStr = String(idx + 1).padStart(2, '0');
+        if (q.startIndex !== undefined) {
+          const pos = doc.posFromIndex(q.startIndex);
+          const widgetEl = document.createElement('div');
+          widgetEl.className = 'cm-question-marker-badge';
+          widgetEl.innerHTML = `<span style="font-size: 10px; opacity: 0.9;">📌</span> CÂU ${qNumStr}`;
+          widgetEl.style.cursor = 'pointer';
+          widgetEl.title = `Bấm để xem câu ${idx + 1} bên bản xem trước`;
+          widgetEl.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const targetCard = document.querySelector(`.latex-review-q-block[data-question-index="${idx}"]`);
+            if (targetCard) {
+              targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              document.querySelectorAll('.latex-review-q-block').forEach(c => c.classList.remove('active-q'));
+              targetCard.classList.add('active-q');
+              setTimeout(() => targetCard.classList.remove('active-q'), 2500);
+            }
+          });
 
-  let cm = null;
-  if (latexInput) {
-    cm = window.CodeMirror?.fromTextArea(latexInput, {
-      lineNumbers: true,
-      mode: 'stex',
-      lineWrapping: true,
-      theme: 'default',
-      extraKeys: {
-        'Cmd-S': function () { document.querySelector('#latex-live-parse-btn')?.click(); },
-        'Ctrl-S': function () { document.querySelector('#latex-live-parse-btn')?.click(); }
+          const widget = cm.addLineWidget(pos.line, widgetEl, { above: true, coverGutter: false, noHScroll: true });
+          cmLineWidgets.push(widget);
+        }
+      });
+    };
+
+    const updateLatexPreview = (preserveFocus = false) => {
+      const text = cm ? cm.getValue() : (document.querySelector('#latex-live-input')?.value || '');
+      if (latexInput) latexInput.value = text;
+      const parsedQuestions = parseLatexAssignment(text);
+
+      if (parsedQuestions.length === 0) return false;
+
+      // Update state without wiping cursor/scroll
+      const activeForm = document.querySelector('#assignment-editor');
+      if (activeForm) {
+        state.assignmentEditor = collectEditor(lectures);
+      }
+      state.assignmentEditor.questions = parsedQuestions;
+      state.assignmentEditor.latexSource = text;
+
+      // Refresh question markers in CodeMirror
+      refreshCodeMirrorQuestionMarkers(parsedQuestions);
+
+      // Update preview DOM directly
+      const qBuilder = document.querySelector('.latex-review-list .question-builder');
+      const leftPane = document.querySelector('.left-pane');
+      const prevScrollTop = leftPane ? leftPane.scrollTop : 0;
+
+      if (qBuilder) {
+        qBuilder.innerHTML = parsedQuestions.map((q, idx) => renderQuestionEditor(q, idx)).join('');
+
+        if (window.MathJax) {
+          setTimeout(() => {
+            window.MathJax.typesetPromise([qBuilder]).then(() => {
+              if (leftPane) leftPane.scrollTop = prevScrollTop;
+            }).catch(() => {});
+          }, 30);
+        } else if (leftPane) {
+          leftPane.scrollTop = prevScrollTop;
+        }
+      }
+
+      if (!preserveFocus) {
+        toast(`Đã cập nhật ${parsedQuestions.length} câu hỏi.`, 'success');
+      }
+      return true;
+    };
+
+    if (cm) {
+      setTimeout(() => {
+        updateLatexPreview(true);
+      }, 50);
+    }
+
+    document.querySelector('#latex-live-parse-btn')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      const ok = updateLatexPreview(false);
+      if (!ok) {
+        toast('Không tìm thấy câu hỏi nào hợp lệ (cần dùng \\begin{ex}...\\end{ex}).', 'error');
       }
     });
-    cm?.on('change', () => {
-      latexInput.value = cm.getValue();
-      state.assignmentEditor.latexSource = cm.getValue();
+
+    async function handleImageUpload(file) {
+      if (!file) return;
+      if (uploadStatus) uploadStatus.style.display = 'inline-block';
+      if (uploadBtn) uploadBtn.disabled = true;
+
+      // Save scroll and cursor positions
+      const leftPane = document.querySelector('.left-pane');
+      const leftScrollTop = leftPane ? leftPane.scrollTop : 0;
+      const cmScrollInfo = cm ? cm.getScrollInfo() : null;
+      const cmCursor = cm ? cm.getCursor() : null;
+
+      try {
+        const url = await uploadAssignmentImage(file);
+        const insertText = `\n![image](${url})\n`;
+        if (cm) {
+          const doc = cm.getDoc();
+          const cursor = cmCursor || doc.getCursor();
+          doc.replaceRange(insertText, cursor);
+          const nextLine = cursor.line + insertText.split('\n').length - 1;
+          cm.setCursor({ line: nextLine, ch: 0 });
+          if (cmScrollInfo) {
+            cm.scrollTo(cmScrollInfo.left, cmScrollInfo.top);
+          }
+        } else if (latexInput) {
+          const startPos = latexInput.selectionStart;
+          const endPos = latexInput.selectionEnd;
+          const prevScroll = latexInput.scrollTop;
+          latexInput.value = latexInput.value.substring(0, startPos) + insertText + latexInput.value.substring(endPos);
+          latexInput.selectionStart = latexInput.selectionEnd = startPos + insertText.length;
+          latexInput.scrollTop = prevScroll;
+          state.assignmentEditor.latexSource = latexInput.value;
+        }
+
+        // Auto-refresh preview immediately without reloading whole view
+        updateLatexPreview(true);
+
+        if (leftPane) {
+          leftPane.scrollTop = leftScrollTop;
+        }
+        toast('Đã chèn và hiển thị ảnh.', 'success');
+      } catch (err) {
+        toast('Tải ảnh lên thất bại: ' + err.message, 'error');
+      } finally {
+        if (uploadStatus) uploadStatus.style.display = 'none';
+        if (uploadBtn) uploadBtn.disabled = false;
+        if (uploadInput) uploadInput.value = '';
+      }
+    }
+
+    uploadBtn?.addEventListener('click', () => uploadInput?.click());
+    uploadInput?.addEventListener('change', (e) => {
+      if (e.target.files.length > 0) {
+        handleImageUpload(e.target.files[0]);
+      }
     });
-  }
 
-  async function handleImageUpload(file) {
-    if (!file) return;
-    uploadStatus.style.display = 'inline-block';
-    uploadBtn.disabled = true;
-    try {
-      const url = await uploadAssignmentImage(file);
-      const insertText = `\n![image](${url})\n`;
-      if (cm) {
-        const doc = cm.getDoc();
-        const cursor = doc.getCursor();
-        doc.replaceRange(insertText, cursor);
-      } else {
-        const startPos = latexInput.selectionStart;
-        const endPos = latexInput.selectionEnd;
-        latexInput.value = latexInput.value.substring(0, startPos) + insertText + latexInput.value.substring(endPos);
-        latexInput.selectionStart = latexInput.selectionEnd = startPos + insertText.length;
-        state.assignmentEditor.latexSource = latexInput.value;
+    const handlePaste = (e) => {
+      const items = (e.clipboardData || e.originalEvent?.clipboardData)?.items || [];
+      for (const item of items) {
+        if (item.type.indexOf('image') === 0) {
+          e.preventDefault();
+          const file = item.getAsFile();
+          handleImageUpload(file);
+          break;
+        }
       }
-    } catch (err) {
-      toast('Tải ảnh lên thất bại: ' + err.message, 'error');
-    } finally {
-      uploadStatus.style.display = 'none';
-      uploadBtn.disabled = false;
-      uploadInput.value = ''; // reset
-    }
-  }
+    };
 
-  uploadBtn?.addEventListener('click', () => uploadInput.click());
-  uploadInput?.addEventListener('change', (e) => {
-    if (e.target.files.length > 0) {
-      handleImageUpload(e.target.files[0]);
+    if (cm) {
+      cm.on('paste', (instance, e) => handlePaste(e));
+    } else {
+      latexInput?.addEventListener('paste', handlePaste);
     }
-  });
-
-  const handlePaste = (e) => {
-    const items = (e.clipboardData || e.originalEvent?.clipboardData).items;
-    for (const item of items) {
-      if (item.type.indexOf('image') === 0) {
-        e.preventDefault();
-        const file = item.getAsFile();
-        handleImageUpload(file);
-        break;
-      }
-    }
-  };
-
-  if (cm) {
-    cm.on('paste', (instance, e) => handlePaste(e));
-  } else {
-    latexInput?.addEventListener('paste', handlePaste);
-  }
 
   document.querySelector('#delete-assignment')?.addEventListener('click', async () => {
     if (!window.confirm('Xóa đề này?')) return;
@@ -2067,10 +2300,25 @@ export function collectEditor() {
     });
   }
 
+  const customCategory = (values.category_tag || '').trim();
+  let title = values.title || '';
+  // If user entered a category, we can ensure title or category metadata carries it
+  if (customCategory && !title.startsWith(`[${customCategory}]`)) {
+    // If title has an existing bracket like [Đại số], replace it; otherwise prepend it
+    if (/^\[[^\]]+\]\s*/.test(title)) {
+      title = title.replace(/^\[[^\]]+\]\s*/, `[${customCategory}] `);
+    } else {
+      title = `[${customCategory}] ${title}`;
+    }
+  } else if (!customCategory && /^\[[^\]]+\]\s*/.test(title)) {
+    // If user cleared category tag, remove bracket tag from title
+    title = title.replace(/^\[[^\]]+\]\s*/, '');
+  }
+
   return {
     assignment: {
       id: values.id || undefined,
-      title: values.title,
+      title: title,
       description: isLatexMode ? (state.assignmentEditor?.latexSource || '') : values.description,
       pdf_url: resolvedPdfUrl,
       lecture_id: values.lecture_id || null,
