@@ -774,7 +774,10 @@ async function mountAssignmentExam(id) {
             display: block !important;
             margin: 16px auto !important;
             max-width: 100% !important;
+            max-height: 280px !important;
+            width: auto !important;
             height: auto !important;
+            object-fit: contain !important;
           }
           .latex-choice-tile:hover .latex-radio-circle {
             border-color: #455120 !important;
@@ -1717,6 +1720,15 @@ async function mountReview(id) {
         </section>
         </div>
         <style>
+          .latex-exam-card img {
+            display: block !important;
+            margin: 16px auto !important;
+            max-width: 100% !important;
+            max-height: 280px !important;
+            width: auto !important;
+            height: auto !important;
+            object-fit: contain !important;
+          }
           details summary::-webkit-details-marker { display: none; }
           details[open] summary .expand-icon { transform: rotate(180deg); }
           .expand-icon { transition: transform 0.2s ease; }
