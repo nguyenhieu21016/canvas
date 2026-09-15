@@ -36,7 +36,7 @@ export function gradeQuestion(question, key, answer) {
 
   if (type === QUESTION_TYPES.TF4) {
     const correct = key?.correct_answer ?? [];
-    let isCorrect = true;
+    let correctCount = 0;
     let hasExpected = false;
 
     for (let index = 0; index < 4; index += 1) {
@@ -44,13 +44,18 @@ export function gradeQuestion(question, key, answer) {
       if (expected === undefined || expected === null) continue;
       hasExpected = true;
       const actual = answerAt(answer, index);
-      if (actual === undefined || actual === null || toBoolean(actual) !== toBoolean(expected)) {
-        isCorrect = false;
+      if (actual !== undefined && actual !== null && toBoolean(actual) === toBoolean(expected)) {
+        correctCount += 1;
       }
     }
 
-    isCorrect = hasExpected && isCorrect;
-    return { earned: isCorrect ? 1 : 0, max: 1, isCorrect };
+    let earned = 0;
+    if (correctCount === 1) earned = 0.1;
+    else if (correctCount === 2) earned = 0.25;
+    else if (correctCount === 3) earned = 0.5;
+    else if (correctCount === 4) earned = 1.0;
+
+    return { earned, max: 1, isCorrect: earned === 1.0 };
   }
 
   if (type === QUESTION_TYPES.SHORT) {

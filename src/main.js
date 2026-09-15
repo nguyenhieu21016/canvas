@@ -547,45 +547,123 @@ async function mountAssignmentExam(id) {
             </div>
           </div>
 
-          <section class="exam-shell" style="height: auto; max-width: 1420px; width: 100%; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: minmax(0, 1fr) 290px; gap: 24px; align-items: start;">
+                    <section class="exam-shell" style="height: auto; max-width: 1420px; width: 100%; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: minmax(0, 1fr) 290px; gap: 24px; align-items: start;">
             <!-- Left Main Content Column -->
             <form id="answer-form" style="min-width: 0; width: 100%; display: flex; flex-direction: column; gap: 28px; background: #ffffff; padding: 32px 40px; border-radius: 16px; border: 1px solid #D8E2C4; box-shadow: 0 2px 12px rgba(69, 81, 32, 0.02);">
               
-              <!-- Section Header I. Trắc nghiệm -->
-              <div style="display: flex; align-items: center; justify-content: flex-start; gap: 10px; padding: 4px 16px 4px 4px; background: #f0f4e8; border: 1px solid #d8e2ca; border-radius: 9999px; color: #455120; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 700; font-size: 15px; box-sizing: border-box; width: 100%;">
-                <span style="width: 28px; height: 28px; border-radius: 50%; background: #455120; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif;">I</span>
-                <span>Trắc nghiệm</span>
-              </div>
+              ${(() => {
+                const sections = [];
+                let currentSection = null;
+                
+                questions.forEach((q, index) => {
+                  if (!currentSection || currentSection.type !== q.type) {
+                    const sIdx = sections.length + 1;
+                    const roman = ['I', 'II', 'III', 'IV', 'V'][sIdx - 1] || sIdx;
+                    let label = 'Trắc nghiệm';
+                    if (q.type === 'tf4') label = 'Đúng/sai';
+                    if (q.type === 'short') label = 'Trả lời ngắn';
+                    
+                    currentSection = {
+                      type: q.type,
+                      roman: roman,
+                      label: label,
+                      questions: []
+                    };
+                    sections.push(currentSection);
+                  }
+                  currentSection.questions.push({ ...q, globalIndex: index });
+                });
 
-              ${questions.map((q, i) => {
-                const cleanPrompt = q.prompt ? q.prompt.replace(/^Câu\s*\d+[\.\:\s]*/i, '') : '';
-                const qNumStr = String(i + 1).padStart(2, '0');
-                return `
-                <article class="latex-exam-card" data-question-id="${q.id}" data-type="${q.type}" style="display: flex; flex-direction: column; gap: 14px; padding-bottom: 24px; border-bottom: 1px solid #f1f5f9;">
-                  <div style="font-size: 15px; color: #1e293b; line-height: 1.6;">
-                    <span style="font-weight: 900; color: #455120; font-size: 17px; font-family: 'Beautique Display', serif; letter-spacing: 0.5px; margin-right: 12px; display: inline-block;">CÂU ${qNumStr}</span>
-                    <span style="font-weight: 500; color: #1e293b; font-size: 15px;">${renderLatexText(cleanPrompt)}</span>
-                  </div>
-                  
-                  <div class="choice-grid" style="display: flex; flex-direction: column; gap: 10px; padding-left: 2px; margin-top: 4px;">
-                    ${(q.choices ?? []).map((choice, cIdx) => {
-                      const value = String.fromCharCode(65 + cIdx);
-                      const isChecked = answers[q.id] === value;
-                      return `
-                        <label class="latex-choice-tile ${isChecked ? 'selected' : ''}" style="display: flex; gap: 10px; align-items: center; cursor: pointer; padding: 2px 0; border: none; background: transparent; transition: all 0.15s ease;">
-                          <input type="radio" name="q-${q.id}" value="${value}" ${isChecked ? 'checked' : ''} style="opacity: 0; position: absolute; pointer-events: none;">
-                          <div class="latex-radio-circle" style="width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid ${isChecked ? '#455120' : '#cbd5e1'}; background: #ffffff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.15s ease;">
-                            <div class="dot" style="width: 8px; height: 8px; border-radius: 50%; background: #455120; display: ${isChecked ? 'block' : 'none'};"></div>
-                          </div>
-                          <div style="font-size: 14.5px; line-height: 1.5; color: #1e293b; display: flex; align-items: center; gap: 4px;">
-                            <span style="font-weight: 800; color: #1e293b;">${value}.</span><span>${renderLatexText(choice)}</span>
-                          </div>
-                        </label>
-                      `;
-                    }).join('')}
-                  </div>
-                </article>
-              `}).join('')}
+                return sections.map(sec => 
+                  "<!-- Section Header -->\n" +
+                  "<div style=\"display: flex; align-items: center; justify-content: flex-start; gap: 10px; padding: 4px 16px 4px 4px; background: linear-gradient(90deg, #f0f4e8 0%, rgba(255,255,255,0) 100%); border-radius: 9999px; color: #455120; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 700; font-size: 15px; box-sizing: border-box; width: 100%;\">\n" +
+                  "  <span style=\"width: 28px; height: 28px; border-radius: 50%; background: #455120; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif;\">" + sec.roman + "</span>\n" +
+                  "  <span>" + sec.label + "</span>\n" +
+                  "</div>\n" +
+                  sec.questions.map((q, i) => {
+                    const cleanPrompt = q.prompt ? q.prompt.replace(/^Câu\\s*\\d+[\\.\\:\\s]*/i, '') : '';
+                    const qNumStr = String(i + 1).padStart(2, '0');
+                    
+                    let qHTML = 
+                    "<article class=\"latex-exam-card\" data-question-id=\"" + q.id + "\" data-type=\"" + q.type + "\" style=\"display: flex; flex-direction: column; gap: 14px; padding-bottom: 24px; border-bottom: 1px solid #f1f5f9;\">\n" +
+                    "  <div style=\"font-size: 15px; color: #1e293b; line-height: 1.6;\">\n" +
+                    "    <span style=\"font-weight: 800; color: #455120; font-size: 17px; font-family: 'Beautique Display', serif; letter-spacing: 0.5px; margin-right: 12px; display: inline-block;\">CÂU " + qNumStr + "</span>\n" +
+                    "    <span style=\"font-weight: 500; color: #1e293b; font-size: 15px;\">" + renderLatexText(cleanPrompt) + "</span>\n" +
+                    "  </div>\n";
+
+                    if (q.type === 'mcq') {
+                      qHTML += 
+                      "<div class=\"choice-grid\" style=\"display: flex; flex-direction: column; gap: 10px; padding-left: 2px; margin-top: 4px;\">\n" +
+                      (q.choices ?? []).map((choice, cIdx) => {
+                        const value = String.fromCharCode(65 + cIdx);
+                        const isChecked = answers[q.id] === value;
+                        return "" +
+                          "<label class=\"latex-choice-tile " + (isChecked ? 'selected' : '') + "\" style=\"display: flex; gap: 10px; align-items: center; cursor: pointer; padding: 2px 0; border: none; background: transparent; transition: all 0.15s ease;\">\n" +
+                          "  <input type=\"radio\" name=\"q-" + q.id + "\" value=\"" + value + "\" " + (isChecked ? 'checked' : '') + " style=\"opacity: 0; position: absolute; pointer-events: none;\">\n" +
+                          "  <div class=\"latex-radio-circle\" style=\"width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid " + (isChecked ? '#455120' : '#cbd5e1') + "; background: #ffffff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.15s ease;\">\n" +
+                          "    <div class=\"dot\" style=\"width: 8px; height: 8px; border-radius: 50%; background: #455120; display: " + (isChecked ? 'block' : 'none') + ";\"></div>\n" +
+                          "  </div>\n" +
+                          "  <div style=\"font-size: 14.5px; line-height: 1.5; color: #1e293b; display: flex; align-items: center; gap: 4px;\">\n" +
+                          "    <span style=\"font-weight: 800; color: #1e293b;\">" + value + ".</span><span>" + renderLatexText(choice) + "</span>\n" +
+                          "  </div>\n" +
+                          "</label>\n";
+                      }).join('') +
+                      "</div>\n";
+                    } else if (q.type === 'tf4') {
+                      qHTML += 
+                      "<div style=\"margin-top: 8px; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;\">\n" +
+                      "  <table style=\"width: 100%; border-collapse: collapse; font-size: 14px; text-align: left;\">\n" +
+                      "    <thead>\n" +
+                      "      <tr style=\"background: #f8fafc; border-bottom: 1px solid #e2e8f0;\">\n" +
+                      "        <th style=\"padding: 12px 16px; font-weight: 700; color: #1e293b; text-align: left;\">Phát biểu</th>\n" +
+                      "        <th style=\"padding: 12px 16px; font-weight: 700; color: #1e293b; width: 60px; text-align: center; border-left: 1px solid #e2e8f0;\">Đúng</th>\n" +
+                      "        <th style=\"padding: 12px 16px; font-weight: 700; color: #1e293b; width: 60px; text-align: center; border-left: 1px solid #e2e8f0;\">Sai</th>\n" +
+                      "      </tr>\n" +
+                      "    </thead>\n" +
+                      "    <tbody>\n" +
+                      (q.settings?.statements || []).map((stmt, cIdx) => {
+                        const currentAns = answers[q.id]?.[cIdx];
+                        const isTrueChecked = currentAns === true;
+                        const isFalseChecked = currentAns === false;
+                        
+                        return "" +
+                        "<tr style=\"border-bottom: 1px solid #e2e8f0;\">\n" +
+                        "  <td style=\"padding: 12px 16px; color: #1e293b; line-height: 1.5;\">" + renderLatexText(stmt) + "</td>\n" +
+                        "  <td style=\"padding: 12px 16px; text-align: center; border-left: 1px solid #e2e8f0; vertical-align: middle;\">\n" +
+                        "    <label style=\"display: inline-flex; cursor: pointer; position: relative;\">\n" +
+                        "      <input type=\"radio\" name=\"q-" + q.id + "-" + cIdx + "\" value=\"true\" " + (isTrueChecked ? 'checked' : '') + " style=\"opacity: 0; position: absolute;\">\n" +
+                        "      <div class=\"latex-radio-circle\" style=\"width: 20px; height: 20px; border-radius: 50%; border: 2px solid " + (isTrueChecked ? '#455120' : '#cbd5e1') + "; background: #ffffff; display: flex; align-items: center; justify-content: center; transition: all 0.15s ease; margin: 0 auto;\">\n" +
+                        "        <div style=\"width: 10px; height: 10px; border-radius: 50%; background: #455120; display: " + (isTrueChecked ? 'block' : 'none') + ";\"></div>\n" +
+                        "      </div>\n" +
+                        "    </label>\n" +
+                        "  </td>\n" +
+                        "  <td style=\"padding: 12px 16px; text-align: center; border-left: 1px solid #e2e8f0; vertical-align: middle;\">\n" +
+                        "    <label style=\"display: inline-flex; cursor: pointer; position: relative;\">\n" +
+                        "      <input type=\"radio\" name=\"q-" + q.id + "-" + cIdx + "\" value=\"false\" " + (isFalseChecked ? 'checked' : '') + " style=\"opacity: 0; position: absolute;\">\n" +
+                        "      <div class=\"latex-radio-circle\" style=\"width: 20px; height: 20px; border-radius: 50%; border: 2px solid " + (isFalseChecked ? '#455120' : '#cbd5e1') + "; background: #ffffff; display: flex; align-items: center; justify-content: center; transition: all 0.15s ease; margin: 0 auto;\">\n" +
+                        "        <div style=\"width: 10px; height: 10px; border-radius: 50%; background: #455120; display: " + (isFalseChecked ? 'block' : 'none') + ";\"></div>\n" +
+                        "      </div>\n" +
+                        "    </label>\n" +
+                        "  </td>\n" +
+                        "</tr>\n";
+                      }).join('') +
+                      "    </tbody>\n" +
+                      "  </table>\n" +
+                      "</div>\n";
+                    } else if (q.type === 'short') {
+                      const currentVal = answers[q.id] || '';
+                      qHTML += 
+                      "<div style=\"margin-top: 12px; display: flex; align-items: center; gap: 12px;\">\n" +
+                      "  <span style=\"font-size: 15px; font-weight: 700; color: #1e293b;\">Đáp số:</span>\n" +
+                      "  <input type=\"text\" name=\"q-" + q.id + "\" value=\"" + escapeHtml(currentVal) + "\" placeholder=\"Nhập đáp án...\" style=\"width: 160px; height: 36px; padding: 0 12px; border-radius: 8px; border: 1px solid #cbd5e1; background: #f8fafc; font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 600; color: #0f172a; outline: none; transition: border-color 0.2s;\" onfocus=\"this.style.borderColor='#455120'\" onblur=\"this.style.borderColor='#cbd5e1'\">\n" +
+                      "</div>\n";
+                    }
+
+                    qHTML += "</article>\n";
+                    return qHTML;
+                  }).join('')
+                ).join('');
+              })()}
             </form>
 
             <!-- Right Sidebar: Navigator -->
@@ -598,35 +676,69 @@ async function mountAssignmentExam(id) {
                 <div>
                   <div style="font-size: 13.5px; color: #1e293b; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between;">
                     <span style="font-family: 'Be Vietnam Pro', sans-serif; font-weight: 700;">Bạn đã hoàn thành</span>
-                    <span style="color: #455120; font-weight: 800; font-size: 16px; font-family: 'Be Vietnam Pro', sans-serif;" id="completion-count-display">${Object.values(answers).filter(Boolean).length}/${questions.length}</span>
+                    <span style="color: #455120; font-weight: 800; font-size: 16px; font-family: 'Be Vietnam Pro', sans-serif;" id="completion-count-display">${Object.values(answers).filter(v => v !== null && v !== undefined && v !== '' && (!Array.isArray(v) || v.some(val => val !== null))).length}/${questions.length}</span>
                   </div>
                   <div style="display: flex; align-items: center; gap: 10px;">
                     <div style="flex: 1; background: #e2e8f0; height: 10px; border-radius: 999px; overflow: hidden; position: relative;">
-                      <div id="completion-progress-bar" style="width: ${Math.round((Object.values(answers).filter(Boolean).length / (questions.length || 1)) * 100)}%; background: #455120; height: 100%; border-radius: 999px; transition: width 0.3s ease;"></div>
+                      <div id="completion-progress-bar" style="width: ${Math.round((Object.values(answers).filter(v => v !== null && v !== undefined && v !== '' && (!Array.isArray(v) || v.some(val => val !== null))).length / (questions.length || 1)) * 100)}%; background: #455120; height: 100%; border-radius: 999px; transition: width 0.3s ease;"></div>
                     </div>
                   </div>
                 </div>
 
                 <!-- Section Navigator Pill -->
-                <div style="display: flex; flex-direction: column; gap: 12px;">
-                  <div style="display: flex; align-items: center; justify-content: flex-start; gap: 10px; padding: 4px 14px 4px 4px; background: #f0f4e8; border: 1px solid #d8e2ca; border-radius: 9999px; color: #455120; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 700; font-size: 14px; box-sizing: border-box; width: 100%;">
-                    <span style="width: 26px; height: 26px; border-radius: 50%; background: #455120; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif;">I</span>
-                    <span>Trắc nghiệm</span>
-                  </div>
-                  <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px 10px;">
-                    ${questions.map((q, i) => {
-                      const isAns = !!answers[q.id];
-                      return `
-                        <button type="button" class="nav-btn ${isAns ? 'answered' : ''}" data-nav="${q.id}" onclick="document.querySelector('[data-question-id=\\'${q.id}\\']').scrollIntoView({behavior: 'smooth', block: 'center'})" style="width: 40px; height: 40px; border-radius: 50%; border: 1px solid ${isAns ? '#455120' : '#e2e8f0'}; background: ${isAns ? '#455120' : '#ffffff'}; color: ${isAns ? '#ffffff' : '#1e293b'}; cursor: pointer; font-family: 'Be Vietnam Pro', sans-serif; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; margin: 0 auto; transition: all 0.15s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.03);">
-                          ${String(i + 1).padStart(2, '0')}
-                        </button>
-                      `;
-                    }).join('')}
-                  </div>
+                <div style="display: flex; flex-direction: column; gap: 16px;">
+                  ${(() => {
+                    const sections = [];
+                    let currentSection = null;
+                    
+                    questions.forEach((q, index) => {
+                      if (!currentSection || currentSection.type !== q.type) {
+                        const sIdx = sections.length + 1;
+                        const roman = ['I', 'II', 'III', 'IV', 'V'][sIdx - 1] || sIdx;
+                        let label = 'Trắc nghiệm';
+                        if (q.type === 'tf4') label = 'Đúng/sai';
+                        if (q.type === 'short') label = 'Trả lời ngắn';
+                        
+                        currentSection = {
+                          type: q.type,
+                          roman: roman,
+                          label: label,
+                          questions: []
+                        };
+                        sections.push(currentSection);
+                      }
+                      currentSection.questions.push({ ...q, globalIndex: index });
+                    });
+
+                    return sections.map(sec => 
+                    "<div style=\"display: flex; flex-direction: column; gap: 12px;\">\n" +
+                    "  <div style=\"display: flex; align-items: center; justify-content: flex-start; gap: 10px; padding: 4px 14px 4px 4px; background: linear-gradient(90deg, #f0f4e8 0%, rgba(255,255,255,0) 100%); border-radius: 9999px; color: #455120; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 700; font-size: 14px; box-sizing: border-box; width: 100%;\">\n" +
+                    "    <span style=\"width: 26px; height: 26px; border-radius: 50%; background: #455120; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif;\">" + sec.roman + "</span>\n" +
+                    "    <span>" + sec.label + "</span>\n" +
+                    "  </div>\n" +
+                    "  <div style=\"display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px 10px;\">\n" +
+                    sec.questions.map((q, localIdx) => {
+                      const ans = answers[q.id];
+                      let isAns = false;
+                      if (q.type === 'tf4') {
+                        isAns = Array.isArray(ans) && ans.some(val => val !== null);
+                      } else {
+                        isAns = !!ans;
+                      }
+                      const dispNum = String(localIdx + 1).padStart(2, '0');
+                      return "" +
+                        "<button type=\"button\" class=\"nav-btn " + (isAns ? 'answered' : '') + "\" data-nav=\"" + q.id + "\" onclick=\"document.querySelector('[data-question-id=\\'" + q.id + "\\']').scrollIntoView({behavior: 'smooth', block: 'center'})\" style=\"width: 40px; height: 40px; border-radius: 50%; border: 1px solid " + (isAns ? '#455120' : '#e2e8f0') + "; background: " + (isAns ? '#455120' : '#ffffff') + "; color: " + (isAns ? '#ffffff' : '#1e293b') + "; cursor: pointer; font-family: 'Be Vietnam Pro', sans-serif; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; margin: 0 auto; transition: all 0.15s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.03);\">\n" +
+                        "  " + dispNum + "\n" +
+                        "</button>\n";
+                    }).join('') +
+                    "  </div>\n" +
+                    "</div>\n"
+                    ).join('');
+                  })()}
                 </div>
 
                 <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 10px;">
-                  <p id="autosave-status" class="autosave-status" style="font-size: 12px; text-align: center; color: #64748b; margin: 0;">${draft ? `Đã lưu ${formatDateTime(draft.savedAt)}` : 'Tự động lưu khi chọn'}</p>
+                  <p id="autosave-status" class="autosave-status" style="font-size: 12px; text-align: center; color: #64748b; margin: 0;">${draft ? 'Đã lưu ' + formatDateTime(draft.savedAt) : 'Tự động lưu khi chọn'}</p>
                   <button type="button" id="trigger-submit-modal-btn" style="width: 100%; height: 44px; background: #455120; color: #ffffff; border: none; border-radius: 10px; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 600; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s ease;">
                     Kết thúc
                   </button>
@@ -1014,34 +1126,51 @@ function wireAnswerAutosave(assignment, assignmentId, draft) {
     if (stickyAutosaveStatus) stickyAutosaveStatus.textContent = message;
   };
   const persist = (event) => {
-    if (assignment.pdf_url === 'latex' && event.target?.type === 'radio') {
-      const qId = event.target.name.replace('q-', '');
-      const navBtn = document.querySelector(`.nav-btn[data-nav="${qId}"]`);
-      if (navBtn) {
-        navBtn.classList.add('answered');
-        navBtn.style.background = '#455120';
-        navBtn.style.color = '#ffffff';
-        navBtn.style.borderColor = '#455120';
+    if (assignment.pdf_url === 'latex') {
+      const qIdMatch = event.target.name?.match(/^q-([^-]+)/);
+      const qId = qIdMatch ? qIdMatch[1] : null;
+      if (qId) {
+        const navBtn = document.querySelector(`.nav-btn[data-nav="${qId}"]`);
+        if (navBtn) {
+          let isAnswered = true;
+          if (event.target.type === 'text') {
+            isAnswered = !!event.target.value.trim();
+          }
+          if (isAnswered) {
+            navBtn.classList.add('answered');
+            navBtn.style.background = '#455120';
+            navBtn.style.color = '#ffffff';
+            navBtn.style.borderColor = '#455120';
+          } else {
+            navBtn.classList.remove('answered');
+            navBtn.style.background = '#ffffff';
+            navBtn.style.color = '#1e293b';
+            navBtn.style.borderColor = '#e2e8f0';
+          }
+        }
       }
 
-      // Update Radio Tile Circles visually
-      const card = event.target.closest('.latex-exam-card');
-      if (card) {
-        const labels = card.querySelectorAll('.latex-choice-tile');
-        labels.forEach(lbl => {
-          const radio = lbl.querySelector('input[type="radio"]');
-          const circle = lbl.querySelector('.latex-radio-circle');
-          const dot = lbl.querySelector('.dot');
-          if (radio && radio.checked) {
-            lbl.classList.add('selected');
-            if (circle) circle.style.borderColor = '#455120';
-            if (dot) dot.style.display = 'block';
-          } else {
-            lbl.classList.remove('selected');
-            if (circle) circle.style.borderColor = '#cbd5e1';
-            if (dot) dot.style.display = 'none';
-          }
-        });
+      if (event.target?.type === 'radio') {
+        const card = event.target.closest('.latex-exam-card');
+        if (card) {
+          const labels = card.querySelectorAll('label');
+          labels.forEach(lbl => {
+            const radio = lbl.querySelector('input[type="radio"]');
+            const circle = lbl.querySelector('.latex-radio-circle');
+            const dot = circle ? circle.querySelector('div') : null;
+            if (radio && circle && dot) {
+              if (radio.checked) {
+                lbl.classList.add('selected');
+                circle.style.borderColor = '#455120';
+                dot.style.display = 'block';
+              } else {
+                lbl.classList.remove('selected');
+                circle.style.borderColor = '#cbd5e1';
+                dot.style.display = 'none';
+              }
+            }
+          });
+        }
       }
     }
 
@@ -1053,7 +1182,10 @@ function wireAnswerAutosave(assignment, assignmentId, draft) {
     }
 
     // Update progress stats in navigator
-    const answeredCount = Object.keys(draftAnswers).filter(k => draftAnswers[k]).length;
+    const answeredCount = Object.keys(draftAnswers).filter(k => {
+      const ans = draftAnswers[k];
+      return ans !== null && ans !== undefined && ans !== '' && (!Array.isArray(ans) || ans.some(val => val !== null));
+    }).length;
     const totalCount = document.querySelectorAll('.latex-exam-card').length || 1;
     const countDisplay = document.querySelector('#completion-count-display');
     const progressBar = document.querySelector('#completion-progress-bar');
@@ -1201,7 +1333,7 @@ async function mountReview(id) {
     // Map items with questions
     const itemsWithQuestions = items.map(item => {
       const q = questions.find(q => q.id === item.question_id);
-      return { ...item, choices: q?.choices, settings: q?.settings };
+      return { ...item, choices: q?.choices, settings: q?.settings, type: q?.type, qId: q?.id };
     });
     
     // Fetch student info
@@ -1289,114 +1421,209 @@ async function mountReview(id) {
               </div>
             
             <div class="latex-review-list" style="display: flex; flex-direction: column; gap: 28px; background: #ffffff; padding: 32px 40px; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 2px 12px rgba(0,0,0,0.02);">
-              <!-- Section Header I. Trắc nghiệm -->
-              <div style="display: flex; align-items: center; justify-content: flex-start; gap: 10px; padding: 4px 16px 4px 4px; background: #f0f4e8; border: 1px solid #d8e2ca; border-radius: 9999px; color: #455120; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 700; font-size: 15px; box-sizing: border-box; width: 100%;">
-                <span style="width: 28px; height: 28px; border-radius: 50%; background: #455120; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif;">I</span>
-                <span>Trắc nghiệm</span>
-              </div>
 
             ${(() => {
-              return itemsWithQuestions.map((item, index) => {
-                const hasAns = item.answer !== null && item.answer !== undefined && String(item.answer).trim() !== '';
-                const isCorrect = item.is_correct;
-                const chosenAnswer = formatAnswer(item.answer);
-                const correctAnswer = formatAnswer(item.correct_answer ?? item.accepted_answers);
-                const cleanPrompt = item.prompt ? item.prompt.replace(/^Câu\s*\d+[\.\:\s]*/i, '') : '';
-                const qNumStr = String(index + 1).padStart(2, '0');
-
-                let badgeHtml = '';
-                if (!hasAns) {
-                  badgeHtml = `<span style="background: #f1f5f9; color: #475467; border: 1px solid #cbd5e1; padding: 4px 12px; border-radius: 9999px; font-size: 12.5px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif;">Chưa trả lời</span>`;
-                } else if (isCorrect) {
-                  badgeHtml = `<span style="background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; padding: 4px 12px; border-radius: 9999px; font-size: 12.5px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif;">Đúng</span>`;
-                } else {
-                  badgeHtml = `<span style="background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; padding: 4px 12px; border-radius: 9999px; font-size: 12.5px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif;">Sai</span>`;
+              const sections = [];
+              let currentSection = null;
+              
+              itemsWithQuestions.forEach((item, index) => {
+                if (!currentSection || currentSection.type !== item.type) {
+                  const sIdx = sections.length + 1;
+                  const roman = ['I', 'II', 'III', 'IV', 'V'][sIdx - 1] || sIdx;
+                  let label = 'Trắc nghiệm';
+                  if (item.type === 'tf4') label = 'Đúng/sai';
+                  if (item.type === 'short') label = 'Trả lời ngắn';
+                  
+                  currentSection = {
+                    type: item.type,
+                    roman: roman,
+                    label: label,
+                    items: []
+                  };
+                  sections.push(currentSection);
                 }
+                currentSection.items.push({ ...item, globalIndex: index });
+              });
 
-                return `
-                  <article id="latex-review-q${index}" class="latex-exam-card" style="display: flex; flex-direction: column; gap: 14px; padding-bottom: 28px; border-bottom: 1px solid #f1f5f9;">
-                    
-                    <!-- Question Title & Prompt & Status Badge -->
-                    <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;">
-                      <div style="font-size: 15px; color: #1e293b; line-height: 1.6; flex: 1;">
-                        <span style="font-weight: 900; color: #455120; font-size: 17px; font-family: 'Beautique Display', serif; letter-spacing: 0.5px; margin-right: 12px; display: inline-block;">CÂU ${qNumStr}</span>
-                        <span style="font-weight: 500; color: #1e293b; font-size: 15px;">${renderLatexText(cleanPrompt)}</span>
-                      </div>
-                      <div style="flex-shrink: 0;">${badgeHtml}</div>
-                    </div>
-                    
-                    <!-- Choice Radio List with Correct/Wrong Feedback -->
-                    <div class="choice-grid" style="display: flex; flex-direction: column; gap: 8px; padding-left: 2px; margin-top: 4px;">
-                      ${(item.choices ?? []).map((choice, cIdx) => {
-                        const letter = String.fromCharCode(65 + cIdx);
-                        const isChosen = chosenAnswer === letter;
-                        const isCorrectChoice = correctAnswer === letter;
+              return sections.map(sec => 
+                "<!-- Section Header -->\n" +
+                "<div style=\"display: flex; align-items: center; justify-content: flex-start; gap: 10px; padding: 4px 16px 4px 4px; background: #f0f4e8; border: 1px solid #d8e2ca; border-radius: 9999px; color: #455120; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 700; font-size: 15px; box-sizing: border-box; width: 100%;\">\n" +
+                "  <span style=\"width: 28px; height: 28px; border-radius: 50%; background: #455120; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif;\">" + sec.roman + "</span>\n" +
+                "  <span>" + sec.label + "</span>\n" +
+                "</div>\n" +
+                sec.items.map((item, localIdx) => {
+                  const index = item.globalIndex;
+                  const hasAns = item.answer !== null && item.answer !== undefined && String(item.answer).trim() !== '';
+                  const isCorrect = item.is_correct;
+                  const chosenAnswer = formatAnswer(item.answer);
+                  const correctAnswer = formatAnswer(item.correct_answer ?? item.accepted_answers);
+                  const cleanPrompt = item.prompt ? item.prompt.replace(/^Câu\\s*\\d+[\\.\\:\\s]*/i, '') : '';
+                  const qNumStr = String(localIdx + 1).padStart(2, '0');
+
+                  let badgeHtml = '';
+                  if (!hasAns) {
+                    badgeHtml = `<span style="background: #f1f5f9; color: #475467; border: 1px solid #cbd5e1; padding: 4px 12px; border-radius: 9999px; font-size: 12.5px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif;">Chưa trả lời</span>`;
+                  } else if (isCorrect) {
+                    badgeHtml = `<span style="background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; padding: 4px 12px; border-radius: 9999px; font-size: 12.5px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif;">Đúng</span>`;
+                  } else {
+                    badgeHtml = `<span style="background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; padding: 4px 12px; border-radius: 9999px; font-size: 12.5px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif;">Sai</span>`;
+                  }
+
+                  let qHTML = 
+                  "<article id=\"latex-review-q" + index + "\" class=\"latex-exam-card\" style=\"display: flex; flex-direction: column; gap: 14px; padding-bottom: 28px; border-bottom: 1px solid #f1f5f9;\">\n" +
+                  "  <div style=\"display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;\">\n" +
+                  "    <div style=\"font-size: 15px; color: #1e293b; line-height: 1.6; flex: 1;\">\n" +
+                  "      <span style=\"font-weight: 900; color: #455120; font-size: 17px; font-family: 'Beautique Display', serif; letter-spacing: 0.5px; margin-right: 12px; display: inline-block;\">CÂU " + qNumStr + "</span>\n" +
+                  "      <span style=\"font-weight: 500; color: #1e293b; font-size: 15px;\">" + renderLatexText(cleanPrompt) + "</span>\n" +
+                  "    </div>\n" +
+                  "    <div style=\"flex-shrink: 0;\">" + badgeHtml + "</div>\n" +
+                  "  </div>\n";
+
+                  if (item.type === 'mcq') {
+                    qHTML += 
+                    "<div class=\"choice-grid\" style=\"display: flex; flex-direction: column; gap: 8px; padding-left: 2px; margin-top: 4px;\">\n" +
+                    (item.choices ?? []).map((choice, cIdx) => {
+                      const letter = String.fromCharCode(65 + cIdx);
+                      const isChosen = chosenAnswer === letter;
+                      const isCorrectChoice = correctAnswer === letter;
+                      
+                      let wrapperBg = '#ffffff';
+                      let wrapperBorder = 'transparent';
+                      let circleBorder = '#cbd5e1';
+                      let circleBg = '#ffffff';
+                      let dotDisplay = 'none';
+                      let dotColor = '#455120';
+                      let tag = '';
+
+                      if (isChosen && isCorrectChoice) {
+                        wrapperBg = '#f0fdf4';
+                        wrapperBorder = '#bbf7d0';
+                        circleBorder = '#166534';
+                        circleBg = '#ffffff';
+                        dotDisplay = 'block';
+                        dotColor = '#166534';
+                        tag = `<span style="background: #166534; color: #ffffff; padding: 2px 8px; border-radius: 6px; font-size: 11.5px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif; margin-left: auto; flex-shrink: 0;">Bạn chọn (Đúng)</span>`;
+                      } else if (isChosen && !isCorrectChoice) {
+                        wrapperBg = '#fef2f2';
+                        wrapperBorder = '#fecaca';
+                        circleBorder = '#dc2626';
+                        circleBg = '#ffffff';
+                        dotDisplay = 'block';
+                        dotColor = '#dc2626';
+                        tag = `<span style="background: #dc2626; color: #ffffff; padding: 2px 8px; border-radius: 6px; font-size: 11.5px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif; margin-left: auto; flex-shrink: 0;">Bạn chọn (Sai)</span>`;
+                      } else if (isCorrectChoice) {
+                        wrapperBg = '#f0fdf4';
+                        wrapperBorder = '#bbf7d0';
+                        circleBorder = '#166534';
+                        circleBg = '#ffffff';
+                        tag = `<span style="background: #455120; color: #ffffff; padding: 2px 8px; border-radius: 6px; font-size: 11.5px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif; margin-left: auto; flex-shrink: 0;">Đáp án đúng</span>`;
+                      }
+
+                      return "" +
+                        "<div style=\"display: flex; gap: 10px; align-items: center; padding: 8px 12px; border-radius: 8px; background: " + wrapperBg + "; border: 1px solid " + wrapperBorder + "; transition: all 0.15s ease;\">\n" +
+                        "  <div class=\"latex-radio-circle\" style=\"width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid " + circleBorder + "; background: " + circleBg + "; display: flex; align-items: center; justify-content: center; flex-shrink: 0;\">\n" +
+                        "    <div class=\"dot\" style=\"width: 8px; height: 8px; border-radius: 50%; background: " + dotColor + "; display: " + dotDisplay + ";\"></div>\n" +
+                        "  </div>\n" +
+                        "  <div style=\"font-size: 14.5px; line-height: 1.5; color: #1e293b; display: flex; align-items: center; gap: 4px; flex: 1;\">\n" +
+                        "    <span style=\"font-weight: 800; color: #1e293b;\">" + letter + ".</span><span>" + renderLatexText(choice) + "</span>\n" +
+                        "  </div>\n" +
+                        "  " + tag + "\n" +
+                        "</div>\n";
+                    }).join('') +
+                    "</div>\n" +
+                    "<div style=\"margin-top: 14px;\">\n" +
+                    "  <div style=\"font-size: 16px; font-weight: 900; color: #455120; font-family: 'Beautique Display', serif; margin-bottom: 6px;\">Đáp án</div>\n" +
+                    "  <div style=\"font-size: 14.5px; font-weight: 700; color: #1e293b; line-height: 1.6;\">\n" +
+                    "    " + correctAnswer + ". " + (item.choices && item.choices[correctAnswer.charCodeAt(0) - 65] ? renderLatexText(item.choices[correctAnswer.charCodeAt(0) - 65]) : '') + "\n" +
+                    "  </div>\n" +
+                    "</div>\n";
+                  } else if (item.type === 'tf4') {
+                    qHTML += 
+                    "<div style=\"margin-top: 8px; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;\">\n" +
+                    "  <table style=\"width: 100%; border-collapse: collapse; font-size: 14px; text-align: left;\">\n" +
+                    "    <thead>\n" +
+                    "      <tr style=\"background: #f8fafc; border-bottom: 1px solid #e2e8f0;\">\n" +
+                    "        <th style=\"padding: 12px 16px; font-weight: 700; color: #1e293b; text-align: left;\">Phát biểu</th>\n" +
+                    "        <th style=\"padding: 12px 16px; font-weight: 700; color: #1e293b; width: 90px; text-align: center; border-left: 1px solid #e2e8f0;\">Đúng</th>\n" +
+                    "        <th style=\"padding: 12px 16px; font-weight: 700; color: #1e293b; width: 90px; text-align: center; border-left: 1px solid #e2e8f0;\">Sai</th>\n" +
+                    "      </tr>\n" +
+                    "    </thead>\n" +
+                    "    <tbody>\n" +
+                    (item.settings?.statements || []).map((stmt, cIdx) => {
+                      const userAns = Array.isArray(item.answer) ? item.answer[cIdx] : null;
+                      const correctAns = Array.isArray(item.correct_answer) ? item.correct_answer[cIdx] : null;
+                      const isCorrectRow = userAns === correctAns;
+                      const bg = userAns !== null ? (isCorrectRow ? '#f0fdf4' : '#fef2f2') : '#ffffff';
+                      
+                      const renderCircle = (val) => {
+                        const isChosen = userAns === val;
+                        const isCorrectTarget = correctAns === val;
                         
-                        let wrapperBg = '#ffffff';
-                        let wrapperBorder = 'transparent';
                         let circleBorder = '#cbd5e1';
-                        let circleBg = '#ffffff';
                         let dotDisplay = 'none';
                         let dotColor = '#455120';
-                        let tag = '';
+                        let checkIcon = '';
 
-                        if (isChosen && isCorrectChoice) {
-                          wrapperBg = '#f0fdf4';
-                          wrapperBorder = '#bbf7d0';
-                          circleBorder = '#166534';
-                          circleBg = '#ffffff';
+                        if (isChosen) {
+                          circleBorder = isCorrectRow ? '#166534' : '#dc2626';
                           dotDisplay = 'block';
-                          dotColor = '#166534';
-                          tag = `<span style="background: #166534; color: #ffffff; padding: 2px 8px; border-radius: 6px; font-size: 11.5px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif; margin-left: auto; flex-shrink: 0;">Bạn chọn (Đúng)</span>`;
-                        } else if (isChosen && !isCorrectChoice) {
-                          wrapperBg = '#fef2f2';
-                          wrapperBorder = '#fecaca';
-                          circleBorder = '#dc2626';
-                          circleBg = '#ffffff';
-                          dotDisplay = 'block';
-                          dotColor = '#dc2626';
-                          tag = `<span style="background: #dc2626; color: #ffffff; padding: 2px 8px; border-radius: 6px; font-size: 11.5px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif; margin-left: auto; flex-shrink: 0;">Bạn chọn (Sai)</span>`;
-                        } else if (isCorrectChoice) {
-                          wrapperBg = '#f0fdf4';
-                          wrapperBorder = '#bbf7d0';
-                          circleBorder = '#166534';
-                          circleBg = '#ffffff';
-                          tag = `<span style="background: #455120; color: #ffffff; padding: 2px 8px; border-radius: 6px; font-size: 11.5px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif; margin-left: auto; flex-shrink: 0;">Đáp án đúng</span>`;
+                          dotColor = isCorrectRow ? '#166534' : '#dc2626';
+                        }
+                        
+                        if (isCorrectTarget && !isChosen) {
+                          checkIcon = `<div style="position: absolute; width: 10px; height: 10px; border-radius: 50%; background: #455120;"></div>`;
+                          circleBorder = '#455120';
                         }
 
-                        return `
-                          <div style="display: flex; gap: 10px; align-items: center; padding: 8px 12px; border-radius: 8px; background: ${wrapperBg}; border: 1px solid ${wrapperBorder}; transition: all 0.15s ease;">
-                            <div class="latex-radio-circle" style="width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid ${circleBorder}; background: ${circleBg}; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                              <div class="dot" style="width: 8px; height: 8px; border-radius: 50%; background: ${dotColor}; display: ${dotDisplay};"></div>
-                            </div>
-                            <div style="font-size: 14.5px; line-height: 1.5; color: #1e293b; display: flex; align-items: center; gap: 4px; flex: 1;">
-                              <span style="font-weight: 800; color: #1e293b;">${letter}.</span><span>${renderLatexText(choice)}</span>
-                            </div>
-                            ${tag}
-                          </div>
-                        `;
-                      }).join('')}
-                    </div>
+                        return "" +
+                        "<div style=\"width: 20px; height: 20px; border-radius: 50%; border: 2px solid " + circleBorder + "; background: #ffffff; display: flex; align-items: center; justify-content: center; position: relative; margin: 0 auto;\">\n" +
+                        "  <div style=\"width: 10px; height: 10px; border-radius: 50%; background: " + dotColor + "; display: " + dotDisplay + ";\"></div>\n" +
+                        "  " + checkIcon + "\n" +
+                        "</div>\n";
+                      };
 
-                    <!-- Đáp án đúng text -->
-                    <div style="margin-top: 14px;">
-                      <div style="font-size: 16px; font-weight: 900; color: #455120; font-family: 'Beautique Display', serif; margin-bottom: 6px;">Đáp án</div>
-                      <div style="font-size: 14.5px; font-weight: 700; color: #1e293b; line-height: 1.6;">
-                        ${correctAnswer}. ${item.choices && item.choices[correctAnswer.charCodeAt(0) - 65] ? renderLatexText(item.choices[correctAnswer.charCodeAt(0) - 65]) : ''}
-                      </div>
-                    </div>
+                      return "" +
+                      "<tr style=\"border-bottom: 1px solid #e2e8f0; background: " + bg + ";\">\n" +
+                      "  <td style=\"padding: 12px 16px; color: #1e293b; line-height: 1.5;\">" + renderLatexText(stmt) + "</td>\n" +
+                      "  <td style=\"padding: 12px 16px; text-align: center; border-left: 1px solid #e2e8f0; vertical-align: middle;\">\n" +
+                      "    " + renderCircle(true) + "\n" +
+                      "  </td>\n" +
+                      "  <td style=\"padding: 12px 16px; text-align: center; border-left: 1px solid #e2e8f0; vertical-align: middle;\">\n" +
+                      "    " + renderCircle(false) + "\n" +
+                      "  </td>\n" +
+                      "</tr>\n";
+                    }).join('') +
+                    "    </tbody>\n" +
+                    "  </table>\n" +
+                    "</div>\n";
+                  } else if (item.type === 'short') {
+                    qHTML += 
+                    "<div style=\"margin-top: 12px; display: flex; align-items: center; gap: 12px;\">\n" +
+                    "  <span style=\"font-size: 15px; font-weight: 700; color: #1e293b;\">Bạn trả lời:</span>\n" +
+                    "  <div style=\"height: 36px; padding: 0 16px; border-radius: 8px; border: 1px solid " + (isCorrect ? '#bbf7d0' : '#fecaca') + "; background: " + (isCorrect ? '#f0fdf4' : '#fef2f2') + "; font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 600; color: " + (isCorrect ? '#166534' : '#991b1b') + "; display: flex; align-items: center;\">\n" +
+                    "    " + escapeHtml(item.answer || '') + "\n" +
+                    "  </div>\n" +
+                    "</div>\n" +
+                    "<div style=\"margin-top: 12px; display: flex; align-items: center; gap: 12px;\">\n" +
+                    "  <span style=\"font-size: 15px; font-weight: 700; color: #1e293b;\">Đáp án đúng:</span>\n" +
+                    "  <div style=\"height: 36px; padding: 0 16px; border-radius: 8px; border: 1px solid #cbd5e1; background: #f8fafc; font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 600; color: #0f172a; display: flex; align-items: center;\">\n" +
+                    "    " + escapeHtml(item.correct_answer ?? item.accepted_answers ?? '') + "\n" +
+                    "  </div>\n" +
+                    "</div>\n";
+                  }
 
-                    <!-- Hướng dẫn giải chi tiết -->
-                    <div style="margin-top: 18px;">
-                      <div style="font-size: 16px; font-weight: 900; color: #455120; font-family: 'Beautique Display', serif; margin-bottom: 8px;">Hướng dẫn giải chi tiết</div>
-                      <div style="font-size: 14.5px; line-height: 2.2; color: #334155;">
-                        ${item.settings?.explanation ? renderLatexText(item.settings.explanation) : '<i style="color: #94a3b8;">Chưa có lời giải chi tiết cho câu hỏi này.</i>'}
-                      </div>
-                    </div>
+                  qHTML += 
+                  "<div style=\"margin-top: 18px;\">\n" +
+                  "  <div style=\"font-size: 16px; font-weight: 900; color: #455120; font-family: 'Beautique Display', serif; margin-bottom: 8px;\">Hướng dẫn giải chi tiết</div>\n" +
+                  "  <div style=\"font-size: 14.5px; line-height: 2.2; color: #334155;\">\n" +
+                  "    " + (item.settings?.explanation ? renderLatexText(item.settings.explanation) : '<i style=\"color: #94a3b8;\">Chưa có lời giải chi tiết cho câu hỏi này.</i>') + "\n" +
+                  "  </div>\n" +
+                  "</div>\n" +
+                  "</article>\n";
 
-                  </article>
-                `;
-              }).join('');
+                  return qHTML;
+                }).join('')
+              ).join('');
             })()}
             </div>
             </div>
@@ -1408,13 +1635,39 @@ async function mountReview(id) {
                   <span style="font-size: 16px; font-weight: 800; color: #455120; font-family: 'Be Vietnam Pro', sans-serif;">${items.filter(i => (i.answer !== null && i.answer !== undefined && String(i.answer).trim() !== '') && i.is_correct).length}/${items.length}</span>
                 </div>
           
-          <div style="display: flex; flex-direction: column; gap: 12px;">
-            <div style="display: flex; align-items: center; gap: 10px; padding: 4px 14px 4px 4px; background: #f0f4e8; border: 1px solid #d8e2ca; border-radius: 9999px; color: #455120; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 700; font-size: 14px; width: 100%; box-sizing: border-box;">
-              <span style="width: 26px; height: 26px; border-radius: 50%; background: #455120; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif;">I</span>
-              <span>Trắc nghiệm</span>
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px 10px;">
-              ${items.map((i, idx) => {
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            ${(() => {
+              const sections = [];
+              let currentSection = null;
+              
+              itemsWithQuestions.forEach((item, index) => {
+                if (!currentSection || currentSection.type !== item.type) {
+                  const sIdx = sections.length + 1;
+                  const roman = ['I', 'II', 'III', 'IV', 'V'][sIdx - 1] || sIdx;
+                  let label = 'Trắc nghiệm';
+                  if (item.type === 'tf4') label = 'Đúng/sai';
+                  if (item.type === 'short') label = 'Trả lời ngắn';
+                  
+                  currentSection = {
+                    type: item.type,
+                    roman: roman,
+                    label: label,
+                    items: []
+                  };
+                  sections.push(currentSection);
+                }
+                currentSection.items.push({ ...item, globalIndex: index });
+              });
+
+              return sections.map(sec => 
+              "<div style=\"display: flex; flex-direction: column; gap: 12px;\">\n" +
+              "  <div style=\"display: flex; align-items: center; justify-content: flex-start; gap: 10px; padding: 4px 14px 4px 4px; background: #f0f4e8; border: 1px solid #d8e2ca; border-radius: 9999px; color: #455120; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 700; font-size: 14px; width: 100%; box-sizing: border-box;\">\n" +
+              "    <span style=\"width: 26px; height: 26px; border-radius: 50%; background: #455120; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif;\">" + sec.roman + "</span>\n" +
+              "    <span>" + sec.label + "</span>\n" +
+              "  </div>\n" +
+              "  <div style=\"display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px 10px;\">\n" +
+              sec.items.map((i, localIdx) => {
+                const idx = i.globalIndex;
                 const hasAns = i.answer !== null && i.answer !== undefined && String(i.answer).trim() !== '';
                 let bg = '#ffffff';
                 let border = '#cbd5e1';
@@ -1433,13 +1686,16 @@ async function mountReview(id) {
                   border = '#c62828';
                   color = '#ffffff';
                 }
-                return `
-                  <button type="button" onclick="document.getElementById('latex-review-q${idx}').scrollIntoView({behavior: 'smooth', block: 'center'})" style="width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: ${bg}; color: ${color}; font-weight: 700; font-size: 13px; border: 1px solid ${border}; cursor: pointer; transition: all 0.15s ease; font-family: 'Be Vietnam Pro', sans-serif; margin: 0 auto; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
-                    ${(idx + 1).toString().padStart(2, '0')}
-                  </button>
-                `;
-              }).join('')}
-            </div>
+                const dispNum = String(localIdx + 1).padStart(2, '0');
+                return "" +
+                  "<button type=\"button\" onclick=\"document.getElementById('latex-review-q" + idx + "').scrollIntoView({behavior: 'smooth', block: 'center'})\" style=\"width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: " + bg + "; color: " + color + "; font-weight: 700; font-size: 13px; border: 1px solid " + border + "; cursor: pointer; transition: all 0.15s ease; font-family: 'Be Vietnam Pro', sans-serif; margin: 0 auto; box-shadow: 0 1px 3px rgba(0,0,0,0.02);\">\n" +
+                  "  " + dispNum + "\n" +
+                  "</button>\n";
+              }).join('') +
+              "  </div>\n" +
+              "</div>\n"
+              ).join('');
+            })()}
           </div>
           
           <div style="margin-top: 8px; border-top: 1px solid #e2e8f0; padding-top: 16px; display: flex; flex-direction: column; gap: 10px;">

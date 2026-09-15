@@ -1109,14 +1109,41 @@ export function parseLatexAssignment(latexText) {
       }
     }
 
+    let type = 'mcq';
+    let prompt = rawContent.trim();
     let choices = [];
     let correctAnswer = 'A';
+    let tfStatements = ['', '', '', ''];
+    let tfCorrect = [false, false, false, false];
+    let shortAnswer = '';
 
-    // Parse \choice{A}{B}{C}{D}
     const choiceIdx = rawContent.indexOf('\\choice');
-    let prompt = rawContent.trim();
+    const choiceTFIdx = rawContent.indexOf('\\choiceTF');
+    const shortansIdx = rawContent.indexOf('\\shortans');
 
-    if (choiceIdx !== -1) {
+    if (choiceTFIdx !== -1) {
+      type = 'tf4';
+      prompt = rawContent.substring(0, choiceTFIdx).trim();
+      let currentIdx = choiceTFIdx + '\\choiceTF'.length;
+
+      for (let c = 0; c < 4; c++) {
+        while (currentIdx < rawContent.length && /\s/.test(rawContent[currentIdx])) currentIdx++;
+        if (rawContent[currentIdx] === '{') {
+          const choiceMatch = extractBracketMatch(rawContent, currentIdx);
+          if (choiceMatch) {
+            let content = choiceMatch.content.trim();
+            tfCorrect[c] = content.includes('\\True') || content.startsWith('\\True');
+            tfStatements[c] = content.replace(/\\True\s*/g, '').replace(/\\False\s*/g, '').trim();
+            currentIdx = choiceMatch.endIndex + 1;
+          } else {
+            break;
+          }
+        } else {
+          break;
+        }
+      }
+    } else if (choiceIdx !== -1) {
+      type = 'mcq';
       prompt = rawContent.substring(0, choiceIdx).trim();
       let currentIdx = choiceIdx + '\\choice'.length;
 
@@ -1137,10 +1164,8 @@ export function parseLatexAssignment(latexText) {
 
       let correctIndex = choices.findIndex(c => c.includes('\\True') || c.startsWith('\\True'));
       if (correctIndex === -1) {
-        // Also check if rawContent had \True inside parentheses like {\True B. ...}
         const rawChoiceSection = rawContent.substring(choiceIdx);
         if (rawChoiceSection.includes('\\True')) {
-          // Check which choice bracket contains \True
           const bracketMatches = Array.from(rawChoiceSection.matchAll(/\{([^}]*)\}/g)).map(m => m[1]);
           correctIndex = bracketMatches.findIndex(b => b.includes('\\True'));
         }
@@ -1150,18 +1175,32 @@ export function parseLatexAssignment(latexText) {
         correctAnswer = ['A', 'B', 'C', 'D'][correctIndex];
       }
       
-      // Clean \\True tag from choice text for rendering
       choices = choices.map(c => c.replace(/\\True\s*/g, '').trim());
+    } else if (shortansIdx !== -1) {
+      type = 'short';
+      prompt = rawContent.substring(0, shortansIdx).trim();
+      let currentIdx = shortansIdx + '\\shortans'.length;
+      while (currentIdx < rawContent.length && /\s/.test(rawContent[currentIdx])) currentIdx++;
+      if (rawContent[currentIdx] === '{') {
+        const shortMatch = extractBracketMatch(rawContent, currentIdx);
+        if (shortMatch) {
+          shortAnswer = shortMatch.content.trim();
+        }
+      }
+    } else {
+      type = 'short';
     }
 
     questions.push({
-      type: 'mcq',
+      type: type,
       prompt: prompt,
-      choices: choices,
+      choices: type === 'mcq' ? choices : undefined,
       points: 1,
       sort_order: questions.length + 1,
-      settings: { explanation },
-      answer_key: { correct_answer: correctAnswer },
+      settings: type === 'tf4' ? { explanation, statements: tfStatements } : { explanation },
+      answer_key: type === 'short' 
+        ? { accepted_answers: shortAnswer ? [shortAnswer] : [] } 
+        : { correct_answer: type === 'tf4' ? tfCorrect : correctAnswer },
       startIndex: match.index,
     });
   }
@@ -1509,11 +1548,7 @@ export function renderAssignmentEditor(lectures) {
       <!-- Left pane: Rendered Question Cards -->
       <div class="left-pane" style="padding-right: 4px;">
         <div class="latex-review-list" style="display: flex; flex-direction: column; gap: 24px; background: #ffffff; padding: 28px 32px; border-radius: 16px; border: 1px solid #D8E2C4; box-shadow: 0 2px 10px rgba(69, 81, 32, 0.03);">
-          <!-- Section Header I. Trắc nghiệm -->
-          <div style="display: flex; align-items: center; justify-content: flex-start; gap: 10px; padding: 4px 16px 4px 4px; background: #f0f4e8; border: 1px solid #d8e2ca; border-radius: 9999px; color: #455120; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 700; font-size: 14.5px; box-sizing: border-box; width: 100%;">
-            <span style="width: 26px; height: 26px; border-radius: 50%; background: #455120; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif;">I</span>
-            <span>Trắc nghiệm</span>
-          </div>
+
 
           <div class="question-builder" style="display: flex; flex-direction: column; gap: 24px;">
             ${questions.length ? questions.map((question, index) => renderQuestionEditor(question, index)).join('') : '<div style="padding: 40px; text-align: center; color: #667085; font-family: \'Be Vietnam Pro\', sans-serif; font-size: 13.5px;">Chưa có câu hỏi nào. Hãy dán mã LaTeX vào khung bên phải!</div>'}
@@ -1545,7 +1580,7 @@ export function renderAssignmentEditor(lectures) {
         </div>
         
         <div class="cm-wrapper-box" style="flex: 1; min-height: 0; display: flex; flex-direction: column; height: 100%;">
-          <textarea id="latex-live-input" style="flex: 1; min-height: 520px; width: 100%; box-sizing: border-box; padding: 18px; font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 13.5px; line-height: 1.6; border: 1px solid #cbd5e1; border-radius: 12px; resize: vertical; background: #f8fafc; color: #0f172a; outline: none; transition: border-color 0.15s ease;" onfocus="this.style.borderColor='#455120'; this.style.background='#ffffff';" onblur="this.style.borderColor='#cbd5e1'; this.style.background='#f8fafc';" placeholder="Dán mã LaTeX chuẩn EX_TEST vào đây...&#10;Ví dụ:&#10;\begin{ex}[1D1-1]&#10;Cho hàm số y = f(x)...&#10;\choice&#10;{A. y = 1}&#10;{\True B. y = 2}&#10;{C. y = 3}&#10;{D. y = 4}&#10;\loigiai{Hướng dẫn giải...}&#10;\end{ex}">${escapeHtml(state.assignmentEditor.latexSource || '')}</textarea>
+          <textarea id="latex-live-input" style="flex: 1; min-height: 520px; width: 100%; box-sizing: border-box; padding: 18px; font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 13.5px; line-height: 1.6; border: 1px solid #cbd5e1; border-radius: 12px; resize: vertical; background: #f8fafc; color: #0f172a; outline: none; transition: border-color 0.15s ease;" onfocus="this.style.borderColor='#455120'; this.style.background='#ffffff';" onblur="this.style.borderColor='#cbd5e1'; this.style.background='#f8fafc';" placeholder="Dán mã LaTeX chuẩn EX_TEST vào đây...&#10;Hỗ trợ: \choice (Trắc nghiệm), \choiceTF (Đúng/Sai), \shortans (Trả lời ngắn).&#10;Ví dụ Trắc nghiệm:&#10;\begin{ex}&#10;Nội dung câu hỏi...&#10;\choice&#10;{A}&#10;{\True B}&#10;{C}&#10;{D}&#10;\end{ex}&#10;&#10;Ví dụ Đúng/Sai:&#10;\begin{ex}&#10;Câu hỏi...&#10;\choiceTF&#10;{\True Ý 1}&#10;{\False Ý 2}&#10;{\True Ý 3}&#10;{\False Ý 4}&#10;\end{ex}">${escapeHtml(state.assignmentEditor.latexSource || '')}</textarea>
         </div>
       </div>
 
@@ -1571,11 +1606,45 @@ export function renderQuestionEditor(question, index) {
   const isLatex = state.assignmentEditor.assignment.pdf_url === 'latex' || !state.assignmentEditor.assignment.pdf_url;
   
   if (isLatex) {
-    const correctAnswer = question.answer_key?.correct_answer ?? '';
+    const allQuestions = state.assignmentEditor.questions;
+    const prevQ = index > 0 ? allQuestions[index - 1] : null;
+    const isNewSection = !prevQ || prevQ.type !== question.type;
+
+    let typeCount = 1;
+    for (let i = index - 1; i >= 0; i--) {
+      if (allQuestions[i].type === question.type) typeCount++;
+      else break;
+    }
+    const displayIndex = typeCount - 1;
+
+    let sectionHeaderHTML = '';
+    if (isNewSection) {
+      let sectionNum = 1;
+      for (let i = 1; i <= index; i++) {
+        if (allQuestions[i].type !== allQuestions[i - 1].type) sectionNum++;
+      }
+      const romanNumeral = ['I', 'II', 'III', 'IV', 'V'][sectionNum - 1] || sectionNum;
+      let typeLabel = 'Trắc nghiệm';
+      if (question.type === 'tf4') typeLabel = 'Trắc nghiệm đúng sai';
+      if (question.type === 'short') typeLabel = 'Trắc nghiệm trả lời ngắn';
+      
+      sectionHeaderHTML = `
+        <div style="display: flex; align-items: center; justify-content: flex-start; gap: 10px; padding: 4px 16px 4px 4px; background: #f0f4e8; border: 1px solid #d8e2ca; border-radius: 9999px; color: #455120; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 700; font-size: 14.5px; box-sizing: border-box; width: 100%; margin-bottom: 8px; ${index > 0 ? 'margin-top: 16px;' : ''}">
+          <span style="width: 26px; height: 26px; border-radius: 50%; background: #455120; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif;">${romanNumeral}</span>
+          <span>${typeLabel}</span>
+        </div>
+      `;
+    }
+
+    let correctAnswer = question.answer_key?.correct_answer ?? '';
+    if (question.type === 'short') {
+      correctAnswer = (question.answer_key?.accepted_answers || []).join(', ');
+    }
     const cleanPrompt = question.prompt ? question.prompt.replace(/^Câu\s*\d+[\.\:\s]*/i, '') : '';
-    const qNumStr = String(index + 1).padStart(2, '0');
+    const qNumStr = String(displayIndex + 1).padStart(2, '0');
 
     return `
+      ${sectionHeaderHTML}
       <article class="latex-review-q-block" data-question-index="${index}" data-source-index="${question.sourceIndex ?? ''}" title="Bấm để cuộn đến đoạn code tương ứng" style="display: flex; flex-direction: column; gap: 14px; padding-bottom: 24px; border-bottom: 1px solid #f1f5f9; cursor: pointer;">
         
         <!-- Question Title & Prompt -->
@@ -1584,7 +1653,7 @@ export function renderQuestionEditor(question, index) {
           <span style="font-weight: 500; color: #1e293b; font-size: 15px; font-family: 'Be Vietnam Pro', sans-serif;">${renderLatexText(cleanPrompt)}</span>
         </div>
         
-        ${question.choices && question.choices.length > 0 ? `
+        ${question.type === 'mcq' && question.choices && question.choices.length > 0 ? `
         <div class="choice-grid" style="display: flex; flex-direction: column; gap: 10px; padding-left: 2px; margin-top: 4px;">
           ${question.choices.map((choice, cIdx) => {
             const letter = String.fromCharCode(65 + cIdx);
@@ -1616,11 +1685,41 @@ export function renderQuestionEditor(question, index) {
         </div>
         ` : ''}
 
-        ${correctAnswer ? `
+        ${question.type === 'tf4' ? `
+        <div class="choice-grid" style="display: flex; flex-direction: column; gap: 10px; padding-left: 2px; margin-top: 4px;">
+          ${(question.settings?.statements || []).map((statement, cIdx) => {
+            const letter = String.fromCharCode(97 + cIdx); // a, b, c, d
+            const isTrue = question.answer_key?.correct_answer?.[cIdx];
+            return `
+              <div style="display: flex; gap: 10px; align-items: flex-start; padding: 2px 0;">
+                <div style="font-weight: 800; color: #1e293b; min-width: 20px;">${letter})</div>
+                <div style="font-size: 14.5px; line-height: 1.5; color: #1e293b; flex: 1;">
+                  ${renderLatexText(statement)}
+                </div>
+                <div style="display: flex; gap: 6px; font-weight: bold; font-size: 13px;">
+                  <span style="color: ${isTrue ? '#455120' : '#cbd5e1'};">Đ</span> /
+                  <span style="color: ${!isTrue ? '#ef4444' : '#cbd5e1'};">S</span>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+        ` : ''}
+
+        ${question.type === 'mcq' && correctAnswer ? `
         <div style="margin-top: 14px;">
           <div style="font-size: 16px; font-weight: 900; color: #455120; font-family: 'Beautique Display', serif; margin-bottom: 6px;">Đáp án</div>
           <div style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 14.5px; font-weight: 700; color: #1e293b; line-height: 1.6;">
-            ${correctAnswer}. ${question.choices && question.choices[correctAnswer.charCodeAt(0) - 65] ? renderLatexText(question.choices[correctAnswer.charCodeAt(0) - 65]) : ''}
+            ${correctAnswer}. ${question.choices && question.choices[String(correctAnswer).charCodeAt(0) - 65] ? renderLatexText(question.choices[String(correctAnswer).charCodeAt(0) - 65]) : ''}
+          </div>
+        </div>
+        ` : ''}
+
+        ${question.type === 'short' ? `
+        <div style="margin-top: 14px;">
+          <div style="font-size: 16px; font-weight: 900; color: #455120; font-family: 'Beautique Display', serif; margin-bottom: 6px;">Đáp án</div>
+          <div style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 14.5px; font-weight: 700; color: #1e293b; line-height: 1.6; padding: 8px 12px; background: #f8fafc; border-radius: 6px; border: 1px dashed #cbd5e1;">
+            ${correctAnswer || '(Chưa có đáp án)'}
           </div>
         </div>
         ` : ''}
@@ -1946,7 +2045,13 @@ export function wireAssignmentEditor(lectures) {
       const text = doc.getValue();
 
       parsedQuestions.forEach((q, idx) => {
-        const qNumStr = String(idx + 1).padStart(2, '0');
+        let typeCount = 1;
+        for (let i = idx - 1; i >= 0; i--) {
+          if (parsedQuestions[i].type === q.type) typeCount++;
+          else break;
+        }
+        const displayIndex = typeCount - 1;
+        const qNumStr = String(displayIndex + 1).padStart(2, '0');
         if (q.startIndex !== undefined) {
           const pos = doc.posFromIndex(q.startIndex);
           const widgetEl = document.createElement('div');
