@@ -81,11 +81,11 @@ export function renderLatexText(raw) {
     return processSegment(seg);
   }
 
-  // Split by $...$ (inline math) and $$...$$ (display math)
+  // Split by math environments: $$, \[, \(, multiline $, and standalone \begin{cases|aligned|...}
   // Math content is HTML-escaped so `<`, `>`, `&` inside math don't break the DOM.
   // MathJax reads from text nodes, so it sees the decoded characters correctly.
   const segments = [];
-  const mathRe = /(\$\$[\s\S]*?\$\$|\$[^$\n]*?\$)/g;
+  const mathRe = /(\$\$[\s\S]*?\$\$|\\\[[\s\S]*?\\\]|\\\([\s\S]*?\\\)|\$(?:[^\$\n]|\n(?!\s*\n))+?\$|\\begin\{(?:cases|aligned|align\*?|equation\*?|gather\*?|matrix|pmatrix|bmatrix|vmatrix)\}[\s\S]*?\\end\{(?:cases|aligned|align\*?|equation\*?|gather\*?|matrix|pmatrix|bmatrix|vmatrix)\})/g;
   let last = 0;
   let mm;
   while ((mm = mathRe.exec(str)) !== null) {
@@ -98,19 +98,49 @@ export function renderLatexText(raw) {
   return segments
     .map((seg) => {
       if (seg.type === 'math') {
-        // Keep $ delimiters, escape only the inner content so HTML stays valid
-        const delim = seg.value.startsWith('$$') ? '$$' : '$';
-        const inner = seg.value.slice(delim.length, seg.value.length - delim.length);
-        return delim + escapeHtml(inner) + delim;
+        const val = seg.value;
+        let startDelim = '$';
+        let endDelim = '$';
+        let inner = val;
+
+        if (val.startsWith('$$') && val.endsWith('$$')) {
+          startDelim = '$$';
+          endDelim = '$$';
+          inner = val.slice(2, -2);
+        } else if (val.startsWith('\\[') && val.endsWith('\\]')) {
+          startDelim = '\\[';
+          endDelim = '\\]';
+          inner = val.slice(2, -2);
+        } else if (val.startsWith('\\(') && val.endsWith('\\)')) {
+          startDelim = '\\(';
+          endDelim = '\\)';
+          inner = val.slice(2, -2);
+        } else if (val.startsWith('$') && val.endsWith('$')) {
+          startDelim = '$';
+          endDelim = '$';
+          inner = val.slice(1, -1);
+        } else {
+          // Standalone LaTeX math environment without outer delimiters
+          startDelim = '$$';
+          endDelim = '$$';
+          inner = val;
+        }
+
+        // Inside math mode, MathJax parses TeX. We escape HTML special chars (<, >, &)
+        // so browser DOM won't choke, and replace internal newlines with spaces to avoid
+        // <br> injection while preserving \\ line-breaks intact.
+        const cleanInner = inner.replace(/\r?\n/g, ' ');
+        return startDelim + escapeHtml(cleanInner) + endDelim;
       }
-      return applyTextCommands(seg.value).replace(/\\\\(\s*\n)?/g, '\n');
+      return applyTextCommands(seg.value)
+        .replace(/\\\\(\s*\n)?/g, '\n')
+        .replace(/!\s*\[([^\]]*?)\]\(([^)]+?)\)/g, (match, alt, url) => {
+          return `<img src="${url}" alt="${alt}" style="max-width: 100%; height: auto; border-radius: 8px; margin: 8px 0;">`;
+        })
+        .replace(/(\n\s*){2,}/g, '\n')
+        .replace(/\n/g, '<br>');
     })
-    .join('')
-    .replace(/!\s*\[([^\]]*?)\]\(([^)]+?)\)/g, (match, alt, url) => {
-      return `<img src="${url}" alt="${alt}" style="max-width: 100%; height: auto; border-radius: 8px; margin: 8px 0;">`;
-    })
-    .replace(/(\n\s*){2,}/g, '\n')
-    .replace(/\n/g, '<br>');
+    .join('');
 }
 
 export function option(value, label, selectedValue) {
