@@ -12,7 +12,8 @@ import {
   invokeAdminFunction, createManagedUser, fetchAssignmentEditor, regradeAssignment,
   deleteManagedUser, saveAssignmentWithQuestions, uploadAssignmentImage,
   fetchSalaryMonth, upsertSalarySchedule, deleteSalarySchedule, setSessionState,
-  getOnlineUsers, presenceTarget
+  getOnlineUsers, presenceTarget,
+  fetchQuestionBank, upsertBankQuestion, deleteBankQuestion, cloneQuestionToAssignment
 } from "./services/lmsApi.js";
 import { state, pageRoot, wireRouteRetry, escapeHtml, isManager, renderAttemptsTable, isAdmin } from './main.js';
 import { renderLoading, renderErrorState, wireTableSearch, toast, renderMetric, renderSkeletonAssignments, renderAccountAvatar } from './lib/ui.js';
@@ -50,6 +51,13 @@ export function mountManageHub() {
       title: 'Lịch dạy & Lương',
       description: 'Cập nhật điểm danh lịch dạy và tổng hợp thu nhập trợ giảng.',
       icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`,
+    },
+    {
+      href: '#/question-bank',
+      tag: 'NGÂN HÀNG',
+      title: 'Ngân hàng đề',
+      description: 'Quản lý kho câu hỏi, tìm kiếm và phân loại câu hỏi để sử dụng cho các bài tập.',
+      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>`,
     },
   ];
 
@@ -127,13 +135,9 @@ export function mountManageHub() {
 
       <div style="max-width: 1000px; margin: 0 auto; padding: 0 max(var(--page-gutter), 24px); display: flex; flex-direction: column; gap: 24px;">
         
-        <!-- Hero Header Card -->
-        <div style="background: #ffffff; border-radius: 18px; border: 1px solid #D8E2C4; padding: 28px 32px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
-          <div>
-            <div style="font-size: 11px; font-weight: 700; color: #455120; letter-spacing: 0.08em; margin-bottom: 6px;">HỆ THỐNG QUẢN TRỊ</div>
-            <h1 style="font-family: 'Beautique Display', serif; font-size: 26px; font-weight: 700; color: #1e293b; margin: 0 0 4px 0;">Trung tâm Quản trị</h1>
-            <p style="font-size: 14px; color: #64748b; margin: 0;">Quản lý toàn bộ hệ thống nội dung khóa học, đề thi, theo dõi học sinh và giảng dạy.</p>
-          </div>
+        <!-- Header Card -->
+        <div style="background: #ffffff; border-radius: 14px; border: 1px solid #D8E2C4; padding: 16px 24px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02); display: flex; align-items: center; justify-content: space-between;">
+          <h1 style="font-family: 'Beautique Display', serif; font-size: 22px; font-weight: 700; color: #455120; margin: 0;">Trung tâm Quản trị</h1>
         </div>
 
         <!-- Cards grid -->
@@ -145,9 +149,7 @@ export function mountManageHub() {
                   ${item.icon}
                 </div>
                 <div style="min-width: 0; flex: 1;">
-                  <div style="font-size: 10.5px; font-weight: 700; color: #455120; letter-spacing: 0.08em; margin-bottom: 2px;">${escapeHtml(item.tag)}</div>
-                  <h3 style="font-family: 'Beautique Display', serif; font-size: 17px; font-weight: 700; color: #455120; margin: 0 0 4px 0;">${escapeHtml(item.title)}</h3>
-                  <p style="font-size: 13px; color: #64748b; margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.4;">${escapeHtml(item.description)}</p>
+                  <h3 style="font-family: 'Beautique Display', serif; font-size: 17px; font-weight: 700; color: #455120; margin: 0;">${escapeHtml(item.title)}</h3>
                 </div>
               </div>
               <div class="nh-hub-arrow-btn">
@@ -377,7 +379,6 @@ export async function mountContentManager() {
         <aside class="phase-list-column">
           <div style="padding: 0 24px 20px; border-bottom: 1px solid #f1f5f9; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
             <div>
-              <div style="font-size: 11px; font-weight: 700; color: #94a3b8; letter-spacing: 0.08em; margin-bottom: 4px;">GIAI ĐOẠN</div>
               <h2 style="margin: 0; font-size: 18px; font-weight: 700; color: #1e293b;">Danh sách</h2>
             </div>
             <button data-create="phase" class="icon-btn-utility" style="border: 1px solid #e2e8f0;" title="Thêm giai đoạn">
@@ -394,7 +395,6 @@ export async function mountContentManager() {
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
               <div>
                 <h2 style="margin: 0; font-size: 20px; font-weight: 700; color: #1e293b;">Cấu trúc chi tiết</h2>
-                <p style="font-size: 13px; color: #64748b; margin: 4px 0 0 0;">Thiết lập tổ chức chương trình đào tạo của giai đoạn này.</p>
               </div>
               <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                 <button data-create="module" class="btn-pill-action">
@@ -1294,10 +1294,9 @@ export async function mountAssignmentManager() {
           <div style="max-width: 1040px; margin: 0 auto; width: 100%;">
             
             <!-- White Header Card -->
-            <div style="background: #ffffff; border-radius: 20px; border: 1px solid #D8E2C4; padding: 24px 32px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; box-shadow: 0 2px 10px rgba(69, 81, 32, 0.04);">
+            <div style="background: #ffffff; border-radius: 14px; border: 1px solid #D8E2C4; padding: 16px 24px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; box-shadow: 0 2px 10px rgba(69, 81, 32, 0.03);">
               <div>
-                <h1 style="font-family: 'Beautique Display', serif; font-size: 24px; font-weight: 700; color: #101828; margin: 0 0 4px 0;">Đề thi & Bài tập về nhà</h1>
-                <p style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 13.5px; color: #667085; margin: 0;">Danh sách tất cả đề thi trắc nghiệm và bài tập trong hệ thống</p>
+                <h1 style="font-family: 'Beautique Display', serif; font-size: 22px; font-weight: 700; color: #455120; margin: 0;">Đề thi & Bài tập về nhà</h1>
               </div>
 
               <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; flex: 1; max-width: 600px; justify-content: flex-end;">
@@ -1389,8 +1388,7 @@ export function renderAssignmentEditor(lectures) {
     <div class="panel" style="padding: 20px 24px; margin-bottom: 20px;">
       <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 16px; flex-wrap: wrap;">
         <div>
-          <h2 style="margin: 0 0 2px 0; font-size: 16px; font-weight: 700; color: var(--md-sys-color-on-surface);">${assignment.id ? 'Chỉnh sửa đề thi' : 'Soạn thảo đề thi mới'}</h2>
-          <p style="margin: 0; font-size: 12px; color: var(--md-sys-color-on-surface-variant);">Trình soạn thảo LaTeX bài tập &amp; trắc nghiệm toán học</p>
+          <h2 style="margin: 0; font-size: 16px; font-weight: 700; color: var(--md-sys-color-on-surface);">${assignment.id ? 'Chỉnh sửa đề thi' : 'Soạn thảo đề thi mới'}</h2>
         </div>
         <div style="display: flex; gap: 8px; align-items: center;">
           ${assignment.id ? `<button id="delete-assignment" type="button" class="btn-danger-outline">Xóa đề</button>` : ''}
@@ -2751,11 +2749,9 @@ export async function mountSalaryManager() {
         <section style="max-width: 960px; margin: 0 auto; padding: 0 max(var(--page-gutter), 20px); display: flex; flex-direction: column; gap: 20px;">
 
           <!-- Hero Header Card -->
-          <div style="background: #ffffff; border-radius: 16px; border: 1px solid #D8E2C4; padding: 20px 24px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+          <div style="background: #ffffff; border-radius: 14px; border: 1px solid #D8E2C4; padding: 16px 24px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
             <div>
-              <div style="font-size: 11px; font-weight: 700; color: #455120; letter-spacing: 0.08em; margin-bottom: 4px;">QUẢN LÝ TÀI CHÍNH</div>
-              <h1 style="font-family: 'Beautique Display', serif; font-size: 22px; font-weight: 700; color: #1e293b; margin: 0 0 2px 0;">Quản lý Lương & Lịch dạy</h1>
-              <p style="font-size: 13px; color: #64748b; margin: 0;">Theo dõi lịch dạy, chấm công và tổng chi phí lương trợ giảng theo từng tháng.</p>
+              <h1 style="font-family: 'Beautique Display', serif; font-size: 22px; font-weight: 700; color: #455120; margin: 0;">Quản lý Lương & Lịch dạy</h1>
             </div>
 
             <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
@@ -2950,4 +2946,98 @@ export function mountOnlineUsers() {
     }
   });
   observer.observe(document.body, { childList: true, subtree: true });
+}
+
+export async function mountQuestionBank(root) {
+  root.innerHTML = `
+    <div style="min-height: calc(100vh - 64px); background: #EDF2E4; padding: 24px;">
+      <div style="max-width: 1000px; margin: 0 auto;">
+        <div class="nh-admin-breadcrumb-bar" style="margin-bottom: 24px;">
+          <div class="nh-admin-breadcrumb-inner">
+            <a href="#/learn">Trang chủ</a>
+            <span class="sep">&rsaquo;</span>
+            <a href="#/manage">Trung tâm Quản trị</a>
+            <span class="sep">&rsaquo;</span>
+            <span class="active">Ngân hàng đề</span>
+          </div>
+        </div>
+
+        <div style="background: #ffffff; border-radius: 16px; padding: 24px; box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+            <h2 style="margin: 0; font-family: 'Beautique Display', serif; color: #455120;">Ngân hàng đề thi & Bài tập</h2>
+            <button id="add-bank-question-btn" style="padding: 10px 16px; background: #455120; color: white; border: none; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Thêm câu hỏi
+            </button>
+          </div>
+
+          <div id="question-bank-container">
+            <div style="text-align: center; padding: 40px; color: #64748b;">Đang tải danh sách câu hỏi...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const container = root.querySelector('#question-bank-container');
+
+  async function loadQuestions() {
+    try {
+      const { questions, count } = await fetchQuestionBank({ limit: 50, offset: 0 });
+      if (questions.length === 0) {
+        container.innerHTML = `<div style="text-align: center; padding: 40px; color: #64748b;">Chưa có câu hỏi nào trong ngân hàng.</div>`;
+        return;
+      }
+
+      let html = `<div style="margin-bottom: 16px; font-size: 14px; color: #64748b;">Tổng số: ${count} câu hỏi</div>`;
+      html += `<div style="display: flex; flex-direction: column; gap: 16px;">`;
+      
+      questions.forEach(q => {
+        const typeLabel = q.type === 'mcq' ? 'Trắc nghiệm 4 đáp án' : q.type === 'tf4' ? 'Trắc nghiệm Đúng/Sai' : 'Tự luận/Điền đáp án';
+        const tagsHtml = (q.tags || []).map(t => `<span style="background: #F0F4E8; color: #455120; padding: 2px 8px; border-radius: 4px; font-size: 12px;">${escapeHtml(t)}</span>`).join(' ');
+        
+        html += `
+          <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+              <div style="font-weight: 500;">${renderLatexText(q.prompt)}</div>
+              <button class="delete-qb-btn" data-id="${q.id}" style="color: #ef4444; background: none; border: none; cursor: pointer; padding: 4px;">
+                Xóa
+              </button>
+            </div>
+            <div style="font-size: 13px; color: #64748b; display: flex; gap: 12px; align-items: center;">
+              <span>${typeLabel}</span>
+              ${tagsHtml ? `<span>|</span> ${tagsHtml}` : ''}
+              <span>|</span>
+              <span>Người tạo: ${escapeHtml(q.profiles?.full_name || 'Không rõ')}</span>
+            </div>
+          </div>
+        `;
+      });
+      
+      html += `</div>`;
+      container.innerHTML = html;
+
+      container.querySelectorAll('.delete-qb-btn').forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+          if (confirm('Bạn có chắc chắn muốn xóa câu hỏi này khỏi ngân hàng đề?')) {
+            try {
+              await deleteBankQuestion(e.currentTarget.dataset.id);
+              toast('Đã xóa câu hỏi');
+              loadQuestions();
+            } catch (err) {
+              toast(err.message, 'error');
+            }
+          }
+        });
+      });
+    } catch (err) {
+      container.innerHTML = `<div style="text-align: center; padding: 40px; color: #ef4444;">Lỗi: ${escapeHtml(err.message)}</div>`;
+    }
+  }
+
+  root.querySelector('#add-bank-question-btn').addEventListener('click', () => {
+    alert('Chức năng thêm câu hỏi (UI) sẽ được tích hợp ở bản cập nhật tiếp theo.');
+  });
+
+  loadQuestions();
 }

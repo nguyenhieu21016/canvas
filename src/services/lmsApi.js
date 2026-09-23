@@ -1048,3 +1048,111 @@ export async function uploadAssignmentImage(file) {
 
   return publicUrl;
 }
+
+export async function fetchQuestionBank({ limit = 100, offset = 0 } = {}) {
+  const client = requireSupabase();
+  const [questionsResult, countResult] = await withTimeout(Promise.all([
+    client
+      .from('questions')
+      .select('*, answer_keys(*), profiles(full_name)')
+      .eq('is_bank_question', true)
+      .order('created_at', { ascending: false })
+      .range(offset, offset + limit - 1),
+    client
+      .from('questions')
+      .select('id', { count: 'exact' })
+      .eq('is_bank_question', true)
+  ]), 'Tải ngân hàng đề');
+  
+  assertOk(questionsResult);
+  assertOk(countResult);
+  
+  return {
+    questions: questionsResult.data ?? [],
+    count: countResult.count ?? 0
+  };
+}
+
+export async function upsertBankQuestion(questionData, answerKeyData) {
+  const client = requireSupabase();
+  
+  const questionRow = {
+    id: questionData.id || crypto.randomUUID(),
+    type: questionData.type,
+    prompt: questionData.prompt || 'Câu hỏi',
+    points: Number(questionData.points ?? 1),
+    choices: questionData.choices ?? [],
+    settings: questionData.settings ?? {},
+    is_bank_question: true,
+    tags: questionData.tags ?? []
+  };
+
+  const { data: question, error: qError } = await client
+    .from('questions')
+    .upsert(questionRow)
+    .select()
+    .single();
+  assertOk({ error: qError });
+
+  const keyRow = {
+    question_id: question.id,
+    correct_answer: answerKeyData?.correct_answer ?? null,
+    accepted_answers: answerKeyData?.accepted_answers ?? [],
+    points_map: answerKeyData?.points_map ?? [],
+  };
+  
+  const { error: kError } = await client
+    .from('answer_keys')
+    .upsert(keyRow);
+  assertOk({ error: kError });
+
+  clearLmsCache();
+  return question;
+}
+
+export async function deleteBankQuestion(questionId) {
+  const client = requireSupabase();
+  const { error } = await client.from('questions').delete().eq('id', questionId).eq('is_bank_question', true);
+  assertOk({ error });
+  clearLmsCache();
+}
+
+export async function cloneQuestionToAssignment(questionId, assignmentId) {
+  const client = requireSupabase();
+  
+  const { data: original, error: fetchErr } = await client
+    .from('questions')
+    .select('*, answer_keys(*)')
+    .eq('id', questionId)
+    .single();
+  assertOk({ error: fetchErr });
+  
+  const newQuestionId = crypto.randomUUID();
+  const qPayload = {
+    id: newQuestionId,
+    assignment_id: assignmentId,
+    type: original.type,
+    prompt: original.prompt,
+    points: original.points,
+    choices: original.choices,
+    settings: original.settings,
+    is_bank_question: false,
+  };
+  
+  const { error: insertQErr } = await client.from('questions').insert(qPayload);
+  assertOk({ error: insertQErr });
+  
+  if (original.answer_keys && original.answer_keys.length > 0) {
+    const origKey = original.answer_keys[0];
+    const kPayload = {
+      question_id: newQuestionId,
+      correct_answer: origKey.correct_answer,
+      accepted_answers: origKey.accepted_answers,
+      points_map: origKey.points_map
+    };
+    const { error: insertKErr } = await client.from('answer_keys').insert(kPayload);
+    assertOk({ error: insertKErr });
+  }
+  
+  clearLmsCache();
+}

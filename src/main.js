@@ -220,10 +220,6 @@ function renderShell() {
             <span class="nh-logo-title">CANVAS</span>
             <span class="nh-logo-sub">Hướng tới kỳ thi THPTQG 2027</span>
           </a>
-          <div class="nh-search-box">
-            <md-icon style="font-size: 18px; color: #667085;">search</md-icon>
-            <input type="text" class="nh-search-input" placeholder="Tìm kiếm nội dung..." id="nh-global-search" />
-          </div>
         </div>
 
         <div class="nh-header-right">
@@ -270,19 +266,6 @@ function renderShell() {
     </div>
   `;
 
-  // Global Search Box Listener
-  const searchInput = document.querySelector('#nh-global-search');
-  searchInput?.addEventListener('input', (e) => {
-    const q = e.target.value.toLowerCase().trim();
-    document.querySelectorAll('.nh-course-card, .assignment-chip').forEach(card => {
-      const text = card.textContent.toLowerCase();
-      if (!q || text.includes(q)) {
-        card.style.display = 'flex';
-      } else {
-        card.style.display = 'none';
-      }
-    });
-  });
 
   // Toggle user dropdown menu
   const avatarTrigger = document.querySelector('#nh-avatar-trigger');
@@ -674,9 +657,9 @@ async function mountAssignmentExam(id) {
                 
                 <!-- Completion Bar -->
                 <div>
-                  <div style="font-size: 13.5px; color: #1e293b; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between;">
-                    <span style="font-family: 'Be Vietnam Pro', sans-serif; font-weight: 700;">Bạn đã hoàn thành</span>
-                    <span style="color: #455120; font-weight: 800; font-size: 16px; font-family: 'Be Vietnam Pro', sans-serif;" id="completion-count-display">${Object.values(answers).filter(v => v !== null && v !== undefined && v !== '' && (!Array.isArray(v) || v.some(val => val !== null))).length}/${questions.length}</span>
+                  <div style="font-size: 13.5px; color: #334155; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between;">
+                    <span style="font-family: 'Be Vietnam Pro', sans-serif; font-weight: 500; color: #334155;">Bạn đã hoàn thành</span>
+                    <span style="color: #455120; font-weight: 700; font-size: 15px; font-family: 'Be Vietnam Pro', sans-serif;" id="completion-count-display">${Object.values(answers).filter(v => v !== null && v !== undefined && v !== '' && (!Array.isArray(v) || v.some(val => val !== null))).length}/${questions.length}</span>
                   </div>
                   <div style="display: flex; align-items: center; gap: 10px;">
                     <div style="flex: 1; background: #e2e8f0; height: 10px; border-radius: 999px; overflow: hidden; position: relative;">
@@ -738,8 +721,8 @@ async function mountAssignmentExam(id) {
                 </div>
 
                 <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 10px;">
-                  <p id="autosave-status" class="autosave-status" style="font-size: 12px; text-align: center; color: #64748b; margin: 0;">${draft ? 'Đã lưu ' + formatDateTime(draft.savedAt) : 'Tự động lưu khi chọn'}</p>
-                  <button type="button" id="trigger-submit-modal-btn" style="width: 100%; height: 44px; background: #455120; color: #ffffff; border: none; border-radius: 10px; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 600; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s ease;">
+                  <p id="autosave-status" class="autosave-status" style="font-size: 12px; text-align: center; color: #64748b; font-weight: 400; margin: 0;">${draft ? 'Đã lưu ' + formatDateTime(draft.savedAt) : 'Tự động lưu khi chọn'}</p>
+                  <button type="button" id="trigger-submit-modal-btn" style="width: 100%; height: 42px; background: #455120; color: #ffffff; border: none; border-radius: 9999px; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 500; font-size: 14.5px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s ease;">
                     Kết thúc
                   </button>
                 </div>
@@ -763,8 +746,8 @@ async function mountAssignmentExam(id) {
               <p style="margin: 0; font-size: 14px; color: #475569; line-height: 1.5;">Bạn chưa hoàn thành bài thi.<br>Bạn có chắc chắn muốn nộp bài?</p>
               
               <div style="display: flex; gap: 12px; width: 100%; margin-top: 8px;">
-                <button type="button" id="modal-continue-btn" style="flex: 1; height: 42px; background: #f0f4e8; color: #455120; border: 1px solid #d8e2ca; border-radius: 10px; font-weight: 700; font-size: 14.5px; cursor: pointer;">Làm tiếp</button>
-                <button type="button" id="modal-submit-btn" style="flex: 1; height: 42px; background: #455120; color: #ffffff; border: none; border-radius: 10px; font-weight: 700; font-size: 14.5px; cursor: pointer;">Nộp bài</button>
+                <button type="button" id="modal-continue-btn" style="flex: 1; height: 42px; background: #f0f4e8; color: #455120; border: 1px solid #d8e2ca; border-radius: 9999px; font-weight: 600; font-size: 14px; cursor: pointer;">Làm tiếp</button>
+                <button type="button" id="modal-submit-btn" style="flex: 1; height: 42px; background: #455120; color: #ffffff; border: none; border-radius: 9999px; font-weight: 600; font-size: 14px; cursor: pointer;">Nộp bài</button>
               </div>
             </div>
           </div>
@@ -1124,39 +1107,51 @@ function wireAnswerAutosave(assignment, assignmentId, draft) {
   const cards = document.querySelectorAll('.latex-exam-card, .question-card');
   cards.forEach(card => observer.observe(card));
 
+  const updateNavButtons = () => {
+    document.querySelectorAll('.nav-btn[data-nav]').forEach(btn => {
+      const qId = btn.dataset.nav;
+      const ans = draftAnswers[qId];
+      let isAnswered = false;
+      if (Array.isArray(ans)) {
+        isAnswered = ans.some(val => val !== null && val !== undefined);
+      } else {
+        isAnswered = ans !== null && ans !== undefined && String(ans).trim() !== '';
+      }
+      if (isAnswered) {
+        btn.classList.add('answered');
+        btn.style.background = '#455120';
+        btn.style.color = '#ffffff';
+        btn.style.borderColor = '#455120';
+      } else {
+        btn.classList.remove('answered');
+        btn.style.background = '#ffffff';
+        btn.style.color = '#1e293b';
+        btn.style.borderColor = '#e2e8f0';
+      }
+    });
+  };
+
+  // Sync nav buttons state initially
+  updateNavButtons();
+
   const setAutosaveStatus = (message) => {
     if (autosaveStatus) autosaveStatus.textContent = message;
     if (stickyAutosaveStatus) stickyAutosaveStatus.textContent = message;
   };
-  const persist = (event) => {
-    if (assignment.pdf_url === 'latex') {
-      const qIdMatch = event.target.name?.match(/^q-([^-]+)/);
-      const qId = qIdMatch ? qIdMatch[1] : null;
-      if (qId) {
-        const navBtn = document.querySelector(`.nav-btn[data-nav="${qId}"]`);
-        if (navBtn) {
-          let isAnswered = true;
-          if (event.target.type === 'text') {
-            isAnswered = !!event.target.value.trim();
-          }
-          if (isAnswered) {
-            navBtn.classList.add('answered');
-            navBtn.style.background = '#455120';
-            navBtn.style.color = '#ffffff';
-            navBtn.style.borderColor = '#455120';
-          } else {
-            navBtn.classList.remove('answered');
-            navBtn.style.background = '#ffffff';
-            navBtn.style.color = '#1e293b';
-            navBtn.style.borderColor = '#e2e8f0';
-          }
-        }
-      }
 
+  const persist = (event) => {
+    const card = event.target?.closest?.('.question-card') || event.target?.closest?.('.latex-exam-card');
+    if (card?.dataset?.questionId) {
+      draftAnswers[card.dataset.questionId] = collectAnswerFromCard(card);
+    } else {
+      draftAnswers = collectAnswers();
+    }
+
+    if (assignment.pdf_url === 'latex') {
       if (event.target?.type === 'radio') {
-        const card = event.target.closest('.latex-exam-card');
-        if (card) {
-          const labels = card.querySelectorAll('label');
+        const examCard = event.target.closest('.latex-exam-card');
+        if (examCard) {
+          const labels = examCard.querySelectorAll('label');
           labels.forEach(lbl => {
             const radio = lbl.querySelector('input[type="radio"]');
             const circle = lbl.querySelector('.latex-radio-circle');
@@ -1177,12 +1172,8 @@ function wireAnswerAutosave(assignment, assignmentId, draft) {
       }
     }
 
-    const card = event.target?.closest?.('.question-card') || event.target?.closest?.('.latex-exam-card');
-    if (card?.dataset?.questionId) {
-      draftAnswers[card.dataset.questionId] = collectAnswerFromCard(card);
-    } else {
-      draftAnswers = collectAnswers();
-    }
+    // Immediately update preview palette buttons
+    updateNavButtons();
 
     // Update progress stats in navigator
     const answeredCount = Object.keys(draftAnswers).filter(k => {
@@ -2563,6 +2554,7 @@ addRoute('students', mountProgressManager);
 addRoute('online', () => import('./admin.js').then(m => m.mountOnlineUsers()));
 addRoute('grades', () => isManager() ? mountProgressManager() : import('./student.js').then(m => m.mountStudentGrades()));
 addRoute('salary', () => import('./admin.js').then(m => m.mountSalaryManager()));
+addRoute('question-bank', () => import('./admin.js').then(m => m.mountQuestionBank(pageRoot())));
 
 initSessionTracker();
 bootstrap();

@@ -30,8 +30,11 @@ export async function mountLearn() {
         <aside class="nh-sidebar">
           <div class="nh-sidebar-header-pill">
             <div class="nh-header-icon-circle">
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="white">
-                <path d="M11.293 2.293a1 1 0 0 1 1.414 0l8 8A1 1 0 0 1 20 12h-1v7a2 2 0 0 1-2 2h-3a1 1 0 0 1-1-1v-4a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v4a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2v-7H2a1 1 0 0 1-.707-1.707l8-8z"/>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+                <rect x="3" y="3" width="8" height="8" rx="2.5"></rect>
+                <rect x="13" y="3" width="8" height="8" rx="2.5"></rect>
+                <rect x="13" y="13" width="8" height="8" rx="2.5"></rect>
+                <rect x="3" y="13" width="8" height="8" rx="2.5"></rect>
               </svg>
             </div>
             <span class="nh-header-pill-title">Trang chủ</span>
@@ -46,9 +49,8 @@ export async function mountLearn() {
 
           <!-- Lịch thi Widget -->
           <div class="nh-countdown-widget">
-            <div style="display: flex; align-items: center; gap: 6px; font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 15px; font-weight: 700; margin-bottom: 6px; line-height: 1;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-flex; align-items: center; justify-content: center; transform: translateY(-1px);"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-              <span style="line-height: 1; display: inline-block;">Lịch thi</span>
+            <div style="font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 15px; font-weight: 700; margin-bottom: 6px; line-height: 1;">
+              Lịch thi
             </div>
             <div style="font-size: 26px; font-weight: 900; letter-spacing: -0.5px; margin-top: 4px; display: flex; align-items: baseline; gap: 6px;">
               ${Math.max(0, Math.ceil((new Date(2027, 5, 11) - new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate())) / 86400000))}
@@ -69,7 +71,6 @@ export async function mountLearn() {
                 </svg>
                 <span>Quản trị hệ thống</span>
               </div>
-              <p class="nh-admin-card-desc">Quản lý bài giảng, nội dung khóa học & học sinh</p>
               <a href="#/manage" class="nh-admin-shortcut-btn">
                 Vào trang quản lý
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -460,7 +461,6 @@ export function renderPhase(phase) {
     <section class="panel">
       <div class="panel-heading">
         <div>
-          <p class="eyebrow">Giai đoạn</p>
           <h2>${escapeHtml(phase.title)}</h2>
         </div>
         ${phase.published ? '' : '<span class="status">Draft</span>'}

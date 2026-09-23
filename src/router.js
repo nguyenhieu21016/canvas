@@ -23,7 +23,7 @@ export function go(path) {
 export async function mountCurrentRoute() {
   const current = route();
   
-  if (!isManager() && ['dashboard', 'content', 'assignments', 'students', 'manage', 'progress', 'salary', 'online'].includes(current.name)) {
+  if (!isManager() && ['dashboard', 'content', 'assignments', 'students', 'manage', 'progress', 'salary', 'online', 'question-bank'].includes(current.name)) {
     go('learn');
     return;
   }
