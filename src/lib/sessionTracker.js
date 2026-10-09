@@ -14,6 +14,26 @@ function getTodayKey() {
   return `${yyyy}-${mm}-${dd}`;
 }
 
+let bufferedSeconds = 0;
+
+export function flushSessionTracker() {
+  if (bufferedSeconds <= 0) return;
+  const toFlush = bufferedSeconds;
+  bufferedSeconds = 0;
+  try {
+    const logs = getOnlineLogs();
+    const todayKey = getTodayKey();
+    
+    // Store in seconds, compute display in minutes
+    const currentSecs = (logs[todayKey] || 0) * 60 + toFlush;
+    logs[todayKey] = Math.round((currentSecs / 60) * 10) / 10; // 1 decimal precision, e.g. 2.5 minutes
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(logs));
+  } catch (err) {
+    console.warn('Failed recording active time:', err);
+  }
+}
+
 export function initSessionTracker() {
   if (typeof window === 'undefined' || isTrackerRunning) return;
   isTrackerRunning = true;
@@ -27,30 +47,29 @@ export function initSessionTracker() {
     window.addEventListener(evt, onUserActivity, { passive: true });
   });
 
+  // Flush on visibility change or page unload to prevent any data loss
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') {
+      flushSessionTracker();
+    }
+  });
+  window.addEventListener('beforeunload', () => {
+    flushSessionTracker();
+  });
+
   // Pulse timer: runs every 5 seconds to increment active seconds if tab is active and visible
   setInterval(() => {
     const isVisible = document.visibilityState === 'visible';
     const isUserActive = (Date.now() - lastActivityTime) < IDLE_TIMEOUT_MS;
 
     if (isVisible && isUserActive) {
-      addActiveSeconds(5);
+      bufferedSeconds += 5;
+      // Flush every 30 seconds of activity to minimize localStorage synchronous I/O
+      if (bufferedSeconds >= 30) {
+        flushSessionTracker();
+      }
     }
   }, 5000);
-}
-
-function addActiveSeconds(seconds) {
-  try {
-    const logs = getOnlineLogs();
-    const todayKey = getTodayKey();
-    
-    // Store in seconds, compute display in minutes
-    const currentSecs = (logs[todayKey] || 0) * 60 + seconds;
-    logs[todayKey] = Math.round((currentSecs / 60) * 10) / 10; // 1 decimal precision, e.g. 2.5 minutes
-
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(logs));
-  } catch (err) {
-    console.warn('Failed recording active time:', err);
-  }
 }
 
 export function getOnlineLogs() {

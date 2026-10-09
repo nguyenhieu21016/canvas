@@ -17,15 +17,26 @@ describe('gradeQuestion', () => {
     expect(result).toEqual({ earned: 1, max: 1, isCorrect: true });
   });
 
-  it('grades true/false four-part questions as one full question', () => {
-    const result = gradeQuestion(
+  it('grades true/false four-part questions according to MOET rubric steps', () => {
+    // 2 correct out of 4 yields 0.25
+    const result2 = gradeQuestion(
       { type: 'tf4', points: 2 },
       { correct_answer: [true, false, true, false] },
       [true, true, true, null],
     );
-    expect(result.earned).toBe(0);
-    expect(result.max).toBe(1);
-    expect(result.isCorrect).toBe(false);
+    expect(result2.earned).toBe(0.25);
+    expect(result2.max).toBe(1);
+    expect(result2.isCorrect).toBe(false);
+
+    // 0 correct yields 0
+    const result0 = gradeQuestion(
+      { type: 'tf4', points: 1 },
+      { correct_answer: [true, false, true, false] },
+      [false, true, false, true],
+    );
+    expect(result0.earned).toBe(0);
+    expect(result0.max).toBe(1);
+    expect(result0.isCorrect).toBe(false);
   });
 
   it('ignores custom point maps for true/false item scoring', () => {

@@ -1,4 +1,4 @@
-import { isManager } from './main.js';
+import { isManager } from './store.js';
 
 export const routes = [];
 
@@ -20,7 +20,22 @@ export function go(path) {
   window.location.hash = `/${path}`;
 }
 
+let currentCleanup = null;
+
+export function registerCleanup(fn) {
+  currentCleanup = fn;
+}
+
 export async function mountCurrentRoute() {
+  if (typeof currentCleanup === 'function') {
+    try {
+      currentCleanup();
+    } catch (err) {
+      console.warn('Error during route cleanup:', err);
+    }
+    currentCleanup = null;
+  }
+
   const current = route();
   
   if (!isManager() && ['dashboard', 'content', 'assignments', 'students', 'manage', 'progress', 'salary', 'online', 'question-bank'].includes(current.name)) {
@@ -36,7 +51,11 @@ export async function mountCurrentRoute() {
   });
 
   if (matchedRoute) {
-    return matchedRoute.componentFn(current.id);
+    const cleanup = await matchedRoute.componentFn(current.id);
+    if (typeof cleanup === 'function') {
+      currentCleanup = cleanup;
+    }
+    return cleanup;
   } else {
     go('learn');
   }

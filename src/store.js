@@ -6,7 +6,7 @@ export const colorThemes = [
   { id: 'pink', label: 'Hồng', color: '#ffd8e4' },
 ];
 
-const storedColorTheme = localStorage.getItem('lms:colorTheme');
+const storedColorTheme = typeof localStorage !== 'undefined' ? localStorage.getItem('lms:colorTheme') : null;
 
 export const state = {
   session: null,

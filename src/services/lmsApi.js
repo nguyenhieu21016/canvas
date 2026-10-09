@@ -586,12 +586,31 @@ export async function saveAssignmentWithQuestions(payload, questions) {
 
   const existing = await client
     .from('questions')
-    .select('id')
-    .eq('assignment_id', assignment.id);
+    .select('id, sort_order')
+    .eq('assignment_id', assignment.id)
+    .order('sort_order', { ascending: true })
+    .order('created_at', { ascending: true });
   assertOk(existing);
 
-  const keptIds = questions.filter((item) => item.id).map((item) => item.id);
-  const toDelete = (existing.data ?? [])
+  const existingList = existing.data ?? [];
+  const questionRows = questions.map((item, index) => {
+    // Preserve existing question ID by ID or sort index to protect student attempts from CASCADE DELETE
+    const matchedExisting = (item.id && existingList.find(e => e.id === item.id)) || existingList[index];
+    const resolvedId = item.id || matchedExisting?.id || crypto.randomUUID();
+    return {
+      id: resolvedId,
+      assignment_id: assignment.id,
+      type: item.type,
+      prompt: item.prompt || `Câu ${index + 1}`,
+      points: Number(item.points),
+      sort_order: Number(item.sort_order ?? index + 1),
+      choices: item.choices ?? [],
+      settings: item.settings ?? {},
+    };
+  });
+
+  const keptIds = questionRows.map((item) => item.id);
+  const toDelete = existingList
     .map((item) => item.id)
     .filter((id) => !keptIds.includes(id));
 
@@ -599,17 +618,6 @@ export async function saveAssignmentWithQuestions(payload, questions) {
     const deleteResult = await client.from('questions').delete().in('id', toDelete);
     assertOk(deleteResult);
   }
-
-  const questionRows = questions.map((item, index) => ({
-    id: item.id || crypto.randomUUID(),
-    assignment_id: assignment.id,
-    type: item.type,
-    prompt: item.prompt || `Câu ${index + 1}`,
-    points: Number(item.points),
-    sort_order: Number(item.sort_order ?? index + 1),
-    choices: item.choices ?? [],
-    settings: item.settings ?? {},
-  }));
 
   if (questionRows.length > 0) {
     const questionsResult = await client.from('questions').upsert(questionRows, {
@@ -1155,4 +1163,42 @@ export async function cloneQuestionToAssignment(questionId, assignmentId) {
   }
   
   clearLmsCache();
+}
+
+export async function batchInsertBankQuestions(questionsList) {
+  const client = requireSupabase();
+  if (!questionsList || questionsList.length === 0) return [];
+
+  const questionRows = questionsList.map((item, index) => ({
+    id: item.id || crypto.randomUUID(),
+    type: item.type || 'mcq',
+    prompt: item.prompt || `Câu ${index + 1}`,
+    points: Number(item.points ?? 1),
+    sort_order: Number(item.sort_order ?? index + 1),
+    choices: item.choices ?? [],
+    settings: item.settings ?? {},
+    is_bank_question: true,
+    tags: item.tags ?? []
+  }));
+
+  const { data: insertedQuestions, error: qErr } = await client
+    .from('questions')
+    .upsert(questionRows, { onConflict: 'id' })
+    .select();
+  assertOk({ error: qErr });
+
+  const keyRows = questionsList.map((item, index) => ({
+    question_id: questionRows[index].id,
+    correct_answer: item.answer_key?.correct_answer ?? item.correct_answer ?? null,
+    accepted_answers: item.answer_key?.accepted_answers ?? item.accepted_answers ?? [],
+    points_map: item.answer_key?.points_map ?? item.points_map ?? [],
+  }));
+
+  const { error: kErr } = await client
+    .from('answer_keys')
+    .upsert(keyRows, { onConflict: 'question_id' });
+  assertOk({ error: kErr });
+
+  clearLmsCache();
+  return insertedQuestions ?? [];
 }
