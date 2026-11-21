@@ -1,0 +1,1723 @@
+{
+  "pack_id": "tf4-thucte",
+  "title": "Chủ đề 7 · Ứng dụng đạo hàm thực tiễn — Đúng/Sai (2025)",
+  "chapter": "GĐ1 · Chương 1",
+  "count": 49,
+  "questions": [
+    {
+      "source_num": 1,
+      "type": "tf4",
+      "prompt": "Một chất điểm chuyển động theo phương trình $s(t) = t^3 - 3t^2 + 8t + 1$, trong đó $t$ tính bằng giây và $s(t)$ tính bằng mét.",
+      "points": 1,
+      "sort_order": 1,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $v(t) = s'(t) = 3t^2 - 6t + 8\\text{ (m/s)}$ và $a(t) = v'(t) = 6t - 6\\text{ (m/s}^2)$.\na) \\textbf{Sai.} Tại $t = 3\\text{ s}$, $v(3) = 3 \\cdot 3^2 - 6 \\cdot 3 + 8 = 17\\text{ m/s} \\neq 8\\text{ m/s}$.\nb) \\textbf{Đúng.} $s(t) = 13 \\Leftrightarrow t^3 - 3t^2 + 8t - 12 = 0 \\Leftrightarrow t = 2$. Khi đó $v(2) = 3 \\cdot 2^2 - 6 \\cdot 2 + 8 = 8\\text{ m/s}$.\nc) \\textbf{Đúng.} $v(t) = 3(t - 1)^2 + 5 \\ge 5$, dấu bằng xảy ra khi $t = 1\\text{ s}$. Vận tốc nhỏ nhất là $5\\text{ m/s}$.\nd) \\textbf{Sai.} Tại $t = 1\\text{ s}$, gia tốc là $a(1) = 6 \\cdot 1 - 6 = 0\\text{ m/s}^2$.",
+        "statements": [
+          "Vận tốc của chất điểm tại thời điểm $t = 3\\text{ (s)}$ bằng $8\\text{ m/s}$.",
+          "Tại thời điểm mà chất điểm di chuyển được $13\\text{ m}$, vận tốc khi đó bằng $8\\text{ m/s}$.",
+          "Vận tốc nhỏ nhất của chất điểm là $5\\text{ m/s}$.",
+          "Gia tốc tại thời điểm đạt vận tốc nhỏ nhất bằng $2\\text{ m/s}^2$."
+        ],
+        "source": "THPT Văn Giang - Hưng Yên 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 2,
+      "type": "tf4",
+      "prompt": "Người ta bơm xăng vào bình xăng của một xe ô tô. Biết rằng thể tích $V$ (tính theo lít) của lượng xăng trong bình xăng được tính theo thời gian bơm xăng $t$ (phút) bởi công thức $V(t) = 300(t^2 - t^3) + 4,5$ với $0 \\le t \\le 0,5$. Gọi $V'(t)$ là tốc độ tăng thể tích tại thời điểm $t$ với $0 \\le t \\le 0,5$. Biết $1$ lít xăng có giá là $21\\,000$ đồng.",
+      "points": 1,
+      "sort_order": 2,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Lượng xăng ban đầu trong bình là $V(0) = 4,5$ lít.\nb) \\textbf{Đúng.} Đổi $30\\text{ giây} = 0,5\\text{ phút}$. Ta có $V(0,5) = 300(0,25 - 0,125) + 4,5 = 42$ lít. Lượng xăng đã bơm thêm là $42 - 4,5 = 37,5$ lít, số tiền phải trả là $37,5 \\cdot 21\\,000 = 787\\,500$ đồng.\nc) \\textbf{Sai.} $V'(t) = 300(2t - 3t^2)$ đạt giá trị lớn nhất trên $[0; 0,5]$ tại $t = \\dfrac{1}{3}\\text{ phút} = 20\\text{ giây}$ (không phải giây thứ $21$).\nd) \\textbf{Sai.} $V'(t) = 0 \\Leftrightarrow t = 0$ hoặc $t = \\dfrac{2}{3} \\notin \\left[0; \\dfrac{1}{2}\\right]$, nên phương trình chỉ có $1$ nghiệm trên $\\left[0; \\dfrac{1}{2}\\right]$.",
+        "statements": [
+          "Lượng xăng ban đầu trong bình là $1,5$ lít.",
+          "Sau khi bơm $30$ giây thì bình xăng đầy. Số tiền người mua phải trả là $787\\,500$ đồng.",
+          "Khi xăng chảy vào bình xăng thì tốc độ tăng thể tích lớn nhất vào thời điểm ở giây thứ $21$.",
+          "Phương trình $V'(t) = 0$ có hai nghiệm phân biệt trên đoạn $\\left[0; \\dfrac{1}{2}\\right]$."
+        ],
+        "source": "THPT Tiên Du - Bắc Ninh 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 3,
+      "type": "tf4",
+      "prompt": "Bác Lâm muốn gò một cái thùng bằng tôn dạng hình hộp chữ nhật không nắp có đáy là hình vuông và đựng đầy được $32$ lít nước. Gọi độ dài cạnh đáy của thùng là $x\\text{ (dm)}$, chiều cao của thùng là $h\\text{ (dm)}$.",
+      "points": 1,
+      "sort_order": 3,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Thùng hình hộp chữ nhật có đáy hình vuông cạnh $x$, chiều cao $h$ nên $V = x^2 h\\text{ (dm}^3)$.\nb) \\textbf{Đúng.} Thùng không nắp gồm $1$ đáy diện tích $x^2$ và $4$ mặt bên diện tích $4xh$, nên $S = 4xh + x^2\\text{ (dm}^2)$.\nc) \\textbf{Sai.} Vì $V = x^2 h = 32 \\Rightarrow h = \\dfrac{32}{x^2}$ nên $S(x) = \\dfrac{128}{x} + x^2$. Đạo hàm là $S'(x) = -\\dfrac{128}{x^2} + 2x$.\nd) \\textbf{Đúng.} $S'(x) = 0 \\Leftrightarrow x^3 = 64 \\Leftrightarrow x = 4\\text{ dm}$. Lập bảng biến thiên với $x > 0$ suy ra $S(x)$ đạt GTNN tại $x = 4\\text{ dm}$.",
+        "statements": [
+          "Thể tích của thùng là $V = x^2 h\\text{ (dm}^3)$.",
+          "Tổng diện tích xung quanh và diện tích đáy của thùng là $S = 4xh + x^2\\text{ (dm}^2)$.",
+          "Đạo hàm của hàm số $S(x) = \\dfrac{128}{x} + x^2$ là $S'(x) = \\dfrac{128}{x^2} + 2x$.",
+          "Để làm được cái thùng tốn ít nguyên liệu nhất thì độ dài cạnh đáy của thùng là $4\\text{ dm}$."
+        ],
+        "source": "THPT Thạch Thành 1 - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 4,
+      "type": "tf4",
+      "prompt": "Kính viễn vọng không gian Hubble được đưa vào vũ trụ ngày 24/4/1990 bằng tàu con thoi Discovery.\n![Kính viễn vọng Hubble](/bank-images/tf4-thucte/q4.jpeg)\nVận tốc của tàu con thoi trong sứ mệnh này, từ lúc cất cánh tại thời điểm $t = 0\\text{ (s)}$ cho đến khi tên lửa đẩy được phóng đi tại thời điểm $t = 126\\text{ (s)}$, cho bởi hàm số $v(t) = 0,001302t^3 - 0,09029t^2 + 23,61t - 3,083$ ($v$ được tính bằng $\\text{feet/s}$, $1\\text{ feet} = 0,3048\\text{ m}$).",
+      "points": 1,
+      "sort_order": 4,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có gia tốc $a(t) = v'(t) = 0,003906t^2 - 0,18058t + 23,61$.\na) \\textbf{Đúng.} Biệt thức $\\Delta = (-0,18058)^2 - 4 \\cdot 0,003906 \\cdot 23,61 < 0$ nên $v'(t) > 0,\\ \\forall t \\in [0; 126]$. Vậy vận tốc luôn tăng.\nb) \\textbf{Đúng.} $a'(t) = 0,007812t - 0,18058 = 0 \\Leftrightarrow t \\approx 23,116$. Trên $[0; 126]$, $a(t)$ giảm trên $(0; 23,116)$ và tăng trên $(23,116; 126)$. Ta có $a(0) = 23,61$ và $a(126) \\approx 62,87\\text{ feet/s}^2$, nên $\\max_{[0; 126]} a(t) \\approx 62,87\\text{ feet/s}^2$.\nc) \\textbf{Sai.} Trong khoảng $(0; 23)$, $a'(t) < 0$ nên gia tốc giảm.\nd) \\textbf{Sai.} Trên $(21,5; 126)$, gia tốc giảm trên $(21,5; 23,116)$ rồi mới tăng trên $(23,116; 126)$.",
+        "statements": [
+          "Vận tốc của tàu con thoi luôn tăng trong khoảng thời gian từ lúc cất cánh đến khi tên lửa đẩy được phóng đi.",
+          "Gia tốc lớn nhất mà tàu con thoi có thể đạt được trong lúc thực hiện sứ mệnh trên (làm tròn đến hàng phần trăm) là $62,87\\text{ feet/s}^2$.",
+          "Gia tốc của tàu con thoi tăng trong khoảng thời gian từ lúc cất cánh đến thời điểm $t = 23\\text{ (s)}$.",
+          "Gia tốc của tàu con thoi tăng trong khoảng thời gian từ $t = 21,5\\text{ (s)}$ đến $t = 126\\text{ (s)}$."
+        ],
+        "source": "THPT Thạch Thành 1 - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 5,
+      "type": "tf4",
+      "prompt": "Số giờ có ánh sáng mặt trời của một thành phố ven biển A trong ngày thứ $t$ của một năm không nhuận được cho bởi hàm số $d(t) = 3\\sin\\left[\\dfrac{\\pi}{180}(t - 70)\\right] + 10$ với $t \\in \\mathbb{Z}$ và $0 < t \\le 365$. Cánh đồng muối B (thuộc địa phận của thành phố A) có thể hoạt động nếu trong ngày nắng nhiều hơn $10$ giờ.",
+      "points": 1,
+      "sort_order": 5,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Do $\\sin\\left[\\dfrac{\\pi}{180}(t - 70)\\right] \\le 1$ nên $d(t) \\le 13$, đạt cực đại bằng $13$ giờ khi $t - 70 = 90 \\Leftrightarrow t = 160$.\nb) \\textbf{Đúng.} Năm không nhuận có $31 + 28 + 31 + 30 + 31 + 30 = 181$ ngày trong $6$ tháng đầu, nên tháng $7$ ứng với $182 \\le t \\le 212$. Khi đó $\\dfrac{\\pi}{180}(t - 70) \\in \\left[\\dfrac{112\\pi}{180}; \\dfrac{142\\pi}{180}\\right] \\subset \\left(\\dfrac{\\pi}{2}; \\dfrac{3\\pi}{2}\\right)$, nên hàm $\\sin$ giảm liên tục trong tháng $7$.\nc) \\textbf{Sai.} $d(t) > 10 \\Leftrightarrow \\sin\\left[\\dfrac{\\pi}{180}(t - 70)\\right] > 0 \\Leftrightarrow 70 < t < 250$ (với $t \\in \\mathbb{Z}$ và $0 < t \\le 365$). Số ngày thỏa mãn là $249 - 71 + 1 = 179$ ngày (không phải $213$ ngày).\nd) \\textbf{Đúng.} Tại $t = 70$, $d(70) = 3\\sin 0 + 10 = 10$ giờ.",
+        "statements": [
+          "Ngày có nhiều giờ ánh sáng nhất là $13$ giờ.",
+          "Số giờ có ánh sáng giảm liên tục trong tháng $7$.",
+          "Cánh đồng muối B có thể hoạt động $213$ ngày mỗi năm.",
+          "Ngày thứ $70$ trong năm, thành phố có $10$ giờ có ánh sáng."
+        ],
+        "source": "THPT Yên Lạc - Vĩnh Phúc 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 6,
+      "type": "tf4",
+      "prompt": "Theo báo cáo của một cơ sở sản xuất nước tinh khiết, nếu mỗi ngày cơ sở này sản xuất $x\\text{ (m}^3)$ nước tinh khiết thì phải chi phí các khoản sau: $3$ triệu đồng chi phí cố định; $0,15$ triệu đồng cho mỗi mét khối sản phẩm; $0,0003x^2$ triệu đồng chi phí bảo dưỡng máy móc. Biết công suất tối đa mỗi ngày của cơ sở này là $200\\text{ m}^3$. Gọi $C(x)$ là chi phí sản xuất $x\\text{ (m}^3)$ sản phẩm mỗi ngày và $c(x)$ là chi phí trung bình mỗi mét khối sản phẩm.",
+      "points": 1,
+      "sort_order": 6,
+      "choices": [],
+      "settings": {
+        "explanation": "Tổng chi phí sản xuất $x\\text{ (m}^3)$ nước là $C(x) = 0,0003x^2 + 0,15x + 3$ (triệu đồng), với $0 < x \\le 200$.\na) \\textbf{Sai.} $C(100) = 0,0003 \\cdot 100^2 + 0,15 \\cdot 100 + 3 = 21$ triệu đồng.\nb) \\textbf{Đúng.} $c(x) = \\dfrac{C(x)}{x} = 0,0003x + 0,15 + \\dfrac{3}{x}$.\nc) \\textbf{Đúng.} $c'(x) = 0,0003 - \\dfrac{3}{x^2} = 0 \\Leftrightarrow x = 100 \\in (0; 200]$. Lập bảng biến thiên suy ra $c(x)$ đạt GTNN tại $x = 100\\text{ m}^3$.\nd) \\textbf{Sai.} Chi phí cố định là $3$ triệu đồng nên $C(x) = 0,0003x^2 + 0,15x + 3$.",
+        "statements": [
+          "Chi phí sản xuất $100\\text{ m}^3$ nước tinh khiết là $20$ triệu đồng.",
+          "$c(x) = 0,0003x + 0,15 + \\dfrac{3}{x}$.",
+          "Chi phí trung bình mỗi mét khối sản phẩm thấp nhất khi sản lượng nước tinh khiết trong ngày là $100\\text{ m}^3$.",
+          "$C(x) = 0,0003x^2 + 0,15x + 5$."
+        ],
+        "source": "THPT Chuyên Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 7,
+      "type": "tf4",
+      "prompt": "Một hạt chuyển động trên một đường thẳng có gắn một trục tọa độ với gốc tọa độ là vị trí hạt bắt đầu chuyển động. Tọa độ của hạt trên trục tại thời điểm $t$ (đơn vị: giây) kể từ khi xuất phát được cho bởi công thức $x(t) = 2t - 3\\ln(t + 1)$ (đơn vị: mét), $t \\ge 0$. Hàm số $v(t) = x'(t)$ (đơn vị: mét/giây) biểu thị vận tốc chuyển động của hạt.",
+      "points": 1,
+      "sort_order": 7,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Hạt đổi chiều chuyển động tại $t = 0,5\\text{ s}$ (vì $v(t) < 0$ trên $[0; 0,5)$ và $v(t) > 0$ trên $(0,5; 3]$). Do đó quãng đường đi được trong $3$ giây đầu là $|x(0,5) - x(0)| + |x(3) - x(0,5)| = (3\\ln 1,5 - 1) + (6 - 3\\ln 4 - 1 + 3\\ln 1,5) \\approx 2,27\\text{ m} \\neq 1,84\\text{ m}$ (lưu ý $1,84\\text{ m}$ chỉ là độ dịch chuyển $x(3) - x(0)$).\nb) \\textbf{Đúng.} $v(t) = 0 \\Leftrightarrow 2 - \\dfrac{3}{t + 1} = 0 \\Leftrightarrow t = 0,5\\text{ s}$.\nc) \\textbf{Đúng.} $v(t) = x'(t) = 2 - \\dfrac{3}{t + 1}$.\nd) \\textbf{Sai.} Vận tốc ban đầu là $v(0) = 2 - 3 = -1\\text{ m/s}$.",
+        "statements": [
+          "Quãng đường mà hạt đi được trong $3$ giây đầu tiên là $1,84\\text{ m}$ (làm tròn kết quả đến hàng phần trăm).",
+          "Hạt đứng yên tại thời điểm $t = 0,5\\text{ s}$.",
+          "$v(t) = 2 - \\dfrac{3}{t + 1}$.",
+          "Vận tốc ban đầu của hạt là $1\\text{ (m/s)}$."
+        ],
+        "source": "Sở Ninh Bình 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 8,
+      "type": "tf4",
+      "prompt": "Một tàu đổ bộ tiếp cận Mặt Trăng theo cách tiếp cận thẳng đứng và đốt cháy các tên lửa hãm ở độ cao $250\\text{ km}$ so với bề mặt của Mặt Trăng. Trong khoảng $50$ giây đầu tiên kể từ khi đốt cháy các tên lửa hãm, độ cao $h$ của con tàu so với bề mặt của Mặt Trăng được tính (gần đúng) bởi hàm $h(t) = -0,01t^3 + 1,1t^2 - 30t + 250$, trong đó $t$ là thời gian tính bằng giây và $h$ là độ cao tính bằng kilômét.",
+      "points": 1,
+      "sort_order": 8,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $v(t) = h'(t) = -0,03t^2 + 2,2t - 30$ với $t \\in [0; 50]$.\nPhương trình $h'(t) = 0 \\Leftrightarrow t = \\dfrac{110 - 10\\sqrt{31}}{3} \\approx 18,11 \\in [0; 50]$ hoặc $t = \\dfrac{110 + 10\\sqrt{31}}{3} \\approx 55,23 \\notin [0; 50]$.\na) \\textbf{Đúng.} $h(0) = 250$, $h(50) = 250$, $h(18,11) \\approx 8,07$, nên $\\max_{[0; 50]} h(t) = 250\\text{ km}$.\nb) \\textbf{Sai.} $v'(t) = -0,06t + 2,2 = 0 \\Leftrightarrow t = \\dfrac{110}{3}\\text{ s}$. Khi đó độ cao là $h\\left(\\dfrac{110}{3}\\right) = \\dfrac{3670}{27} \\approx 135,93\\text{ km} \\neq 139,37\\text{ km}$.\nc) \\textbf{Đúng.} Vận tốc lớn nhất là $v\\left(\\dfrac{110}{3}\\right) = \\dfrac{31}{3} \\approx 10,33\\text{ km/s}$.\nd) \\textbf{Sai.} Độ cao thấp nhất đạt được tại $t = \\dfrac{110 - 10\\sqrt{31}}{3} \\approx 18,11\\text{ s} \\neq 25\\text{ s}$.",
+        "statements": [
+          "Trong $50$ giây đầu tiên kể từ khi đốt cháy các tên lửa hãm, độ cao lớn nhất mà con tàu đạt được là $250\\text{ (km)}$.",
+          "Trong $50$ giây đầu tiên kể từ khi đốt cháy các tên lửa hãm, độ cao con tàu đạt được khi vận tốc của con tàu lớn nhất là $139,37\\text{ (km)}$.",
+          "Trong $50$ giây đầu tiên kể từ khi đốt cháy các tên lửa hãm, vận tốc lớn nhất của con tàu là $v \\approx 10,33\\text{ (km/s)}$.",
+          "Trong $50$ giây đầu tiên kể từ khi đốt cháy các tên lửa hãm, độ cao thấp nhất mà con tàu đạt được tại thời điểm $t \\approx 25\\text{ (s)}$."
+        ],
+        "source": "THPT Nguyễn Viết Xuân - Vĩnh Phúc 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 9,
+      "type": "tf4",
+      "prompt": "Một nhà sản xuất trung bình bán được $1500$ ti vi màn hình phẳng mỗi tuần với giá $15$ triệu đồng một chiếc. Một cuộc khảo sát thị trường chỉ ra rằng nếu cứ giảm giá bán $600$ nghìn đồng, số lượng ti vi bán ra sẽ tăng thêm khoảng $120$ ti vi mỗi tuần. Gọi $p$ (triệu đồng) là giá của mỗi ti vi, $x$ là số ti vi.",
+      "points": 1,
+      "sort_order": 9,
+      "choices": [],
+      "settings": {
+        "explanation": "Hàm cầu bậc nhất đi qua $(1500; 15)$ và $(1620; 14,4)$ là $p(x) = -\\dfrac{1}{200}x + \\dfrac{45}{2} \\Rightarrow x = 4500 - 200p$.\na) \\textbf{Đúng.} Lợi nhuận $P(x) = x \\cdot p(x) - C(x) = -\\dfrac{1}{200}x^2 + 26x - 12000$. Đạo hàm $P'(x) = -\\dfrac{1}{100}x + 26 = 0 \\Leftrightarrow x = 2600$. Khi đó giá bán $p = -\\dfrac{2600}{200} + 22,5 = 9,5$ triệu đồng.\nb) \\textbf{Sai.} Doanh thu $f(p) = -200p^2 + 4500p$ đạt GTLN tại $p = 11,25$ triệu đồng, tức cần giảm giá $15 - 11,25 = 3,75$ triệu đồng.\nc) \\textbf{Sai.} Tổng doanh thu là $f(p) = p(4500 - 200p) = -200p^2 + 4500p$.\nd) \\textbf{Đúng.} Hàm cầu là $p = -\\dfrac{1}{200}x + \\dfrac{45}{2}$ (triệu đồng).",
+        "statements": [
+          "Nếu hàm chi phí hằng tuần là $C(x) = 12000 - \\dfrac{7}{2}x$ (triệu đồng), trong đó $x$ là số ti vi bán ra trong tuần, nhà sản xuất nên đặt giá bán $9,5$ triệu đồng thì lợi nhuận là lớn nhất.",
+          "Công ty giảm giá $3,5$ triệu đồng cho người mua thì doanh thu của công ty sẽ lớn nhất.",
+          "Tổng doanh thu từ tiền bán ti vi là $f(p) = -200p^2 + 450p$ (triệu đồng).",
+          "Hàm cầu là $p = -\\dfrac{1}{200}x + \\dfrac{45}{2}$ (triệu đồng)."
+        ],
+        "source": "THPT Nguyễn Viết Xuân - Vĩnh Phúc 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 10,
+      "type": "tf4",
+      "prompt": "Nồng độ thuốc $C(t)$ tính theo $\\text{mg/cm}^3$ trong máu bệnh nhân được tính bởi $C(t) = \\dfrac{0,05t}{t^2 + t + 1}$, trong đó $t$ là thời gian tính theo giờ kể từ khi tiêm cho bệnh nhân ($t \\ge 0$).",
+      "points": 1,
+      "sort_order": 10,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $C(t) = \\dfrac{t}{20(t^2 + t + 1)}$ nên $C'(t) = \\dfrac{1 - t^2}{20(t^2 + t + 1)^2}$ với $t \\ge 0$.\na) \\textbf{Sai.} $C(t)$ đạt GTLN tại $t = 1$ với $C(1) = \\dfrac{1}{60} \\approx 0,0167 < 0,02\\text{ mg/cm}^3$, nên không bao giờ đạt $0,02\\text{ mg/cm}^3$.\nb) \\textbf{Đúng.} $C'(t) = 0 \\Leftrightarrow t = 1$ (vì $t \\ge 0$), $C'(t) > 0$ trên $(0; 1)$ và $C'(t) < 0$ trên $(1; +\\infty)$ nên nồng độ đạt lớn nhất tại $t = 1$ giờ.\nc) \\textbf{Đúng.} $C'(t) = \\dfrac{1 - t^2}{20(t^2 + t + 1)^2}$.\nd) \\textbf{Sai.} Trong $1$ giờ đầu tiên, nồng độ thuốc tăng dần rồi mới giảm dần sau $1$ giờ.",
+        "statements": [
+          "Có thời điểm nồng độ thuốc trong máu của bệnh nhân đạt $0,02\\text{ mg/cm}^3$.",
+          "Nồng độ thuốc trong máu lớn nhất ở thời điểm $1$ giờ sau khi tiêm.",
+          "Hàm số $C(t)$ có đạo hàm $C'(t) = \\dfrac{1 - t^2}{20(t^2 + t + 1)^2},\\ t \\ge 0$.",
+          "Sau khi tiêm, nồng độ thuốc trong máu của bệnh nhân giảm dần theo thời gian."
+        ],
+        "source": "THPT Nguyễn Viết Xuân - Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 11,
+      "type": "tf4",
+      "prompt": "Anh B chế tạo một bể cá có dạng khối hộp chữ nhật không nắp có thể tích $0,096\\text{ m}^3$, chiều cao $h = 0,6\\text{ m}$, chiều rộng $x$, chiều dài $y$ (với $x > 0, y > 0$). Anh B dùng loại kính để làm các mặt bên có giá $70\\,000\\text{ đồng/m}^2$ và loại kính để làm đáy có giá $100\\,000\\text{ đồng/m}^2$. Mọi chi phí khác xem như không đáng kể.",
+      "points": 1,
+      "sort_order": 11,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $V = 0,6xy = 0,096 \\Rightarrow xy = 0,16 \\Rightarrow y = \\dfrac{0,16}{x}$.\na) \\textbf{Đúng.} Diện tích xung quanh $S_{xq} = 2(x + y)h = 1,2\\left(x + \\dfrac{0,16}{x}\\right)$, chi phí $C_{xq} = 70\\,000 \\cdot 1,2\\left(x + \\dfrac{0,16}{x}\\right) = 84\\,000\\left(x + \\dfrac{0,16}{x}\\right)$.\nb) \\textbf{Đúng.} $y = \\dfrac{0,16}{x}$.\nc) \\textbf{Sai.} Diện tích đáy $S_{\\text{đáy}} = xy = 0,16\\text{ m}^2$, nên chi phí làm đáy là $0,16 \\cdot 100\\,000 = 16\\,000$ đồng.\nd) \\textbf{Sai.} Tổng chi phí $C(x) = 16\\,000 + 84\\,000\\left(x + \\dfrac{0,16}{x}\\right) \\ge 16\\,000 + 84\\,000 \\cdot 2\\sqrt{0,16} = 83\\,200$ đồng (đạt khi $x = 0,4\\text{ m}$).",
+        "statements": [
+          "Biểu thức tính chi phí làm các mặt xung quanh là $C_{xq} = 84\\,000\\left(x + \\dfrac{0,16}{x}\\right)$.",
+          "Hàm số biểu thị $y$ theo $x$ là $y = \\dfrac{0,16}{x}$.",
+          "Chi phí mua kính để làm đáy bể là $11\\,200$ đồng.",
+          "Chi phí làm bể cá thấp nhất là $100\\,000$ đồng."
+        ],
+        "source": "THPT Lý Thường Kiệt - Hà Nội 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 13,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = 92 - 20\\ln(x + 1)$.",
+      "points": 1,
+      "sort_order": 12,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Điều kiện $x + 1 > 0 \\Leftrightarrow x > -1$, nên $D = (-1; +\\infty)$.\nb) \\textbf{Đúng.} $f'(x) = -\\dfrac{20}{x + 1} < 0,\\ \\forall x > -1$, nên hàm số nghịch biến trên $(-1; +\\infty)$.\nc) \\textbf{Sai.} $f(x) \\ge 72 \\Leftrightarrow \\ln(x + 1) \\le 1 \\Leftrightarrow -1 < x \\le e - 1 \\approx 1,72$. Tập nghiệm nguyên là $\\{0; 1\\}$, chỉ có $2$ nghiệm nguyên.\nd) \\textbf{Đúng.} $f(t) = 50 \\Leftrightarrow 20\\ln(t + 1) = 42 \\Leftrightarrow t = e^{2,1} - 1 \\approx 7,17 \\approx 7$ tháng.",
+        "statements": [
+          "Tập xác định của hàm số $y = f(x)$ là $D = (-1; +\\infty)$.",
+          "Hàm số $y = f(x)$ nghịch biến trên khoảng $(-1; +\\infty)$.",
+          "Bất phương trình $f(x) \\ge 72$ có đúng $3$ nghiệm nguyên.",
+          "Một nghiên cứu chỉ ra rằng sau khi tham gia một khóa học, phần trăm kiến thức sinh viên còn nhớ sau $t$ tháng kết thúc khóa học được xác định bởi hàm số $y = f(t)$, trong đó $f(t)$ được tính bằng $\\%$ và $0 \\le t \\le 24$. Phần trăm kiến thức sinh viên còn nhớ bằng $50\\%$ khi $t = 7$ (kết quả làm tròn đến hàng đơn vị)."
+        ],
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 14,
+      "type": "tf4",
+      "prompt": "Trong một trò chơi thử thách, bạn Giáp đang ở trên thuyền (vị trí $A$) cách bờ hồ (vị trí $C$) $300\\text{ m}$ và cần đi đến vị trí $B$ trên bờ hồ như hình vẽ, khoảng cách từ $C$ đến $B$ là $400\\text{ m}$. Giáp có thể chèo thuyền thẳng từ $A$ đến $B$ hoặc chèo thuyền từ $A$ đến một điểm nằm giữa $C$ và $B$ rồi chạy bộ đến $B$.\n![Sơ đồ vị trí A, B, C](/bank-images/tf4-thucte/q14a.png)\nBiết rằng Giáp chèo thuyền với tốc độ $50\\text{ m/phút}$ và chạy bộ với tốc độ $100\\text{ m/phút}$.",
+      "points": 1,
+      "sort_order": 13,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $AB = \\sqrt{300^2 + 400^2} = 500\\text{ m}$, thời gian chèo thẳng là $\\dfrac{500}{50} = 10$ phút.\nb) \\textbf{Đúng.} Thời gian là $\\dfrac{300}{50} + \\dfrac{400}{100} = 6 + 4 = 10$ phút.\nc) \\textbf{Sai.} Quãng đường chèo là $AD = \\sqrt{x^2 + 90000}$ và chạy bộ là $DB = 400 - x$, nên thời gian là $f(x) = \\dfrac{\\sqrt{x^2 + 90000}}{50} + \\dfrac{400 - x}{100} = \\dfrac{1}{100}\\left(2\\sqrt{x^2 + 90000} + 400 - x\\right)$ (mệnh đề thiếu hệ số $2$).\nd) \\textbf{Đúng.} $f'(x) = \\dfrac{1}{100}\\left(\\dfrac{2x}{\\sqrt{x^2 + 90000}} - 1\\right) = 0 \\Leftrightarrow x = 100\\sqrt{3} \\in [0; 400]$. Khi đó $\\min f(x) = f(100\\sqrt{3}) = 4 + 3\\sqrt{3} \\approx 9,2$ phút.",
+        "statements": [
+          "Thời gian Giáp chèo thuyền thẳng từ $A$ đến $B$ là $10$ phút.",
+          "Thời gian Giáp chèo thuyền từ $A$ đến $C$ rồi chạy bộ từ $C$ đến $B$ là $10$ phút.",
+          "Giả sử Giáp chèo thuyền thẳng đến điểm $D$ nằm giữa $B$ và $C$ và cách $C$ một đoạn $x\\text{ (m)}$ như hình vẽ dưới đây, rồi chạy bộ đến $B$ thì thời gian Giáp đi từ $A$ đến $B$ được tính bằng công thức $f(x) = \\dfrac{1}{100}\\left(\\sqrt{x^2 + 90000} + 400 - x\\right)$ (phút).\n![Sơ đồ điểm D cách C đoạn x](/bank-images/tf4-thucte/q14b.png)",
+          "Thời gian nhanh nhất để Giáp đi từ $A$ đến $B$ xấp xỉ $9,2$ phút (kết quả làm tròn đến hàng phần chục)."
+        ],
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 15,
+      "type": "tf4",
+      "prompt": "Một công ty sản xuất dụng cụ thể thao nhận được một đơn đặt hàng sản xuất $8000$ quả bóng pickleball. Công ty này sở hữu một số máy móc, mỗi máy có thể sản xuất $30$ quả bóng trong một giờ. Chi phí thiết lập các máy này là $200$ nghìn đồng cho mỗi máy. Khi được thiết lập, hoạt động sản xuất sẽ hoàn toàn diễn ra tự động dưới sự giám sát (người giám sát sẽ giám sát tất cả các máy). Số tiền phải trả cho người giám sát là $192$ nghìn đồng một giờ.",
+      "points": 1,
+      "sort_order": 14,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $x \\in \\mathbb{N}^*$ là số máy sử dụng. Thời gian hoàn thành là $t = \\dfrac{8000}{30x} = \\dfrac{800}{3x}$ (giờ).\na) \\textbf{Sai.} Trong $1$ giờ, $266$ máy chỉ sản xuất được $266 \\cdot 30 = 7980 < 8000$ quả bóng (cần ít nhất $267$ máy).\nb) \\textbf{Đúng.} $100$ máy trong $\\dfrac{8}{3}$ giờ sản xuất được $100 \\cdot 30 \\cdot \\dfrac{8}{3} = 8000$ quả bóng.\nc) \\textbf{Sai.} Tổng chi phí $C(x) = 200x + 192 \\cdot \\dfrac{800}{3x} = 200x + \\dfrac{51200}{x}$ (nghìn đồng). Theo bất đẳng thức Cô-si, $C(x) \\ge 2\\sqrt{200 \\cdot 51200} = 6400$ nghìn đồng $= 6,4$ triệu đồng.\nd) \\textbf{Đúng.} Dấu bằng xảy ra khi $200x = \\dfrac{51200}{x} \\Leftrightarrow x = 16$ máy.",
+        "statements": [
+          "Trong $1$ giờ, cần $266$ máy để sản xuất được $8000$ quả bóng pickleball.",
+          "Trong $\\dfrac{8}{3}$ giờ, cần $100$ máy để sản xuất được $8000$ quả bóng pickleball.",
+          "Chi phí hoạt động thấp nhất là $6,5$ triệu đồng.",
+          "Để chi phí hoạt động thấp nhất, công ty cần sử dụng $16$ máy."
+        ],
+        "source": "THPT Kinh Môn - Hải Dương 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 16,
+      "type": "tf4",
+      "prompt": "Chi phí nhiên liệu của một con tàu chạy trên sông được chia làm hai phần. Phần thứ nhất không phụ thuộc vào vận tốc và bằng $480$ nghìn đồng trên $1$ giờ. Phần thứ hai tỉ lệ thuận với lập phương của vận tốc, khi $v = 10\\text{ km/h}$ thì chi phí nhiên liệu phần thứ hai bằng $30$ nghìn đồng/giờ. Gọi $x\\text{ (km/h)}$ là vận tốc của tàu ($x > 0$).",
+      "points": 1,
+      "sort_order": 15,
+      "choices": [],
+      "settings": {
+        "explanation": "Phần thứ hai có dạng $kx^3$; với $x = 10$ thì $k \\cdot 10^3 = 30 \\Rightarrow k = 0,03$.\na) \\textbf{Đúng.} Thời gian chạy $1\\text{ km}$ là $\\dfrac{1}{x}$ giờ nên chi phí phần thứ nhất là $\\dfrac{480}{x}$ nghìn đồng.\nb) \\textbf{Đúng.} Tổng chi phí trong $1$ giờ là $C(x) = 480 + 0,03x^3$ (nghìn đồng).\nc) \\textbf{Sai.} Tổng chi phí để chạy $1\\text{ km}$ là $f(x) = \\dfrac{C(x)}{x} = \\dfrac{480}{x} + 0,03x^2$. Ta có $f'(x) = -\\dfrac{480}{x^2} + 0,06x = 0 \\Leftrightarrow x^3 = 8000 \\Leftrightarrow x = 20$. Hàm $f(x)$ chỉ giảm trên $(0; 20)$ và tăng trên $(20; +\\infty)$, không giảm trên cả $(0; 30)$.\nd) \\textbf{Sai.} Chi phí nhỏ nhất cho $1\\text{ km}$ đạt tại $x = 20\\text{ km/h}$ và bằng $f(20) = \\dfrac{480}{20} + 0,03 \\cdot 20^2 = 36$ nghìn đồng $\\neq 43$ nghìn đồng.",
+        "statements": [
+          "Chi phí nhiên liệu cho phần thứ nhất trong thời gian tàu chạy quãng đường $1\\text{ km}$ là $\\dfrac{480}{x}$ (nghìn đồng).",
+          "Tổng chi phí nhiên liệu tàu chạy trong $1$ giờ là $C(x) = 480 + 0,03x^3$ (nghìn đồng).",
+          "Tổng chi phí nhiên liệu tàu chạy trên quãng đường $1\\text{ km}$ giảm khi vận tốc của tàu thuộc $(0; 30)$.",
+          "Tổng chi phí nhiên liệu để tàu chạy trên quãng đường $1\\text{ km}$ nhỏ nhất là $43$ (nghìn đồng)."
+        ],
+        "source": "HSG Vũng Tàu 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 17,
+      "type": "tf4",
+      "prompt": "Nhà máy A chuyên sản xuất một loại sản phẩm cho nhà máy B. Hai nhà máy thỏa thuận rằng, hằng tháng A cung cấp cho B số lượng sản phẩm theo đơn đặt hàng của B (tối đa $100$ tấn sản phẩm). Nếu số lượng đặt hàng là $x$ tấn sản phẩm thì giá bán cho mỗi tấn sản phẩm của A cho B được biểu diễn bởi công thức $P(x) = 45 - 0,001x^2$ (triệu đồng). Chi phí để A sản xuất $x$ tấn sản phẩm trong một tháng là $C(x) = 100 + 30x$ triệu đồng (gồm $100$ triệu đồng chi phí cố định và $30$ triệu đồng cho mỗi tấn sản phẩm).",
+      "points": 1,
+      "sort_order": 16,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Doanh thu $R(x) = x \\cdot P(x) = 45x - 0,001x^3$. Lợi nhuận $H(x) = R(x) - C(x) = -0,001x^3 + 15x - 100$.\nb) \\textbf{Sai.} Doanh thu bán $10$ tấn là $R(10) = 10(45 - 0,001 \\cdot 10^2) = 449$ triệu đồng $\\neq 600$ triệu đồng.\nc) \\textbf{Đúng.} $H'(x) = -0,003x^2 + 15 = 0 \\Leftrightarrow x = 50\\sqrt{2} \\approx 70,7 \\in [0; 100]$. Lập bảng biến thiên suy ra $H(x)$ đạt GTLN tại $x = 50\\sqrt{2}$.\nd) \\textbf{Đúng.} $C(10) = 100 + 30 \\cdot 10 = 400$ triệu đồng.",
+        "statements": [
+          "Lợi nhuận mà A thu được khi bán $x$ tấn sản phẩm ($0 \\le x \\le 100$) cho B được biểu diễn bởi công thức $H(x) = -0,001x^3 + 15x - 100$.",
+          "Số tiền mà A thu được khi bán $10$ tấn sản phẩm cho B là $600$ triệu đồng.",
+          "Nhà máy A bán cho nhà máy B khoảng $50\\sqrt{2} \\approx 70,7$ tấn sản phẩm mỗi tháng thì thu được lợi nhuận lớn nhất.",
+          "Chi phí để A sản xuất $10$ tấn sản phẩm trong một tháng là $400$ triệu đồng."
+        ],
+        "source": "THPT Lê Xoay - Vĩnh Phúc 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 18,
+      "type": "tf4",
+      "prompt": "Một loại thuốc được dùng cho một bệnh nhân và nồng độ thuốc trong máu của bệnh nhân được giám sát bởi bác sĩ. Biết nồng độ thuốc trong máu của bệnh nhân sau khi tiêm vào cơ thể trong $t$ giờ ($t \\ge 0$) được cho bởi công thức $c(t) = \\dfrac{t}{t^2 + 1}\\text{ (mg/l)}$.",
+      "points": 1,
+      "sort_order": 17,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $c'(t) = \\dfrac{1 - t^2}{(t^2 + 1)^2} = 0 \\Leftrightarrow t = 1$ (vì $t \\ge 0$).\na) \\textbf{Đúng.} $c(2) = \\dfrac{2}{2^2 + 1} = 0,4\\text{ mg/l}$.\nb) \\textbf{Sai.} Theo bảng biến thiên trên $[0; +\\infty)$, $\\max c(t) = c(1) = 0,5\\text{ mg/l}$ nên nồng độ không thể vượt quá $0,5\\text{ mg/l}$.\nc) \\textbf{Đúng.} Nồng độ đạt cao nhất tại $t = 1$ giờ.\nd) \\textbf{Đúng.} Giá trị cao nhất là $c(1) = 0,5\\text{ mg/l}$.",
+        "statements": [
+          "Sau khi tiêm thuốc $2$ giờ thì nồng độ thuốc trong máu của bệnh nhân bằng $0,4\\text{ (mg/l)}$.",
+          "Sau khi tiêm thuốc thì nồng độ thuốc trong máu của bệnh nhân có thể vượt quá $0,5\\text{ (mg/l)}$.",
+          "Sau khi tiêm thuốc $1$ giờ thì nồng độ thuốc trong máu của bệnh nhân cao nhất.",
+          "Sau khi tiêm thuốc thì nồng độ thuốc trong máu của bệnh nhân cao nhất bằng $0,5\\text{ (mg/l)}$."
+        ],
+        "source": "Sở Hà Tĩnh 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 19,
+      "type": "tf4",
+      "prompt": "Một hồ nước nhân tạo được xây dựng trong một công viên giải trí. Trong mô hình minh họa, nó được giới hạn bởi các trục tọa độ và đồ thị của hàm số $y = f(x) = -0,1x^3 + 0,9x^2 - 1,5x + 5,6$. Đơn vị đo độ dài trên mỗi trục tọa độ là $100\\text{ m}$.\n![Mô hình hồ nước nhân tạo](/bank-images/tf4-thucte/q19.jpeg)",
+      "points": 1,
+      "sort_order": 18,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $f'(x) = -0,3x^2 + 1,8x - 1,5 = 0 \\Leftrightarrow x = 1$ hoặc $x = 5$.\na) \\textbf{Sai.} $f(x) = 0 \\Leftrightarrow x = 8$, nên đường dạo ven hồ dọc trục $Ox$ dài $8 \\cdot 100 = 800\\text{ m}$.\nb) \\textbf{Đúng.} Đồ thị có điểm cực tiểu $(1; 4,9)$ và điểm cực đại $(5; 8,1)$. Tại $x = 5$ (cách $O$ đoạn $500\\text{ m}$), $f(5) = 8,1$ là lớn nhất trên $[0; 8]$.\nc) \\textbf{Đúng.} Tại điểm cực tiểu $x = 1$, khoảng cách theo phương thẳng đứng là $f(1) \\cdot 100 = 4,9 \\cdot 100 = 490\\text{ m}$.\nd) \\textbf{Đúng.} Khoảng cách từ $M(a; f(a))$ đến đường thẳng $y = -1,5x + 18$ ngắn nhất khi tiếp tuyến tại $M$ song song với đường thẳng đó: $f'(a) = -1,5 \\Leftrightarrow -0,3a^2 + 1,8a = 0 \\Leftrightarrow a = 0$ hoặc $a = 6$. Kiểm tra khoảng cách thấy tại $M(6; 7,4)$ khoảng cách nhỏ nhất; do đó $a + 5b = 6 + 5 \\cdot 7,4 = 43$.",
+        "statements": [
+          "Đường dạo ven hồ chạy dọc theo trục $Ox$ dài $600\\text{ m}$.",
+          "Trên đường đi dạo ven hồ chạy dọc theo trục $Ox$, điểm cách gốc $O$ một đoạn $500\\text{ m}$ có khoảng cách theo phương thẳng đứng đến bờ hồ đối diện là lớn nhất.",
+          "Khoảng cách nhỏ nhất theo phương thẳng đứng từ một điểm trên đường đi dạo ven hồ đến bờ hồ đối diện (tại điểm cực tiểu của bờ hồ) là $490\\text{ m}$.",
+          "Trong công viên có một con đường chạy dọc theo đồ thị hàm số $y = -1,5x + 18$. Người ta dự định xây dựng bên bờ hồ một bến thuyền đạp nước sao cho khoảng cách từ bến thuyền đến con đường này là ngắn nhất. Biết tọa độ của điểm để xây bến thuyền này là $M(a; b)$, giá trị $a + 5b$ bằng $43$."
+        ],
+        "source": "Sở Hà Tĩnh 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 20,
+      "type": "tf4",
+      "prompt": "Một chất điểm chuyển động theo phương trình $s(t) = -t^3 + 9t^2 + 21t + 9$, với $t$ tính bằng giây ($\\text{s}$) là khoảng thời gian tính từ lúc vật bắt đầu chuyển động và $s(t)$ tính bằng mét ($\\text{m}$) là vị trí của vật.",
+      "points": 1,
+      "sort_order": 19,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $v(t) = s'(t) = -3t^2 + 18t + 21\\text{ (m/s)}$.\nb) \\textbf{Đúng.} $v(2) = -3 \\cdot 2^2 + 18 \\cdot 2 + 21 = 45\\text{ m/s}$.\nc) \\textbf{Sai.} Vật dừng hẳn khi $v(t) = 0 \\Leftrightarrow t = 7\\text{ s}$ (vì $t \\ge 0$). Vì $v(t) \\ge 0$ trên $[0; 7]$, quãng đường đi được là $s(7) - s(0) = 254 - 9 = 245\\text{ m} \\neq 255\\text{ m}$.\nd) \\textbf{Đúng.} $v(t) = -3(t - 3)^2 + 48$ đạt giá trị lớn nhất tại $t = 3\\text{ s}$.",
+        "statements": [
+          "Vận tốc của chất điểm chuyển động tại thời điểm $t$ (giây) là $v(t) = -3t^2 + 18t + 21$.",
+          "Vận tốc của chất điểm tại giây thứ $2$ là $45\\text{ m/s}$.",
+          "Quãng đường chất điểm đi được từ lúc bắt đầu đến lúc dừng hẳn là $255\\text{ (m)}$.",
+          "Vận tốc chuyển động của chất điểm đạt giá trị lớn nhất tại thời điểm $t = 3\\text{ (s)}$."
+        ],
+        "source": "THPT Cẩm Xuyên - Hà Tĩnh 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 21,
+      "type": "tf4",
+      "prompt": "Một cửa hàng bán cam canh Cao Phong với giá là $40\\,000\\text{ đồng/kg}$. Giá nhập vào là $24\\,000\\text{ đồng/kg}$. Với giá bán này cửa hàng bán được $100\\text{ kg/ngày}$. Cửa hàng dự định giảm giá bán, ước tính cứ giảm $1\\,000\\text{ đồng/kg}$ thì số cam canh Cao Phong bán được sẽ tăng thêm $10\\text{ kg}$.",
+      "points": 1,
+      "sort_order": 20,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $x$ (nghìn đồng) là số tiền giảm giá mỗi kg ($0 \\le x \\le 16$). Số cam bán được là $100 + 10x\\text{ (kg)}$, lãi mỗi kg là $16 - x$ (nghìn đồng).\na) \\textbf{Sai.} Khi $x = 0$, lợi nhuận là $100 \\cdot (40\\,000 - 24\\,000) = 1\\,600\\,000$ đồng.\nb) \\textbf{Đúng.} Giá $35\\,000$ tức giảm $x = 5$, sản lượng là $100 + 10 \\cdot 5 = 150\\text{ kg/ngày}$.\nc) \\textbf{Sai.} Giá $30\\,000$ tức $x = 10$, sản lượng $200\\text{ kg}$, lợi nhuận là $200 \\cdot 6\\,000 = 1\\,200\\,000$ đồng.\nd) \\textbf{Đúng.} Lợi nhuận $L(x) = (100 + 10x)(16 - x) = -10x^2 + 60x + 1600$ (nghìn đồng) đạt GTLN tại $x = 3$ với $L(3) = 1690$ nghìn đồng $= 1\\,690\\,000$ đồng.",
+        "statements": [
+          "Nếu giữ nguyên giá bán đầu, lợi nhuận theo ngày của cửa hàng là $1\\,500\\,000$ đồng.",
+          "Nếu giá bán là $35\\,000\\text{ đồng/kg}$, khi đó cửa hàng bán được $150\\text{ kg/ngày}$.",
+          "Nếu giá bán là $30\\,000\\text{ đồng/kg}$, khi đó lợi nhuận theo ngày của cửa hàng là $1\\,300\\,000$ đồng.",
+          "Lợi nhuận tối đa theo ngày của cửa hàng là $1\\,690\\,000$ đồng."
+        ],
+        "source": "Sở Vĩnh Phúc 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 23,
+      "type": "tf4",
+      "prompt": "Một cơ sở sản xuất có thể cung cấp $1000$ sản phẩm A trong $1$ tháng. Qua khảo sát thì thấy rằng nếu sản phẩm A bán với giá $100$ nghìn đồng thì có $290$ người mua, nếu cứ giảm $10$ nghìn đồng thì lại có thêm $50$ người mua. Gọi $p$ là giá bán sản phẩm A (nghìn đồng) và $R(p)$ là hàm doanh thu trong $1$ tháng (nghìn đồng).",
+      "points": 1,
+      "sort_order": 21,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Giảm $100 - p$ nghìn đồng thì số người mua tăng thêm $\\dfrac{100 - p}{10} \\cdot 50 = 5(100 - p)$, nên số sản phẩm bán ra là $290 + 5(100 - p) = 790 - 5p$.\nb) \\textbf{Sai.} Hàm doanh thu là $R(p) = p(790 - 5p) = -5p^2 + 790p$ (nghìn đồng).\nc) \\textbf{Đúng.} $R'(p) = -10p + 790 = 0 \\Leftrightarrow p = 79$.\nd) \\textbf{Đúng.} Doanh thu lớn nhất đạt tại $p = 79$ là $R(79) = 31\\,205$ nghìn đồng $= 31\\,205\\,000$ đồng.",
+        "statements": [
+          "Số sản phẩm bán ra là $790 - 5p$.",
+          "Hàm doanh thu là $R(p) = 1000 - 790p + 5p^2$.",
+          "Phương trình $R'(p) = 0$ có nghiệm là $p = 79$.",
+          "Doanh thu lớn nhất trong $1$ tháng là $31\\,205\\,000$ đồng."
+        ],
+        "source": "THPT Chuyên Hạ Long - Quảng Ninh 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 24,
+      "type": "tf4",
+      "prompt": "Cây lúa sau khi được cấy trải qua quá trình tăng trưởng đẻ nhánh và phát triển chiều cao trước khi làm đòng, trổ bông. Qua nghiên cứu một giống lúa mới, các nhà khoa học nhận thấy một cây lúa tính từ lúc được cấy bằng một cây mạ với chiều cao $20\\text{ cm}$ có tốc độ tăng trưởng chiều cao cho bởi hàm số $v(t) = -0,1t^3 + 1,1t^2$, trong đó $t$ tính theo tuần, $v(t)$ tính bằng $\\text{cm/tuần}$. Gọi $h(t)$ là chiều cao của cây lúa ở tuần thứ $t$ ($t \\ge 0$).\n![Các giai đoạn sinh trưởng của cây lúa](/bank-images/tf4-thucte/q24.jpeg)",
+      "points": 1,
+      "sort_order": 22,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $h(t) = \\int (-0,1t^3 + 1,1t^2)\\,dt = -\\dfrac{1}{40}t^4 + \\dfrac{11}{30}t^3 + C$. Vì $h(0) = 20$ nên $C = 20$.\nb) \\textbf{Sai.} Cây lúa tăng trưởng chiều cao khi $v(t) \\ge 0 \\Leftrightarrow 0 \\le t \\le 11$, tức kéo dài $11$ tuần.\nc) \\textbf{Sai.} Chiều cao tối đa là $h(11) = -\\dfrac{11^4}{40} + \\dfrac{11^4}{30} + 20 \\approx 142,01\\text{ cm} \\neq 150\\text{ cm}$.\nd) \\textbf{Đúng.} $v'(t) = -0,3t^2 + 2,2t = 0 \\Leftrightarrow t = \\dfrac{22}{3}$ (với $t > 0$). Chiều cao tại thời điểm đó là $h\\left(\\dfrac{22}{3}\\right) \\approx 92,3\\text{ cm} > 80\\text{ cm}$.",
+        "statements": [
+          "$h(t) = -\\dfrac{1}{40}t^4 + \\dfrac{11}{30}t^3 + 20$.",
+          "Giai đoạn tăng trưởng chiều cao của cây lúa kéo dài $12$ tuần.",
+          "Chiều cao tối đa của cây lúa là $150\\text{ cm}$.",
+          "Vào thời điểm cây lúa phát triển nhanh nhất, chiều cao của cây đã lớn hơn $80\\text{ cm}$."
+        ],
+        "source": "THPT Chuyên ĐH Vinh - Nghệ An 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 25,
+      "type": "tf4",
+      "prompt": "Một ô tô đang chạy với vận tốc $80\\text{ km/h}$ thì người lái xe bất ngờ phát hiện chướng ngại vật trên đường cách đó $55\\text{ m}$. Người lái xe phản ứng một giây, sau đó đạp phanh. Kể từ thời điểm này, ô tô chuyển động chậm dần đều với vận tốc thay đổi theo hàm số $v(t) = -10t + 20\\text{ (m/s)}$, trong đó $t$ là thời gian tính bằng giây kể từ lúc đạp phanh. Gọi $s(t)$ là quãng đường xe ô tô đi được trong $t$ giây kể từ lúc đạp phanh.",
+      "points": 1,
+      "sort_order": 23,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Vì $s'(t) = v(t)$ nên $s(t)$ là một nguyên hàm của $v(t)$.\nb) \\textbf{Sai.} $s(t) = \\int (-10t + 20)\\,dt = -5t^2 + 20t + C$. Do $s(0) = 0$ nên $C = 0$, suy ra $s(t) = -5t^2 + 20t$.\nc) \\textbf{Sai.} Xe dừng hẳn khi $v(t) = 0 \\Leftrightarrow -10t + 20 = 0 \\Leftrightarrow t = 2$ giây.\nd) \\textbf{Đúng.} Trong $1$ giây phản ứng với vận tốc $80\\text{ km/h} = \\dfrac{200}{9}\\text{ m/s}$, xe đi được $s_1 = \\dfrac{200}{9} \\approx 22,22\\text{ m}$. Từ lúc đạp phanh đến lúc dừng ($t = 2\\text{ s}$), xe đi thêm $s(2) = -5 \\cdot 2^2 + 20 \\cdot 2 = 20\\text{ m}$. Tổng quãng đường xe đi được là $\\dfrac{200}{9} + 20 = \\dfrac{380}{9} \\approx 42,22\\text{ m}$, nên xe còn cách chướng ngại vật $55 - \\dfrac{380}{9} = \\dfrac{115}{9} \\approx 12,78\\text{ m} > 12\\text{ m}$.",
+        "statements": [
+          "Quãng đường $s(t)$ mà xe ô tô đi được trong $t$ giây kể từ lúc đạp phanh là một nguyên hàm của hàm số $v(t)$.",
+          "$s(t) = -5t^2 + 20t + 55$.",
+          "Thời gian kể từ lúc người lái xe đạp phanh đến khi xe ô tô dừng hẳn là $4$ giây.",
+          "Đến khi dừng hẳn, xe ô tô còn cách chướng ngại vật một khoảng lớn hơn $12\\text{ m}$."
+        ],
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 26,
+      "type": "tf4",
+      "prompt": "Khảo sát tại một công ty A cho thấy nếu chi $x$ triệu đồng để quảng cáo một loại sản phẩm thì số sản phẩm công ty A bán được là $S(x) = -2x^3 + 27x^2 + 216x + 150$ với $x \\in [0; 15]$.",
+      "points": 1,
+      "sort_order": 24,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $S'(x) = -6x^2 + 54x + 216$.\nb) \\textbf{Sai.} $S'(x) = 0 \\Leftrightarrow x = 12$ hoặc $x = -3$. Trên $[11; 12]$, $S'(x) \\ge 0$ nên $S(x)$ đạt tối đa tại $x = 12$: $S(12) = 3174$ sản phẩm (còn $S(11) = 3131$).\nc) \\textbf{Sai.} Khi $x = 0$, $S(0) = 150$ sản phẩm.\nd) \\textbf{Đúng.} Do $S'(x) > 0$ với mọi $x \\in (11; 12)$, hàm $S(x)$ đồng biến trên $[11; 12]$ nên số lượng sản phẩm bán được tăng.",
+        "statements": [
+          "$S'(x) = -6x^2 + 54x + 216$.",
+          "Nếu công ty A chi từ $11$ triệu đồng đến $12$ triệu đồng cho quảng cáo loại sản phẩm này thì số lượng sản phẩm công ty A bán được đạt tối đa bằng $3131$ sản phẩm.",
+          "Nếu không chi cho quảng cáo thì số lượng sản phẩm công ty A bán được là $391$ sản phẩm.",
+          "Nếu công ty A chi từ $11$ triệu đồng đến $12$ triệu đồng cho quảng cáo loại sản phẩm này thì số lượng sản phẩm bán được sẽ tăng."
+        ],
+        "source": "THPT Trần Nguyên Hãn - Hải Phòng 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 27,
+      "type": "tf4",
+      "prompt": "Quan sát quá trình sinh trưởng và phát triển của một giống cà chua mới trong $18$ tuần kể từ khi trồng, các kĩ sư thuộc một trung tâm giống cây trồng nhận thấy: chiều cao thân cây sau $t$ tuần kể từ khi trồng được tính xấp xỉ bởi hàm số $h(t) = 40\\log_3(2t + 1) + 12$ (đơn vị: $\\text{cm}$, $0 \\le t \\le 18$). Sau $9$ tuần kể từ khi trồng, hoa bắt đầu kết trái. Kể từ đó, đường kính trái cà chua ở tuần thứ $t$ xấp xỉ bởi hàm số $d(t) = 3^{\\frac{2t - 17}{t - 8}} - 3$ (đơn vị: $\\text{cm}$, $9 \\le t \\le 18$).",
+      "points": 1,
+      "sort_order": 25,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $h'(t) = \\dfrac{80}{(2t + 1)\\ln 3}$, tại $t = 7$ có $h'(7) = \\dfrac{80}{15\\ln 3} \\approx 4,85\\text{ cm/tuần}$.\nb) \\textbf{Đúng.} $h(4) = 40\\log_3(9) + 12 = 40 \\cdot 2 + 12 = 92\\text{ cm}$.\nc) \\textbf{Đúng.} Vì $h'(t) = \\dfrac{80}{(2t + 1)\\ln 3} > 0,\\ \\forall t \\in [0; 18]$ nên chiều cao liên tục tăng.\nd) \\textbf{Sai.} Sau $4$ tuần kể từ khi kết trái (tuần $9$) là tuần thứ $t = 13$. Đường kính khi đó là $d(13) = 3^{\\frac{26 - 17}{13 - 8}} - 3 = 3^{1,8} - 3 \\approx 4,22\\text{ cm} < 12\\text{ cm}$.",
+        "statements": [
+          "Tốc độ tăng trưởng chiều cao của thân cây cà chua ở tuần thứ $7$ (làm tròn đến hàng phần trăm) xấp xỉ bằng $4,85\\text{ (cm/tuần)}$.",
+          "Khi được $4$ tuần tuổi, chiều cao của thân cây cà chua là $92\\text{ cm}$.",
+          "Chiều cao của thân cây cà chua liên tục tăng trong suốt $18$ tuần.",
+          "Sau $4$ tuần kể từ khi kết trái, đường kính trái cà chua lớn hơn $12\\text{ cm}$."
+        ],
+        "source": "Sở Vĩnh Phúc 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 28,
+      "type": "tf4",
+      "prompt": "Một cơ sở sản xuất khăn đang bán mỗi chiếc khăn với giá $50\\,000$ đồng một chiếc và mỗi tháng cơ sở bán được trung bình $34\\,000$ chiếc khăn. Cơ sở sản xuất đang có kế hoạch tăng giá bán để có lợi nhuận tốt hơn. Sau khi tham khảo thị trường, người quản lý thấy rằng nếu từ mức giá $50\\,000$ đồng mà cứ tăng giá thêm $1\\,000$ đồng thì mỗi tháng sẽ bán ít hơn $500$ chiếc. Biết vốn sản xuất một chiếc khăn không thay đổi là $32\\,000$ đồng, gọi số tiền cần tăng giá mỗi chiếc khăn là $x$ (nghìn đồng).",
+      "points": 1,
+      "sort_order": 26,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Doanh thu khi chưa tăng giá là $34\\,000 \\cdot 50\\,000 = 1\\,700\\,000\\,000$ đồng.\nb) \\textbf{Sai.} Khi tăng giá $x$ nghìn đồng, số khăn bán ra giảm $500x$ chiếc, nên còn $34\\,000 - 500x$ chiếc.\nc) \\textbf{Sai.} Lãi mỗi chiếc sau tăng giá là $50 + x - 32 = 18 + x$ (nghìn đồng). Lợi nhuận $T(x) = (34\\,000 - 500x)(18 + x) = -500x^2 + 25\\,000x + 612\\,000$ (nghìn đồng). Ta có $T'(x) = -1000x + 25\\,000 = 0 \\Leftrightarrow x = 25$. Khi đó lãi mỗi chiếc khăn là $18 + 25 = 43$ nghìn đồng $\\neq 41$ nghìn đồng.\nd) \\textbf{Đúng.} Số khăn bán ra giảm $500 \\cdot 25 = 12\\,500$ chiếc.",
+        "statements": [
+          "Tổng doanh thu trung bình mỗi tháng cơ sở sản xuất thu được khi chưa tăng giá là $1\\,700\\,000\\,000$ đồng.",
+          "Số khăn bán ra được mỗi tháng sau khi tăng giá là $34\\,000 - 5x$ chiếc.",
+          "Để đạt lợi nhuận lớn nhất thì sau khi tăng giá mỗi chiếc khăn lãi $41$ nghìn đồng.",
+          "Để đạt lợi nhuận lớn nhất thì số khăn bán ra giảm $12\\,500$ chiếc."
+        ],
+        "source": "Cụm trường THPT Hưng Yên 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 29,
+      "type": "tf4",
+      "prompt": "Ông An có một mảnh đất hình vuông $ABCD$ có cạnh $AB = 12\\text{ m}$. Ông làm một hồ bơi dạng hình thang cong (phần tô đậm) và một lối đi là đoạn thẳng $HB$. Nếu đặt hệ trục tọa độ có gốc tại $A$ như hình vẽ, độ dài đơn vị là $1\\text{ m}$, thì đường cong $EFIG$ là một phần đồ thị của một hàm số bậc ba $y = f(x)$ có $F$ là điểm cực tiểu và $I$ là điểm cực đại. Biết $CH = DE = GB = 3\\text{ m}$ và các điểm $F, I$ cách cạnh $AD$ lần lượt là $2\\text{ m}$ và $6\\text{ m}$.\n![Mô hình mảnh đất và hồ bơi](/bank-images/tf4-thucte/q29.jpeg)",
+      "points": 1,
+      "sort_order": 27,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có tọa độ các điểm $B(12; 0)$, $H(9; 12)$, $E(0; 9)$, $G(9; 0)$.\na) \\textbf{Đúng.} Đường thẳng $HB$ đi qua $H(9; 12)$ và $B(12; 0)$ có hệ số góc $k = -4$, phương trình $y = -4(x - 12) = -4x + 48$.\nb) \\textbf{Sai.} Các điểm cực trị có hoành độ $x_F = 2$ và $x_I = 6$, nên $f'(x) = a(x - 2)(x - 6)$ (không phải $(x + 2)(x + 6)$).\nc) \\textbf{Sai.} Từ $f'(x) = a(x^2 - 8x + 12)$ suy ra $f(x) = a\\left(\\dfrac{x^3}{3} - 4x^2 + 12x\\right) + 9$ (do $f(0) = 9$). Vì $f(9) = 0 \\Rightarrow 27a + 9 = 0 \\Rightarrow a = -\\dfrac{1}{3}$. Tiếp tuyến song song $HB$ khi $f'(x) = -4 \\Leftrightarrow -\\dfrac{1}{3}(x^2 - 8x + 12) = -4 \\Leftrightarrow x^2 - 8x = 0 \\Leftrightarrow x = 0$ hoặc $x = 8$ (không phải $x = 7$).\nd) \\textbf{Đúng.} Tại $x = 8$, $f(8) = \\dfrac{49}{9}$. Khoảng cách từ $M\\left(8; \\dfrac{49}{9}\\right)$ đến đường thẳng $4x + y - 48 = 0$ là $d = \\dfrac{\\left|32 + \\frac{49}{9} - 48\\right|}{\\sqrt{17}} = \\dfrac{95}{9\\sqrt{17}} \\approx 2,56\\text{ m}$.",
+        "statements": [
+          "Phương trình của đường thẳng $HB$ là $y = -4x + 48$.",
+          "Tồn tại $a \\in \\mathbb{R}$ sao cho $f'(x) = a(x + 2)(x + 6)$.",
+          "Tiếp tuyến của đồ thị hàm số $y = f(x)$ tại điểm có hoành độ bằng $7$ song song với đường thẳng $HB$.",
+          "Ông An cần đặt một cái thang lên xuống hồ bơi tại một điểm trên đường cong $EFIG$ sao cho khoảng cách từ điểm đặt thang đến lối đi là ngắn nhất, khoảng cách đó bằng $2,56\\text{ m}$ (kết quả làm tròn đến hàng phần trăm)."
+        ],
+        "source": "Sở Thừa Thiên Huế 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 30,
+      "type": "tf4",
+      "prompt": "Vận tốc $v_1\\text{ (cm/s)}$ của con lắc thứ nhất và vận tốc $v_2\\text{ (cm/s)}$ của con lắc thứ hai theo thời gian $t$ (giây) được cho bởi công thức $v_1(t) = 2\\cos\\left(t - \\dfrac{\\pi}{3}\\right)$ và $v_2(t) = 4\\cos\\left(3t + \\dfrac{\\pi}{6}\\right)$.",
+      "points": 1,
+      "sort_order": 28,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $v_1(0) = 2\\cos\\left(-\\dfrac{\\pi}{3}\\right) = 1\\text{ cm/s}$.\nb) \\textbf{Đúng.} Vì $\\cos\\left(3t + \\dfrac{\\pi}{6}\\right) \\le 1$ nên $\\max v_2(t) = 4\\text{ cm/s}$.\nc) \\textbf{Sai.} Tại $t = \\dfrac{\\pi}{4}$: $v_1\\left(\\dfrac{\\pi}{4}\\right) = 2\\cos\\left(-\\dfrac{\\pi}{12}\\right) = \\dfrac{\\sqrt{6} + \\sqrt{2}}{2}$, còn $v_2\\left(\\dfrac{\\pi}{4}\\right) = 4\\cos\\left(\\dfrac{11\\pi}{12}\\right) = -\\sqrt{6} - \\sqrt{2} = -2v_1\\left(\\dfrac{\\pi}{4}\\right)$ (trái dấu).\nd) \\textbf{Đúng.} $v_1(t) = 2 \\Leftrightarrow t - \\dfrac{\\pi}{3} = k2\\pi \\Leftrightarrow t = \\dfrac{\\pi}{3} + k2\\pi$. Với $0 \\le t \\le 10$, ta được $k \\in \\{0; 1\\}$ ứng với $t = \\dfrac{\\pi}{3} \\approx 1,05\\text{ s}$ và $t = \\dfrac{7\\pi}{3} \\approx 7,33\\text{ s}$ (đúng $2$ lần).",
+        "statements": [
+          "Tại thời điểm ban đầu, vận tốc con lắc thứ nhất bằng $1\\text{ cm/s}$.",
+          "Vận tốc lớn nhất của con lắc thứ hai bằng $4\\text{ cm/s}$.",
+          "Tại thời điểm $t = \\dfrac{\\pi}{4}$, vận tốc của con lắc thứ hai gấp hai lần vận tốc của con lắc thứ nhất.",
+          "Trong thời gian $10$ giây đầu tiên, con lắc thứ nhất đạt vận tốc lớn nhất hai lần."
+        ],
+        "source": "THPT Chuyên Hoàng Văn Thụ - Hòa Bình 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 31,
+      "type": "tf4",
+      "prompt": "Xét một chất điểm $M$ chuyển động trên đường nằm ngang chọn $O$ làm gốc, chiều dương từ trái sang phải. Tọa độ của $M$ được cho bởi công thức $S(t) = t^3 - 3t^2 - 1$, với $t$ (giây), $t \\ge 0$ là khoảng thời gian tính từ lúc chất điểm bắt đầu chuyển động. Gọi $OM$ là khoảng cách từ $M$ đến $O$ tính bằng mét.",
+      "points": 1,
+      "sort_order": 29,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Tại $t = 0$, $S(0) = -1$ nên khoảng cách $OM = |S(0)| = 1\\text{ m}$.\nb) \\textbf{Sai.} Vận tốc là $v(t) = S'(t) = 3t^2 - 6t\\text{ (m/s)}$.\nc) \\textbf{Đúng.} Với $t \\in (0; 2)$, $v(t) = 3t(t - 2) < 0$ nên chất điểm chuyển động theo chiều âm (từ phải sang trái).\nd) \\textbf{Đúng.} Trên $[0; 3]$: $S(0) = -1$, $S(2) = -5$, $S(3) = -1$. Do đó $\\max_{[0; 3]} OM = \\max_{[0; 3]} |S(t)| = 5\\text{ m}$ (đạt tại $t = 2\\text{ s}$).",
+        "statements": [
+          "Tại thời điểm $t = 0$ thì $OM = 1\\text{ m}$.",
+          "Chất điểm chuyển động với vận tốc được xác định bởi biểu thức $v = 3t^2 - 6t + 1\\text{ (m/s)}$.",
+          "Trong khoảng thời gian $2$ giây đầu tiên kể từ lúc bắt đầu chuyển động, chất điểm chuyển động sang trái.",
+          "Đến giây thứ $3$ kể từ lúc bắt đầu chuyển động, khoảng cách lớn nhất của $OM$ là $5\\text{ m}$."
+        ],
+        "source": "THPT Sào Nam - Quảng Nam 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 32,
+      "type": "tf4",
+      "prompt": "Một chiếc đèn được đặt trên đỉnh của một cột đèn cao $h\\text{ (m)}$ để chiếu sáng một vòng xuyến giao thông đông đúc có bán kính $12\\text{ m}$. Cường độ ánh sáng $I$ tại một điểm $P$ trên vòng xuyến tỉ lệ thuận với côsin của góc $\\theta$ và tỉ lệ nghịch với bình phương khoảng cách $d\\text{ (m)}$ từ nguồn sáng đến điểm $P$ (xem hình dưới đây).\n![Sơ đồ cột đèn chiếu sáng vòng xuyến](/bank-images/tf4-thucte/q32.png)",
+      "points": 1,
+      "sort_order": 30,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $d = \\sqrt{h^2 + 12^2} = \\sqrt{h^2 + 144}$ và $\\cos\\theta = \\dfrac{h}{d} = \\dfrac{h}{\\sqrt{h^2 + 144}}$.\na) \\textbf{Sai.} $f(h) = k\\dfrac{h}{(h^2 + 144)^{3/2}}$, suy ra $f'(h) = k\\dfrac{(h^2 + 144) - 3h^2}{(h^2 + 144)^{5/2}} = k\\dfrac{144 - 2h^2}{(h^2 + 144)^2\\sqrt{h^2 + 144}}$ (mệnh đề sai tử số).\nb) \\textbf{Đúng.} $f'(h) = 0 \\Leftrightarrow 144 - 2h^2 = 0 \\Leftrightarrow h = 6\\sqrt{2}\\text{ m}$ (do $h > 0$). Lập bảng biến thiên thấy $I$ lớn nhất tại $h = 6\\sqrt{2}\\text{ m}$.\nc) \\textbf{Sai.} $\\cos\\theta = \\dfrac{h}{\\sqrt{h^2 + 144}}$ (không phải $\\dfrac{12}{\\sqrt{h^2 + 144}}$).\nd) \\textbf{Đúng.} Theo định nghĩa tỉ lệ thuận với $\\cos\\theta$ và tỉ lệ nghịch với $d^2$, ta có $I = k\\dfrac{\\cos\\theta}{d^2}$ ($k > 0$).",
+        "statements": [
+          "Nếu $I = f(h)$ thì $f'(h) = k\\dfrac{144 - h^2}{(h^2 + 144)^2\\sqrt{h^2 + 144}}$.",
+          "Để cường độ ánh sáng $I$ lớn nhất thì cột đèn phải cao $6\\sqrt{2}\\text{ m}$.",
+          "$\\cos\\theta = \\dfrac{12}{\\sqrt{h^2 + 144}}$.",
+          "$I = k\\dfrac{\\cos\\theta}{d^2}$ (với $k$ là hằng số dương)."
+        ],
+        "source": "Sở Ninh Bình 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 33,
+      "type": "tf4",
+      "prompt": "Sau khi phát hiện một bệnh dịch, các chuyên gia y tế ước tính số người nhiễm bệnh kể từ ngày xuất hiện bệnh nhân đầu tiên đến ngày thứ $t$ là $f(t) = 45t^2 - t^3$ với $t \\ge 0$. Nếu coi $y = f(t)$ là hàm số xác định trên $[0; +\\infty)$ thì $f'(t)$ được xem là tốc độ truyền bệnh (người/ngày) tại thời điểm $t$.",
+      "points": 1,
+      "sort_order": 31,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $f'(t) = 90t - 3t^2$.\nb) \\textbf{Sai.} $f(13) = 45 \\cdot 13^2 - 13^3 = 7605 - 2197 = 5408 \\neq 4752$.\nc) \\textbf{Đúng.} $f(45) = 45 \\cdot 45^2 - 45^3 = 0$, tức đến ngày thứ $45$ không còn người nhiễm bệnh.\nd) \\textbf{Sai.} $f'(t) = 0 \\Leftrightarrow t = 0$ hoặc $t = 30$. Số người nhiễm chỉ tăng trong $30$ ngày đầu và giảm từ ngày thứ $30$ trở đi.",
+        "statements": [
+          "Tốc độ truyền bệnh tại thời điểm $t$ là $f'(t) = 90t - 3t^2$.",
+          "Số người bị nhiễm bệnh từ ngày xuất hiện bệnh nhân đầu tiên đến ngày thứ $13$ là $4752$.",
+          "Đến ngày thứ $45$ thì không còn người nhiễm bệnh.",
+          "Trong $35$ ngày đầu tiên thì số người nhiễm bệnh luôn tăng."
+        ],
+        "source": "Sở Thái Nguyên 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 34,
+      "type": "tf4",
+      "prompt": "Một sợi dây kim loại dài $6\\text{ (cm)}$. Người ta cắt sợi dây đó thành hai đoạn. Đoạn có độ dài $x\\text{ (cm)}$ được uốn thành đường tròn và đoạn còn lại được uốn thành hình vuông ($0 < x < 6$).\n![Cắt sợi dây uốn thành hình vuông và hình tròn](/bank-images/tf4-thucte/q34.png)",
+      "points": 1,
+      "sort_order": 32,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Chu vi đường tròn $2\\pi r = x \\Rightarrow r = \\dfrac{x}{2\\pi}$.\nb) \\textbf{Đúng.} Cạnh hình vuông là $\\dfrac{6 - x}{4}$, nên diện tích là $\\left(\\dfrac{6 - x}{4}\\right)^2$.\nc) \\textbf{Đúng.} Tổng diện tích $S(x) = \\pi\\left(\\dfrac{x}{2\\pi}\\right)^2 + \\left(\\dfrac{6 - x}{4}\\right)^2 = \\dfrac{x^2}{4\\pi} + \\dfrac{36 - 12x + x^2}{16} = \\dfrac{(\\pi + 4)x^2 - 12\\pi x + 36\\pi}{16\\pi}$.\nd) \\textbf{Sai.} $S'(x) = \\dfrac{2(\\pi + 4)x - 12\\pi}{16\\pi} = 0 \\Leftrightarrow x = \\dfrac{6\\pi}{\\pi + 4} \\neq \\dfrac{6\\pi}{\\pi + 2}$.",
+        "statements": [
+          "Bán kính đường tròn là $r = \\dfrac{x}{\\pi}$.",
+          "Diện tích hình vuông là $\\left(\\dfrac{6 - x}{4}\\right)^2$.",
+          "Tổng diện tích hai hình là $\\dfrac{(\\pi + 4)x^2 - 12\\pi x + 36\\pi}{16\\pi}$.",
+          "Khi $x = \\dfrac{6\\pi}{\\pi + 2}$ thì hình vuông và hình tròn tương ứng có tổng diện tích nhỏ nhất."
+        ],
+        "source": "Sở Quảng Bình 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 35,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x) = ax^3 + bx^2 + cx + d$ có đồ thị như hình vẽ:\n![Đồ thị hàm bậc ba](/bank-images/tf4-thucte/q35.png)",
+      "points": 1,
+      "sort_order": 33,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Đồ thị đi qua gốc tọa độ $O(0; 0)$ nên $d = f(0) = 0$.\nb) \\textbf{Đúng.} Nhánh cuối cùng bên phải đi lên ($\\lim_{x \\to +\\infty} y = +\\infty$) nên $a > 0$.\nc) \\textbf{Sai.} Đồ thị đi qua $O(0; 0)$ chứ không đi qua $E(0; 2)$.\nd) \\textbf{Sai.} Đồ thị có hai điểm cực trị $(0; 0)$ và $(2; -4)$ nên $f(x) = x^3 - 3x^2$. Lợi nhuận $L(x) = 200x - C(x) = -x^3 + 3x^2 + 220x - 500$ với $x \\in [0; 18]$. Ta có $L'(x) = -3x^2 + 6x + 220 = 0 \\Leftrightarrow x = \\dfrac{3 + \\sqrt{669}}{3} \\approx 9,62 \\in [0; 18]$. Lợi nhuận tối đa là $L\\left(\\dfrac{3 + \\sqrt{669}}{3}\\right) \\approx 1003,8$ nghìn đồng (nếu tính $x$ nguyên thì $L(10) = 1000$ nghìn đồng), đều khác $1100$ nghìn đồng.",
+        "statements": [
+          "Hàm số có hệ số $d > 0$.",
+          "Hàm số có hệ số $a > 0$.",
+          "Đồ thị hàm số đã cho đi qua điểm $E(0; 2)$.",
+          "Một hộ làm nghề dệt vải lụa tơ tằm sản xuất mỗi ngày được $x$ mét vải lụa ($0 \\le x \\le 18$). Tổng chi phí sản xuất $x$ mét vải lụa, tính bằng nghìn đồng, cho bởi hàm chi phí $C(x) = f(x) - 20x + 500$. Giả sử hộ làm nghề dệt này bán hết sản phẩm mỗi ngày với giá $200$ nghìn đồng/mét. Lợi nhuận tối đa của hộ làm nghề dệt vải lụa tơ tằm trong một ngày là $1100$ nghìn đồng."
+        ],
+        "source": "Sở Bạc Liêu 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 36,
+      "type": "tf4",
+      "prompt": "Số giờ có ánh sáng mặt trời của thành phố A ở vĩ độ $40^\\circ$ Bắc trong ngày thứ $t$ của một năm không nhuận được cho bởi hàm số $d(t) = 3\\sin\\left[\\dfrac{\\pi}{182}(t - 80)\\right] + 12$ với $t \\in \\mathbb{N}$ và $0 < t \\le 365$.",
+      "points": 1,
+      "sort_order": 34,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} $d(80) = 3\\sin 0 + 12 = 12$ giờ ánh sáng.\nb) \\textbf{Đúng.} $d'(t) = \\dfrac{3\\pi}{182}\\cos\\left[\\dfrac{\\pi}{182}(t - 80)\\right]$.\nc) \\textbf{Đúng.} $d'(t) = 0 \\Leftrightarrow \\dfrac{\\pi}{182}(t - 80) = \\dfrac{\\pi}{2} + k\\pi \\Leftrightarrow t = 171 + 182k$. Trên $[1; 171]$ có duy nhất nghiệm $t = 171$.\nd) \\textbf{Sai.} $d(t)$ đạt GTLN bằng $15$ giờ khi $\\sin\\left[\\dfrac{\\pi}{182}(t - 80)\\right] = 1 \\Leftrightarrow t = 171$ (không phải ngày thứ $160$).",
+        "statements": [
+          "Ngày thứ $80$ trong năm có đúng $10$ giờ ánh sáng mặt trời.",
+          "Đạo hàm của hàm số đã cho là $d'(t) = \\dfrac{3\\pi}{182}\\cos\\left[\\dfrac{\\pi}{182}(t - 80)\\right]$.",
+          "Nghiệm của phương trình $d'(t) = 0$ trên đoạn $[1; 171]$ là $t = 171$.",
+          "Ngày thứ $160$ có số giờ ánh sáng lớn nhất trong năm."
+        ],
+        "source": "THPT Lê Thánh Tông - Nguyễn Khuyến 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 37,
+      "type": "tf4",
+      "prompt": "Cây đậu Hà Lan khi trồng có chiều cao $3\\text{ cm}$. Gọi $h(t)$ là độ cao tính bằng centimét của cây đậu Hà Lan tại thời điểm $t$ kể từ khi được trồng, với $t$ tính theo tuần. Khảo sát cho thấy tốc độ tăng chiều cao của cây đậu Hà Lan sau khi trồng là $h'(t) = -0,02t^3 + 0,3t^2\\text{ (cm/tuần)}$.",
+      "points": 1,
+      "sort_order": 35,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} $h(t) = \\int (-0,02t^3 + 0,3t^2)\\,dt = -0,005t^4 + 0,1t^3 + C$. Vì $h(0) = 3$ nên $h(t) = -0,005t^4 + 0,1t^3 + 3$.\nb) \\textbf{Đúng.} Cây tăng trưởng khi $h'(t) \\ge 0 \\Leftrightarrow 0 \\le t \\le 15$, tức kéo dài $15$ tuần.\nc) \\textbf{Sai.} Chiều cao tối đa là $h(15) = -0,005 \\cdot 15^4 + 0,1 \\cdot 15^3 + 3 = 87,375\\text{ cm} \\neq 88\\text{ cm}$.\nd) \\textbf{Đúng.} Tốc độ phát triển $v(t) = h'(t)$ đạt cực đại khi $h''(t) = -0,06t^2 + 0,6t = 0 \\Leftrightarrow t = 10$ tuần. Khi đó chiều cao của cây là $h(10) = -0,005 \\cdot 10^4 + 0,1 \\cdot 10^3 + 3 = -50 + 100 + 3 = 53\\text{ cm}$.",
+        "statements": [
+          "Hàm số $h(t)$ có công thức là $h(t) = -0,005t^4 + 0,1t^3$.",
+          "Giai đoạn tăng trưởng của cây đậu Hà Lan đó kéo dài $15$ tuần.",
+          "Chiều cao tối đa của cây đậu Hà Lan đó là $88\\text{ cm}$.",
+          "Vào thời điểm cây đậu Hà Lan phát triển nhanh nhất thì chiều cao của cây là $53\\text{ cm}$."
+        ],
+        "source": "THPT Chuyên Phan Bội Châu - Hà Tĩnh 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 38,
+      "type": "tf4",
+      "prompt": "Cây cà chua khi trồng có chiều cao $5\\text{ cm}$. Tốc độ tăng trưởng chiều cao của cây cà chua sau khi trồng được cho bởi hàm số $v(t) = -0,1t^3 + t^2$, trong đó $t$ tính theo tuần, $v(t)$ tính bằng $\\text{cm/tuần}$. Gọi $h(t)$ (tính bằng $\\text{cm}$) là chiều cao của cây cà chua ở tuần thứ $t$ ($t \\ge 0$).",
+      "points": 1,
+      "sort_order": 36,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} $h(t) = \\int (-0,1t^3 + t^2)\\,dt = -\\dfrac{1}{40}t^4 + \\dfrac{1}{3}t^3 + C$. Vì $h(0) = 5$ nên $h(t) = -\\dfrac{1}{40}t^4 + \\dfrac{1}{3}t^3 + 5$.\nb) \\textbf{Đúng.} $v(t) \\ge 0 \\Leftrightarrow 0 \\le t \\le 10$, nên giai đoạn tăng trưởng kéo dài $10$ tuần.\nc) \\textbf{Đúng.} $h(6) = -\\dfrac{6^4}{40} + \\dfrac{6^3}{3} + 5 = -32,4 + 72 + 5 = 44,6\\text{ cm} > 40\\text{ cm}$.\nd) \\textbf{Đúng.} Chiều cao tối đa là $h(10) = -250 + \\dfrac{1000}{3} + 5 \\approx 88,33\\text{ cm} < 90\\text{ cm}$.",
+        "statements": [
+          "$h(t) = -\\dfrac{1}{40}t^4 + \\dfrac{1}{3}t^3$.",
+          "Giai đoạn tăng trưởng chiều cao của cây cà chua kéo dài $10$ tuần.",
+          "Chiều cao của cây cà chua ở tuần thứ $6$ lớn hơn $40\\text{ cm}$.",
+          "Chiều cao tối đa của cây cà chua không vượt quá $90\\text{ cm}$."
+        ],
+        "source": "Sở Hòa Bình 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 40,
+      "type": "tf4",
+      "prompt": "Khi loại thuốc A được tiêm vào bệnh nhân, nồng độ ($\\text{mg/l}$) của thuốc trong máu sau $x$ phút (kể từ khi bắt đầu tiêm, $x \\ge 0$) được xác định bởi công thức $C(x) = \\dfrac{30x}{x^2 + 2}$.",
+      "points": 1,
+      "sort_order": 37,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $C(1) = \\dfrac{30 \\cdot 1}{1^2 + 2} = 10\\text{ mg/l}$.\nb) \\textbf{Đúng.} $C'(x) = \\dfrac{30(x^2 + 2) - 30x \\cdot 2x}{(x^2 + 2)^2} = \\dfrac{60 - 30x^2}{(x^2 + 2)^2}$.\nc) \\textbf{Sai.} $C'(x) = 0 \\Leftrightarrow x = \\sqrt{2} \\approx 1,41$ (vì $x \\ge 0$). Nồng độ tiếp tục tăng trên $(1; \\sqrt{2})$ rồi mới giảm trên $(\\sqrt{2}; +\\infty)$.\nd) \\textbf{Sai.} Nồng độ thuốc đạt giá trị lớn nhất tại $x = \\sqrt{2} \\approx 1,41$ phút (không phải $2$ phút).",
+        "statements": [
+          "Thời điểm $1$ phút sau khi tiêm, nồng độ thuốc trong máu là $10\\text{ (mg/l)}$.",
+          "Đạo hàm của hàm số $C(x)$ là $C'(x) = \\dfrac{60 - 30x^2}{(x^2 + 2)^2}$.",
+          "Trong khoảng thời gian từ $1$ phút sau khi tiêm trở đi, nồng độ thuốc trong máu giảm dần.",
+          "Nồng độ thuốc trong máu đạt giá trị lớn nhất tại thời điểm $2$ phút sau khi tiêm."
+        ],
+        "source": "Sở Lào Cai 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 41,
+      "type": "tf4",
+      "prompt": "Nhà ông A cần làm một bể chứa nước có dạng khối hộp chữ nhật không nắp, có đáy là hình chữ nhật và chiều dài gấp ba lần chiều rộng, khối hộp tương ứng có thể tích bằng $1152\\text{ dm}^3$. Giả sử bề dày của thành bể và đáy bể là không đáng kể. Giá thuê công nhân để làm bể là $400\\,000\\text{ đồng/m}^2$. Gọi $x$ là chiều rộng của đáy bể ($x > 0$, đơn vị là $\\text{dm}$).",
+      "points": 1,
+      "sort_order": 38,
+      "choices": [],
+      "settings": {
+        "explanation": "Đáy có chiều rộng $x$, chiều dài $3x$ nên diện tích đáy $S_{\\text{đáy}} = 3x^2$.\na) \\textbf{Đúng.} $V = 3x^2 h = 1152 \\Rightarrow h = \\dfrac{384}{x^2}\\text{ (dm)}$.\nb) \\textbf{Đúng.} $S_{xq} = 2(x + 3x)h = 8xh = \\dfrac{3072}{x}\\text{ (dm}^2)$.\nc) \\textbf{Sai.} Bể không nắp nên tổng diện tích là $S(x) = S_{xq} + S_{\\text{đáy}} = \\dfrac{3072}{x} + 3x^2\\text{ (dm}^2)$ (không phải $+6x^2$).\nd) \\textbf{Sai.} $S'(x) = -\\dfrac{3072}{x^2} + 6x = 0 \\Leftrightarrow x^3 = 512 \\Leftrightarrow x = 8\\text{ dm}$. Khi đó $S_{\\min} = \\dfrac{3072}{8} + 3 \\cdot 8^2 = 576\\text{ dm}^2 = 5,76\\text{ m}^2$. Chi phí thấp nhất là $5,76 \\cdot 400\\,000 = 2\\,304\\,000$ đồng.",
+        "statements": [
+          "Chiều cao của bể nước là $\\dfrac{384}{x^2}\\text{ (dm)}$.",
+          "Diện tích xung quanh của bể chứa nước là $\\dfrac{3072}{x}\\text{ (dm}^2)$.",
+          "Tổng diện tích cần làm của bể chứa nước là $\\dfrac{3072}{x} + 6x^2\\text{ (dm}^2)$.",
+          "Chi phí thấp nhất mà ông A trả cho công nhân làm bể nước theo yêu cầu là $3\\,072\\,000$ đồng."
+        ],
+        "source": "Sở Quảng Nam 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 42,
+      "type": "tf4",
+      "prompt": "Một chất điểm chuyển động theo phương trình $s(t) = t^3 - 3t^2 + 6t + 4$, trong đó $0 \\le t \\le 10$, $t$ tính bằng giây và $s(t)$ tính bằng mét.",
+      "points": 1,
+      "sort_order": 39,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $v(t) = s'(t) = 3t^2 - 6t + 6 = 3(t - 1)^2 + 3 > 0,\\ \\forall t$, và $a(t) = v'(t) = 6t - 6$.\na) \\textbf{Đúng.} Do $v(t) > 0$ nên quãng đường trong $2\\text{ s}$ đầu là $s(2) - s(0) = 12 - 4 = 8\\text{ m}$.\nb) \\textbf{Đúng.} $v(3) = 3 \\cdot 3^2 - 6 \\cdot 3 + 6 = 15\\text{ m/s}$.\nc) \\textbf{Đúng.} $s(t) = 22 \\Leftrightarrow t^3 - 3t^2 + 6t - 18 = 0 \\Leftrightarrow (t - 3)(t^2 + 6) = 0 \\Leftrightarrow t = 3\\text{ s}$. Khi đó $a(3) = 6 \\cdot 3 - 6 = 12\\text{ m/s}^2$.\nd) \\textbf{Sai.} $v(t) = 3(t - 1)^2 + 3$ đạt GTNN bằng $3\\text{ m/s}$ tại $t = 1\\text{ s}$ (không phải $t = 2\\text{ s}$).",
+        "statements": [
+          "Quãng đường chất điểm chuyển động trong $2\\text{ (s)}$ đầu tiên là $8\\text{ (m)}$.",
+          "Vận tốc tức thời của chất điểm tại thời điểm $t = 3\\text{ (s)}$ là $15\\text{ (m/s)}$.",
+          "Tại thời điểm mà $s(t) = 22\\text{ (m)}$ thì gia tốc tức thời của chất điểm là $12\\text{ (m/s}^2)$.",
+          "Tại thời điểm $t = 2\\text{ (s)}$, vận tốc tức thời của chất điểm đạt giá trị nhỏ nhất."
+        ],
+        "source": "Sở Thái Nguyên 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 43,
+      "type": "tf4",
+      "prompt": "Nhân dịp Tết Trung thu, bác Oanh làm các đèn lồng cho con. Mỗi đèn bác dùng một sợi dây đồng dài $24\\text{ dm}$ cắt thành $3$ đoạn để uốn làm khung đèn. Đoạn thứ nhất bác uốn thành hình vuông $ABCD$ có cạnh bằng $x\\text{ (dm)}$ để làm đáy, hai đoạn còn lại có độ dài bằng nhau uốn thành các đường gấp khúc $ASC$ và $BSD$. Khung đèn sau khi hoàn thiện có hình dạng là một hình chóp tứ giác đều $S.ABCD$ và mặt ngoài của đèn được dán giấy màu để trang trí (xem các mối nối, dán là không đáng kể).",
+      "points": 1,
+      "sort_order": 40,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Tổng độ dài dây gồm $4$ cạnh đáy và $4$ cạnh bên: $4x + 4SA = 24 \\Rightarrow SA = 6 - x\\text{ (dm)}$.\nb) \\textbf{Đúng.} Khi $x = 2$ thì $SA = 4$, $AO = \\dfrac{x\\sqrt{2}}{2} = \\sqrt{2}$, nên đường cao $SO = \\sqrt{SA^2 - AO^2} = \\sqrt{16 - 2} = \\sqrt{14}\\text{ dm}$.\nc) \\textbf{Đúng.} Tất cả các cạnh bằng nhau khi $x = 6 - x \\Leftrightarrow x = 3\\text{ dm}$. Diện tích toàn phần là $S = x^2 + 4 \\cdot \\dfrac{x^2\\sqrt{3}}{4} = 9(1 + \\sqrt{3})\\text{ dm}^2$.\nd) \\textbf{Đúng.} Điều kiện $SA > AO \\Leftrightarrow 6 - x > \\dfrac{x\\sqrt{2}}{2} \\Leftrightarrow 0 < x < 12 - 6\\sqrt{2}$. Đường cao $SO = \\sqrt{(6 - x)^2 - \\dfrac{x^2}{2}} = \\sqrt{\\dfrac{1}{2}x^2 - 12x + 36}$. Thể tích $V = \\dfrac{1}{3}x^2\\sqrt{\\dfrac{1}{2}x^2 - 12x + 36}$. Xét $g(x) = \\dfrac{1}{2}x^6 - 12x^5 + 36x^4$, có $g'(x) = 3x^3(x^2 - 20x + 48) = 0 \\Leftrightarrow x = 10 - 2\\sqrt{13} \\approx 2,79\\text{ dm}$ (do $10 + 2\\sqrt{13}$ bị loại).",
+        "statements": [
+          "Độ dài cạnh bên của khung đèn bằng $6 - x\\text{ (dm)}$.",
+          "Khi $x = 2\\text{ (dm)}$ thì độ dài đường cao của khung đèn là $\\sqrt{14}\\text{ (dm)}$.",
+          "Khi tất cả các cạnh bằng nhau thì diện tích giấy màu cần dùng là $9(1 + \\sqrt{3})\\text{ (dm}^2)$.",
+          "Thể tích phần không gian của đèn lồng lớn nhất khi $x = 2,79\\text{ dm}$ (kết quả làm tròn đến hàng phần trăm)."
+        ],
+        "source": "Liên trường THPT Nghệ An 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 44,
+      "type": "tf4",
+      "prompt": "Một tấm nhôm hình vuông $ABCD$ có cạnh bằng $30\\text{ cm}$. Người ta gập tấm nhôm theo hai cạnh $EF$ và $GH$ cho đến khi $AD$ và $BC$ trùng nhau như hình vẽ bên để được một hình lăng trụ khuyết hai đáy.\n![Gập tấm nhôm thành lăng trụ tam giác](/bank-images/tf4-thucte/q44.jpeg)",
+      "points": 1,
+      "sort_order": 41,
+      "choices": [],
+      "settings": {
+        "explanation": "Tam giác đáy $AEG$ có ba cạnh $AE = x$, $AG = x$, $EG = 30 - 2x$ (điều kiện $7,5 < x < 15$).\na) \\textbf{Đúng.} Chiều cao lăng trụ là $h = 30\\text{ cm}$ nên $V = 30S$.\nb) \\textbf{Đúng.} Nửa chu vi tam giác $AEG$ là $p = 15$, theo công thức Hê-rông $S = \\sqrt{15(15 - x)^2(2x - 15)}$. Xét $g(x) = (15 - x)^2(2x - 15)$ trên $(7,5; 15)$: $g'(x) = 6(15 - x)(10 - x) = 0 \\Leftrightarrow x = 10\\text{ cm}$, tại đó $S$ và $V$ đạt GTLN.\nc) \\textbf{Sai.} Diện tích đúng là $S = \\sqrt{15} \\cdot \\sqrt{(15 - x)^2(2x - 15)}$ (không phải $\\sqrt{30}$).\nd) \\textbf{Sai.} Tại $x = 10\\text{ cm}$, đáy là tam giác đều cạnh $10\\text{ cm}$ có $S = 25\\sqrt{3}\\text{ cm}^2$, nên $V_{\\max} = 30 \\cdot 25\\sqrt{3} = 750\\sqrt{3} \\approx 1299\\text{ cm}^3 \\neq 1250\\text{ cm}^3$.",
+        "statements": [
+          "Thể tích khối lăng trụ được tính bằng công thức $V = 30S$, trong đó $S$ là diện tích của tam giác $AEG$.",
+          "Giá trị của $x$ để thể tích khối lăng trụ lớn nhất là $x = 10\\text{ (cm)}$.",
+          "Diện tích của tam giác $AEG$ bằng $\\sqrt{30} \\cdot \\sqrt{(15 - x)^2(2x - 15)}$.",
+          "Thể tích khối lăng trụ lớn nhất bằng $1250\\text{ cm}^3$."
+        ],
+        "source": "THPT Tư Nghĩa 1 - Quảng Ngãi 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 45,
+      "type": "tf4",
+      "prompt": "Một khu du lịch sinh thái đang khai thác dịch vụ chèo thuyền và ngắm cảnh ven hồ. Hồ nước có dạng hình tròn tâm $O$, bán kính bằng $1\\text{ km}$ và tại hai vị trí $A, B$ đối xứng nhau qua $O$ người ta xây dựng nơi bán vé vào và nơi kết thúc tham quan. Du khách sẽ sử dụng dịch vụ chèo thuyền từ vị trí $A$ đến vị trí $C$ trên bờ hồ và có xe chở ngắm cảnh từ vị trí $C$ men theo bờ hồ đến nơi kết thúc $B$. Biết rằng vận tốc chèo thuyền là $100\\text{ m/phút}$ và vận tốc xe chạy ngắm cảnh là $200\\text{ m/phút}$. Gọi $x\\text{ (radian)}$ là số đo góc $\\widehat{CAB}$ $\\left(0 \\le x < \\dfrac{\\pi}{2}\\right)$.\n![Hồ nước hình tròn tâm O đường kính AB](/bank-images/tf4-thucte/q45.jpeg)",
+      "points": 1,
+      "sort_order": 42,
+      "choices": [],
+      "settings": {
+        "explanation": "Đường kính $AB = 2\\text{ km} = 2000\\text{ m}$, bán kính $R = 1000\\text{ m}$. Tam giác $ACB$ vuông tại $C$ nên $AC = AB\\cos x = 2000\\cos x\\text{ (m)}$.\na) \\textbf{Đúng.} Khi $x = 0$ ($C \\equiv B$), du khách chèo thẳng $2000\\text{ m}$ hết $\\dfrac{2000}{100} = 20$ phút.\nb) \\textbf{Sai.} Góc nội tiếp $\\widehat{CAB} = x$ chắn cung $CB$ nên góc ở tâm $\\widehat{COB} = 2x$. Độ dài cung $CB$ là $R \\cdot 2x = 2000x\\text{ (m)}$ (không phải $1000x$).\nc) \\textbf{Sai.} Tổng thời gian là $T(x) = \\dfrac{2000\\cos x}{100} + \\dfrac{2000x}{200} = 20\\cos x + 10x$ (phút).\nd) \\textbf{Sai.} $T'(x) = -20\\sin x + 10 = 0 \\Leftrightarrow \\sin x = \\dfrac{1}{2} \\Leftrightarrow x = \\dfrac{\\pi}{6}$. Giá trị lớn nhất của thời gian là $T\\left(\\dfrac{\\pi}{6}\\right) = 10\\sqrt{3} + \\dfrac{5\\pi}{3} \\approx 22,56\\text{ phút} > 22,5\\text{ phút}$ ($22$ phút $30$ giây).",
+        "statements": [
+          "Khi $x = 0$, thời gian đi từ $A$ đến $B$ là $20$ phút.",
+          "Quãng đường xe chở người đi ngắm cảnh là $1000x\\text{ (m)}$.",
+          "Thời gian đi từ $A$ đến $B$ là $20\\cos x + 5x$ (phút).",
+          "Thời gian đi từ $A$ đến $B$ luôn ít hơn $22$ phút $30$ giây với mọi cách chọn vị trí điểm $C$."
+        ],
+        "source": "Sở Vũng Tàu 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 46,
+      "type": "tf4",
+      "prompt": "Nhân ngày Quốc tế Phụ nữ 20–10, ông M mua tặng vợ một món quà và đặt nó trong một chiếc hộp chữ nhật có thể tích là $32$ (đvtt), có đáy là hình vuông và không nắp. Để món quà trở nên đặc biệt, ông quyết định mạ vàng chiếc hộp (cả mặt trong và mặt ngoài), biết rằng độ dày của lớp mạ trên mọi điểm của chiếc hộp là không đổi và như nhau. Gọi chiều cao và cạnh đáy của chiếc hộp lần lượt là $h$ và $x$ ($x > 0, h > 0$).",
+      "points": 1,
+      "sort_order": 43,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Đáy hình vuông cạnh $x$, chiều cao $h$ nên $V = x^2 h$.\nb) \\textbf{Sai.} Hộp không nắp gồm $1$ đáy và $4$ mặt bên nên diện tích mặt ngoài là $S = x^2 + 4xh$.\nc) \\textbf{Sai.} Mạ vàng cả mặt trong và mặt ngoài nên $S_{MV} = 2S = 2x^2 + 8xh$.\nd) \\textbf{Đúng.} Vì $x^2 h = 32 \\Rightarrow h = \\dfrac{32}{x^2}$, ta có $S_{MV}(x) = 2x^2 + \\dfrac{256}{x}$. Đạo hàm $S'_{MV}(x) = 4x - \\dfrac{256}{x^2} = \\dfrac{4(x^3 - 64)}{x^2} > 0$ với mọi $x > 4$, nên khi $x > 4$, $x$ càng lớn thì diện tích (và lượng vàng) mạ càng tăng.",
+        "statements": [
+          "Công thức tính thể tích chiếc hộp là $V = x^2 h$.",
+          "Diện tích các mặt ngoài của chiếc hộp là $S = 2x^2 + 4xh$.",
+          "Diện tích tất cả các mặt được mạ vàng là $S_{MV} = 2x^2 + 4xh$.",
+          "Khi cạnh đáy của chiếc hộp $x$ lớn hơn $4$ thì $x$ càng lớn, lượng vàng được mạ càng tăng."
+        ],
+        "source": "THPT Quế Võ 1 - Bắc Ninh 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 47,
+      "type": "tf4",
+      "prompt": "Có hai cây cột, một cây cao $16\\text{ m}$ và một cây cao $24\\text{ m}$ đứng cách nhau $30\\text{ m}$. Chúng được giữ bằng hai sợi dây, gắn vào một cọc duy nhất $C$ trên mặt đất nối đến đỉnh mỗi cột (tham khảo hình vẽ sau).\n![Hai cây cột và cọc neo dây](/bank-images/tf4-thucte/q47.jpeg)\nGọi $x\\text{ (m)}$ là khoảng cách từ chân cột cao $16\\text{ m}$ đến cọc ($0 \\le x \\le 30$).",
+      "points": 1,
+      "sort_order": 44,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $BC = AB - AC = 30 - x\\text{ (m)}$.\nb) \\textbf{Đúng.} Theo định lý Py-ta-go, $CN = \\sqrt{CB^2 + BN^2} = \\sqrt{(30 - x)^2 + 24^2}$.\nc) \\textbf{Đúng.} $CM + CN = \\sqrt{x^2 + 16^2} + \\sqrt{(30 - x)^2 + 24^2} = \\sqrt{x^2 + 256} + \\sqrt{x^2 - 60x + 1476}$.\nd) \\textbf{Sai.} Lấy đối xứng $M$ qua đường thẳng $AB$ được $M'$ ($AM' = 16$). Khi đó $CM + CN = CM' + CN \\ge M'N = \\sqrt{30^2 + (16 + 24)^2} = \\sqrt{900 + 1600} = 50\\text{ m}$ (đạt tại $x = 12\\text{ m}$, không phải $51\\text{ m}$).",
+        "statements": [
+          "Khoảng cách từ chân cây cột cao $24\\text{ m}$ đến cọc là $30 - x\\text{ (m)}$.",
+          "Chiều dài của sợi dây nối từ cọc đến đỉnh cột cao $24\\text{ m}$ là $\\sqrt{(30 - x)^2 + 24^2}$.",
+          "Tổng chiều dài của hai sợi dây là $\\sqrt{x^2 + 256} + \\sqrt{x^2 - 60x + 1476}$.",
+          "Tổng chiều dài của hai sợi dây ngắn nhất bằng $51\\text{ m}$."
+        ],
+        "source": "Cụm Chương Mỹ - Thanh Oai 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 48,
+      "type": "tf4",
+      "prompt": "Giả sử một hạt chuyển động trên một trục thẳng đứng chiều dương hướng lên trên sao cho tọa độ của hạt (đơn vị: mét) tại thời điểm $t$ (giây) là $y = t^3 - 12t + 3,\\ t \\ge 0$.",
+      "points": 1,
+      "sort_order": 45,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $v(t) = y'(t) = 3t^2 - 12$ và $a(t) = v'(t) = 6t$ với $t \\ge 0$.\na) \\textbf{Đúng.} $v(t) > 0 \\Leftrightarrow t > 2$ (đi lên) và $v(t) < 0 \\Leftrightarrow 0 \\le t < 2$ (đi xuống).\nb) \\textbf{Sai.} Hạt đổi chiều tại $t = 2$. Ta có $y(0) = 3$, $y(2) = -13$, $y(3) = -6$. Quãng đường hạt đi được trong khoảng $(0; 3)$ là $|y(2) - y(0)| + |y(3) - y(2)| = 16 + 7 = 23\\text{ m} \\neq 9\\text{ m}$.\nc) \\textbf{Đúng.} $v(t) = 3t^2 - 12$ và $a(t) = 6t$ ($t \\ge 0$).\nd) \\textbf{Đúng.} Hạt tăng tốc (nhanh dần, độ lớn $|v(t)|$ tăng) khi $v(t) \\cdot a(t) > 0 \\Leftrightarrow t > 2$, và giảm tốc (chậm dần, độ lớn $|v(t)|$ giảm) khi $v(t) \\cdot a(t) < 0 \\Leftrightarrow 0 < t < 2$.",
+        "statements": [
+          "Hạt chuyển động lên trên khi $t > 2$ và chuyển động xuống dưới khi $0 < t < 2$.",
+          "Quãng đường hạt đi được trong khoảng thời gian $0 < t < 3$ là $9\\text{ m}$.",
+          "Hàm vận tốc là $v(t) = y'(t) = 3t^2 - 12\\ (t \\ge 0)$ và hàm gia tốc là $a(t) = 6t\\ (t \\ge 0)$.",
+          "Hạt tăng tốc khi $t > 2$ và hạt giảm tốc khi $0 < t < 2$."
+        ],
+        "source": "Cụm Chuyên Môn Đăk Lak 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 49,
+      "type": "tf4",
+      "prompt": "Một tấm nhôm hình vuông cạnh $240\\text{ cm}$. Người ta cắt ở bốn góc của tấm nhôm đó bốn hình vuông bằng nhau, mỗi hình vuông có cạnh bằng $x\\text{ (cm)}$, rồi gập tấm nhôm lại như hình vẽ dưới đây để được một cái hộp không nắp ($0 < x < 120$).\n![Cắt bốn góc hình vuông để gập thành hộp không nắp](/bank-images/tf4-thucte/q49.png)",
+      "points": 1,
+      "sort_order": 46,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Đáy hộp là hình vuông cạnh $240 - 2x\\text{ (cm)}$, chiều cao $x\\text{ (cm)}$ nên $V(x) = x(240 - 2x)^2\\text{ (cm}^3)$.\nb) \\textbf{Sai.} Khi $x = 20\\text{ cm}$, $V(20) = 20 \\cdot 200^2 = 800\\,000\\text{ cm}^3 = 0,8\\text{ m}^3 \\neq 8\\text{ m}^3$.\nc) \\textbf{Sai.} $V'(x) = (240 - 2x)(240 - 6x) = 0 \\Leftrightarrow x = 40\\text{ cm}$ (vì $0 < x < 120$). Vậy thể tích lớn nhất khi $x = 40\\text{ cm}$.\nd) \\textbf{Đúng.} $V_{\\max} = V(40) = 40 \\cdot 160^2 = 1\\,024\\,000\\text{ cm}^3 = 1024\\text{ dm}^3$.",
+        "statements": [
+          "Thể tích khối hộp nhận được tính theo $x$ là $V = x(240 - 2x)^2\\text{ (cm}^3)$.",
+          "Khi $x = 20\\text{ cm}$ thì thể tích của khối hộp nhận được là $8\\text{ m}^3$.",
+          "Để hộp nhận được có thể tích lớn nhất thì $x = 60\\text{ cm}$.",
+          "Hộp nhận được có thể tích lớn nhất là $1024\\text{ dm}^3$."
+        ],
+        "source": "Sở Hậu Giang 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 50,
+      "type": "tf4",
+      "prompt": "Khi bỏ qua sức cản của không khí, độ cao (mét) của một vật thể sau thời gian $t$ giây được phóng thẳng đứng lên trên từ điểm cách mặt đất $5\\text{ m}$ với tốc độ ban đầu $39,2\\text{ m/s}$ là $h(t) = 5 + 39,2t - 4,9t^2$, chọn chiều dương là chiều hướng từ dưới lên ($t \\ge 0$).",
+      "points": 1,
+      "sort_order": 47,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $v(t) = h'(t) = 39,2 - 9,8t\\text{ (m/s)}$.\na) \\textbf{Sai.} $v(3) = 39,2 - 9,8 \\cdot 3 = 9,8\\text{ m/s} \\neq 4,6\\text{ m/s}$.\nb) \\textbf{Đúng.} $h(t) > 10 \\Leftrightarrow 4,9t^2 - 39,2t + 5 < 0 \\Leftrightarrow 0,13 < t < 7,87$. Khoảng thời gian vật ở độ cao trên $10\\text{ m}$ là $\\Delta t \\approx 7,87 - 0,13 = 7,74\\text{ s} > 7\\text{ s}$.\nc) \\textbf{Đúng.} Vật chạm đất khi $h(t) = 0 \\Leftrightarrow t = \\dfrac{28 + \\sqrt{834}}{7} \\approx 8,125\\text{ s}$ (vì $t > 0$). Khi đó $v(t) = 39,2 - 9,8t = -\\dfrac{7\\sqrt{834}}{5} \\approx -40,43\\text{ m/s}$.\nd) \\textbf{Đúng.} $h'(t) = 0 \\Leftrightarrow t = 4\\text{ s}$, độ cao lớn nhất là $h(4) = 5 + 39,2 \\cdot 4 - 4,9 \\cdot 16 = 83,4\\text{ m}$.",
+        "statements": [
+          "Vận tốc của vật sau $3$ giây là $4,6\\text{ m/s}$.",
+          "Khoảng thời gian vật ở độ cao trên $10\\text{ m}$ dài hơn $7$ giây.",
+          "Vận tốc của vật lúc chạm đất xấp xỉ $-40,43\\text{ m/s}$.",
+          "Vật đạt độ cao lớn nhất bằng $83,4\\text{ m}$ tại thời điểm $t = 4$ giây."
+        ],
+        "source": "Cụm Chuyên Môn Đăk Lak 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 51,
+      "type": "tf4",
+      "prompt": "Trong một phòng thí nghiệm có máy đo nồng độ khí $\\text{CO}_2$ cho thấy: nồng độ khí $\\text{CO}_2$ trong phòng thay đổi theo thời gian $t$ (tính bằng giờ) và được thể hiện qua hàm số $f(t) = 400 + \\dfrac{2000t}{t^2 + 5}\\text{ (ppm)}$, với $t \\ge 0$.",
+      "points": 1,
+      "sort_order": 48,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $f(0) = 400\\text{ ppm}$.\nb) \\textbf{Sai.} $f'(t) = \\dfrac{2000(t^2 + 5) - 2000t \\cdot 2t}{(t^2 + 5)^2} = \\dfrac{10000 - 2000t^2}{(t^2 + 5)^2}$ với $t \\ge 0$.\nc) \\textbf{Sai.} $f'(t) = 0 \\Leftrightarrow t = \\sqrt{5} \\neq 2$ (vì $t \\ge 0$).\nd) \\textbf{Sai.} Nồng độ cao nhất đạt tại $t = \\sqrt{5}$: $f(\\sqrt{5}) = 400 + 200\\sqrt{5} \\approx 847\\text{ ppm} \\neq 947\\text{ ppm}$.",
+        "statements": [
+          "Nồng độ khí $\\text{CO}_2$ trong phòng tại thời điểm $t = 0$ là $400\\text{ (ppm)}$.",
+          "$f'(t) = \\dfrac{-2000t^2 - 10000}{(t^2 + 5)^2}$ với $t \\ge 0$.",
+          "Nghiệm của phương trình $f'(t) = 0$ là $t = 2$.",
+          "Nồng độ khí $\\text{CO}_2$ cao nhất đo được trong phòng thí nghiệm (làm tròn đến hàng đơn vị) là $947\\text{ (ppm)}$."
+        ],
+        "source": "Sở Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 53,
+      "type": "tf4",
+      "prompt": "Nhịp tim của một vận động viên chạy sau $t$ giây ($t \\ge 0$) kể từ khi rời vạch xuất phát được cho bởi công thức $P(t) = \\dfrac{300\\sqrt{\\frac{1}{2}t^2 + 2t + 25}}{t + 25}$ (số nhịp tim/phút). Biết rằng, với vận động viên đó bác sĩ đã đưa ra lời khuyên không nên đẩy nhịp tim quá $175$ (nhịp/phút) để tránh tình trạng quá tải cho tim.",
+      "points": 1,
+      "sort_order": 49,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta viết $P(t) = \\dfrac{150\\sqrt{2}\\sqrt{t^2 + 4t + 50}}{t + 25}$.\nĐạo hàm: $P'(t) = 150\\sqrt{2} \\cdot \\dfrac{(t + 2)(t + 25) - (t^2 + 4t + 50)}{(t + 25)^2\\sqrt{t^2 + 4t + 50}} = \\dfrac{3450\\sqrt{2}\\,t}{(t + 25)^2\\sqrt{t^2 + 4t + 50}} \\ge 0,\\ \\forall t \\ge 0$.\na) \\textbf{Đúng.} Do $P(t)$ đồng biến trên $[0; +\\infty)$ và $\\lim_{t \\to +\\infty} P(t) = 150\\sqrt{2}$, nên nhịp tim luôn nhỏ hơn $150\\sqrt{2}$ nhịp/phút.\nb) \\textbf{Sai.} Sau $2$ phút ($t = 120\\text{ s}$), nhịp tim là $P(120) \\approx 178,76 > 175$ nhịp/phút, vượt ngưỡng bác sĩ khuyến cáo.\nc) \\textbf{Đúng.} $P'(t) = \\dfrac{3450\\sqrt{2}\\,t}{(t + 25)^2\\sqrt{t^2 + 4t + 50}}$.\nd) \\textbf{Sai.} Đổi $1,5\\text{ phút} = 90\\text{ s}$ và $0,5\\text{ phút} = 30\\text{ s}$. Ta có $P'(90) \\approx 0,36$ và $P'(30) \\approx 1,48$, nên $\\dfrac{P'(90)}{P'(30)} \\approx 0,24 \\neq 2,63$.",
+        "statements": [
+          "Nhịp tim của vận động viên đó không vượt quá $150\\sqrt{2}$ (số nhịp tim/phút).",
+          "Trong $2$ phút đầu tiên kể từ khi xuất phát, nhịp tim của vận động viên đó vẫn trong ngưỡng cho phép theo lời khuyên của bác sĩ.",
+          "Công thức cho biết tốc độ thay đổi nhịp tim theo thời gian $t$ là $P'(t) = \\dfrac{3450\\sqrt{2}\\,t}{(t + 25)^2\\sqrt{t^2 + 4t + 50}}$.",
+          "Tốc độ thay đổi nhịp tim của vận động viên đó tại thời điểm $1,5$ phút sau khi xuất phát bằng $2,63$ lần (kết quả làm tròn đến hàng phần trăm) tốc độ thay đổi nhịp tim tại thời điểm $0,5$ phút sau khi xuất phát."
+        ],
+        "source": "Sở Bắc Ninh 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-thucte"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    }
+  ]
+}

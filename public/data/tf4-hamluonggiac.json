@@ -1,0 +1,743 @@
+{
+  "pack_id": "tf4-hamluonggiac",
+  "title": "Chủ đề 5 · Khảo sát hàm lượng giác — Đúng/Sai (2025)",
+  "chapter": "GĐ1 · Chương 1",
+  "count": 21,
+  "questions": [
+    {
+      "source_num": 1,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = 4\\sin x \\cos x + 2x$.",
+      "points": 1,
+      "sort_order": 1,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $f(x) = 2\\sin 2x + 2x$.\na) \\textbf{Sai.} $f'(x) = 4\\cos 2x + 2$.\nb) \\textbf{Đúng.} $f'(x) = 0 \\Leftrightarrow \\cos 2x = -\\frac{1}{2} \\Leftrightarrow x = \\pm\\frac{\\pi}{3} + k\\pi$. Trên $[-\\pi; \\pi]$ có $4$ nghiệm đơn $x \\in \\left\\{-\\frac{2\\pi}{3}; -\\frac{\\pi}{3}; \\frac{\\pi}{3}; \\frac{2\\pi}{3}\\right\\}$ nên có $4$ điểm cực trị.\nc) \\textbf{Sai.} Trên $(-2; -1)$ có nghiệm $x = -\\frac{\\pi}{3} \\approx -1{,}05$ làm $f'(x)$ đổi dấu từ $-$ sang $+$, nên hàm số không đồng biến trên $(-2; -1)$.\nd) \\textbf{Đúng.} Trên $\\left[0; \\frac{\\pi}{2}\\right]$, $f'(x) = 0 \\Leftrightarrow x = \\frac{\\pi}{3}$. So sánh $f(0) = 0$, $f\\left(\\frac{\\pi}{3}\\right) = \\frac{2\\pi}{3} + \\sqrt{3}$, $f\\left(\\frac{\\pi}{2}\\right) = \\pi$ suy ra GTLN là $\\frac{2\\pi}{3} + \\sqrt{3}$.",
+        "statements": [
+          "Đạo hàm của hàm số đã cho là $f'(x) = 4\\sin 2x + 2$.",
+          "Hàm số $y = f(x)$ có $4$ điểm cực trị thuộc $[-\\pi; \\pi]$.",
+          "Hàm số $y = f(x)$ đồng biến trên khoảng $(-2; -1)$.",
+          "Giá trị lớn nhất của $f(x)$ trên đoạn $\\left[0; \\frac{\\pi}{2}\\right]$ là $\\frac{2\\pi}{3} + \\sqrt{3}$."
+        ],
+        "source": "THPT Lê Thánh Tông - HCM 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamluonggiac"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 2,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = 2\\cos x + x$.",
+      "points": 1,
+      "sort_order": 2,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $f(0) = 2\\cos 0 + 0 = 2$; $f\\left(\\frac{\\pi}{2}\\right) = 2\\cos\\frac{\\pi}{2} + \\frac{\\pi}{2} = \\frac{\\pi}{2}$.\nb) \\textbf{Sai.} $f'(x) = -2\\sin x + 1$.\nc) \\textbf{Đúng.} $f'(x) = 0 \\Leftrightarrow \\sin x = \\frac{1}{2}$, trên $\\left[0; \\frac{\\pi}{2}\\right]$ có nghiệm $x = \\frac{\\pi}{6}$.\nd) \\textbf{Đúng.} $f\\left(\\frac{\\pi}{6}\\right) = \\sqrt{3} + \\frac{\\pi}{6}$ là GTLN trên $\\left[0; \\frac{\\pi}{2}\\right]$.",
+        "statements": [
+          "$f(0) = 2$; $f\\left(\\frac{\\pi}{2}\\right) = \\frac{\\pi}{2}$.",
+          "Đạo hàm của hàm số đã cho là $f'(x) = 2\\sin x + 1$.",
+          "Nghiệm của phương trình $f'(x) = 0$ trên đoạn $\\left[0; \\frac{\\pi}{2}\\right]$ là $\\frac{\\pi}{6}$.",
+          "Giá trị lớn nhất của $f(x)$ trên đoạn $\\left[0; \\frac{\\pi}{2}\\right]$ là $\\frac{\\pi}{6} + \\sqrt{3}$."
+        ],
+        "source": "Đề Tham Khảo 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamluonggiac"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 3,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = \\sin x - x$.",
+      "points": 1,
+      "sort_order": 3,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $f'(x) = \\cos x - 1$.\nb) \\textbf{Sai.} $f'(x) = 0 \\Leftrightarrow \\cos x = 1 \\Leftrightarrow x = k2\\pi$, không có nghiệm trên $\\left[\\frac{\\pi}{2}; \\frac{3\\pi}{2}\\right]$.\nc) \\textbf{Đúng.} Vì $f'(x) < 0$ trên $\\left[\\frac{\\pi}{2}; \\frac{3\\pi}{2}\\right]$ nên hàm số nghịch biến, GTNN là $f\\left(\\frac{3\\pi}{2}\\right) = -1 - \\frac{3\\pi}{2}$.\nd) \\textbf{Đúng.} $f(0) = 0$ và $f(\\pi) = \\sin\\pi - \\pi = -\\pi$.",
+        "statements": [
+          "Đạo hàm của hàm số đã cho là $f'(x) = \\cos x - 1$.",
+          "Nghiệm của phương trình $f'(x) = 0$ trên đoạn $\\left[\\frac{\\pi}{2}; \\frac{3\\pi}{2}\\right]$ là $\\pi$.",
+          "Giá trị nhỏ nhất của $f(x)$ trên đoạn $\\left[\\frac{\\pi}{2}; \\frac{3\\pi}{2}\\right]$ là $-1 - \\frac{3\\pi}{2}$.",
+          "$f(0) = 0$; $f(\\pi) = -\\pi$."
+        ],
+        "source": "THPT Nguyễn Viết Xuân - Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamluonggiac"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 4,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = 2\\sin x - \\sqrt{3}x$.",
+      "points": 1,
+      "sort_order": 4,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} $f'\\left(-\\frac{\\pi}{3}\\right) = 1 - \\sqrt{3} \\neq 0$.\nb) \\textbf{Sai.} $f\\left(\\frac{\\pi}{2}\\right) = 2 - \\frac{\\pi\\sqrt{3}}{2}$.\nc) \\textbf{Đúng.} $f'(x) = 2\\cos x - \\sqrt{3}, \\forall x \\in \\mathbb{R}$.\nd) \\textbf{Đúng.} $f'(x) = 0 \\Leftrightarrow \\cos x = \\frac{\\sqrt{3}}{2} \\Leftrightarrow x = \\pm\\frac{\\pi}{6} + k2\\pi$. Trong $\\left[0; \\frac{5\\pi}{2}\\right]$ có $3$ nghiệm $\\frac{\\pi}{6}, \\frac{11\\pi}{6}, \\frac{13\\pi}{6}$, tổng bằng $\\frac{25\\pi}{6}$.",
+        "statements": [
+          "Một nghiệm của phương trình $f'(x) = 0$ là $x = -\\frac{\\pi}{3}$.",
+          "$f\\left(\\frac{\\pi}{2}\\right) = -\\frac{\\pi\\sqrt{3}}{2}$.",
+          "Đạo hàm của hàm số là $f'(x) = 2\\cos x - \\sqrt{3}, \\forall x \\in \\mathbb{R}$.",
+          "Tổng các nghiệm của phương trình $f'(x) = 0$ trong đoạn $\\left[0; \\frac{5\\pi}{2}\\right]$ bằng $\\frac{25\\pi}{6}$."
+        ],
+        "source": "THPT Thuận Thành 1&2 - Bắc Ninh 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamluonggiac"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          false,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 5,
+      "type": "tf4",
+      "prompt": "Xét hàm số $y = f(x) = \\frac{x}{2} - \\sin^2 x$ trên khoảng $(0; \\pi)$.",
+      "points": 1,
+      "sort_order": 5,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $f'(x) = \\frac{1}{2} - \\sin 2x = 0 \\Leftrightarrow \\sin 2x = \\frac{1}{2}$, trên $(0; \\pi)$ có $2$ nghiệm $x = \\frac{\\pi}{12}$ và $x = \\frac{5\\pi}{12}$.\na) \\textbf{Sai.} Trên $\\left(\\frac{5\\pi}{12}; \\pi\\right)$, $f'(x) > 0$ nên hàm số đồng biến.\nb) \\textbf{Đúng.} Hàm số có $2$ điểm cực trị tại $x = \\frac{\\pi}{12}$ (cực đại) và $x = \\frac{5\\pi}{12}$ (cực tiểu).\nc) \\textbf{Đúng.} $y_{\\text{CT}} = f\\left(\\frac{5\\pi}{12}\\right) = \\frac{5\\pi}{24} - \\sin^2\\frac{5\\pi}{12} = \\frac{5\\pi}{24} - \\frac{2 + \\sqrt{3}}{4}$.\nd) \\textbf{Sai.} $\\frac{1}{2} - \\sin 2x = -\\frac{\\sin^2 2x}{2} \\Leftrightarrow (\\sin 2x - 1)^2 = 0 \\Leftrightarrow \\sin 2x = 1 \\Leftrightarrow x = \\frac{\\pi}{4}$ (chỉ $1$ nghiệm trên $(0; \\pi)$).",
+        "statements": [
+          "Hàm số nghịch biến trên khoảng $\\left(\\frac{5\\pi}{12}; \\pi\\right)$.",
+          "Hàm số có $2$ điểm cực trị.",
+          "Giá trị cực tiểu của hàm số là $\\frac{5\\pi}{24} - \\frac{2 + \\sqrt{3}}{4}$.",
+          "Đồ thị hàm số $y = f'(x)$ cắt đồ thị hàm số $y = \\frac{-\\sin^2 2x}{2}$ tại $2$ nghiệm trên khoảng $(0; \\pi)$."
+        ],
+        "source": "THPT Diễn Châu 5 - Nghệ An 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hamluonggiac"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 6,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = \\sin 2x - x$.",
+      "points": 1,
+      "sort_order": 6,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $f\\left(-\\frac{\\pi}{2}\\right) = \\frac{\\pi}{2}$ và $f\\left(\\frac{\\pi}{2}\\right) = -\\frac{\\pi}{2}$.\nb) \\textbf{Sai.} $f'(x) = 2\\cos 2x - 1$.\nc) \\textbf{Đúng.} $2\\cos 2x - 1 = 0 \\Leftrightarrow \\cos 2x = \\frac{1}{2} \\Leftrightarrow x = \\pm\\frac{\\pi}{6}$ trên $\\left[-\\frac{\\pi}{2}; \\frac{\\pi}{2}\\right]$.\nd) \\textbf{Đúng.} So sánh $f\\left(-\\frac{\\pi}{2}\\right) = \\frac{\\pi}{2}$, $f\\left(-\\frac{\\pi}{6}\\right) = -\\frac{\\sqrt{3}}{2} + \\frac{\\pi}{6} \\approx -0{,}34$, $f\\left(\\frac{\\pi}{6}\\right) \\approx 0{,}34$, $f\\left(\\frac{\\pi}{2}\\right) = -\\frac{\\pi}{2} \\approx -1{,}57$. GTNN là $-\\frac{\\pi}{2}$.",
+        "statements": [
+          "$f\\left(-\\frac{\\pi}{2}\\right) = \\frac{\\pi}{2}$; $f\\left(\\frac{\\pi}{2}\\right) = -\\frac{\\pi}{2}$.",
+          "Đạo hàm của hàm số đã cho là $f'(x) = \\cos 2x - 1$.",
+          "Nghiệm của phương trình $f'(x) = 0$ trên đoạn $\\left[-\\frac{\\pi}{2}; \\frac{\\pi}{2}\\right]$ là $-\\frac{\\pi}{6}$ hoặc $\\frac{\\pi}{6}$.",
+          "Giá trị nhỏ nhất của $f(x)$ trên đoạn $\\left[-\\frac{\\pi}{2}; \\frac{\\pi}{2}\\right]$ là $-\\frac{\\pi}{2}$."
+        ],
+        "source": "THPT Hùng Vương - Bình Thuận 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamluonggiac"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 7,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = 2\\sin 2x + 2x$.",
+      "points": 1,
+      "sort_order": 7,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} $f'(x) = 4\\cos 2x + 2$.\nb) \\textbf{Đúng.} $f'(x) = 0 \\Leftrightarrow \\cos 2x = -\\frac{1}{2}$, trên $[0; \\pi]$ có $2$ nghiệm $x = \\frac{\\pi}{3}$ và $x = \\frac{2\\pi}{3}$.\nc) \\textbf{Sai.} $f(\\pi) = 2\\sin 2\\pi + 2\\pi = 2\\pi$.\nd) \\textbf{Đúng.} Trên $\\left[0; \\frac{\\pi}{2}\\right]$, $f(0) = 0, f\\left(\\frac{\\pi}{3}\\right) = \\frac{2\\pi}{3} + \\sqrt{3}, f\\left(\\frac{\\pi}{2}\\right) = \\pi$ nên GTLN là $\\frac{2\\pi}{3} + \\sqrt{3}$.",
+        "statements": [
+          "Đạo hàm của hàm số đã cho là $f'(x) = 4\\sin 2x + 2$.",
+          "Phương trình $f'(x) = 0$ có $2$ nghiệm thuộc $[0; \\pi]$.",
+          "$f(\\pi) = \\pi$.",
+          "Giá trị lớn nhất của $f(x)$ trên đoạn $\\left[0; \\frac{\\pi}{2}\\right]$ là $\\frac{2\\pi}{3} + \\sqrt{3}$."
+        ],
+        "source": "THPT Lê Lợi - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamluonggiac"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 8,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = \\sin x - \\sqrt{3}\\cos x - 2$.",
+      "points": 1,
+      "sort_order": 8,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $f\\left(\\frac{\\pi}{2}\\right) = 1 - 0 - 2 = -1$.\nb) \\textbf{Sai.} $f'(x) = \\cos x + \\sqrt{3}\\sin x$.\nc) \\textbf{Đúng.} $f'(x) = 0 \\Leftrightarrow \\sin\\left(x + \\frac{\\pi}{6}\\right) = 0 \\Leftrightarrow x = -\\frac{\\pi}{6} + k\\pi$, trên $[0; \\pi]$ có nghiệm $x = \\frac{5\\pi}{6}$.\nd) \\textbf{Sai.} $f(0) = -\\sqrt{3} - 2$, $f(\\pi) = \\sqrt{3} - 2$, $f\\left(\\frac{5\\pi}{6}\\right) = 0$. Vậy GTLN là $0$.",
+        "statements": [
+          "$f\\left(\\frac{\\pi}{2}\\right) = -1$.",
+          "Đạo hàm của hàm số đã cho là $f'(x) = \\cos x - \\sqrt{3}\\sin x$.",
+          "Nghiệm của phương trình $f'(x) = 0$ trên đoạn $[0; \\pi]$ là $\\frac{5\\pi}{6}$.",
+          "Giá trị lớn nhất của $f(x)$ trên đoạn $[0; \\pi]$ là $\\sqrt{3} - 2$."
+        ],
+        "source": "THPT Triệu Sơn 1 - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamluonggiac"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 9,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = \\sin 2x - x$ xác định trên $\\mathbb{R}$.",
+      "points": 1,
+      "sort_order": 9,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $f\\left(\\frac{\\pi}{2}\\right) = \\sin\\pi - \\frac{\\pi}{2} = -\\frac{\\pi}{2}$.\nb) \\textbf{Sai.} $f'(x) = 2\\cos 2x - 1$.\nc) \\textbf{Sai.} $\\cos 2x = \\frac{1}{2} \\Leftrightarrow x = \\pm\\frac{\\pi}{6} + k\\pi$ ($k \\in \\mathbb{Z}$).\nd) \\textbf{Đúng.} Trên $(0; \\pi)$ có đúng $2$ nghiệm là $x = \\frac{\\pi}{6}$ và $x = \\frac{5\\pi}{6}$.",
+        "statements": [
+          "$f\\left(\\frac{\\pi}{2}\\right) = -\\frac{\\pi}{2}$.",
+          "$f'(x) = \\cos 2x - 1$.",
+          "$f'(x) = 0 \\Leftrightarrow x = \\pm\\frac{\\pi}{6} + k2\\pi, k \\in \\mathbb{Z}$.",
+          "Phương trình $f'(x) = 0$ có đúng $2$ nghiệm thuộc khoảng $(0; \\pi)$."
+        ],
+        "source": "Chuyên Hạ Long 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamluonggiac"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 10,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = 2\\sin x + 1$.",
+      "points": 1,
+      "sort_order": 10,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Vì $-1 \\le \\sin x \\le 1$ nên $-1 \\le 2\\sin x + 1 \\le 3$, GTNN là $-1$.\nb) \\textbf{Đúng.} $f(0) = 1$ và $f\\left(\\frac{\\pi}{2}\\right) = 3$.\nc) \\textbf{Sai.} $f'(x) = 2\\cos x = 0$ trên $\\left[0; \\frac{\\pi}{2}\\right]$ có nghiệm $x = \\frac{\\pi}{2}$.\nd) \\textbf{Sai.} $f'(x) = 2\\cos x$.",
+        "statements": [
+          "Giá trị nhỏ nhất của $f(x)$ là $-1$.",
+          "$f(0) = 1$; $f\\left(\\frac{\\pi}{2}\\right) = 3$.",
+          "Nghiệm của phương trình $f'(x) = 0$ trên đoạn $\\left[0; \\frac{\\pi}{2}\\right]$ là $\\frac{\\pi}{4}$.",
+          "Đạo hàm của hàm số đã cho là $f'(x) = 2\\cos x + 1$."
+        ],
+        "source": "Sở Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamluonggiac"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 11,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = 2\\sin x + x$.",
+      "points": 1,
+      "sort_order": 11,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $f(0) = 0$; $f(\\pi) = \\pi$.\nb) \\textbf{Sai.} $f'(x) = 2\\cos x + 1$.\nc) \\textbf{Sai.} $\\cos x = -\\frac{1}{2} \\Leftrightarrow x = \\pm\\frac{2\\pi}{3} + k2\\pi$. Trên $[0; 3\\pi]$ chỉ có $3$ nghiệm là $\\frac{2\\pi}{3}, \\frac{4\\pi}{3}, \\frac{8\\pi}{3}$.\nd) \\textbf{Đúng.} Trên $[0; \\pi]$, $f'(x) = 0 \\Leftrightarrow x = \\frac{2\\pi}{3}$, có $f\\left(\\frac{2\\pi}{3}\\right) = \\sqrt{3} + \\frac{2\\pi}{3}$ lớn nhất.",
+        "statements": [
+          "$f(0) = 0$; $f(\\pi) = \\pi$.",
+          "Đạo hàm của hàm số đã cho là $f'(x) = -2\\cos x + 1$.",
+          "Số nghiệm của phương trình $f'(x) = 0$ trên đoạn $[0; 3\\pi]$ là $6$.",
+          "Giá trị lớn nhất của $f(x)$ trên đoạn $[0; \\pi]$ là $\\frac{2\\pi}{3} + \\sqrt{3}$."
+        ],
+        "source": "Chuyên Lê Khiết - Quảng Ngãi 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamluonggiac"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 12,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = \\sin^2 x + \\cos x - 1$.",
+      "points": 1,
+      "sort_order": 12,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $f(x) = -\\cos^2 x + \\cos x = 0 \\Leftrightarrow \\cos x = 0$ hoặc $\\cos x = 1$. Nghiệm dương bé nhất là $\\frac{\\pi}{2}$.\nb) \\textbf{Sai.} $f'(x) = 2\\sin x\\cos x - \\sin x = \\sin 2x - \\sin x$.\nc) \\textbf{Đúng.} Đặt $t = \\cos x \\in \\left[-\\frac{\\sqrt{2}}{2}; 1\\right]$, xét $g(t) = -t^2 + t$: $M = g\\left(\\frac{1}{2}\\right) = \\frac{1}{4}$, $m = g\\left(-\\frac{\\sqrt{2}}{2}\\right) = \\frac{-1 - \\sqrt{2}}{2} \\Rightarrow M + m = \\frac{-1 - 2\\sqrt{2}}{4}$.\nd) \\textbf{Sai.} $f(x)$ là hàm chẵn nên $f(-\\pi) = f(\\pi) = -2$.",
+        "statements": [
+          "Nghiệm dương bé nhất của phương trình $f(x) = 0$ là $\\frac{\\pi}{2}$.",
+          "$f'(x) = 2\\sin x - \\sin x$.",
+          "Gọi giá trị lớn nhất và giá trị nhỏ nhất của hàm số $y = f(x)$ trên $\\left[-\\frac{\\pi}{2}; \\frac{3\\pi}{4}\\right]$ lần lượt là $M, m$. Khi đó $M + m = \\frac{-1 - 2\\sqrt{2}}{4}$.",
+          "$f(-\\pi) = -f(\\pi)$."
+        ],
+        "source": "THPT Nông Cống 3 - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamluonggiac"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 13,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = 2\\cos x + x\\sqrt{2}$.",
+      "points": 1,
+      "sort_order": 13,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} $f'(x) = -2\\sin x + \\sqrt{2}$.\nb) \\textbf{Đúng.} $f(0) = 2$; $f(\\pi) = -2 + \\pi\\sqrt{2}$.\nc) \\textbf{Đúng.} Trên $[0; \\pi]$, $f'(x) = 0 \\Leftrightarrow x = \\frac{\\pi}{4}$ hoặc $x = \\frac{3\\pi}{4}$. Ta có $M = f\\left(\\frac{\\pi}{4}\\right) = \\sqrt{2} + \\frac{\\pi\\sqrt{2}}{4}$ và $m = f\\left(\\frac{3\\pi}{4}\\right) = -\\sqrt{2} + \\frac{3\\pi\\sqrt{2}}{4} \\Rightarrow M + m = \\pi\\sqrt{2}$.\nd) \\textbf{Đúng.} Tập nghiệm trên $[0; \\pi]$ là $\\left\\{\\frac{\\pi}{4}; \\frac{3\\pi}{4}\\right\\}$.",
+        "statements": [
+          "Đạo hàm của hàm số đã cho là $f'(x) = 2\\sin x + \\sqrt{2}$.",
+          "$f(0) = 2$; $f(\\pi) = -2 + \\pi\\sqrt{2}$.",
+          "Tổng giá trị lớn nhất và giá trị nhỏ nhất của $f(x)$ trên đoạn $[0; \\pi]$ là $\\pi\\sqrt{2}$.",
+          "Phương trình $f'(x) = 0$ có đúng hai nghiệm trên đoạn $[0; \\pi]$."
+        ],
+        "source": "THPT Lê Hồng Phong - Hải Phòng 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamluonggiac"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 15,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = \\sin x + \\cos x$.",
+      "points": 1,
+      "sort_order": 14,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $f'(x) = \\cos x - \\sin x$.\nb) \\textbf{Sai.} Bình phương hai vế được $1 + 2\\sin x\\cos x = \\frac{1}{2} \\Rightarrow \\sin x\\cos x = -\\frac{1}{4}$.\nc) \\textbf{Sai.} $f'(x) = 0 \\Leftrightarrow x = \\frac{\\pi}{4} + k\\pi$; trên $\\left[0; \\frac{3\\pi}{4}\\right]$ có GTLN là $f\\left(\\frac{\\pi}{4}\\right) = \\sqrt{2} = 1\\sqrt{2} \\Rightarrow a = 1, b = 2 \\Rightarrow b - a = 1$.\nd) \\textbf{Đúng.} Trên $(0; 3\\pi)$ có $3$ nghiệm $\\frac{\\pi}{4}, \\frac{5\\pi}{4}, \\frac{9\\pi}{4}$, tổng bằng $\\frac{15\\pi}{4}$.",
+        "statements": [
+          "Đạo hàm của hàm số đã cho là $f'(x) = \\cos x - \\sin x$.",
+          "Giả sử $\\sin x + \\cos x = \\frac{\\sqrt{2}}{2}$, khi đó $\\sin x \\cdot \\cos x = \\frac{1}{4}$.",
+          "Giá trị lớn nhất của hàm số $f(x)$ trên đoạn $\\left[0; \\frac{3\\pi}{4}\\right]$ bằng $a\\sqrt{b}$, với $a, b$ là các số nguyên dương. Khi đó $b - a = 2$.",
+          "Tổng các nghiệm của phương trình $f'(x) = 0$ trên khoảng $(0; 3\\pi)$ bằng $\\frac{15\\pi}{4}$."
+        ],
+        "source": "Sở Tuyên Quang 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamluonggiac"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 16,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = 2\\sin x + \\sqrt{3}x$.",
+      "points": 1,
+      "sort_order": 15,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $f(0) = 0$ và $f(\\pi) = \\sqrt{3}\\pi$.\nb) \\textbf{Sai.} $f'(x) = 2\\cos x + \\sqrt{3}$.\nc) \\textbf{Sai.} $\\cos x = -\\frac{\\sqrt{3}}{2}$ trên $[0; \\pi]$ cho nghiệm $x = \\frac{5\\pi}{6}$.\nd) \\textbf{Đúng.} So sánh $f(0) = 0$, $f(\\pi) = \\sqrt{3}\\pi$, $f\\left(\\frac{5\\pi}{6}\\right) = 1 + \\frac{5\\sqrt{3}\\pi}{6}$ suy ra GTLN là $1 + \\frac{5\\sqrt{3}\\pi}{6}$.",
+        "statements": [
+          "$f(0) = 0$, $f(\\pi) = \\sqrt{3}\\pi$.",
+          "Đạo hàm của hàm số đã cho là $f'(x) = -2\\cos x + \\sqrt{3}$.",
+          "Nghiệm của phương trình $f'(x) = 0$ trên đoạn $[0; \\pi]$ là $\\frac{\\pi}{6}$.",
+          "Giá trị lớn nhất của hàm số $f(x)$ trên đoạn $[0; \\pi]$ bằng $1 + \\frac{5\\sqrt{3}\\pi}{6}$."
+        ],
+        "source": "Sở Phú Thọ 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamluonggiac"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 17,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = 2\\sin x\\cos x + \\sqrt{2}x$.",
+      "points": 1,
+      "sort_order": 16,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $f(x) = \\sin 2x + \\sqrt{2}x$.\na) \\textbf{Đúng.} Hàm số liên tục trên $\\mathbb{R}$.\nb) \\textbf{Đúng.} $f'(x) = 2\\cos 2x + \\sqrt{2}$.\nc) \\textbf{Sai.} $\\cos 2x = -\\frac{\\sqrt{2}}{2} \\Leftrightarrow x = \\pm\\frac{3\\pi}{8} + k\\pi$, trên $\\left[\\frac{\\pi}{3}; \\pi\\right]$ có $2$ nghiệm là $\\frac{3\\pi}{8}$ và $\\frac{5\\pi}{8}$.\nd) \\textbf{Sai.} $f\\left(\\frac{5\\pi}{8}\\right) = -\\frac{\\sqrt{2}}{2} + \\frac{5\\pi\\sqrt{2}}{8} \\approx 2{,}07 < f\\left(\\frac{\\pi}{3}\\right) \\approx 2{,}35$, nên GTNN là $-\\frac{\\sqrt{2}}{2} + \\frac{5\\pi\\sqrt{2}}{8}$.",
+        "statements": [
+          "Hàm số đã cho liên tục trên đoạn $\\left[\\frac{\\pi}{3}; \\pi\\right]$.",
+          "Đạo hàm của hàm số đã cho là $f'(x) = 2\\cos 2x + \\sqrt{2}$.",
+          "Trên đoạn $\\left[\\frac{\\pi}{3}; \\pi\\right]$, phương trình $f'(x) = 0$ có đúng một nghiệm là $\\frac{3\\pi}{8}$.",
+          "Giá trị nhỏ nhất của $f(x)$ trên đoạn $\\left[\\frac{\\pi}{3}; \\pi\\right]$ là $\\frac{\\sqrt{3}}{2} + \\frac{\\pi\\sqrt{2}}{3}$."
+        ],
+        "source": "Sở Bình Thuận 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamluonggiac"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 18,
+      "type": "tf4",
+      "prompt": "Cho đồ thị hàm số $y = \\cos x$ trên $\\left[-\\frac{5\\pi}{2}; \\frac{5\\pi}{2}\\right]$ dưới đây:\n![Hình Câu 18](/bank-images/tf4-hamluonggiac/q18_p0.jpeg)",
+      "points": 1,
+      "sort_order": 17,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Quan sát đồ thị $y = \\cos x$ đi lên trên $(-\\pi; 0)$ và $(\\pi; 2\\pi)$.\nb) \\textbf{Đúng.} $-1 \\le \\cos x \\le 1, \\forall x \\in \\mathbb{R}$.\nc) \\textbf{Đúng.} Hàm số $y = \\cos x$ tuần hoàn với chu kì $2\\pi$.\nd) \\textbf{Sai.} Đường thẳng $y = a \\in \\left(0; \\frac{1}{2}\\right)$ cắt đồ thị trên $\\left[-\\frac{5\\pi}{2}; \\frac{5\\pi}{2}\\right]$ tại $6$ điểm nên có $6$ nghiệm.",
+        "statements": [
+          "Hàm số đã cho đồng biến trên các khoảng $(-\\pi; 0)$ và $(\\pi; 2\\pi)$.",
+          "Giá trị lớn nhất, giá trị nhỏ nhất của hàm số là $\\max_{\\mathbb{R}} y = 1$; $\\min_{\\mathbb{R}} y = -1$.",
+          "Hàm số đã cho là hàm tuần hoàn với chu kì $2\\pi$.",
+          "Phương trình $\\cos x = a$ với $0 < a < \\frac{1}{2}$ trên đoạn $\\left[-\\frac{5\\pi}{2}; \\frac{5\\pi}{2}\\right]$ có $4$ nghiệm."
+        ],
+        "source": "THPT Triệu Quang Phục - Hưng Yên 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamluonggiac"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 19,
+      "type": "tf4",
+      "prompt": "Cho hai hàm số $f(x) = \\sin x - x$ và $g(x) = \\sin x - x + m^2 + 2m - 3$. Gọi $S$ là tập các giá trị của $m$ để giá trị lớn nhất của hàm $y = g(x)$ trên đoạn $[0; \\pi]$ bằng $-4$.",
+      "points": 1,
+      "sort_order": 18,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} $g'(x) = \\cos x - 1 \\le 0$ nên $g(x)$ nghịch biến trên $[0; \\pi]$, suy ra $\\max_{[0; \\pi]} g(x) = g(0) = m^2 + 2m - 3 = -4 \\Leftrightarrow (m + 1)^2 = 0 \\Leftrightarrow m = -1$. Tập $S = \\{-1\\}$ chỉ có $1$ phần tử.\nb) \\textbf{Sai.} $f'(x) = \\cos x - 1 = 0 \\Leftrightarrow x = k2\\pi$ ($k \\in \\mathbb{Z}$).\nc) \\textbf{Đúng.} $f\\left(\\frac{\\pi}{2}\\right) = \\sin\\frac{\\pi}{2} - \\frac{\\pi}{2} = 1 - \\frac{\\pi}{2}$.\nd) \\textbf{Sai.} $f'(x) = \\cos x - 1 \\le 0$ nên hàm số nghịch biến trên $\\mathbb{R}$.",
+        "statements": [
+          "Tập $S$ có hai phần tử.",
+          "Nghiệm của phương trình $f'(x) = 0$ là $x = \\pi + k2\\pi$ ($k \\in \\mathbb{Z}$).",
+          "$f\\left(\\frac{\\pi}{2}\\right) = 1 - \\frac{\\pi}{2}$.",
+          "Hàm số $y = f(x)$ đồng biến trên tập xác định."
+        ],
+        "source": "THPT Hà Trung - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamluonggiac"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          false,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 20,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x) = \\sqrt{3}\\tan 2x$.",
+      "points": 1,
+      "sort_order": 19,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $\\tan 2x = \\sqrt{3} \\Leftrightarrow 2x = \\frac{\\pi}{3} + k\\pi \\Leftrightarrow x = \\frac{\\pi}{6} + k\\frac{\\pi}{2}$.\nb) \\textbf{Sai.} $\\cos 2x \\neq 0 \\Leftrightarrow x \\neq \\frac{\\pi}{4} + k\\frac{\\pi}{2}$.\nc) \\textbf{Sai.} $f(-x) = \\sqrt{3}\\tan(-2x) = -f(x)$ nên là hàm số lẻ.\nd) \\textbf{Đúng.} Họ nghiệm $x = \\frac{\\pi}{6} + k\\frac{\\pi}{2}$ biểu diễn $4$ điểm cách đều nhau trên đường tròn lượng giác ($\\frac{\\pi}{6}, \\frac{2\\pi}{3}, \\frac{7\\pi}{6}, \\frac{5\\pi}{3}$).",
+        "statements": [
+          "Phương trình $f(x) = 3$ có nghiệm $x = \\frac{\\pi}{6} + k\\frac{\\pi}{2}, k \\in \\mathbb{Z}$.",
+          "Tập xác định của hàm số là $D = \\mathbb{R} \\setminus \\left\\{\\frac{\\pi}{4} + k\\pi, k \\in \\mathbb{Z}\\right\\}$.",
+          "Hàm số $y = f(x)$ là hàm số chẵn.",
+          "Trên đường tròn lượng giác có $4$ điểm biểu diễn nghiệm của phương trình $f(x) = 3$."
+        ],
+        "source": "THPT Phúc Thọ - Hà Nội 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamluonggiac"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 21,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = x - \\sin 2x$.",
+      "points": 1,
+      "sort_order": 20,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $f\\left(-\\frac{\\pi}{2}\\right) = -\\frac{\\pi}{2}$; $f(\\pi) = \\pi$.\nb) \\textbf{Sai.} $f'(x) = 1 - 2\\cos 2x$.\nc) \\textbf{Đúng.} $f'(x) = 0 \\Leftrightarrow \\cos 2x = \\frac{1}{2} \\Leftrightarrow x = \\pm\\frac{\\pi}{6} + k\\pi$, trên $\\left[-\\frac{\\pi}{2}; \\pi\\right]$ có $3$ nghiệm $-\\frac{\\pi}{6}, \\frac{\\pi}{6}, \\frac{5\\pi}{6}$.\nd) \\textbf{Đúng.} $\\max = f\\left(\\frac{5\\pi}{6}\\right) = \\frac{5\\pi}{6} + \\frac{\\sqrt{3}}{2}$ và $\\min = f\\left(-\\frac{\\pi}{2}\\right) = -\\frac{\\pi}{2}$, tổng bằng $\\frac{\\pi}{3} + \\frac{\\sqrt{3}}{2}$.",
+        "statements": [
+          "$f\\left(-\\frac{\\pi}{2}\\right) = -\\frac{\\pi}{2}$, $f(\\pi) = \\pi$.",
+          "$f'(x) = 1 - \\cos 2x$.",
+          "Phương trình $f'(x) = 0$ trên đoạn $\\left[-\\frac{\\pi}{2}; \\pi\\right]$ có tập nghiệm là $T = \\left\\{-\\frac{\\pi}{6}; \\frac{\\pi}{6}; \\frac{5\\pi}{6}\\right\\}$.",
+          "Tổng giá trị lớn nhất và giá trị nhỏ nhất của hàm số trên đoạn $\\left[-\\frac{\\pi}{2}; \\pi\\right]$ bằng $\\frac{\\pi}{3} + \\frac{\\sqrt{3}}{2}$."
+        ],
+        "source": "Sở Lai Châu 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamluonggiac"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 23,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = \\sin 2x + x$.",
+      "points": 1,
+      "sort_order": 21,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Ta có $f(0) = 0$, $f(\\pi) = \\pi$, $f\\left(\\frac{\\pi}{3}\\right) = \\frac{\\sqrt{3}}{2} + \\frac{\\pi}{3} \\approx 1{,}91$, $f\\left(\\frac{2\\pi}{3}\\right) = -\\frac{\\sqrt{3}}{2} + \\frac{2\\pi}{3} \\approx 1{,}23$. GTLN là $\\pi$.\nb) \\textbf{Đúng.} $f'(x) = 2\\cos 2x + 1 = 0 \\Leftrightarrow x = \\pm\\frac{\\pi}{3} + k\\pi$, trên $[0; \\pi]$ có $2$ nghiệm $\\frac{\\pi}{3}$ và $\\frac{2\\pi}{3}$.\nc) \\textbf{Đúng.} $f(0) = 0$; $f(\\pi) = \\pi$.\nd) \\textbf{Sai.} $f'(x) = 2\\cos 2x + 1$.",
+        "statements": [
+          "Giá trị lớn nhất của $f(x)$ trên đoạn $[0; \\pi]$ là $\\pi$.",
+          "Trên đoạn $[0; \\pi]$, phương trình $f'(x) = 0$ có đúng hai nghiệm là $\\frac{\\pi}{3}$ và $\\frac{2\\pi}{3}$.",
+          "$f(0) = 0$; $f(\\pi) = \\pi$.",
+          "Đạo hàm của hàm số đã cho là $f'(x) = \\cos 2x + 1$."
+        ],
+        "source": "Liên trường THPT Ninh Bình 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamluonggiac"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1032 @@
+{
+  "pack_id": "short-dothi",
+  "title": "Chủ đề 9 · Đồ thị hàm số — Trả lời ngắn (2025)",
+  "chapter": "GĐ1 · Chương 1",
+  "count": 39,
+  "questions": [
+    {
+      "source_num": 1,
+      "type": "short",
+      "prompt": "Cho hàm số $y = x^3 + 9x^2 - 12$ có đồ thị là đường cong $(C)$. Điểm $M(a; b)$ là điểm cực đại của đồ thị $(C)$. Giá trị của $a - b$ bằng bao nhiêu?",
+      "points": 1,
+      "sort_order": 1,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $y' = 3x^2 + 18x = 0 \\Leftrightarrow x = 0$ hoặc $x = -6$.\nLập bảng biến thiên thấy đồ thị $(C)$ đạt cực đại tại $M(-6; 96)$ và đạt cực tiểu tại $(0; -12)$.\nSuy ra $a = -6, b = 96 \\Rightarrow a - b = -6 - 96 = -102$.",
+        "source": "THPT Lương Tài 2 - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "-102",
+        "accepted_answers": [
+          "-102"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 2,
+      "type": "short",
+      "prompt": "Cho hàm số $y = \\dfrac{3x - 3}{\\sqrt{x^2 - 1}}$. Gọi $a$ là số đường tiệm cận đứng và $b$ là số đường tiệm cận ngang của đồ thị hàm số đã cho. Giá trị $20a + 10b^2$ bằng bao nhiêu?",
+      "points": 1,
+      "sort_order": 2,
+      "choices": [],
+      "settings": {
+        "explanation": "Tập xác định $D = (-\\infty; -1) \\cup (1; +\\infty)$.\n• Tại $x = 1$: $\\lim_{x \\to 1^+} \\dfrac{3(x - 1)}{\\sqrt{x - 1}\\sqrt{x + 1}} = \\lim_{x \\to 1^+} \\dfrac{3\\sqrt{x - 1}}{\\sqrt{x + 1}} = 0$, nên $x = 1$ không là tiệm cận đứng.\n• Tại $x = -1$: $\\lim_{x \\to -1^-} \\dfrac{3x - 3}{\\sqrt{x^2 - 1}} = -\\infty$, nên có $1$ tiệm cận đứng $x = -1$ ($a = 1$).\n• Khi $x \\to +\\infty$, $y \\to 3$; khi $x \\to -\\infty$, $y \\to -3$, nên có $2$ tiệm cận ngang $y = 3$ và $y = -3$ ($b = 2$).\nVậy $20a + 10b^2 = 20 \\cdot 1 + 10 \\cdot 4 = 60$.",
+        "source": "THPT Lương Tài 2 - Bắc Ninh 2025",
+        "level": "Thông hiểu",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "60",
+        "accepted_answers": [
+          "60"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 4 · Dạng 1: Tiệm cận (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 3,
+      "type": "short",
+      "prompt": "Có bao nhiêu giá trị nguyên của tham số $m$ thuộc đoạn $[-2024; 2024]$ để hàm số $y = \\dfrac{\\sin x + m}{\\sin x - 1}$ nghịch biến trên khoảng $\\left(\\dfrac{\\pi}{2}; \\pi\\right)$?",
+      "points": 1,
+      "sort_order": 3,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $y' = \\cos x \\cdot \\dfrac{-1 - m}{(\\sin x - 1)^2}$.\nTrên khoảng $\\left(\\dfrac{\\pi}{2}; \\pi\\right)$, ta có $\\sin x \\in (0; 1)$ (nên mẫu xác định) và $\\cos x < 0$.\nHàm số nghịch biến trên $\\left(\\dfrac{\\pi}{2}; \\pi\\right) \\Leftrightarrow y' < 0,\\ \\forall x \\in \\left(\\dfrac{\\pi}{2}; \\pi\\right) \\Leftrightarrow -1 - m > 0 \\Leftrightarrow m < -1$.\nVới $m \\in \\mathbb{Z} \\cap [-2024; 2024]$, ta được $m \\in \\{-2024; -2023; \\dots; -2\\}$, gồm $2023$ giá trị nguyên.",
+        "source": "THPT Văn Giang - Hưng Yên 2025",
+        "level": "Thông hiểu",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "2023",
+        "accepted_answers": [
+          "2023"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 4,
+      "type": "short",
+      "prompt": "Cho hàm số $f(x) = x(x - 3)^2$. Tính số nghiệm thực của phương trình $\\underbrace{f(f(\\cdots f(x)))}_{8\\text{ lần } f} = 0$.",
+      "points": 1,
+      "sort_order": 4,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $f(x) = x^3 - 6x^2 + 9x$, $f'(x) = 3x^2 - 12x + 9 = 0 \\Leftrightarrow x = 1$ hoặc $x = 3$.\nHàm số đạt cực đại $f(1) = 4$ và cực tiểu $f(3) = 0$. Từ bảng biến thiên suy ra:\n• Phương trình $f(x) = 0$ có $2$ nghiệm phân biệt ($x = 0$ và $x = 3$).\n• Với mọi $c \\in (0; 4)$, phương trình $f(x) = c$ có $3$ nghiệm phân biệt, và cả $3$ nghiệm đều thuộc $(0; 4)$.\nĐặt $u_n$ là số nghiệm của $f^{(n)}(x) = 0$. Ta có $u_1 = 2$ (gồm $x = 0$ và $x = 3$). Từ mỗi nghiệm $0$ sinh ra $2$ nghiệm ở bước kế, còn mỗi nghiệm trong $(0; 4)$ sinh ra $3$ nghiệm mới đều thuộc $(0; 4)$.\nDo đó $u_2 = 2 + 3$, $u_3 = 2 + 3 + 3^2$, $\\dots$, $u_8 = 2 + 3 + 3^2 + \\cdots + 3^7 = 2 + \\dfrac{3(3^7 - 1)}{2} = 3281$ nghiệm.",
+        "source": "THPT Chuyên Vĩnh Phúc 2025",
+        "level": "Vận dụng",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "3281",
+        "accepted_answers": [
+          "3281"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 5,
+      "type": "short",
+      "prompt": "Cho hàm số $y = ax^3 + bx^2 + cx + d\\ (a, b, c, d \\in \\mathbb{R})$ có đồ thị là đường cong trong hình bên. Có bao nhiêu số dương trong các số $a, b, c, d$?\n![Đồ thị hàm bậc ba](/bank-images/short-dothi/q5.jpeg)",
+      "points": 1,
+      "sort_order": 5,
+      "choices": [],
+      "settings": {
+        "explanation": "• Nhánh ngoài cùng bên phải đi xuống ($\\lim_{x \\to +\\infty} y = -\\infty$) nên $a < 0$.\n• Đồ thị cắt trục $Oy$ tại điểm có tung độ dương nên $d > 0$.\n• Hàm số có hai điểm cực trị đều mang dấu âm: $x_1 + x_2 = -\\dfrac{2b}{3a} < 0$ (mà $a < 0$) $\\Rightarrow b < 0$; và $x_1 x_2 = \\dfrac{c}{3a} > 0$ (mà $a < 0$) $\\Rightarrow c < 0$.\nVậy chỉ có duy nhất $1$ số dương là $d$.",
+        "source": "THPT Diễn Châu 5 - Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "1",
+        "accepted_answers": [
+          "1"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 2: Xét dấu hệ số",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 6,
+      "type": "short",
+      "prompt": "Cho hàm số $y = \\dfrac{x^2 + 3x + 3}{x + 1}$ có đồ thị $(C)$. Gọi $d$ là khoảng cách giữa hai điểm cực trị của $(C)$ và $d_1$ là khoảng cách từ điểm cực đại của $(C)$ đến gốc tọa độ. Giá trị của $d^2 + d_1^2$ bằng bao nhiêu?",
+      "points": 1,
+      "sort_order": 6,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $y = x + 2 + \\dfrac{1}{x + 1} \\Rightarrow y' = 1 - \\dfrac{1}{(x + 1)^2} = 0 \\Leftrightarrow x = 0$ hoặc $x = -2$.\nLập bảng biến thiên suy ra điểm cực đại là $B(-2; -1)$ và điểm cực tiểu là $A(0; 3)$.\n• $d^2 = AB^2 = (0 + 2)^2 + (3 + 1)^2 = 4 + 16 = 20$.\n• $d_1^2 = OB^2 = (-2)^2 + (-1)^2 = 5$.\nVậy $d^2 + d_1^2 = 20 + 5 = 25$.",
+        "source": "THPT Triệu Sơn 3 - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "25",
+        "accepted_answers": [
+          "25"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 7,
+      "type": "short",
+      "prompt": "Cho hàm số $y = f(x)$ có đạo hàm liên tục trên $\\mathbb{R}$ và có bảng biến thiên của đạo hàm như hình vẽ.\n![Bảng biến thiên của f'(x)](/bank-images/short-dothi/q7.png)\nĐặt $g(x) = f\\left(\\dfrac{x^2 + 1}{x}\\right)$. Tìm số điểm cực trị của hàm số $y = g(x)$.",
+      "points": 1,
+      "sort_order": 7,
+      "choices": [],
+      "settings": {
+        "explanation": "Xét $h(x) = \\dfrac{x^2 + 1}{x}$ ($x \\neq 0$), có $h'(x) = \\dfrac{x^2 - 1}{x^2} = 0 \\Leftrightarrow x = \\pm 1$. Miền giá trị của $h(x)$ là $(-\\infty; -2] \\cup [2; +\\infty)$.\nTa có $g'(x) = \\dfrac{x^2 - 1}{x^2} f'(h(x)) = 0 \\Leftrightarrow x = \\pm 1$ hoặc $f'(h(x)) = 0$.\nTừ bảng biến thiên của $f'(t)$, phương trình $f'(t) = 0$ có $3$ nghiệm đơn: $a < -2$, $b \\in (-2; 2)$ và $c > 2$.\n• $h(x) = a\\ (a < -2)$ có $2$ nghiệm đơn phân biệt (khác $-1$).\n• $h(x) = b\\ (-2 < b < 2)$ vô nghiệm.\n• $h(x) = c\\ (c > 2)$ có $2$ nghiệm đơn phân biệt (khác $1$).\nKết hợp với $x = \\pm 1$, phương trình $g'(x) = 0$ có $2 + 2 + 2 = 6$ nghiệm bội lẻ phân biệt, nên $g(x)$ có $6$ điểm cực trị.",
+        "source": "THPT Triệu Sơn 4 - Thanh Hóa 2025",
+        "level": "Vận dụng",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "6",
+        "accepted_answers": [
+          "6"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 8,
+      "type": "short",
+      "prompt": "Hàm số $y = \\dfrac{x^2 - x + 1}{x - 1}$ có giá trị cực đại và giá trị cực tiểu lần lượt là $a$ và $b$. Tính $3a + 2b$.",
+      "points": 1,
+      "sort_order": 8,
+      "choices": [],
+      "settings": {
+        "explanation": "Tập xác định $D = \\mathbb{R} \\setminus \\{1\\}$.\nTa có $y' = \\dfrac{x^2 - 2x}{(x - 1)^2} = 0 \\Leftrightarrow x = 0$ hoặc $x = 2$.\nLập bảng biến thiên thấy giá trị cực đại là $a = y(0) = -1$ và giá trị cực tiểu là $b = y(2) = 3$.\nVậy $3a + 2b = 3(-1) + 2 \\cdot 3 = 3$.",
+        "source": "THPT Chuyên Phan Bội Châu - Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "3",
+        "accepted_answers": [
+          "3"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 9,
+      "type": "short",
+      "prompt": "Cho hàm số $y = f(x) = \\dfrac{2x^2 + 26x + 18}{x + 13}$ có điểm cực tiểu $x = x_1$ và điểm cực đại $x = x_2$. Tính $P = -2x_1 + x_2$.",
+      "points": 1,
+      "sort_order": 9,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $f(x) = 2x + \\dfrac{18}{x + 13} \\Rightarrow f'(x) = 2 - \\dfrac{18}{(x + 13)^2} = 0 \\Leftrightarrow (x + 13)^2 = 9 \\Leftrightarrow x = -10$ hoặc $x = -16$.\nLập bảng biến thiên suy ra hàm số đạt cực đại tại $x_2 = -16$ và đạt cực tiểu tại $x_1 = -10$.\nVậy $P = -2(-10) + (-16) = 4$.",
+        "source": "THPT Lê Xoay - Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "4",
+        "accepted_answers": [
+          "4"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 10,
+      "type": "short",
+      "prompt": "Trong hệ trục tọa độ $(Oxy)$ cho đồ thị hàm số $(C): y = \\dfrac{x^2 + x + 1}{x + 1}$ mô tả chuyển động của hai tàu đánh cá $A$ và $B$ (đơn vị trên mỗi trục tọa độ tính bằng $\\text{km}$). Biết quỹ đạo chuyển động của hai tàu luôn thuộc về hai nhánh khác nhau của đồ thị $(C)$. Tính khoảng cách ngắn nhất (đơn vị $\\text{km}$) giữa hai tàu đánh cá $A$ và $B$ (kết quả làm tròn đến hàng phần trăm).",
+      "points": 1,
+      "sort_order": 10,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $y = x + \\dfrac{1}{x + 1}$ ($x \\neq -1$), có tiệm cận đứng $x = -1$.\nGọi $A(-1 - a; -1 - a - \\dfrac{1}{a})$ thuộc nhánh trái ($a > 0$) và $B(-1 + b; -1 + b + \\dfrac{1}{b})$ thuộc nhánh phải ($b > 0$).\nKhi đó $AB^2 = (a + b)^2 + \\left(a + b + \\dfrac{a + b}{ab}\\right)^2 = (a + b)^2\\left(2 + \\dfrac{2}{ab} + \\dfrac{1}{a^2 b^2}\\right)$.\nÁp dụng bất đẳng thức Cô-si: $(a + b)^2 \\ge 4ab$ và $2 + \\dfrac{1}{a^2 b^2} \\ge \\dfrac{2\\sqrt{2}}{ab}$.\nSuy ra $AB^2 \\ge 4ab \\cdot \\dfrac{2 + 2\\sqrt{2}}{ab} = 8 + 8\\sqrt{2} \\Rightarrow AB \\ge \\sqrt{8 + 8\\sqrt{2}} \\approx 4,39\\text{ km}$ (đạt khi $a = b = \\dfrac{1}{\\sqrt[4]{2}}$).",
+        "source": "Cụm trường THPT Bắc Ninh 2025",
+        "level": "Vận dụng",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "4,39",
+        "accepted_answers": [
+          "4,39",
+          "4.39"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 11,
+      "type": "short",
+      "prompt": "Một máy bay trình diễn có đường bay gắn với hệ trục $Oxy$ được mô phỏng như hình vẽ, trục $Ox$ gắn với mặt đất.\n![Mô phỏng đường bay của máy bay trình diễn](/bank-images/short-dothi/q11.jpeg)\nĐường bay có dạng là một phần của đồ thị hàm phân thức bậc hai trên bậc nhất $y = f(x)$ có đường tiệm cận đứng là $x = 2$. Điểm $G$ là giao điểm của đường tiệm cận xiên của đồ thị hàm số $y = f(x)$ và trục $Ox$ được gọi là điểm giới hạn. Biết máy bay bay từ vị trí $A$ cách gốc tọa độ $O$ một khoảng $2,5$ đơn vị và máy bay khi ở vị trí cao nhất cách điểm xuất phát $1,5$ đơn vị theo phương song song với trục $Ox$ và cách mặt đất $4,5$ đơn vị. Vị trí máy bay tiếp đất cách điểm giới hạn một khoảng bằng bao nhiêu?",
+      "points": 1,
+      "sort_order": 11,
+      "choices": [],
+      "settings": {
+        "explanation": "Do tiệm cận đứng là $x = 2$ nên $f(x) = ax + b + \\dfrac{c}{x - 2}$ ($a < 0$).\nĐồ thị đi qua $A\\left(\\dfrac{5}{2}; 0\\right)$ và đạt cực đại tại $B\\left(4; \\dfrac{9}{2}\\right)$ (vì $2,5 + 1,5 = 4$), suy ra:\n• $f'(4) = 0 \\Leftrightarrow a - \\dfrac{c}{4} = 0 \\Leftrightarrow c = 4a$.\n• $f\\left(\\dfrac{5}{2}\\right) = 0 \\Leftrightarrow \\dfrac{5}{2}a + b + 2c = 0 \\Leftrightarrow \\dfrac{21}{2}a + b = 0$.\n• $f(4) = \\dfrac{9}{2} \\Leftrightarrow 4a + b + \\dfrac{c}{2} = \\dfrac{9}{2} \\Leftrightarrow 6a + b = \\dfrac{9}{2}$.\nGiải hệ được $a = -1,\\ b = \\dfrac{21}{2},\\ c = -4 \\Rightarrow f(x) = -x + \\dfrac{21}{2} - \\dfrac{4}{x - 2}$.\nTiệm cận xiên $y = -x + \\dfrac{21}{2}$ cắt $Ox$ tại $G\\left(\\dfrac{21}{2}; 0\\right)$. Giải $f(x) = 0 \\Leftrightarrow x = \\dfrac{5}{2}$ hoặc $x = 10$, nên điểm tiếp đất là $C(10; 0)$.\nKhoảng cách cần tìm là $CG = \\dfrac{21}{2} - 10 = 0,5$.",
+        "source": "Sở Hà Tĩnh 2025",
+        "level": "Vận dụng",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "0,5",
+        "accepted_answers": [
+          "0,5",
+          "0.5"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 12,
+      "type": "short",
+      "prompt": "Tính giá trị cực tiểu của hàm số $y = x^3 - 3x^2 + 1$.",
+      "points": 1,
+      "sort_order": 12,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $y' = 3x^2 - 6x = 0 \\Leftrightarrow x = 0$ hoặc $x = 2$.\nĐạo hàm đổi dấu từ âm sang dương qua $x = 2$, nên hàm số đạt cực tiểu tại $x = 2$ với $y_{\\text{CT}} = y(2) = -3$.",
+        "source": "THPT Chuyên Hạ Long - Quảng Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "-3",
+        "accepted_answers": [
+          "-3"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 13,
+      "type": "short",
+      "prompt": "Trong một công viên có một hồ nước và một đường đi lát gạch hoa. Thiết lập hệ trục $Oxy$ như hình vẽ dưới, kiến trúc sư thấy rằng bờ hồ có thể coi như một nhánh của đồ thị hàm số $y = \\dfrac{2x + 1}{x - 1}$ và đường đi khi đó ứng với đường thẳng $(d): y = -x + 4$. Để đảm bảo ánh sáng, kiến trúc sư muốn đặt $2$ cột đèn trên bờ hồ và $2$ cột đèn trên đường đi sao cho $4$ cột đèn này tạo thành một hình vuông. Tính khoảng cách giữa hai cột đèn trên bờ hồ (làm tròn đến hàng phần trăm).\n![Mô hình công viên và hình vuông ABCD](/bank-images/short-dothi/q13.jpeg)",
+      "points": 1,
+      "sort_order": 13,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $(d_1): y = -x + m$ ($m > 4$) song song với $(d)$ và cắt nhánh $x > 1$ của $(C)$ tại hai điểm $B, C$.\nPhương trình hoành độ giao điểm: $\\dfrac{2x + 1}{x - 1} = -x + m \\Leftrightarrow x^2 + (1 - m)x + m + 1 = 0$ có $\\Delta = m^2 - 6m - 3 > 0 \\Leftrightarrow m > 3 + 2\\sqrt{3}$.\nTa có $BC^2 = 2(x_B - x_C)^2 = 2\\Delta = 2m^2 - 12m - 6$.\nKhoảng cách giữa $(d)$ và $(d_1)$ là $AB = \\dfrac{m - 4}{\\sqrt{2}}$. Để $ABCD$ là hình vuông thì $AB^2 = BC^2 \\Leftrightarrow \\dfrac{(m - 4)^2}{2} = 2m^2 - 12m - 6 \\Leftrightarrow 3m^2 - 16m - 28 = 0 \\Leftrightarrow m = \\dfrac{8 + 2\\sqrt{37}}{3}$ (do $m > 3 + 2\\sqrt{3}$).\nKhi đó $BC = AB = \\dfrac{m - 4}{\\sqrt{2}} = \\dfrac{2\\sqrt{37} - 4}{3\\sqrt{2}} \\approx 1,92$.",
+        "source": "THPT Chuyên Hạ Long - Quảng Ninh 2025",
+        "level": "Vận dụng",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "1,92",
+        "accepted_answers": [
+          "1,92",
+          "1.92"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 14,
+      "type": "short",
+      "prompt": "Cho hàm số $y = \\dfrac{ax^2 + bx + c}{x + d}$ có đồ thị như hình vẽ dưới đây. Tính $a + b + c + d$.\n![Đồ thị hàm phân thức bậc 2 trên bậc 1](/bank-images/short-dothi/q14.jpeg)",
+      "points": 1,
+      "sort_order": 14,
+      "choices": [],
+      "settings": {
+        "explanation": "• Đồ thị có tiệm cận đứng $x = -1 \\Rightarrow d = 1$.\n• Đồ thị đi qua gốc tọa độ $O(0; 0) \\Rightarrow c = 0$.\n• Khi đó $y = \\dfrac{ax^2 + bx}{x + 1}$, có $y' = \\dfrac{ax^2 + 2ax + b}{(x + 1)^2}$. Vì $O(0; 0)$ là điểm cực đại nên $y'(0) = 0 \\Rightarrow b = 0$.\n• Đồ thị đi qua điểm $(-2; 4)$ nên $\\dfrac{4a}{-1} = 4 \\Rightarrow a = -1$.\nVậy $a + b + c + d = -1 + 0 + 0 + 1 = 0$.",
+        "source": "THPT Chuyên Thái Bình 2025",
+        "level": "Thông hiểu",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "0",
+        "accepted_answers": [
+          "0"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 2: Xét dấu hệ số",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 15,
+      "type": "short",
+      "prompt": "Cho hàm số $y = f(x)$ liên tục trên $\\mathbb{R}$. Hàm số $y = f'(x)$ có bảng biến thiên như hình vẽ dưới. Tìm số điểm cực trị của hàm số $g(x) = f(2x) - x$.\n![Bảng biến thiên của f'(x)](/bank-images/short-dothi/q15.png)",
+      "points": 1,
+      "sort_order": 15,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $g'(x) = 2f'(2x) - 1 = 0 \\Leftrightarrow f'(2x) = \\dfrac{1}{2}$.\nĐặt $t = 2x$. Dựa vào bảng biến thiên của $f'(t)$, đường thẳng $y = \\dfrac{1}{2} \\in (-1; 1)$ cắt đồ thị $y = f'(t)$ tại $3$ điểm phân biệt (đều là giao điểm cắt ngang, nghiệm đơn).\nSuy ra $g'(x) = 0$ có $3$ nghiệm đơn phân biệt nên $g(x)$ có $3$ điểm cực trị.",
+        "source": "THPT Chuyên Thái Bình 2025",
+        "level": "Thông hiểu",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "3",
+        "accepted_answers": [
+          "3"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 16,
+      "type": "short",
+      "prompt": "Ở một vịnh biển, ngoài xa có một hòn đảo nhỏ. Người ta tiến hành lấn biển để xây một khu đô thị và làm một tuyến cáp treo nối khu đô thị với hòn đảo để phát triển du lịch. Xét trong hệ tọa độ $Oxy$ với đơn vị đo tương ứng $1\\text{ km}$ có hòn đảo ở $O$ thì đường bao của phần đất lấn biển có dạng là một phần của đồ thị hàm số $y = \\dfrac{x^2 + 1}{x}$. Giả sử tuyến cáp treo được thiết kế nối đảo với đường bao của khu đô thị với độ dài ngắn nhất. Độ dài của tuyến cáp treo là bao nhiêu $\\text{km}$ (làm tròn kết quả đến hàng phần mười)?\n![Mô hình tuyến cáp treo nối hòn đảo và khu đô thị](/bank-images/short-dothi/q16.jpeg)",
+      "points": 1,
+      "sort_order": 16,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $M\\left(x; x + \\dfrac{1}{x}\\right)$ ($x \\neq 0$) là điểm trên đường bao khu đô thị.\nBình phương khoảng cách từ $O(0; 0)$ đến $M$ là:\n$OM^2 = x^2 + \\left(x + \\dfrac{1}{x}\\right)^2 = 2x^2 + \\dfrac{1}{x^2} + 2$.\nTheo bất đẳng thức Cô-si: $2x^2 + \\dfrac{1}{x^2} \\ge 2\\sqrt{2x^2 \\cdot \\dfrac{1}{x^2}} = 2\\sqrt{2}$ (dấu bằng khi $x = \\pm \\dfrac{1}{\\sqrt[4]{2}}$).\nSuy ra $OM \\ge \\sqrt{2 + 2\\sqrt{2}} \\approx 2,197 \\approx 2,2\\text{ km}$.",
+        "source": "THPT Chuyên ĐH Vinh - Nghệ An 2025",
+        "level": "Thông hiểu",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "2,2",
+        "accepted_answers": [
+          "2,2",
+          "2.2"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 17,
+      "type": "short",
+      "prompt": "Cho hàm số $y = \\dfrac{x^2 - 2x + 2}{x - 1}$ có đồ thị là $(C)$. Gọi $I$ là giao điểm của hai đường tiệm cận của đồ thị $(C)$. Trên đồ thị $(C)$ có một điểm $M(a; b)$ với $a > 1$ sao cho khoảng cách $IM$ là nhỏ nhất. Tìm $a$ (làm tròn kết quả đến hàng phần trăm).",
+      "points": 1,
+      "sort_order": 17,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $y = x - 1 + \\dfrac{1}{x - 1}$, suy ra tiệm cận đứng $x = 1$ và tiệm cận xiên $y = x - 1$, giao điểm $I(1; 0)$.\nVới $M\\left(a; a - 1 + \\dfrac{1}{a - 1}\\right)$ ($a > 1$), đặt $t = a - 1 > 0$. Khi đó:\n$IM^2 = t^2 + \\left(t + \\dfrac{1}{t}\\right)^2 = 2t^2 + \\dfrac{1}{t^2} + 2 \\ge 2\\sqrt{2} + 2$.\nDấu bằng xảy ra khi $2t^2 = \\dfrac{1}{t^2} \\Leftrightarrow t^4 = \\dfrac{1}{2} \\Leftrightarrow t = \\dfrac{1}{\\sqrt[4]{2}}$.\nVậy $a = 1 + \\dfrac{1}{\\sqrt[4]{2}} \\approx 1,84$.",
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "level": "Vận dụng",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "1,84",
+        "accepted_answers": [
+          "1,84",
+          "1.84"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 18,
+      "type": "short",
+      "prompt": "Cho hàm số $y = f(x) = \\dfrac{ax^2 + bx + 3}{x + c}$ với $a \\neq 0$, có đồ thị là đường cong như hình vẽ bên dưới. Giá trị $S = a + b + c$ là bao nhiêu?\n![Đồ thị hàm phân thức](/bank-images/short-dothi/q18.jpeg)",
+      "points": 1,
+      "sort_order": 18,
+      "choices": [],
+      "settings": {
+        "explanation": "• Từ đồ thị, tiệm cận đứng là $x = -2 \\Rightarrow c = 2$.\n• Tiệm cận xiên đi qua $(-2; 0)$ và $(0; 2)$ nên có phương trình $y = x + 2$.\n• Thực hiện phép chia đa thức: $\\dfrac{ax^2 + bx + 3}{x + 2} = ax + (b - 2a) + \\dfrac{4a - 2b + 3}{x + 2}$.\nĐồng nhất với $y = x + 2$ suy ra $a = 1$ và $b - 2a = 2 \\Rightarrow b = 4$.\nVậy $S = a + b + c = 1 + 4 + 2 = 7$.",
+        "source": "THPT Sào Nam - Quảng Nam 2025",
+        "level": "Thông hiểu",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "7",
+        "accepted_answers": [
+          "7"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 2: Xét dấu hệ số",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 19,
+      "type": "short",
+      "prompt": "Biết đồ thị hàm số $y = x^3 + 3x^2 - 9x - 1$ có hai điểm cực trị $A$ và $B$. Phương trình đường thẳng $AB$ là $y = ax + b\\ (a, b \\in \\mathbb{R})$. Tính tổng $a + b$.",
+      "points": 1,
+      "sort_order": 19,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $y' = 3x^2 + 6x - 9 = 0 \\Leftrightarrow x = 1$ hoặc $x = -3$.\nHai điểm cực trị là $A(1; -6)$ và $B(-3; 26)$.\nĐường thẳng $AB$ có hệ số góc $a = \\dfrac{26 - (-6)}{-3 - 1} = -8$, suy ra $y = -8(x - 1) - 6 = -8x + 2$.\nVậy $a = -8,\\ b = 2 \\Rightarrow a + b = -6$.",
+        "source": "THPT Trực Ninh - Nam Định 2025",
+        "level": "Nhận biết",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "-6",
+        "accepted_answers": [
+          "-6"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 20,
+      "type": "short",
+      "prompt": "Một hòn đảo nằm trong một hồ nước. Biết rằng đường cong tạo nên hòn đảo được mô hình hóa vào hệ trục tọa độ $Oxy$ là một phần của đồ thị hàm số bậc ba $f(x)$.\n![Mô hình hòn đảo và mặt đường](/bank-images/short-dothi/q20.jpeg)\nVị trí điểm cực đại là $(2; 5)$ với đơn vị của hệ trục là $100\\text{ m}$ và vị trí điểm cực tiểu là $(0; 1)$. Mặt đường chạy trên một đường thẳng có phương trình $y = 36 - 9x$. Người ta muốn làm một cây cầu có dạng một đoạn thẳng nối từ hòn đảo ra mặt đường. Độ dài ngắn nhất của cây cầu bằng bao nhiêu mét? (làm tròn đến hàng phần chục)",
+      "points": 1,
+      "sort_order": 20,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $f(x) = ax^3 + bx^2 + cx + d$. Vì $(0; 1)$ là điểm cực tiểu và $(2; 5)$ là điểm cực đại nên:\n$f(0) = 1 \\Rightarrow d = 1$; $f'(0) = 0 \\Rightarrow c = 0$; $f'(2) = 0 \\Rightarrow 12a + 4b = 0 \\Rightarrow b = -3a$; $f(2) = 5 \\Rightarrow 8a + 4b + 1 = 5 \\Rightarrow a = -1,\\ b = 3$.\nSuy ra $f(x) = -x^3 + 3x^2 + 1$ và $f'(x) = -3x^2 + 6x$.\nKhoảng cách từ điểm $M(x_0; f(x_0))$ ($x_0 > 0$) đến đường thẳng $d: 9x + y - 36 = 0$ nhỏ nhất khi tiếp tuyến tại $M$ song song với $d$:\n$f'(x_0) = -9 \\Leftrightarrow -3x_0^2 + 6x_0 = -9 \\Leftrightarrow x_0 = 3$ (vì $x_0 > 0$) $\\Rightarrow M(3; 1)$.\nKhoảng cách $h = \\dfrac{|9 \\cdot 3 + 1 - 36|}{\\sqrt{9^2 + 1^2}} = \\dfrac{8}{\\sqrt{82}} \\approx 0,88345$ đơn vị $\\approx 88,3\\text{ m}$.",
+        "source": "THPT Trực Ninh - Nam Định 2025",
+        "level": "Vận dụng",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "88,3",
+        "accepted_answers": [
+          "88,3",
+          "88.3"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 21,
+      "type": "short",
+      "prompt": "Khuôn viên của một công viên có dạng hình chữ nhật $ABCD$ với $AB = 100\\text{ m}$, $AD = 80\\text{ m}$. Người ta muốn chia công viên thành hai khu, một khu dành cho trẻ em, một khu dành cho người lớn. Để tạo thiết kế độc đáo và lạ mắt, người ta dùng một đường cong chia khuôn viên thành hai phần $H_1$ (không tô màu) dành cho trẻ em và $H_2$ (tô màu) dành cho người lớn như hình vẽ bên với $AH = 40\\text{ m}$, $AE = 60\\text{ m}$, $AP = 20\\text{ m}$ và $EF \\parallel AB$, $PQ \\parallel AD$. Biết rằng khi xét trong một hệ tọa độ $Oxy$, đường cong trong hình là một phần của đồ thị hàm số bậc ba (có điểm cực đại $Q$). Phần chính giữa công viên người ta muốn mắc dây đèn trang trí dọc đoạn thẳng $MN$ như hình ($M$ là trung điểm $AB$). Biết giá tiền mỗi mét dây trang trí của phần dành cho trẻ em là $140$ nghìn đồng và phần dành cho người lớn là $180$ nghìn đồng. Tổng số tiền mắc dây đèn trang trí trên đoạn $MN$ là bao nhiêu triệu đồng?\n![Sơ đồ khuôn viên công viên ABCD](/bank-images/short-dothi/q21.png)",
+      "points": 1,
+      "sort_order": 21,
+      "choices": [],
+      "settings": {
+        "explanation": "Chọn hệ trục tọa độ $Oxy$ với gốc $O \\equiv A$, tia $Ox$ trùng $AB$, tia $Oy$ trùng $AD$.\nĐường cong ranh giới $y = f(x) = ax^3 + bx^2 + cx + d$ đi qua $H(0; 40)$, $Q(20; 60)$, $F(100; 60)$ và đạt cực đại tại $Q(20; 60)$, nên ta có hệ:\n• $f(0) = 40 \\Rightarrow d = 40$.\n• $f(20) = 60 \\Rightarrow 8000a + 400b + 20c = 20 \\Leftrightarrow 400a + 20b + c = 1$.\n• $f(100) = 60 \\Rightarrow 1000000a + 10000b + 100c = 20 \\Leftrightarrow 10000a + 100b + c = 0,2$.\n• $f'(20) = 0 \\Rightarrow 1200a + 40b + c = 0$.\nGiải hệ được $a = \\dfrac{1}{2000},\\ b = -\\dfrac{7}{100},\\ c = \\dfrac{11}{5},\\ d = 40$.\nTại trung điểm $M(50; 0)$, tung độ giao điểm $I$ là $y_I = f(50) = \\dfrac{50^3}{2000} - \\dfrac{7 \\cdot 50^2}{100} + \\dfrac{11 \\cdot 50}{5} + 40 = 37,5\\text{ m}$.\nDo đó đoạn dây ở khu người lớn dài $IM = 37,5\\text{ m}$ và khu trẻ em dài $IN = 80 - 37,5 = 42,5\\text{ m}$.\nTổng chi phí: $37,5 \\cdot 0,18 + 42,5 \\cdot 0,14 = 6,75 + 5,95 = 12,7$ triệu đồng.",
+        "source": "Sở Ninh Bình 2025",
+        "level": "Vận dụng",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "12,7",
+        "accepted_answers": [
+          "12,7",
+          "12.7"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 22,
+      "type": "short",
+      "prompt": "Cho hàm số $y = f(x)$ liên tục trên $\\mathbb{R}$ và có đồ thị như hình vẽ.\n![Đồ thị hàm số y = f(x)](/bank-images/short-dothi/q22.jpeg)\nGọi $M, m$ lần lượt là giá trị lớn nhất và giá trị nhỏ nhất của hàm số $h(x) = 3f(\\log_2 x - 1) + x^3 - 9x^2 + 15x + 1$ trên đoạn $[1; 4]$. Tính giá trị của biểu thức $T = M + m$.",
+      "points": 1,
+      "sort_order": 22,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $h'(x) = \\dfrac{3}{x\\ln 2} f'(\\log_2 x - 1) + 3x^2 - 18x + 15$.\nVới mọi $x \\in (1; 4)$, ta có $t = \\log_2 x - 1 \\in (-1; 1)$. Từ đồ thị, $f(t)$ nghịch biến trên $(-1; 1)$ nên $f'(\\log_2 x - 1) < 0$.\nĐồng thời $3x^2 - 18x + 15 = 3(x - 1)(x - 5) < 0$ với mọi $x \\in (1; 4)$.\nSuy ra $h'(x) < 0$ trên $(1; 4)$, do đó $h(x)$ nghịch biến trên $[1; 4]$.\n• $M = h(1) = 3f(-1) + 1 - 9 + 15 + 1 = 3 \\cdot 4 + 8 = 20$.\n• $m = h(4) = 3f(1) + 64 - 144 + 60 + 1 = 3 \\cdot 2 - 19 = -13$.\nVậy $T = M + m = 20 + (-13) = 7$.",
+        "source": "THPT Nông Cống 3 - Thanh Hóa 2025",
+        "level": "Vận dụng",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "7",
+        "accepted_answers": [
+          "7"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 23,
+      "type": "short",
+      "prompt": "Đồ thị hàm số $y = \\dfrac{x^2}{x + 1}$ có hai điểm cực trị $A$ và $B$. Độ dài đoạn thẳng $AB$ bằng bao nhiêu (kết quả làm tròn đến hàng phần chục)?",
+      "points": 1,
+      "sort_order": 23,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $y' = \\dfrac{x^2 + 2x}{(x + 1)^2} = 0 \\Leftrightarrow x = 0$ hoặc $x = -2$.\nHai điểm cực trị là $A(0; 0)$ và $B(-2; -4)$.\nĐộ dài $AB = \\sqrt{(-2)^2 + (-4)^2} = 2\\sqrt{5} \\approx 4,5$.",
+        "source": "Sở Hà Nội 2025",
+        "level": "Nhận biết",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "4,5",
+        "accepted_answers": [
+          "4,5",
+          "4.5"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 24,
+      "type": "short",
+      "prompt": "Gọi $M(a; b)$ là điểm thuộc đồ thị hàm số $y = \\dfrac{2x + 1}{x + 2}$ và có khoảng cách từ $M$ đến đường thẳng $d: y = 3x + 6$ nhỏ nhất. Tính giá trị của biểu thức $T = 6a^2 + 7b^2$.",
+      "points": 1,
+      "sort_order": 24,
+      "choices": [],
+      "settings": {
+        "explanation": "Khoảng cách từ $M \\in (C)$ đến $d: 3x - y + 6 = 0$ nhỏ nhất khi tiếp tuyến của $(C)$ tại $M$ song song với $d$.\nTa có $y' = \\dfrac{3}{(x + 2)^2} = 3 \\Leftrightarrow (x + 2)^2 = 1 \\Leftrightarrow x = -1$ hoặc $x = -3$.\n• Với $M_1(-1; -1)$: $d(M_1, d) = \\dfrac{|-3 + 1 + 6|}{\\sqrt{10}} = \\dfrac{4}{\\sqrt{10}}$.\n• Với $M_2(-3; 5)$: $d(M_2, d) = \\dfrac{|-9 - 5 + 6|}{\\sqrt{10}} = \\dfrac{8}{\\sqrt{10}}$.\nDo đó điểm gần nhất là $M(-1; -1)$, suy ra $T = 6(-1)^2 + 7(-1)^2 = 13$.",
+        "source": "Sở Yên Bái 2025",
+        "level": "Thông hiểu",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "13",
+        "accepted_answers": [
+          "13"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 25,
+      "type": "short",
+      "prompt": "Một giáo viên theo dõi sự tiến bộ của học sinh qua thang đo điểm, được mô hình hóa bằng hàm số $f(x) = x^3 + ax^2 + bx + c$ với $a, b, c$ là các hệ số. Trong đó, $x\\ (0 \\le x \\le 9,\\ x \\in \\mathbb{N})$ là số tháng kể từ đầu năm học và $f(x)$ là điểm trong tháng thứ $x$. Qua theo dõi, giáo viên ghi nhận tháng đầu tiên học sinh đạt $19$ điểm, sau đó giảm trong tháng thứ hai và đến tháng thứ ba học sinh đạt mức điểm thấp nhất trong năm học, là $3$ điểm. Kể từ tháng thứ ba trở đi, điểm của học sinh tăng lên. Tính điểm của học sinh đó ở tháng thứ sáu.",
+      "points": 1,
+      "sort_order": 25,
+      "choices": [],
+      "settings": {
+        "explanation": "Theo giả thiết ta có:\n• $f(1) = 19 \\Rightarrow 1 + a + b + c = 19 \\Leftrightarrow a + b + c = 18$.\n• $f(3) = 3 \\Rightarrow 27 + 9a + 3b + c = 3 \\Leftrightarrow 9a + 3b + c = -24$.\n• Hàm số đạt cực tiểu tại $x = 3$ nên $f'(3) = 0 \\Rightarrow 27 + 6a + b = 0 \\Leftrightarrow 6a + b = -27$.\nGiải hệ được $a = -3,\\ b = -9,\\ c = 30 \\Rightarrow f(x) = x^3 - 3x^2 - 9x + 30$.\nĐiểm ở tháng thứ sáu là $f(6) = 6^3 - 3 \\cdot 6^2 - 9 \\cdot 6 + 30 = 84$.",
+        "source": "Sở Đà Nẵng 2025",
+        "level": "Thông hiểu",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "84",
+        "accepted_answers": [
+          "84"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 26,
+      "type": "short",
+      "prompt": "Biết đồ thị hàm số $y = \\dfrac{x^2 - 4x + 5}{x - 2}$ có điểm cực tiểu là $M(x_0; y_0)$, tính $T = x_0 + y_0$.",
+      "points": 1,
+      "sort_order": 26,
+      "choices": [],
+      "settings": {
+        "explanation": "Tập xác định $D = \\mathbb{R} \\setminus \\{2\\}$.\nTa có $y' = \\dfrac{x^2 - 4x + 3}{(x - 2)^2} = 0 \\Leftrightarrow x = 1$ hoặc $x = 3$.\nLập bảng biến thiên thấy hàm số đạt cực tiểu tại $x_0 = 3$ với $y_0 = y(3) = 2$.\nVậy $T = x_0 + y_0 = 3 + 2 = 5$.",
+        "source": "Sở Quảng Nam 2025",
+        "level": "Nhận biết",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "5",
+        "accepted_answers": [
+          "5"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 27,
+      "type": "short",
+      "prompt": "Lát cắt của một vùng đất được mô hình hóa bởi hàm bậc ba $y = f(x)$ có đồ thị như hình vẽ dưới (đơn vị trên các trục là $\\text{km}$). Biết khoảng cách $OM = 2\\text{ km}$, độ rộng của núi $MN = 3,5\\text{ km}$, độ sâu của hồ nước là $450\\text{ m}$. Chiều cao của ngọn núi là bao nhiêu mét? (làm tròn đến hàng đơn vị).\n![Lát cắt vùng đất với hồ nước và ngọn núi](/bank-images/short-dothi/q27.jpeg)",
+      "points": 1,
+      "sort_order": 27,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $ON = OM + MN = 5,5\\text{ km}$. Đồ thị cắt $Ox$ tại $x = 0,\\ 2,\\ 5,5$ nên $f(x) = kx(x - 2)(x - 5,5) = k(x^3 - 7,5x^2 + 11x)$ với $k < 0$ (do $\\lim_{x \\to +\\infty} f(x) = -\\infty$).\nTa có $f'(x) = k(3x^2 - 15x + 11) = 0 \\Leftrightarrow x_1 = \\dfrac{15 - \\sqrt{93}}{6} \\in (0; 2)$ (cực tiểu, đáy hồ) và $x_2 = \\dfrac{15 + \\sqrt{93}}{6} \\in (2; 5,5)$ (cực đại, đỉnh núi).\nĐộ sâu hồ nước là $450\\text{ m} = 0,45\\text{ km} \\Rightarrow f(x_1) = -0,45 \\Rightarrow k = \\dfrac{-0,45}{x_1(x_1 - 2)(x_1 - 5,5)} \\approx -0,098809$.\nChiều cao ngọn núi là $f(x_2) = k \\cdot x_2(x_2 - 2)(x_2 - 5,5) \\approx 1,19107\\text{ km} \\approx 1191\\text{ m}$.",
+        "source": "THPT Ngô Sĩ Liên - Bắc Giang 2025",
+        "level": "Vận dụng",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "1191",
+        "accepted_answers": [
+          "1191"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 28,
+      "type": "short",
+      "prompt": "Cho hàm bậc ba $y = f(x)$ có đồ thị như hình vẽ bên. Hỏi đồ thị hàm số $y = \\dfrac{(x^2 + 4x + 3)\\sqrt{x^2 + x}}{x\\left[f^2(x) - 2f(x)\\right]}$ có bao nhiêu đường tiệm cận đứng?\n![Đồ thị hàm bậc ba y = f(x)](/bank-images/short-dothi/q28.png)",
+      "points": 1,
+      "sort_order": 28,
+      "choices": [],
+      "settings": {
+        "explanation": "Điều kiện xác định: $x^2 + x \\ge 0 \\Leftrightarrow x \\in (-\\infty; -1] \\cup [0; +\\infty)$, và $x \\neq 0$, $f(x) \\notin \\{0; 2\\}$.\nTừ đồ thị hàm bậc ba ($a < 0$):\n• $f(x) = 0$ có nghiệm kép $x = -3$ và nghiệm đơn $x_1 \\in (-1; 0)$ (loại vì nằm ngoài tập xác định).\n• $f(x) = 2$ có $3$ nghiệm đơn: $x_2 < -3$, $x_3 \\in (-3; -1)$ và $x = -1$.\nRút gọn $(x^2 + 4x + 3) = (x + 1)(x + 3)$ với mẫu số:\n$y = \\dfrac{(x + 1)(x + 3)\\sqrt{x^2 + x}}{a^2 x(x + 3)^2(x - x_1)(x - x_2)(x - x_3)(x + 1)} = \\dfrac{\\sqrt{x^2 + x}}{a^2 x(x + 3)(x - x_1)(x - x_2)(x - x_3)}$.\n• Tại $x = -1$: tử bằng $0$, mẫu khác $0$ nên không là tiệm cận đứng.\n• Tại $x = 0$: $\\lim_{x \\to 0^+} \\dfrac{\\sqrt{x(x + 1)}}{x} = +\\infty$ nên $x = 0$ là tiệm cận đứng.\n• Tại $x = -3,\\ x = x_2,\\ x = x_3$: đều thuộc $(-\\infty; -1)$, tử khác $0$ và mẫu có nghiệm đơn nên là $3$ tiệm cận đứng.\nVậy đồ thị có tất cả $4$ đường tiệm cận đứng.",
+        "source": "THPT Hoằng Hóa 2 - Thanh Hóa 2025",
+        "level": "Vận dụng",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "4",
+        "accepted_answers": [
+          "4"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 4 · Dạng 2: Tiệm cận (Đồ thị / BBT)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 29,
+      "type": "short",
+      "prompt": "Tính giá trị nhỏ nhất của hàm số $y = 3x + \\dfrac{4}{x^2}$ trên khoảng $(0; +\\infty)$ (làm tròn đến hàng phần trăm).",
+      "points": 1,
+      "sort_order": 29,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $y' = 3 - \\dfrac{8}{x^3} = 0 \\Leftrightarrow x = \\dfrac{2}{\\sqrt[3]{3}} > 0$.\nHoặc dùng bất đẳng thức Cô-si cho $3$ số dương: $y = \\dfrac{3x}{2} + \\dfrac{3x}{2} + \\dfrac{4}{x^2} \\ge 3\\sqrt[3]{\\dfrac{3x}{2} \\cdot \\dfrac{3x}{2} \\cdot \\dfrac{4}{x^2}} = 3\\sqrt[3]{9} \\approx 6,24$.",
+        "source": "THPT Tư Nghĩa 1 - Quảng Ngãi 2025",
+        "level": "Nhận biết",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "6,24",
+        "accepted_answers": [
+          "6,24",
+          "6.24"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 30,
+      "type": "short",
+      "prompt": "Gọi $M, m$ lần lượt là giá trị lớn nhất và giá trị nhỏ nhất của hàm số $y = \\dfrac{3\\sin x + 2}{\\sin x + 1}$ trên đoạn $\\left[0; \\dfrac{\\pi}{2}\\right]$. Khi đó giá trị của $M^2 + m^2 = \\dfrac{b}{c}$ (với $\\dfrac{b}{c}$ là phân số tối giản, $b, c \\in \\mathbb{N}^*$), tính $T = b - c$.",
+      "points": 1,
+      "sort_order": 30,
+      "choices": [],
+      "settings": {
+        "explanation": "Đặt $t = \\sin x$; với $x \\in \\left[0; \\dfrac{\\pi}{2}\\right]$ thì $t \\in [0; 1]$.\nXét $f(t) = \\dfrac{3t + 2}{t + 1}$ trên $[0; 1]$ có $f'(t) = \\dfrac{1}{(t + 1)^2} > 0$, nên hàm đồng biến trên $[0; 1]$.\nSuy ra $M = f(1) = \\dfrac{5}{2}$ và $m = f(0) = 2$.\nKhi đó $M^2 + m^2 = \\dfrac{25}{4} + 4 = \\dfrac{41}{4} \\Rightarrow b = 41,\\ c = 4 \\Rightarrow T = b - c = 37$.",
+        "source": "THPT Quế Võ 1 - Bắc Ninh 2025",
+        "level": "Thông hiểu",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "37",
+        "accepted_answers": [
+          "37"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 31,
+      "type": "short",
+      "prompt": "Hàm số $y = x^3 + ax^2 + bx + 2$ đạt cực tiểu tại $x = 1$. Tính tổng $b + 2a$.",
+      "points": 1,
+      "sort_order": 31,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $y' = 3x^2 + 2ax + b$.\nVì hàm số đạt cực tiểu tại $x = 1$ nên $y'(1) = 0 \\Leftrightarrow 3 + 2a + b = 0 \\Leftrightarrow b + 2a = -3$.",
+        "source": "THPT Triệu Quang Phục - Hưng Yên 2025",
+        "level": "Nhận biết",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "-3",
+        "accepted_answers": [
+          "-3"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 32,
+      "type": "short",
+      "prompt": "Cho các hàm số $f(x) = x^2 - 4x + m$, với $m$ là tham số và $g(x) = (x^2 + 1)(x^2 + 2)^2(x^2 + 3)^3$. Tìm số giá trị nguyên của $m \\in [3; 10]$ để hàm số $g(f(x))$ đồng biến trên khoảng $(3; +\\infty)$.",
+      "points": 1,
+      "sort_order": 32,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $g'(x) = 2x(x^2 + 2)(x^2 + 3)^2(6x^4 + 22x^2 + 18)$, suy ra $g'(t) \\ge 0 \\Leftrightarrow t \\ge 0$ và $g'(t) = 0 \\Leftrightarrow t = 0$.\nĐặt $y = g(f(x))$, ta có $y' = f'(x) \\cdot g'(f(x)) = (2x - 4) \\cdot g'(f(x))$.\nTrên khoảng $(3; +\\infty)$, ta luôn có $2x - 4 > 0$, nên hàm số $y$ đồng biến trên $(3; +\\infty)$ khi và chỉ khi $g'(f(x)) \\ge 0,\\ \\forall x \\in (3; +\\infty) \\Leftrightarrow f(x) \\ge 0,\\ \\forall x \\in (3; +\\infty)$.\nXét $f(x) = x^2 - 4x + m$ trên $(3; +\\infty)$: vì $f'(x) = 2x - 4 > 0$ nên $f(x)$ đồng biến trên $[3; +\\infty)$, do đó $f(x) \\ge 0,\\ \\forall x > 3 \\Leftrightarrow f(3) \\ge 0 \\Leftrightarrow m - 3 \\ge 0 \\Leftrightarrow m \\ge 3$.\nVới $m \\in \\mathbb{Z} \\cap [3; 10]$, tất cả $8$ giá trị $m \\in \\{3; 4; 5; 6; 7; 8; 9; 10\\}$ đều thỏa mãn.",
+        "source": "THPT Triệu Quang Phục - Hưng Yên 2025",
+        "level": "Vận dụng",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "8",
+        "accepted_answers": [
+          "8"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 33,
+      "type": "short",
+      "prompt": "Cho hàm số $y = f(x)$ có đồ thị như hình bên dưới.\n![Đồ thị hàm bậc ba y = f(x)](/bank-images/short-dothi/q33.jpeg)\nCó tất cả bao nhiêu giá trị nguyên dương của tham số $m$ để phương trình $25^{f(x)} + 125m = m \\cdot 5^{f(x)} + 5^{f(x) + 3}$ có đúng $5$ nghiệm thực phân biệt?",
+      "points": 1,
+      "sort_order": 33,
+      "choices": [],
+      "settings": {
+        "explanation": "Biến đổi phương trình:\n$\\left(5^{f(x)}\\right)^2 - 125 \\cdot 5^{f(x)} - m\\left(5^{f(x)} - 125\\right) = 0 \\Leftrightarrow \\left(5^{f(x)} - 125\\right)\\left(5^{f(x)} - m\\right) = 0$.\nVới $m > 0$, phương trình tương đương $f(x) = 3$ hoặc $f(x) = \\log_5 m$.\nTừ đồ thị, phương trình $f(x) = 3$ đã có đúng $2$ nghiệm phân biệt (một nghiệm đơn và một điểm tiếp xúc cực đại tại $x = -1$).\nDo đó để phương trình đã cho có đúng $5$ nghiệm phân biệt thì $f(x) = \\log_5 m$ phải có $3$ nghiệm phân biệt khác các nghiệm của $f(x) = 3$, tức là $-1 < \\log_5 m < 3 \\Leftrightarrow \\dfrac{1}{5} < m < 125$.\nVì $m$ nguyên dương nên $m \\in \\{1; 2; \\dots; 124\\}$, có $124$ giá trị thỏa mãn.",
+        "source": "THPT Triệu Quang Phục - Hưng Yên 2025",
+        "level": "Vận dụng",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "124",
+        "accepted_answers": [
+          "124"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 34,
+      "type": "short",
+      "prompt": "Cho hàm số $y = x^3 - 3x$, có giá trị cực đại và cực tiểu lần lượt là $y_1$ và $y_2$. Khi đó giá trị của biểu thức $2y_1 - y_2$ bằng bao nhiêu?",
+      "points": 1,
+      "sort_order": 34,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $y' = 3x^2 - 3 = 0 \\Leftrightarrow x = -1$ hoặc $x = 1$.\nGiá trị cực đại $y_1 = y(-1) = 2$, giá trị cực tiểu $y_2 = y(1) = -2$.\nVậy $2y_1 - y_2 = 2 \\cdot 2 - (-2) = 6$.",
+        "source": "Cụm Chuyên Môn Đăk Lak 2025",
+        "level": "Nhận biết",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "6",
+        "accepted_answers": [
+          "6"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 35,
+      "type": "short",
+      "prompt": "Có bao nhiêu giá trị nguyên của tham số $m$ thuộc $(-2025; 2025)$ để hàm số $y = \\dfrac{m\\log_2 x - 2}{\\log_2 x - m - 1}$ nghịch biến trên $(4; +\\infty)$?",
+      "points": 1,
+      "sort_order": 35,
+      "choices": [],
+      "settings": {
+        "explanation": "Đặt $t = \\log_2 x$. Vì $t(x)$ đồng biến trên $(0; +\\infty)$ và $x \\in (4; +\\infty) \\Leftrightarrow t \\in (2; +\\infty)$, nên yêu cầu bài toán tương đương hàm $g(t) = \\dfrac{mt - 2}{t - m - 1}$ nghịch biến trên $(2; +\\infty)$.\nĐiều kiện là $\\begin{cases} -m(m + 1) + 2 < 0 \\\\ m + 1 \\le 2 \\end{cases} \\Leftrightarrow \\begin{cases} m < -2 \\text{ hoặc } m > 1 \\\\ m \\le 1 \\end{cases} \\Leftrightarrow m < -2$.\nVới $m \\in \\mathbb{Z} \\cap (-2025; 2025)$, ta có $m \\in \\{-2024; -2023; \\dots; -3\\}$, gồm $2022$ giá trị nguyên.",
+        "source": "THPT Hà Trung - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "2022",
+        "accepted_answers": [
+          "2022"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 38,
+      "type": "short",
+      "prompt": "Một phần đường chạy của tàu lượn siêu tốc (Hình 1) khi gắn hệ trục tọa độ $Oxy$ được mô phỏng ở Hình 2, đơn vị trên mỗi trục là mét. Biết đường chạy của nó là một phần đồ thị hàm bậc ba $y = ax^3 + bx^2 + cx + d\\ (0 \\le x < 90)$; tàu lượn siêu tốc xuất phát từ điểm $A$, đi qua các điểm $C, D$ đồng thời đạt độ cao nhỏ nhất so với mặt đất là $6\\text{ m}$. Độ cao lớn nhất mà tàu lượn siêu tốc đạt được là bao nhiêu mét so với mặt đất? (kết quả làm tròn đến hàng phần chục).\n![Đường chạy tàu lượn siêu tốc và mô phỏng đồ thị](/bank-images/short-dothi/q38.png)",
+      "points": 1,
+      "sort_order": 36,
+      "choices": [],
+      "settings": {
+        "explanation": "Từ Hình 2, đồ thị $y = f(x)$ cắt đường thẳng $y = 30$ tại $3$ điểm có hoành độ $x = 0,\\ 50,\\ 80$, nên $f(x) - 30 = ax(x - 50)(x - 80) = a(x^3 - 130x^2 + 4000x)$ ($a < 0$).\nSuy ra $f'(x) = a(3x^2 - 260x + 4000) = 0 \\Leftrightarrow x = 20$ (cực tiểu) hoặc $x = \\dfrac{200}{3}$ (cực đại).\nĐộ cao nhỏ nhất là $f(20) = 6 \\Leftrightarrow a \\cdot 20(-30)(-60) + 30 = 6 \\Leftrightarrow 36000a = -24 \\Leftrightarrow a = -\\dfrac{1}{1500}$.\nĐộ cao lớn nhất đạt được tại $x = \\dfrac{200}{3}$: $f\\left(\\dfrac{200}{3}\\right) = \\dfrac{3230}{81} \\approx 39,9\\text{ m}$.",
+        "source": "THPT Lê Quý Đôn - Hà Nội 2025",
+        "level": "Vận dụng",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "39,9",
+        "accepted_answers": [
+          "39,9",
+          "39.9"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 39,
+      "type": "short",
+      "prompt": "Cho hàm số $y = \\dfrac{x^2 + 3x + 3}{x + 1}$ có đồ thị $(C)$. Gọi $d_1$ là khoảng cách giữa hai điểm cực trị của $(C)$ và $d_2$ là khoảng cách từ điểm cực tiểu của $(C)$ đến gốc tọa độ. Giá trị của $d_1^2 + 2d_2^2$ bằng bao nhiêu?",
+      "points": 1,
+      "sort_order": 37,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $y' = \\dfrac{x^2 + 2x}{(x + 1)^2} = 0 \\Leftrightarrow x = 0$ hoặc $x = -2$.\nLập bảng biến thiên suy ra điểm cực đại $M(-2; -1)$ và điểm cực tiểu $N(0; 3)$.\n• $d_1^2 = MN^2 = 2^2 + 4^2 = 20$.\n• $d_2^2 = ON^2 = 0^2 + 3^2 = 9$.\nVậy $d_1^2 + 2d_2^2 = 20 + 2 \\cdot 9 = 38$.",
+        "source": "THPT Nguyễn Quốc Trinh - Hà Nội 2025",
+        "level": "Thông hiểu",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "38",
+        "accepted_answers": [
+          "38"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 40,
+      "type": "short",
+      "prompt": "Cho hàm số $y = \\dfrac{x^2 - 2x - 2}{x + 1}$ có đồ thị $(C)$. Gọi $A, B$ là hai điểm cực trị của đồ thị $(C)$. Tính bình phương của độ dài đoạn thẳng $AB$.",
+      "points": 1,
+      "sort_order": 38,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $y' = \\dfrac{x^2 + 2x}{(x + 1)^2} = 0 \\Leftrightarrow x = 0$ hoặc $x = -2$.\nHai điểm cực trị là $A(-2; -6)$ và $B(0; -2)$.\nSuy ra $AB^2 = (0 + 2)^2 + (-2 + 6)^2 = 4 + 16 = 20$.",
+        "source": "THPT Chuyên Lam Sơn - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "20",
+        "accepted_answers": [
+          "20"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 41,
+      "type": "short",
+      "prompt": "Lát cắt của một vùng đất được mô hình hóa là một phần hàm số bậc ba $y = f(x)$ có đồ thị như hình vẽ (đơn vị độ dài trên các trục là kilômét). Biết khoảng cách hai bên chân đồi $OM = 2\\text{ (km)}$, độ rộng của hồ nước $MN = 1\\text{ (km)}$ và ngọn đồi cao $528\\text{ (m)}$. Độ sâu nhất của hồ nước là bao nhiêu mét? (làm tròn kết quả đến hàng đơn vị).\n![Lát cắt vùng đất với đồi và hồ nước](/bank-images/short-dothi/q41.jpeg)",
+      "points": 1,
+      "sort_order": 39,
+      "choices": [],
+      "settings": {
+        "explanation": "Đổi $528\\text{ m} = 0,528\\text{ km}$. Ta có $ON = OM + MN = 3\\text{ km}$, nên đồ thị cắt $Ox$ tại $x = 0,\\ 2,\\ 3$.\nSuy ra $f(x) = kx(x - 2)(x - 3) = k(x^3 - 5x^2 + 6x)$ với $k > 0$.\nTa có $f'(x) = k(3x^2 - 10x + 6) = 0 \\Leftrightarrow x_1 = \\dfrac{5 - \\sqrt{7}}{3} \\in (0; 2)$ (đỉnh đồi) và $x_2 = \\dfrac{5 + \\sqrt{7}}{3} \\in (2; 3)$ (đáy hồ).\nVì $f(x_1) = 0,528$ nên $k = \\dfrac{0,528}{x_1(x_1 - 2)(x_1 - 3)} \\approx 0,249928$.\nĐộ sâu nhất của hồ là $h = -f(x_2) = -k \\cdot x_2(x_2 - 2)(x_2 - 3) \\approx 0,15774\\text{ km} \\approx 158\\text{ m}$.",
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "level": "Vận dụng",
+        "pack": "short-dothi"
+      },
+      "answer_key": {
+        "correct_answer": "158",
+        "accepted_answers": [
+          "158"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    }
+  ]
+}

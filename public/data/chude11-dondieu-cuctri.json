@@ -1,0 +1,4213 @@
+{
+  "pack_id": "chude11-dondieu-cuctri",
+  "title": "Chủ đề 11 · Tính đơn điệu & Cực trị (2025)",
+  "chapter": "GĐ1 · Chương 1",
+  "count": 145,
+  "questions": [
+    {
+      "source_num": 1,
+      "type": "mcq",
+      "prompt": "(THPT Đào Duy Từ - Thanh Hóa 2025) Cho hàm số $f(x)$ có bảng biến thiên như sau:\n![Hình Câu 1](/bank-images/chude11/q1_p0.png)\nHàm số đã cho đồng biến trên khoảng nào sau đây?",
+      "points": 1,
+      "sort_order": 1,
+      "choices": [
+        "$(-\\infty; 1)$.",
+        "$(3; +\\infty)$.",
+        "$(-1; 3)$.",
+        "$(-3; +\\infty)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Dựa vào bảng biến thiên, hàm số đã cho đồng biến trên các khoảng $(-\\infty; -1)$ và $(3; +\\infty)$.",
+        "source": "THPT Đào Duy Từ - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 2,
+      "type": "mcq",
+      "prompt": "(THPT Đào Duy Từ - Thanh Hóa 2025) Cho hàm số $y = f(x)$ có đồ thị như hình vẽ. Điểm cực tiểu của đồ thị hàm số đã cho là:\n![Hình Câu 2](/bank-images/chude11/q2_p0.png)",
+      "points": 1,
+      "sort_order": 2,
+      "choices": [
+        "$-1$.",
+        "$1$.",
+        "$(2; 0)$.",
+        "$(1; -4)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Quan sát đồ thị, điểm cực tiểu của đồ thị hàm số là $(1; -4)$.",
+        "source": "THPT Đào Duy Từ - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 3,
+      "type": "mcq",
+      "prompt": "(THPT Hàm Rồng - Thanh Hóa 2025) Cho hàm số $y = f(x)$ có bảng biến thiên như sau:\n![Hình Câu 3](/bank-images/chude11/q3_p0.png)\nHàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+      "points": 1,
+      "sort_order": 3,
+      "choices": [
+        "$(-\\infty; 2)$.",
+        "$(0; 2)$.",
+        "$(0; +\\infty)$.",
+        "$(3; 2024)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Từ bảng biến thiên, hàm số nghịch biến trên $(-\\infty; 0)$ và $(2; +\\infty)$. Vì $(3; 2024) \\subset (2; +\\infty)$ nên chọn D.",
+        "source": "THPT Hàm Rồng - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 4,
+      "type": "mcq",
+      "prompt": "(Đề Tham Khảo 2025) Cho hàm số có đồ thị như hình vẽ bên.\n![Hình Câu 4](/bank-images/chude11/q4_p0.jpg)\nHàm số đã cho đồng biến trên khoảng nào sau đây?",
+      "points": 1,
+      "sort_order": 4,
+      "choices": [
+        "$(-\\infty; -1)$.",
+        "$(-\\infty; 1)$.",
+        "$(-1; 1)$.",
+        "$(1; +\\infty)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Dựa trên đồ thị, đường cong đi lên từ trái sang phải trên khoảng $(-1; 1)$, nên hàm số đồng biến trên $(-1; 1)$.",
+        "source": "Đề Tham Khảo 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 5,
+      "type": "mcq",
+      "prompt": "(THPT Lương Tài 2 - Bắc Ninh 2025) Cho hàm số $y = f(x)$ liên tục trên $\\mathbb{R}$ có bảng xét dấu $f'(x)$ cho như hình vẽ.\n![Hình Câu 5](/bank-images/chude11/q5_p0.png)\nHàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+      "points": 1,
+      "sort_order": 5,
+      "choices": [
+        "$(2; +\\infty)$.",
+        "$(-2; 0)$.",
+        "$(-\\infty; 0)$.",
+        "$(0; 2)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Từ bảng xét dấu $f'(x) < 0$ trên $(-\\infty; -2)$ và $(0; 2)$, suy ra hàm số nghịch biến trên khoảng $(0; 2)$.\n![Lời giải Câu 5](/bank-images/chude11/q5_s0.png)",
+        "source": "THPT Lương Tài 2 - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 6,
+      "type": "mcq",
+      "prompt": "(THPT Lương Tài 2 - Bắc Ninh 2025) Cho hàm số $y = f(x)$ liên tục trên $\\mathbb{R}$ và có đạo hàm $f'(x) = (x+1)^3(x-1)(x-2)$. Số điểm cực trị của hàm số đã cho là:",
+      "points": 1,
+      "sort_order": 6,
+      "choices": [
+        "$1$.",
+        "$3$.",
+        "$2$.",
+        "$0$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Ta có $f'(x) = 0 \\Leftrightarrow x \\in \\{-1; 1; 2\\}$. Cả $3$ nghiệm đều là nghiệm bội lẻ nên $f'(x)$ đổi dấu $3$ lần. Hàm số có $3$ điểm cực trị.\n![Lời giải Câu 6](/bank-images/chude11/q6_s0.jpg)",
+        "source": "THPT Lương Tài 2 - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 7,
+      "type": "mcq",
+      "prompt": "(THPT Văn Giang - Hưng Yên 2025) Hàm số $f(x)$ có đạo hàm $f'(x) = x^2(x-1)(x-2)^3, \\; \\forall x \\in \\mathbb{R}$. Hàm số $f(x)$ có bao nhiêu điểm cực đại?",
+      "points": 1,
+      "sort_order": 7,
+      "choices": [
+        "$2$.",
+        "$0$.",
+        "$3$.",
+        "$1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Phương trình $f'(x) = 0$ có $x = 0$ (bội chẵn), $x = 1$ và $x = 2$ (bội lẻ). Với $f'(3) > 0$, xét dấu $f'(x)$ đổi dấu từ $+$ sang $-$ đúng $1$ lần tại $x = 1$. Suy ra có $1$ điểm cực đại.",
+        "source": "THPT Văn Giang - Hưng Yên 2025",
+        "level": "Thông hiểu",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 8,
+      "type": "mcq",
+      "prompt": "(THPT Văn Giang - Hưng Yên 2025) Cho hàm số $y = f(x)$ có đồ thị là đường cong trong hình dưới đây:\n![Hình Câu 8](/bank-images/chude11/q8_p0.jpg)\nHàm số đã cho đồng biến trong khoảng nào?",
+      "points": 1,
+      "sort_order": 8,
+      "choices": [
+        "$(-\\infty; 0)$.",
+        "$(-1; 0)$.",
+        "$(0; 1)$.",
+        "$(1; +\\infty)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Đồ thị đi lên từ trái sang phải trên khoảng $(0; 1)$ nên hàm số đồng biến trên $(0; 1)$.",
+        "source": "THPT Văn Giang - Hưng Yên 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 9,
+      "type": "mcq",
+      "prompt": "(THPT Tiên Du - Bắc Ninh 2025) Cho hàm số $y = f(x) = \\dfrac{mx^2 + nx + p}{qx + r}$ có bảng biến thiên như hình vẽ bên dưới.\n![Hình Câu 9](/bank-images/chude11/q9_p0.png)\nGiá trị cực đại của hàm số đã cho bằng:",
+      "points": 1,
+      "sort_order": 9,
+      "choices": [
+        "$3$.",
+        "$-3$.",
+        "$-5$.",
+        "$1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Dựa vào bảng biến thiên, giá trị cực đại của hàm số là $y_{\\text{CĐ}} = -5$ (đạt tại $x = -3$).",
+        "source": "THPT Tiên Du - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 10,
+      "type": "mcq",
+      "prompt": "(THPT Tiên Du - Bắc Ninh 2025) Cho hàm số $y = f(x) = ax^3 + bx^2 + cx + d$ có đồ thị như hình vẽ dưới đây.\n![Hình Câu 10](/bank-images/chude11/q10_p0.jpg)\nHàm số $y = f(x)$ đồng biến trên khoảng nào dưới đây?",
+      "points": 1,
+      "sort_order": 10,
+      "choices": [
+        "$(0; 1)$.",
+        "$(-\\infty; -1)$.",
+        "$(-1; 1)$.",
+        "$(2; +\\infty)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Nhìn vào đồ thị, hàm số đồng biến trên $(0; 2)$, mà $(0; 1) \\subset (0; 2)$ nên chọn A.",
+        "source": "THPT Tiên Du - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 11,
+      "type": "mcq",
+      "prompt": "(THPT Lê Thánh Tông - HCM 2025) Cho hàm số có bảng biến thiên như sau:\n![Hình Câu 11](/bank-images/chude11/q11_p0.jpg)\nHàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+      "points": 1,
+      "sort_order": 11,
+      "choices": [
+        "$(-2; 2)$.",
+        "$(-1; 1)$.",
+        "$(-2; 1)$.",
+        "$(-1; +\\infty)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Dựa vào bảng biến thiên, $y' < 0$ trên khoảng $(-1; 1)$ nên hàm số nghịch biến trên $(-1; 1)$.",
+        "source": "THPT Lê Thánh Tông - HCM 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 12,
+      "type": "mcq",
+      "prompt": "(THPT Nguyễn Đăng Đạo - Bắc Ninh 2025) Cho hàm số $y = f(x)$ liên tục trên $\\mathbb{R}$ và có bảng biến thiên như sau:\n![Hình Câu 12](/bank-images/chude11/q12_p0.jpg)\nHàm số đã cho nghịch biến trên khoảng:",
+      "points": 1,
+      "sort_order": 12,
+      "choices": [
+        "$(-1; 1)$.",
+        "$(0; 3)$.",
+        "$(-\\infty; -1)$.",
+        "$(1; +\\infty)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Dựa vào bảng biến thiên, đồ thị đi xuống từ $3$ về $0$ khi $x \\in (-1; 1)$ nên hàm số nghịch biến trên $(-1; 1)$.",
+        "source": "THPT Nguyễn Đăng Đạo - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 13,
+      "type": "mcq",
+      "prompt": "(THPT Nguyễn Đăng Đạo - Bắc Ninh 2025) Cho hàm số bậc ba $y = f(x)$ có đồ thị như hình vẽ dưới đây.\n![Hình Câu 13](/bank-images/chude11/q13_p0.jpg)\nGiá trị cực tiểu của hàm số đã cho là:",
+      "points": 1,
+      "sort_order": 13,
+      "choices": [
+        "$-3$.",
+        "$2$.",
+        "$1$.",
+        "$0$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Dựa vào đồ thị, hàm số đạt cực tiểu tại $x = 2$ với giá trị cực tiểu $y_{\\text{CT}} = -3$.",
+        "source": "THPT Nguyễn Đăng Đạo - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 14,
+      "type": "mcq",
+      "prompt": "(THPT Gia Bình - Bắc Ninh 2025) Cho hàm số $y = f(x)$ có đồ thị như hình vẽ. Hàm số đồng biến trên khoảng nào?\n![Hình Câu 14](/bank-images/chude11/q14_p0.jpg)",
+      "points": 1,
+      "sort_order": 14,
+      "choices": [
+        "$(-1; +\\infty)$.",
+        "$(-\\infty; -1)$.",
+        "$(-3; 0)$.",
+        "$(-2; -1)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Từ đồ thị, hàm số đồng biến trên các khoảng $(-\\infty; -3)$ và $(-1; +\\infty)$.",
+        "source": "THPT Gia Bình - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 15,
+      "type": "mcq",
+      "prompt": "(THPT Gia Bình - Bắc Ninh 2025) Cho hàm số bậc ba $y = f(x)$ có bảng biến thiên như sau:\n![Hình Câu 15](/bank-images/chude11/q15_p0.jpg)\nĐiểm cực tiểu của đồ thị hàm số là:",
+      "points": 1,
+      "sort_order": 15,
+      "choices": [
+        "$(-1; 0)$.",
+        "$(1; 0)$.",
+        "$(-1; 4)$.",
+        "$(1; 4)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Dựa vào bảng biến thiên, điểm cực tiểu của đồ thị hàm số là $(1; 0)$.",
+        "source": "THPT Gia Bình - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 16,
+      "type": "mcq",
+      "prompt": "(THPT Thạch Thành 1 - Thanh Hóa 2025) Đồ thị hàm số $y = x^3 - 6x^2 + 9x - 1$ có tọa độ điểm cực đại là:",
+      "points": 1,
+      "sort_order": 16,
+      "choices": [
+        "$(3; 0)$.",
+        "$(3; 1)$.",
+        "$(1; 4)$.",
+        "$(1; 3)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Ta có $y' = 3x^2 - 12x + 9 = 0 \\Leftrightarrow x = 1$ hoặc $x = 3$. Do $y''(1) = -6 < 0$, hàm số đạt cực đại tại $x = 1 \\Rightarrow y(1) = 3$. Tọa độ điểm cực đại là $(1; 3)$.\n![Lời giải Câu 16](/bank-images/chude11/q16_s0.jpg)",
+        "source": "THPT Thạch Thành 1 - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 17,
+      "type": "mcq",
+      "prompt": "(THPT Thạch Thành 1 - Thanh Hóa 2025) Cho hàm số $y = f(x)$ có bảng biến thiên như sau:\n![Hình Câu 17](/bank-images/chude11/q17_p0.jpg)\nHàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+      "points": 1,
+      "sort_order": 17,
+      "choices": [
+        "$(0; 1)$.",
+        "$(1; +\\infty)$.",
+        "$(0; +\\infty)$.",
+        "$(-1; 0)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Từ bảng biến thiên, $f'(x) < 0$ trên $(-\\infty; -1)$ và $(0; 1)$ nên hàm số nghịch biến trên $(0; 1)$.",
+        "source": "THPT Thạch Thành 1 - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 18,
+      "type": "mcq",
+      "prompt": "(THPT Yên Lạc - Vĩnh Phúc 2025) Cho hàm số $f(x)$ có bảng biến thiên như sau:\n![Hình Câu 18](/bank-images/chude11/q18_p0.png)\nHàm số đã cho đạt cực tiểu tại điểm nào sau đây?",
+      "points": 1,
+      "sort_order": 18,
+      "choices": [
+        "$x = -4$.",
+        "$x = 2$.",
+        "$x = 1$.",
+        "$x = 0$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Dựa vào bảng biến thiên, $y'$ đổi dấu từ $-$ sang $+$ khi đi qua $x = 2$ nên hàm số đạt cực tiểu tại $x = 2$.",
+        "source": "THPT Yên Lạc - Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 19,
+      "type": "mcq",
+      "prompt": "(THPT Chuyên Vĩnh Phúc 2025) Cho hàm số $y = f(x)$ xác định trên $\\mathbb{R}$ và có đạo hàm $f'(x) = x^{2024}(3 - x), \\; \\forall x \\in \\mathbb{R}$. Hàm số đã cho có mấy điểm cực trị?",
+      "points": 1,
+      "sort_order": 19,
+      "choices": [
+        "$3$.",
+        "$0$.",
+        "$2$.",
+        "$1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Ta có $f'(x) = 0 \\Leftrightarrow x = 0$ (nghiệm bội chẵn) hoặc $x = 3$ (nghiệm đơn). Do đó $f'(x)$ chỉ đổi dấu $1$ lần tại $x = 3$, hàm số có $1$ điểm cực trị.\n![Lời giải Câu 19](/bank-images/chude11/q19_s0.png)",
+        "source": "THPT Chuyên Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 20,
+      "type": "mcq",
+      "prompt": "(THPT Chuyên Vĩnh Phúc 2025) Cho hàm số $y = f(x)$ xác định, có đạo hàm trên $\\mathbb{R}$ và $f'(x)$ có đồ thị như hình vẽ bên dưới:\n![Hình Câu 20](/bank-images/chude11/q20_p0.png)\nHàm số $y = f(x)$ đồng biến trên khoảng nào dưới đây?",
+      "points": 1,
+      "sort_order": 20,
+      "choices": [
+        "$(1; 4)$.",
+        "$(-1; 1)$.",
+        "$(1; +\\infty)$.",
+        "$(-\\infty; -1)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Dựa vào đồ thị $f'(x)$, ta có $f'(x) > 0 \\Leftrightarrow x \\in (-1; 1) \\cup (4; +\\infty)$, suy ra hàm số đồng biến trên $(-1; 1)$.",
+        "source": "THPT Chuyên Vĩnh Phúc 2025",
+        "level": "Thông hiểu",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 21,
+      "type": "mcq",
+      "prompt": "(Sở Ninh Bình 2025) Cho hàm số bậc ba $y = f(x)$ có đồ thị là đường cong trong hình vẽ dưới đây.\n![Hình Câu 21](/bank-images/chude11/q21_p0.jpg)\nHàm số $y = f(x)$ đồng biến trên khoảng:",
+      "points": 1,
+      "sort_order": 21,
+      "choices": [
+        "$(-\\infty; 0)$.",
+        "$(-2; 0)$.",
+        "$(-4; +\\infty)$.",
+        "$(0; +\\infty)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Dựa vào đồ thị, đường cong đi lên trên khoảng $(0; +\\infty)$ nên hàm số đồng biến trên $(0; +\\infty)$.",
+        "source": "Sở Ninh Bình 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 22,
+      "type": "mcq",
+      "prompt": "(Sở Ninh Bình 2025) Cho hàm số bậc ba có bảng biến thiên như hình vẽ dưới đây. Giá trị cực tiểu của hàm số là:\n![Hình Câu 22](/bank-images/chude11/q22_p0.png)",
+      "points": 1,
+      "sort_order": 22,
+      "choices": [
+        "$2$.",
+        "$1$.",
+        "$-1$.",
+        "$-2$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Từ bảng biến thiên, giá trị cực tiểu của hàm số là $y_{\\text{CT}} = -2$.",
+        "source": "Sở Ninh Bình 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 23,
+      "type": "mcq",
+      "prompt": "(THPT Nguyễn Viết Xuân - Vĩnh Phúc 2025) Cho hàm số $y = f(x)$ có bảng biến thiên sau:\n![Hình Câu 23](/bank-images/chude11/q23_p0.jpg)\nGiá trị cực đại của hàm số $y = f(x)$ là:",
+      "points": 1,
+      "sort_order": 23,
+      "choices": [
+        "$0$.",
+        "$1$.",
+        "$-3$.",
+        "$5$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Dựa vào bảng biến thiên, hàm số đạt cực đại tại $x = 1$ và giá trị cực đại bằng $0$.",
+        "source": "THPT Nguyễn Viết Xuân - Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 24,
+      "type": "mcq",
+      "prompt": "(THPT Nguyễn Viết Xuân - Vĩnh Phúc 2025) Cho hàm số $y = f(x)$ có bảng biến thiên như sau:\n![Hình Câu 24](/bank-images/chude11/q24_p0.jpg)\nHàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+      "points": 1,
+      "sort_order": 24,
+      "choices": [
+        "$(-\\infty; 1)$.",
+        "$(-2; 3)$.",
+        "$(-1; 0)$.",
+        "$(0; 1)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Dựa vào bảng biến thiên, $y' < 0$ trên các khoảng $(-\\infty; -1)$ và $(0; 1)$. Chọn D.",
+        "source": "THPT Nguyễn Viết Xuân - Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 25,
+      "type": "mcq",
+      "prompt": "(THPT Diễn Châu 5 - Nghệ An 2025) Cho hàm số $y = f(x)$ xác định và liên tục trên $[-2; 2]$ và có đồ thị là đường cong trong hình vẽ bên. Hàm số $f(x)$ đạt cực tiểu tại điểm:\n![Hình Câu 25](/bank-images/chude11/q25_p0.jpg)",
+      "points": 1,
+      "sort_order": 25,
+      "choices": [
+        "$(1; 4)$.",
+        "$(-1; 0)$.",
+        "$x = 1$.",
+        "$x = -1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Quan sát đồ thị, hàm số $f(x)$ đạt cực tiểu tại điểm $x = -1$.",
+        "source": "THPT Diễn Châu 5 - Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 26,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Sơn 3 - Thanh Hóa 2025) Cho hàm số $y = f(x)$ có bảng biến thiên như sau:\n![Hình Câu 26](/bank-images/chude11/q26_p0.png)\nHàm số nghịch biến trong khoảng nào?",
+      "points": 1,
+      "sort_order": 26,
+      "choices": [
+        "$(-1; 1)$.",
+        "$(0; 1)$.",
+        "$(4; +\\infty)$.",
+        "$(-\\infty; 2)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Từ bảng biến thiên, hàm số nghịch biến trên $(-1; 0)$ và $(0; 1)$ (không xác định tại $x = 0$). Chọn B.",
+        "source": "THPT Triệu Sơn 3 - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 27,
+      "type": "mcq",
+      "prompt": "(THPT Lê Lợi - Thanh Hóa 2025) Hàm số $f(x)$ có đạo hàm $f'(x) = x(x - 1), \\; \\forall x \\in \\mathbb{R}$. Hàm số $f(x)$ có bao nhiêu điểm cực trị?",
+      "points": 1,
+      "sort_order": 27,
+      "choices": [
+        "$2$.",
+        "$0$.",
+        "$3$.",
+        "$1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Phương trình $f'(x) = x(x - 1) = 0$ có $2$ nghiệm đơn phân biệt $x = 0$ và $x = 1$, nên hàm số có $2$ điểm cực trị.",
+        "source": "THPT Lê Lợi - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 29,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Sơn 4 - Thanh Hóa 2025) Cho hàm số $f(x)$ có bảng xét dấu của đạo hàm như sau:\n![Hình Câu 29](/bank-images/chude11/q29_p0.png)\nHàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+      "points": 1,
+      "sort_order": 28,
+      "choices": [
+        "$(0; +\\infty)$.",
+        "$(-3; 0)$.",
+        "$(0; 2)$.",
+        "$(-\\infty; -3)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Từ bảng xét dấu, $f'(x) < 0$ trên các khoảng $(-3; 0)$ và $(2; +\\infty)$. Chọn B.",
+        "source": "THPT Triệu Sơn 4 - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 30,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Sơn 4 - Thanh Hóa 2025) Cho hàm số $f(x)$ có bảng biến thiên như sau:\n![Hình Câu 30](/bank-images/chude11/q30_p0.jpg)\nGiá trị cực đại của hàm số đã cho bằng:",
+      "points": 1,
+      "sort_order": 29,
+      "choices": [
+        "$-2$.",
+        "$-3$.",
+        "$3$.",
+        "$2$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Từ bảng biến thiên, hàm số đạt cực đại tại $x = 3$ với giá trị cực đại $y_{\\text{CĐ}} = 2$.",
+        "source": "THPT Triệu Sơn 4 - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 31,
+      "type": "mcq",
+      "prompt": "(Cụm trường THPT Hải Dương 2025) Cho hàm số $y = f(x)$ liên tục trên $\\mathbb{R}$ và có bảng xét dấu $f'(x)$ như hình vẽ dưới đây.\n![Hình Câu 31](/bank-images/chude11/q31_p0.png)\nHàm số $y = f(x)$ đồng biến trên khoảng nào dưới đây?",
+      "points": 1,
+      "sort_order": 30,
+      "choices": [
+        "$(0; 2)$.",
+        "$(2; 3)$.",
+        "$(0; 1)$.",
+        "$(-10; -5)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Từ bảng xét dấu, $f'(x) > 0$ trên $(-3; -1)$ và $(1; +\\infty)$. Vì $(2; 3) \\subset (1; +\\infty)$ nên hàm số đồng biến trên $(2; 3)$.",
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 32,
+      "type": "mcq",
+      "prompt": "(Cụm trường THPT Hải Dương 2025) Cho hàm số $y = f(x)$ có bảng biến thiên như hình vẽ dưới đây.\n![Hình Câu 32](/bank-images/chude11/q32_p0.png)\nGiá trị cực đại của hàm số là:",
+      "points": 1,
+      "sort_order": 31,
+      "choices": [
+        "$0$.",
+        "$-2$.",
+        "$-1$.",
+        "$3$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Dựa vào bảng biến thiên, giá trị cực đại của hàm số là $y_{\\text{CĐ}} = 3$.",
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 33,
+      "type": "mcq",
+      "prompt": "(Chuyên Phan Bội Châu - Nghệ An 2025) Cho hàm số $y = f(x)$ xác định trên $\\mathbb{R}$ và có bảng biến thiên như sau:\n![Hình Câu 33](/bank-images/chude11/q33_p0.jpg)\nĐiểm cực đại của hàm số $y = f(x)$ là:",
+      "points": 1,
+      "sort_order": 32,
+      "choices": [
+        "$x = -6$.",
+        "$x = -7$.",
+        "$x = -4$.",
+        "$x = -3$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Từ bảng biến thiên, $y'$ đổi dấu từ $+$ sang $-$ tại $x = -4$, nên điểm cực đại của hàm số là $x = -4$.",
+        "source": "Chuyên Phan Bội Châu - Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 34,
+      "type": "mcq",
+      "prompt": "(Chuyên Phan Bội Châu - Nghệ An 2025) Cho hàm số $y = f(x)$ xác định trên $\\mathbb{R}\\setminus\\{-6\\}$ và có bảng biến thiên như sau:\n![Hình Câu 34](/bank-images/chude11/q34_p0.jpg)\nHàm số $y = f(x)$ đồng biến trên khoảng:",
+      "points": 1,
+      "sort_order": 33,
+      "choices": [
+        "$(-10; 1)$.",
+        "$(-6; +\\infty)$.",
+        "$(0; +\\infty)$.",
+        "$(-7; -6)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Từ bảng biến thiên, $y' > 0$ trên $(-7; -6)$ và $(-6; 0)$. Chọn D.",
+        "source": "Chuyên Phan Bội Châu - Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 35,
+      "type": "mcq",
+      "prompt": "(HSG Hải Phòng 2025) Cho hàm số $f(x) = \\dfrac{x^2 - x + 3}{x^2 + 5}$. Có bao nhiêu giá trị nguyên của tham số $m$ để hàm số $g(x) = f(x^2 - 2x - m)$ có đúng $3$ điểm cực trị?",
+      "points": 1,
+      "sort_order": 34,
+      "choices": [
+        "$4$.",
+        "$5$.",
+        "$3$.",
+        "$6$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Ta có $f'(x) = \\dfrac{x^2 + 4x - 5}{(x^2+5)^2} = 0 \\Leftrightarrow x = 1$ hoặc $x = -5$. Khi đó $g'(x) = (2x-2)f'(x^2-2x-m) = 0 \\Leftrightarrow x = 1$, hoặc $x^2-2x-m=1 \\;(1)$, hoặc $x^2-2x-m=-5 \\;(2)$. Để $g(x)$ có đúng $3$ cực trị, cần $(2)$ vô nghiệm hoặc có nghiệm kép và $(1)$ có $2$ nghiệm phân biệt khác $1$, tức $m - 4 \\le 0$ và $m + 2 > 0 \\Leftrightarrow -2 < m \\le 4$. Có $6$ giá trị nguyên: $m \\in \\{-1; 0; 1; 2; 3; 4\\}$.",
+        "source": "HSG Hải Phòng 2025",
+        "level": "Vận dụng",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 36,
+      "type": "mcq",
+      "prompt": "(THPT Kinh Môn - Hải Dương 2025) Cho hàm số $y = f(x)$ có đồ thị như hình vẽ. Hàm số $y = f(x)$ nghịch biến trên khoảng nào dưới đây?\n![Hình Câu 36](/bank-images/chude11/q36_p0.jpg)",
+      "points": 1,
+      "sort_order": 35,
+      "choices": [
+        "$(-2; 2)$.",
+        "$(-\\infty; 0)$.",
+        "$(0; 2)$.",
+        "$(1; +\\infty)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Từ đồ thị hàm số, đường cong đi xuống từ trái sang phải trên khoảng $(-\\infty; 0)$.",
+        "source": "THPT Kinh Môn - Hải Dương 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 37,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Sơn 1 - Thanh Hóa 2025) Cho hàm số bậc ba $y = f(x)$ có đồ thị là đường cong trong hình dưới đây.\n![Hình Câu 37](/bank-images/chude11/q37_p0.png)\nĐiểm cực đại của đồ thị hàm số là:",
+      "points": 1,
+      "sort_order": 36,
+      "choices": [
+        "$x = -1$.",
+        "$y = 2$.",
+        "$x = 1$.",
+        "$(1; 2)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Từ đồ thị, điểm cực đại của đồ thị hàm số là $(1; 2)$.",
+        "source": "THPT Triệu Sơn 1 - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 38,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Sơn 1 - Thanh Hóa 2025) Cho hàm số $y = f(x)$ xác định, có đạo hàm trên $\\mathbb{R}$ và $f'(x)$ có đồ thị như hình vẽ bên dưới.\n![Hình Câu 38](/bank-images/chude11/q38_p0.png)\nMệnh đề nào sau đây đúng?",
+      "points": 1,
+      "sort_order": 37,
+      "choices": [
+        "Hàm số $y = f(x)$ nghịch biến trên khoảng $\\left(-\\dfrac{5}{2}; -2\\right)$.",
+        "Hàm số $y = f(x)$ nghịch biến trên khoảng $(-2; +\\infty)$.",
+        "Hàm số $y = f(x)$ đồng biến trên khoảng $(-\\infty; -3)$.",
+        "Hàm số $y = f(x)$ đồng biến trên khoảng $\\left(-\\dfrac{1}{2}; 0\\right)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Trên khoảng $(-2; +\\infty)$, đồ thị $f'(x)$ nằm dưới trục $Ox$ (tiếp xúc tại $x = 0$) nên $f'(x) \\le 0$. Do đó hàm số $y = f(x)$ nghịch biến trên $(-2; +\\infty)$.",
+        "source": "THPT Triệu Sơn 1 - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 39,
+      "type": "mcq",
+      "prompt": "(Cụm trường Hải Dương 2025) Cho hàm số $y = f(x)$ xác định trên $\\mathbb{R}$ và có bảng xét dấu của $f'(x)$ như sau:\n![Hình Câu 39](/bank-images/chude11/q39_p0.png)\nSố điểm cực đại của hàm số đã cho là:",
+      "points": 1,
+      "sort_order": 38,
+      "choices": [
+        "$2$.",
+        "$1$.",
+        "$4$.",
+        "$3$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Vì hàm số xác định và liên tục trên $\\mathbb{R}$, $f'(x)$ đổi dấu từ $+$ sang $-$ khi đi qua $x = -1$ và $x = 1$ (dù $f'(1)$ không xác định). Vậy hàm số có $2$ điểm cực đại.",
+        "source": "Cụm trường Hải Dương 2025",
+        "level": "Thông hiểu",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 40,
+      "type": "mcq",
+      "prompt": "(THPT Lê Xoay - Vĩnh Phúc 2025) Cho hàm số $y = x^3 - 3x^2 + 2$. Mệnh đề nào dưới đây đúng?",
+      "points": 1,
+      "sort_order": 39,
+      "choices": [
+        "Hàm số đạt cực tiểu tại điểm $x = 0$.",
+        "Hàm số đạt cực đại tại điểm $M(0; 2)$.",
+        "Hàm số đạt cực đại tại điểm $x = 0$.",
+        "Hàm số đạt cực đại tại điểm $x = 2$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Ta có $y' = 3x^2 - 6x = 0 \\Leftrightarrow x = 0$ hoặc $x = 2$. Xét dấu $y'$ đổi từ $+$ sang $-$ qua $x = 0$ nên hàm số đạt cực đại tại điểm $x = 0$.\n![Lời giải Câu 40](/bank-images/chude11/q40_s0.jpg)",
+        "source": "THPT Lê Xoay - Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 41,
+      "type": "mcq",
+      "prompt": "(THPT Lê Xoay - Vĩnh Phúc 2025) Cho hàm số $y = f(x)$ có đồ thị như Hình 1.\n![Hình Câu 41](/bank-images/chude11/q41_p0.jpg)\nHàm số đã cho đồng biến trên khoảng nào trong các khoảng dưới đây?",
+      "points": 1,
+      "sort_order": 40,
+      "choices": [
+        "$(0; 1)$.",
+        "$(1; 2)$.",
+        "$(-1; 1)$.",
+        "$(-1; 0)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Dựa vào đồ thị hàm số, đường cong đi lên trên khoảng $(1; +\\infty)$ nên đồng biến trên khoảng $(1; 2)$.",
+        "source": "THPT Lê Xoay - Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 42,
+      "type": "mcq",
+      "prompt": "(Cụm trường THPT Bắc Ninh 2025) Cho hàm số $y = f(x)$ có đạo hàm trên $\\mathbb{R}$ và đồ thị của hàm số $y = f'(x)$ như hình vẽ. Hàm số $g(x) = f(x) - 2$ nghịch biến trên khoảng nào trong các khoảng sau?\n![Hình Câu 42](/bank-images/chude11/q42_p0.jpg)",
+      "points": 1,
+      "sort_order": 41,
+      "choices": [
+        "$(-1; 1)$.",
+        "$(-\\infty; -2)$.",
+        "$(2; +\\infty)$.",
+        "$(1; 3)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Ta có $g'(x) = f'(x)$. Hàm số $g(x)$ nghịch biến khi $f'(x) < 0 \\Leftrightarrow x < -2$. Chọn B.",
+        "source": "Cụm trường THPT Bắc Ninh 2025",
+        "level": "Thông hiểu",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 43,
+      "type": "mcq",
+      "prompt": "(Cụm trường THPT Bắc Ninh 2025) Cho hàm số $y = f(x)$ có đồ thị như hình vẽ. Giá trị cực tiểu của hàm số đã cho là:\n![Hình Câu 43](/bank-images/chude11/q43_p0.jpg)",
+      "points": 1,
+      "sort_order": 42,
+      "choices": [
+        "$-1$.",
+        "$-2$.",
+        "$2$.",
+        "$1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Căn cứ vào đồ thị, nhánh bên phải có điểm cực tiểu tại $(1; 2)$, suy ra giá trị cực tiểu của hàm số là $2$.",
+        "source": "Cụm trường THPT Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 44,
+      "type": "mcq",
+      "prompt": "(Sở Hà Tĩnh 2025) Hàm số nào dưới đây đồng biến trên khoảng $(-\\infty; +\\infty)$?",
+      "points": 1,
+      "sort_order": 43,
+      "choices": [
+        "$y = -x^3 - 2x + 1$.",
+        "$y = \\dfrac{x - 2}{x + 1}$.",
+        "$y = 3x^3 + 3x - 2$.",
+        "$y = 2x^3 - 5x + 1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Hàm số $y = 3x^3 + 3x - 2$ có $y' = 9x^2 + 3 > 0, \\; \\forall x \\in \\mathbb{R}$, nên đồng biến trên $(-\\infty; +\\infty)$.",
+        "source": "Sở Hà Tĩnh 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 45,
+      "type": "mcq",
+      "prompt": "(Sở Hà Tĩnh 2025) Cho hàm số $y = f(x)$ có đạo hàm $f'(x) = (x^2 - 4)(x + 2)(x - 3)$ và liên tục trên $\\mathbb{R}$. Số điểm cực trị của hàm số là:",
+      "points": 1,
+      "sort_order": 44,
+      "choices": [
+        "$5$.",
+        "$2$.",
+        "$3$.",
+        "$1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Ta có $f'(x) = (x - 2)(x + 2)^2(x - 3) = 0$ có $x = -2$ là nghiệm kép (bội chẵn), $x = 2$ và $x = 3$ là hai nghiệm đơn. Do đó hàm số có $2$ điểm cực trị.",
+        "source": "Sở Hà Tĩnh 2025",
+        "level": "Thông hiểu",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 46,
+      "type": "mcq",
+      "prompt": "(THPT Cẩm Xuyên - Hà Tĩnh 2025) Cho hàm số $y = f(x)$ có bảng biến thiên sau:\n![Hình Câu 46](/bank-images/chude11/q46_p0.png)\nGiá trị cực tiểu của hàm số $y = f(x)$ là:",
+      "points": 1,
+      "sort_order": 45,
+      "choices": [
+        "$-3$.",
+        "$0$.",
+        "$1$.",
+        "$5$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Dựa vào bảng biến thiên, hàm số đạt cực tiểu tại $x = -3$ với giá trị cực tiểu $y_{\\text{CT}} = 5$.",
+        "source": "THPT Cẩm Xuyên - Hà Tĩnh 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 47,
+      "type": "mcq",
+      "prompt": "(THPT Cẩm Xuyên - Hà Tĩnh 2025) Cho hàm số đa thức bậc ba $y = f(x)$ có đồ thị là đường cong như hình vẽ dưới đây.\n![Hình Câu 47](/bank-images/chude11/q47_p0.jpg)\nHàm số $y = f(x)$ đồng biến trên khoảng:",
+      "points": 1,
+      "sort_order": 46,
+      "choices": [
+        "$(-2; 1)$.",
+        "$(-\\infty; 1)$.",
+        "$(-2; +\\infty)$.",
+        "$(-3; -2)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Dựa vào đồ thị, hàm số đồng biến trên $(-\\infty; -2)$, nên đồng biến trên $(-3; -2)$.",
+        "source": "THPT Cẩm Xuyên - Hà Tĩnh 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 48,
+      "type": "mcq",
+      "prompt": "(Sở Vĩnh Phúc 2025) Cho hàm số $f(x)$ liên tục trên $\\mathbb{R}$ có đạo hàm $f'(x) = (x + 2)(x - 1), \\; \\forall x \\in \\mathbb{R}$. Hàm số đã cho nghịch biến trên khoảng nào sau đây?",
+      "points": 1,
+      "sort_order": 47,
+      "choices": [
+        "$(-2; 1)$.",
+        "$(-\\infty; -2)$.",
+        "$(-2; +\\infty)$.",
+        "$(1; +\\infty)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Ta có $f'(x) = (x+2)(x-1) < 0 \\Leftrightarrow -2 < x < 1$. Vậy hàm số nghịch biến trên khoảng $(-2; 1)$.",
+        "source": "Sở Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 49,
+      "type": "mcq",
+      "prompt": "(Chuyên KHTN Hà Nội 2025) Cho hàm số $y = f(x)$ có bảng biến thiên sau:\n![Hình Câu 49](/bank-images/chude11/q49_p0.png)\nHàm số đã cho nghịch biến trên khoảng:",
+      "points": 1,
+      "sort_order": 48,
+      "choices": [
+        "$(0; 2)$.",
+        "$(-2; 1)$.",
+        "$(-\\infty; 0)$.",
+        "$(2; +\\infty)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Dựa vào bảng biến thiên, $f'(x) < 0$ trên khoảng $(0; 2)$ nên hàm số nghịch biến trên $(0; 2)$.",
+        "source": "Chuyên KHTN Hà Nội 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 50,
+      "type": "mcq",
+      "prompt": "(THPT Lê Thánh Tông - HCM 2025) Cho hàm số $y = \\log_3(x^2 - 2x + 3)$. Hàm số đồng biến trên khoảng nào sau đây?",
+      "points": 1,
+      "sort_order": 49,
+      "choices": [
+        "$(-\\infty; 1)$.",
+        "$(-1; +\\infty)$.",
+        "$(-\\infty; -1)$.",
+        "$(1; +\\infty)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Vì $x^2 - 2x + 3 > 0, \\; \\forall x \\in \\mathbb{R}$ nên tập xác định $D = \\mathbb{R}$. Ta có $y' = \\dfrac{2x - 2}{(x^2 - 2x + 3)\\ln 3} > 0 \\Leftrightarrow x > 1$. Hàm số đồng biến trên $(1; +\\infty)$.\n![Lời giải Câu 50](/bank-images/chude11/q50_s0.jpg)",
+        "source": "THPT Lê Thánh Tông - HCM 2025",
+        "level": "Thông hiểu",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 51,
+      "type": "mcq",
+      "prompt": "(Chuyên Hạ Long 2025) Cho hàm số $y = ax^4 + bx^3 + cx^2 + dx + e$ có đồ thị hàm số $y = f'(x)$ như hình vẽ dưới đây. Hỏi hàm số $y = f(x)$ có bao nhiêu điểm cực trị?\n![Hình Câu 51](/bank-images/chude11/q51_p0.jpg)",
+      "points": 1,
+      "sort_order": 50,
+      "choices": [
+        "$2$.",
+        "$4$.",
+        "$3$.",
+        "$1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Đồ thị hàm số $y = f'(x)$ cắt (xuyên qua) trục hoành tại $3$ điểm phân biệt nên hàm số $y = f(x)$ có $3$ điểm cực trị.",
+        "source": "Chuyên Hạ Long 2025",
+        "level": "Thông hiểu",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 52,
+      "type": "mcq",
+      "prompt": "(Chuyên Hạ Long 2025) Cho hàm số $y = f(x)$ xác định trên $\\mathbb{R}$ và có bảng biến thiên như sau:\n![Hình Câu 52](/bank-images/chude11/q52_p0.jpg)\nHàm số $y = f(x)$ nghịch biến trên khoảng nào dưới đây?",
+      "points": 1,
+      "sort_order": 51,
+      "choices": [
+        "$(-3; +\\infty)$.",
+        "$(-2; 0)$.",
+        "$(-\\infty; -2)$.",
+        "$(-3; 1)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Dựa vào bảng biến thiên, $y' < 0$ trên khoảng $(-2; 0)$ nên hàm số nghịch biến trên $(-2; 0)$.",
+        "source": "Chuyên Hạ Long 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 53,
+      "type": "mcq",
+      "prompt": "(Chuyên Thái Bình 2025) Cho hàm số $y = f(x)$ có bảng biến thiên sau:\n![Hình Câu 53](/bank-images/chude11/q53_p0.png)\nGiá trị cực đại của hàm số $y = f(x)$ là:",
+      "points": 1,
+      "sort_order": 52,
+      "choices": [
+        "$0$.",
+        "$1$.",
+        "$-3$.",
+        "$5$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Từ bảng biến thiên, hàm số đạt cực đại tại $x = 1$ với giá trị cực đại bằng $0$.",
+        "source": "Chuyên Thái Bình 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 54,
+      "type": "mcq",
+      "prompt": "(Chuyên Thái Bình 2025) Cho hàm số $y = f(x)$ có bảng biến thiên như sau:\n![Hình Câu 54](/bank-images/chude11/q54_p0.jpg)\nHàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+      "points": 1,
+      "sort_order": 53,
+      "choices": [
+        "$(1; 5)$.",
+        "$(3; +\\infty)$.",
+        "$(-1; 3)$.",
+        "$(0; 4)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Vì $y' < 0, \\; \\forall x \\in (-1; 3)$ nên hàm số nghịch biến trên khoảng $(-1; 3)$.",
+        "source": "Chuyên Thái Bình 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 55,
+      "type": "mcq",
+      "prompt": "(Chuyên Vinh 2025) Cho hàm số $y = f(x)$ có bảng biến thiên như sau:\n![Hình Câu 55](/bank-images/chude11/q55_p0.png)\nMệnh đề nào sau đây sai?",
+      "points": 1,
+      "sort_order": 54,
+      "choices": [
+        "Hàm số có giá trị cực tiểu bằng $-1$.",
+        "Hàm số có $3$ điểm cực trị.",
+        "Hàm số có giá trị cực đại bằng $-1$.",
+        "Hàm số có $2$ điểm cực đại."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Từ bảng biến thiên, giá trị cực đại của hàm số bằng $3$ (không phải $-1$). Vậy C sai.",
+        "source": "Chuyên Vinh 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 56,
+      "type": "mcq",
+      "prompt": "(Sở Thanh Hóa 2025) Cho hàm số $y = f(x)$ có bảng biến thiên sau:\n![Hình Câu 56](/bank-images/chude11/q56_p0.png)\nHàm số đã cho đồng biến trên khoảng nào dưới đây?",
+      "points": 1,
+      "sort_order": 55,
+      "choices": [
+        "$(-\\infty; 1)$.",
+        "$(1; +\\infty)$.",
+        "$(0; 1)$.",
+        "$(-1; 0)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Dựa vào bảng biến thiên, $f'(x) > 0$ trên $(-\\infty; -1)$ và $(0; 1)$. Chọn C.",
+        "source": "Sở Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 57,
+      "type": "mcq",
+      "prompt": "(Cụm trường THPT Hải Dương 2025) Cho hàm số $y = f(x)$ có đạo hàm $f'(x) = (x + 2025)^2(x - 2024), \\; \\forall x \\in \\mathbb{R}$. Hàm số đạt cực trị tại:",
+      "points": 1,
+      "sort_order": 56,
+      "choices": [
+        "$x = -2024$.",
+        "$x = -2025$.",
+        "$x = 2025$.",
+        "$x = 2024$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Phương trình $f'(x) = 0$ có $x = -2025$ là nghiệm kép và $x = 2024$ là nghiệm đơn. Vậy hàm số đạt cực trị tại $x = 2024$.",
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 58,
+      "type": "mcq",
+      "prompt": "(Cụm trường THPT Hải Dương 2025) Cho hàm số $y = f(x)$ có bảng biến thiên như sau:\n![Hình Câu 58](/bank-images/chude11/q58_p0.png)\nHàm số $y = f(x)$ đồng biến trên khoảng nào trong các khoảng sau đây?",
+      "points": 1,
+      "sort_order": 57,
+      "choices": [
+        "$(0; 3)$.",
+        "$(3; +\\infty)$.",
+        "$(-\\infty; 3)$.",
+        "$(0; +\\infty)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Dựa vào bảng biến thiên, hàm số đồng biến trên $(-\\infty; 0)$ và $(3; +\\infty)$. Chọn B.",
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 59,
+      "type": "mcq",
+      "prompt": "(THPT Trần Nguyên Hãn - Hải Phòng 2025) Cho hàm số $y = f'(x)$ có đồ thị như hình vẽ.\n![Hình Câu 59](/bank-images/chude11/q59_p0.jpg)\nHàm số $y = f(x)$ nghịch biến trên khoảng nào dưới đây?",
+      "points": 1,
+      "sort_order": 58,
+      "choices": [
+        "$(-\\infty; 0)$.",
+        "$(0; 1)$.",
+        "$(0; +\\infty)$.",
+        "$(1; 2)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Dựa vào đồ thị $y = f'(x)$, ta thấy $f'(x) < 0$ trên khoảng $(1; 2)$ nên $y = f(x)$ nghịch biến trên $(1; 2)$.\n![Lời giải Câu 59](/bank-images/chude11/q59_s0.png)",
+        "source": "THPT Trần Nguyên Hãn - Hải Phòng 2025",
+        "level": "Thông hiểu",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 61,
+      "type": "mcq",
+      "prompt": "(Cụm trường Nghệ An 2025) Cho hàm số $f(x)$ liên tục trên $\\mathbb{R}$ và có đồ thị như hình vẽ. Điểm cực tiểu của đồ thị hàm số là:\n![Hình Câu 61](/bank-images/chude11/q61_p0.jpg)",
+      "points": 1,
+      "sort_order": 59,
+      "choices": [
+        "$x = 1$.",
+        "$N(-1; 1)$.",
+        "$M(1; -3)$.",
+        "$x = -1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Quan sát đồ thị, điểm cực tiểu của đồ thị hàm số là $M(1; -3)$.",
+        "source": "Cụm trường Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 62,
+      "type": "mcq",
+      "prompt": "(Cụm trường Nghệ An 2025) Cho hàm số $y = f(x)$ xác định với mọi $x \\ne 2$ có bảng biến thiên như hình vẽ. Hàm số đồng biến trên khoảng nào trong các khoảng sau?\n![Hình Câu 62](/bank-images/chude11/q62_p0.jpg)",
+      "points": 1,
+      "sort_order": 60,
+      "choices": [
+        "$(-1; 7)$.",
+        "$(2; 7)$.",
+        "$(-1; 7)\\setminus\\{2\\}$.",
+        "$(2; +\\infty)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Từ bảng biến thiên, $y' > 0$ trên $(-1; 2)$ và $(2; 7)$. Chọn B.",
+        "source": "Cụm trường Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 63,
+      "type": "mcq",
+      "prompt": "(Sở Vĩnh Phúc 2025) Cho hàm số có đồ thị như hình vẽ sau:\n![Hình Câu 63](/bank-images/chude11/q63_p0.jpg)\nĐiểm cực tiểu của đồ thị hàm số đã cho là:",
+      "points": 1,
+      "sort_order": 61,
+      "choices": [
+        "$F(3; 3)$.",
+        "$E(-1; -1)$.",
+        "$M(0; 3)$.",
+        "$N(2; -1)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Dựa vào đồ thị, điểm cực tiểu của đồ thị hàm số là $N(2; -1)$.",
+        "source": "Sở Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 64,
+      "type": "mcq",
+      "prompt": "(Cụm trường Hưng Yên 2025) Cho hàm số $y = f(x)$ có bảng biến thiên như hình vẽ bên dưới.\n![Hình Câu 64](/bank-images/chude11/q64_p0.jpg)\nHàm số $y = f(x)$ đồng biến trên khoảng nào dưới đây?",
+      "points": 1,
+      "sort_order": 62,
+      "choices": [
+        "$(-1; 2)$.",
+        "$(-8; -3)$.",
+        "$(-\\infty; 4)$.",
+        "$(2; +\\infty)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Từ bảng biến thiên, hàm số đồng biến trên $(-\\infty; -2)$, mà $(-8; -3) \\subset (-\\infty; -2)$ nên chọn B.",
+        "source": "Cụm trường Hưng Yên 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 65,
+      "type": "mcq",
+      "prompt": "(Cụm trường Hải Dương 2025) Trong các hàm số cho dưới đây, hàm số nào đồng biến trên $\\mathbb{R}$?",
+      "points": 1,
+      "sort_order": 63,
+      "choices": [
+        "$y = \\left(\\dfrac{2024}{2025}\\right)^x$.",
+        "$y = \\log_{2025} x$.",
+        "$y = \\ln x$.",
+        "$y = e^x$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Vì $e > 1$ nên hàm số mũ $y = e^x$ đồng biến trên $\\mathbb{R}$.",
+        "source": "Cụm trường Hải Dương 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 66,
+      "type": "mcq",
+      "prompt": "(Cụm trường Hải Dương 2025) Cho hàm số $y = f(x)$ có bảng biến thiên như sau:\n![Hình Câu 66](/bank-images/chude11/q66_p0.png)\nKhẳng định nào dưới đây là đúng?",
+      "points": 1,
+      "sort_order": 64,
+      "choices": [
+        "Hàm số nghịch biến trên khoảng $(-1; +\\infty)$.",
+        "Hàm số đồng biến trên khoảng $(-1; 0)$.",
+        "Hàm số nghịch biến trên khoảng $(-\\infty; 0)$.",
+        "Hàm số đồng biến trên khoảng $(0; 2)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Dựa vào bảng biến thiên, $y' > 0$ trên khoảng $(-1; 0)$ nên hàm số đồng biến trên $(-1; 0)$.",
+        "source": "Cụm trường Hải Dương 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 67,
+      "type": "mcq",
+      "prompt": "(Sở Thừa Thiên Huế 2025) Cho hàm số $y = f(x)$ có bảng biến thiên như sau:\n![Hình Câu 67](/bank-images/chude11/q67_p0.png)\nHàm số đã cho đồng biến trên khoảng nào dưới đây?",
+      "points": 1,
+      "sort_order": 65,
+      "choices": [
+        "$(-\\infty; -3)$.",
+        "$(-3; 3)$.",
+        "$(0; 3)$.",
+        "$(-3; 0)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Từ bảng biến thiên, $f'(x) > 0$ trên $(-3; 0)$ và $(3; +\\infty)$. Chọn D.",
+        "source": "Sở Thừa Thiên Huế 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 68,
+      "type": "mcq",
+      "prompt": "(Chuyên Lê Khiết - Quảng Ngãi 2025) Cho hàm số có đồ thị như hình vẽ bên. Hàm số đã cho nghịch biến trên khoảng nào sau đây?\n![Hình Câu 68](/bank-images/chude11/q68_p0.jpg)",
+      "points": 1,
+      "sort_order": 66,
+      "choices": [
+        "$(-1; 1)$.",
+        "$(-\\infty; 1)$.",
+        "$(-\\infty; -1)$.",
+        "$(-1; +\\infty)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Quan sát đồ thị, đường cong đi xuống trên các khoảng $(-\\infty; -1)$ và $(1; +\\infty)$. Chọn C.",
+        "source": "Chuyên Lê Khiết - Quảng Ngãi 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 70,
+      "type": "mcq",
+      "prompt": "(THPT Sào Nam - Quảng Nam 2025) Cho hàm số $y = f(x)$ xác định, có đạo hàm trên $\\mathbb{R}$ và $f'(x)$ có đồ thị như hình vẽ bên dưới.\n![Hình Câu 70](/bank-images/chude11/q70_p0.jpg)\nMệnh đề nào sau đây sai?",
+      "points": 1,
+      "sort_order": 67,
+      "choices": [
+        "Hàm số $y = f(x)$ nghịch biến trên khoảng $\\left(-\\dfrac{1}{2}; 0\\right)$.",
+        "Hàm số $y = f(x)$ nghịch biến trên khoảng $\\left(-\\dfrac{5}{2}; -2\\right)$.",
+        "Hàm số $y = f(x)$ đồng biến trên khoảng $(-2; +\\infty)$.",
+        "Hàm số $y = f(x)$ nghịch biến trên khoảng $(1; 2)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Từ đồ thị $f'(x)$, ta có $f'(x) > 0$ trên $(-2; -1)$ và $f'(x) < 0$ trên $(-\\infty; -2)$ và $(-1; +\\infty)$ (tiếp xúc trục hoành tại $x = 2$). Do đó khẳng định đồng biến trên $(-2; +\\infty)$ là sai.",
+        "source": "THPT Sào Nam - Quảng Nam 2025",
+        "level": "Thông hiểu",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 71,
+      "type": "mcq",
+      "prompt": "(Cụm trường Nguyễn Hiền - Lê Hồng Phong - Quảng Nam 2025) Cho hàm đa thức $y = f(x)$. Đồ thị hàm số $y = f'(x)$ là đường cong như hình vẽ bên dưới. Hỏi hàm số $y = f(x)$ có bao nhiêu điểm cực trị?\n![Hình Câu 71](/bank-images/chude11/q71_p0.png)",
+      "points": 1,
+      "sort_order": 68,
+      "choices": [
+        "$3$.",
+        "$1$.",
+        "$2$.",
+        "$0$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Đồ thị $y = f'(x)$ cắt trục hoành tại $3$ điểm phân biệt (tại đó $f'(x)$ đổi dấu), nên hàm số $y = f(x)$ có $3$ điểm cực trị.",
+        "source": "Cụm trường Nguyễn Hiền - Lê Hồng Phong - Quảng Nam 2025",
+        "level": "Thông hiểu",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 72,
+      "type": "mcq",
+      "prompt": "(Cụm trường Nguyễn Hiền - Lê Hồng Phong - Quảng Nam 2025) Cho hàm số $y = f(x)$ có bảng biến thiên như sau:\n![Hình Câu 72](/bank-images/chude11/q72_p0.png)\nHàm số đã cho đồng biến trên khoảng nào?",
+      "points": 1,
+      "sort_order": 69,
+      "choices": [
+        "$(0; 1)$.",
+        "$(1; 4)$.",
+        "$(-\\infty; 2)$.",
+        "$(-1; 1)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Từ bảng biến thiên, $y' > 0$ trên $(1; +\\infty)$, mà $(1; 4) \\subset (1; +\\infty)$ nên hàm số đồng biến trên $(1; 4)$.",
+        "source": "Cụm trường Nguyễn Hiền - Lê Hồng Phong - Quảng Nam 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 73,
+      "type": "mcq",
+      "prompt": "(Cụm trường Nguyễn Hiền - Lê Hồng Phong - Quảng Nam 2025) Cho hàm số bậc ba $y = f(x)$ có đồ thị là đường cong như hình vẽ dưới:\n![Hình Câu 73](/bank-images/chude11/q73_p0.jpg)\nTìm điểm cực đại của hàm số đã cho.",
+      "points": 1,
+      "sort_order": 70,
+      "choices": [
+        "$(-1; -1)$.",
+        "$x = -1$.",
+        "$x = 1$.",
+        "$(1; 3)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Quan sát đồ thị, điểm cực đại của hàm số là $x = 1$.",
+        "source": "Cụm trường Nguyễn Hiền - Lê Hồng Phong - Quảng Nam 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 74,
+      "type": "mcq",
+      "prompt": "(Cụm trường Nguyễn Hiền - Lê Hồng Phong - Quảng Nam 2025) Hàm số nào dưới đây đồng biến trên khoảng $(0; 2)$?",
+      "points": 1,
+      "sort_order": 71,
+      "choices": [
+        "$y = -x^3 - 3x$.",
+        "$y = \\dfrac{x - 2}{x - 1}$.",
+        "$y = -x^3 + 5x^2$.",
+        "$y = \\dfrac{x - 1}{x - 2}$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Xét $y = -x^3 + 5x^2$ có $y' = -3x^2 + 10x = 0 \\Leftrightarrow x = 0$ hoặc $x = \\dfrac{10}{3}$. Trên $\\left(0; \\dfrac{10}{3}\\right)$ có $y' > 0$, nên hàm số đồng biến trên $(0; 2)$. (Đáp án B gián đoạn tại $x = 1 \\in (0; 2)$ nên loại).\n![Lời giải Câu 74](/bank-images/chude11/q74_s0.jpg)",
+        "source": "Cụm trường Nguyễn Hiền - Lê Hồng Phong - Quảng Nam 2025",
+        "level": "Thông hiểu",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 75,
+      "type": "mcq",
+      "prompt": "(THPT Nông Cống 3 - Thanh Hóa 2025) Cho hàm số $y = f(x)$ có đồ thị như hình vẽ bên. Hàm số $y = f(x)$ đồng biến trên khoảng:\n![Hình Câu 75](/bank-images/chude11/q75_p0.jpg)",
+      "points": 1,
+      "sort_order": 72,
+      "choices": [
+        "$(-\\infty; -1)$.",
+        "$(-\\infty; 1)$.",
+        "$(-1; 1)$.",
+        "$(-1; +\\infty)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Từ đồ thị, đường cong đi lên từ trái sang phải trên các khoảng $(-\\infty; -1)$ và $(1; +\\infty)$. Chọn A.",
+        "source": "THPT Nông Cống 3 - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 76,
+      "type": "mcq",
+      "prompt": "(THPT Anh Sơn 3 - Nghệ An 2025) Cho hàm số $y = f(x)$ có đồ thị như hình vẽ. Hàm số đã cho đồng biến trên khoảng nào?\n![Hình Câu 76](/bank-images/chude11/q76_p0.jpg)",
+      "points": 1,
+      "sort_order": 73,
+      "choices": [
+        "$(-\\infty; 0)$.",
+        "$(0; +\\infty)$.",
+        "$(1; 3)$.",
+        "$(0; 2)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Dựa vào đồ thị, đường cong đi lên từ trái sang phải trên khoảng $(0; 2)$ nên hàm số đồng biến trên $(0; 2)$.",
+        "source": "THPT Anh Sơn 3 - Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 77,
+      "type": "mcq",
+      "prompt": "(THPT Anh Sơn 3 - Nghệ An 2025) Cho hàm số $y = f(x)$ có bảng biến thiên như sau:\n![Hình Câu 77](/bank-images/chude11/q77_p0.jpg)\nGiá trị cực tiểu của hàm số đã cho là:",
+      "points": 1,
+      "sort_order": 74,
+      "choices": [
+        "$-1$.",
+        "$0$.",
+        "$-3$.",
+        "$1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Từ bảng biến thiên, $y_{\\text{CT}} = f(-1) = f(1) = -3$.",
+        "source": "THPT Anh Sơn 3 - Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 78,
+      "type": "mcq",
+      "prompt": "(THPT Trực Ninh - Nam Định 2025) Cho hàm số $y = ax^3 + bx^2 + cx + d \\; (a, b, c, d \\in \\mathbb{R})$ có đồ thị trên $\\mathbb{R}$ là đường cong trong hình sau.\n![Hình Câu 78](/bank-images/chude11/q78_p0.png)\nGiá trị cực đại của hàm số đã cho bằng:",
+      "points": 1,
+      "sort_order": 75,
+      "choices": [
+        "$1$.",
+        "$3$.",
+        "$0$.",
+        "$-1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Từ đồ thị, hàm số đạt cực đại tại $x = 1$ với giá trị cực đại bằng $3$.",
+        "source": "THPT Trực Ninh - Nam Định 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 79,
+      "type": "mcq",
+      "prompt": "(THPT Trực Ninh - Nam Định 2025) Cho hàm số $y = f(x)$ có đồ thị như hình vẽ. Hàm số $y = f(x)$ nghịch biến trên khoảng nào dưới đây?\n![Hình Câu 79](/bank-images/chude11/q79_p0.jpg)",
+      "points": 1,
+      "sort_order": 76,
+      "choices": [
+        "$(0; 2)$.",
+        "$(1; +\\infty)$.",
+        "$(-2; 2)$.",
+        "$(-\\infty; 0)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Từ đồ thị, hàm số nghịch biến trên các khoảng $(-\\infty; 0)$ và $(2; +\\infty)$. Chọn D.",
+        "source": "THPT Trực Ninh - Nam Định 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 80,
+      "type": "mcq",
+      "prompt": "(THPT Lê Thánh Tông - Nguyễn Khuyến HCM 2025) Cho hàm số $f(x) = ax^3 + bx^2 + cx + d$ có bảng biến thiên như hình vẽ.\n![Hình Câu 80](/bank-images/chude11/q80_p0.jpg)\nHàm số $f(x)$ đạt cực đại tại điểm $x_0$ nào dưới đây?",
+      "points": 1,
+      "sort_order": 77,
+      "choices": [
+        "$x_0 = 1$.",
+        "$x_0 = 2$.",
+        "$x_0 = 4$.",
+        "$x_0 = 5$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Từ bảng biến thiên, $f'(x)$ đổi dấu từ $+$ sang $-$ tại $x = 5$, nên hàm số đạt cực đại tại $x_0 = 5$.",
+        "source": "THPT Lê Thánh Tông - Nguyễn Khuyến HCM 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 81,
+      "type": "mcq",
+      "prompt": "(THPT Lê Thánh Tông - Nguyễn Khuyến HCM 2025) Hàm số nào dưới đây nghịch biến trên khoảng $(-\\infty; +\\infty)$?",
+      "points": 1,
+      "sort_order": 78,
+      "choices": [
+        "$y = -x^3 + 2$.",
+        "$y = x^2 + 2$.",
+        "$y = 2x^3 + 3x - 1$.",
+        "$y = -x^3 + 3x$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Vì $y = -x^3 + 2$ có $y' = -3x^2 \\le 0, \\; \\forall x \\in \\mathbb{R}$ (chỉ bằng $0$ tại $x = 0$) nên hàm số nghịch biến trên $(-\\infty; +\\infty)$.",
+        "source": "THPT Lê Thánh Tông - Nguyễn Khuyến HCM 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 82,
+      "type": "mcq",
+      "prompt": "(Sở Bắc Giang 2025) Cho hàm số $y = f(x)$ có đồ thị như hình vẽ dưới đây.\n![Hình Câu 82](/bank-images/chude11/q82_p0.jpg)\nHàm số đã cho đồng biến trên khoảng:",
+      "points": 1,
+      "sort_order": 79,
+      "choices": [
+        "$(2; +\\infty)$.",
+        "$(0; 2)$.",
+        "$(1; +\\infty)$.",
+        "$(-\\infty; 1)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Trên khoảng $(2; +\\infty)$, đồ thị hàm số đi lên từ trái sang phải nên hàm số đồng biến trên $(2; +\\infty)$.",
+        "source": "Sở Bắc Giang 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 83,
+      "type": "mcq",
+      "prompt": "(Sở Phú Thọ 2025) Cho hàm số có đồ thị như hình vẽ.\n![Hình Câu 83](/bank-images/chude11/q83_p0.jpg)\nHàm số đã cho nghịch biến trên khoảng nào sau đây?",
+      "points": 1,
+      "sort_order": 80,
+      "choices": [
+        "$(-\\infty; -1)$.",
+        "$(2; +\\infty)$.",
+        "$(-1; 2)$.",
+        "$(0; 2)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Từ đồ thị, đường cong đi xuống từ $x = 0$ đến $x = 2$, nên hàm số nghịch biến trên khoảng $(0; 2)$.",
+        "source": "Sở Phú Thọ 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 84,
+      "type": "mcq",
+      "prompt": "(Sở Ninh Bình 2025) Hàm số $y = \\dfrac{x^2 + 2x + 4}{x + 2}$ nghịch biến trên khoảng nào trong các khoảng dưới đây?",
+      "points": 1,
+      "sort_order": 81,
+      "choices": [
+        "$(-2; 0)$.",
+        "$(-\\infty; -2)$.",
+        "$(0; +\\infty)$.",
+        "$(-4; 0)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Tập xác định $D = \\mathbb{R}\\setminus\\{-2\\}$. Ta có $y' = \\dfrac{x^2 + 4x}{(x+2)^2} < 0 \\Leftrightarrow x \\in (-4; -2) \\cup (-2; 0)$. Vậy hàm số nghịch biến trên khoảng $(-2; 0)$.\n![Lời giải Câu 84](/bank-images/chude11/q84_s0.jpg)",
+        "source": "Sở Ninh Bình 2025",
+        "level": "Thông hiểu",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 85,
+      "type": "mcq",
+      "prompt": "(Sở Thái Nguyên 2025) Cho hàm số $y = f(x)$ có bảng biến thiên sau:\n![Hình Câu 85](/bank-images/chude11/q85_p0.png)\nGiá trị cực tiểu của hàm số đã cho bằng:",
+      "points": 1,
+      "sort_order": 82,
+      "choices": [
+        "$2$.",
+        "$-2$.",
+        "$-1$.",
+        "$1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Từ bảng biến thiên, hàm số đạt cực tiểu tại $x = 1$ với giá trị cực tiểu bằng $-2$.",
+        "source": "Sở Thái Nguyên 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 86,
+      "type": "mcq",
+      "prompt": "(Sở Thái Nguyên 2025) Cho hàm số $y = f(x)$ có đồ thị là đường cong trong hình vẽ.\n![Hình Câu 86](/bank-images/chude11/q86_p0.jpg)\nHàm số đã cho nghịch biến trong khoảng nào dưới đây?",
+      "points": 1,
+      "sort_order": 83,
+      "choices": [
+        "$(-2; 2)$.",
+        "$(2; +\\infty)$.",
+        "$(0; 2)$.",
+        "$(-\\infty; 2)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Từ đồ thị, đường cong đi xuống trên các khoảng $(-\\infty; 0)$ và $(2; +\\infty)$. Chọn B.",
+        "source": "Sở Thái Nguyên 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 87,
+      "type": "mcq",
+      "prompt": "(Chuyên Lê Quý Đôn - Đà Nẵng 2025) Hàm số nào sau đây nghịch biến trên các khoảng xác định của nó?",
+      "points": 1,
+      "sort_order": 84,
+      "choices": [
+        "$y = e^{-x}$.",
+        "$y = \\log_{\\sqrt{3}} x$.",
+        "$y = (\\sqrt{2})^x$.",
+        "$y = \\ln x$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Ta có $y = e^{-x} = \\left(\\dfrac{1}{e}\\right)^x$ có cơ số $\\dfrac{1}{e} \\in (0; 1)$ nên nghịch biến trên tập xác định $\\mathbb{R}$.",
+        "source": "Chuyên Lê Quý Đôn - Đà Nẵng 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 88,
+      "type": "mcq",
+      "prompt": "(Chuyên Lê Quý Đôn - Đà Nẵng 2025) Hàm số nào sau đây đồng biến trên $\\mathbb{R}$?",
+      "points": 1,
+      "sort_order": 85,
+      "choices": [
+        "$y = \\dfrac{2x + 1}{x - 3}$.",
+        "$y = x^3 + 6x^2 - 12x + 1$.",
+        "$y = x^3 - 3x^2 + 5x$.",
+        "$y = x^2 + 4x - 1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Ta có $y = x^3 - 3x^2 + 5x \\Rightarrow y' = 3x^2 - 6x + 5 = 3(x-1)^2 + 2 > 0, \\; \\forall x \\in \\mathbb{R}$, nên đồng biến trên $\\mathbb{R}$.",
+        "source": "Chuyên Lê Quý Đôn - Đà Nẵng 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 89,
+      "type": "mcq",
+      "prompt": "(KHTN Hà Nội 2025) Cho hàm số $f(x)$ có bảng biến thiên như sau:\n![Hình Câu 89](/bank-images/chude11/q89_p0.png)\n![Hình Câu 89](/bank-images/chude11/q89_p1.png)\nHàm số đã cho nghịch biến trên tập nào dưới đây?",
+      "points": 1,
+      "sort_order": 86,
+      "choices": [
+        "$(0; 4)$.",
+        "$(-\\infty; 1)$.",
+        "$(-1; 3)$.",
+        "$(4; +\\infty)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Từ bảng biến thiên, $f'(x) < 0$ trên $(-\\infty; 0)$ và $(4; +\\infty)$. Chọn D.",
+        "source": "KHTN Hà Nội 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 90,
+      "type": "mcq",
+      "prompt": "(KHTN Hà Nội 2025) Cho hàm số $f(x)$ có đạo hàm $f'(x) = x^2(x + 2)(x^2 + x - 2)(x - 1)^4$ với mọi $x \\in \\mathbb{R}$. Số điểm cực trị của hàm số đã cho là:",
+      "points": 1,
+      "sort_order": 87,
+      "choices": [
+        "$3$.",
+        "$2$.",
+        "$1$.",
+        "$0$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Ta phân tích $f'(x) = x^2(x+2)(x+2)(x-1)(x-1)^4 = x^2(x+2)^2(x-1)^5$. Chỉ có $x = 1$ là nghiệm bội lẻ nên $f'(x)$ đổi dấu đúng $1$ lần. Hàm số có $1$ điểm cực trị.",
+        "source": "KHTN Hà Nội 2025",
+        "level": "Thông hiểu",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 93,
+      "type": "mcq",
+      "prompt": "(Sở Quảng Bình 2025) Cho hàm số có đồ thị như hình vẽ bên. Hàm số đã cho đồng biến trên khoảng nào dưới đây?\n![Hình Câu 93](/bank-images/chude11/q93_p0.jpg)",
+      "points": 1,
+      "sort_order": 88,
+      "choices": [
+        "$(-1; 1)$.",
+        "$(0; 1)$.",
+        "$(-\\infty; 1)$.",
+        "$(0; +\\infty)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Từ đồ thị, hàm số đồng biến trên các khoảng $(-\\infty; -1)$ và $(0; 1)$. Chọn B.",
+        "source": "Sở Quảng Bình 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 94,
+      "type": "mcq",
+      "prompt": "(Sở Bạc Liêu 2025) Cho hàm số có bảng biến thiên như sau:\n![Hình Câu 94](/bank-images/chude11/q94_p0.jpg)\nGiá trị cực tiểu của hàm số là:",
+      "points": 1,
+      "sort_order": 89,
+      "choices": [
+        "$2$.",
+        "$-2$.",
+        "$-4$.",
+        "$-10$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Dựa vào bảng biến thiên, giá trị cực tiểu của hàm số là $-10$.",
+        "source": "Sở Bạc Liêu 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 95,
+      "type": "mcq",
+      "prompt": "(THPT Lê Thánh Tông - Nguyễn Khuyến 2025) Hàm số nào dưới đây nghịch biến trên $(-\\infty; +\\infty)$?",
+      "points": 1,
+      "sort_order": 90,
+      "choices": [
+        "$y = \\ln x$.",
+        "$y = \\log_{\\frac{1}{7}} x$.",
+        "$y = \\left(\\dfrac{\\pi}{6}\\right)^x$.",
+        "$y = e^x$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Hàm số mũ $y = \\left(\\dfrac{\\pi}{6}\\right)^x$ có tập xác định $\\mathbb{R}$ và cơ số $0 < \\dfrac{\\pi}{6} < 1$ nên nghịch biến trên $(-\\infty; +\\infty)$.",
+        "source": "THPT Lê Thánh Tông - Nguyễn Khuyến 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 96,
+      "type": "mcq",
+      "prompt": "(Sở Hà Nội 2025) Cho hàm số bậc ba $y = f(x)$ có đồ thị như hình vẽ.\n![Hình Câu 96](/bank-images/chude11/q96_p0.png)\nHàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+      "points": 1,
+      "sort_order": 91,
+      "choices": [
+        "$(1; +\\infty)$.",
+        "$(-\\infty; +\\infty)$.",
+        "$(-\\infty; 0)$.",
+        "$(0; 1)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Với $x \\in (0; 1)$, đồ thị hàm số đi xuống từ trái sang phải nên hàm số nghịch biến trên $(0; 1)$.",
+        "source": "Sở Hà Nội 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 97,
+      "type": "mcq",
+      "prompt": "(Chuyên Hùng Vương - Phú Thọ 2025) Cho hàm số $y = f(x)$ có bảng biến thiên sau:\n![Hình Câu 97](/bank-images/chude11/q97_p0.png)\nGiá trị cực đại của hàm số đã cho bằng:",
+      "points": 1,
+      "sort_order": 92,
+      "choices": [
+        "$-1$.",
+        "$3$.",
+        "$0$.",
+        "$2$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Dựa vào bảng biến thiên, giá trị cực đại của hàm số đã cho bằng $3$.",
+        "source": "Chuyên Hùng Vương - Phú Thọ 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 98,
+      "type": "mcq",
+      "prompt": "(Chuyên KHTN Hà Nội 2025) Cho hàm số $y = f(x)$ có bảng biến thiên như sau:\n![Hình Câu 98](/bank-images/chude11/q98_p0.png)\nĐiểm cực đại của hàm số đã cho là:",
+      "points": 1,
+      "sort_order": 93,
+      "choices": [
+        "$21$.",
+        "$1$.",
+        "$-2$.",
+        "$-6$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Dựa vào bảng biến thiên, điểm cực đại của hàm số là $x = -2$.",
+        "source": "Chuyên KHTN Hà Nội 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 99,
+      "type": "mcq",
+      "prompt": "(Sở Tuyên Quang 2025) Hàm số nào dưới đây không có cực trị?",
+      "points": 1,
+      "sort_order": 94,
+      "choices": [
+        "$y = \\dfrac{2x + 1}{x - 3}$.",
+        "$y = x^3 - x^2 - 3x + 2$.",
+        "$y = -x^3 + 3x^2 + 1$.",
+        "$y = x^3 - 3x^2 + 2$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Hàm phân thức bậc nhất trên bậc nhất $y = \\dfrac{2x+1}{x-3}$ có $y' = \\dfrac{-7}{(x-3)^2} < 0, \\; \\forall x \\ne 3$ nên không có cực trị.",
+        "source": "Sở Tuyên Quang 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 100,
+      "type": "mcq",
+      "prompt": "(Sở Yên Bái 2025) Cho hàm số $y = f(x)$ có đạo hàm trên $\\mathbb{R}$ thỏa mãn $f'(x) > 0, \\; \\forall x \\in (-1; 0)$ và $f'(x) < 0, \\; \\forall x \\in (0; 1)$. Khẳng định nào sau đây là đúng?",
+      "points": 1,
+      "sort_order": 95,
+      "choices": [
+        "Hàm số $f(x)$ nghịch biến trên khoảng $(-1; 0)$ và đồng biến trên khoảng $(0; 1)$.",
+        "Hàm số $f(x)$ đồng biến trên các khoảng $(-1; 0)$ và $(0; 1)$.",
+        "Hàm số $f(x)$ nghịch biến trên các khoảng $(-1; 0)$ và $(0; 1)$.",
+        "Hàm số $f(x)$ đồng biến trên khoảng $(-1; 0)$ và nghịch biến trên khoảng $(0; 1)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Do $f'(x) > 0$ trên $(-1; 0)$ nên $f(x)$ đồng biến trên $(-1; 0)$; $f'(x) < 0$ trên $(0; 1)$ nên $f(x)$ nghịch biến trên $(0; 1)$.",
+        "source": "Sở Yên Bái 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 101,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Sơn 1 - Thanh Hóa 2025) Số điểm cực tiểu của hàm số $f(x) = x^4 - x^2 + 2$ là:",
+      "points": 1,
+      "sort_order": 96,
+      "choices": [
+        "$2$.",
+        "$4$.",
+        "$1$.",
+        "$3$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Ta có $f'(x) = 4x^3 - 2x = 0 \\Leftrightarrow x = 0$ hoặc $x = \\pm \\dfrac{\\sqrt{2}}{2}$. Hàm trùng phương có $a = 1 > 0, b = -1 < 0$ nên có $2$ điểm cực tiểu và $1$ điểm cực đại.\n![Lời giải Câu 101](/bank-images/chude11/q101_s0.jpg)",
+        "source": "THPT Triệu Sơn 1 - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 102,
+      "type": "mcq",
+      "prompt": "(Chuyên Phan Bội Châu - Hà Tĩnh 2025) Cho hàm số $y = ax^3 + bx^2 + cx + d$ có đồ thị là đường cong trong hình vẽ bên. Hàm số đã cho đồng biến trên khoảng nào dưới đây?\n![Hình Câu 102](/bank-images/chude11/q102_p0.jpg)",
+      "points": 1,
+      "sort_order": 97,
+      "choices": [
+        "$(-1; 2)$.",
+        "$(2; +\\infty)$.",
+        "$(-1; 3)$.",
+        "$(0; 2)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Dựa vào đồ thị, đường cong đi lên từ $x = 0$ đến $x = 2$ nên hàm số đồng biến trên khoảng $(0; 2)$.",
+        "source": "Chuyên Phan Bội Châu - Hà Tĩnh 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 103,
+      "type": "mcq",
+      "prompt": "(Sở Bắc Ninh 2025) Cho hàm số $y = f(x)$ xác định với mọi $x \\in \\mathbb{R}$ và có bảng xét dấu $f'(x)$ như sau:\n![Hình Câu 103](/bank-images/chude11/q103_p0.png)\nHàm số $f(x)$ nghịch biến trên khoảng nào sau đây?",
+      "points": 1,
+      "sort_order": 98,
+      "choices": [
+        "$(7; +\\infty)$.",
+        "$(3; 7)$.",
+        "$(-\\infty; 7)$.",
+        "$(-\\infty; 3)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Từ bảng xét dấu, $f'(x) < 0, \\; \\forall x \\in (3; 7)$ nên hàm số $f(x)$ nghịch biến trên $(3; 7)$.",
+        "source": "Sở Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 104,
+      "type": "mcq",
+      "prompt": "(THPT Anh Sơn 3 - Nghệ An 2025) Cho hàm số $y = f(x)$ có bảng biến thiên như hình vẽ.\n![Hình Câu 104](/bank-images/chude11/q104_p0.png)\nHàm số đã cho đồng biến trên khoảng nào dưới đây?",
+      "points": 1,
+      "sort_order": 99,
+      "choices": [
+        "$(-\\infty; -2)$.",
+        "$(-2; 0)$.",
+        "$(0; 2)$.",
+        "$(0; +\\infty)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Từ bảng biến thiên, hàm số đồng biến trên $(-2; 0)$ và $(2; +\\infty)$. Chọn B.",
+        "source": "THPT Anh Sơn 3 - Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 105,
+      "type": "mcq",
+      "prompt": "(THPT Đô Lương 1 - Nghệ An 2025) Cho hàm số $y = f(x)$ có đồ thị như hình vẽ.\n![Hình Câu 105](/bank-images/chude11/q105_p0.jpg)\nGiá trị cực tiểu của hàm số đã cho là:",
+      "points": 1,
+      "sort_order": 100,
+      "choices": [
+        "$1$.",
+        "$-1$.",
+        "$-2$.",
+        "$2$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Quan sát đồ thị, nhánh trên có điểm cực tiểu tại $(1; 2)$, suy ra giá trị cực tiểu của hàm số là $2$.",
+        "source": "THPT Đô Lương 1 - Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 106,
+      "type": "mcq",
+      "prompt": "(THPT Anh Sơn 3 - Nghệ An 2025) Cho hàm số $y = f(x)$ liên tục trên $\\mathbb{R}$ và có đồ thị như hình dưới đây.\n![Hình Câu 106](/bank-images/chude11/q106_p0.png)\nHàm số đã cho có bao nhiêu điểm cực đại?",
+      "points": 1,
+      "sort_order": 101,
+      "choices": [
+        "$2$.",
+        "$3$.",
+        "$1$.",
+        "$5$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Quan sát đồ thị, có $3$ đỉnh nhô lên (tại $x = -1, x = 0, x = 1$) nên hàm số có $3$ điểm cực đại.",
+        "source": "THPT Anh Sơn 3 - Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 107,
+      "type": "mcq",
+      "prompt": "(Sở Đà Nẵng 2025) Cho hàm số $y = x^3 - 3x^2 - 2025$. Hàm số đã cho nghịch biến trên khoảng:",
+      "points": 1,
+      "sort_order": 102,
+      "choices": [
+        "$(2; +\\infty)$.",
+        "$(0; 2)$.",
+        "$(-\\infty; +\\infty)$.",
+        "$(-\\infty; 0)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Ta có $y' = 3x^2 - 6x < 0 \\Leftrightarrow 0 < x < 2$. Vậy hàm số nghịch biến trên khoảng $(0; 2)$.\n![Lời giải Câu 107](/bank-images/chude11/q107_s0.png)",
+        "source": "Sở Đà Nẵng 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 109,
+      "type": "mcq",
+      "prompt": "(Sở Sơn La 2025) Cho hàm số $y = f(x)$ có bảng biến thiên như sau:\n![Hình Câu 109](/bank-images/chude11/q109_p0.jpg)\nHàm số đã cho đồng biến trên khoảng nào dưới đây?",
+      "points": 1,
+      "sort_order": 103,
+      "choices": [
+        "$(0; 1)$.",
+        "$(-1; 0)$.",
+        "$(-\\infty; -1)$.",
+        "$(-1; 1)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Từ bảng biến thiên, $f'(x) > 0$ trên $(-1; 0)$ và $(1; +\\infty)$. Chọn B.",
+        "source": "Sở Sơn La 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 110,
+      "type": "mcq",
+      "prompt": "(THPT Hương Hóa - Quảng Trị 2025) Cho hàm số $y = f(x)$ có đồ thị là đường cong như hình vẽ bên dưới.\n![Hình Câu 110](/bank-images/chude11/q110_p0.jpg)\nHàm số nghịch biến trên khoảng (các khoảng) nào sau đây?",
+      "points": 1,
+      "sort_order": 104,
+      "choices": [
+        "$(-2; 0)$.",
+        "$(-\\infty; -1) \\cup (-1; +\\infty)$.",
+        "$(-\\infty; -1)$ và $(-1; +\\infty)$.",
+        "$\\mathbb{R}\\setminus\\{-1\\}$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Dựa vào đồ thị, hàm số nghịch biến trên từng khoảng xác định $(-\\infty; -1)$ và $(-1; +\\infty)$ (không dùng dấu hợp $\\cup$). Chọn C.",
+        "source": "THPT Hương Hóa - Quảng Trị 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 111,
+      "type": "mcq",
+      "prompt": "(Sở Phú Thọ 2025) Cho hàm số bậc ba $y = f(x)$ có đồ thị như hình vẽ.\n![Hình Câu 111](/bank-images/chude11/q111_p0.png)\nHàm số đã cho đồng biến trên khoảng nào dưới đây?",
+      "points": 1,
+      "sort_order": 105,
+      "choices": [
+        "$(-\\infty; -2)$.",
+        "$(-2; 0)$.",
+        "$(0; +\\infty)$.",
+        "$(-1; 1)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Quan sát đồ thị, đường cong đi lên từ $x = -2$ đến $x = 0$, nên hàm số đồng biến trên $(-2; 0)$.",
+        "source": "Sở Phú Thọ 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 112,
+      "type": "mcq",
+      "prompt": "(Sở Bình Thuận 2025) Cho hàm số $f(x) = \\dfrac{ax^2 + bx + c}{ex + f}$ có bảng biến thiên như hình sau:\n![Hình Câu 112](/bank-images/chude11/q112_p0.jpg)\nHàm số đã cho đạt cực đại tại điểm:",
+      "points": 1,
+      "sort_order": 106,
+      "choices": [
+        "$x = 5$.",
+        "$x = 2$.",
+        "$x = 0$.",
+        "$x = -1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Từ bảng biến thiên, $f'(x)$ đổi dấu từ $+$ sang $-$ tại $x = -1$, nên hàm số đạt cực đại tại $x = -1$.",
+        "source": "Sở Bình Thuận 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 113,
+      "type": "mcq",
+      "prompt": "(Sở Bình Thuận 2025) Cho hàm số bậc ba $y = f(x)$ có đồ thị như hình sau:\n![Hình Câu 113](/bank-images/chude11/q113_p0.jpg)\nHàm số $y = f(x)$ đồng biến trên khoảng nào sau đây?",
+      "points": 1,
+      "sort_order": 107,
+      "choices": [
+        "$(-\\infty; -1)$.",
+        "$(-2; 1)$.",
+        "$(-1; 1)$.",
+        "$(-4; 0)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Dựa vào đồ thị, đường cong đi lên trên khoảng $(-1; 1)$ nên hàm số đồng biến trên $(-1; 1)$.",
+        "source": "Sở Bình Thuận 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 114,
+      "type": "mcq",
+      "prompt": "(THPT Lê Thánh Tông - HCM 2025) Cho hàm số $y = f(x)$ có bảng biến thiên như hình vẽ:\n![Hình Câu 114](/bank-images/chude11/q114_p0.png)\nHàm số đã cho nghịch biến trên khoảng nào trong các khoảng sau?",
+      "points": 1,
+      "sort_order": 108,
+      "choices": [
+        "$(-\\infty; 1)$.",
+        "$(-1; 3)$.",
+        "$(1; +\\infty)$.",
+        "$(1; 3)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Từ bảng biến thiên, hàm số nghịch biến trên $(-1; 1)$ và $(1; 3)$. Chọn D.",
+        "source": "THPT Lê Thánh Tông - HCM 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 116,
+      "type": "mcq",
+      "prompt": "(Sở Quảng Nam 2025) Cho hàm số $y = f(x)$ có đồ thị như hình vẽ bên dưới.\n![Hình Câu 116](/bank-images/chude11/q116_p0.png)\nHàm số đã cho nghịch biến trên khoảng nào sau đây?",
+      "points": 1,
+      "sort_order": 109,
+      "choices": [
+        "$(-\\infty; 2)$.",
+        "$(0; +\\infty)$.",
+        "$(-\\infty; 0)$.",
+        "$(0; 2)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Trên khoảng $(-\\infty; 0)$, đồ thị hàm số đi xuống nên hàm số nghịch biến trên $(-\\infty; 0)$.",
+        "source": "Sở Quảng Nam 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 117,
+      "type": "mcq",
+      "prompt": "(Sở Long An 2025) Cho hàm số $f(x)$ có bảng biến thiên như hình bên. Hàm số đã cho đồng biến trên khoảng nào dưới đây?\n![Hình Câu 117](/bank-images/chude11/q117_p0.jpg)",
+      "points": 1,
+      "sort_order": 110,
+      "choices": [
+        "$(-\\infty; 0)$.",
+        "$(0; +\\infty)$.",
+        "$(0; 2)$.",
+        "$(-1; 2)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Từ bảng biến thiên, $f'(x) > 0$ trên $(-\\infty; 0)$ và $(2; +\\infty)$. Chọn A.",
+        "source": "Sở Long An 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 118,
+      "type": "mcq",
+      "prompt": "(THPT Ngô Sĩ Liên - Bắc Giang 2025) Cho hàm số $y = f(x)$ có bảng biến thiên như sau:\n![Hình Câu 118](/bank-images/chude11/q118_p0.jpg)\nHàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+      "points": 1,
+      "sort_order": 111,
+      "choices": [
+        "$(-3; -2) \\cup (-2; -1)$.",
+        "$(-\\infty; 0)$.",
+        "$(-2; -1)$.",
+        "$(-3; -1)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Từ bảng biến thiên, hàm số nghịch biến trên $(-3; -2)$ và $(-2; -1)$ (gián đoạn tại $x = -2$). Chọn C.",
+        "source": "THPT Ngô Sĩ Liên - Bắc Giang 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 119,
+      "type": "mcq",
+      "prompt": "(THPT DTNT - Nghệ An 2025) Cho hàm số $y = f(x)$ có bảng xét dấu của đạo hàm như hình dưới đây:\n![Hình Câu 119](/bank-images/chude11/q119_p0.jpg)\nKhẳng định nào sau đây sai?",
+      "points": 1,
+      "sort_order": 112,
+      "choices": [
+        "Hàm số đạt cực trị tại điểm $x = -3; \\; x = -1$.",
+        "Hàm số đạt cực tiểu tại điểm $x = -1$.",
+        "Hàm số nghịch biến trên $(-\\infty; -1)$.",
+        "$f(0) < f(3)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Qua $x = -3$, đạo hàm $y'$ không đổi dấu (từ $-$ sang $-$) nên hàm số không đạt cực trị tại $x = -3$. Vậy A sai.",
+        "source": "THPT DTNT - Nghệ An 2025",
+        "level": "Thông hiểu",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 120,
+      "type": "mcq",
+      "prompt": "(THPT DTNT - Nghệ An 2025) Cho hàm số $y = f(x)$ có bảng biến thiên như hình dưới đây:\n![Hình Câu 120](/bank-images/chude11/q120_p0.png)\nHàm số $y = f(x)$ nghịch biến trên khoảng nào?",
+      "points": 1,
+      "sort_order": 113,
+      "choices": [
+        "$(-1; +\\infty)$.",
+        "$(6; +\\infty)$.",
+        "$(-\\infty; 6)$.",
+        "$(-1; 6)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Từ bảng biến thiên, $f'(x) < 0$ trên khoảng $(-1; 6)$ nên hàm số nghịch biến trên $(-1; 6)$.",
+        "source": "THPT DTNT - Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 121,
+      "type": "mcq",
+      "prompt": "(THPT Hoằng Hóa 2 - Thanh Hóa 2025) Cho hàm số $y = f(x)$ có đồ thị như (Hình 1).\n![Hình Câu 121](/bank-images/chude11/q121_p0.png)\nHàm số đã cho đồng biến trên khoảng nào trong các khoảng sau đây?",
+      "points": 1,
+      "sort_order": 114,
+      "choices": [
+        "$(0; 1)$.",
+        "$(1; 2)$.",
+        "$(-1; 0)$.",
+        "$(-1; 1)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Từ đồ thị, hàm số đồng biến trên $(-\\infty; -1)$ và $(1; +\\infty)$, do đó đồng biến trên $(1; 2)$.",
+        "source": "THPT Hoằng Hóa 2 - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 122,
+      "type": "mcq",
+      "prompt": "(Đề thi vào ĐHSPHN 2025) Cho hàm số $y = f(x)$ liên tục trên $\\mathbb{R}$ và có bảng biến thiên như sau:\n![Hình Câu 122](/bank-images/chude11/q122_p0.png)\nHàm số đã cho đồng biến trên khoảng nào dưới đây?",
+      "points": 1,
+      "sort_order": 115,
+      "choices": [
+        "$(0; 2)$.",
+        "$(0; +\\infty)$.",
+        "$(2; +\\infty)$.",
+        "$(-\\infty; 4)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Từ bảng biến thiên, $f'(x) > 0$ trên $(-\\infty; 0)$ và $(2; +\\infty)$. Chọn C.",
+        "source": "Đề thi vào ĐHSPHN 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 123,
+      "type": "mcq",
+      "prompt": "(Cụm Ninh Giang - Tứ Kỳ - Gia Lộc 2025) Cho hàm số bậc ba $y = f(x)$ có đồ thị là đường cong trong hình vẽ dưới đây.\n![Hình Câu 123](/bank-images/chude11/q123_p0.jpg)\nHàm số $y = f(x)$ nghịch biến trên khoảng nào trong các khoảng sau?",
+      "points": 1,
+      "sort_order": 116,
+      "choices": [
+        "$(-2; -1)$.",
+        "$(-2; 1)$.",
+        "$(-4; -2)$.",
+        "$(-\\infty; -2)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Nhìn vào đồ thị, hàm số nghịch biến trên $(-2; 0)$, mà $(-2; -1) \\subset (-2; 0)$ nên chọn A.",
+        "source": "Cụm Ninh Giang - Tứ Kỳ - Gia Lộc 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 124,
+      "type": "mcq",
+      "prompt": "(THPT Tư Nghĩa 1 - Quảng Ngãi 2025) Cho hàm số $y = f(x)$ xác định với mọi $x \\ne 0$ và có bảng xét dấu $f'(x)$ như hình vẽ dưới đây.\n![Hình Câu 124](/bank-images/chude11/q124_p0.png)\nHàm số $f(x)$ nghịch biến trên khoảng nào trong các khoảng sau?",
+      "points": 1,
+      "sort_order": 117,
+      "choices": [
+        "$(1; +\\infty)$.",
+        "$(-4; +\\infty)$.",
+        "$(-4; 1)$.",
+        "$(-4; 0)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Từ bảng xét dấu, $f'(x) < 0$ trên $(-4; 0)$ và $(0; 1)$ (không xác định tại $x = 0$). Chọn D.",
+        "source": "THPT Tư Nghĩa 1 - Quảng Ngãi 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 125,
+      "type": "mcq",
+      "prompt": "(Sở Vũng Tàu 2025) Cho hàm số $y = f(x)$ có đồ thị là đường cong trong hình vẽ bên. Hàm số đã cho nghịch biến trên khoảng nào dưới đây?\n![Hình Câu 125](/bank-images/chude11/q125_p0.png)",
+      "points": 1,
+      "sort_order": 118,
+      "choices": [
+        "$(-1; 0)$.",
+        "$(-\\infty; -1)$.",
+        "$(0; 1)$.",
+        "$(0; +\\infty)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Từ đồ thị, đường cong đi xuống trên $(-1; 0)$ và $(1; +\\infty)$. Chọn A.",
+        "source": "Sở Vũng Tàu 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 126,
+      "type": "mcq",
+      "prompt": "(Sở Vũng Tàu 2025) Cho hàm số $y = f(x)$ liên tục trên $\\mathbb{R}$ và có bảng biến thiên như sau:\n![Hình Câu 126](/bank-images/chude11/q126_p0.png)\nHàm số đã cho đạt cực đại tại điểm:",
+      "points": 1,
+      "sort_order": 119,
+      "choices": [
+        "$x = -2$.",
+        "$x = 2$.",
+        "$x = 1$.",
+        "$x = -1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Từ bảng biến thiên, $f'(x)$ đổi dấu từ $+$ sang $-$ tại $x = -1$, nên hàm số đạt cực đại tại $x = -1$.",
+        "source": "Sở Vũng Tàu 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 127,
+      "type": "mcq",
+      "prompt": "(THPT Mai Trúc Loan - Hà Tĩnh 2025) Cho hàm số $y = f(x)$ xác định, liên tục trên $\\mathbb{R}$ và có bảng biến thiên như sau:\n![Hình Câu 127](/bank-images/chude11/q127_p0.png)\nKhẳng định nào sau đây là khẳng định đúng?",
+      "points": 1,
+      "sort_order": 120,
+      "choices": [
+        "Hàm số có đúng một cực trị.",
+        "Hàm số có giá trị lớn nhất bằng $0$ và giá trị nhỏ nhất bằng $-1$.",
+        "Hàm số có giá trị cực tiểu bằng $1$.",
+        "Hàm số đạt cực đại tại $x = 0$ và đạt cực tiểu tại $x = 1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Do hàm số liên tục trên $\\mathbb{R}$, $y'$ đổi dấu từ $+$ sang $-$ qua $x = 0$ (cực đại) và từ $-$ sang $+$ qua $x = 1$ (cực tiểu). Chọn D.",
+        "source": "THPT Mai Trúc Loan - Hà Tĩnh 2025",
+        "level": "Thông hiểu",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 128,
+      "type": "mcq",
+      "prompt": "(THPT Mai Trúc Loan - Hà Tĩnh 2025) Cho hàm số bậc ba $y = f(x)$ có đồ thị đạo hàm $y = f'(x)$ như hình sau.\n![Hình Câu 128](/bank-images/chude11/q128_p0.jpg)\nHàm số đã cho nghịch biến trên khoảng:",
+      "points": 1,
+      "sort_order": 121,
+      "choices": [
+        "$(-1; 0)$.",
+        "$(3; 4)$.",
+        "$(2; 3)$.",
+        "$(1; 2)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Trên khoảng $(0; 2)$, đồ thị $f'(x)$ nằm dưới trục $Ox$ nên $f'(x) < 0$. Do $(1; 2) \\subset (0; 2)$, hàm số nghịch biến trên $(1; 2)$.",
+        "source": "THPT Mai Trúc Loan - Hà Tĩnh 2025",
+        "level": "Thông hiểu",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 129,
+      "type": "mcq",
+      "prompt": "(THPT Quế Võ 1 - Bắc Ninh 2025) Cho hàm số $y = f(x)$ có bảng xét dấu đạo hàm như sau:\n![Hình Câu 129](/bank-images/chude11/q129_p0.png)\nMệnh đề nào dưới đây đúng?",
+      "points": 1,
+      "sort_order": 122,
+      "choices": [
+        "Hàm số nghịch biến trên khoảng $(-\\infty; -2)$.",
+        "Hàm số đồng biến trên khoảng $(-2; 0)$.",
+        "Hàm số đồng biến trên khoảng $(-\\infty; 0)$.",
+        "Hàm số nghịch biến trên khoảng $(0; 2)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Theo bảng xét dấu, $y' < 0$ khi $x \\in (0; 2)$ nên hàm số nghịch biến trên khoảng $(0; 2)$.",
+        "source": "THPT Quế Võ 1 - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 130,
+      "type": "mcq",
+      "prompt": "(THPT Quế Võ 1 - Bắc Ninh 2025) Cho hàm số $f(x)$ có đạo hàm $f'(x) = x(x - 1)(x - 2)^2, \\; \\forall x \\in \\mathbb{R}$. Số điểm cực trị của hàm số đã cho là:",
+      "points": 1,
+      "sort_order": 123,
+      "choices": [
+        "$5$.",
+        "$2$.",
+        "$1$.",
+        "$3$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Phương trình $f'(x) = 0$ có $x = 0, x = 1$ là nghiệm đơn và $x = 2$ là nghiệm kép. Do đó hàm số có $2$ điểm cực trị.\n![Lời giải Câu 130](/bank-images/chude11/q130_s0.jpg)",
+        "source": "THPT Quế Võ 1 - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 131,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Quang Phục - Hưng Yên 2025) Cho hàm số $f(x) = ax^3 + bx^2 + cx + d$ có đồ thị như hình vẽ. Giá trị cực đại của hàm số $f(x)$ bằng:\n![Hình Câu 131](/bank-images/chude11/q131_p0.jpg)",
+      "points": 1,
+      "sort_order": 124,
+      "choices": [
+        "$1$.",
+        "$3$.",
+        "$0$.",
+        "$-1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Từ đồ thị, hàm số đạt cực đại tại $x = 1$ với giá trị cực đại bằng $3$.",
+        "source": "THPT Triệu Quang Phục - Hưng Yên 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 132,
+      "type": "mcq",
+      "prompt": "(Cụm chuyên môn Đak Lak 2025) Hàm số $y = x^3 - 3x + 2$ đồng biến trên khoảng nào sau đây?",
+      "points": 1,
+      "sort_order": 125,
+      "choices": [
+        "$(-1; 1)$.",
+        "$(-\\infty; 1)$.",
+        "$(-1; +\\infty)$.",
+        "$(1; +\\infty)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Ta có $y' = 3x^2 - 3 > 0 \\Leftrightarrow x \\in (-\\infty; -1) \\cup (1; +\\infty)$. Chọn D.\n![Lời giải Câu 132](/bank-images/chude11/q132_s0.jpg)",
+        "source": "Cụm chuyên môn Đak Lak 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 133,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Quang Phục - Hưng Yên 2025) Cho hàm số $y = \\dfrac{mx - 9}{x - m}$. Tập giá trị của $m$ để hàm số đồng biến trên $(-\\infty; 2)$ là:",
+      "points": 1,
+      "sort_order": 126,
+      "choices": [
+        "$m < -3$.",
+        "$m > 3$.",
+        "$2 \\le m < 3$.",
+        "$-3 \\le m < 3$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Hàm số đồng biến trên $(-\\infty; 2) \\Leftrightarrow \\begin{cases} y' = \\dfrac{-m^2 + 9}{(x-m)^2} > 0 \\\\ m \\notin (-\\infty; 2) \\end{cases} \\Leftrightarrow \\begin{cases} -3 < m < 3 \\\\ m \\ge 2 \\end{cases} \\Leftrightarrow 2 \\le m < 3$.",
+        "source": "THPT Triệu Quang Phục - Hưng Yên 2025",
+        "level": "Thông hiểu",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 134,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Quang Phục - Hưng Yên 2025) Cho hàm số $f(x)$ có đạo hàm $f'(x) = (x - 1)(x^2 - 3)(x^4 - 1), \\; \\forall x \\in \\mathbb{R}$. Số điểm cực trị của hàm số $y = f(x)$ là:",
+      "points": 1,
+      "sort_order": 127,
+      "choices": [
+        "$3$.",
+        "$2$.",
+        "$1$.",
+        "$4$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Ta có $f'(x) = (x-1)^2(x-\\sqrt{3})(x+\\sqrt{3})(x+1)(x^2+1)$. Các nghiệm đơn là $x = \\pm \\sqrt{3}$ và $x = -1$; $x = 1$ là nghiệm kép. Vậy hàm số có $3$ điểm cực trị.",
+        "source": "THPT Triệu Quang Phục - Hưng Yên 2025",
+        "level": "Thông hiểu",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 135,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Quang Phục - Hưng Yên 2025) Cho hàm số $f(x)$ xác định, liên tục trên $\\mathbb{R}$ và có đồ thị hàm số $y = f'(x)$ là đường cong trong hình sau. Mệnh đề nào dưới đây SAI?\n![Hình Câu 135](/bank-images/chude11/q135_p0.jpg)",
+      "points": 1,
+      "sort_order": 128,
+      "choices": [
+        "Hàm số $f(x)$ nghịch biến trên khoảng $(0; 1)$.",
+        "Hàm số $f(x)$ đồng biến trên khoảng $(1; 2)$.",
+        "Hàm số $f(x)$ đồng biến trên khoảng $(-\\infty; -1)$.",
+        "Hàm số $f(x)$ nghịch biến trên khoảng $(0; 2)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Nhìn vào đồ thị $y = f'(x)$, trên $(1; 2)$ ta có $f'(x) > 0$ nên $f(x)$ đồng biến trên $(1; 2)$, không thể nghịch biến trên $(0; 2)$. Vậy D sai.",
+        "source": "THPT Triệu Quang Phục - Hưng Yên 2025",
+        "level": "Thông hiểu",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 136,
+      "type": "mcq",
+      "prompt": "(Cụm Chương Mỹ - Thanh Oai 2025) Cho hàm số $y = f(x)$ có đồ thị hàm số như hình sau:\n![Hình Câu 136](/bank-images/chude11/q136_p0.jpg)\nĐiểm cực đại của hàm số $y = f(x)$ là:",
+      "points": 1,
+      "sort_order": 129,
+      "choices": [
+        "$x = 3$.",
+        "$x = \\dfrac{7}{3}$.",
+        "$x = 0$.",
+        "$x = 1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Dựa vào đồ thị, điểm cực đại của hàm số $y = f(x)$ là $x = 1$.",
+        "source": "Cụm Chương Mỹ - Thanh Oai 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 137,
+      "type": "mcq",
+      "prompt": "(Cụm Chuyên Môn Đăk Lak 2025) Cho hàm số $y = f(x)$ có bảng xét dấu đạo hàm như sau:\n![Hình Câu 137](/bank-images/chude11/q137_p0.png)\nHàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+      "points": 1,
+      "sort_order": 130,
+      "choices": [
+        "$(1; 3)$.",
+        "$(3; 4)$.",
+        "$(4; +\\infty)$.",
+        "$(-\\infty; 2)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Từ bảng xét dấu, $y' < 0$ trên $(-\\infty; 1)$ và $(3; 4)$. Chọn B.",
+        "source": "Cụm Chuyên Môn Đăk Lak 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 138,
+      "type": "mcq",
+      "prompt": "(Cụm Chuyên Môn Đăk Lak 2025) Cho hàm số $y = f(x)$ có đồ thị như hình vẽ bên dưới:\n![Hình Câu 138](/bank-images/chude11/q138_p0.png)\nHàm số đã cho đồng biến trên khoảng nào dưới đây?",
+      "points": 1,
+      "sort_order": 131,
+      "choices": [
+        "$(0; +\\infty)$.",
+        "$(0; 2)$.",
+        "$(2; +\\infty)$.",
+        "$(-\\infty; 2)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Từ đồ thị, đường cong đi lên trên $(-\\infty; 0)$ và $(2; +\\infty)$. Chọn C.",
+        "source": "Cụm Chuyên Môn Đăk Lak 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 139,
+      "type": "mcq",
+      "prompt": "(THPT Hà Trung - Thanh Hóa 2025) Cho hàm số $y = f(x)$ có bảng xét dấu đạo hàm như sau:\n![Hình Câu 139](/bank-images/chude11/q139_p0.png)\nMệnh đề nào dưới đây đúng?",
+      "points": 1,
+      "sort_order": 132,
+      "choices": [
+        "Hàm số đồng biến trên khoảng $(-2; 0)$.",
+        "Hàm số nghịch biến trên khoảng $(-\\infty; -2)$.",
+        "Hàm số đồng biến trên khoảng $(-\\infty; 0)$.",
+        "Hàm số nghịch biến trên khoảng $(0; 2)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Theo bảng xét dấu, $y' < 0$ khi $x \\in (0; 2)$ nên hàm số nghịch biến trên khoảng $(0; 2)$.",
+        "source": "THPT Hà Trung - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 140,
+      "type": "mcq",
+      "prompt": "(Sở Bắc Ninh 2025) Hàm số nào sau đây đồng biến trên $\\mathbb{R}$?",
+      "points": 1,
+      "sort_order": 133,
+      "choices": [
+        "$y = x^3 + 3x$.",
+        "$y = x^3 - 3x$.",
+        "$y = \\dfrac{x - 1}{x + 1}$.",
+        "$y = x^4 - 3x^2 + 1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Với $y = x^3 + 3x$ có $y' = 3x^2 + 3 > 0, \\; \\forall x \\in \\mathbb{R}$, nên hàm số đồng biến trên $\\mathbb{R}$.",
+        "source": "Sở Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 141,
+      "type": "mcq",
+      "prompt": "(THPT Phúc Thọ - Hà Nội 2025) Cho hàm số $y = f(x)$ liên tục trên $\\mathbb{R}$ và có đồ thị là đường cong trong hình bên. Điểm cực tiểu của hàm số $y = f(x)$ bằng:\n![Hình Câu 141](/bank-images/chude11/q141_p0.jpg)",
+      "points": 1,
+      "sort_order": 134,
+      "choices": [
+        "$3$.",
+        "$-2$.",
+        "$-1$.",
+        "$2$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Dựa vào đồ thị, điểm cực tiểu của hàm số là $x = 2$.",
+        "source": "THPT Phúc Thọ - Hà Nội 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 142,
+      "type": "mcq",
+      "prompt": "(Chuyên Lương Thế Vinh - Đồng Nai 2025) Cho hàm số $f(x)$ có bảng biến thiên như sau:\n![Hình Câu 142](/bank-images/chude11/q142_p0.jpg)\nHàm số đã cho đồng biến trên khoảng nào dưới đây?",
+      "points": 1,
+      "sort_order": 135,
+      "choices": [
+        "$(-\\infty; -1)$.",
+        "$(0; 1)$.",
+        "$(-1; 1)$.",
+        "$(-1; 0)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Dựa vào bảng biến thiên, $f'(x) > 0$ trên $(-1; 0)$ và $(1; +\\infty)$. Chọn D.",
+        "source": "Chuyên Lương Thế Vinh - Đồng Nai 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 143,
+      "type": "mcq",
+      "prompt": "(Sở Hậu Giang 2025) Cho hàm số bậc ba $y = f(x)$ có bảng biến thiên như hình vẽ bên dưới.\n![Hình Câu 143](/bank-images/chude11/q143_p0.jpg)\nHàm số đã cho đạt giá trị cực đại tại điểm:",
+      "points": 1,
+      "sort_order": 136,
+      "choices": [
+        "$x = -1$.",
+        "$x = 0$.",
+        "$x = 2$.",
+        "$x = 1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Nhìn vào bảng biến thiên, $f'(x)$ đổi dấu từ $+$ sang $-$ tại $x = 1$, nên hàm số đạt cực đại tại $x = 1$.",
+        "source": "Sở Hậu Giang 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 145,
+      "type": "mcq",
+      "prompt": "(THPT Nguyễn Quốc Trinh - Hà Nội 2025) Cho hàm số $y = f(x)$ có đồ thị như Hình 1.\n![Hình Câu 145](/bank-images/chude11/q145_p0.png)\nHàm số đã cho đồng biến trên khoảng nào trong các khoảng sau đây?",
+      "points": 1,
+      "sort_order": 137,
+      "choices": [
+        "$(-1; 0)$.",
+        "$(0; 1)$.",
+        "$(-1; 1)$.",
+        "$(1; 2)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Từ hình vẽ, đồ thị đi lên trên khoảng $(1; +\\infty)$ nên hàm số đồng biến trên $(1; 2)$.",
+        "source": "THPT Nguyễn Quốc Trinh - Hà Nội 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 146,
+      "type": "mcq",
+      "prompt": "(Cụm chuyên môn Đak Lak 2025) Cho hàm số $y = f(x)$ xác định, liên tục trên $\\mathbb{R}$ và có bảng biến thiên như sau:\n![Hình Câu 146](/bank-images/chude11/q146_p0.png)\nĐiểm cực đại của hàm số là:",
+      "points": 1,
+      "sort_order": 138,
+      "choices": [
+        "$x = 2$.",
+        "$x = 5$.",
+        "$x = 1$.",
+        "$y = 5$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Do hàm số liên tục tại $x = 1$ và $y'$ đổi dấu từ $+$ sang $-$ khi qua $x = 1$, điểm cực đại của hàm số là $x = 1$.",
+        "source": "Cụm chuyên môn Đak Lak 2025",
+        "level": "Thông hiểu",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 147,
+      "type": "mcq",
+      "prompt": "(Sở Nghệ An 2025) Cho hàm số $y = f(x)$ có đồ thị là hình vẽ như sau:\n![Hình Câu 147](/bank-images/chude11/q147_p0.png)\nĐiểm cực đại của đồ thị hàm số đã cho là:",
+      "points": 1,
+      "sort_order": 139,
+      "choices": [
+        "$M(-3; -3)$.",
+        "$x = -1$.",
+        "$N(-1; 1)$.",
+        "$x = -3$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Quan sát đồ thị, nhánh bên trái đạt cực đại tại điểm $M(-3; -3)$.\n![Lời giải Câu 147](/bank-images/chude11/q147_s0.png)",
+        "source": "Sở Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 148,
+      "type": "mcq",
+      "prompt": "(Sở Hải Phòng 2025) Cho hàm số $y = f(x)$ là hàm đa thức có đạo hàm $f'(x) = x(x^2 - 1)(x - 2)^2$. Số điểm cực tiểu của đồ thị hàm số là:",
+      "points": 1,
+      "sort_order": 140,
+      "choices": [
+        "$4$.",
+        "$1$.",
+        "$2$.",
+        "$3$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Phương trình $f'(x) = 0$ có $3$ nghiệm đơn $x = -1, x = 0, x = 1$ và nghiệm kép $x = 2$. Xét dấu $f'(x)$ đổi từ $-$ sang $+$ tại $x = -1$ và $x = 1$. Vậy có $2$ điểm cực tiểu.",
+        "source": "Sở Hải Phòng 2025",
+        "level": "Thông hiểu",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 149,
+      "type": "mcq",
+      "prompt": "(Chuyên Lam Sơn - Thanh Hóa 2025) Cho hàm số $y = f(x)$ có đồ thị như hình vẽ:\n![Hình Câu 149](/bank-images/chude11/q149_p0.png)\nĐiểm cực đại của đồ thị hàm số là:",
+      "points": 1,
+      "sort_order": 141,
+      "choices": [
+        "$x = -1$.",
+        "$y = 4$.",
+        "$(1; 0)$.",
+        "$(-1; 4)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Từ đồ thị, điểm cực đại của đồ thị hàm số là $(-1; 4)$.",
+        "source": "Chuyên Lam Sơn - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 150,
+      "type": "mcq",
+      "prompt": "(Sở Gia Lai 2025) Cho hàm số bậc ba $y = f(x)$ có đồ thị như hình vẽ dưới đây. Hàm số đã cho đồng biến trên khoảng nào dưới đây?\n![Hình Câu 150](/bank-images/chude11/q150_p0.jpg)\n![Hình Câu 150](/bank-images/chude11/q150_p1.jpg)\n![Hình Câu 150](/bank-images/chude11/q150_p2.jpg)",
+      "points": 1,
+      "sort_order": 142,
+      "choices": [
+        "$(-1; 1)$.",
+        "$(-2; 1)$.",
+        "$(0; +\\infty)$.",
+        "$(1; +\\infty)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Đồ thị đi lên từ trái sang phải trên $(-\\infty; -1)$ và $(1; +\\infty)$. Chọn D.",
+        "source": "Sở Gia Lai 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 151,
+      "type": "mcq",
+      "prompt": "(THPT Bắc Đông Quan - Thái Bình 2025) Cho hàm số $y = f(x)$ liên tục trên $[-2; 3]$ và có bảng xét dấu như sau:\n![Hình Câu 151](/bank-images/chude11/q151_p0.jpg)\nHàm số đã cho đạt cực đại tại điểm:",
+      "points": 1,
+      "sort_order": 143,
+      "choices": [
+        "$x = 0$.",
+        "$x = 1$.",
+        "$x = 3$.",
+        "$x = -2$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Vì hàm số liên tục tại $x = 0$ và $f'(x)$ đổi dấu từ $+$ trên $(-2; 0)$ sang $-$ trên $(0; 1)$ nên hàm số đạt cực đại tại $x = 0$.",
+        "source": "THPT Bắc Đông Quan - Thái Bình 2025",
+        "level": "Thông hiểu",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 152,
+      "type": "mcq",
+      "prompt": "(Sở Thái Bình 2025) Cho hàm số $y = f(x)$ xác định và liên tục trên $\\mathbb{R}$ và có bảng biến thiên như sau:\n![Hình Câu 152](/bank-images/chude11/q152_p0.png)\nTổng giá trị cực đại và giá trị cực tiểu của hàm số đã cho bằng bao nhiêu?",
+      "points": 1,
+      "sort_order": 144,
+      "choices": [
+        "$3$.",
+        "$2$.",
+        "$-5$.",
+        "$-3$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Từ bảng biến thiên, $y_{\\text{CĐ}} = 2$ và $y_{\\text{CT}} = -5$. Tổng là $2 + (-5) = -3$.",
+        "source": "Sở Thái Bình 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 153,
+      "type": "mcq",
+      "prompt": "(Liên trường THPT Ninh Bình 2025) Cho hàm số $f(x)$ có bảng biến thiên như sau:\n![Hình Câu 153](/bank-images/chude11/q153_p0.png)\nHàm số đã cho đồng biến trên khoảng nào dưới đây?",
+      "points": 1,
+      "sort_order": 145,
+      "choices": [
+        "$(-\\infty; -2)$.",
+        "$(0; +\\infty)$.",
+        "$(-2; 0)$.",
+        "$(0; 2)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Từ bảng biến thiên, $f'(x) > 0$ trên $(-2; 0)$ và $(2; +\\infty)$. Chọn C.",
+        "source": "Liên trường THPT Ninh Bình 2025",
+        "level": "Nhận biết",
+        "pack": "chude11-dondieu-cuctri"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    }
+  ]
+}

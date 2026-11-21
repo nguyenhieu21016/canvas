@@ -1,0 +1,1707 @@
+{
+  "pack_id": "short-kinhte",
+  "title": "Chủ đề 12 · Ứng dụng đạo hàm giải toán Kinh tế — Trả lời ngắn (2025)",
+  "chapter": "GĐ1 · Chương 1",
+  "count": 65,
+  "questions": [
+    {
+      "source_num": 1,
+      "type": "short",
+      "prompt": "Từ năm $2004$ đến năm $2019$, doanh thu $R(t)$ (tính bằng triệu đô-la) của McDonald's có thể được mô hình hóa bởi $R(t) = -130,769t^3 + 2296,47t^2 - 11493,5t + 35493$ ($4 \\le t \\le 19$), trong đó $t$ là đại diện cho năm, với $t = 4$ tương ứng với năm $2004$. Biết rằng $R'(t)$ là hàm tốc độ doanh thu theo thời gian. Tốc độ thay đổi doanh thu của McDonald's lớn nhất vào năm nào? (Làm tròn kết quả đến hàng đơn vị).",
+      "points": 1,
+      "sort_order": 1,
+      "choices": [],
+      "settings": {
+        "explanation": "Hàm tốc độ thay đổi doanh thu là $R'(t) = -392,307t^2 + 4592,94t - 11493,5$ trên $[4; 19]$.\nĐạo hàm bậc hai: $R''(t) = -784,614t + 4592,94 = 0 \\Leftrightarrow t = \\dfrac{4592,94}{784,614} \\approx 5,85 \\in [4; 19]$.\nVì $R'(t)$ là parabol quay bề lõm xuống dưới nên $R'(t)$ đạt giá trị lớn nhất tại $t \\approx 5,85 \\approx 6$, tương ứng với năm $2000 + 6 = 2006$.",
+        "source": "THPT Hàm Rồng - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "2006",
+        "accepted_answers": [
+          "2006"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 2,
+      "type": "short",
+      "prompt": "Một doanh nghiệp dự định sản xuất không quá $500$ sản phẩm. Nếu doanh nghiệp sản xuất $x$ sản phẩm ($1 \\le x \\le 500$) thì doanh thu nhận được khi bán hết số sản phẩm đó là $F(x) = x^3 - 1999x^2 + 1001000x + 250000$ (đồng), trong khi chi phí sản xuất bình quân cho một sản phẩm là $G(x) = x + 1000 + \\dfrac{250000}{x}$ (đồng). Doanh nghiệp cần sản xuất bao nhiêu sản phẩm để lợi nhuận thu được là lớn nhất?",
+      "points": 1,
+      "sort_order": 2,
+      "choices": [],
+      "settings": {
+        "explanation": "Hàm lợi nhuận khi sản xuất $x$ sản phẩm ($1 \\le x \\le 500$, $x \\in \\mathbb{N}^*$) là:\n$f(x) = F(x) - xG(x) = (x^3 - 1999x^2 + 1001000x + 250000) - (x^2 + 1000x + 250000) = x^3 - 2000x^2 + 1000000x$.\nTa có $f'(x) = 3x^2 - 4000x + 1000000 = 0 \\Leftrightarrow x = \\dfrac{1000}{3} \\approx 333,33$ (nhận) hoặc $x = 1000$ (loại).\nHàm số đạt cực đại tại $x = \\dfrac{1000}{3}$. Vì $x \\in \\mathbb{N}^*$, so sánh $f(333) = 148\\,148\\,037$ và $f(334) = 148\\,147\\,704$ ta thấy lợi nhuận lớn nhất khi sản xuất $333$ sản phẩm.",
+        "source": "Đề Tham Khảo 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "333",
+        "accepted_answers": [
+          "333"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 3,
+      "type": "short",
+      "prompt": "Một doanh nghiệp dự định sản xuất không quá $300$ sản phẩm. Nếu doanh nghiệp sản xuất $x$ sản phẩm ($1 \\le x \\le 300$) thì doanh thu nhận được khi bán hết số sản phẩm đó là $F(x) = -2x^2 + 1312x$ (nghìn đồng), trong khi chi phí sản xuất bình quân cho một sản phẩm là $G(x) = x^2 - 77x + 1000 + \\dfrac{40000}{x}$ (nghìn đồng). Lợi nhuận thu được của doanh nghiệp (tính theo đơn vị triệu đồng) đạt giá trị lớn nhất bằng bao nhiêu (làm tròn kết quả đến hàng đơn vị)?",
+      "points": 1,
+      "sort_order": 3,
+      "choices": [],
+      "settings": {
+        "explanation": "Tổng chi phí sản xuất cho $x$ sản phẩm là $xG(x) = x^3 - 77x^2 + 1000x + 40000$ (nghìn đồng).\nLợi nhuận thu được là $h(x) = F(x) - xG(x) = -x^3 + 75x^2 + 312x - 40000$ (nghìn đồng), với $1 \\le x \\le 300$.\nTa có $h'(x) = -3x^2 + 150x + 312 = 0 \\Leftrightarrow x = 52$ (nhận) hoặc $x = -2$ (loại).\nTại $x = 52$, $h(52) = 38416$ nghìn đồng $= 38,416$ triệu đồng. Làm tròn đến hàng đơn vị ta được $38$ triệu đồng.",
+        "source": "THPT Tiên Du - Bắc Ninh 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "38",
+        "accepted_answers": [
+          "38"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 4,
+      "type": "short",
+      "prompt": "Một doanh nghiệp dự định sản xuất không quá $400$ sản phẩm. Nếu doanh nghiệp sản xuất $x$ sản phẩm ($1 \\le x \\le 400$) thì doanh thu nhận được khi bán hết số sản phẩm là $F(x) = x^3 - 1999x^2 + 1001000x + 250000$ (đồng). Trong đó, chi phí vận hành máy móc cho mỗi sản phẩm là $G(x) = \\dfrac{100000x}{\\dfrac{3}{2}x + 1}$ (đồng). Tổng chi phí mua nguyên vật liệu là $H(x) = 2x^3 + 100000x - 50000$ (đồng), nhưng do mua số lượng lớn nên được giảm $1\\%$ cho $200$ sản phẩm đầu tiên và giảm $2\\%$ cho phần sản phẩm tiếp theo. Doanh nghiệp cần sản xuất bao nhiêu sản phẩm để lợi nhuận thu được là lớn nhất?",
+      "points": 1,
+      "sort_order": 4,
+      "choices": [],
+      "settings": {
+        "explanation": "Chi phí vận hành cho $x$ sản phẩm là $xG(x) = \\dfrac{200000x^2}{3x+2}$. Xét hai trường hợp:\n1) Với $1 \\le x \\le 200$: $f(x) = F(x) - xG(x) - 0,99H(x) = -0,98x^3 - 1999x^2 + 902000x + 299500 - \\dfrac{200000x^2}{3x+2}$.\nGiải $f'(x) = 0$ được $x \\approx 196,98$, giá trị lớn nhất trên đoạn này là $f(197) \\approx 79,83 \\cdot 10^6$ đồng.\n2) Với $200 < x \\le 400$: $f(x) = F(x) - xG(x) - 0,99H(200) - 0,98H(x-200) = -0,96x^3 - 823x^2 + 667800x - 11500 - \\dfrac{200000x^2}{3x+2}$.\nĐạo hàm $f'(x) = -2,88x^2 - 1646x + 667800 - \\dfrac{600000x^2 + 800000x}{(3x+2)^2} = 0 \\Leftrightarrow x \\approx 253,11$.\nSo sánh hai giá trị nguyên lân cận: $f(253) \\approx 83\\,893\\,648$ đồng $> f(254) \\approx 83\\,892\\,445$ đồng. Vậy cần sản xuất $253$ sản phẩm.",
+        "source": "THPT Lê Thánh Tông - HCM 2025",
+        "level": "Vận dụng",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "253",
+        "accepted_answers": [
+          "253"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 5,
+      "type": "short",
+      "prompt": "Một trang trại rau sạch ở Đà Lạt mỗi ngày thu hoạch được $1$ tấn rau. Mỗi ngày, nếu giá bán rau là $30000$ đồng/kg thì bán hết rau, nếu giá bán rau tăng $1000$ đồng/kg thì số rau thừa tăng $20\\text{ kg}$. Số rau thừa này được thu mua hết để làm thức ăn chăn nuôi với giá $2000$ đồng/kg. Hỏi để mỗi ngày thu được số tiền bán rau lớn nhất thì trang trại đó nên bán rau với giá bao nhiêu nghìn đồng?",
+      "points": 1,
+      "sort_order": 5,
+      "choices": [],
+      "settings": {
+        "explanation": "Đổi $1\\text{ tấn} = 1000\\text{ kg}$. Gọi $x$ (nghìn đồng/kg, $0 \\le x \\le 50$) là số tiền tăng thêm so với $30$ nghìn đồng/kg.\nKhi đó giá bán là $30 + x$ (nghìn đồng/kg), lượng rau thừa là $20x\\text{ kg}$ và lượng rau bán được là $1000 - 20x\\text{ kg}$.\nTổng số tiền thu được: $f(x) = (30 + x)(1000 - 20x) + 20x \\cdot 2 = -20x^2 + 440x + 30000$ (nghìn đồng).\nTa có $f'(x) = -40x + 440 = 0 \\Leftrightarrow x = 11$. Do đó giá bán tối ưu là $30 + 11 = 41$ nghìn đồng/kg.",
+        "source": "THPT Nguyễn Đăng Đạo - Bắc Ninh 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "41",
+        "accepted_answers": [
+          "41"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 6,
+      "type": "short",
+      "prompt": "Theo thống kê tại một nhà máy $Z$, nếu áp dụng tuần làm việc $40$ giờ thì mỗi tuần có $100$ tổ công nhân đi làm và mỗi tổ công nhân làm được $120$ sản phẩm trong một giờ. Nếu tăng thời gian làm việc thêm $2$ giờ mỗi tuần thì sẽ có $1$ tổ công nhân nghỉ việc và năng suất lao động giảm $5$ sản phẩm/$1$ tổ/$1$ giờ (và ngược lại theo quy luật tuyến tính). Ngoài ra, số phế phẩm mỗi tuần ước tính là $P(x) = \\dfrac{95x^2 + 120x}{4}$, với $x$ là thời gian làm việc trong một tuần. Nhà máy cần áp dụng thời gian làm việc mỗi tuần mấy giờ để số lượng sản phẩm thu được mỗi tuần là lớn nhất?",
+      "points": 1,
+      "sort_order": 6,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $t = x - 40$ (giờ) là số giờ thay đổi mỗi tuần. Điều kiện hoạt động: $40 + t > 0$, $100 - \\dfrac{t}{2} > 0$, $120 - \\dfrac{5t}{2} > 0 \\Leftrightarrow t \\in (-40; 48)$.\nSố sản phẩm thu được mỗi tuần là $f(t) = \\left(100 - \\dfrac{t}{2}\\right)\\left(120 - \\dfrac{5t}{2}\\right)(40 + t) - \\dfrac{95(40+t)^2 + 120(40+t)}{4}$.\nRút gọn và lấy đạo hàm: $f'(t) = \\dfrac{15}{4}t^2 - \\dfrac{1135}{2}t - 2330$.\nGiải $f'(t) = 0 \\Leftrightarrow t = -4$ (nhận) hoặc $t = \\dfrac{466}{3}$ (loại). Lập bảng biến thiên trên $(-40; 48)$ thấy $f(t)$ đạt cực đại tại $t = -4$, tức thời gian làm việc tối ưu là $x = 40 - 4 = 36$ giờ/tuần.",
+        "source": "Đề ôn tập 2025",
+        "level": "Vận dụng",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "36",
+        "accepted_answers": [
+          "36"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 7,
+      "type": "short",
+      "prompt": "Một nhà máy sản xuất $x$ sản phẩm trong mỗi tháng. Chi phí sản xuất $x$ sản phẩm được cho bởi hàm chi phí $C(x) = 16000 + 500x - 1,6x^2 + 0,004x^3$ (nghìn đồng). Biết giá bán của mỗi sản phẩm là một hàm số phụ thuộc vào số lượng sản phẩm $x$ và được cho bởi công thức $p(x) = 1700 - 7x$ (nghìn đồng). Hỏi mỗi tháng nhà máy nên sản xuất bao nhiêu sản phẩm để lợi nhuận thu được là lớn nhất? Biết rằng kết quả khảo sát thị trường cho thấy sản phẩm sản xuất ra sẽ tiêu thụ hết.",
+      "points": 1,
+      "sort_order": 7,
+      "choices": [],
+      "settings": {
+        "explanation": "Hàm lợi nhuận khi bán hết $x$ sản phẩm ($x > 0$) là:\n$f(x) = x p(x) - C(x) = x(1700 - 7x) - (16000 + 500x - 1,6x^2 + 0,004x^3) = -0,004x^3 - 5,4x^2 + 1200x - 16000$.\nĐạo hàm $f'(x) = -0,012x^2 - 10,8x + 1200 = 0 \\Leftrightarrow x = 100$ (nhận) hoặc $x = -1000$ (loại).\nLập bảng biến thiên trên $(0; +\\infty)$, $f(x)$ đạt giá trị lớn nhất bằng $46000$ nghìn đồng tại $x = 100$. Vậy cần sản xuất $100$ sản phẩm.",
+        "source": "Sở Ninh Bình 2025",
+        "level": "Nhận biết",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "100",
+        "accepted_answers": [
+          "100"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 8,
+      "type": "short",
+      "prompt": "Chi phí xuất bản $x$ cuốn tạp chí (bao gồm: lương cán bộ, công nhân viên, giấy in...) được cho bởi $C(x) = x^2 - 2000x + 10^8$ đồng. Chi phí phát hành cho mỗi cuốn là $4$ nghìn đồng. Hàm số $M(x) = \\dfrac{T(x)}{x}$ với $T(x)$ là tổng chi phí (xuất bản và phát hành) cho $x$ cuốn tạp chí, được gọi là chi phí trung bình cho một cuốn tạp chí khi xuất bản $x$ cuốn. Khi số lượng cuốn tạp chí phát hành cực lớn thì chi phí trung bình cho mỗi cuốn tạp chí $M(x)$ sẽ tiệm cận với đường thẳng có phương trình dạng $y = ax + b$. Tính $P = 68a + 3b + 800$.",
+      "points": 1,
+      "sort_order": 8,
+      "choices": [],
+      "settings": {
+        "explanation": "Tổng chi phí cho $x$ cuốn tạp chí là $T(x) = C(x) + 4000x = x^2 + 2000x + 10^8$ (đồng).\nChi phí trung bình cho mỗi cuốn là $M(x) = \\dfrac{T(x)}{x} = x + 2000 + \\dfrac{10^8}{x}$.\nVì $\\lim\\limits_{x \\to +\\infty} [M(x) - (x + 2000)] = \\lim\\limits_{x \\to +\\infty} \\dfrac{10^8}{x} = 0$, đường tiệm cận xiên là $y = x + 2000$, suy ra $a = 1$, $b = 2000$.\nVậy $P = 68 \\cdot 1 + 3 \\cdot 2000 + 800 = 6868$.",
+        "source": "THPT Nguyễn Viết Xuân - Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "6868",
+        "accepted_answers": [
+          "6868"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 9,
+      "type": "short",
+      "prompt": "Một công ty chuyên sản xuất dụng cụ thể thao nhận được đơn đặt hàng sản xuất $9000$ quả bóng rổ. Công ty có một số máy móc, mỗi máy có khả năng sản xuất $36$ quả bóng rổ trong một giờ. Chi phí thiết lập mỗi máy là $250$ nghìn đồng. Sau khi thiết lập, quá trình sản xuất sẽ diễn ra hoàn toàn tự động và chỉ cần có người giám sát. Chi phí trả cho người giám sát là $225$ nghìn đồng mỗi giờ. Số máy móc công ty cần sử dụng để chi phí hoạt động đạt mức thấp nhất là bao nhiêu?",
+      "points": 1,
+      "sort_order": 9,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $x$ ($x \\in \\mathbb{N}^*$) là số máy móc cần sử dụng. Thời gian sản xuất $9000$ quả bóng là $\\dfrac{9000}{36x} = \\dfrac{250}{x}$ (giờ).\nTổng chi phí hoạt động là $f(x) = 250x + 225 \\cdot \\dfrac{250}{x} = 250x + \\dfrac{56250}{x}$ (nghìn đồng).\nĐạo hàm $f'(x) = 250 - \\dfrac{56250}{x^2} = 0 \\Leftrightarrow x^2 = 225 \\Leftrightarrow x = 15$ (do $x > 0$).\nLập bảng biến thiên thấy $f(x)$ đạt giá trị nhỏ nhất tại $x = 15$. Vậy cần sử dụng $15$ máy.",
+        "source": "THPT Nguyễn Viết Xuân - Vĩnh Phúc 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "15",
+        "accepted_answers": [
+          "15"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 10,
+      "type": "short",
+      "prompt": "Một doanh nghiệp sản xuất độc quyền một loại sản phẩm. Giả sử khi sản xuất và bán hết $x$ sản phẩm ($0 < x < 2000$), tổng số tiền doanh nghiệp thu được là $F(x) = 2000x - x^2$ (chục nghìn đồng) và tổng chi phí doanh nghiệp bỏ ra là $G(x) = x^2 + 1440x + 50$ (chục nghìn đồng). Công ty cũng phải chịu mức thuế phụ thu cho $1$ đơn vị sản phẩm bán được là $t$ (chục nghìn đồng) ($0 < t < 300$). Mức thuế phụ thu $t$ (trên một đơn vị sản phẩm) là bao nhiêu chục nghìn đồng sao cho nhà nước thu được số tiền thuế phụ thu lớn nhất và doanh nghiệp cũng thu được lợi nhuận nhiều nhất theo đúng mức thuế phụ thu đó? (Kết quả làm tròn đến hàng đơn vị).",
+      "points": 1,
+      "sort_order": 10,
+      "choices": [],
+      "settings": {
+        "explanation": "Lợi nhuận của doanh nghiệp là $f(x) = F(x) - G(x) - tx = -2x^2 + (560 - t)x - 50$ với $x \\in (0; 2000)$.\nVới $t$ cố định, $f'(x) = -4x + 560 - t = 0 \\Leftrightarrow x = \\dfrac{560 - t}{4} \\in (0; 2000)$, nên doanh nghiệp đạt lợi nhuận tối đa khi $x = \\dfrac{560 - t}{4}$.\nKhi đó tổng số tiền thuế nhà nước thu được là $g(t) = xt = \\dfrac{t(560 - t)}{4} = -\\dfrac{1}{4}t^2 + 140t$ trên $(0; 300)$.\nĐạo hàm $g'(t) = -\\dfrac{1}{2}t + 140 = 0 \\Leftrightarrow t = 280 \\in (0; 300)$. Vậy $t = 280$ (chục nghìn đồng).",
+        "source": "THPT Diễn Châu 5 - Nghệ An 2025",
+        "level": "Vận dụng",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "280",
+        "accepted_answers": [
+          "280"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 11,
+      "type": "short",
+      "prompt": "Một trang trại rau sạch ở Đà Lạt mỗi ngày thu hoạch được $1$ tấn rau. Mỗi ngày, nếu giá bán rau là $30000$ đồng/kg thì bán hết rau, nếu giá bán rau tăng $1000$ đồng/kg thì số rau thừa tăng $20\\text{ kg}$. Số rau thừa này được thu mua hết để làm thức ăn chăn nuôi với giá $2000$ đồng/kg. Hỏi để mỗi ngày thu được số tiền bán rau lớn nhất thì trang trại đó nên bán rau với giá bao nhiêu nghìn đồng?",
+      "points": 1,
+      "sort_order": 11,
+      "choices": [],
+      "settings": {
+        "explanation": "Đổi $1\\text{ tấn} = 1000\\text{ kg}$. Gọi $x$ (nghìn đồng/kg, $0 \\le x \\le 50$) là mức tăng giá bán mỗi kilôgam rau.\nTổng số tiền bán rau mỗi ngày là $f(x) = (30 + x)(1000 - 20x) + 2 \\cdot 20x = -20x^2 + 440x + 30000$ (nghìn đồng).\nTa có $f'(x) = -40x + 440 = 0 \\Leftrightarrow x = 11$. Vậy giá bán tối ưu là $30 + 11 = 41$ nghìn đồng/kg.",
+        "source": "THPT Lê Lợi - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "41",
+        "accepted_answers": [
+          "41"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 12,
+      "type": "short",
+      "prompt": "Một xe ô tô chở khách du lịch có sức chứa tối đa là $16$ hành khách. Trong một khu du lịch, một đoàn khách gồm $24$ người đang đi bộ và muốn thuê xe về khách sạn. Lái xe đưa ra thỏa thuận với đoàn khách du lịch như sau: Nếu một chuyến xe chở $x$ (người) thì giá tiền cho mỗi người là $\\dfrac{(44 - x)^2}{2}$ (nghìn đồng). Với thỏa thuận như trên thì lái xe có thể thu được nhiều nhất bao nhiêu triệu đồng từ một chuyến chở khách (làm tròn kết quả đến hàng phần trăm)?",
+      "points": 1,
+      "sort_order": 12,
+      "choices": [],
+      "settings": {
+        "explanation": "Số tiền lái xe thu được khi chở $x$ người ($x \\in \\mathbb{N}^*$, $1 \\le x \\le 16$) là $f(x) = \\dfrac{1}{2}x(44 - x)^2$ (nghìn đồng).\nTa có $f'(x) = \\dfrac{1}{2}\\left[(44 - x)^2 - 2x(44 - x)\\right] = \\dfrac{1}{2}(44 - x)(44 - 3x)$.\nTrên $(0; 16]$, $f'(x) = 0 \\Leftrightarrow x = \\dfrac{44}{3} \\approx 14,67$. Vì $x \\in \\mathbb{N}^*$, so sánh $f(14) = 6300$ và $f(15) = 6307,5$ (nghìn đồng).\nVậy lái xe thu được nhiều nhất $6307,5$ nghìn đồng $\\approx 6,31$ triệu đồng.",
+        "source": "THPT Triệu Sơn 4 - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "6,31",
+        "accepted_answers": [
+          "6,31",
+          "6.31"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 13,
+      "type": "short",
+      "prompt": "Một xí nghiệp $A$ chuyên cung cấp sản phẩm $S$ cho nhà phân phối $B$. Hai bên thỏa thuận rằng, nếu đầu tháng $B$ đặt hàng $x$ tạ sản phẩm $S$ thì giá bán mỗi tạ sản phẩm $S$ là $P(x) = 6 - 0,0005x^2$ (triệu đồng) ($x \\le 40$). Chi phí $A$ phải bỏ ra cho $x$ tạ sản phẩm $S$ trong một tháng là $C(x) = 10 + 3,5x$ (triệu đồng) và mỗi tạ sản phẩm bán ra phải chịu thêm mức thuế là $1$ triệu đồng. Hỏi trong một tháng $B$ cần đặt hàng bao nhiêu tạ sản phẩm $S$ thì $A$ có được lợi nhuận lớn nhất (kết quả làm tròn đến hàng phần chục)?",
+      "points": 1,
+      "sort_order": 13,
+      "choices": [],
+      "settings": {
+        "explanation": "Lợi nhuận $A$ thu được khi $B$ đặt $x$ tạ ($0 \\le x \\le 40$) là:\n$L(x) = xP(x) - C(x) - 1\\cdot x = -0,0005x^3 + 1,5x - 10$ (triệu đồng).\nTa có $L'(x) = -0,0015x^2 + 1,5 = 0 \\Leftrightarrow x = 10\\sqrt{10} \\approx 31,62 \\in [0; 40]$.\nSo sánh $L(0) = -10$, $L(10\\sqrt{10}) \\approx 21,62$, $L(40) = 18$, ta thấy lợi nhuận lớn nhất khi $x \\approx 31,6$ tạ.",
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "level": "Nhận biết",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "31,6",
+        "accepted_answers": [
+          "31,6",
+          "31.6"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 14,
+      "type": "short",
+      "prompt": "Trong trung tâm thương mại Lotte thành phố Vinh, có một nhà hàng bán buffet hải sản. Khi nhà hàng bán với giá $200$ ngàn đồng một suất thì mỗi ngày nhà hàng bán được $100$ suất. Nhà hàng dự định có đợt giảm giá để kích cầu trong dịp cuối năm. Theo khảo sát từ thị trường thì mỗi lần giảm giá $10$ ngàn đồng một suất thì nhà hàng bán thêm được $10$ suất. Hỏi nhà hàng cần bán với giá mới là bao nhiêu ngàn đồng một suất để doanh thu trong một ngày là lớn nhất?",
+      "points": 1,
+      "sort_order": 14,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $x$ ($0 \\le x \\le 20$) là số lần giảm $10$ ngàn đồng mỗi suất. Khi đó giá mỗi suất là $200 - 10x$ (ngàn đồng) và số suất bán được là $100 + 10x$.\nDoanh thu trong ngày là $f(x) = (200 - 10x)(100 + 10x) = -100x^2 + 1000x + 20000$.\nTa có $f'(x) = -200x + 1000 = 0 \\Leftrightarrow x = 5$. Giá bán mới để doanh thu lớn nhất là $200 - 10 \\cdot 5 = 150$ ngàn đồng/suất.",
+        "source": "Chuyên Phan Bội Châu - Nghệ An 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "150",
+        "accepted_answers": [
+          "150"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 15,
+      "type": "short",
+      "prompt": "Một doanh nghiệp dự định sản xuất không quá $1000$ sản phẩm. Nếu doanh nghiệp sản xuất $x$ sản phẩm ($1 \\le x \\le 1000$) thì doanh thu nhận được khi bán hết số sản phẩm đó là $F(x) = x^3 - 2999x^2 + 2255000x + 300000$ (đồng), trong khi chi phí sản xuất bình quân cho một sản phẩm là $G(x) = x + 5000 + \\dfrac{300000}{x}$ (đồng). Doanh nghiệp cần sản xuất bao nhiêu sản phẩm để lợi nhuận thu được là lớn nhất?",
+      "points": 1,
+      "sort_order": 15,
+      "choices": [],
+      "settings": {
+        "explanation": "Lợi nhuận thu được là $P(x) = F(x) - xG(x) = x^3 - 3000x^2 + 2250000x$ với $1 \\le x \\le 1000$.\nTa có $P'(x) = 3x^2 - 6000x + 2250000 = 0 \\Leftrightarrow x = 500 \\in [1; 1000]$ hoặc $x = 1500 \\notin [1; 1000]$.\nSo sánh $P(1) = 2\\,247\\,001$, $P(500) = 5 \\cdot 10^8$, $P(1000) = 2,5 \\cdot 10^8$, suy ra doanh nghiệp cần sản xuất $500$ sản phẩm.",
+        "source": "THPT Kinh Môn - Hải Dương 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "500",
+        "accepted_answers": [
+          "500"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 16,
+      "type": "short",
+      "prompt": "Bác Bình có một nông trại ao nuôi cá, mỗi ngày thu hoạch được $2$ tấn cá. Nếu bán cho thương lái với giá $30$ nghìn đồng/kg thì hết cá, nếu giá bán cứ tăng thêm $2$ nghìn đồng/kg thì số cá thừa sẽ tăng thêm $10\\text{ kg}$. Số cá thừa này được bán để làm thức ăn cho động vật với giá $10$ nghìn đồng/kg. Hỏi bác Bình phải bán với giá bao nhiêu nghìn đồng/kg để số tiền bán cá mỗi ngày đạt doanh thu lớn nhất?",
+      "points": 1,
+      "sort_order": 16,
+      "choices": [],
+      "settings": {
+        "explanation": "Đổi $2\\text{ tấn} = 2000\\text{ kg}$. Gọi $x$ (nghìn đồng/kg, $0 \\le x \\le 400$) là mức tăng giá mỗi kilôgam cá.\nSố cá thừa là $\\dfrac{10}{2}x = 5x\\text{ kg}$, số cá bán thương lái là $2000 - 5x\\text{ kg}$ với giá $30 + x$ nghìn đồng/kg.\nDoanh thu mỗi ngày là $T(x) = (30 + x)(2000 - 5x) + 10 \\cdot 5x = -5x^2 + 1900x + 60000$.\nĐạo hàm $T'(x) = -10x + 1900 = 0 \\Leftrightarrow x = 190$. Vậy giá bán tối ưu là $30 + 190 = 220$ nghìn đồng/kg.",
+        "source": "HSG Vũng Tàu 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "220",
+        "accepted_answers": [
+          "220"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 17,
+      "type": "short",
+      "prompt": "Một công ty $X$ sản xuất máy tính bảng dành cho học sinh bán được $x$ máy mỗi tháng. Giá bán của mỗi máy tính bảng được cho bởi công thức $p(x) = 8600 - 10x$ (nghìn đồng). Chi phí để sản xuất mỗi máy tính bảng là $c(x) = x^2 - 4x + 500 + \\dfrac{1000}{x}$ (nghìn đồng). Hỏi công ty $X$ sẽ bán bao nhiêu máy tính bảng mỗi tháng để lợi nhuận cao nhất?",
+      "points": 1,
+      "sort_order": 17,
+      "choices": [],
+      "settings": {
+        "explanation": "Lợi nhuận mỗi tháng là $R(x) = x p(x) - x c(x) = x(8600 - 10x) - (x^3 - 4x^2 + 500x + 1000) = -x^3 - 6x^2 + 8100x - 1000$ ($x > 0$).\nTa có $R'(x) = -3x^2 - 12x + 8100 = 0 \\Leftrightarrow x = 50$ (nhận) hoặc $x = -54$ (loại).\nTừ bảng biến thiên trên $(0; +\\infty)$, lợi nhuận đạt cực đại tại $x = 50$. Vậy công ty nên bán $50$ máy mỗi tháng.",
+        "source": "HSG Vũng Tàu 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "50",
+        "accepted_answers": [
+          "50"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 18,
+      "type": "short",
+      "prompt": "Ông $A$ dự định đầu tư sản xuất một loại sản phẩm với số lượng không quá $150$ sản phẩm. Nếu ông $A$ sản xuất được $x$ sản phẩm ($1 \\le x \\le 150$) thì bán và thu về số tiền được tính theo công thức $f(x) = x^3 - 1565x^2 + 128500x + 30000$ (nghìn đồng), khi đó chi phí sản xuất bình quân cho một sản phẩm được tính theo công thức $C(x) = 1000 + x + \\dfrac{25000}{x}$ (nghìn đồng). Ông $A$ cần sản xuất bao nhiêu sản phẩm để lợi nhuận thu về là lớn nhất?",
+      "points": 1,
+      "sort_order": 18,
+      "choices": [],
+      "settings": {
+        "explanation": "Lợi nhuận ông $A$ thu được là $L(x) = f(x) - xC(x) = x^3 - 1566x^2 + 127500x + 5000$ với $1 \\le x \\le 150$, $x \\in \\mathbb{N}^*$.\nĐạo hàm $L'(x) = 3x^2 - 3132x + 127500 = 0 \\Leftrightarrow x \\approx 42,43$ (nhận) hoặc $x \\approx 1001,57$ (loại).\nHàm số đạt cực đại tại $x \\approx 42,43$. So sánh hai giá trị nguyên lân cận: $L(42) = 2\\,671\\,664 > L(43) = 2\\,671\\,473$. Vậy cần sản xuất $42$ sản phẩm.",
+        "source": "THPT Triệu Sơn 1 - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "42",
+        "accepted_answers": [
+          "42"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 19,
+      "type": "short",
+      "prompt": "Hàng tháng nhà máy $A$ cung cấp cho nhà máy $B$ số lượng sản phẩm theo đơn đặt hàng của $B$ (tối đa $100$ tấn sản phẩm). Nếu số lượng đặt hàng là $x$ tấn sản phẩm một tháng thì giá bán cho mỗi tấn sản phẩm được biểu diễn bởi công thức $P(x) = 50 - 0,001x^2$ (triệu đồng). Chi phí để $A$ sản xuất $x$ tấn sản phẩm trong một tháng là $C(x) = 95 + 35x$ (triệu đồng). Hỏi lợi nhuận lớn nhất nhà máy $A$ có thể thu được trong một tháng khi bán hàng cho nhà máy $B$ là bao nhiêu triệu đồng (kết quả làm tròn đến hàng đơn vị)?",
+      "points": 1,
+      "sort_order": 19,
+      "choices": [],
+      "settings": {
+        "explanation": "Lợi nhuận hàng tháng của nhà máy $A$ là $L(x) = xP(x) - C(x) = -0,001x^3 + 15x - 95$ với $x \\in [0; 100]$.\nTa có $L'(x) = -0,003x^2 + 15 = 0 \\Leftrightarrow x = 50\\sqrt{2} \\in [0; 100]$.\nLợi nhuận lớn nhất đạt tại $x = 50\\sqrt{2}$: $L(50\\sqrt{2}) = 500\\sqrt{2} - 95 \\approx 612,11 \\approx 612$ triệu đồng.",
+        "source": "Cụm trường THPT Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "612",
+        "accepted_answers": [
+          "612"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 20,
+      "type": "short",
+      "prompt": "Một nhà xuất bản nhận in $4000$ ấn phẩm. Nhà xuất bản có tất cả $14$ máy in được cài đặt, hoạt động tự động và giám sát bởi $1$ kĩ sư. Mỗi máy in có thể in được $30$ ấn phẩm trong một giờ. Chi phí cài đặt máy in là $12\\text{ USD}$ cho một máy, chi phí giám sát là $9\\text{ USD}$ một giờ. Tính số máy in nhà xuất bản nên sử dụng để chi phí in là nhỏ nhất.",
+      "points": 1,
+      "sort_order": 20,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $x$ ($x \\in \\mathbb{N}^*$, $1 \\le x \\le 14$) là số máy in cần sử dụng. Thời gian in hết $4000$ ấn phẩm là $\\dfrac{4000}{30x}$ (giờ).\nTổng chi phí in là $P(x) = 12x + 9 \\cdot \\dfrac{4000}{30x} = 12x + \\dfrac{1200}{x}$ (USD).\nĐạo hàm $P'(x) = 12 - \\dfrac{1200}{x^2} = 0 \\Leftrightarrow x = 10 \\in [1; 14]$. Vậy nên sử dụng $10$ máy in.",
+        "source": "Đề ôn tập 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "10",
+        "accepted_answers": [
+          "10"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 21,
+      "type": "short",
+      "prompt": "Một công ty kinh doanh dịch vụ nghỉ dưỡng nhận thấy rằng: Nếu áp dụng mức giá $3$ triệu đồng/người/ngày thì mỗi tháng có $140$ khách đến nghỉ và mỗi khách sẽ nghỉ $12$ ngày. Nếu cứ tăng giá thêm $500$ nghìn đồng/người/ngày thì hàng tháng số khách đến nghỉ sẽ giảm đi $6$ người và thời gian lưu trú của mỗi người khách cũng giảm $2$ ngày. Ngược lại, nếu cứ giảm $500$ nghìn đồng/người/ngày thì hàng tháng số khách đến nghỉ sẽ tăng thêm $6$ người và thời gian lưu trú của mỗi người khách cũng tăng thêm $2$ ngày. Hỏi công ty cần áp dụng mức giá bao nhiêu triệu đồng/người/ngày để lợi nhuận hàng tháng thu được là lớn nhất, biết tổng chi phí công ty phải chi cho một ngày lưu trú của mỗi người khách là $2$ triệu đồng và Sở du lịch không cho công ty thu vượt quá $10$ triệu đồng/người/ngày? (Làm tròn kết quả đến hàng phần trăm).",
+      "points": 1,
+      "sort_order": 21,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $x$ (triệu đồng/người/ngày, $0 < x \\le 10$) là mức giá áp dụng.\nVới cả tăng hay giảm giá, số khách mỗi tháng là $140 - \\dfrac{x - 3}{0,5} \\cdot 6 = 176 - 12x$ và số ngày lưu trú mỗi khách là $12 - \\dfrac{x - 3}{0,5} \\cdot 2 = 24 - 4x$. Điều kiện có khách và có ngày lưu trú dương: $24 - 4x > 0 \\Leftrightarrow 0 < x < 6$.\nLợi nhuận hàng tháng là $L(x) = (176 - 12x)(24 - 4x)(x - 2) = 48x^3 - 1088x^2 + 6208x - 8448$.\nTa có $L'(x) = 144x^2 - 2176x + 6208 = 0 \\Leftrightarrow x \\approx 3,817 \\in (0; 6)$ hoặc $x \\approx 11,29$ (loại).\nLập bảng biến thiên trên $(0; 6)$ thấy $L(x)$ đạt cực đại tại $x \\approx 3,82$ triệu đồng/người/ngày.",
+        "source": "Đề ôn tập 2025",
+        "level": "Vận dụng",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "3,82",
+        "accepted_answers": [
+          "3,82",
+          "3.82"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 22,
+      "type": "short",
+      "prompt": "Giả sử chi phí đặt hàng và vận chuyển $C$ (đơn vị: triệu đồng) của một linh kiện được sử dụng trong sản xuất một sản phẩm được xác định theo công thức $C(x) = \\dfrac{19200000}{x^2} + \\dfrac{27x}{x + 3000}$ ($x \\ge 1$), trong đó $x$ là số linh kiện được đặt hàng và vận chuyển. Tìm $x$ để chi phí đặt hàng và vận chuyển cho mỗi linh kiện trên là nhỏ nhất.",
+      "points": 1,
+      "sort_order": 22,
+      "choices": [],
+      "settings": {
+        "explanation": "Xét hàm số $C(x) = \\dfrac{19200000}{x^2} + \\dfrac{27x}{x + 3000}$ trên $[1; +\\infty)$.\nTa có $C'(x) = -\\dfrac{38400000}{x^3} + \\dfrac{81000}{(x + 3000)^2} = 0 \\Leftrightarrow 12800(x + 3000)^2 = 27x^3$.\nRút gọn thành $27x^3 - 12800x^2 - 76800000x - 115200000000 = 0 \\Leftrightarrow x = 2400$ (duy nhất trên $[1; +\\infty)$).\nVì $C'(x)$ đổi dấu từ âm sang dương qua $x = 2400$, chi phí nhỏ nhất đạt được khi $x = 2400$.",
+        "source": "Chuyên KHTN Hà Nội 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "2400",
+        "accepted_answers": [
+          "2400"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 23,
+      "type": "short",
+      "prompt": "Đầu năm mới $2025$, công ty $A$ vừa kí được một hợp đồng sản xuất và cung cấp linh kiện theo đơn đặt hàng của nhà máy $B$. Theo hợp đồng nhà máy $B$ mua không quá $1500$ linh kiện, nếu số lượng đặt hàng là $x$ thì giá bán mỗi linh kiện là $p(x) = 40000 - 0,01x^2$ đồng. Chi phí để công ty sản xuất $x$ linh kiện là $C(x) = 10000000 + 10000x$ đồng. Hỏi công ty $A$ nên sản xuất và cung cấp bao nhiêu linh kiện cho nhà máy $B$ để thu được lợi nhuận lớn nhất?",
+      "points": 1,
+      "sort_order": 23,
+      "choices": [],
+      "settings": {
+        "explanation": "Lợi nhuận công ty $A$ thu được là $f(x) = x p(x) - C(x) = -0,01x^3 + 30000x - 10000000$ với $0 \\le x \\le 1500$.\nĐạo hàm $f'(x) = -0,03x^2 + 30000 = 0 \\Leftrightarrow x = 1000 \\in [0; 1500]$ (do $x \\ge 0$).\nLập bảng biến thiên trên $[0; 1500]$ thấy $f(x)$ đạt giá trị lớn nhất tại $x = 1000$. Vậy cần sản xuất $1000$ linh kiện.",
+        "source": "Chuyên Vinh 2025",
+        "level": "Nhận biết",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "1000",
+        "accepted_answers": [
+          "1000"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 24,
+      "type": "short",
+      "prompt": "Một doanh nghiệp sản xuất độc quyền một loại sản phẩm. Giả sử khi sản xuất và bán hết $x$ sản phẩm ($0 < x < 2000$), tổng số tiền doanh nghiệp thu được là $F(x) = 2000x - x^2$ (nghìn đồng) và tổng chi phí doanh nghiệp bỏ ra là $G(x) = x^2 + 1440x + 50$ (nghìn đồng). Công ty cũng phải chịu mức thuế phụ thu cho $1$ đơn vị sản phẩm bán được là $t$ (nghìn đồng) ($0 < t < 300$). Mức thuế phụ thu $t$ (trên một đơn vị sản phẩm) là bao nhiêu nghìn đồng sao cho nhà nước thu được số tiền thuế phụ thu lớn nhất và doanh nghiệp cũng thu được lợi nhuận nhiều nhất theo đúng mức thuế phụ thu đó?",
+      "points": 1,
+      "sort_order": 24,
+      "choices": [],
+      "settings": {
+        "explanation": "Hàm lợi nhuận của doanh nghiệp là $P(x) = F(x) - G(x) - tx = -2x^2 + (560 - t)x - 50$ trên $(0; 2000)$.\nVới $t$ cố định, $P'(x) = -4x + 560 - t = 0 \\Leftrightarrow x = 140 - \\dfrac{t}{4}$, doanh nghiệp đạt lợi nhuận tối đa tại $x = 140 - \\dfrac{t}{4}$.\nSố tiền thuế nhà nước thu được là $R(t) = xt = t\\left(140 - \\dfrac{t}{4}\\right) = -\\dfrac{1}{4}t^2 + 140t$ trên $(0; 300)$.\nTa có $R'(t) = -\\dfrac{t}{2} + 140 = 0 \\Leftrightarrow t = 280 \\in (0; 300)$. Vậy mức thuế phụ thu là $280$ nghìn đồng.",
+        "source": "Sở Thanh Hóa 2025",
+        "level": "Vận dụng",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "280",
+        "accepted_answers": [
+          "280"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 25,
+      "type": "short",
+      "prompt": "Một công ty sản xuất dụng cụ thể thao nhận được một đơn đặt hàng sản xuất $8000$ quả bóng pickleball. Công ty này sở hữu một số máy móc, mỗi máy có thể sản xuất $30$ quả bóng trong một giờ. Chi phí thiết lập các máy này là $200$ nghìn đồng cho mỗi máy. Khi được thiết lập, hoạt động sản xuất sẽ hoàn toàn diễn ra tự động dưới sự giám sát. Số tiền phải trả cho người giám sát là $192$ nghìn đồng một giờ. Số máy móc công ty nên sử dụng là bao nhiêu để chi phí hoạt động là thấp nhất?",
+      "points": 1,
+      "sort_order": 25,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $x$ ($x \\in \\mathbb{N}^*$) là số máy móc sử dụng. Thời gian sản xuất $8000$ quả bóng là $\\dfrac{8000}{30x} = \\dfrac{800}{3x}$ (giờ).\nTổng chi phí hoạt động là $T(x) = 200x + 192 \\cdot \\dfrac{800}{3x} = 200x + \\dfrac{51200}{x}$ (nghìn đồng).\nTa có $T'(x) = 200 - \\dfrac{51200}{x^2} = 0 \\Leftrightarrow x^2 = 256 \\Leftrightarrow x = 16$ (do $x > 0$). Vậy công ty nên sử dụng $16$ máy.",
+        "source": "THPT Trần Nguyên Hãn - Hải Phòng 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "16",
+        "accepted_answers": [
+          "16"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 26,
+      "type": "short",
+      "prompt": "Trong trung tâm thương mại Lotte thành phố Vĩnh Yên, có một nhà hàng bán buffet hải sản. Khi nhà hàng bán với giá $200$ ngàn đồng một suất thì mỗi ngày nhà hàng bán được $100$ suất. Nhà hàng dự định có đợt giảm giá bán để kích cầu trong dịp cuối năm. Theo khảo sát từ thị trường thì mỗi lần giảm giá $10$ ngàn đồng một suất thì nhà hàng bán thêm được $10$ suất. Hỏi nhà hàng cần bán với giá mới là bao nhiêu ngàn đồng một suất để doanh thu trong một ngày là lớn nhất?",
+      "points": 1,
+      "sort_order": 26,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $x$ (ngàn đồng, $0 < x < 200$) là số tiền giảm giá mỗi suất. Khi đó số suất bán thêm là $x$ suất.\nHàm doanh thu là $f(x) = (200 - x)(100 + x) = -x^2 + 100x + 20000$.\nTa có $f'(x) = -2x + 100 = 0 \\Leftrightarrow x = 50$. Vậy giá bán mới là $200 - 50 = 150$ ngàn đồng/suất.",
+        "source": "THPT Trần Phú - Vĩnh Phúc 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "150",
+        "accepted_answers": [
+          "150"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 27,
+      "type": "short",
+      "prompt": "Một chủ nhà hàng kinh doanh phần ăn uống đồng giá có chiến lược kinh doanh như sau: Phí cố định được ước tính trong một năm là $55$ triệu đồng. Chi phí một phần ăn ước tính khoảng $22$ nghìn đồng. Giá niêm yết trên thực đơn là $30$ nghìn đồng. Giả định rằng tất cả các phần ăn chế biến sẵn đều được bán hết và kí hiệu $x$ là số phần ăn trong một năm, giả sử $x$ là số nguyên thuộc $[5000; 25000]$. Mục tiêu của chủ nhà hàng là tạo ra lợi nhuận ít nhất là $135$ triệu đồng mỗi năm. Biết rằng nhà hàng mở cửa $300$ ngày một năm, hỏi trung bình mỗi ngày nhà hàng phải phục vụ ít nhất bao nhiêu phần ăn để đạt mục tiêu trên?",
+      "points": 1,
+      "sort_order": 27,
+      "choices": [],
+      "settings": {
+        "explanation": "Tổng lợi nhuận hằng năm cho $x$ phần ăn là $L(x) = 30x - (22x + 55000) = 8x - 55000$ (nghìn đồng).\nĐể đạt lợi nhuận ít nhất $135000$ nghìn đồng: $8x - 55000 \\ge 135000 \\Leftrightarrow x \\ge 23750$ phần ăn/năm.\nTrung bình mỗi ngày cần phục vụ tối thiểu $\\dfrac{23750}{300} \\approx 79,17$ phần ăn. Do số phần ăn nguyên nên ít nhất là $80$ phần ăn mỗi ngày.",
+        "source": "Sở Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "80",
+        "accepted_answers": [
+          "80"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 28,
+      "type": "short",
+      "prompt": "Một doanh nghiệp dự định sản xuất không quá $400$ sản phẩm. Nếu doanh nghiệp sản xuất $x$ sản phẩm ($1 \\le x \\le 400$) thì doanh thu nhận được khi bán hết số sản phẩm đó là $F(x) = x^3 - 1999x^2 + 1001000x + 250000$ (đồng). Trong đó chi phí vận hành máy móc cho mỗi sản phẩm là $G(x) = \\dfrac{200000x}{3x + 2}$ (đồng). Tổng chi phí mua nguyên vật liệu là $H(x) = 2x^3 + 100000x - 50000$ (đồng), nhưng do doanh nghiệp mua với số lượng lớn nên được giảm $2\\%$ cho $150$ sản phẩm đầu tiên và giảm $3\\%$ cho các sản phẩm tiếp theo. Doanh nghiệp cần sản xuất bao nhiêu sản phẩm để lợi nhuận thu được là lớn nhất?",
+      "points": 1,
+      "sort_order": 28,
+      "choices": [],
+      "settings": {
+        "explanation": "Chi phí vận hành cho $x$ sản phẩm là $xG(x) = \\dfrac{200000x^2}{3x+2}$. Xét hai trường hợp:\n1) Với $1 \\le x \\le 150$: $L(x) = F(x) - xG(x) - 0,98H(x) = -0,96x^3 - 1999x^2 + 903000x + 299000 - \\dfrac{200000x^2}{3x+2}$. Ta có $L'(x) > 0$ trên $[1; 150]$ nên $\\max_{[1;150]} L(x) = L(150) \\approx 77\\,575\\,748$ đồng.\n2) Với $150 < x \\le 400$: $L(x) = F(x) - xG(x) - 0,98H(150) - 0,97H(x-150) = x^3 - \\dfrac{97}{50}(x-150)^3 - 1999x^2 + 904000x + 395500 - \\dfrac{200000x^2}{3x+2}$.\nĐạo hàm: $L'(x) = 3x^2 - \\dfrac{291}{50}(x-150)^2 - 3998x + 904000 - \\dfrac{200000(3x^2+4x)}{(3x+2)^2} = -2,82x^2 - 2252x + 773050 - \\dfrac{200000(3x^2+4x)}{(3x+2)^2}$.\nGiải $L'(x) = 0$ trên $(150; 400]$ được $x \\approx 240,94$. So sánh các giá trị nguyên lân cận: $L(240) \\approx 91\\,854\\,161$ đồng, $L(241) \\approx 91\\,855\\,829$ đồng, $L(242) \\approx 91\\,853\\,886$ đồng. Vậy cần sản xuất $241$ sản phẩm.",
+        "source": "Cụm trường Hưng Yên 2025",
+        "level": "Vận dụng",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "241",
+        "accepted_answers": [
+          "241"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 29,
+      "type": "short",
+      "prompt": "Một công ty muốn đầu tư vào hệ thống điện mặt trời có công suất $x$ (đơn vị tính: MW). Theo nghiên cứu cho thấy một số thông tin sau: Chi phí đầu tư ban đầu là $C_1(x) = 1400 + 55x$ (tỷ đồng). Doanh thu hàng năm là $R(x) = 28x - 0,15x^2$ (tỷ đồng/năm). Chi phí vận hành hàng năm là $C_2(x) = 12 + 0,35x + 0,012x^2$ (tỷ đồng/năm). Hãy tìm công suất $x$ (làm tròn đến hàng đơn vị) để tối đa hóa lợi nhuận trên đầu tư, được tính là tỷ lệ lợi nhuận hàng năm trên chi phí đầu tư ban đầu.",
+      "points": 1,
+      "sort_order": 29,
+      "choices": [],
+      "settings": {
+        "explanation": "Lợi nhuận hàng năm là $P(x) = R(x) - C_2(x) = -0,162x^2 + 27,65x - 12$ (tỷ đồng/năm).\nTỷ lệ lợi nhuận trên đầu tư là $L(x) = \\dfrac{P(x)}{C_1(x)} = \\dfrac{-0,162x^2 + 27,65x - 12}{1400 + 55x}$ với $x > 0$.\nĐạo hàm: $L'(x) = \\dfrac{-8,91x^2 - 453,6x + 39370}{(1400 + 55x)^2} = 0 \\Leftrightarrow x \\approx 45,73$ (nhận nghiệm dương).\nLập bảng biến thiên trên $(0; +\\infty)$ thấy $L(x)$ đạt cực đại tại $x \\approx 45,73 \\approx 46\\text{ MW}$.",
+        "source": "Cụm trường Nghệ An 2025",
+        "level": "Vận dụng",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "46",
+        "accepted_answers": [
+          "46"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 30,
+      "type": "short",
+      "prompt": "Một hộ làm nghề dệt vải lụa tơ tằm sản xuất mỗi ngày được $x$ mét vải lụa ($1 \\le x \\le 20$). Tổng chi phí sản xuất $x$ mét vải lụa cho bởi hàm chi phí $C(x) = \\dfrac{23}{36}x^3 + x^2 + 200$ (tính bằng nghìn đồng). Giá của vải lụa tơ tằm là $300$ nghìn đồng/mét và giả sử hộ luôn bán hết số sản phẩm làm ra trong một ngày. Để đạt lợi nhuận tối đa thì mỗi ngày hộ cần sản xuất bao nhiêu mét vải lụa?",
+      "points": 1,
+      "sort_order": 30,
+      "choices": [],
+      "settings": {
+        "explanation": "Lợi nhuận trong một ngày là $L(x) = 300x - C(x) = -\\dfrac{23}{36}x^3 - x^2 + 300x - 200$ trên $[1; 20]$.\nTa có $L'(x) = -\\dfrac{23}{12}x^2 - 2x + 300 = 0 \\Leftrightarrow x = 12$ (nhận) hoặc $x = -\\dfrac{300}{23}$ (loại).\nTính $L(1) = \\dfrac{3541}{36}$, $L(12) = 2152$, $L(20) = \\dfrac{2600}{9}$. Vậy mỗi ngày cần sản xuất $12$ mét vải lụa.",
+        "source": "Sở Thừa Thiên Huế 2025",
+        "level": "Nhận biết",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "12",
+        "accepted_answers": [
+          "12"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 31,
+      "type": "short",
+      "prompt": "Trận bóng đá giao hữu giữa đội tuyển Việt Nam và Singapore ở sân vận động Mỹ Đình có sức chứa $60\\,000$ khán giả. Ban tổ chức bán vé với giá mỗi vé là $100$ nghìn đồng, số khán giả trung bình đến sân xem bóng đá là $24\\,000$ người. Qua thăm dò dư luận, người ta thấy rằng mỗi khi giá vé giảm thêm $10$ nghìn đồng, sẽ có thêm khoảng $3\\,000$ khán giả. Hỏi ban tổ chức nên đặt giá vé là bao nhiêu để doanh thu từ tiền bán vé là lớn nhất với đơn vị tính giá vé là nghìn đồng?",
+      "points": 1,
+      "sort_order": 31,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $x$ (nghìn đồng, $0 \\le x < 100$) là mức giảm giá mỗi vé. Số vé bán tăng thêm là $300x$ vé (không vượt sức chứa $60\\,000$).\nDoanh thu bán vé là $f(x) = (100 - x)(24000 + 300x) = -300x^2 + 6000x + 2400000$.\nTa có $f'(x) = -600x + 6000 = 0 \\Leftrightarrow x = 10$ (khi đó số khán giả là $27\\,000 \\le 60\\,000$, thỏa mãn).\nVậy giá vé tối ưu là $100 - 10 = 90$ nghìn đồng.",
+        "source": "Chuyên Hoàng Văn Thụ - Hòa Bình 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "90",
+        "accepted_answers": [
+          "90"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 32,
+      "type": "short",
+      "prompt": "Để hạn chế vi phạm thời gian làm việc đối với công nhân, giám đốc công ty quyết định xử lý bằng cách phạt tiền. Nhờ sự giám sát chặt chẽ của các quản đốc, giám đốc công ty biết được trong một tháng, giữa tỉ lệ công nhân vi phạm đúng $k$ lần ($1 \\le k \\le 2$) là $t_k = \\dfrac{N_k}{N}$ (trong đó $N_k$ là số công nhân vi phạm đúng $k$ lần, $N$ là tổng số công nhân) và mức phạt mỗi lần vi phạm có mối liên hệ như sau: Nếu mỗi công nhân nộp phạt $x$ nghìn đồng ($60 \\le x \\le 300$) khi vi phạm lần thứ nhất và nộp phạt $x - 20$ nghìn đồng khi vi phạm lần thứ hai thì $t_1 = \\dfrac{36}{x + 10}$ và $t_2 = \\dfrac{4}{x - 30}$ (không có công nhân nào vi phạm quá hai lần). Biết rằng $N$ không đổi và bằng $2400$. Tổng số tiền nộp phạt của các công nhân vi phạm trong một tháng ít nhất là bao nhiêu triệu đồng? (Làm tròn kết quả đến hàng đơn vị).",
+      "points": 1,
+      "sort_order": 32,
+      "choices": [],
+      "settings": {
+        "explanation": "Số công nhân vi phạm đúng $1$ lần là $N_1 = \\dfrac{36N}{x+10}$, nộp tổng $N_1 x = \\dfrac{36Nx}{x+10}$ nghìn đồng.\nSố công nhân vi phạm đúng $2$ lần là $N_2 = \\dfrac{4N}{x-30}$, mỗi người nộp tổng $x + (x - 20) = 2x - 20$ nghìn đồng, nên tổng phạt là $\\dfrac{4N(2x - 20)}{x - 30}$ nghìn đồng.\nTổng số tiền phạt là $f(x) = 4N\\left(\\dfrac{9x}{x+10} + \\dfrac{2x-20}{x-30}\\right)$ trên $[60; 300]$.\nĐạo hàm: $f'(x) = 4N\\left[\\dfrac{90}{(x+10)^2} - \\dfrac{40}{(x-30)^2}\\right] = 0 \\Leftrightarrow \\dfrac{3}{x+10} = \\dfrac{2}{x-30} \\Leftrightarrow x = 110 \\in [60; 300]$.\nTừ bảng biến thiên, $\\min_{[60;300]} f(x) = f(110) = 43N = 43 \\cdot 2400 = 103200$ nghìn đồng $= 103,2 \\approx 103$ triệu đồng.",
+        "source": "THPT Lê Thánh Tông - Nguyễn Khuyến HCM 2025",
+        "level": "Vận dụng",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "103",
+        "accepted_answers": [
+          "103"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 33,
+      "type": "short",
+      "prompt": "Năm $2025$, một cửa hàng cần nhập về tổng cộng $600$ chiếc điện thoại. Cửa hàng sẽ nhận theo nhiều lô hàng, mỗi lô hàng chứa số điện thoại bằng nhau. Chi phí vận chuyển là $50\\text{ USD}$ cho mỗi lô hàng, cộng thêm một loại phí vận chuyển là $3\\text{ USD}$ cho mỗi chiếc điện thoại và phí này cả năm chỉ tính cho lần vận chuyển đầu tiên. Hỏi cửa hàng đó nên nhập mỗi lô hàng bao nhiêu chiếc điện thoại để chi phí vận chuyển cả năm $2025$ thấp nhất?",
+      "points": 1,
+      "sort_order": 33,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $x$ ($x \\in \\mathbb{N}^*$, $x \\mid 600$) là số lô hàng cần nhập, khi đó mỗi lô có $\\dfrac{600}{x}$ chiếc điện thoại.\nTổng chi phí vận chuyển cả năm là $f(x) = 50x + 3 \\cdot \\dfrac{600}{x} = 50x + \\dfrac{1800}{x}$ (USD).\nÁp dụng bất đẳng thức AM-GM: $f(x) \\ge 2\\sqrt{50x \\cdot \\dfrac{1800}{x}} = 600$, dấu bằng xảy ra khi $50x = \\dfrac{1800}{x} \\Leftrightarrow x = 6$.\nVậy cần nhập $6$ lô hàng, mỗi lô gồm $\\dfrac{600}{6} = 100$ chiếc điện thoại.",
+        "source": "Sở Bắc Giang 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "100",
+        "accepted_answers": [
+          "100"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 34,
+      "type": "short",
+      "prompt": "Một doanh nghiệp sản xuất độc quyền một loại sản phẩm. Giả sử khi sản xuất và bán hết $x$ sản phẩm ($0 < x \\le 2500$), tổng số tiền doanh nghiệp thu được là $f(x) = 2006x - x^2$ và tổng chi phí là $g(x) = x^2 + 1438x - 1209$ (đơn vị: nghìn đồng). Giả sử mức thuế phụ thu trên một đơn vị sản phẩm bán được là $t$ (nghìn đồng) ($0 < t < 320$). Giá trị của $t$ bằng bao nhiêu nghìn đồng để nhà nước nhận được số tiền thuế phụ thu lớn nhất và doanh nghiệp cũng nhận được lợi nhuận lớn nhất theo mức thuế phụ thu đó?",
+      "points": 1,
+      "sort_order": 34,
+      "choices": [],
+      "settings": {
+        "explanation": "Hàm lợi nhuận của doanh nghiệp là $P(x) = f(x) - g(x) - xt = -2x^2 + (568 - t)x + 1209$.\nVới $t$ cố định, $P(x)$ đạt cực đại tại $x = \\dfrac{568 - t}{4} \\in (0; 2500]$.\nKhi đó tổng số tiền thuế nhà nước thu được là $T(t) = xt = \\dfrac{t(568 - t)}{4} \\le \\dfrac{1}{4}\\left(\\dfrac{t + 568 - t}{2}\\right)^2 = 20164$.\nDấu bằng xảy ra khi $t = 568 - t \\Leftrightarrow t = 284 \\in (0; 320)$. Vậy $t = 284$ nghìn đồng.",
+        "source": "Sở Phú Thọ 2025",
+        "level": "Vận dụng",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "284",
+        "accepted_answers": [
+          "284"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 35,
+      "type": "short",
+      "prompt": "Một doanh nghiệp kinh doanh một loại sản phẩm $T$ được sản xuất trong nước. Qua nghiên cứu thấy rằng nếu chi phí sản xuất mỗi sản phẩm $T$ là $x$ (USD) thì số sản phẩm $T$ các nhà máy sản xuất sẽ là $R(x) = x - 200$ và số sản phẩm $T$ mà doanh nghiệp bán được trên thị trường trong nước sẽ là $Q(x) = 4200 - x$. Số sản phẩm còn dư doanh nghiệp xuất khẩu ra thị trường quốc tế với giá bán mỗi sản phẩm ổn định trên thị trường quốc tế là $x_0 = 3200$ USD. Nhà nước đánh thuế trên mỗi sản phẩm xuất khẩu là $a$ (USD) và luôn đảm bảo tỉ lệ giữa lãi xuất khẩu của doanh nghiệp và thuế thu được của nhà nước tương ứng là $4:1$. Hãy xác định giá trị của $a$ biết lãi mà doanh nghiệp thu được do xuất khẩu là nhiều nhất.",
+      "points": 1,
+      "sort_order": 35,
+      "choices": [],
+      "settings": {
+        "explanation": "Điều kiện: $R(x) > 0$, $Q(x) > 0$ và $R(x) > Q(x) \\Leftrightarrow 2200 < x < 4200$. Số sản phẩm xuất khẩu là $R(x) - Q(x) = 2x - 4400$.\nLãi xuất khẩu của doanh nghiệp là $L(x) = (2x - 4400)(3200 - x - a)$, thuế nhà nước thu được là $T(x) = (2x - 4400)a$.\nTừ $L(x) : T(x) = 4 : 1$ suy ra $3200 - x - a = 4a \\Leftrightarrow a = \\dfrac{3200 - x}{5}$.\nThay vào $L(x)$: $L(x) = \\dfrac{4}{5}(2x - 4400)(3200 - x) = \\dfrac{1}{5}(-8x^2 + 43200x - 56320000)$.\nTa có $L'(x) = \\dfrac{1}{5}(-16x + 43200) = 0 \\Leftrightarrow x = 2700 \\in (2200; 4200)$. Khi đó $a = \\dfrac{3200 - 2700}{5} = 100$.",
+        "source": "Sở Ninh Bình 2025",
+        "level": "Vận dụng",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "100",
+        "accepted_answers": [
+          "100"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 36,
+      "type": "short",
+      "prompt": "Một cửa hàng phân phối gạo với chi phí mua vào là $30$ nghìn đồng/$1\\text{ kg}$, bán ra là $35$ nghìn đồng/$1\\text{ kg}$. Với giá bán này thì số gạo bán được trong một tháng là $12000\\text{ kg}$. Để đẩy mạnh hơn nữa doanh số tiêu thụ gạo trong một tháng, cửa hàng dự định giảm giá bán và ước tính rằng nếu giảm $1$ nghìn đồng/$1\\text{ kg}$ thì số lượng gạo bán ra trong một tháng sẽ tăng thêm $4000\\text{ kg}$. Cửa hàng phải định giá bán gạo mới là bao nhiêu nghìn đồng một kilôgam thì lợi nhuận thu được trong tháng cao nhất?",
+      "points": 1,
+      "sort_order": 36,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $x$ (nghìn đồng/kg, $0 \\le x < 5$) là mức giảm giá. Số gạo bán được là $12000 + 4000x\\text{ kg}$ và lãi trên mỗi kg là $5 - x$ nghìn đồng.\nLợi nhuận trong tháng là $L(x) = (5 - x)(12000 + 4000x) = -4000x^2 + 8000x + 60000$.\nTa có $L'(x) = -8000x + 8000 = 0 \\Leftrightarrow x = 1$. Vậy giá bán mới là $35 - 1 = 34$ nghìn đồng/kg.",
+        "source": "Sở Thái Nguyên 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "34",
+        "accepted_answers": [
+          "34"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 37,
+      "type": "short",
+      "prompt": "Một doanh nghiệp dự định sản xuất không quá $180$ sản phẩm. Nếu doanh nghiệp sản xuất $x$ sản phẩm ($1 \\le x \\le 180$) thì giá bán của mỗi sản phẩm là $f(x) = 35840 - 192x$ (nghìn đồng) và chi phí sản xuất bình quân cho một sản phẩm là $g(x) = 25,6x^2 - 153,6x + 3072 + \\dfrac{19200}{x}$ (nghìn đồng). Biết rằng mức thuế trên một sản phẩm này là $512$ nghìn đồng. Hỏi doanh nghiệp cần sản xuất bao nhiêu sản phẩm để lợi nhuận thu được là lớn nhất?",
+      "points": 1,
+      "sort_order": 37,
+      "choices": [],
+      "settings": {
+        "explanation": "Tổng doanh thu $R(x) = x f(x) = 35840x - 192x^2$, tổng chi phí $C(x) = x g(x) = 25,6x^3 - 153,6x^2 + 3072x + 19200$, tổng thuế $T(x) = 512x$ (nghìn đồng).\nLợi nhuận là $P(x) = R(x) - C(x) - T(x) = -25,6x^3 - 38,4x^2 + 32256x - 19200$ trên $[1; 180]$.\nĐạo hàm $P'(x) = -76,8x^2 - 76,8x + 32256 = -76,8(x - 20)(x + 21) = 0 \\Leftrightarrow x = 20 \\in [1; 180]$.\nSo sánh $P(1) = 12992$, $P(20) = 405760$, $P(180) < 0$, suy ra cần sản xuất $20$ sản phẩm.",
+        "source": "Chuyên Lê Quý Đôn - Đà Nẵng 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "20",
+        "accepted_answers": [
+          "20"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 38,
+      "type": "short",
+      "prompt": "Một công ty ước lượng tổng doanh thu $R$ (đơn vị: triệu đồng) cho một loại sản phẩm được xác định bởi công thức $R(x) = -x^3 + 450x^2 + 52500x$, trong đó $x$ là số sản phẩm được sản xuất (và bán). Với ước lượng trên, công ty cần sản xuất bao nhiêu sản phẩm để doanh thu tối đa?",
+      "points": 1,
+      "sort_order": 38,
+      "choices": [],
+      "settings": {
+        "explanation": "Xét $R(x) = -x^3 + 450x^2 + 52500x$ với $x > 0$.\nTa có $R'(x) = -3x^2 + 900x + 52500 = -3(x - 350)(x + 50) = 0 \\Leftrightarrow x = 350$ (do $x > 0$).\nLập bảng biến thiên trên $(0; +\\infty)$, $R(x)$ đạt giá trị lớn nhất tại $x = 350$. Vậy cần sản xuất $350$ sản phẩm.",
+        "source": "KHTN Hà Nội 2025",
+        "level": "Nhận biết",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "350",
+        "accepted_answers": [
+          "350"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 39,
+      "type": "short",
+      "prompt": "Một đại lý nhập khẩu trái cây tươi để phân phối cho các cửa hàng. Mỗi lần nhập khẩu trái cây, khoản chi phí vận chuyển (không đổi) là $25$ triệu đồng. Chi phí bảo quản mỗi tạ trái cây trong kho là $80$ nghìn đồng/ngày. Thời gian bảo quản tối đa $10$ ngày. Biết rằng, kể từ ngày đầu tiên nhập hàng, đại lý sẽ phân phối tới các cửa hàng $25$ tạ trái cây mỗi ngày. Mỗi lần nhập hàng, đại lý phải nhập đủ trái cây cho bao nhiêu ngày phân phối để chi phí trung bình cho mỗi ngày thấp nhất (bao gồm chi phí vận chuyển và chi phí bảo quản trong kho)?",
+      "points": 1,
+      "sort_order": 39,
+      "choices": [],
+      "settings": {
+        "explanation": "Giả sử đại lý nhập đủ trái cây cho $x$ ngày ($1 \\le x \\le 10$, $x \\in \\mathbb{N}^*$), khối lượng nhập là $25x$ tạ.\nSau ngày thứ nhất tồn $25(x - 1)$ tạ, chi phí bảo quản là $0,08 \\cdot 25(x - 1) = 2(x - 1)$ triệu đồng; tương tự ngày thứ $2$ là $2(x - 2)$ triệu đồng, ..., ngày thứ $x - 1$ là $2$ triệu đồng.\nTổng chi phí cho $x$ ngày là $C(x) = 25 + 2\\left[(x - 1) + (x - 2) + \\dots + 1\\right] = 25 + x(x - 1)$ (triệu đồng).\nChi phí trung bình mỗi ngày là $\\overline{C}(x) = \\dfrac{C(x)}{x} = x - 1 + \\dfrac{25}{x}$. Đạo hàm $\\overline{C}'(x) = 1 - \\dfrac{25}{x^2} = 0 \\Leftrightarrow x = 5 \\in [1; 10]$.\nVậy đại lý cần nhập đủ trái cây cho $5$ ngày phân phối.",
+        "source": "Sở Hà Nội 2025",
+        "level": "Vận dụng",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "5",
+        "accepted_answers": [
+          "5"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 40,
+      "type": "short",
+      "prompt": "Một xe ô tô chở khách du lịch có sức chứa tối đa $29$ hành khách. Trong khu du lịch Đền Hùng, một đoàn khách gồm $40$ người đang đi bộ và muốn thuê xe về khách sạn. Người lái xe đưa ra thỏa thuận với đoàn du khách như sau: Nếu một xe chở $x$ (người) thì giá tiền cho mỗi người là $\\dfrac{(100 - x)^2}{40}$ (nghìn đồng) và một chuyến không chở dưới $15$ người. Hỏi với thỏa thuận như trên thì cần trả ít nhất bao nhiêu nghìn đồng để cả đoàn được đưa về khách sạn bằng xe du lịch?",
+      "points": 1,
+      "sort_order": 40,
+      "choices": [],
+      "settings": {
+        "explanation": "Vì tối đa $29$ người/chuyến nên cần $2$ chuyến. Gọi chuyến thứ nhất chở $x$ người thì chuyến thứ hai chở $40 - x$ người.\nĐiều kiện: $15 \\le x \\le 29$ và $15 \\le 40 - x \\le 29 \\Leftrightarrow 15 \\le x \\le 25$.\nTổng số tiền phải trả là $T(x) = \\dfrac{1}{40}\\left[x(100 - x)^2 + (40 - x)(60 + x)^2\\right] = -7x^2 + 280x + 3600$ (nghìn đồng).\nTa có $T'(x) = -14x + 280 = 0 \\Leftrightarrow x = 20$. So sánh $T(15) = T(25) = 6225$ và $T(20) = 6400$, suy ra số tiền ít nhất phải trả là $6225$ nghìn đồng.",
+        "source": "Chuyên Hùng Vương - Phú Thọ 2025",
+        "level": "Vận dụng",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "6225",
+        "accepted_answers": [
+          "6225"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 41,
+      "type": "short",
+      "prompt": "Nhà máy $A$ chuyên sản xuất một loại sản phẩm cung cấp cho nhà máy $B$. Hai nhà máy thỏa thuận rằng, hàng tháng nhà máy $A$ cung cấp cho nhà máy $B$ số lượng sản phẩm theo đơn đặt hàng của $B$ (tối đa $100$ tấn sản phẩm). Nếu số lượng đặt hàng là $x$ tấn sản phẩm thì giá bán cho mỗi tấn sản phẩm là $P(x) = 45 - 0,001x^2$ (triệu đồng). Chi phí để $A$ sản xuất $x$ tấn sản phẩm trong một tháng gồm $100$ triệu đồng chi phí cố định và $30$ triệu đồng cho mỗi tấn sản phẩm. Nhà máy $A$ cần bán cho nhà máy $B$ bao nhiêu tấn sản phẩm mỗi tháng để lợi nhuận thu được lớn nhất? (Kết quả làm tròn đến hàng phần chục).",
+      "points": 1,
+      "sort_order": 41,
+      "choices": [],
+      "settings": {
+        "explanation": "Lợi nhuận hàng tháng của nhà máy $A$ là $H(x) = x(45 - 0,001x^2) - (100 + 30x) = -0,001x^3 + 15x - 100$ trên $[0; 100]$.\nTa có $H'(x) = -0,003x^2 + 15 = 0 \\Leftrightarrow x = 50\\sqrt{2} \\approx 70,71 \\in [0; 100]$.\nLập bảng biến thiên suy ra lợi nhuận lớn nhất khi bán khoảng $70,7$ tấn sản phẩm.",
+        "source": "Sở Yên Bái 2025",
+        "level": "Nhận biết",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "70,7",
+        "accepted_answers": [
+          "70,7",
+          "70.7"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 42,
+      "type": "short",
+      "prompt": "Một xe ô tô chở khách du lịch có sức chứa tối đa $16$ hành khách. Trong một khu du lịch, một đoàn khách gồm $22$ người đang đi bộ và muốn thuê xe để về khách sạn. Lái xe đưa ra thỏa thuận với đoàn khách du lịch như sau: Nếu một chuyến xe chở $x$ (người) thì giá tiền cho mỗi người là $\\dfrac{(40 - x)^2}{2}$ (nghìn đồng). Với thỏa thuận như trên thì lái xe có thể thu được nhiều nhất bao nhiêu triệu đồng từ một chuyến chở khách? (Đáp số làm tròn đến hàng phần trăm).",
+      "points": 1,
+      "sort_order": 42,
+      "choices": [],
+      "settings": {
+        "explanation": "Số tiền thu được khi chở $x$ người ($x \\in \\mathbb{N}^*$, $1 \\le x \\le 16$) là $f(x) = \\dfrac{1}{2}x(40 - x)^2 = \\dfrac{1}{2}x^3 - 40x^2 + 800x$ (nghìn đồng).\nĐạo hàm $f'(x) = \\dfrac{3}{2}x^2 - 80x + 800 = 0 \\Leftrightarrow x = \\dfrac{40}{3} \\approx 13,33 \\in (0; 16]$.\nVì $x \\in \\mathbb{N}^*$, so sánh $f(13) = 4738,5$ và $f(14) = 4732$ (nghìn đồng). Vậy lái xe thu được nhiều nhất $4738,5$ nghìn đồng $\\approx 4,74$ triệu đồng.",
+        "source": "THPT Triệu Sơn 1 - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "4,74",
+        "accepted_answers": [
+          "4,74",
+          "4.74"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 43,
+      "type": "short",
+      "prompt": "Chi phí về nhiên liệu của một con tàu được chia làm hai phần. Phần chi phí thứ nhất không phụ thuộc vào tốc độ tàu và bằng $480$ nghìn đồng mỗi giờ. Chi phí phần thứ hai trên $1\\text{ km}$ đường tỉ lệ thuận với lập phương của tốc độ tàu, khi tốc độ bằng $20\\text{ km/h}$ thì chi phí phần thứ hai bằng $100$ nghìn đồng mỗi giờ. Giả sử con tàu đó luôn giữ nguyên tốc độ di chuyển, để tổng chi phí nhiên liệu trên $1\\text{ km}$ đường là nhỏ nhất thì tốc độ của con tàu đó bằng bao nhiêu $\\text{km/h}$? (Làm tròn kết quả đến hàng phần chục).",
+      "points": 1,
+      "sort_order": 43,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $x$ ($\\text{km/h}$, $x > 0$) là tốc độ tàu. Thời gian chạy $1\\text{ km}$ là $\\dfrac{1}{x}$ giờ nên chi phí phần thứ nhất trên $1\\text{ km}$ là $\\dfrac{480}{x}$ nghìn đồng.\nChi phí phần thứ hai trên $1\\text{ km}$ có dạng $y = kx^3$. Khi $x = 20$, thời gian chạy $1\\text{ km}$ là $\\dfrac{1}{20}$ giờ nên chi phí phần thứ hai trên $1\\text{ km}$ là $\\dfrac{100}{20} = 5$ nghìn đồng $\\Rightarrow k = \\dfrac{5}{20^3} = \\dfrac{1}{1600}$.\nTổng chi phí trên $1\\text{ km}$ là $P(x) = \\dfrac{480}{x} + \\dfrac{x^3}{1600}$. Đạo hàm $P'(x) = -\\dfrac{480}{x^2} + \\dfrac{3x^2}{1600} = 0 \\Leftrightarrow x^4 = 256000 \\Leftrightarrow x = 4\\sqrt[4]{1000} \\approx 22,49 \\approx 22,5\\text{ km/h}$.",
+        "source": "Chuyên Phan Bội Châu - Hà Tĩnh 2025",
+        "level": "Vận dụng",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "22,5",
+        "accepted_answers": [
+          "22,5",
+          "22.5"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 44,
+      "type": "short",
+      "prompt": "Nhà máy $A$ chuyên sản xuất một loại sản phẩm cho nhà máy $B$. Hai nhà máy thoả thuận rằng, hàng tháng nhà máy $A$ cung cấp cho nhà máy $B$ số lượng sản phẩm theo đơn đặt hàng của nhà máy $B$ (tối đa $100$ tấn sản phẩm). Nếu số lượng đặt hàng là $x$ tấn sản phẩm thì giá bán cho mỗi tấn sản phẩm là $p(x) = 90 - 0,01x^2$ (đơn vị: triệu đồng). Chi phí để nhà máy $A$ sản xuất $x$ tấn sản phẩm trong một tháng là $C(x) = \\dfrac{1}{2}(200 + 27x)$ (đơn vị: triệu đồng), thuế giá trị gia tăng mà nhà máy $A$ phải đóng cho nhà nước là $10\\%$ tổng doanh thu mỗi tháng. Hỏi nhà máy $A$ bán cho nhà máy $B$ bao nhiêu tấn sản phẩm để mỗi tháng thu được lợi nhuận (sau khi đã trừ thuế giá trị gia tăng) cao nhất?",
+      "points": 1,
+      "sort_order": 44,
+      "choices": [],
+      "settings": {
+        "explanation": "Doanh thu sau khi trừ $10\\%$ thuế GTGT là $0,9 x(90 - 0,01x^2) = 81x - 0,009x^3$ (triệu đồng).\nLợi nhuận hàng tháng là $L(x) = (81x - 0,009x^3) - (100 + 13,5x) = -0,009x^3 + 67,5x - 100$ với $0 < x \\le 100$.\nTa có $L'(x) = -0,027x^2 + 67,5 = 0 \\Leftrightarrow x^2 = 2500 \\Leftrightarrow x = 50 \\in (0; 100]$.\nLập bảng biến thiên suy ra lợi nhuận cao nhất khi bán $50$ tấn sản phẩm.",
+        "source": "THPT Anh Sơn 3 - Nghệ An 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "50",
+        "accepted_answers": [
+          "50"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 45,
+      "type": "short",
+      "prompt": "Một hộ làm nghề dệt vải tơ tằm sản xuất mỗi ngày được $x$ mét vải lụa ($1 \\le x \\le 18$). Tổng chi phí để sản xuất $x$ mét vải lụa (tính bằng ngàn đồng) cho bởi hàm chi phí $C(x) = x^3 - 3x^2 - 20x + 500$. Giả sử hộ gia đình này bán hết sản phẩm mỗi ngày với giá $220$ ngàn đồng/mét. Tính số tiền (đơn vị ngàn đồng) lợi nhuận tối đa mà hộ gia đình này có thể nhận được.",
+      "points": 1,
+      "sort_order": 45,
+      "choices": [],
+      "settings": {
+        "explanation": "Lợi nhuận mỗi ngày là $L(x) = 220x - (x^3 - 3x^2 - 20x + 500) = -x^3 + 3x^2 + 240x - 500$ trên $[1; 18]$.\nTa có $L'(x) = -3x^2 + 6x + 240 = 0 \\Leftrightarrow x = 10$ (nhận) hoặc $x = -8$ (loại).\nSo sánh $L(1) = -258$, $L(10) = 1200$, $L(18) = -1040$. Vậy lợi nhuận tối đa là $1200$ ngàn đồng.",
+        "source": "THPT Đô Lương 1 - Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "1200",
+        "accepted_answers": [
+          "1200"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 46,
+      "type": "short",
+      "prompt": "Một công ti trung bình bán được $600$ chiếc máy lọc không khí mỗi tháng với giá $10$ triệu đồng một chiếc. Một khảo sát cho thấy nếu giảm giá bán mỗi chiếc $400$ nghìn đồng, thì số lượng bán ra tăng thêm khoảng $60$ chiếc mỗi tháng. Gọi $p$ (triệu đồng) là giá của mỗi máy, $x$ là số máy bán ra. Khi đó, hàm cầu là $p = p(x)$ và hàm doanh thu là $R = px$. Hỏi công ti phải bán mỗi chiếc với số tiền bao nhiêu triệu đồng để doanh thu là lớn nhất?",
+      "points": 1,
+      "sort_order": 46,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $k$ là số lần giảm $0,4$ triệu đồng mỗi máy. Khi đó giá bán là $p = 10 - 0,4k$ (triệu đồng) và số máy bán ra là $x = 600 + 60k$.\nDoanh thu là $f(k) = (600 + 60k)(10 - 0,4k) = -24k^2 + 360k + 6000$.\nTa có $f'(k) = -48k + 360 = 0 \\Leftrightarrow k = 7,5$. Khi đó giá bán mỗi máy là $p = 10 - 0,4 \\cdot 7,5 = 7$ triệu đồng.",
+        "source": "Sở Đà Nẵng 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "7",
+        "accepted_answers": [
+          "7"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 47,
+      "type": "short",
+      "prompt": "Nhà máy $A$ chuyên sản xuất một loại sản phẩm cho nhà máy $B$. Hai nhà máy thỏa thuận, mỗi tháng $A$ cung cấp cho $B$ tối đa $45$ tấn sản phẩm và nếu số lượng đặt hàng là $x$ tấn sản phẩm thì giá bán cho mỗi tấn sản phẩm là $P(x) = 60 - 0,01x^2$ (triệu đồng). Chi phí để nhà máy $A$ sản xuất $x$ tấn sản phẩm trong một tháng là $C(x) = 150 + 33x$ (triệu đồng) (gồm $150$ triệu đồng chi phí cố định và $33$ triệu đồng cho mỗi tấn sản phẩm). Để mỗi tháng thu được lợi nhuận lớn nhất thì $A$ cần bán cho $B$ bao nhiêu tấn sản phẩm?",
+      "points": 1,
+      "sort_order": 47,
+      "choices": [],
+      "settings": {
+        "explanation": "Lợi nhuận hàng tháng là $L(x) = x(60 - 0,01x^2) - (150 + 33x) = -0,01x^3 + 27x - 150$ trên $[0; 45]$.\nĐạo hàm: $L'(x) = -0,03x^2 + 27 = 0 \\Leftrightarrow x^2 = 900 \\Leftrightarrow x = 30 \\in [0; 45]$ (loại $x = -30$).\nSo sánh $L(0) = -150$, $L(30) = 390$, $L(45) = 153,75$. Vậy nhà máy $A$ cần bán $30$ tấn sản phẩm mỗi tháng.",
+        "source": "Sở Phú Thọ 2025",
+        "level": "Nhận biết",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "30",
+        "accepted_answers": [
+          "30"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 48,
+      "type": "short",
+      "prompt": "Một nhà máy dự định sản xuất không quá $200$ sản phẩm trong mỗi tháng. Chi phí sản xuất $x$ sản phẩm ($1 \\le x \\le 200$) được cho bởi hàm chi phí $C(x) = 20000 + 800x - 3,6x^2 + 0,004x^3$ (nghìn đồng). Biết giá bán của mỗi sản phẩm là một hàm số phụ thuộc vào số lượng sản phẩm $x$ và được cho bởi công thức $p(x) = 2000 - 9x$ (nghìn đồng). Hỏi mỗi tháng nhà máy sản xuất bao nhiêu sản phẩm để lợi nhuận thu được là lớn nhất? Biết rằng kết quả khảo sát thị trường cho thấy sản phẩm sản xuất ra sẽ được tiêu thụ hết.",
+      "points": 1,
+      "sort_order": 48,
+      "choices": [],
+      "settings": {
+        "explanation": "Lợi nhuận thu được là $L(x) = x p(x) - C(x) = -0,004x^3 - 5,4x^2 + 1200x - 20000$ trên $[1; 200]$.\nTa có $L'(x) = -0,012x^2 - 10,8x + 1200 = 0 \\Leftrightarrow x = 100$ (nhận) hoặc $x = -1000$ (loại).\nVì $L'(x) > 0$ trên $[1; 100)$ và $L'(x) < 0$ trên $(100; 200]$, lợi nhuận đạt cực đại tại $x = 100$. Vậy cần sản xuất $100$ sản phẩm.",
+        "source": "Sở Bình Thuận 2025",
+        "level": "Nhận biết",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "100",
+        "accepted_answers": [
+          "100"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 49,
+      "type": "short",
+      "prompt": "Doanh số (tính bằng số sản phẩm) của một sản phẩm mới (trong vòng một số năm nhất định) được mô hình hóa bằng hàm số $f(t) = \\dfrac{24000}{1 + 6e^{-t}}$, $t \\ge 0$, trong đó thời gian $t$ được tính bằng năm, kể từ khi phát hành sản phẩm mới. Khi đó, đạo hàm $f'(t)$ sẽ biểu thị tốc độ bán hàng. Tốc độ bán hàng lớn nhất đạt được khi $t = \\ln a$. Tìm $a$.",
+      "points": 1,
+      "sort_order": 49,
+      "choices": [],
+      "settings": {
+        "explanation": "Hàm tốc độ bán hàng là $g(t) = f'(t) = \\dfrac{144000e^{-t}}{(1 + 6e^{-t})^2}$ với $t \\ge 0$.\nĐạo hàm: $g'(t) = -\\dfrac{144000e^{-t}(1 - 6e^{-t})}{(1 + 6e^{-t})^3}$.\nGiải $g'(t) = 0 \\Leftrightarrow 1 - 6e^{-t} = 0 \\Leftrightarrow e^t = 6 \\Leftrightarrow t = \\ln 6$.\nVì $g'(t)$ đổi dấu từ dương sang âm qua $t = \\ln 6$, tốc độ bán hàng lớn nhất tại $t = \\ln 6$, suy ra $a = 6$.",
+        "source": "Sở Lào Cai 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "6",
+        "accepted_answers": [
+          "6"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 50,
+      "type": "short",
+      "prompt": "Một doanh nghiệp dự định sản xuất $x$ sản phẩm ($0 \\le x \\le 1100$) thì doanh thu nhận được khi bán hết số sản phẩm đó là $F(x) = x^3 - 2199x^2 + 1219000x + 2025000$ (đồng), trong khi chi phí sản xuất bình quân cho một sản phẩm là $G(x) = x + 9000 + \\dfrac{2025000}{x}$ (đồng). Doanh nghiệp cần sản xuất bao nhiêu sản phẩm để lợi nhuận thu được là lớn nhất?",
+      "points": 1,
+      "sort_order": 50,
+      "choices": [],
+      "settings": {
+        "explanation": "Tổng chi phí sản xuất $x$ sản phẩm là $xG(x) = x^2 + 9000x + 2025000$.\nLợi nhuận là $L(x) = F(x) - xG(x) = x^3 - 2200x^2 + 1210000x$ với $x \\in [1; 1100]$, $x \\in \\mathbb{N}^*$.\nTa có $L'(x) = 3x^2 - 4400x + 1210000 = 0 \\Leftrightarrow x = \\dfrac{1100}{3} \\approx 366,67$ hoặc $x = 1100$.\nHàm số đạt cực đại tại $x = \\dfrac{1100}{3}$. So sánh $L(366) = 197\\,184\\,696$ đồng và $L(367) = 197\\,185\\,063$ đồng, suy ra cần sản xuất $367$ sản phẩm.",
+        "source": "Sở Long An 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "367",
+        "accepted_answers": [
+          "367"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 51,
+      "type": "short",
+      "prompt": "Một công ty đang triển khai chiến dịch quảng cáo sản phẩm mới. Số tiền đầu tư quảng cáo là $A$ (triệu đồng). Theo kết quả nghiên cứu thị trường, số lượng sản phẩm bán ra (đơn vị: sản phẩm) phụ thuộc vào chi phí quảng cáo theo hàm $q(A) = 1000 + \\dfrac{1013}{3}\\ln(1 + A)$. Biết rằng, chi phí sản xuất mỗi sản phẩm là $10$ triệu đồng và giá bán mỗi sản phẩm là $20$ triệu đồng. Giá trị lợi nhuận tối đa mà công ty có thể đạt được là bao nhiêu tỉ đồng (làm tròn kết quả đến hàng phần mười)?",
+      "points": 1,
+      "sort_order": 51,
+      "choices": [],
+      "settings": {
+        "explanation": "Tổng lợi nhuận là $L(A) = (20 - 10)q(A) - A = 10000 + \\dfrac{10130}{3}\\ln(1 + A) - A$ (triệu đồng) với $A \\ge 0$.\nĐạo hàm: $L'(A) = \\dfrac{10130}{3(1 + A)} - 1 = 0 \\Leftrightarrow A = \\dfrac{10127}{3}$.\nGiá trị cực đại là $L\\left(\\dfrac{10127}{3}\\right) \\approx 34058,5$ triệu đồng $\\approx 34,1$ tỉ đồng.",
+        "source": "Sở Quảng Ninh 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "34,1",
+        "accepted_answers": [
+          "34,1",
+          "34.1"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 52,
+      "type": "short",
+      "prompt": "Người quản lí của một khu chung cư có $100$ căn hộ cho thuê nhận thấy rằng tất cả các căn hộ sẽ có người thuê nếu giá thuê một căn hộ là $8$ triệu đồng một tháng. Một cuộc khảo sát thị trường cho thấy rằng, trung bình cứ mỗi lần tăng giá thuê căn hộ thêm $100$ nghìn đồng thì sẽ có thêm một căn hộ bị bỏ trống. Người quản lí nên đặt giá thuê (triệu đồng) mỗi căn hộ là bao nhiêu để doanh thu là lớn nhất?",
+      "points": 1,
+      "sort_order": 52,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $x$ ($x \\in \\mathbb{N}$, $0 \\le x \\le 100$) là số lần tăng $0,1$ triệu đồng mỗi căn hộ. Khi đó có $100 - x$ căn hộ được thuê với giá $8 + 0,1x$ triệu đồng.\nDoanh thu hàng tháng là $f(x) = (100 - x)(8 + 0,1x) = -0,1x^2 + 2x + 800$.\nTa có $f'(x) = -0,2x + 2 = 0 \\Leftrightarrow x = 10$. Vậy giá thuê tối ưu là $8 + 0,1 \\cdot 10 = 9$ triệu đồng/tháng.",
+        "source": "THPT Hoằng Hóa 2 - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "9",
+        "accepted_answers": [
+          "9"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 53,
+      "type": "short",
+      "prompt": "Một công ty sản xuất giày dép ước tính rằng tổng chi phí để sản xuất và bán hết $q$ đôi giày mỗi ngày là $C(q) = 0,01q^3 - 0,6q^2 + 50q + 2000$ (nghìn đồng). Giá bán mỗi đôi giày được xác định bởi hàm $h(q) = 600 - q$ (nghìn đồng). Biết rằng số giày của công ty sản xuất mỗi ngày đều được bán hết. Công ty nên sản xuất bao nhiêu đôi giày mỗi ngày để đạt lợi nhuận tối đa?",
+      "points": 1,
+      "sort_order": 53,
+      "choices": [],
+      "settings": {
+        "explanation": "Lợi nhuận mỗi ngày là $L(q) = q(600 - q) - (0,01q^3 - 0,6q^2 + 50q + 2000) = -0,01q^3 - 0,4q^2 + 550q - 2000$ ($q \\in \\mathbb{N}^*$).\nTa có $L'(q) = -0,03q^2 - 0,8q + 550 = 0 \\Leftrightarrow q \\approx 122,7$ (nhận nghiệm dương).\nSo sánh hai giá trị nguyên lân cận: $L(122) = 40987,92$ nghìn đồng $< L(123) = 40989,73$ nghìn đồng. Vậy cần sản xuất $123$ đôi giày mỗi ngày.",
+        "source": "Đề thi vào ĐHSPHN 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "123",
+        "accepted_answers": [
+          "123"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 54,
+      "type": "short",
+      "prompt": "Hai sinh viên Thành và Linh rủ nhau mở một công ty vận tải taxi điện. Hai bạn dự định sử dụng không quá $10$ xe. Nếu công ty sử dụng tối đa thời gian hoạt động của $x$ xe điện trên ($1 \\le x \\le 10$, $x \\in \\mathbb{N}$) thì doanh thu nhận được của số xe đó là $D(x) = x^3 - 4597x^2 + 50300x + 30000$ (triệu đồng), trong khi chi phí nạp điện, bảo dưỡng, phí cầu đường, thuế và thuê nhân công lái xe bình quân cho mỗi xe là $C(x) = 3x + 300 + \\dfrac{30000}{x}$ (triệu đồng). Hai bạn Thành và Linh cần ưu tiên tối đa cho bao nhiêu xe hoạt động thường xuyên để lợi nhuận công ty thu được là lớn nhất?",
+      "points": 1,
+      "sort_order": 54,
+      "choices": [],
+      "settings": {
+        "explanation": "Lợi nhuận công ty thu được là $f(x) = D(x) - xC(x) = x^3 - 4600x^2 + 50000x$ với $x \\in \\{1; 2; \\dots; 10\\}$.\nTa có $f'(x) = 3x^2 - 9200x + 50000 = 0 \\Leftrightarrow x \\approx 5,44$ (trong đoạn $[1; 10]$).\nSo sánh hai giá trị nguyên lân cận: $f(5) = 135125$ triệu đồng $> f(6) = 134616$ triệu đồng. Vậy cần ưu tiên cho $5$ xe hoạt động thường xuyên.",
+        "source": "Cụm Ninh Giang - Tứ Kỳ - Gia Lộc 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "5",
+        "accepted_answers": [
+          "5"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 55,
+      "type": "short",
+      "prompt": "Một hộ sản xuất kinh doanh hạt điều sấy mỗi ngày sản xuất được $x\\text{ kg}$ ($5 \\le x \\le 20$). Tổng chi phí sản xuất $x\\text{ kg}$ được cho bởi hàm chi phí $C(x) = x^3 - 3x^2 + 19x + 300$ (đơn vị: nghìn đồng). Giả sử hộ sản xuất này bán hết sản phẩm mỗi ngày với giá $316$ nghìn đồng/kg. Hỏi hộ sản xuất này cần sản xuất và bán ra mỗi ngày bao nhiêu kilôgam hạt điều để thu được lợi nhuận lớn nhất?",
+      "points": 1,
+      "sort_order": 55,
+      "choices": [],
+      "settings": {
+        "explanation": "Lợi nhuận mỗi ngày là $f(x) = 316x - C(x) = -x^3 + 3x^2 + 297x - 300$ với $5 \\le x \\le 20$.\nTa có $f'(x) = -3x^2 + 6x + 297 = 0 \\Leftrightarrow x = 11$ (nhận) hoặc $x = -9$ (loại).\nSo sánh $f(5) = 1135$, $f(11) = 1999$, $f(20) = -1160$. Vậy cần sản xuất và bán $11\\text{ kg}$ mỗi ngày.",
+        "source": "THPT Mai Trúc Loan - Hà Tĩnh 2025",
+        "level": "Nhận biết",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "11",
+        "accepted_answers": [
+          "11"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 56,
+      "type": "short",
+      "prompt": "Bảng giá cước của một hãng taxi $X$ được mô hình hóa bởi hàm số biểu thị mối liên hệ giữa $x$ (km) là quãng đường di chuyển và tổng số tiền tương ứng phải trả $f(x)$ (VNĐ) như sau: $f(x) = \\begin{cases} 10000x & (0 < x \\le 10) \\\\ 15000x - 50000 & (10 < x \\le 40) \\\\ 125000x + 50000 & (x > 40) \\end{cases}$. Nếu một người đi taxi của hãng $X$ phải trả số tiền xe là $475000\\text{ VNĐ}$ thì người đó đã đi quãng đường dài bao nhiêu kilômét?",
+      "points": 1,
+      "sort_order": 56,
+      "choices": [],
+      "settings": {
+        "explanation": "Xét các khoảng giá trị của hàm tổng cước $f(x)$:\n- Với $0 < x \\le 10$: $0 < f(x) \\le 100000$.\n- Với $10 < x \\le 40$: $100000 < f(x) \\le 15000 \\cdot 40 - 50000 = 550000$.\nVì $100000 < 475000 \\le 550000$ nên quãng đường $x \\in (10; 40]$ thỏa mãn $15000x - 50000 = 475000 \\Leftrightarrow 15000x = 525000 \\Leftrightarrow x = 35\\text{ km}$.",
+        "source": "THPT Triệu Quang Phục - Hưng Yên 2025",
+        "level": "Nhận biết",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "35",
+        "accepted_answers": [
+          "35"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 57,
+      "type": "short",
+      "prompt": "Một công ty xác định rằng tổng chi phí của họ, tính theo nghìn đô-la, để sản xuất $x$ mặt hàng là $C(x) = \\sqrt{5x^2 + 60}$, và công ty lên kế hoạch nâng sản lượng trong $t$ tháng kể từ nay theo hàm $x(t) = 20t + 40$. Tính tốc độ tăng của chi phí sau $4$ tháng kể từ nay? (Làm tròn kết quả đến hàng phần chục, đơn vị nghìn đô-la/tháng).",
+      "points": 1,
+      "sort_order": 57,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $C'(x) = \\dfrac{5x}{\\sqrt{5x^2 + 60}}$ và $x'(t) = 20$.\nTại thời điểm $t = 4$ tháng, sản lượng là $x(4) = 20 \\cdot 4 + 40 = 120$ mặt hàng.\nTheo quy tắc đạo hàm hàm hợp, tốc độ tăng của chi phí sau $4$ tháng là:\n$\\left(C(x(t))\\right)'\\big|_{t=4} = C'(x(4)) \\cdot x'(4) = \\dfrac{5 \\cdot 120}{\\sqrt{5 \\cdot 120^2 + 60}} \\cdot 20 = \\dfrac{12000}{\\sqrt{72060}} \\approx 44,70 \\approx 44,7$ nghìn đô-la/tháng.",
+        "source": "Cụm Chương Mỹ - Thanh Oai 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "44,7",
+        "accepted_answers": [
+          "44,7",
+          "44.7"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 58,
+      "type": "short",
+      "prompt": "Cho $C(x) = 16000 + 500x - 1,6x^2 + 0,004x^3$ là hàm chi phí và $p(x) = 1700 - 7x$ là hàm cầu. Hãy tìm mức sản xuất (tính theo đơn vị hàng hóa) sẽ tối đa hóa lợi nhuận.",
+      "points": 1,
+      "sort_order": 58,
+      "choices": [],
+      "settings": {
+        "explanation": "Hàm lợi nhuận là $P(x) = x p(x) - C(x) = -0,004x^3 - 5,4x^2 + 1200x - 16000$ với $x \\ge 0$.\nTa có $P'(x) = -0,012x^2 - 10,8x + 1200 = 0 \\Leftrightarrow x = 100$ (nhận nghiệm không âm).\nLập bảng biến thiên trên $[0; +\\infty)$ thấy $P(x)$ đạt cực đại tại $x = 100$. Vậy mức sản xuất tối ưu là $100$ đơn vị hàng hóa.",
+        "source": "Cụm Chuyên Môn Đăk Lak 2025",
+        "level": "Nhận biết",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "100",
+        "accepted_answers": [
+          "100"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 59,
+      "type": "short",
+      "prompt": "Một doanh nghiệp cần sản xuất một mặt hàng trong đúng $10$ ngày và phải sử dụng hai máy $A$ và $B$. Máy $A$ làm việc trong $x$ ngày và cho số tiền lãi là $x^2 + 2x$ (triệu đồng), máy $B$ làm việc trong $y$ ngày và cho số tiền lãi là $326y - 27y^2$ (triệu đồng). Hỏi doanh nghiệp đó cần sử dụng máy $A$ trong bao nhiêu ngày sao cho số tiền lãi là nhiều nhất? (Biết rằng hai máy $A$ và $B$ không đồng thời làm việc, máy $B$ làm việc không quá $6$ ngày).",
+      "points": 1,
+      "sort_order": 59,
+      "choices": [],
+      "settings": {
+        "explanation": "Theo đề bài, $x + y = 10 \\Rightarrow y = 10 - x$. Vì $0 \\le y \\le 6$ nên $4 \\le x \\le 10$ ($x \\in \\mathbb{N}$).\nTổng tiền lãi là $f(x) = x^2 + 2x + 326(10 - x) - 27(10 - x)^2 = -26x^2 + 216x + 560$.\nTa có $f'(x) = -52x + 216 = 0 \\Leftrightarrow x = \\dfrac{54}{13} \\approx 4,15 \\in [4; 10]$.\nVì $x$ nguyên, so sánh $f(4) = 1008$ và $f(5) = 990$. Vậy cần sử dụng máy $A$ trong $4$ ngày.",
+        "source": "THPT Phúc Thọ - Hà Nội 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "4",
+        "accepted_answers": [
+          "4"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 60,
+      "type": "short",
+      "prompt": "Một doanh nghiệp kinh doanh một loại sản phẩm $T$ được sản xuất trong nước. Qua nghiên cứu thấy rằng nếu chi phí sản xuất mỗi sản phẩm $T$ là $x$ (USD) thì số sản phẩm $T$ các nhà máy sản xuất sẽ là $R(x) = x - 200$ và số sản phẩm $T$ mà doanh nghiệp bán được trên thị trường trong nước sẽ là $Q(x) = 4200 - x$. Số sản phẩm còn dư doanh nghiệp xuất khẩu ra thị trường quốc tế với giá bán mỗi sản phẩm ổn định trên thị trường quốc tế là $x_0 = 3200$ USD. Nhà nước đánh thuế trên mỗi sản phẩm xuất khẩu là $a$ (USD) và luôn đảm bảo tỉ lệ giữa lãi xuất khẩu của doanh nghiệp và thuế thu được của nhà nước tương ứng là $4:1$. Hãy xác định giá trị của $a$ biết lãi mà doanh nghiệp thu được do xuất khẩu là nhiều nhất.",
+      "points": 1,
+      "sort_order": 60,
+      "choices": [],
+      "settings": {
+        "explanation": "Số sản phẩm xuất khẩu là $R(x) - Q(x) = 2x - 4400$ với điều kiện $2200 < x < 4200$.\nTừ tỉ lệ $L(x) : T(x) = (3200 - x - a) : a = 4 : 1$ suy ra $a = \\dfrac{3200 - x}{5}$.\nKhi đó $L(x) = \\dfrac{4}{5}(2x - 4400)(3200 - x)$, đạt giá trị lớn nhất tại $x = \\dfrac{2200 + 3200}{2} = 2700 \\in (2200; 4200)$.\nSuy ra $a = \\dfrac{3200 - 2700}{5} = 100$.",
+        "source": "Sở Bình Phước 2025",
+        "level": "Vận dụng",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "100",
+        "accepted_answers": [
+          "100"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 61,
+      "type": "short",
+      "prompt": "Nhà máy $A$ chuyên sản xuất một loại sản phẩm cho nhà máy $B$. Hai nhà máy thỏa thuận rằng: hằng tháng nhà máy $A$ cung cấp cho nhà máy $B$ sản phẩm đó theo đơn đặt hàng của nhà máy $B$ với số lượng tối đa là $100$ tấn sản phẩm. Nếu số lượng đặt hàng là $x$ tấn sản phẩm thì giá bán cho mỗi tấn sản phẩm là $P(x) = 45 - 0,001x^2$ (triệu đồng). Chi phí để nhà máy $A$ sản xuất $x$ tấn sản phẩm trong một tháng là $C(x) = 100 + 30x$ (triệu đồng), gồm $100$ triệu đồng chi phí cố định và $30$ triệu đồng cho mỗi tấn sản phẩm. Hỏi nhà máy $A$ bán cho nhà máy $B$ bao nhiêu tấn sản phẩm mỗi tháng thì thu được lợi nhuận lớn nhất? (Kết quả làm tròn đến một chữ số thập phân).",
+      "points": 1,
+      "sort_order": 61,
+      "choices": [],
+      "settings": {
+        "explanation": "Lợi nhuận hàng tháng của nhà máy $A$ là $f(x) = x(45 - 0,001x^2) - (100 + 30x) = -0,001x^3 + 15x - 100$ trên $[0; 100]$.\nĐạo hàm $f'(x) = -0,003x^2 + 15 = 0 \\Leftrightarrow x = 50\\sqrt{2} \\in [0; 100]$.\nSo sánh $f(0) = -100$, $f(50\\sqrt{2}) \\approx 607,1$, $f(100) = 400$, suy ra cần bán $50\\sqrt{2} \\approx 70,7$ tấn sản phẩm.",
+        "source": "Chuyên Lương Thế Vinh - Đồng Nai 2025",
+        "level": "Nhận biết",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "70,7",
+        "accepted_answers": [
+          "70,7",
+          "70.7"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 62,
+      "type": "short",
+      "prompt": "Mỗi tuần, một cửa hàng bán điện thoại di động trung bình bán được $1000$ điện thoại $A$ với giá $14$ triệu đồng một cái. Biết rằng, nếu cứ giảm giá bán $500$ nghìn đồng/$1$ cái, số lượng điện thoại $A$ bán ra sẽ tăng thêm khoảng $100$ cái mỗi tuần. Biết rằng nếu bán $x$ cái điện thoại $A$ thì giá mỗi cái là $p(x)$ (triệu đồng) và hàm chi phí hàng tuần $C(x) = 12000 - 3x$ (triệu đồng). Để lợi nhuận là lớn nhất, cửa hàng nên bán mỗi cái điện thoại $A$ với giá bao nhiêu (triệu đồng)?",
+      "points": 1,
+      "sort_order": 62,
+      "choices": [],
+      "settings": {
+        "explanation": "Hàm cầu tuyến tính $p(x) = ax + b$ đi qua $(1000; 14)$ và $(1100; 13,5)$, suy ra $a = -\\dfrac{1}{200}$, $b = 19$, tức $p(x) = -\\dfrac{1}{200}x + 19$.\nLợi nhuận hàng tuần là $P(x) = x p(x) - C(x) = -\\dfrac{x^2}{200} + 19x - (12000 - 3x) = -\\dfrac{x^2}{200} + 22x - 12000$.\nTa có $P'(x) = -\\dfrac{x}{100} + 22 = 0 \\Leftrightarrow x = 2200$. Giá bán tối ưu là $p(2200) = -\\dfrac{2200}{200} + 19 = 8$ triệu đồng.",
+        "source": "Chuyên Lam Sơn - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "8",
+        "accepted_answers": [
+          "8"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 63,
+      "type": "short",
+      "prompt": "Một công ty sản xuất dụng cụ thể thao nhận được một đơn đặt hàng sản xuất $8000$ quả bóng tennis. Công ty này sở hữu một số máy móc, mỗi máy có thể sản xuất $30$ quả bóng trong một giờ. Chi phí thiết lập các máy này là $200$ nghìn đồng cho mỗi máy. Khi được thiết lập, hoạt động sản xuất sẽ hoàn toàn diễn ra tự động dưới sự giám sát. Số tiền phải trả cho người giám sát là $192$ nghìn đồng một giờ. Tính chi phí hoạt động thấp nhất (đơn vị nghìn đồng).",
+      "points": 1,
+      "sort_order": 63,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $x$ ($x \\in \\mathbb{N}^*$) là số máy móc sử dụng. Thời gian sản xuất $8000$ quả bóng là $\\dfrac{8000}{30x}$ (giờ).\nTổng chi phí hoạt động là $P(x) = 200x + 192 \\cdot \\dfrac{8000}{30x} = 200x + \\dfrac{51200}{x}$ (nghìn đồng).\nTa có $P'(x) = 200 - \\dfrac{51200}{x^2} = 0 \\Leftrightarrow x = 16$ (do $x > 0$).\nChi phí thấp nhất là $P(16) = 200 \\cdot 16 + \\dfrac{51200}{16} = 6400$ nghìn đồng.",
+        "source": "THPT Bắc Đông Quan - Thái Bình 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "6400",
+        "accepted_answers": [
+          "6400"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 64,
+      "type": "short",
+      "prompt": "Một nhà hàng bán buffet hải sản. Khi nhà hàng bán với giá $300$ ngàn đồng một suất thì mỗi ngày nhà hàng bán được $100$ suất. Nhà hàng dự định có đợt giảm giá bán để kích cầu trong dịp cuối năm. Theo khảo sát từ thị trường thì mỗi lần giảm giá $10$ ngàn đồng một suất thì nhà hàng bán thêm được $10$ suất. Hỏi nhà hàng cần bán với giá mới là bao nhiêu ngàn đồng một suất để doanh thu trong một ngày là lớn nhất?",
+      "points": 1,
+      "sort_order": 64,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $x$ ($0 \\le x < 30$) là số lần giảm $10$ ngàn đồng mỗi suất. Khi đó giá mới là $300 - 10x$ ngàn đồng và số suất bán được là $100 + 10x$.\nDoanh thu là $f(x) = (300 - 10x)(100 + 10x) = -100x^2 + 2000x + 30000$.\nTa có $f'(x) = -200x + 2000 = 0 \\Leftrightarrow x = 10$. Vậy giá bán mới là $300 - 10 \\cdot 10 = 200$ ngàn đồng/suất.",
+        "source": "Liên trường THPT Ninh Bình 2025",
+        "level": "Thông hiểu",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "200",
+        "accepted_answers": [
+          "200"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 65,
+      "type": "short",
+      "prompt": "Tại một nhà máy, khi sản xuất và bán ra $x$ sản phẩm $A$ ($0 \\le x \\le 250$) trong một tháng thì tổng chi phí mà nhà máy phải trả là $C(x) = 0,00024x^3 - 0,03x^2 + 5x + 30$ (triệu đồng) và doanh thu tương ứng là $D(x) = -0,01x^2 + 16x - 25$ (triệu đồng). Hỏi trong một tháng, lợi nhuận lớn nhất mà nhà máy đó có thể thu được nhờ vào sản xuất và bán sản phẩm $A$ bằng bao nhiêu triệu đồng? (Làm tròn kết quả đến hàng đơn vị).",
+      "points": 1,
+      "sort_order": 65,
+      "choices": [],
+      "settings": {
+        "explanation": "Lợi nhuận hàng tháng là $R(x) = D(x) - C(x) = -0,00024x^3 + 0,02x^2 + 11x - 55$ trên $[0; 250]$.\nTa có $R'(x) = -0,00072x^2 + 0,04x + 11 = 0 \\Leftrightarrow x = \\dfrac{250 + 100\\sqrt{130}}{9} \\approx 154,46 \\in [0; 250]$.\nTính giá trị nguyên lân cận: $R(154) \\approx 1236,78$ và $R(155) \\approx 1236,77$ (và $R(0) = -55$, $R(250) = 195$). Làm tròn đến hàng đơn vị ta được $1237$ triệu đồng.",
+        "source": "Sở Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "short-kinhte"
+      },
+      "answer_key": {
+        "correct_answer": "1237",
+        "accepted_answers": [
+          "1237"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    }
+  ]
+}

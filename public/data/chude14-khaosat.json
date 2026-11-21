@@ -1,0 +1,1864 @@
+{
+  "pack_id": "chude14-khaosat",
+  "title": "Chủ đề 14 · Khảo sát hàm số (2025)",
+  "chapter": "GĐ1 · Chương 1",
+  "count": 64,
+  "questions": [
+    {
+      "source_num": 1,
+      "type": "mcq",
+      "prompt": "Một vật chuyển động theo quy luật $s = \\frac{1}{3}t^3 - t^2 + 9t$, với $t$ (giây) là khoảng thời gian tính từ lúc vật bắt đầu chuyển động và $s$ (mét) là quãng đường đi được trong thời gian đó. Hỏi trong khoảng thời gian $10$ giây kể từ lúc bắt đầu chuyển động, vận tốc lớn nhất của vật đạt được bằng bao nhiêu?",
+      "points": 1,
+      "sort_order": 1,
+      "choices": [
+        "$89\\text{ (m/s)}$.",
+        "$71\\text{ (m/s)}$.",
+        "$109\\text{ (m/s)}$.",
+        "$\\frac{25}{3}\\text{ (m/s)}$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Ta có vận tốc $v(t) = s'(t) = t^2 - 2t + 9$ trên $[0; 10]$. Đạo hàm $v'(t) = 2t - 2 = 0 \\Leftrightarrow t = 1 \\in [0; 10]$. Ta có $v(0) = 9$, $v(1) = 8$, $v(10) = 89$. Vậy $\\max_{[0; 10]} v(t) = v(10) = 89\\text{ (m/s)}$.",
+        "source": "THPT Hàm Rồng - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 2,
+      "type": "mcq",
+      "prompt": "Đường cong trong hình vẽ bên là của đồ thị hàm số nào trong các hàm số được cho bởi các phương án A, B, C, D dưới đây?\n![Hình Câu 2](/bank-images/chude14/q2_full.png)",
+      "points": 1,
+      "sort_order": 2,
+      "choices": [
+        "$y = \\frac{2x - 1}{x - 1}$.",
+        "$y = \\frac{-x + 1}{x + 1}$.",
+        "$y = \\frac{2x - 2}{2x + 1}$.",
+        "$y = \\frac{x + 1}{x - 1}$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Dựa vào đồ thị hàm số ta có đường tiệm cận đứng là $x = 1$ và đường tiệm cận ngang là $y = 1$. Chỉ có hàm số $y = \\frac{x + 1}{x - 1}$ thỏa mãn.",
+        "source": "THPT Lương Tài 2 - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 3,
+      "type": "mcq",
+      "prompt": "Phương trình tiếp tuyến của đồ thị hàm số $y = x^3 - 3x$ tại điểm có hoành độ bằng $2$ là:",
+      "points": 1,
+      "sort_order": 3,
+      "choices": [
+        "$y = -9x + 16$.",
+        "$y = 9x - 16$.",
+        "$y = 9x - 20$.",
+        "$y = -9x + 20$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Tiếp điểm của tiếp tuyến với đồ thị là $M(2; 2)$. Ta có $y' = 3x^2 - 3 \\Rightarrow k = y'(2) = 9$. Phương trình tiếp tuyến tại $M$ là $y = 9(x - 2) + 2 = 9x - 16$.",
+        "source": "THPT Văn Giang - Hưng Yên 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 4,
+      "type": "mcq",
+      "prompt": "Cho hàm số bậc ba $y = f(x)$ có đồ thị là đường cong trong hình dưới đây:\n![Hình Câu 4](/bank-images/chude14/q4_p0.jpg)\nSố nghiệm thực của phương trình $f(x) = 3$ là:",
+      "points": 1,
+      "sort_order": 4,
+      "choices": [
+        "$3$.",
+        "$0$.",
+        "$2$.",
+        "$1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Số nghiệm thực của phương trình $f(x) = 3$ là số giao điểm của đồ thị hàm số $y = f(x)$ và đường thẳng $y = 3$. Đường thẳng $y = 3$ nằm phía trên điểm cực đại (tung độ $2$) nên cắt đồ thị tại đúng $1$ điểm.",
+        "source": "THPT Văn Giang - Hưng Yên 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 5,
+      "type": "mcq",
+      "prompt": "Cho hàm số $y = \\frac{ax + b}{cx + d}$ có đồ thị là đường cong như hình vẽ bên.\n![Hình Câu 5](/bank-images/chude14/q5_p0.jpg)\nTọa độ tâm đối xứng của đồ thị hàm số đã cho là:",
+      "points": 1,
+      "sort_order": 5,
+      "choices": [
+        "$\\left(0; \\frac{1}{2}\\right)$.",
+        "$(1; 0)$.",
+        "$\\left(\\frac{1}{2}; 1\\right)$.",
+        "$\\left(1; \\frac{1}{2}\\right)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Đồ thị hàm số có tiệm cận đứng $x = 1$ và tiệm cận ngang $y = \\frac{1}{2}$. Do đó tâm đối xứng của đồ thị là $I\\left(1; \\frac{1}{2}\\right)$.",
+        "source": "THPT Tiên Du - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 6,
+      "type": "mcq",
+      "prompt": "Cho hàm số $y = \\frac{ax + b}{cx + d}$ có đồ thị là đường cong như hình vẽ bên.\n![Hình Câu 6](/bank-images/chude14/q6_p0.png)\nTọa độ giao điểm của đồ thị hàm số với trục hoành là:",
+      "points": 1,
+      "sort_order": 6,
+      "choices": [
+        "$(0; 2)$.",
+        "$(0; 1)$.",
+        "$(1; 0)$.",
+        "$(2; 0)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Quan sát đồ thị ta thấy đường cong cắt trục hoành $Ox$ tại điểm có tọa độ $(2; 0)$.",
+        "source": "THPT Tiên Du - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 7,
+      "type": "mcq",
+      "prompt": "Hàm số nào dưới đây có đồ thị như hình vẽ sau?\n![Hình Câu 7](/bank-images/chude14/q7_p0.jpg)",
+      "points": 1,
+      "sort_order": 7,
+      "choices": [
+        "$y = \\frac{x}{x + 1}$.",
+        "$y = -\\frac{x}{x - 1}$.",
+        "$y = -\\frac{x}{x + 1}$.",
+        "$y = \\frac{x}{x - 1}$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Đường tiệm cận đứng của đồ thị hàm số là $x = 1$ (loại A, C); đường tiệm cận ngang là $y = 1$ (loại B). Vậy chọn D.",
+        "source": "THPT Nguyễn Đăng Đạo - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 8,
+      "type": "mcq",
+      "prompt": "Đồ thị của hàm số nào dưới đây có dạng đường cong như hình bên?\n![Hình Câu 8](/bank-images/chude14/q8_p0.png)",
+      "points": 1,
+      "sort_order": 8,
+      "choices": [
+        "$y = x^3 - 3x^2 - 1$.",
+        "$y = \\frac{x^2 - 3x + 1}{x - 1}$.",
+        "$y = -x^3 + 3x^2 - 1$.",
+        "$y = \\frac{x + 1}{x - 1}$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Đồ thị hàm số có hai điểm cực trị và không có tiệm cận (hàm bậc ba), nhánh cuối cùng đi xuống nên $a < 0$. Vậy chọn $y = -x^3 + 3x^2 - 1$.",
+        "source": "THPT Gia Bình - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 9,
+      "type": "mcq",
+      "prompt": "Đồ thị sau đây là của hàm số nào?\n![Hình Câu 9](/bank-images/chude14/q9_p0.jpg)",
+      "points": 1,
+      "sort_order": 9,
+      "choices": [
+        "$y = -x^3 - 3x^2 - 4$.",
+        "$y = x^3 + 3x^2 - 4$.",
+        "$y = x^3 - 3x - 4$.",
+        "$y = -x^3 + 3x^2 - 4$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Đồ thị là hàm bậc ba $y = ax^3 + bx^2 + cx + d$ có $\\lim_{x \\to +\\infty} y = -\\infty \\Rightarrow a < 0$ (loại B, C). Hàm số đạt cực trị tại $x = 0$ và $x = 2$, và $y(0) = -4$, nên hàm số là $y = -x^3 + 3x^2 - 4$.",
+        "source": "THPT Thạch Thành 1 - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 10,
+      "type": "mcq",
+      "prompt": "Một doanh nghiệp sản xuất với số lượng là $x$ sản phẩm ($x \\in \\mathbb{N}$) và thu được lợi nhuận $f(x)$ được biểu thị bởi bảng biến thiên như sau.\n![Hình Câu 10](/bank-images/chude14/q10_p0.png)\nHỏi doanh nghiệp sản xuất bao nhiêu sản phẩm trở đi thì lợi nhuận bắt đầu giảm?",
+      "points": 1,
+      "sort_order": 10,
+      "choices": [
+        "$201$.",
+        "$200$.",
+        "$101$.",
+        "$100$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Dựa vào bảng biến thiên, lợi nhuận đạt cực đại tại $x = 200$ và nghịch biến trên $(200; +\\infty)$. Vì $x \\in \\mathbb{N}$ nên từ sản phẩm thứ $201$ trở đi lợi nhuận bắt đầu giảm.",
+        "source": "THPT Chuyên Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 11,
+      "type": "mcq",
+      "prompt": "Đường cong ở hình sau là đồ thị của một trong bốn hàm số dưới đây. Hàm số đó là hàm số nào?\n![Hình Câu 11](/bank-images/chude14/q11_p0.jpg)",
+      "points": 1,
+      "sort_order": 11,
+      "choices": [
+        "$y = x^3 - 3x + 2$.",
+        "$y = x^3 - 3x^2 + 2$.",
+        "$y = x^3 - 6x + 2$.",
+        "$y = -x^3 + 3x^2 + 2$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Đồ thị là hàm bậc ba có $a > 0$ (loại D), có hai điểm cực trị là $(0; 2)$ và $(2; -2)$ nên chọn $y = x^3 - 3x^2 + 2$.",
+        "source": "THPT Nguyễn Viết Xuân - Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 12,
+      "type": "mcq",
+      "prompt": "Số giao điểm của đồ thị hàm số $y = x^3 - 3x^2 + 2x$ với trục $Ox$ là:",
+      "points": 1,
+      "sort_order": 12,
+      "choices": [
+        "$2$.",
+        "$0$.",
+        "$3$.",
+        "$1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Phương trình hoành độ giao điểm với trục $Ox$: $x^3 - 3x^2 + 2x = 0 \\Leftrightarrow x(x^2 - 3x + 2) = 0 \\Leftrightarrow x \\in \\{0; 1; 2\\}$. Vậy đồ thị cắt trục $Ox$ tại $3$ điểm.",
+        "source": "THPT Nguyễn Viết Xuân - Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 13,
+      "type": "mcq",
+      "prompt": "Trong các hàm số sau đây, hàm số nào có đồ thị như hình vẽ?\n![Hình Câu 13](/bank-images/chude14/q13_p0.jpg)",
+      "points": 1,
+      "sort_order": 13,
+      "choices": [
+        "$y = -x^3 + 3x$.",
+        "$y = -x^3 + 3x + 1$.",
+        "$y = x^3 - 3x + 1$.",
+        "$y = -x^3 + 2$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Đồ thị là hàm bậc ba có $a < 0$ (loại C), cắt trục $Oy$ tại $(0; 1)$ (loại A, D) và đạt cực đại tại $(1; 3)$, cực tiểu tại $(-1; -1)$. Vậy chọn $y = -x^3 + 3x + 1$.",
+        "source": "THPT Thuận Thành 1&2 - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 14,
+      "type": "mcq",
+      "prompt": "Cho hàm số $y = \\frac{ax + b}{cx + d}$ ($a, b, c, d \\in \\mathbb{R}$) có bảng biến thiên như sau:\n![Hình Câu 14](/bank-images/chude14/q14_p0.jpg)\nSố giá trị nguyên của $b \\in [-2; 3]$ bằng:",
+      "points": 1,
+      "sort_order": 14,
+      "choices": [
+        "$6$.",
+        "$10$.",
+        "$4$.",
+        "$5$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Từ bảng biến thiên: tiệm cận đứng $x = -\\frac{d}{c} = -1 \\Leftrightarrow c = d$; tiệm cận ngang $y = \\frac{a}{c} = 2 \\Leftrightarrow a = 2c$. Do đó $y = \\frac{2cx + b}{cx + c}$. Hàm số đồng biến trên từng khoảng xác định nên $2c^2 - cb > 0$. Với mỗi giá trị $b$ luôn tồn tại $c \\neq 0$ (chọn $c$ cùng dấu hoặc đủ lớn) để $c(2c - b) > 0$. Vậy mọi $b \\in [-2; 3] \\cap \\mathbb{Z} = \\{-2; -1; 0; 1; 2; 3\\}$ đều thỏa mãn, có $6$ giá trị.",
+        "source": "THPT Thuận Thành 1&2 - Bắc Ninh 2025",
+        "level": "Thông hiểu",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 2: Xét dấu hệ số",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 15,
+      "type": "mcq",
+      "prompt": "Tọa độ điểm cực tiểu của đồ thị hàm số $y = \\frac{1}{3}x^3 - 2x^2 + 3x - 1$ là:",
+      "points": 1,
+      "sort_order": 15,
+      "choices": [
+        "$\\left(4; \\frac{7}{3}\\right)$.",
+        "$(3; -1)$.",
+        "$\\left(1; \\frac{7}{3}\\right)$.",
+        "$(0; -1)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Ta có $y' = x^2 - 4x + 3 = 0 \\Leftrightarrow x = 1$ hoặc $x = 3$; $y'' = 2x - 4$. Vì $y''(3) = 2 > 0$ nên hàm số đạt cực tiểu tại $x = 3$ và $y_{\\text{CT}} = y(3) = -1$. Vậy điểm cực tiểu của đồ thị là $(3; -1)$.",
+        "source": "THPT Thuận Thành 1&2 - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 16,
+      "type": "mcq",
+      "prompt": "Đường cong ở hình dưới đây là đồ thị của hàm số nào?\n![Hình Câu 16](/bank-images/chude14/q16_p0.jpg)",
+      "points": 1,
+      "sort_order": 16,
+      "choices": [
+        "$y = \\frac{x^2 - 4x + 5}{x - 2}$.",
+        "$y = \\frac{x^2 - 4x - 1}{x + 1}$.",
+        "$y = \\frac{x^2 - x + 1}{x - 1}$.",
+        "$y = \\frac{x^2 + x - 1}{x - 1}$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Đồ thị có tiệm cận đứng $x = 1$ (loại A, B) và đi qua điểm $(0; -1)$ (loại D vì $y(0) = 1$). Vậy chọn $y = \\frac{x^2 - x + 1}{x - 1}$.",
+        "source": "THPT Diễn Châu 5 - Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 17,
+      "type": "mcq",
+      "prompt": "Cho hàm số $y = f(x) = ax^3 + bx^2 + cx + d$ ($a \\neq 0$) có đồ thị như hình vẽ.\n![Hình Câu 17](/bank-images/chude14/q17_p0.jpg)\nSố nghiệm của phương trình $f(x) = -2$ là:",
+      "points": 1,
+      "sort_order": 17,
+      "choices": [
+        "$2$.",
+        "$0$.",
+        "$1$.",
+        "$3$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Đường thẳng $y = -2$ nằm giữa tung độ cực tiểu ($-3$) và tung độ cực đại ($1$), nên cắt đồ thị hàm số tại $3$ điểm phân biệt. Vậy phương trình $f(x) = -2$ có $3$ nghiệm.",
+        "source": "THPT Hùng Vương - Bình Thuận 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 18,
+      "type": "mcq",
+      "prompt": "Cho hàm số $y = f(x)$ liên tục trên $\\mathbb{R}$ và có đồ thị như hình vẽ.\n![Hình Câu 18](/bank-images/chude14/q18_p0.jpg)\nPhương trình $f(x) = 0$ có bao nhiêu nghiệm thực phân biệt?",
+      "points": 1,
+      "sort_order": 18,
+      "choices": [
+        "$2$.",
+        "$1$.",
+        "$3$.",
+        "$0$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Nhìn vào đồ thị ta thấy đồ thị hàm số $y = f(x)$ có hai điểm chung phân biệt với trục hoành $Ox$ (tiếp xúc tại $x = 0$ và cắt tại $x = 3$) nên phương trình $f(x) = 0$ có $2$ nghiệm phân biệt.",
+        "source": "THPT Lý Thường Kiệt - Hà Nội 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 19,
+      "type": "mcq",
+      "prompt": "Cho hàm số $y = \\frac{ax + b}{cx + d}$ với $a, b, c, d \\in \\mathbb{R}$ có đồ thị như hình vẽ. Mệnh đề nào đúng?\n![Hình Câu 19](/bank-images/chude14/q19_p0.jpg)",
+      "points": 1,
+      "sort_order": 19,
+      "choices": [
+        "$y' > 0, \\forall x \\neq 1$.",
+        "$y' > 0, \\forall x \\in \\mathbb{R}$.",
+        "$y' < 0, \\forall x \\in \\mathbb{R}$.",
+        "$y' < 0, \\forall x \\neq 1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Dựa vào đồ thị ta thấy hàm số có tiệm cận đứng $x = 1$ (tập xác định $\\mathbb{R} \\setminus \\{1\\}$) và cả hai nhánh đều đi xuống từ trái sang phải, tức nghịch biến trên từng khoảng xác định: $y' < 0, \\forall x \\neq 1$.",
+        "source": "THPT Nguyễn Khuyến - Lê Thánh Tông 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 20,
+      "type": "mcq",
+      "prompt": "Cho hàm số $y = \\frac{ax + b}{x + c}$ có đồ thị như hình sau đây.\n![Hình Câu 20](/bank-images/chude14/q20_p0.jpg)\nTính giá trị của biểu thức $P = 2a - b + 3c$.",
+      "points": 1,
+      "sort_order": 20,
+      "choices": [
+        "$6$.",
+        "$-6$.",
+        "$10$.",
+        "$-2$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Từ đồ thị ta có: tiệm cận đứng $x = 2 \\Rightarrow -c = 2 \\Leftrightarrow c = -2$; tiệm cận ngang $y = 1 \\Rightarrow a = 1$. Khi đó $y = \\frac{x + b}{x - 2}$. Đồ thị đi qua $(0; -1)$ nên $\\frac{b}{-2} = -1 \\Leftrightarrow b = 2$. Vậy $P = 2(1) - 2 + 3(-2) = -6$.",
+        "source": "Chuyên Phan Bội Châu - Nghệ An 2025",
+        "level": "Thông hiểu",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 2: Xét dấu hệ số",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 21,
+      "type": "mcq",
+      "prompt": "Trong mặt phẳng $Oxy$, cho đường tròn $(C): (x - 1)^2 + (y - 2)^2 = 4$. Đường thẳng $d_1: mx + y - m - 1 = 0$ cắt đường tròn $(C)$ tại $M, N$ và đường thẳng $d_2: x - my + m - 1 = 0$ cắt đường tròn $(C)$ tại $P, Q$. Diện tích lớn nhất của tứ giác có $4$ đỉnh $M, N, P, Q$ bằng:",
+      "points": 1,
+      "sort_order": 21,
+      "choices": [
+        "$7$.",
+        "$8$.",
+        "$14$.",
+        "$2$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Đường tròn $(C)$ có tâm $I(1; 2)$, bán kính $R = 2$. Hai đường thẳng $d_1 \\perp d_2$ nên $S_{MPNQ} = \\frac{1}{2}MN \\cdot PQ$. Ta có $MN = 2\\sqrt{4 - \\frac{1}{m^2 + 1}} = 2\\sqrt{\\frac{4m^2 + 3}{m^2 + 1}}$ và $PQ = 2\\sqrt{4 - \\frac{m^2}{m^2 + 1}} = 2\\sqrt{\\frac{3m^2 + 4}{m^2 + 1}}$. Suy ra $S_{MPNQ} = 4\\sqrt{\\frac{12m^4 + 25m^2 + 12}{4(m^2 + 1)^2}}$. Đặt $t = m^2 \\ge 0$, khảo sát $f(t) = \\frac{12t^2 + 25t + 12}{4t^2 + 8t + 4}$ đạt cực đại bằng $\\frac{49}{16}$ tại $t = 1$. Vậy $\\max S_{MPNQ} = 4 \\cdot \\frac{7}{4} = 7$ khi $m = \\pm 1$.",
+        "source": "HSG Hải Phòng 2025",
+        "level": "Vận dụng",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 22,
+      "type": "mcq",
+      "prompt": "Cho hàm số $y = \\frac{ax^2 + bx + 1}{cx + 2}$ (với $a, b, c \\in \\mathbb{R}, a, c \\neq 0$) có đồ thị là đường cong trong hình vẽ bên. Giá trị biểu thức $T = 2a + 3b - c$ là:\n![Hình Câu 22](/bank-images/chude14/q22_p0.jpg)",
+      "points": 1,
+      "sort_order": 22,
+      "choices": [
+        "$T = 11$.",
+        "$T = 8$.",
+        "$T = 9$.",
+        "$T = 10$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Tiệm cận đứng $x = -2 \\Rightarrow -\\frac{2}{c} = -2 \\Leftrightarrow c = 1$. Khi đó $y = \\frac{ax^2 + bx + 1}{x + 2}$ có tiệm cận xiên $y = ax + (b - 2a)$. Từ đồ thị, tiệm cận xiên đi qua $(-1; 0)$ và $(0; 1)$ nên có phương trình $y = x + 1$. Suy ra $a = 1$ và $b - 2a = 1 \\Rightarrow b = 3$. Vậy $T = 2(1) + 3(3) - 1 = 10$.",
+        "source": "HSG Hải Phòng 2025",
+        "level": "Thông hiểu",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 2: Xét dấu hệ số",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 23,
+      "type": "mcq",
+      "prompt": "Kính viễn vọng không gian Hubble được đưa vào vũ trụ ngày 24/04/1990 bằng tàu con thoi Discovery. Vận tốc của tàu con thoi tại thời điểm $t = 0\\text{ (s)}$ cho đến khi tên lửa đẩy được phóng đi tại thời điểm $t = 126\\text{ (s)}$, cho bởi hàm số $v(t) = 0{,}001302t^3 - 0{,}09029t^2 + 23$ ($v$ được tính bằng $\\text{ft/s}$ và $1\\text{ feet} = 0{,}3048\\text{ m}$, $t$ được tính bằng giây).\n![Hình Câu 23](/bank-images/chude14/q23_p0.jpg)\nGia tốc của tàu con thoi sẽ tăng từ giây thứ bao nhiêu (làm tròn đến hàng đơn vị) tính từ thời điểm $t = 0$ cho đến khi tên lửa đẩy được phóng đi?",
+      "points": 1,
+      "sort_order": 23,
+      "choices": [
+        "$0$.",
+        "$46$.",
+        "$23$.",
+        "$126$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Gia tốc của tàu con thoi là $a(t) = v'(t) = 0{,}003906t^2 - 0{,}18058t$ trên $[0; 126]$. Ta có $a'(t) = 0{,}007812t - 0{,}18058 = 0 \\Leftrightarrow t \\approx 23{,}12$. Do $a'(t) > 0$ trên $(23{,}12; 126)$, gia tốc bắt đầu tăng từ khoảng giây thứ $23$.",
+        "source": "HSG Vũng Tàu 2025",
+        "level": "Thông hiểu",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 24,
+      "type": "mcq",
+      "prompt": "Một tấm bạt hình vuông cạnh $20\\text{ m}$ như hình vẽ bên dưới. Người ta dự định cắt phần tô đậm của tấm bạt rồi gập và mai lại nhằm mục đích phủ lên tháp đèn trang trí để tránh hư hại tháp khi trời mưa. Biết khối chóp hình thành sau khi gấp và mai lại cần thể tích lớn nhất thì mới phủ kính tháp đèn. Phần diện tích tấm bạt bị cắt theo yêu cầu trên bằng:\n![Hình Câu 24](/bank-images/chude14/q24_p0.jpg)",
+      "points": 1,
+      "sort_order": 24,
+      "choices": [
+        "$\\frac{256\\sqrt{10}}{3}$.",
+        "$8\\sqrt{2}$.",
+        "$80$.",
+        "$70$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Gọi cạnh đáy hình vuông của chóp tứ giác đều là $x\\text{ (m)}$ ($0 < x < 10\\sqrt{2}$). Đường chéo tấm bạt bằng $20\\sqrt{2}\\text{ m}$, chiều cao mặt bên là $SN = \\frac{20\\sqrt{2} - x}{2}$, chiều cao khối chóp $SO = \\sqrt{SN^2 - \\left(\\frac{x}{2}\\right)^2} = \\frac{1}{2}\\sqrt{800 - 40\\sqrt{2}x}$. Thể tích $V = \\frac{1}{6}x^2\\sqrt{800 - 40\\sqrt{2}x}$ có $V' = 0 \\Leftrightarrow x = 8\\sqrt{2}$. Khi đó diện tích phần bị cắt là $S = 20^2 - (8\\sqrt{2})^2 - 4 \\cdot \\frac{1}{2} \\cdot \\frac{20\\sqrt{2} - 8\\sqrt{2}}{2} \\cdot 8\\sqrt{2} = 400 - 128 - 192 = 80\\text{ (m}^2\\text{)}$.",
+        "source": "HSG Vũng Tàu 2025",
+        "level": "Vận dụng",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 25,
+      "type": "mcq",
+      "prompt": "Cho hàm số $y = ax + 2 + \\frac{b}{x + c}$ có đồ thị như hình dưới đây. Giá trị của $P = a + b + c$ bằng:\n![Hình Câu 25](/bank-images/chude14/q25_p0.png)",
+      "points": 1,
+      "sort_order": 25,
+      "choices": [
+        "$1$.",
+        "$-1$.",
+        "$2$.",
+        "$-3$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Dựa vào đồ thị: tiệm cận xiên đi qua $(0; 2)$ và $(2; 0)$ nên có phương trình $y = -x + 2 \\Rightarrow a = -1$; tiệm cận đứng $x = 1 \\Rightarrow -c = 1 \\Leftrightarrow c = -1$; giao với trục tung tại $(0; 3)$ nên $2 + \\frac{b}{-1} = 3 \\Rightarrow b = -1$. Vậy $P = a + b + c = -1 - 1 - 1 = -3$.",
+        "source": "HSG Vũng Tàu 2025",
+        "level": "Thông hiểu",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 2: Xét dấu hệ số",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 26,
+      "type": "mcq",
+      "prompt": "Cho hàm số đa thức bậc bốn $y = f(x)$ có đồ thị như hình vẽ bên. Phương trình $f(x) - 1 = 0$ có bao nhiêu nghiệm thực phân biệt?\n![Hình Câu 26](/bank-images/chude14/q26_p0.jpg)",
+      "points": 1,
+      "sort_order": 26,
+      "choices": [
+        "$3$.",
+        "$1$.",
+        "$2$.",
+        "$4$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Phương trình $f(x) - 1 = 0 \\Leftrightarrow f(x) = 1$. Số nghiệm là số giao điểm của đồ thị $y = f(x)$ và đường thẳng $y = 1$. Dựa vào đồ thị, đường thẳng $y = 1$ đi qua điểm cực tiểu $(0; 1)$ và cắt hai nhánh ngoài tại $2$ điểm nữa, tổng cộng có $3$ giao điểm. Vậy phương trình có $3$ nghiệm thực phân biệt.",
+        "source": "Sở Hà Tĩnh 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 27,
+      "type": "mcq",
+      "prompt": "Đồ thị hàm số nào sau đây có hình dạng như hình vẽ?\n![Hình Câu 27](/bank-images/chude14/q27_p0.png)",
+      "points": 1,
+      "sort_order": 27,
+      "choices": [
+        "$y = x^3 + 3x$.",
+        "$y = x^3 - 3x$.",
+        "$y = x^3 - 3x^2$.",
+        "$y = x^3 + 3x^2$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Đồ thị là hàm bậc ba có $a > 0$, đạt cực đại tại $(0; 0)$ và đạt cực tiểu tại $(2; -4)$. Chỉ có $y = x^3 - 3x^2$ thỏa mãn ($y' = 3x^2 - 6x = 0 \\Leftrightarrow x = 0, x = 2$ và $y(2) = -4$).",
+        "source": "Sở Hà Tĩnh 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 28,
+      "type": "mcq",
+      "prompt": "Cho hàm số $f(x) = \\frac{ax - 6}{bx + c}$ ($a, b, c \\in \\mathbb{R}$) có bảng biến thiên như sau:\n![Hình Câu 28](/bank-images/chude14/q28_p0.png)\nGiá trị nhỏ nhất của $P = ab + a + c$ bằng:",
+      "points": 1,
+      "sort_order": 28,
+      "choices": [
+        "$-\\frac{1}{4}$.",
+        "$\\frac{3}{8}$.",
+        "$-\\frac{25}{8}$.",
+        "$-\\frac{1}{8}$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Từ bảng biến thiên: tiệm cận ngang $y = \\frac{a}{b} = 2 \\Rightarrow a = 2b$; tiệm cận đứng $x = -\\frac{c}{b} = 3 \\Rightarrow c = -3b$. Vì $y' > 0$ trên từng khoảng xác định nên $ac + 6b > 0 \\Leftrightarrow 2b(-3b) + 6b > 0 \\Leftrightarrow 0 < b < 1$. Ta có $P = ab + a + c = 2b^2 + 2b - 3b = 2b^2 - b = 2\\left(b - \\frac{1}{4}\\right)^2 - \\frac{1}{8} \\ge -\\frac{1}{8}$, đạt được khi $b = \\frac{1}{4} \\in (0; 1)$.",
+        "source": "Sở Vĩnh Phúc 2025",
+        "level": "Vận dụng",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 2: Xét dấu hệ số",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 29,
+      "type": "mcq",
+      "prompt": "Biết đồ thị hàm số $y = f(x)$ có dạng như hình vẽ.\n![Hình Câu 29](/bank-images/chude14/q29_p0.jpg)\nMệnh đề nào sau đây đúng?",
+      "points": 1,
+      "sort_order": 29,
+      "choices": [
+        "$f(x) = -x^3 + 3x + 1$.",
+        "$f(x) = x^3 - 3x - 1$.",
+        "$f(x) = -x^3 - 3x + 1$.",
+        "$f(x) = x^3 + 3x + 1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Đồ thị hàm bậc ba có nhánh phải đi xuống nên $a < 0$ (loại B, D). Hàm số có hai điểm cực trị nên $f'(x) = 0$ có $2$ nghiệm phân biệt (loại C vì $-3x^2 - 3 < 0$). Vậy chọn $f(x) = -x^3 + 3x + 1$.",
+        "source": "Sở Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 30,
+      "type": "mcq",
+      "prompt": "Một nhà phân tích thị trường làm việc cho một công ty sản xuất thiết bị gia dụng nhận thấy rằng nếu công ty sản xuất và bán $x$ chiếc máy xay sinh tố hàng tháng thì lợi nhuận thu được (nghìn đồng) có thể được tính bằng công thức $P(x) = -0{,}3x^3 + 36x^2 + 1800x - 48000$. Để có lợi nhuận lớn nhất công ty cần sản xuất đúng bao nhiêu chiếc máy sinh tố mỗi tháng?",
+      "points": 1,
+      "sort_order": 30,
+      "choices": [
+        "$90$.",
+        "$100$.",
+        "$110$.",
+        "$120$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Với $x > 0$, ta có $P'(x) = -0{,}9x^2 + 72x + 1800 = 0 \\Leftrightarrow x = 100$ (nhận) hoặc $x = -20$ (loại). Lập bảng biến thiên trên $(0; +\\infty)$ thấy $P(x)$ đạt cực đại tại $x = 100$. Vậy công ty cần sản xuất $100$ chiếc mỗi tháng.",
+        "source": "THPT Lê Thánh Tông - HCM 2025",
+        "level": "Thông hiểu",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 33,
+      "type": "mcq",
+      "prompt": "Đường cong hình bên dưới là đồ thị hàm số nào sau đây?\n![Hình Câu 33](/bank-images/chude14/q33_p0.jpg)",
+      "points": 1,
+      "sort_order": 31,
+      "choices": [
+        "$y = x^3 - 3x^2 + 2$.",
+        "$y = -x^3 + 2x$.",
+        "$y = x^3 + 3x^2$.",
+        "$y = x^3 - 3x$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Đồ thị là hàm bậc ba có $a > 0$ (loại B), đi qua $O(0; 0)$ (loại A), đạt cực đại tại $(-1; 2)$ và cực tiểu tại $(1; -2)$ nên là hàm số $y = x^3 - 3x$.",
+        "source": "THPT Trần Phú - Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 34,
+      "type": "mcq",
+      "prompt": "Cho hàm số $y = ax^3 + 3x - d$ ($a, d \\in \\mathbb{R}$) có đồ thị là đường cong trong hình vẽ.\n![Hình Câu 34](/bank-images/chude14/q34_p0.png)\nKhẳng định nào dưới đây đúng?",
+      "points": 1,
+      "sort_order": 32,
+      "choices": [
+        "$a < 0, d > 0$.",
+        "$a < 0, d < 0$.",
+        "$a > 0, d < 0$.",
+        "$a > 0, d > 0$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Vì $\\lim_{x \\to +\\infty} y = -\\infty$ nên $a < 0$. Đồ thị cắt trục tung $Oy$ tại điểm nằm dưới gốc tọa độ nên $y(0) = -d < 0 \\Rightarrow d > 0$.",
+        "source": "Cụm trường Hưng Yên 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 2: Xét dấu hệ số",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 36,
+      "type": "mcq",
+      "prompt": "Cho hàm số $f(x) = \\frac{mx^2 + nx + p}{qx + r}$ có bảng biến thiên như hình vẽ bên dưới.\n![Hình Câu 36](/bank-images/chude14/q36_p0.png)\n$I$ là tâm đối xứng của đồ thị hàm số $y = f(x)$. Tìm tọa độ $I$.",
+      "points": 1,
+      "sort_order": 33,
+      "choices": [
+        "$I(-2; 1)$.",
+        "$I(-1; 1)$.",
+        "$I(-1; 0)$.",
+        "$I(-1; -1)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Tâm đối xứng $I$ của đồ thị hàm bậc hai trên bậc nhất có hoành độ là tiệm cận đứng $x_I = -1$ và là trung điểm của hai điểm cực trị nên $y_I = \\frac{y_{\\text{CĐ}} + y_{\\text{CT}}}{2} = \\frac{-5 + 3}{2} = -1$. Vậy $I(-1; -1)$.",
+        "source": "THPT Sào Nam - Quảng Nam 2025",
+        "level": "Thông hiểu",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 37,
+      "type": "mcq",
+      "prompt": "Đường cong bên là đồ thị hàm số nào sau đây?\n![Hình Câu 37](/bank-images/chude14/q37_p0.png)",
+      "points": 1,
+      "sort_order": 34,
+      "choices": [
+        "$y = x^3 - 3x + 1$.",
+        "$y = x^3 - 3x$.",
+        "$y = x^3 - 3x - 1$.",
+        "$y = x^3 + 3x$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Đồ thị hàm số đi qua gốc tọa độ $O(0; 0)$ nên loại A, C. Hàm số có hai điểm cực trị nên loại D (vì $y' = 3x^2 + 3 > 0$). Vậy chọn $y = x^3 - 3x$.",
+        "source": "THPT Nông Cống 3 - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 38,
+      "type": "mcq",
+      "prompt": "Cho hàm số $f(x) = x^3 + ax^2 + bx + c$ đạt cực tiểu tại điểm $x = 1$ và $f(1) = -3$. Đồ thị hàm số cắt trục tung tại điểm có tung độ bằng $2$. Tính $T = 3a + b - c$.",
+      "points": 1,
+      "sort_order": 35,
+      "choices": [
+        "$T = 1$.",
+        "$T = 9$.",
+        "$T = -4$.",
+        "$T = -2$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Ta có $f'(x) = 3x^2 + 2ax + b$. Theo đề: $f'(1) = 0 \\Rightarrow 2a + b = -3$; $f(1) = -3 \\Rightarrow a + b + c = -4$; $f(0) = 2 \\Rightarrow c = 2$. Giải hệ được $a = 3, b = -9, c = 2$ (thử lại $f''(1) = 6 + 2a = 12 > 0$, đúng cực tiểu). Vậy $T = 3(3) + (-9) - 2 = -2$.",
+        "source": "THPT Nông Cống 3 - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 2: Xét dấu hệ số",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 40,
+      "type": "mcq",
+      "prompt": "Cho hàm số $y = ax^3 + bx^2 + cx + d$ có đồ thị như hình vẽ. Khẳng định nào dưới đây đúng?\n![Hình Câu 40](/bank-images/chude14/q40_p0.jpg)",
+      "points": 1,
+      "sort_order": 36,
+      "choices": [
+        "Hàm số đã cho đồng biến trên khoảng $(-\\infty; +\\infty)$.",
+        "$a > 0, d < 0$.",
+        "$a < 0, d > 0$.",
+        "Hàm số đã cho có hai điểm cực trị."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Từ đồ thị ta thấy hàm số bậc ba có $a > 0$, cắt $Oy$ phía trên $Ox$ nên $d > 0$ (loại B, C), có hai điểm cực trị (loại A). Vậy khẳng định đúng là D.",
+        "source": "THPT Lê Thánh Tông - Nguyễn Khuyến HCM 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 2: Xét dấu hệ số",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 41,
+      "type": "mcq",
+      "prompt": "Tập xác định của hàm số $f(x) = \\frac{x^2 - 4x - 3}{x + 3}$ là:",
+      "points": 1,
+      "sort_order": 37,
+      "choices": [
+        "$D = \\mathbb{R} \\setminus \\{3\\}$.",
+        "$D = \\mathbb{R} \\setminus \\{0\\}$.",
+        "$D = \\mathbb{R}$.",
+        "$D = \\mathbb{R} \\setminus \\{-3\\}$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Hàm số xác định khi $x + 3 \\neq 0 \\Leftrightarrow x \\neq -3$. Vậy $D = \\mathbb{R} \\setminus \\{-3\\}$.",
+        "source": "THPT Lê Thánh Tông - Nguyễn Khuyến HCM 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 42,
+      "type": "mcq",
+      "prompt": "Đường cong trong hình vẽ là đồ thị của hàm số nào dưới đây?\n![Hình Câu 42](/bank-images/chude14/q42_full.png)",
+      "points": 1,
+      "sort_order": 38,
+      "choices": [
+        "$y = \\frac{x^2 + 2x + 2}{x + 1}$.",
+        "$y = \\frac{x^2 - 2x - 3}{x - 2}$.",
+        "$y = \\frac{x^2 + 3x}{x - 2}$.",
+        "$y = \\frac{x^2 - 2x}{x + 1}$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Dựa vào đồ thị ta thấy đường tiệm cận đứng là $x = -1$ (loại B, C) và đường tiệm cận xiên là $y = x + 1$ (đồ thị đi qua $(0; 2)$). Chỉ có $y = \\frac{x^2 + 2x + 2}{x + 1} = x + 1 + \\frac{1}{x + 1}$ thỏa mãn.",
+        "source": "Sở Thái Nguyên 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 43,
+      "type": "mcq",
+      "prompt": "Cho hàm số $y = f(x)$ xác định và liên tục trên $\\mathbb{R}$, có bảng biến thiên như sau:\n![Hình Câu 43](/bank-images/chude14/q43_p0.jpg)\nKhẳng định nào sau đây đúng?",
+      "points": 1,
+      "sort_order": 39,
+      "choices": [
+        "Giá trị nhỏ nhất của hàm số đã cho là $-1$.",
+        "Đồ thị hàm số $f(x)$ có đúng hai điểm cực trị.",
+        "Giá trị lớn nhất của hàm số đã cho là $0$.",
+        "Đồ thị hàm số $f(x)$ có đúng một điểm cực tiểu."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Từ bảng biến thiên: hàm số có $3$ điểm cực trị ($2$ cực tiểu tại $x = \\pm 1$ với giá trị $-1$, $1$ cực đại tại $x = 0$), không có GTLN (vì $\\lim_{x \\to \\pm\\infty} f(x) = +\\infty$) và có GTNN bằng $-1$.",
+        "source": "Chuyên Lê Quý Đôn - Đà Nẵng 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 45,
+      "type": "mcq",
+      "prompt": "Cho hàm số bậc ba $y = f(x)$ có đồ thị như hình vẽ.\n![Hình Câu 45](/bank-images/chude14/q45_p0.jpg)\nCông thức của hàm số bậc ba đã cho là:",
+      "points": 1,
+      "sort_order": 40,
+      "choices": [
+        "$y = x^3 - 5x + 5$.",
+        "$y = -x^3 + 6x^2 + 9x + 5$.",
+        "$y = -x^3 + 6x^2 - 9x + 5$.",
+        "$y = x^3 - 2x^2 - 3x + 5$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Dựa vào đồ thị ta thấy nhánh cuối đi xuống nên $a < 0$ (loại A, D), và hai điểm cực trị là $(1; 1)$ và $(3; 5)$. Kiểm tra đáp án C: $y' = -3x^2 + 12x - 9 = 0 \\Leftrightarrow x = 1, x = 3$; $y(1) = 1, y(3) = 5$ (thỏa mãn).",
+        "source": "Sở Bạc Liêu 2025",
+        "level": "Thông hiểu",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 47,
+      "type": "mcq",
+      "prompt": "Đồ thị của hàm số $y = \\frac{x + 1}{-x + 1}$ là đường cong nào trong các hình vẽ sau?",
+      "points": 1,
+      "sort_order": 41,
+      "choices": [
+        "![Đồ thị A](/bank-images/chude14/q47_p0.png)",
+        "![Đồ thị B](/bank-images/chude14/q47_p1.png)",
+        "![Đồ thị C](/bank-images/chude14/q47_p2.png)",
+        "![Đồ thị D](/bank-images/chude14/q47_p3.png)"
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Hàm số $y = \\frac{x + 1}{-x + 1}$ có tiệm cận đứng $x = 1$, tiệm cận ngang $y = -1$ và $y' = \\frac{2}{(-x + 1)^2} > 0$ (đồng biến trên từng khoảng xác định). Chỉ có đồ thị B thỏa mãn.",
+        "source": "Sở Yên Bái 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 48,
+      "type": "mcq",
+      "prompt": "Cho hàm số $y = f(x)$ có đồ thị là đường cong trong hình dưới đây.\n![Hình Câu 48](/bank-images/chude14/q48_p0.jpg)\nSố giao điểm của đồ thị hàm số với trục tung là:",
+      "points": 1,
+      "sort_order": 42,
+      "choices": [
+        "$0$.",
+        "$3$.",
+        "$1$.",
+        "$O(0; 0)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Đồ thị hàm số cắt trục tung tại đúng một điểm (tại gốc tọa độ $O(0; 0)$). Vậy số giao điểm là $1$.",
+        "source": "THPT Triệu Sơn 1 - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 49,
+      "type": "mcq",
+      "prompt": "Hình vẽ sau là bảng biến thiên của hàm số nào dưới đây?\n![Hình Câu 49](/bank-images/chude14/q49_p0.png)",
+      "points": 1,
+      "sort_order": 43,
+      "choices": [
+        "$y = -2x^4 + x^2 - 1$.",
+        "$y = \\frac{-2x + 7}{x + 3}$.",
+        "$y = -2x^2 + x - 1$.",
+        "$y = -2x^3 + 6x - 1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Bảng biến thiên xác định trên $\\mathbb{R}$, có $\\lim_{x \\to -\\infty} y = +\\infty$, $\\lim_{x \\to +\\infty} y = -\\infty$ và có hai điểm cực trị tại $x = -1, x = 1$ nên là hàm bậc ba với $a < 0$. Vậy chọn $y = -2x^3 + 6x - 1$.",
+        "source": "Sở Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 51,
+      "type": "mcq",
+      "prompt": "Cho hàm số $y = \\frac{ax + b}{cx + d}$ ($a, b, c, d \\in \\mathbb{R}$) có đồ thị là đường cong như hình vẽ bên.\n![Hình Câu 51](/bank-images/chude14/q51_p0.png)\nTọa độ tâm đối xứng của đồ thị hàm số đã cho là:",
+      "points": 1,
+      "sort_order": 44,
+      "choices": [
+        "$(-1; 1)$.",
+        "$(1; 1)$.",
+        "$(1; -1)$.",
+        "$(0; 1)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Dựa vào đồ thị ta có tiệm cận đứng $x = -1$ và tiệm cận ngang $y = 1$. Vậy tâm đối xứng của đồ thị là $(-1; 1)$.",
+        "source": "Sở Phú Thọ 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 52,
+      "type": "mcq",
+      "prompt": "Cho hàm số $y = f(x)$ có đồ thị như hình dưới đây.\n![Hình Câu 52](/bank-images/chude14/q52_p0.jpg)\nBiểu thức $f(x)$ là biểu thức nào sau đây?",
+      "points": 1,
+      "sort_order": 45,
+      "choices": [
+        "$x + \\frac{1}{x}$.",
+        "$-x^3 + 3x - 1$.",
+        "$x^3 - 1$.",
+        "$\\frac{x - 1}{x + 1}$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Đồ thị là hàm phân thức bậc nhất trên bậc nhất có tiệm cận đứng $x = -1$, tiệm cận ngang $y = 1$ và đồng biến trên từng khoảng xác định nên $f(x) = \\frac{x - 1}{x + 1}$.",
+        "source": "THPT Ngô Sĩ Liên - Bắc Giang 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 53,
+      "type": "mcq",
+      "prompt": "Cho hàm số $y = \\frac{ax + b}{cx + d}$ (với $c \\neq 0, ad - bc \\neq 0$) có đồ thị như hình vẽ bên. Khẳng định nào sau đây đúng?\n![Hình Câu 53](/bank-images/chude14/q53_p0.jpg)",
+      "points": 1,
+      "sort_order": 46,
+      "choices": [
+        "Đồ thị hàm số có hai điểm cực trị.",
+        "$\\lim_{x \\to 1^+} f(x) = +\\infty$ và $\\lim_{x \\to 1^-} f(x) = -\\infty$.",
+        "$\\lim_{x \\to 1^+} f(x) = -\\infty$ và $\\lim_{x \\to 1^-} f(x) = +\\infty$.",
+        "Hàm số đồng biến trên khoảng $(-\\infty; +\\infty)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Dựa vào đồ thị có tiệm cận đứng $x = 1$: khi $x \\to 1^+$ nhánh đồ thị đi xuống $-\\infty$, khi $x \\to 1^-$ nhánh đồ thị đi lên $+\\infty$. Vậy $\\lim_{x \\to 1^+} f(x) = -\\infty$ và $\\lim_{x \\to 1^-} f(x) = +\\infty$.",
+        "source": "Sở Quảng Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 54,
+      "type": "mcq",
+      "prompt": "Gia tốc $a(t)$ ($t$ tính theo giây) của một vật chuyển động là một hàm số liên tục có đồ thị từ giây thứ nhất đến giây thứ ba như hình vẽ sau:\n![Hình Câu 54](/bank-images/chude14/q54_p0.png)\nTại thời điểm nào vật có vận tốc lớn nhất?",
+      "points": 1,
+      "sort_order": 47,
+      "choices": [
+        "$t = 1$.",
+        "$t = 3$.",
+        "$t = 2$.",
+        "$t = 1{,}5$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Vì $v'(t) = a(t)$, nhìn đồ thị $a(t)$ trên $[1; 3]$ ta thấy $a(t) > 0$ trên $(1; 2)$, $a(2) = 0$ và $a(t) < 0$ trên $(2; 3)$. Do đó vận tốc $v(t)$ đạt giá trị lớn nhất tại $t = 2$.",
+        "source": "Liên Trường Nghệ An 2025",
+        "level": "Thông hiểu",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 55,
+      "type": "mcq",
+      "prompt": "Đồ thị của hàm số nào dưới đây có dạng như đường cong?\n![Hình Câu 55](/bank-images/chude14/q55_p0.jpg)",
+      "points": 1,
+      "sort_order": 48,
+      "choices": [
+        "$y = \\frac{3x + 4}{2x - 3}$.",
+        "$y = 2x^3 + 2x^2 - x - 1$.",
+        "$y = 2x^2 + 4x + 1$.",
+        "$y = 3x^4 + 3x^2 + 1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Đồ thị trong hình có dạng đường cong hàm số bậc ba với hệ số $a > 0$ nên chọn $y = 2x^3 + 2x^2 - x - 1$.",
+        "source": "THPT DTNT - Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 56,
+      "type": "mcq",
+      "prompt": "Đường cong hình bên là đồ thị của một trong bốn hàm số dưới đây. Hàm số đó là hàm số nào?\n![Hình Câu 56](/bank-images/chude14/q56_p0.png)",
+      "points": 1,
+      "sort_order": 49,
+      "choices": [
+        "$y = -x^3 + 3x + 2$.",
+        "$y = x^3 + x^2 + 1$.",
+        "$y = x^3 - 3x + 2$.",
+        "$y = x^3 + 1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Đồ thị cắt trục tung tại tung độ bằng $2$ nên loại B, D. Nhánh cuối đi lên ($a > 0$) nên loại A. Vậy chọn $y = x^3 - 3x + 2$.",
+        "source": "Cụm Ninh Giang - Tứ Kỳ - Gia Lộc 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 57,
+      "type": "mcq",
+      "prompt": "Cho hàm số bậc ba $y = f(x)$ có bảng biến thiên như sau:\n![Hình Câu 57](/bank-images/chude14/q57_p0.png)\nKhẳng định nào sau đây đúng?",
+      "points": 1,
+      "sort_order": 50,
+      "choices": [
+        "$f(x) = \\frac{x^3}{3} + x^2 - 2$.",
+        "$f(x) = x^3 + 3x^2 - 2$.",
+        "$f(x) = -x^3 + 3x^2 - 2$.",
+        "$f(x) = x^3 + 3x - 2$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Từ bảng biến thiên: $\\lim_{x \\to +\\infty} y = +\\infty \\Rightarrow a > 0$ (loại C). Hàm số có hai điểm cực trị tại $x = -2$ và $x = 0$ nên loại D (do $f'(x) = 3x^2 + 3 > 0$). Đồ thị đi qua $(-2; 2)$ nên loại A (vì $f(-2) = -\\frac{2}{3}$). Vậy chọn $f(x) = x^3 + 3x^2 - 2$.",
+        "source": "Sở Vũng Tàu 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 58,
+      "type": "mcq",
+      "prompt": "Đường cong như hình vẽ dưới đây là đồ thị của hàm số nào?\n![Hình Câu 58](/bank-images/chude14/q58_p0.jpg)",
+      "points": 1,
+      "sort_order": 51,
+      "choices": [
+        "$y = \\frac{x - 2}{x - 1}$.",
+        "$y = \\frac{x^2 + 2x - 2}{x - 1}$.",
+        "$y = \\frac{-x^2 + 2x - 2}{x - 1}$.",
+        "$y = \\frac{-x^2 + x - 2}{x - 1}$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Đồ thị có tiệm cận đứng $x = 1$ và tiệm cận xiên $y = -x + 1$ (hệ số góc $-1$), nên loại A, B. Đồ thị đi qua $(2; -2)$, thay vào C được $y(2) = \\frac{-4 + 4 - 2}{1} = -2$ (thỏa mãn), còn D cho $y(2) = -4$. Vậy chọn C.",
+        "source": "Sở Vũng Tàu 2025",
+        "level": "Thông hiểu",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 59,
+      "type": "mcq",
+      "prompt": "Đồ thị bên dưới là tốc độ của một chiếc xe đua trên đoạn đường đua bằng phẳng dài $3\\text{ km}$.\n![Hình Câu 59](/bank-images/chude14/q59_p0.jpg)\nTốc độ nhỏ nhất của xe đua trên đoạn đường này bằng:",
+      "points": 1,
+      "sort_order": 52,
+      "choices": [
+        "$3\\text{ km/h}$.",
+        "$160\\text{ km/h}$.",
+        "$130\\text{ km/h}$.",
+        "$70\\text{ km/h}$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Dựa vào đồ thị, tung độ thấp nhất của đường biểu diễn tốc độ trên đoạn $[0; 3]$ là $70\\text{ km/h}$.",
+        "source": "THPT Quế Võ 1 - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 60,
+      "type": "mcq",
+      "prompt": "Hình vẽ sau đây là đồ thị của một trong bốn hàm số cho ở các đáp án A, B, C, D. Hỏi đó là hàm số nào?\n![Hình Câu 60](/bank-images/chude14/q60_p0.png)",
+      "points": 1,
+      "sort_order": 53,
+      "choices": [
+        "$y = x^3 + 2x + 1$.",
+        "$y = x^3 - 2x^2 + 1$.",
+        "$y = x^3 - 2x + 1$.",
+        "$y = -x^3 + 2x + 1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Đồ thị có $\\lim_{x \\to +\\infty} y = +\\infty$ nên $a > 0$ (loại D). Hàm số có $2$ cực trị nên loại A ($y' = 3x^2 + 2 > 0$). Đáp án B có cực trị tại $x = 0$ và $x = \\frac{4}{3}$ (loại). Vậy chọn $y = x^3 - 2x + 1$.",
+        "source": "Sưu tầm 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 61,
+      "type": "mcq",
+      "prompt": "Cho hàm số $y = f(x)$ xác định, liên tục trên $\\mathbb{R} \\setminus \\{1\\}$ và có bảng biến thiên như sau:\n![Hình Câu 61](/bank-images/chude14/q61_p0.png)\nTìm điều kiện của $m$ để phương trình $f(x) = m$ có $3$ nghiệm phân biệt.",
+      "points": 1,
+      "sort_order": 54,
+      "choices": [
+        "$m < 0$.",
+        "$m > 0$.",
+        "$0 < m < \\frac{27}{4}$.",
+        "$m > \\frac{27}{4}$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Số nghiệm của phương trình $f(x) = m$ là số giao điểm của đồ thị $y = f(x)$ với đường thẳng $y = m$. Quan sát bảng biến thiên: nhánh trái nhận mọi giá trị trên $(-\\infty; +\\infty)$ (cắt $1$ điểm), nhánh phải có cực tiểu bằng $\\frac{27}{4}$ nên cắt $2$ điểm khi $m > \\frac{27}{4}$. Vậy tổng cộng có $3$ nghiệm phân biệt khi $m > \\frac{27}{4}$.",
+        "source": "Sưu tầm 2025",
+        "level": "Thông hiểu",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 62,
+      "type": "mcq",
+      "prompt": "Đồ thị trong hình vẽ dưới đây là của hàm số nào?\n![Hình Câu 62](/bank-images/chude14/q62_p0.jpg)",
+      "points": 1,
+      "sort_order": 55,
+      "choices": [
+        "$y = \\frac{x^2 - x - 1}{x - 2}$.",
+        "$y = \\frac{x - 2}{1 - 3x}$.",
+        "$y = \\frac{x^2 - x - 1}{x - 1}$.",
+        "$y = -x^3 + 3x^2 + 1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Đồ thị là hàm phân thức bậc hai trên bậc nhất có tiệm cận đứng $x = 2$ nên chỉ có $y = \\frac{x^2 - x - 1}{x - 2}$ thỏa mãn.",
+        "source": "THPT Triệu Quang Phục - Hưng Yên 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 63,
+      "type": "mcq",
+      "prompt": "Một chất điểm chuyển động theo quy luật $s(t) = -t^3 + 6t^2$ với $t$ là thời gian tính từ lúc bắt đầu chuyển động, $s(t)$ là quãng đường đi được trong thời gian $t$. Tính vận tốc chất điểm đạt được tại thời điểm $t = 2$.",
+      "points": 1,
+      "sort_order": 56,
+      "choices": [
+        "$\\frac{21}{4}$.",
+        "$\\frac{45}{4}$.",
+        "$9$.",
+        "$12$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Ta có $v(t) = s'(t) = -3t^2 + 12t$. Vận tốc tại thời điểm $t = 2$ là $v(2) = -3 \\cdot 2^2 + 12 \\cdot 2 = 12$.",
+        "source": "THPT Triệu Quang Phục - Hưng Yên 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 64,
+      "type": "mcq",
+      "prompt": "Cho hàm số $y = f(x)$ có đồ thị như hình bên dưới. Đặt $h(x) = -5x + f(x)$. Chọn mệnh đề đúng trong các mệnh đề được phát biểu dưới đây?\n![Hình Câu 64](/bank-images/chude14/q64_p0.png)",
+      "points": 1,
+      "sort_order": 57,
+      "choices": [
+        "$h(3) < h(2) = h(0)$.",
+        "$h(2) < h(1) < h(3)$.",
+        "$h(3) < h(2) < h(1)$.",
+        "$h(1) < h(2) < h(3)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Đồ thị là hàm bậc ba có nghiệm kép $x = 2$ và nghiệm đơn $x = -1$ nên $f(x) = a(x + 1)(x - 2)^2$. Đi qua $(1; -2)$ nên $-2 = a(2)(1) \\Rightarrow a = -1$, tức $f(x) = -(x + 1)(x - 2)^2 = -x^3 + 3x^2 - 4$. Suy ra $h(x) = -x^3 + 3x^2 - 5x - 4$ có $h'(x) = -3x^2 + 6x - 5 = -3(x - 1)^2 - 2 < 0, \\forall x \\in \\mathbb{R}$. Vậy $h(x)$ nghịch biến trên $\\mathbb{R}$, do đó $h(3) < h(2) < h(1)$.",
+        "source": "THPT Triệu Quang Phục - Hưng Yên 2025",
+        "level": "Vận dụng",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 65,
+      "type": "mcq",
+      "prompt": "Trên Sao Hỏa, một hòn đá được ném theo phương thẳng đứng lên không trung với vận tốc ban đầu là $96\\text{ (foot/giây)}$, độ cao $s$ (tính bằng foot) của hòn đá so với mặt đất sau $t$ giây là $s = 96t - 6t^2$. Tính chiều cao tối đa mà hòn đá đạt được.",
+      "points": 1,
+      "sort_order": 58,
+      "choices": [
+        "$360\\text{ (foot)}$.",
+        "$382\\text{ (foot)}$.",
+        "$384\\text{ (foot)}$.",
+        "$396\\text{ (foot)}$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Ta có $v(t) = s'(t) = 96 - 12t = 0 \\Leftrightarrow t = 8$. Vậy chiều cao tối đa hòn đá đạt được là $s(8) = 96 \\cdot 8 - 6 \\cdot 8^2 = 384\\text{ (foot)}$.",
+        "source": "Cụm Chương Mỹ - Thanh Oai 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 68,
+      "type": "mcq",
+      "prompt": "Cho hàm số $y = f(x)$ có bảng biến thiên như sau:\n![Hình Câu 68](/bank-images/chude14/q68_p0.png)\nHàm số có bảng biến thiên như trên là:",
+      "points": 1,
+      "sort_order": 59,
+      "choices": [
+        "$y = -x^4 + 2x^2$.",
+        "$y = 3x^4 - 6x^2 + 3$.",
+        "$y = x^3 - x$.",
+        "$y = x^3 - x + 3$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Bảng biến thiên là của hàm trùng phương với $a > 0$ (vì $\\lim_{x \\to \\pm\\infty} y = +\\infty$), đạt cực đại tại $(0; 3)$ và cực tiểu tại $(\\pm 1; 0)$. Chỉ có $y = 3x^4 - 6x^2 + 3$ thỏa mãn.",
+        "source": "Sở Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 69,
+      "type": "mcq",
+      "prompt": "Cho hàm số $y = f(x)$ xác định trên $\\mathbb{R} \\setminus \\{1\\}$, liên tục trên mỗi khoảng xác định và có bảng biến thiên như hình vẽ sau:\n![Hình Câu 69](/bank-images/chude14/q69_p0.png)\nBảng biến thiên trên là của hàm số nào trong các hàm số sau?",
+      "points": 1,
+      "sort_order": 60,
+      "choices": [
+        "$y = \\frac{-x + 2}{x - 1}$.",
+        "$y = \\frac{x + 2}{x - 1}$.",
+        "$y = \\frac{x - 3}{x - 1}$.",
+        "$y = \\frac{x + 2}{x + 1}$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Từ bảng biến thiên: tiệm cận đứng $x = 1$ (loại D), tiệm cận ngang $y = 1$ (loại A), và hàm số nghịch biến trên từng khoảng xác định (loại C vì $y' = \\frac{2}{(x-1)^2} > 0$). Vậy chọn $y = \\frac{x + 2}{x - 1}$.",
+        "source": "THPT Phúc Thọ - Hà Nội 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 70,
+      "type": "mcq",
+      "prompt": "Đồ thị của hàm số nào dưới đây có dạng như đường cong như hình vẽ?\n![Hình Câu 70](/bank-images/chude14/q70_p0.png)",
+      "points": 1,
+      "sort_order": 61,
+      "choices": [
+        "$y = x^3 - 3x^2 + 1$.",
+        "$y = x^3 - 3x$.",
+        "$y = -x^3 + 3x^2$.",
+        "$y = -x^3 + 3x$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Đồ thị đi qua gốc tọa độ $O(0; 0)$ nên loại A; nhánh cuối đi lên nên hệ số $a > 0$ (loại C, D). Vậy chọn $y = x^3 - 3x$.",
+        "source": "Sở Bình Phước 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 71,
+      "type": "mcq",
+      "prompt": "Đường cong nào dưới đây là đồ thị của hàm số $y = \\frac{x + 1}{x - 1}$?",
+      "points": 1,
+      "sort_order": 62,
+      "choices": [
+        "![Đồ thị A](/bank-images/chude14/q71_p1.jpg)",
+        "![Đồ thị B](/bank-images/chude14/q71_p0.jpg)",
+        "![Đồ thị C](/bank-images/chude14/q71_p2.png)",
+        "![Đồ thị D](/bank-images/chude14/q71_p3.jpg)"
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Hàm số $y = \\frac{x + 1}{x - 1}$ có tiệm cận đứng $x = 1$, tiệm cận ngang $y = 1$ và $y' = \\frac{-2}{(x - 1)^2} < 0$ (nghịch biến trên từng khoảng xác định). Chỉ có đồ thị C thỏa mãn.",
+        "source": "THPT Lê Quý Đôn - Hà Nội 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 74,
+      "type": "mcq",
+      "prompt": "Cho hàm số $y = \\frac{ax^2 + bx + c}{mx + n}$ có đồ thị hàm số như hình vẽ:\n![Hình Câu 74](/bank-images/chude14/q74_p0.png)\nTâm đối xứng của đồ thị hàm số đã cho là:",
+      "points": 1,
+      "sort_order": 63,
+      "choices": [
+        "$I(1; 2)$.",
+        "$J(-1; -2)$.",
+        "$K(1; 1)$.",
+        "$O(0; 0)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Dựa vào đồ thị hàm số thấy đường tiệm cận đứng $x = 0$ và đường tiệm cận xiên $y = x$ giao nhau tại $O(0; 0)$, nên tâm đối xứng của đồ thị hàm số là điểm $O(0; 0)$.",
+        "source": "Sở Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 76,
+      "type": "mcq",
+      "prompt": "Cho hàm số có đồ thị như hình vẽ bên dưới. Phương trình đường tiệm cận đứng và tiệm cận ngang của đồ thị hàm số là:\n![Hình Câu 76](/bank-images/chude14/q76_p0.jpg)",
+      "points": 1,
+      "sort_order": 64,
+      "choices": [
+        "$x = 2, y = 1$.",
+        "$x = 1, y = 2$.",
+        "$x = 1, y = 1$.",
+        "$x = -1, y = 1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Dựa vào đồ thị hàm số ta có đường tiệm cận đứng $x = 1$ và đường tiệm cận ngang $y = 1$.",
+        "source": "Sở Hà Tĩnh 2025",
+        "level": "Nhận biết",
+        "pack": "chude14-khaosat"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 4 · Dạng 2: Tiệm cận (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1037 @@
+{
+  "pack_id": "short-chuyendong",
+  "title": "Chủ đề 10 · Chuyển động & Nồng độ - Quần thể — Trả lời ngắn (2025)",
+  "chapter": "GĐ1 · Chương 1",
+  "count": 39,
+  "questions": [
+    {
+      "source_num": 1,
+      "type": "short",
+      "prompt": "Một vật chuyển động theo quy luật $s(t) = -t^3 + 18t^2$, với $t$ (giây) là khoảng thời gian tính từ lúc vật bắt đầu chuyển động và $s$ (mét) là quãng đường vật đi được trong thời gian đó. Hỏi trong khoảng thời gian $10$ giây, kể từ lúc bắt đầu chuyển động, vận tốc lớn nhất của vật đạt được bằng bao nhiêu ($\\text{m/s}$)?",
+      "points": 1,
+      "sort_order": 1,
+      "choices": [],
+      "settings": {
+        "explanation": "Vận tốc của vật là $v(t) = s'(t) = -3t^2 + 36t$ với $t \\in [0; 10]$.\nTa có $v'(t) = -6t + 36 = 0 \\Leftrightarrow t = 6 \\in [0; 10]$.\nSo sánh $v(0) = 0,\\ v(6) = 108,\\ v(10) = 60$, suy ra vận tốc lớn nhất là $108\\text{ m/s}$.",
+        "source": "THPT Đào Duy Từ - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "108",
+        "accepted_answers": [
+          "108"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 2,
+      "type": "short",
+      "prompt": "Trên một trục số thẳng đứng có chiều dương hướng lên trên, một chất điểm bắt đầu chuyển động dọc theo trục số. Giả sử tại thời điểm $t$ giây ($t \\ge 0$) tính từ lúc bắt đầu chuyển động thì vị trí $s(t)$ của chất điểm trên trục số thẳng đứng được xác định bởi công thức $s(t) = t^3 - 18t^2 + 81t$ (mét). Trong $15$ giây chuyển động đầu tiên thì chất điểm di chuyển được quãng đường bằng bao nhiêu mét?",
+      "points": 1,
+      "sort_order": 2,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $v(t) = s'(t) = 3t^2 - 36t + 81 = 0 \\Leftrightarrow t = 3$ hoặc $t = 9$.\nXét trên $[0; 15]$, chất điểm đổi chiều tại $t = 3$ và $t = 9$: $s(0) = 0,\\ s(3) = 108,\\ s(9) = 0,\\ s(15) = 540$.\nTổng quãng đường đi được là $|s(3) - s(0)| + |s(9) - s(3)| + |s(15) - s(9)| = 108 + 108 + 540 = 756\\text{ m}$.",
+        "source": "THPT Lương Tài 2 - Bắc Ninh 2025",
+        "level": "Thông hiểu",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "756",
+        "accepted_answers": [
+          "756"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 3,
+      "type": "short",
+      "prompt": "Một vật chuyển động. Quãng đường $s(t)$ (tính theo mét) vật đi được sau khoảng thời gian $t$ (tính theo giây, $t \\ge 0$) được mô tả là một hàm số bậc ba có đồ thị như hình vẽ dưới đây:\n![Đồ thị quãng đường s(t) theo thời gian t](/bank-images/short-chuyendong/q3.jpeg)\nHỏi trong $10$ giây đầu tiên, khoảng thời gian vật chuyển động nhanh dần kéo dài bao nhiêu giây?",
+      "points": 1,
+      "sort_order": 3,
+      "choices": [],
+      "settings": {
+        "explanation": "Giả sử $s(t) = at^3 + bt^2 + ct + d$. Đồ thị đi qua $(0; 0)$, $\\left(4; \\dfrac{8}{3}\\right)$, $\\left(8; \\dfrac{112}{3}\\right)$ và $\\left(10; \\dfrac{260}{3}\\right)$ nên $d = 0$ và giải hệ được $a = \\dfrac{1}{6},\\ b = -1,\\ c = 2$.\nSuy ra $s(t) = \\dfrac{1}{6}t^3 - t^2 + 2t \\Rightarrow v(t) = s'(t) = \\dfrac{1}{2}t^2 - 2t + 2 = \\dfrac{1}{2}(t - 2)^2 \\ge 0$.\nTa có $v'(t) = t - 2 > 0 \\Leftrightarrow t > 2$. Do $v(t) \\ge 0$, vật chuyển động nhanh dần trên $(2; 10)$, kéo dài $10 - 2 = 8$ giây.",
+        "source": "THPT Nguyễn Đăng Đạo - Bắc Ninh 2025",
+        "level": "Vận dụng",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "8",
+        "accepted_answers": [
+          "8"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 4,
+      "type": "short",
+      "prompt": "Trong $5$ giây đầu tiên, một chất điểm chuyển động theo phương trình $s(t) = t^3 - 3t^2 + 8t + 2$, trong đó $t$ tính bằng giây và $s$ tính bằng mét. Chất điểm có vận tốc tức thời nhỏ nhất bằng bao nhiêu $\\text{m/s}$ trong $5$ giây đầu tiên đó?",
+      "points": 1,
+      "sort_order": 4,
+      "choices": [],
+      "settings": {
+        "explanation": "Vận tốc tức thời là $v(t) = s'(t) = 3t^2 - 6t + 8 = 3(t - 1)^2 + 5$ trên $[0; 5]$.\nSuy ra vận tốc nhỏ nhất bằng $5\\text{ m/s}$ (đạt tại $t = 1\\text{ s}$).",
+        "source": "THPT Gia Bình - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "5",
+        "accepted_answers": [
+          "5"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 5,
+      "type": "short",
+      "prompt": "Trong $5$ giây đầu tiên, một chất điểm chuyển động theo phương trình $s(t) = -t^3 + 6t^2 + t + 5$, trong đó $t$ tính bằng giây và $s$ tính bằng mét. Chất điểm có vận tốc tức thời lớn nhất bằng bao nhiêu $\\text{m/s}$ trong $5$ giây đầu tiên đó?",
+      "points": 1,
+      "sort_order": 5,
+      "choices": [],
+      "settings": {
+        "explanation": "Vận tốc tức thời là $v(t) = s'(t) = -3t^2 + 12t + 1$ trên $[0; 5]$.\nTa có $v'(t) = -6t + 12 = 0 \\Leftrightarrow t = 2 \\in [0; 5]$.\nSo sánh $v(0) = 1,\\ v(2) = 13,\\ v(5) = -14$, suy ra vận tốc lớn nhất là $13\\text{ m/s}$.",
+        "source": "THPT Thuận Thành 1&2 - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "13",
+        "accepted_answers": [
+          "13"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 6,
+      "type": "short",
+      "prompt": "Một vật chuyển động trên đường thẳng có quãng đường di chuyển trong khoảng thời gian $t$ (giây) được cho bởi phương trình $s(t) = -\\dfrac{1}{3}t^3 + 6t^2\\text{ (m)}$, với $0 \\le t \\le 12$. Tính từ khi bắt đầu di chuyển đến thời điểm vận tốc của vật đạt giá trị lớn nhất thì vật di chuyển được quãng đường dài bao nhiêu mét (làm tròn đến hàng đơn vị)?",
+      "points": 1,
+      "sort_order": 6,
+      "choices": [],
+      "settings": {
+        "explanation": "Vận tốc $v(t) = s'(t) = -t^2 + 12t$ đạt giá trị lớn nhất trên $[0; 12]$ tại $t = 6\\text{ s}$.\nQuãng đường đi được là $s(6) - s(0) = -\\dfrac{1}{3} \\cdot 6^3 + 6 \\cdot 6^2 = 144\\text{ m}$.",
+        "source": "THPT Chuyên Thái Bình 2025",
+        "level": "Nhận biết",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "144",
+        "accepted_answers": [
+          "144"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 7,
+      "type": "short",
+      "prompt": "Ngày khai giảng năm học $2024 - 2025$, học sinh khối $12$ thả chùm bóng bay gắn thông điệp chúc mừng. Ước tính độ cao $h$ (tính bằng $\\text{km}$) của chùm bóng bay so với mặt đất vào thời điểm $t$ (đơn vị giờ) được cho bởi công thức $h(t) = -t^3 + 3t^2\\ (0 \\le t \\le 3)$. Chùm bóng bay đạt độ cao lớn nhất so với mặt đất là $a\\text{ (km)}$. Tìm $a$.",
+      "points": 1,
+      "sort_order": 7,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $h'(t) = -3t^2 + 6t = 0 \\Leftrightarrow t = 0$ hoặc $t = 2 \\in [0; 3]$.\nTính $h(0) = 0,\\ h(2) = 4,\\ h(3) = 0$, suy ra độ cao lớn nhất là $a = 4\\text{ km}$.",
+        "source": "Cụm trường Nguyễn Hiền - Lê Hồng Phong - Quảng Nam 2025",
+        "level": "Nhận biết",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "4",
+        "accepted_answers": [
+          "4"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 8,
+      "type": "short",
+      "prompt": "Trong một trò chơi điện tử, hai bạn Tít và Mít thi xem ai chạy được quãng đường xa hơn. Tít chạy với vận tốc $v_T(t) = 5\\sqrt{t}\\text{ (km/h)}$, quãng đường Mít chạy được cho bởi phương trình $s_M(t) = 5t - \\dfrac{5}{2\\pi}\\sin(2\\pi t)\\text{ (km)}$ (với $t$ là thời gian tính theo giờ). Nếu cuộc đua kết thúc khi Tít hoặc Mít chạy được $10\\text{ km}$ đầu tiên thì khoảng cách giữa hai bạn là bao nhiêu kilômét (kết quả làm tròn đến hàng phần trăm)?",
+      "points": 1,
+      "sort_order": 8,
+      "choices": [],
+      "settings": {
+        "explanation": "Quãng đường Tít chạy là $s_T(t) = \\int_0^t 5\\sqrt{u}\\,du = \\dfrac{10}{3}\\sqrt{t^3}$. Để đạt $10\\text{ km}$ thì $\\dfrac{10}{3}\\sqrt{t_T^3} = 10 \\Rightarrow t_T = \\sqrt[3]{9} \\approx 2,08\\text{ giờ}$.\nVới Mít, $s'_M(t) = 5 - 5\\cos(2\\pi t) \\ge 0$ nên $s_M(t)$ đồng biến trên $[0; +\\infty)$, và $s_M(2) = 10$ nên $t_M = 2\\text{ giờ} < t_T$.\nVậy Mít về đích trước tại $t = 2$. Khi đó khoảng cách giữa hai bạn là $s_M(2) - s_T(2) = 10 - \\dfrac{10}{3}\\sqrt{8} \\approx 0,57\\text{ km}$.",
+        "source": "Sở Phú Thọ 2025",
+        "level": "Vận dụng",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "0,57",
+        "accepted_answers": [
+          "0,57",
+          "0.57"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 10,
+      "type": "short",
+      "prompt": "Một máy bay đang bay ở độ cao $10\\text{ km}$ so với mặt đất, thu phát tín hiệu qua một ăng-ten ra đa như hình vẽ. Khi máy bay cách ra đa $16\\text{ km}$, ra đa phát hiện khoảng cách giữa máy bay và ra đa thay đổi với tốc độ $546\\text{ km/h}$. Tìm vận tốc của máy bay (đơn vị $\\text{km/h}$, kết quả làm tròn đến hàng đơn vị).\n![Sơ đồ máy bay và trạm ra đa](/bank-images/short-chuyendong/q10.png)",
+      "points": 1,
+      "sort_order": 9,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $x(t)$ là khoảng cách theo phương ngang từ máy bay đến đường thẳng đứng qua ra đa và $s(t)$ là khoảng cách từ máy bay đến ra đa.\nTa có $s(t) = \\sqrt{10^2 + x^2(t)}$. Lấy đạo hàm theo thời gian $t$: $s'(t) = \\dfrac{x(t) \\cdot x'(t)}{\\sqrt{10^2 + x^2(t)}} = \\dfrac{x(t) \\cdot x'(t)}{s(t)}$.\nTại thời điểm $s(t_0) = 16\\text{ km}$, ta có $x(t_0) = \\sqrt{16^2 - 10^2} = 2\\sqrt{39}\\text{ km}$ và $s'(t_0) = 546\\text{ km/h}$.\nSuy ra vận tốc máy bay là $x'(t_0) = \\dfrac{s'(t_0) \\cdot s(t_0)}{x(t_0)} = \\dfrac{546 \\cdot 16}{2\\sqrt{39}} \\approx 699\\text{ km/h}$.",
+        "source": "THPT Chuyên KHTN Hà Nội 2025",
+        "level": "Vận dụng",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "699",
+        "accepted_answers": [
+          "699"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 11,
+      "type": "short",
+      "prompt": "Một vật chuyển động theo quy luật $s(t) = \\dfrac{1}{3}t^3 - \\dfrac{3}{2}t^2 + 10t + 2$ với $t \\ge 0$ (giây) là khoảng thời gian từ lúc vật bắt đầu chuyển động và $s$ (mét) là vị trí của vật trong khoảng thời gian đó. Tính quãng đường mà vật đi được kể từ lúc bắt đầu đến khi vận tốc đạt $20\\text{ m/s}$ (làm tròn kết quả đến hàng phần chục).",
+      "points": 1,
+      "sort_order": 10,
+      "choices": [],
+      "settings": {
+        "explanation": "Vận tốc của vật là $v(t) = s'(t) = t^2 - 3t + 10 = \\left(t - \\dfrac{3}{2}\\right)^2 + \\dfrac{31}{4} > 0,\\ \\forall t \\ge 0$.\nVận tốc đạt $20\\text{ m/s}$ khi $t^2 - 3t + 10 = 20 \\Leftrightarrow t^2 - 3t - 10 = 0 \\Leftrightarrow t = 5\\text{ s}$ (vì $t \\ge 0$).\nVì $v(t) > 0$, quãng đường vật đi được là $S = s(5) - s(0) = \\dfrac{5^3}{3} - \\dfrac{3 \\cdot 5^2}{2} + 10 \\cdot 5 = \\dfrac{325}{6} \\approx 54,2\\text{ m}$.",
+        "source": "Sở Tuyên Quang 2025",
+        "level": "Thông hiểu",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "54,2",
+        "accepted_answers": [
+          "54,2",
+          "54.2"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 12,
+      "type": "short",
+      "prompt": "Kính viễn vọng Hubble được tàu không gian Discovery đưa vào sử dụng ngày 24/4/1990. Mô hình vận tốc của tàu trong sứ mệnh này, từ lúc rời bệ phóng ($t = 0$ giây) cho đến khi tên lửa đẩy tách khỏi tàu tại thời điểm $t = 126$ giây, được xác định bởi công thức $v(t) = 0,001302t^3 - 0,09029t^2 + 23,61t - 3,083\\text{ (feet/s)}$.\n![Tàu con thoi Discovery phóng kính viễn vọng Hubble](/bank-images/short-chuyendong/q12.jpeg)\nTính gia tốc lớn nhất của tàu trong khoảng thời gian này (đơn vị $\\text{feet/s}^2$, làm tròn kết quả đến hàng phần chục).",
+      "points": 1,
+      "sort_order": 11,
+      "choices": [],
+      "settings": {
+        "explanation": "Gia tốc của tàu là $a(t) = v'(t) = 0,003906t^2 - 0,18058t + 23,61$ với $t \\in [0; 126]$.\nĐồ thị $a(t)$ là parabol bề lõm hướng lên với đỉnh tại $t_0 = \\dfrac{0,18058}{2 \\cdot 0,003906} \\approx 23,12 \\in [0; 126]$.\nSo sánh hai đầu mút $a(0) = 23,61$ và $a(126) \\approx 62,87$, suy ra gia tốc lớn nhất là $62,9\\text{ feet/s}^2$.",
+        "source": "THPT Hướng Hóa - Quảng Trị 2025",
+        "level": "Thông hiểu",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "62,9",
+        "accepted_answers": [
+          "62,9",
+          "62.9"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 14,
+      "type": "short",
+      "prompt": "Một chất điểm chuyển động có phương trình quãng đường là $s(t) = t^3 - 6t^2 + 30t$ (trong đó quãng đường $s$ tính bằng mét, thời gian $t$ tính bằng giây, $t \\ge 0$). Tìm tốc độ nhỏ nhất của chất điểm (đơn vị $\\text{m/s}$).",
+      "points": 1,
+      "sort_order": 12,
+      "choices": [],
+      "settings": {
+        "explanation": "Vận tốc là $v(t) = s'(t) = 3t^2 - 12t + 30 = 3(t - 2)^2 + 18 \\ge 18$.\nVậy tốc độ nhỏ nhất của chất điểm là $18\\text{ m/s}$ (đạt tại $t = 2\\text{ s}$).",
+        "source": "THPT Ngô Sĩ Liên - Bắc Giang 2025",
+        "level": "Nhận biết",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "18",
+        "accepted_answers": [
+          "18"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 15,
+      "type": "short",
+      "prompt": "Một tên lửa bay vào không trung với quãng đường đi được là $s(t)\\text{ (km)}$ phụ thuộc theo biến $t$ (giây) tuân theo biểu thức $s(t) = e^{t^2 + 3} + 2te^{3t + 1}\\text{ (km)}$. Biết vận tốc của tên lửa sau $1$ giây có dạng $ae^b\\text{ (km/s)}$ ($a, b \\in \\mathbb{N}^*$), tính $a + 2b$.",
+      "points": 1,
+      "sort_order": 13,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $v(t) = s'(t) = 2te^{t^2 + 3} + 2e^{3t + 1} + 6te^{3t + 1}$.\nSau $1$ giây: $v(1) = 2e^4 + 2e^4 + 6e^4 = 10e^4\\text{ (km/s)}$.\nSuy ra $a = 10,\\ b = 4 \\Rightarrow a + 2b = 10 + 8 = 18$.",
+        "source": "THPT Quế Võ 1 - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "18",
+        "accepted_answers": [
+          "18"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 16,
+      "type": "short",
+      "prompt": "Giả sử tỷ lệ sinh của tỉnh A tuân theo quy luật logistic được mô hình hóa bằng hàm số $f(t) = \\dfrac{200}{1 + 4e^{-t}}$ ($t \\ge 0$), trong đó thời gian $t$ được tính bằng tháng. Khi đó đạo hàm $f'(t)$ biểu thị tốc độ tăng dân số của tỉnh A. Hỏi sau bao nhiêu tháng tốc độ tăng trưởng dân số của tỉnh A là lớn nhất (làm tròn kết quả đến hàng phần trăm)?",
+      "points": 1,
+      "sort_order": 14,
+      "choices": [],
+      "settings": {
+        "explanation": "Viết lại $f(t) = \\dfrac{200e^t}{e^t + 4} \\Rightarrow f'(t) = \\dfrac{800e^t}{(e^t + 4)^2}$.\nTa có $f''(t) = \\dfrac{800e^t(4 - e^t)}{(e^t + 4)^3} = 0 \\Leftrightarrow e^t = 4 \\Leftrightarrow t = \\ln 4$.\nLập bảng biến thiên của $f'(t)$ trên $[0; +\\infty)$ thấy $f'(t)$ đạt cực đại tại $t = \\ln 4 \\approx 1,39$ tháng.",
+        "source": "Sở Hà Tĩnh 2025",
+        "level": "Thông hiểu",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "1,39",
+        "accepted_answers": [
+          "1,39",
+          "1.39"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 17,
+      "type": "short",
+      "prompt": "Giả sử doanh số (tính bằng số sản phẩm) của một sản phẩm mới (trong vòng một số năm nhất định) tuân theo quy luật logistic được mô hình hóa bằng hàm số $f(t) = \\dfrac{5000}{1 + 5e^{-t}},\\ t \\ge 0$, trong đó thời gian $t$ được tính bằng năm kể từ khi phát hành sản phẩm mới. Khi đó đạo hàm $f'(t)$ biểu thị tốc độ bán hàng. Hỏi sau khi phát hành thì tốc độ bán hàng đạt lớn nhất bằng bao nhiêu (sản phẩm/năm)?",
+      "points": 1,
+      "sort_order": 15,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $f(t) = \\dfrac{5000e^t}{e^t + 5} \\Rightarrow f'(t) = \\dfrac{25000e^t}{(e^t + 5)^2}$.\nÁp dụng bất đẳng thức Cô-si: $(e^t + 5)^2 \\ge 4 \\cdot 5e^t = 20e^t \\Rightarrow f'(t) \\le \\dfrac{25000e^t}{20e^t} = 1250$.\nDấu bằng xảy ra khi $e^t = 5 \\Leftrightarrow t = \\ln 5$. Vậy tốc độ bán hàng lớn nhất là $1250$.",
+        "source": "THPT Cẩm Xuyên - Hà Tĩnh 2025",
+        "level": "Thông hiểu",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "1250",
+        "accepted_answers": [
+          "1250"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 18,
+      "type": "short",
+      "prompt": "Sau khi phát hiện ra dịch bệnh vi rút Đậu mùa Khỉ, các chuyên gia y tế ước tính số người nhiễm bệnh kể từ khi xuất hiện bệnh nhân đầu tiên đến ngày thứ $x$ là $f(x) = -x^3 + 18x^2$ ($x \\ge 0$). Ta xem $f'(x)$ là tốc độ truyền bệnh tại thời điểm $x$. Tốc độ truyền bệnh sẽ lớn nhất vào ngày thứ bao nhiêu?",
+      "points": 1,
+      "sort_order": 16,
+      "choices": [],
+      "settings": {
+        "explanation": "Tốc độ truyền bệnh là $f'(x) = -3x^2 + 36x$.\nTa có $f''(x) = -6x + 36 = 0 \\Leftrightarrow x = 6$. Vậy tốc độ truyền bệnh lớn nhất vào ngày thứ $6$.",
+        "source": "THPT Cẩm Xuyên - Hà Tĩnh 2025",
+        "level": "Nhận biết",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "6",
+        "accepted_answers": [
+          "6"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 19,
+      "type": "short",
+      "prompt": "Anh Nam có một cái ao diện tích $50\\text{ m}^2$ để nuôi cá diêu hồng. Vụ vừa qua, anh nuôi với mật độ $40\\text{ con/m}^2$ và thu được $3$ tấn cá thành phẩm. Theo kinh nghiệm nuôi cá của mình, anh thấy cứ thả giảm đi $8\\text{ con/m}^2$ thì mỗi con cá thành phẩm tăng thêm $0,5\\text{ kg}$. Để tổng năng suất cao nhất thì vụ tới anh Nam nên mua bao nhiêu con cá giống để thả (giả sử không có hao hụt trong quá trình nuôi)?",
+      "points": 1,
+      "sort_order": 17,
+      "choices": [],
+      "settings": {
+        "explanation": "Vụ vừa qua anh Nam thả $50 \\cdot 40 = 2000$ con, trọng lượng trung bình mỗi con là $\\dfrac{3000}{2000} = 1,5\\text{ kg/con}$.\nGọi $x$ ($\\text{con/m}^2$) là mật độ thả giảm đi. Khi đó tổng số cá là $2000 - 50x$ con và khối lượng mỗi con là $1,5 + \\dfrac{0,5}{8}x = 1,5 + 0,0625x\\text{ (kg)}$.\nTổng sản lượng: $f(x) = (2000 - 50x)(1,5 + 0,0625x) = -3,125x^2 + 50x + 3000$.\nĐạo hàm $f'(x) = -6,25x + 50 = 0 \\Leftrightarrow x = 8$. Vậy số cá giống cần thả là $2000 - 50 \\cdot 8 = 1600$ con.",
+        "source": "THPT Lê Thánh Tông - TP.HCM 2025",
+        "level": "Thông hiểu",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "1600",
+        "accepted_answers": [
+          "1600"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 20,
+      "type": "short",
+      "prompt": "Một đường ống dẫn dầu bị rò rỉ hình thành nên một mảng dầu loang hình tròn trên mặt biển. Tốc độ tăng của bán kính mảng dầu loang theo thời gian là $2\\text{ m/h}$. Khi đó tốc độ tăng của diện tích (tính theo $\\text{m}^2$) của mảng dầu loang cũng phụ thuộc theo thời gian $t\\text{ (h)}$. Hỏi tại thời điểm bán kính mảng dầu loang là $25\\text{ m}$ thì tốc độ tăng diện tích mảng dầu loang theo thời gian là bao nhiêu $\\text{m}^2\\text{/h}$ (đáp số làm tròn đến hàng đơn vị)?\n![Mô hình mảng dầu loang hình tròn](/bank-images/short-chuyendong/q20.png)",
+      "points": 1,
+      "sort_order": 18,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi bán kính theo thời gian là $r(t)$ với $r'(t) = 2\\text{ m/h}$.\nDiện tích mảng dầu loang là $S(t) = \\pi r^2(t) \\Rightarrow S'(t) = 2\\pi r(t) \\cdot r'(t) = 4\\pi r(t)$.\nTại thời điểm $r = 25\\text{ m}$, tốc độ tăng diện tích là $S' = 4\\pi \\cdot 25 = 100\\pi \\approx 314\\text{ m}^2\\text{/h}$.",
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "level": "Thông hiểu",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "314",
+        "accepted_answers": [
+          "314"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 21,
+      "type": "short",
+      "prompt": "Để loại bỏ $x\\%$ chất gây ô nhiễm môi trường từ khí thải của một nhà máy, người ta ước tính chi phí (triệu đồng) cần bỏ ra được mô hình hóa bởi hàm số có dạng $C(x) = \\dfrac{ax + b}{-x + d}$ (như hình vẽ, $0 \\le x < 100$). Tính chi phí chênh lệch (tỉ đồng) phải bỏ ra để loại bỏ $90\\%$ và loại bỏ $99\\%$ chất gây ô nhiễm từ khí thải của nhà máy.\n![Đồ thị hàm chi phí loại bỏ chất gây ô nhiễm](/bank-images/short-chuyendong/q21.png)",
+      "points": 1,
+      "sort_order": 19,
+      "choices": [],
+      "settings": {
+        "explanation": "Từ đồ thị:\n• Đồ thị đi qua gốc tọa độ $O(0; 0) \\Rightarrow b = 0$.\n• Tiệm cận đứng $x = 100 \\Rightarrow d = 100$.\n• Tiệm cận ngang $y = -200 \\Rightarrow -a = -200 \\Rightarrow a = 200$.\nSuy ra $C(x) = \\dfrac{200x}{100 - x}$ (triệu đồng).\nChi phí chênh lệch: $C(99) - C(90) = \\dfrac{200 \\cdot 99}{1} - \\dfrac{200 \\cdot 90}{10} = 19800 - 1800 = 18000$ triệu đồng $= 18$ tỉ đồng.",
+        "source": "THPT Chuyên Lê Khiết - Quảng Ngãi 2025",
+        "level": "Thông hiểu",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "18",
+        "accepted_answers": [
+          "18"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 22,
+      "type": "short",
+      "prompt": "Số dân của một thị trấn sau $t$ năm kể từ năm $1970$ được ước tính bởi công thức $f(t) = \\dfrac{26t + 10}{t + 5}$ là một hàm số xác định trên nửa khoảng $[0; +\\infty)$. Đồ thị hàm số $y = f(t)$ có đường tiệm cận ngang là $y = a$. Giá trị của $a$ là bao nhiêu?",
+      "points": 1,
+      "sort_order": 20,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $\\lim_{t \\to +\\infty} f(t) = \\lim_{t \\to +\\infty} \\dfrac{26t + 10}{t + 5} = 26$, nên tiệm cận ngang là $y = 26 \\Rightarrow a = 26$.",
+        "source": "THPT Trực Ninh - Nam Định 2025",
+        "level": "Nhận biết",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "26",
+        "accepted_answers": [
+          "26"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 23,
+      "type": "short",
+      "prompt": "Nồng độ $C$ của một loại hóa chất trong máu sau $t$ giờ tiêm vào cơ thể được cho bởi công thức $C(t) = \\dfrac{4t}{64 + t^3}$ với $t \\ge 0$. Sau khoảng bao nhiêu giờ tiêm thì nồng độ của hóa chất trong máu là cao nhất (kết quả làm tròn tới hàng phần trăm)?",
+      "points": 1,
+      "sort_order": 21,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $C'(t) = \\dfrac{4(64 + t^3) - 4t \\cdot 3t^2}{(64 + t^3)^2} = \\dfrac{256 - 8t^3}{(64 + t^3)^2} = 0 \\Leftrightarrow t^3 = 32 \\Leftrightarrow t = \\sqrt[3]{32}$.\nLập bảng biến thiên trên $[0; +\\infty)$ thấy $C(t)$ đạt giá trị lớn nhất tại $t = \\sqrt[3]{32} \\approx 3,17$ giờ.",
+        "source": "THPT Lương Tài 2 - Bắc Ninh 2025",
+        "level": "Thông hiểu",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "3,17",
+        "accepted_answers": [
+          "3,17",
+          "3.17"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 24,
+      "type": "short",
+      "prompt": "Đường đi của một khinh khí cầu được gắn trong hệ trục tọa độ là một đường cong bậc hai trên bậc nhất có đồ thị cắt trục hoành tại hai điểm có tọa độ là $(1; 0)$ và $(8; 0)$ với đơn vị trên hệ trục tọa độ là $1\\text{ (km)}$. Biết rằng điểm cực đại của đồ thị hàm số là điểm $(6; 5)$. Hỏi khi khí cầu đi qua điểm cực đại và cách mặt đất $3875\\text{ (m)}$ thì khí cầu cách gốc tọa độ theo phương ngang bao nhiêu (đơn vị: $\\text{km}$)?\n![Đường đi của khinh khí cầu](/bank-images/short-chuyendong/q24.jpeg)",
+      "points": 1,
+      "sort_order": 22,
+      "choices": [],
+      "settings": {
+        "explanation": "Do đồ thị cắt $Ox$ tại $(1; 0)$ và $(8; 0)$ nên hàm số có dạng $y = \\dfrac{(x - 1)(x - 8)}{dx + e} = \\dfrac{x^2 - 9x + 8}{dx + e}$.\nTa có $y' = \\dfrac{(2x - 9)(dx + e) - d(x^2 - 9x + 8)}{(dx + e)^2}$. Vì $(6; 5)$ là điểm cực đại nên:\n• $y(6) = 5 \\Leftrightarrow \\dfrac{-10}{6d + e} = 5 \\Leftrightarrow 6d + e = -2$.\n• $y'(6) = 0 \\Leftrightarrow 3(6d + e) + 10d = 0 \\Leftrightarrow -6 + 10d = 0 \\Leftrightarrow d = \\dfrac{3}{5} \\Rightarrow e = -\\dfrac{28}{5}$.\nSuy ra $y = \\dfrac{5(x^2 - 9x + 8)}{3x - 28}$. Khi cách mặt đất $3875\\text{ m} = 3,875\\text{ km}$:\n$\\dfrac{5(x^2 - 9x + 8)}{3x - 28} = 3,875 \\Leftrightarrow 5x^2 - 56,625x + 148,5 = 0 \\Leftrightarrow x = 7,2$ hoặc $x = 4,125$.\nDo khí cầu đã đi qua điểm cực đại ($x > 6$) nên $x = 7,2\\text{ km}$.",
+        "source": "THPT Nguyễn Khuyến - Lê Thánh Tông 2025",
+        "level": "Vận dụng",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "7,2",
+        "accepted_answers": [
+          "7,2",
+          "7.2"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 25,
+      "type": "short",
+      "prompt": "Trong khoảng thời gian từ ngày 01/01/2024 đến hết ngày 30/12/2024, nhóm nghiên cứu đã quan sát sự phát triển của một quần thể sinh vật $X$. Kết quả nghiên cứu chỉ ra rằng, tại ngày thứ $t$ của năm $2024$ (tính từ ngày 01/01/2024 ứng với $t = 1$), số cá thể sinh vật $X$ trong quần thể được ước lượng bởi hàm số $f(t) = -\\dfrac{1}{300}t^3 + bt^2 + ct + 12000$ (con), $0 \\le t \\le 365$, và ngày 26/09/2024 là ngày có số lượng cá thể sinh vật $X$ nhiều nhất với $55\\,740$ con. Ngày 25/11/2024 số lượng cá thể sinh vật $X$ được ước lượng khoảng bao nhiêu nghìn con (kết quả làm tròn đến hàng phần chục)?",
+      "points": 1,
+      "sort_order": 23,
+      "choices": [],
+      "settings": {
+        "explanation": "Năm $2024$ là năm nhuận (tháng $2$ có $29$ ngày). Tổng số ngày đến ngày 26/09/2024 là $31 + 29 + 31 + 30 + 31 + 30 + 31 + 31 + 26 = 270$, và đến ngày 25/11/2024 là $270 + 4 + 31 + 25 = 330$.\nTa có $f'(t) = -\\dfrac{1}{100}t^2 + 2bt + c$. Vì hàm đạt cực đại tại $t = 270$ với $f(270) = 55\\,740$:\n• $f'(270) = 0 \\Leftrightarrow 540b + c = 729$.\n• $f(270) = 55\\,740 \\Leftrightarrow 72900b + 270c = 109350$.\nGiải hệ được $b = \\dfrac{6}{5},\\ c = 81 \\Rightarrow f(t) = -\\dfrac{1}{300}t^3 + \\dfrac{6}{5}t^2 + 81t + 12000$.\nTại $t = 330$: $f(330) = 49\\,620\\text{ con} = 49,62\\text{ nghìn con} \\approx 49,6$ nghìn con.",
+        "source": "THPT Lương Tài 2 - Bắc Ninh 2025",
+        "level": "Vận dụng",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "49,6",
+        "accepted_answers": [
+          "49,6",
+          "49.6"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 26,
+      "type": "short",
+      "prompt": "Số dân của một thị trấn sau $t$ năm kể từ năm $2002$ được tính bởi công thức $f(t) = \\dfrac{26t + 10}{t + 5}$ ($f(t)$ được tính bằng nghìn người, $t \\ge 0$). Đạo hàm của hàm số $y = f(t)$ biểu thị tốc độ tăng dân số của thị trấn (tính bằng nghìn người/năm). Hỏi vào năm nào thì tốc độ tăng dân số là $0,075$ nghìn người/năm?",
+      "points": 1,
+      "sort_order": 24,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $f'(t) = \\dfrac{120}{(t + 5)^2}$.\nGiải $f'(t) = 0,075 \\Leftrightarrow (t + 5)^2 = 1600 \\Leftrightarrow t + 5 = 40 \\Leftrightarrow t = 35$ (vì $t > 0$).\nVậy vào năm $2002 + 35 = 2037$ thì tốc độ tăng dân số là $0,075$ nghìn người/năm.",
+        "source": "THPT Tiên Du - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "2037",
+        "accepted_answers": [
+          "2037"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 27,
+      "type": "short",
+      "prompt": "Một bể chứa $3000$ lít nước tinh khiết. Người ta bơm vào bể đó nước muối có nồng độ $25\\text{ gam/lít}$ với tốc độ $20\\text{ lít/phút}$. Giả sử nồng độ muối trong nước bể sau $t$ phút được xác định bởi hàm số $f(t)$ trên $[0; +\\infty)$ ($\\text{gam/lít}$). Khi $t$ càng lớn thì nồng độ muối trong bể tiến gần đến bao nhiêu $\\text{gam/lít}$?",
+      "points": 1,
+      "sort_order": 25,
+      "choices": [],
+      "settings": {
+        "explanation": "Sau $t$ phút, lượng muối là $25 \\cdot 20t = 500t\\text{ (gam)}$ và thể tích nước là $3000 + 20t\\text{ (lít)}$.\nNồng độ muối $f(t) = \\dfrac{500t}{3000 + 20t} = \\dfrac{25t}{150 + t}$.\nTa có $\\lim_{t \\to +\\infty} f(t) = 25\\text{ gam/lít}$.",
+        "source": "THPT Thạch Thành 1 - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "25",
+        "accepted_answers": [
+          "25"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 28,
+      "type": "short",
+      "prompt": "Sau khi phát hiện một bệnh dịch, các chuyên gia y tế ước tính số người nhiễm bệnh kể từ ngày xuất hiện bệnh nhân đầu tiên đến ngày thứ $t$ là $f(t) = 45t^2 - t^3$ ($t \\in [0; 25]$). Đạo hàm $f'(t)$ được xem là tốc độ truyền bệnh (người/ngày) tại thời điểm $t$. Giả sử khoảng thời gian mà tốc độ truyền bệnh giảm là từ ngày thứ $m$ đến ngày thứ $n$. Khi đó $n - m$ bằng bao nhiêu?",
+      "points": 1,
+      "sort_order": 26,
+      "choices": [],
+      "settings": {
+        "explanation": "Tốc độ truyền bệnh là $f'(t) = 90t - 3t^2$. Ta có $f''(t) = 90 - 6t < 0 \\Leftrightarrow t > 15$.\nTrên $[0; 25]$, tốc độ truyền bệnh giảm từ ngày thứ $m = 15$ đến ngày thứ $n = 25$, suy ra $n - m = 25 - 15 = 10$.",
+        "source": "THPT Thạch Thành 1 - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "10",
+        "accepted_answers": [
+          "10"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 29,
+      "type": "short",
+      "prompt": "Số lượng cá thể của một loài sinh vật phụ thuộc nhiệt độ môi trường sống và được xấp xỉ bởi hàm số $f(t) = 300 \\cdot e^{\\frac{t}{5} - \\frac{3t^2}{100}}$, trong đó $t$ là nhiệt độ môi trường xét từ $0^\\circ$ đến $60^\\circ$. Hỏi số cá thể loài sinh vật trên nhiều nhất là bao nhiêu (làm tròn đến hàng đơn vị)?",
+      "points": 1,
+      "sort_order": 27,
+      "choices": [],
+      "settings": {
+        "explanation": "Đặt $g(t) = \\dfrac{t}{5} - \\dfrac{3t^2}{100}$ trên $[0; 60]$. Ta có $g'(t) = \\dfrac{1}{5} - \\dfrac{3t}{50} = 0 \\Leftrightarrow t = \\dfrac{10}{3} \\in [0; 60]$.\nGiá trị lớn nhất của $g(t)$ là $g\\left(\\dfrac{10}{3}\\right) = \\dfrac{1}{3}$.\nVậy số cá thể nhiều nhất là $f\\left(\\dfrac{10}{3}\\right) = 300e^{\\frac{1}{3}} \\approx 418,68 \\approx 419$.",
+        "source": "THPT Yên Lạc - Vĩnh Phúc 2025",
+        "level": "Thông hiểu",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "419",
+        "accepted_answers": [
+          "419"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 30,
+      "type": "short",
+      "prompt": "Một bể ban đầu chứa $160$ lít nước. Sau đó, cứ mỗi phút người ta bơm thêm $10$ lít nước vào bể, đồng thời cho vào bể $21$ gam chất khử trùng (hòa tan). Đặt $f(t)$ ($\\text{gam/lít}$) là nồng độ chất khử trùng trong bể sau $t$ phút ($t \\ge 0$). Biết rằng $f(t)$ tăng theo $t$ nhưng không vượt ngưỡng $p\\text{ gam/lít}$ ($p$ nhỏ nhất). Tìm số $p$.",
+      "points": 1,
+      "sort_order": 28,
+      "choices": [],
+      "settings": {
+        "explanation": "Nồng độ sau $t$ phút là $f(t) = \\dfrac{21t}{160 + 10t}$.\nTa có $f'(t) = \\dfrac{3360}{(160 + 10t)^2} > 0,\\ \\forall t \\ge 0$ và $\\lim_{t \\to +\\infty} f(t) = \\dfrac{21}{10} = 2,1\\text{ gam/lít}$. Vậy $p = 2,1$.",
+        "source": "THPT Nguyễn Viết Xuân - Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "2,1",
+        "accepted_answers": [
+          "2,1",
+          "2.1"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 31,
+      "type": "short",
+      "prompt": "Giả sử doanh số (tính bằng số sản phẩm) của một sản phẩm mới (trong vòng một số năm nhất định) tuân theo quy luật logistic được mô hình hóa bằng hàm số $f(t) = \\dfrac{5000}{1 + 5e^{-t}}\\ (t \\ge 0)$, trong đó thời gian $t$ được tính bằng năm kể từ khi phát hành sản phẩm mới. Khi đó đạo hàm $f'(t)$ biểu thị tốc độ bán hàng. Hỏi sau khi phát hành bao nhiêu năm thì tốc độ bán hàng là lớn nhất (làm tròn kết quả đến hàng phần chục)?",
+      "points": 1,
+      "sort_order": 29,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $f'(t) = \\dfrac{25000e^{-t}}{(1 + 5e^{-t})^2}$ và $f''(t) = \\dfrac{25000e^{-t}(5e^{-t} - 1)}{(1 + 5e^{-t})^3} = 0 \\Leftrightarrow e^{-t} = \\dfrac{1}{5} \\Leftrightarrow t = \\ln 5$.\nLập bảng biến thiên thấy $f'(t)$ đạt GTLN tại $t = \\ln 5 \\approx 1,6$ năm.",
+        "source": "THPT Nguyễn Viết Xuân - Vĩnh Phúc 2025",
+        "level": "Thông hiểu",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "1,6",
+        "accepted_answers": [
+          "1,6",
+          "1.6"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 32,
+      "type": "short",
+      "prompt": "Ông Thanh nuôi cá chim ở một ao có diện tích $50\\text{ m}^2$. Vụ trước ông nuôi với mật độ là $20\\text{ con/m}^2$ và thu được $1,5$ tấn cá. Theo kinh nghiệm nuôi cá của mình thì cứ thả giảm đi $8\\text{ con/m}^2$ thì mỗi con cá khi thu hoạch tăng lên $0,5\\text{ kg}$ (và ngược lại theo quy luật tuyến tính). Vậy vụ tới ông phải thả bao nhiêu con cá giống để được tổng năng suất khi thu hoạch là cao nhất (giả sử không có hao hụt trong quá trình nuôi)?",
+      "points": 1,
+      "sort_order": 30,
+      "choices": [],
+      "settings": {
+        "explanation": "Vụ trước ông thả $50 \\cdot 20 = 1000$ con, trọng lượng trung bình mỗi con là $\\dfrac{1500}{1000} = 1,5\\text{ kg/con}$.\nGọi $8x\\text{ (con/m}^2)$ là mật độ thay đổi (giảm nếu $x > 0$, tăng nếu $x < 0$). Khi đó số cá thả là $1000 - 400x$ con và trọng lượng mỗi con là $1,5 + 0,5x\\text{ (kg)}$.\nTổng năng suất $S(x) = (1000 - 400x)(1,5 + 0,5x) = -200x^2 - 100x + 1500$ đạt cực đại tại $x = -\\dfrac{1}{4}$.\nSố cá giống cần thả là $1000 - 400\\left(-\\dfrac{1}{4}\\right) = 1100$ con.",
+        "source": "THPT Thuận Thành 1&2 - Bắc Ninh 2025",
+        "level": "Thông hiểu",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "1100",
+        "accepted_answers": [
+          "1100"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 33,
+      "type": "short",
+      "prompt": "Giả sử chiều cao (tính bằng $\\text{cm}$) của một giống cây trồng (trong vòng một số tháng nhất định) tuân theo quy luật logistic được mô hình hóa bằng hàm số $f(t) = \\dfrac{200}{1 + 3e^{-t}},\\ t \\ge 0$, trong đó thời gian $t$ được tính bằng tháng kể từ khi hạt bắt đầu nảy mầm. Khi đó đạo hàm $f'(t)$ biểu thị tốc độ tăng chiều cao của giống cây đó. Biết rằng kể từ khi hạt giống bắt đầu nảy mầm thì sau $t$ tháng, tốc độ tăng chiều cao của cây là lớn nhất. Tính $t$ (làm tròn kết quả đến chữ số thập phân thứ nhất).",
+      "points": 1,
+      "sort_order": 31,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $f'(t) = \\dfrac{600e^{-t}}{(1 + 3e^{-t})^2}$ và $f''(t) = \\dfrac{600e^{-t}(3e^{-t} - 1)}{(1 + 3e^{-t})^3} = 0 \\Leftrightarrow e^{-t} = \\dfrac{1}{3} \\Leftrightarrow t = \\ln 3 \\approx 1,1$ tháng.",
+        "source": "THPT Lê Xoay - Vĩnh Phúc 2025",
+        "level": "Thông hiểu",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "1,1",
+        "accepted_answers": [
+          "1,1",
+          "1.1"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 34,
+      "type": "short",
+      "prompt": "Một con cá hồi bơi ngược dòng vượt khoảng cách $300\\text{ km}$ để tới nơi sinh sản. Vận tốc dòng nước là $6\\text{ km/h}$. Giả sử vận tốc bơi của cá khi nước đứng yên là $v\\text{ (km/h)}$ thì năng lượng tiêu hao của cá trong $t$ giờ cho bởi công thức $E(v) = cv^3 t$, trong đó $c > 0$ là hằng số cho trước, $E$ tính bằng Jun. Tính vận tốc bơi của cá khi nước đứng yên ($\\text{km/h}$) để năng lượng của cá tiêu hao ít nhất.",
+      "points": 1,
+      "sort_order": 32,
+      "choices": [],
+      "settings": {
+        "explanation": "Vận tốc thực ngược dòng của cá là $v - 6$ ($v > 6$), thời gian bơi là $t = \\dfrac{300}{v - 6}$.\nNăng lượng tiêu hao là $E(v) = 300c \\cdot \\dfrac{v^3}{v - 6}$.\nTa có $E'(v) = 300c \\cdot \\dfrac{3v^2(v - 6) - v^3}{(v - 6)^2} = 300c \\cdot \\dfrac{2v^2(v - 9)}{(v - 6)^2} = 0 \\Leftrightarrow v = 9\\text{ km/h}$ (vì $v > 6$).\nLập bảng biến thiên suy ra năng lượng tiêu hao ít nhất khi $v = 9\\text{ km/h}$.",
+        "source": "THPT Triệu Quang Phục - Hưng Yên 2025",
+        "level": "Thông hiểu",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "9",
+        "accepted_answers": [
+          "9"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 36,
+      "type": "short",
+      "prompt": "Một bể chứa ban đầu có $250$ lít nước. Sau đó, cứ mỗi phút người ta bơm thêm $25$ lít nước, đồng thời cho vào bể $8$ gam chất khử khuẩn ($\\text{ClO}_2$) được hòa tan. Giả sử $C(t)$ là nồng độ chất khử khuẩn trong bể sau $t$ phút ($\\text{gam/lít}$). Gọi $c$ là số dương nhỏ nhất mà nồng độ $C(t)$ tăng theo thời gian $t$ nhưng không vượt quá ngưỡng $c\\text{ gam/lít}$. Tìm $c$.",
+      "points": 1,
+      "sort_order": 33,
+      "choices": [],
+      "settings": {
+        "explanation": "Nồng độ chất khử khuẩn sau $t$ phút là $C(t) = \\dfrac{8t}{250 + 25t}$ ($t \\ge 0$).\nTa có $C'(t) = \\dfrac{2000}{(250 + 25t)^2} > 0$ và $\\lim_{t \\to +\\infty} C(t) = \\dfrac{8}{25} = 0,32\\text{ gam/lít}$. Vậy $c = 0,32$.",
+        "source": "Cụm Chương Mỹ - Thanh Oai 2025",
+        "level": "Nhận biết",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "0,32",
+        "accepted_answers": [
+          "0,32",
+          "0.32"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 37,
+      "type": "short",
+      "prompt": "Độ giảm huyết áp của một bệnh nhân được cho bởi công thức $G(x) = 0,035x^2(15 - x)$, trong đó $x$ là liều lượng thuốc được tiêm cho bệnh nhân ($x$ được tính bằng miligam, $0 \\le x \\le 15$).\n![Minh họa đo huyết áp](/bank-images/short-chuyendong/q37.jpeg)\nTính liều lượng thuốc cần tiêm (đơn vị miligam) cho bệnh nhân để huyết áp giảm nhiều nhất.",
+      "points": 1,
+      "sort_order": 34,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $G'(x) = 0,035(30x - 3x^2) = 0,105x(10 - x) = 0 \\Leftrightarrow x = 0$ hoặc $x = 10 \\in [0; 15]$.\nSo sánh $G(0) = 0,\\ G(10) = 17,5,\\ G(15) = 0$, suy ra huyết áp giảm nhiều nhất khi $x = 10\\text{ mg}$.",
+        "source": "THPT Hà Trung - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "10",
+        "accepted_answers": [
+          "10"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 38,
+      "type": "short",
+      "prompt": "Khi loại thuốc A được tiêm vào bệnh nhân, nồng độ (đơn vị: $\\text{mg/l}$) của thuốc trong máu sau $x$ phút (kể từ khi bắt đầu tiêm) được xác định bởi công thức $C(x) = \\dfrac{30x}{x^2 + 2}$. Trong khoảng thời gian $6$ phút sau khi tiêm, nồng độ thuốc trong máu đạt giá trị lớn nhất bằng bao nhiêu $\\text{mg/l}$ (kết quả làm tròn đến hàng phần mười)?",
+      "points": 1,
+      "sort_order": 35,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $C'(x) = \\dfrac{60 - 30x^2}{(x^2 + 2)^2} = 0 \\Leftrightarrow x = \\sqrt{2} \\in [0; 6]$.\nLập bảng biến thiên trên $[0; 6]$ suy ra $\\max_{[0; 6]} C(x) = C(\\sqrt{2}) = \\dfrac{15\\sqrt{2}}{2} \\approx 10,6\\text{ mg/l}$.",
+        "source": "Sở Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "10,6",
+        "accepted_answers": [
+          "10,6",
+          "10.6"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 39,
+      "type": "short",
+      "prompt": "Trong Vật lý, một vật có khối lượng $m\\text{ (kg)}$ dao động điều hòa với phương trình $x(t) = A\\cos(\\omega t + \\varphi)$ có động năng được xác định bởi công thức $W = \\dfrac{1}{2}m v^2(t)$, trong đó $v(t) = x'(t)\\text{ (m/s)}$ là vận tốc của vật tại thời điểm $t\\text{ (s)}$. Giả sử một vật có khối lượng $m = 100\\text{ (g)}$ dao động điều hòa với phương trình chuyển động $x = 40\\cos\\left(200\\pi t - \\dfrac{\\pi}{3}\\right)\\text{ (cm)}$. Khi đó động năng vật đó đạt giá trị lớn nhất bằng bao nhiêu $\\text{J}$ (làm tròn đến hàng phần chục)?",
+      "points": 1,
+      "sort_order": 36,
+      "choices": [],
+      "settings": {
+        "explanation": "Đổi $m = 100\\text{ g} = 0,1\\text{ kg}$ và $x(t) = 0,4\\cos\\left(200\\pi t - \\dfrac{\\pi}{3}\\right)\\text{ (m)}$.\nVận tốc của vật là $v(t) = x'(t) = -80\\pi\\sin\\left(200\\pi t - \\dfrac{\\pi}{3}\\right)\\text{ (m/s)}$.\nDo $|v(t)| \\le 80\\pi\\text{ m/s}$, động năng lớn nhất của vật là:\n$W_{\\max} = \\dfrac{1}{2} \\cdot 0,1 \\cdot (80\\pi)^2 = 320\\pi^2 \\approx 3158,3\\text{ J}$.",
+        "source": "Sở Hải Phòng 2025",
+        "level": "Thông hiểu",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "3158,3",
+        "accepted_answers": [
+          "3158,3",
+          "3158.3"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 40,
+      "type": "short",
+      "prompt": "Biết rằng tốc độ đánh máy trung bình $S$ (tính bằng từ/phút) của một học viên lớn tuổi sau $t$ tuần (kể từ khi chưa biết đánh máy) được cho bởi một trong hai công thức $S(t) = \\dfrac{at^2 + b}{ct^2 + d}$ và $S(t) = \\dfrac{at^2 + b}{ct + d}$ ($a, b, c, d \\in \\mathbb{R};\\ ac \\neq 0$). Ông A (chưa biết đánh máy) sau $4$ tuần đi học thì tốc độ đánh máy trung bình đạt $20$ từ/phút, sau $6$ tuần đạt $30$ từ/phút. Hãy dự đoán sau khóa học $15$ tuần thì tốc độ đánh máy trung bình của ông A là bao nhiêu từ/phút (làm tròn kết quả đến hàng đơn vị)?",
+      "points": 1,
+      "sort_order": 37,
+      "choices": [],
+      "settings": {
+        "explanation": "Vì tốc độ đánh máy thực tế bị chặn trên (không thể tiến tới $+\\infty$ khi $t \\to +\\infty$), loại công thức $\\dfrac{at^2 + b}{ct + d}$. Vậy $S(t) = \\dfrac{at^2 + b}{ct^2 + d}$.\nBan đầu ông A chưa biết đánh máy nên $S(0) = 0 \\Rightarrow b = 0 \\Rightarrow S(t) = \\dfrac{at^2}{ct^2 + d}$.\nTừ $S(4) = 20$ và $S(6) = 30$, ta có $\\begin{cases} 16a = 20(16c + d) \\\\ 36a = 30(36c + d) \\end{cases} \\Leftrightarrow \\begin{cases} 4a = 80c + 5d \\\\ 6a = 180c + 5d \\end{cases} \\Rightarrow a = 50c,\\ d = 24c$.\nSuy ra $S(t) = \\dfrac{50t^2}{t^2 + 24}$. Sau $15$ tuần: $S(15) = \\dfrac{50 \\cdot 15^2}{15^2 + 24} = \\dfrac{11250}{249} \\approx 45,18 \\approx 45$ từ/phút.",
+        "source": "Sở Gia Lai 2025",
+        "level": "Vận dụng",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "45",
+        "accepted_answers": [
+          "45"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 41,
+      "type": "short",
+      "prompt": "Một bể ban đầu chứa $150$ lít nước. Sau đó, cứ mỗi phút người ta bơm thêm $50$ lít nước, đồng thời cho vào bể $20$ gam chất khử trùng (hòa tan). Gọi $f(t)$ ($\\text{gam/lít}$) là nồng độ chất khử trùng trong bể sau $t$ phút ($t \\ge 0$). Biết $f(t)$ tăng theo thời gian $t$ nhưng không vượt ngưỡng $p\\text{ gam/lít}$ ($p$ nhỏ nhất). Tìm số $p$ (viết dưới dạng số thập phân).",
+      "points": 1,
+      "sort_order": 38,
+      "choices": [],
+      "settings": {
+        "explanation": "Nồng độ chất khử trùng sau $t$ phút là $f(t) = \\dfrac{20t}{150 + 50t}$.\nTa có $f'(t) = \\dfrac{3000}{(150 + 50t)^2} > 0,\\ \\forall t \\ge 0$ và $\\lim_{t \\to +\\infty} f(t) = \\dfrac{20}{50} = 0,4\\text{ gam/lít}$. Vậy $p = 0,4$.",
+        "source": "THPT Hướng Hóa - Quảng Trị 2025",
+        "level": "Nhận biết",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "0,4",
+        "accepted_answers": [
+          "0,4",
+          "0.4"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 42,
+      "type": "short",
+      "prompt": "Mực nước trong hồ chứa của nhà máy điện thủy triều thay đổi trong suốt một ngày do nước chảy ra khi thủy triều xuống và nước chảy vào khi thủy triều lên (như hình vẽ). Tốc độ thay đổi của mực nước được xác định bởi hàm số $h'(t) = \\dfrac{1}{90}(t^2 - 17t + 60)$, trong đó $t$ tính bằng giờ ($0 \\le t \\le 24$), $h'(t)$ tính bằng mét/giờ. Tại thời điểm $t = 0$, mực nước trong hồ chứa cao $8\\text{ m}$. Mực nước trong hồ cao nhất bao nhiêu mét?\n![Sơ đồ nhà máy điện thủy triều](/bank-images/short-chuyendong/q42.jpeg)",
+      "points": 1,
+      "sort_order": 39,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $h(t) = \\int h'(t)\\,dt = \\dfrac{1}{90}\\left(\\dfrac{1}{3}t^3 - \\dfrac{17}{2}t^2 + 60t\\right) + C$. Vì $h(0) = 8$ nên $C = 8$.\nGiải $h'(t) = 0 \\Leftrightarrow t^2 - 17t + 60 = 0 \\Leftrightarrow t = 5$ hoặc $t = 12$ (đều thuộc $[0; 24]$).\nTính các giá trị: $h(0) = 8$, $h(5) = \\dfrac{1019}{108} \\approx 9,44$, $h(12) = \\dfrac{44}{5} = 8,8$, $h(24) = \\dfrac{104}{5} = 20,8$.\nVậy mực nước trong hồ cao nhất là $20,8\\text{ m}$.",
+        "source": "THPT DTNT - Nghệ An 2025",
+        "level": "Thông hiểu",
+        "pack": "short-chuyendong"
+      },
+      "answer_key": {
+        "correct_answer": "20,8",
+        "accepted_answers": [
+          "20,8",
+          "20.8"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    }
+  ]
+}

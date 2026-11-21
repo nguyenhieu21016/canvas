@@ -1,0 +1,1081 @@
+{
+  "pack_id": "chude13-gtln-gtnn",
+  "title": "Chủ đề 13 · GTLN - GTNN của hàm số (2025)",
+  "chapter": "GĐ1 · Chương 1",
+  "count": 37,
+  "questions": [
+    {
+      "source_num": 1,
+      "type": "mcq",
+      "prompt": "(THPT Hàm Rồng - Thanh Hóa 2025) Cho hàm số $y = f(x)$ liên tục trên đoạn $[-3; 5]$ và có đồ thị như hình vẽ. Giá trị lớn nhất của hàm số $y = f(x)$ trên đoạn $[-3; 5]$ bằng:\n![Hình Câu 1](/bank-images/chude13/q1_p0.jpg)",
+      "points": 1,
+      "sort_order": 1,
+      "choices": [
+        "$3$.",
+        "$5$.",
+        "$-3$.",
+        "$2$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Dựa vào đồ thị hàm số trên đoạn $[-3; 5]$, ta thấy $\\max_{[-3; 5]} f(x) = f(5) = 3$.",
+        "source": "THPT Hàm Rồng - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 2,
+      "type": "mcq",
+      "prompt": "(THPT Lương Tài 2 - Bắc Ninh 2025) Cho hàm số $y = f(x)$ liên tục trên đoạn $[-4; 4]$ có bảng biến thiên như hình vẽ.\n![Hình Câu 2](/bank-images/chude13/q2_p0.png)\nGiá trị nhỏ nhất của hàm số đã cho trên đoạn $[-4; 4]$ bằng:",
+      "points": 1,
+      "sort_order": 2,
+      "choices": [
+        "$3$.",
+        "$-22$.",
+        "$-71$.",
+        "$-4$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Dựa vào bảng biến thiên trên đoạn $[-4; 4]$, giá trị nhỏ nhất của hàm số là $-71$ (đạt tại $x = -4$).",
+        "source": "THPT Lương Tài 2 - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 3,
+      "type": "mcq",
+      "prompt": "(THPT Tiên Du - Bắc Ninh 2025) Cho hàm số $y = f(x)$ xác định trên $[-2; 4]$ có đồ thị như hình vẽ bên. Giá trị lớn nhất của hàm số $y = f(x)$ trên đoạn $[0; 4]$ là:\n![Hình Câu 3](/bank-images/chude13/q3_p0.jpg)",
+      "points": 1,
+      "sort_order": 3,
+      "choices": [
+        "$3$.",
+        "$2$.",
+        "$-2$.",
+        "$7$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Xét đồ thị trên đoạn $[0; 4]$, giá trị lớn nhất là $\\max_{[0; 4]} f(x) = f(3) = 2$.",
+        "source": "THPT Tiên Du - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 4,
+      "type": "mcq",
+      "prompt": "(THPT Nguyễn Đăng Đạo - Bắc Ninh 2025) Gọi $M, m$ lần lượt là giá trị lớn nhất và giá trị nhỏ nhất của hàm số $f(x) = x^4 - 2x^2 - 1$ trên đoạn $[-1; 2]$. Giá trị của biểu thức $M + 3m$ bằng:",
+      "points": 1,
+      "sort_order": 4,
+      "choices": [
+        "$1$.",
+        "$5$.",
+        "$6$.",
+        "$4$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Ta có $f'(x) = 4x^3 - 4x = 0 \\Leftrightarrow x \\in \\{-1; 0; 1\\}$. Tính $f(-1) = -2; \\; f(0) = -1; \\; f(1) = -2; \\; f(2) = 7$. Suy ra $M = 7, m = -2 \\Rightarrow M + 3m = 7 + 3(-2) = 1$.",
+        "source": "THPT Nguyễn Đăng Đạo - Bắc Ninh 2025",
+        "level": "Thông hiểu",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 5,
+      "type": "mcq",
+      "prompt": "(THPT Gia Bình - Bắc Ninh 2025) Cho hàm số $y = f(x)$ liên tục và có bảng biến thiên trên đoạn $[-1; 3]$ như hình vẽ bên. Khẳng định nào đúng?\n![Hình Câu 5](/bank-images/chude13/q5_p0.png)",
+      "points": 1,
+      "sort_order": 5,
+      "choices": [
+        "$\\min_{[-1; 3]} f(x) = -1$.",
+        "$\\min_{[-1; 3]} f(x) = 1$.",
+        "$\\max_{[-1; 3]} f(x) = 5$.",
+        "$\\max_{[-1; 3]} f(x) = 4$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Từ bảng biến thiên trên $[-1; 3]$, giá trị lớn nhất bằng $5$ và giá trị nhỏ nhất bằng $0$. Chọn C.",
+        "source": "THPT Gia Bình - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 7,
+      "type": "mcq",
+      "prompt": "(THPT Thạch Thành 1 - Thanh Hóa 2025) Giá trị lớn nhất của hàm số $f(x) = x^3 - 3x^2 - 9x + 10$ trên đoạn $[-2; 2]$ bằng:",
+      "points": 1,
+      "sort_order": 6,
+      "choices": [
+        "$-12$.",
+        "$10$.",
+        "$15$.",
+        "$-2$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Ta có $f'(x) = 3x^2 - 6x - 9 = 0 \\Leftrightarrow x = -1 \\in [-2; 2]$ hoặc $x = 3 \\notin [-2; 2]$. Tính $f(-2) = 8; \\; f(-1) = 15; \\; f(2) = -12$. Vậy giá trị lớn nhất là $15$.",
+        "source": "THPT Thạch Thành 1 - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 8,
+      "type": "mcq",
+      "prompt": "(THPT Yên Lạc - Vĩnh Phúc 2025) Cho hàm số $f(x)$ có đồ thị như hình vẽ.\n![Hình Câu 8](/bank-images/chude13/q8_p0.jpg)\nGiá trị lớn nhất của hàm số đã cho trên khoảng $(-\\infty; -1)$ bằng:",
+      "points": 1,
+      "sort_order": 7,
+      "choices": [
+        "$1$.",
+        "$2$.",
+        "$-6$.",
+        "$-3$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Quan sát nhánh đồ thị ứng với $x \\in (-\\infty; -1)$, điểm cao nhất là $(-3; -6)$, nên giá trị lớn nhất bằng $-6$.",
+        "source": "THPT Yên Lạc - Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 9,
+      "type": "mcq",
+      "prompt": "(THPT Chuyên Vĩnh Phúc 2025) Cho hàm số $y = f(x)$ có bảng biến thiên trên đoạn $[0; 3]$ như sau:\n![Hình Câu 9](/bank-images/chude13/q9_p0.png)\nGiá trị nhỏ nhất của hàm số $y = f(x)$ trên đoạn $[0; 3]$ là:",
+      "points": 1,
+      "sort_order": 8,
+      "choices": [
+        "$-4$.",
+        "$1$.",
+        "$4$.",
+        "$0$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Dựa vào bảng biến thiên, giá trị nhỏ nhất trên $[0; 3]$ là $-4$.",
+        "source": "THPT Chuyên Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 10,
+      "type": "mcq",
+      "prompt": "(THPT Nguyễn Viết Xuân - Vĩnh Phúc 2025) Giá trị nhỏ nhất của hàm số $y = x^3 + 3x - 6$ trên đoạn $[1; 3]$ là:",
+      "points": 1,
+      "sort_order": 9,
+      "choices": [
+        "$-39$.",
+        "$-2$.",
+        "$-10$.",
+        "$-6$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Ta có $y' = 3x^2 + 3 > 0, \\; \\forall x \\in [1; 3]$ nên hàm số đồng biến trên $[1; 3]$. Suy ra $\\min_{[1; 3]} y = y(1) = -2$.",
+        "source": "THPT Nguyễn Viết Xuân - Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 11,
+      "type": "mcq",
+      "prompt": "(THPT Thuận Thành 1&2 - Bắc Ninh 2025) Giá trị lớn nhất của hàm số $y = x^3 - 3x + 1$ trên đoạn $[-2; 0]$ là:",
+      "points": 1,
+      "sort_order": 10,
+      "choices": [
+        "$1$.",
+        "$3$.",
+        "$-1$.",
+        "$2$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Ta có $y' = 3x^2 - 3 = 0 \\Leftrightarrow x = -1 \\in [-2; 0]$ (loại $x = 1$). Tính $y(-2) = -1; \\; y(-1) = 3; \\; y(0) = 1$. Vậy giá trị lớn nhất là $3$.",
+        "source": "THPT Thuận Thành 1&2 - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 12,
+      "type": "mcq",
+      "prompt": "(THPT Hùng Vương - Bình Thuận 2025) Cho hàm số $y = f(x)$ có bảng biến thiên như sau:\n![Hình Câu 12](/bank-images/chude13/q12_p0.jpg)\nKhẳng định nào sau đây sai?",
+      "points": 1,
+      "sort_order": 11,
+      "choices": [
+        "Hàm số $y = f(x)$ nghịch biến trên $(-1; 0)$ và $(1; +\\infty)$.",
+        "Giá trị nhỏ nhất của hàm số $y = f(x)$ trên tập $\\mathbb{R}$ bằng $-1$.",
+        "Giá trị lớn nhất của hàm số $y = f(x)$ trên tập $\\mathbb{R}$ bằng $0$.",
+        "Đồ thị hàm số $y = f(x)$ không có đường tiệm cận."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Vì $\\lim_{x \\to \\pm\\infty} f(x) = -\\infty$ nên hàm số không có giá trị nhỏ nhất trên $\\mathbb{R}$ (giá trị $-1$ chỉ là cực tiểu). Vậy B sai.",
+        "source": "THPT Hùng Vương - Bình Thuận 2025",
+        "level": "Thông hiểu",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 13,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Sơn 4 - Thanh Hóa 2025) Cho hàm số $y = f(x)$ liên tục và có đồ thị trên đoạn $[-2; 4]$ như hình vẽ bên. Tổng giá trị lớn nhất và nhỏ nhất của hàm số $y = f(x)$ trên đoạn $[-2; 4]$ bằng:\n![Hình Câu 13](/bank-images/chude13/q13_p0.jpg)",
+      "points": 1,
+      "sort_order": 12,
+      "choices": [
+        "$-2$.",
+        "$5$.",
+        "$3$.",
+        "$0$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Từ đồ thị trên $[-2; 4]$: $M = 7$ và $m = -4$. Vậy $M + m = 7 + (-4) = 3$.",
+        "source": "THPT Triệu Sơn 4 - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 14,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Sơn 1 - Thanh Hóa 2025) Giá trị nhỏ nhất của hàm số $f(x) = x^3 - 3x + 2$ trên đoạn $[-3; 3]$ bằng:",
+      "points": 1,
+      "sort_order": 13,
+      "choices": [
+        "$0$.",
+        "$-16$.",
+        "$4$.",
+        "$20$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Ta có $f'(x) = 3x^2 - 3 = 0 \\Leftrightarrow x = \\pm 1 \\in [-3; 3]$. Tính $f(-3) = -16; \\; f(-1) = 4; \\; f(1) = 0; \\; f(3) = 20$. Vậy giá trị nhỏ nhất bằng $-16$.",
+        "source": "THPT Triệu Sơn 1 - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 15,
+      "type": "mcq",
+      "prompt": "(Cụm trường Hải Dương 2025) Giá trị nhỏ nhất của hàm số $f(x) = x^3 - 6x^2 + 9x - 1$ trên nửa khoảng $[-1; +\\infty)$ là:",
+      "points": 1,
+      "sort_order": 14,
+      "choices": [
+        "$1$.",
+        "$-17$.",
+        "$17$.",
+        "$3$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Ta có $f'(x) = 3x^2 - 12x + 9 = 0 \\Leftrightarrow x = 1$ hoặc $x = 3$ (đều thuộc $[-1; +\\infty)$). Tính $f(-1) = -17; \\; f(1) = 3; \\; f(3) = -1$ và $\\lim_{x \\to +\\infty} f(x) = +\\infty$. Vậy giá trị nhỏ nhất bằng $-17$.\n![Lời giải Câu 15](/bank-images/chude13/q15_s0.jpg)",
+        "source": "Cụm trường Hải Dương 2025",
+        "level": "Thông hiểu",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 16,
+      "type": "mcq",
+      "prompt": "(Sở Hà Tĩnh 2025) Cho hàm số $y = f(x)$ có bảng biến thiên như hình bên. Giá trị lớn nhất của hàm số đã cho trên đoạn $[-2; 4]$ bằng:\n![Hình Câu 16](/bank-images/chude13/q16_p0.png)",
+      "points": 1,
+      "sort_order": 15,
+      "choices": [
+        "$-1$.",
+        "$10$.",
+        "$1$.",
+        "$8$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Từ bảng biến thiên trên đoạn $[-2; 4]$, hàm số đạt giá trị lớn nhất bằng $10$ tại $x = -1$.",
+        "source": "Sở Hà Tĩnh 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 17,
+      "type": "mcq",
+      "prompt": "(Sở Vĩnh Phúc 2025) Cho hàm số $y = f(x)$ liên tục trên đoạn $[-2; 6]$ và có đồ thị như hình vẽ sau:\n![Hình Câu 17](/bank-images/chude13/q17_p0.jpg)\nTổng giá trị lớn nhất và giá trị nhỏ nhất của hàm số $y = f(x)$ trên đoạn $[-2; 6]$ là:",
+      "points": 1,
+      "sort_order": 16,
+      "choices": [
+        "$1$.",
+        "$5$.",
+        "$4$.",
+        "$2$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Dựa vào đồ thị trên $[-2; 6]$, $M = 5$ và $m = -4$. Tổng $M + m = 5 + (-4) = 1$.",
+        "source": "Sở Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 18,
+      "type": "mcq",
+      "prompt": "(Chuyên Thái Bình 2025) Cho hàm số $y = f(x)$ liên tục và có bảng biến thiên trên đoạn $[-1; 3]$ như hình vẽ bên.\n![Hình Câu 18](/bank-images/chude13/q18_p0.jpg)\nKhẳng định nào sau đây đúng?",
+      "points": 1,
+      "sort_order": 17,
+      "choices": [
+        "$\\max_{[-1; 3]} f(x) = f(0)$.",
+        "$\\max_{[-1; 3]} f(x) = f(3)$.",
+        "$\\max_{[-1; 3]} f(x) = f(2)$.",
+        "$\\max_{[-1; 3]} f(x) = f(-1)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Từ bảng biến thiên trên $[-1; 3]$, giá trị lớn nhất là $5 = f(0)$.",
+        "source": "Chuyên Thái Bình 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 19,
+      "type": "mcq",
+      "prompt": "(Chuyên Vinh 2025) Cho hàm số $y = f(x)$ có bảng xét dấu đạo hàm như sau:\n![Hình Câu 19](/bank-images/chude13/q19_p0.png)\nMệnh đề nào sau đây đúng?",
+      "points": 1,
+      "sort_order": 18,
+      "choices": [
+        "$\\max_{(0; +\\infty)} f(x) = f(1)$.",
+        "$\\max_{[-1; 1]} f(x) = f(0)$.",
+        "$\\max_{(-\\infty; -1)} f(x) = f(-1)$.",
+        "$\\min_{(0; 1)} f(x) = f(0)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Trên khoảng $(0; +\\infty)$, đạo hàm $y' > 0$ trên $(0; 1)$ và $y' < 0$ trên $(1; +\\infty)$ nên hàm số đạt giá trị lớn nhất trên $(0; +\\infty)$ tại $x = 1$.",
+        "source": "Chuyên Vinh 2025",
+        "level": "Thông hiểu",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 20,
+      "type": "mcq",
+      "prompt": "(THPT Cẩm Xuyên - Hà Tĩnh 2025) Giá trị lớn nhất của hàm số $f(x) = x^3 + 3x - 6$ trên đoạn $[1; 3]$ là:",
+      "points": 1,
+      "sort_order": 19,
+      "choices": [
+        "$30$.",
+        "$39$.",
+        "$36$.",
+        "$10$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Vì $f'(x) = 3x^2 + 3 > 0, \\; \\forall x \\in [1; 3]$ nên hàm số đồng biến trên $[1; 3]$. Vậy $\\max_{[1; 3]} f(x) = f(3) = 30$.",
+        "source": "THPT Cẩm Xuyên - Hà Tĩnh 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 21,
+      "type": "mcq",
+      "prompt": "(THPT Trần Nguyên Hãn - Hải Phòng 2025) Cho hàm số $y = f(x)$ liên tục trên $[-1; 3]$ và có đồ thị như hình bên.\n![Hình Câu 21](/bank-images/chude13/q21_p0.png)\nGọi $M, m$ lần lượt là giá trị lớn nhất và nhỏ nhất của hàm số đã cho trên đoạn $[-1; 3]$. Giá trị của $M + m$ là:",
+      "points": 1,
+      "sort_order": 20,
+      "choices": [
+        "$-5$.",
+        "$2$.",
+        "$-6$.",
+        "$-2$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Từ đồ thị trên $[-1; 3]$, ta có $M = 2$ và $m = -4 \\Rightarrow M + m = -2$.",
+        "source": "THPT Trần Nguyên Hãn - Hải Phòng 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 22,
+      "type": "mcq",
+      "prompt": "(THPT Sào Nam - Quảng Nam 2025) Giá trị nhỏ nhất của hàm số $f(x) = -x^3 - x + 2$ trên đoạn $[-2; 0]$ bằng:",
+      "points": 1,
+      "sort_order": 21,
+      "choices": [
+        "$2$.",
+        "$-2$.",
+        "$0$.",
+        "$-8$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Vì $f'(x) = -3x^2 - 1 < 0, \\; \\forall x \\in \\mathbb{R}$ nên hàm số nghịch biến trên $[-2; 0]$. Do đó $\\min_{[-2; 0]} f(x) = f(0) = 2$.\n![Lời giải Câu 22](/bank-images/chude13/q22_s0.jpg)",
+        "source": "THPT Sào Nam - Quảng Nam 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 23,
+      "type": "mcq",
+      "prompt": "(Cụm trường Nguyễn Hiền - Lê Hồng Phong - Quảng Nam 2025) Giá trị lớn nhất của hàm số $f(x) = -x^4 + 12x^2 + 1$ trên đoạn $[-1; 2]$ bằng:",
+      "points": 1,
+      "sort_order": 22,
+      "choices": [
+        "$37$.",
+        "$1$.",
+        "$12$.",
+        "$33$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Ta có $f'(x) = -4x^3 + 24x = 0 \\Leftrightarrow x = 0 \\in [-1; 2]$ (còn $x = \\pm\\sqrt{6} \\notin [-1; 2]$). Tính $f(-1) = 12; \\; f(0) = 1; \\; f(2) = 33$. Vậy giá trị lớn nhất trên $[-1; 2]$ là $33$.",
+        "source": "Cụm trường Nguyễn Hiền - Lê Hồng Phong - Quảng Nam 2025",
+        "level": "Thông hiểu",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 24,
+      "type": "mcq",
+      "prompt": "(THPT Nông Cống 3 - Thanh Hóa 2025) Tìm giá trị nhỏ nhất của hàm số $y = -x + 3 - \\dfrac{1}{x + 2}$ trên nửa khoảng $[-4; -2)$.",
+      "points": 1,
+      "sort_order": 23,
+      "choices": [
+        "$\\min_{[-4; -2)} y = 5$.",
+        "$\\min_{[-4; -2)} y = 4$.",
+        "$\\min_{[-4; -2)} y = 7$.",
+        "$\\min_{[-4; -2)} y = \\dfrac{15}{2}$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Ta có $y' = -1 + \\dfrac{1}{(x+2)^2} = 0 \\Leftrightarrow (x+2)^2 = 1 \\Leftrightarrow x = -3 \\in [-4; -2)$ (loại $x = -1$). Lập BBT trên $[-4; -2)$, hàm số giảm từ $\\dfrac{15}{2}$ xuống $7$ tại $x = -3$ rồi tăng lên $+\\infty$. Vậy $\\min_{[-4; -2)} y = 7$.\n![Lời giải Câu 24](/bank-images/chude13/q24_s0.jpg)",
+        "source": "THPT Nông Cống 3 - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 26,
+      "type": "mcq",
+      "prompt": "(Sở Bắc Giang 2025) Giá trị nhỏ nhất của hàm số $y = x^4 - 4x^2 + 3$ trên đoạn $[0; 4]$ là:",
+      "points": 1,
+      "sort_order": 24,
+      "choices": [
+        "$0$.",
+        "$\\sqrt{2}$.",
+        "$3$.",
+        "$-1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Ta có $y' = 4x^3 - 8x = 0 \\Leftrightarrow x = 0$ hoặc $x = \\sqrt{2}$ trên $[0; 4]$. Tính $y(0) = 3; \\; y(\\sqrt{2}) = -1; \\; y(4) = 195$. Vậy giá trị nhỏ nhất là $-1$.",
+        "source": "Sở Bắc Giang 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 27,
+      "type": "mcq",
+      "prompt": "(Sở Thái Nguyên 2025) Giá trị lớn nhất của hàm số $y = x^3 - 3x + 4$ trên đoạn $[-2; 0]$ bằng:",
+      "points": 1,
+      "sort_order": 25,
+      "choices": [
+        "$2$.",
+        "$4$.",
+        "$12$.",
+        "$6$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Ta có $y' = 3x^2 - 3 = 0 \\Leftrightarrow x = -1 \\in [-2; 0]$. Tính $y(-2) = 2; \\; y(-1) = 6; \\; y(0) = 4$. Vậy giá trị lớn nhất bằng $6$.",
+        "source": "Sở Thái Nguyên 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 28,
+      "type": "mcq",
+      "prompt": "(Chuyên Hùng Vương - Phú Thọ 2025) Cho hàm số $y = f(x)$ xác định trên $\\mathbb{R}$ và có bảng xét dấu $f'(x)$ như sau:\n![Hình Câu 28](/bank-images/chude13/q28_p0.jpg)\nKhẳng định nào dưới đây đúng?",
+      "points": 1,
+      "sort_order": 26,
+      "choices": [
+        "$\\min_{(-2; +\\infty)} f(x) = f(1)$.",
+        "$\\min_{(-\\infty; -3)} f(x) = f(-3)$.",
+        "$\\min_{(-2; 1)} f(x) = f(1)$.",
+        "$\\min_{[-3; -2]} f(x) = f(-2)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Trên khoảng $(-2; +\\infty)$, $f'(x) < 0$ trên $(-2; 1)$ và $f'(x) > 0$ trên $(1; +\\infty)$, nên hàm số đạt giá trị nhỏ nhất trên $(-2; +\\infty)$ tại $x = 1$.\n![Lời giải Câu 28](/bank-images/chude13/q28_s0.jpg)",
+        "source": "Chuyên Hùng Vương - Phú Thọ 2025",
+        "level": "Thông hiểu",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 29,
+      "type": "mcq",
+      "prompt": "(Sở Lào Cai 2025) Cho hàm số $y = f(x)$ liên tục trên đoạn $[1; 5]$ và có đồ thị như hình vẽ sau:\n![Hình Câu 29](/bank-images/chude13/q29_p0.png)\nTrên đoạn $[1; 5]$, hàm số đã cho đạt giá trị lớn nhất tại điểm:",
+      "points": 1,
+      "sort_order": 27,
+      "choices": [
+        "$x = 4$.",
+        "$x = 1$.",
+        "$x = 2$.",
+        "$x = 5$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Dựa vào đồ thị trên $[1; 5]$, điểm cao nhất có tung độ bằng $4$ tại $x = 2$.",
+        "source": "Sở Lào Cai 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 30,
+      "type": "mcq",
+      "prompt": "(THPT Ngô Sĩ Liên - Bắc Giang 2025) Cho hàm số $f(x)$ liên tục trên $[-1; 5]$ và có đồ thị trên đoạn $[-1; 5]$ như hình vẽ bên dưới. Tổng giá trị lớn nhất và giá trị nhỏ nhất của hàm số $f(x)$ trên đoạn $[-1; 5]$ bằng:\n![Hình Câu 30](/bank-images/chude13/q30_p0.jpg)",
+      "points": 1,
+      "sort_order": 28,
+      "choices": [
+        "$4$.",
+        "$1$.",
+        "$2$.",
+        "$-1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Quan sát đồ thị trên $[-1; 5]$, ta có $M = 3$ và $m = -2$. Tổng $M + m = 3 + (-2) = 1$.",
+        "source": "THPT Ngô Sĩ Liên - Bắc Giang 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 31,
+      "type": "mcq",
+      "prompt": "(Liên Trường Nghệ An 2025) Tìm giá trị lớn nhất $M$ của hàm số $y = x^3 + 3x^2 - 9x - 6$ trên đoạn $[-1; 2]$.",
+      "points": 1,
+      "sort_order": 29,
+      "choices": [
+        "$M = 21$.",
+        "$M = 7$.",
+        "$M = 5$.",
+        "$M = -11$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Ta có $y' = 3x^2 + 6x - 9 = 0 \\Leftrightarrow x = 1 \\in [-1; 2]$ (loại $x = -3$). Tính $y(-1) = 5; \\; y(1) = -11; \\; y(2) = -4$. Vậy $M = 5$.",
+        "source": "Liên Trường Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 32,
+      "type": "mcq",
+      "prompt": "(THPT Hoằng Hóa 2 - Thanh Hóa 2025) Cho hàm số $f(x)$ liên tục trên đoạn $[-2; 2]$ có đồ thị như hình vẽ. Gọi $M$ và $m$ lần lượt là giá trị lớn nhất và nhỏ nhất của hàm số trên đoạn $[-2; 2]$. Khi đó, tổng $M + m$ bằng:\n![Hình Câu 32](/bank-images/chude13/q32_p0.jpg)",
+      "points": 1,
+      "sort_order": 30,
+      "choices": [
+        "$-6$.",
+        "$-2$.",
+        "$-5$.",
+        "$2$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Từ đồ thị trên $[-2; 2]$, giá trị lớn nhất $M = 3$ và giá trị nhỏ nhất $m = -1$. Tổng $M + m = 2$.",
+        "source": "THPT Hoằng Hóa 2 - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 34,
+      "type": "mcq",
+      "prompt": "(THPT Tư Nghĩa 1 - Quảng Ngãi 2025) Cho hàm số $y = f(x)$ có đồ thị trên đoạn $[-3; 5]$ như hình vẽ. Gọi $M, m$ lần lượt là giá trị lớn nhất và giá trị nhỏ nhất của hàm số đã cho trên đoạn $[-3; 5]$. Tính $2M - m$.\n![Hình Câu 34](/bank-images/chude13/q34_p0.jpg)",
+      "points": 1,
+      "sort_order": 31,
+      "choices": [
+        "$5$.",
+        "$8$.",
+        "$2$.",
+        "$6$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Từ đồ thị trên $[-3; 5]$, ta có $M = 2$ và $m = -2$. Suy ra $2M - m = 2(2) - (-2) = 6$.",
+        "source": "THPT Tư Nghĩa 1 - Quảng Ngãi 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 35,
+      "type": "mcq",
+      "prompt": "(THPT Mai Trúc Loan - Hà Tĩnh 2025) Giá trị lớn nhất của hàm số $y = x^3 - 3x$ trên đoạn $[0; 3]$ bằng:",
+      "points": 1,
+      "sort_order": 32,
+      "choices": [
+        "$2$.",
+        "$18$.",
+        "$-2$.",
+        "$0$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Ta có $y' = 3x^2 - 3 = 0 \\Leftrightarrow x = 1 \\in [0; 3]$. Tính $y(0) = 0; \\; y(1) = -2; \\; y(3) = 18$. Vậy giá trị lớn nhất bằng $18$.",
+        "source": "THPT Mai Trúc Loan - Hà Tĩnh 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 36,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Quang Phục - Hưng Yên 2025) Cho hàm số $y = f(x)$ liên tục trên đoạn $[-4; 3]$, có bảng biến thiên như hình vẽ. Khẳng định nào sau đây là đúng?\n![Hình Câu 36](/bank-images/chude13/q36_p0.png)",
+      "points": 1,
+      "sort_order": 33,
+      "choices": [
+        "$\\min_{[-4; 3]} f(x) = -1$ tại $x = 3$.",
+        "$\\max_{[-4; 3]} f(x) = 4$ tại $x = -4$.",
+        "$\\max_{[-4; 3]} f(x) = 2$ tại $x = 0$.",
+        "$\\min_{[-4; 3]} f(x) = -2$ tại $x = 2$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Từ bảng biến thiên trên $[-4; 3]$, giá trị lớn nhất là $4$ đạt tại $x = -4$ (và giá trị nhỏ nhất là $-2$ đạt tại $x = -2$). Chọn B.",
+        "source": "THPT Triệu Quang Phục - Hưng Yên 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 37,
+      "type": "mcq",
+      "prompt": "(Cụm Chuyên Môn Đăk Lak 2025) Cho hàm số $y = f(x)$ có đồ thị trên đoạn $[-2; 2]$ như hình vẽ.\n![Hình Câu 37](/bank-images/chude13/q37_p0.png)\nGọi giá trị lớn nhất và giá trị nhỏ nhất của hàm số $f(x)$ trên $[-2; 2]$ lần lượt là $M$ và $m$. Khi đó $M - m$ bằng:",
+      "points": 1,
+      "sort_order": 34,
+      "choices": [
+        "$5$.",
+        "$3$.",
+        "$-4$.",
+        "$0$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Từ đồ thị trên $[-2; 2]$, ta có $M = 1$ và $m = -4$. Vậy $M - m = 1 - (-4) = 5$.",
+        "source": "Cụm Chuyên Môn Đăk Lak 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 38,
+      "type": "mcq",
+      "prompt": "(Cụm Chuyên Môn Đăk Lak 2025) Cho hàm số $y = f(x)$ có đồ thị như hình vẽ. Giá trị lớn nhất của hàm số $y = f(x)$ trên đoạn $[-2; 0]$ bằng:\n![Hình Câu 38](/bank-images/chude13/q38_p0.png)",
+      "points": 1,
+      "sort_order": 35,
+      "choices": [
+        "$1$.",
+        "$4$.",
+        "$-2$.",
+        "$-1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Quan sát đồ thị trên đoạn $[-2; 0]$, giá trị lớn nhất bằng $f(-1) = 4$.",
+        "source": "Cụm Chuyên Môn Đăk Lak 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 39,
+      "type": "mcq",
+      "prompt": "(Sở Hậu Giang 2025) Giá trị nhỏ nhất của hàm số $y = x^4 - 2x^2 - 5$ trên đoạn $[-2; 3]$ bằng:",
+      "points": 1,
+      "sort_order": 36,
+      "choices": [
+        "$-5$.",
+        "$-51$.",
+        "$-1$.",
+        "$-6$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Ta có $y' = 4x^3 - 4x = 0 \\Leftrightarrow x \\in \\{-1; 0; 1\\} \\subset [-2; 3]$. Tính $y(-2) = 3; \\; y(-1) = -6; \\; y(0) = -5; \\; y(1) = -6; \\; y(3) = 58$. Vậy giá trị nhỏ nhất bằng $-6$.",
+        "source": "Sở Hậu Giang 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 40,
+      "type": "mcq",
+      "prompt": "(THPT Bắc Đông Quan - Thái Bình 2025) Gọi $M, m$ lần lượt là giá trị lớn nhất và giá trị nhỏ nhất của hàm số $y = 2 - \\sin x$. Khẳng định nào sau đây đúng?",
+      "points": 1,
+      "sort_order": 37,
+      "choices": [
+        "$M = 2; \\; m = 1$.",
+        "$M = 1; \\; m = -1$.",
+        "$M = 3; \\; m = 0$.",
+        "$M = 3; \\; m = 1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Vì $-1 \\le \\sin x \\le 1 \\Rightarrow 1 \\le 2 - \\sin x \\le 3$. Vậy $M = 3$ và $m = 1$.",
+        "source": "THPT Bắc Đông Quan - Thái Bình 2025",
+        "level": "Nhận biết",
+        "pack": "chude13-gtln-gtnn"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    }
+  ]
+}

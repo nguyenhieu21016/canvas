@@ -1,0 +1,1023 @@
+{
+  "pack_id": "tf4-hambacba",
+  "title": "Chủ đề 3 · Khảo sát hàm bậc ba — Đúng/Sai (2025)",
+  "chapter": "GĐ1 · Chương 1",
+  "count": 29,
+  "questions": [
+    {
+      "source_num": 1,
+      "type": "tf4",
+      "prompt": "Cho hàm số bậc ba $y = f(x)$ có đồ thị như hình vẽ.\n![Hình Câu 1](/bank-images/tf4-hambacba/q1_p0.png)",
+      "points": 1,
+      "sort_order": 1,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Từ đồ thị suy ra giá trị cực tiểu của hàm số bằng $-1$ (đạt tại $x = 2$).\nb) \\textbf{Đúng.} Trên $(0; +\\infty)$, hàm số đạt GTNN bằng $-1$ tại $x = 2$.\nc) \\textbf{Đúng.} Đồ thị đi xuống trên khoảng $(0; 2)$.\nd) \\textbf{Sai.} Đường thẳng $y = 1$ cắt đồ thị tại $3$ điểm nên $f(x) = 1$ có $3$ nghiệm.",
+        "statements": [
+          "Giá trị cực tiểu của hàm số đã cho bằng $2$.",
+          "Trên khoảng $(0; +\\infty)$, giá trị nhỏ nhất của hàm số bằng $-1$.",
+          "Hàm số nghịch biến trên khoảng $(0; 2)$.",
+          "Phương trình $f(x) - 1 = 0$ có đúng hai nghiệm."
+        ],
+        "source": "THPT Lương Tài 2 - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 2,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = \\frac{1}{8}(x^3 - 3x^2 - 9x - 5)$ có đồ thị là $(C)$.",
+      "points": 1,
+      "sort_order": 2,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $y' = \\frac{1}{8}(3x^2 - 6x - 9) = \\frac{3}{8}[(x - 1)^2 - 4] \\ge -\\frac{3}{2}$.\na) \\textbf{Sai.} Hệ số góc nhỏ nhất là $-\\frac{3}{2}$ tại $x_0 = 1 \\Rightarrow y_0 = -2$. Tiếp tuyến là $y = -\\frac{3}{2}x - \\frac{1}{2}$, không đi qua $A\\left(0; -\\frac{7}{3}\\right)$.\nb) \\textbf{Sai.} Trên $[4; 8]$, $y' > 0$ nên hàm đồng biến, GTLN đạt tại $x = 8$ ($y(8) = \\frac{243}{8}$).\nc) \\textbf{Đúng.} $y'' = \\frac{1}{8}(6x - 6) = 0 \\Leftrightarrow x = 1 \\Rightarrow y = -2$. Tâm đối xứng là $(1; -2)$.\nd) \\textbf{Đúng.} $y' = 0 \\Leftrightarrow x = -1$ hoặc $x = 3$, đồ thị có $2$ điểm cực trị $A(-1; 0)$ và $B(3; -4)$.",
+        "statements": [
+          "Phương trình tiếp tuyến có hệ số góc nhỏ nhất của đồ thị $(C)$ đi qua điểm $A\\left(0; -\\frac{7}{3}\\right)$.",
+          "Trên đoạn $[4; 8]$ thì giá trị lớn nhất của hàm số đạt được tại $x = 4$.",
+          "Tâm đối xứng của đồ thị hàm số có tọa độ là $(1; -2)$.",
+          "Đồ thị hàm số có $2$ điểm cực trị."
+        ],
+        "source": "THPT Gia Bình - Bắc Ninh 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          false,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 3,
+      "type": "tf4",
+      "prompt": "Cho đồ thị hàm số $y = f(x)$ có hình vẽ dưới đây và có tập xác định trên $\\mathbb{R}$.\n![Hình Câu 3](/bank-images/tf4-hambacba/q3_p0.jpeg)",
+      "points": 1,
+      "sort_order": 3,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Hàm số $y = \\frac{2x^2 - 1}{x + 1}$ có tiệm cận đứng $x = -1$, còn đồ thị đã cho xác định trên $\\mathbb{R}$ và không có tiệm cận.\nb) \\textbf{Đúng.} $\\lim_{x \\to +\\infty} f(x) = +\\infty$ và $\\lim_{x \\to -\\infty} f(x) = -\\infty$.\nc) \\textbf{Sai.} Hàm số có hai cực trị nên không thể đồng biến trên $\\mathbb{R}$.\nd) \\textbf{Đúng.} Đồ thị có một cực đại và một cực tiểu.",
+        "statements": [
+          "Đồ thị hàm số đã cho là của hàm số $y = \\frac{2x^2 - 1}{x + 1}$.",
+          "Hàm số đã cho không có giá trị lớn nhất và nhỏ nhất.",
+          "Hàm số có đồ thị đã cho đồng biến trên $\\mathbb{R}$.",
+          "Đồ thị hàm số đã cho có hai cực trị."
+        ],
+        "source": "THPT Thạch Thành 1 - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 4,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = x^3 - 3x^2 + 5$. Đặt $g(x) = f(x) + mx$ (với $m$ là tham số).",
+      "points": 1,
+      "sort_order": 4,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $g'(x) = 3x^2 - 6x + m = 0$ có $2$ nghiệm phân biệt $\\Leftrightarrow \\Delta' = 9 - 3m > 0 \\Leftrightarrow m < 3$.\nb) \\textbf{Đúng.} $f'(x) = 3x^2 - 6x > 0$ trên $(2; +\\infty) \\supset (3; +\\infty)$.\nc) \\textbf{Sai.} $f(x)$ có $y_{\\text{CĐ}} = 5$ và $y_{\\text{CT}} = 1 > 0$ nên chỉ cắt trục hoành tại $1$ điểm.\nd) \\textbf{Đúng.} Khi $m = -9$, $g(x) = x^3 - 3x^2 - 9x + 5$, $g'(x) = 0$ có nghiệm duy nhất $x = -1 \\in (-\\infty; 0)$, đạt cực đại $g(-1) = 10$.",
+        "statements": [
+          "Hàm số $g(x)$ đạt cực trị khi và chỉ khi $m < 3$.",
+          "Hàm số $f(x)$ đồng biến trên khoảng $(3; +\\infty)$.",
+          "Đồ thị hàm số $f(x)$ cắt trục hoành tại $3$ điểm phân biệt.",
+          "Khi $m = -9$, giá trị lớn nhất của hàm $g(x)$ trên khoảng $(-\\infty; 0)$ bằng $10$."
+        ],
+        "source": "THPT Yên Lạc - Vĩnh Phúc 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 5,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x)$ có đạo hàm liên tục trên $\\mathbb{R}$. Hàm số $y = f'(x)$ có đồ thị như hình dưới đây.\n![Hình Câu 5](/bank-images/tf4-hambacba/q5_p0.png)",
+      "points": 1,
+      "sort_order": 5,
+      "choices": [],
+      "settings": {
+        "explanation": "Từ đồ thị $f'(x)$: $f'(x) = 0 \\Leftrightarrow x \\in \\{-1; 1; 4\\}$; $f'(x) > 0$ trên $(-1; 1) \\cup (4; +\\infty)$ và $f'(x) < 0$ trên $(-\\infty; -1) \\cup (1; 4)$.\na) \\textbf{Sai.} Hàm số nghịch biến trên $(1; 4)$.\nb) \\textbf{Đúng.} Trên $[-1; 4]$, hàm tăng từ $f(-1)$ lên $f(1)$ rồi giảm xuống $f(4)$ nên GTLN là $f(1)$.\nc) \\textbf{Đúng.} Hàm số nghịch biến trên $(1; 4)$ nên $f(1) > f(2) > f(4)$.\nd) \\textbf{Sai.} Hàm số có $3$ điểm cực trị tại $x = -1, 1, 4$.",
+        "statements": [
+          "Hàm số $y = f(x)$ đồng biến trên khoảng $(1; +\\infty)$.",
+          "Trên đoạn $[-1; 4]$ thì giá trị lớn nhất của hàm số $y = f(x)$ là $f(1)$.",
+          "$f(1) > f(2) > f(4)$.",
+          "Hàm số $y = f(x)$ có hai cực trị."
+        ],
+        "source": "THPT Thuận Thành 1&2 - Bắc Ninh 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 6,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x) = ax^3 + bx^2 + cx + d$ có bảng biến thiên như sau:\n![Hình Câu 6](/bank-images/tf4-hambacba/q6_p0.png)",
+      "points": 1,
+      "sort_order": 6,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Hàm số đồng biến trên khoảng $(0; 2)$.\nb) \\textbf{Đúng.} Từ BBT, hàm số đạt cực đại tại $x = 2$ ($y_{\\text{CĐ}} = 5$).\nc) \\textbf{Sai.} Vì $\\lim_{x \\to +\\infty} y = -\\infty$ nên $a < 0$.\nd) \\textbf{Đúng.} $2f(x) - e = 0 \\Leftrightarrow f(x) = \\frac{e}{2} \\approx 1{,}36 \\in (1; +\\infty)$. Trên $(-\\infty; 0)$, $f(x)$ giảm liên tục từ $+\\infty$ về $1$ nên luôn có đúng $1$ nghiệm âm.",
+        "statements": [
+          "Hàm số đồng biến trên khoảng $(1; 5)$.",
+          "Hàm số đạt cực đại tại điểm $x = 2$.",
+          "$a > 0$.",
+          "Phương trình $2f(x) - e = 0$ luôn có một nghiệm âm."
+        ],
+        "source": "THPT Triệu Sơn 3 - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 7,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x)$ có đạo hàm $f'(x) = (x - 1)^2(x^2 - 3x + 2)$ với mọi $x \\in \\mathbb{R}$.",
+      "points": 1,
+      "sort_order": 7,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $f'(x) = (x - 1)^3(x - 2) = 0 \\Leftrightarrow x = 1$ (bội lẻ) hoặc $x = 2$ (bội lẻ).\na) \\textbf{Sai.} $f'(x) < 0$ trên $(1; 2)$ nên hàm số nghịch biến trên $(1; 2)$.\nb) \\textbf{Sai.} $x = 1$ là điểm cực đại của \\textit{hàm số}, không phải điểm cực đại của \\textit{đồ thị hàm số} (phải là cặp tọa độ).\nc) \\textbf{Đúng.} $f'(x)$ đổi dấu qua cả $x = 1$ và $x = 2$.\nd) \\textbf{Đúng.} $y' = (2x - 4)f'(x^2 - 4x + 1) = 0$ có $5$ nghiệm đơn: $2 - \\sqrt{5} < 0 < 2 < 4 < 2 + \\sqrt{5}$. Lập bảng xét dấu (với $y' > 0$ khi $x \\to +\\infty$) thấy đổi dấu từ $-$ sang $+$ tại $3$ điểm $x = 2 - \\sqrt{5}, x = 2, x = 2 + \\sqrt{5}$.",
+        "statements": [
+          "Hàm số đồng biến trên khoảng $(-\\infty; 2)$.",
+          "Điểm cực đại của đồ thị hàm số là $x = 1$.",
+          "Hàm số $f(x)$ có hai điểm cực trị.",
+          "Hàm số $y = f(x^2 - 4x + 1)$ có ba điểm cực tiểu."
+        ],
+        "source": "THPT Triệu Sơn 4 - Thanh Hóa 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          false,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 8,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = ax^3 + bx^2 + cx + d$ có đồ thị như hình sau đây:\n![Hình Câu 8](/bank-images/tf4-hambacba/q8_p0.jpeg)",
+      "points": 1,
+      "sort_order": 8,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Đồ thị đạt cực tiểu tại $(0; -1)$ nên $y_{\\text{CT}} = -1$.\nb) \\textbf{Đúng.} $\\log_3(f(x) + 6) = 2 \\Leftrightarrow f(x) = 3$. Đường thẳng $y = 3$ cắt đồ thị tại $2$ điểm (một điểm tiếp xúc tại $x = 2$ và một điểm cắt bên trái).\nc) \\textbf{Sai.} Hàm số đồng biến trên $(1; 2)$ và nghịch biến trên $(2; 3)$.\nd) \\textbf{Đúng.} Từ $f'(0) = f'(2) = 0, f(0) = -1, f(2) = 3$ giải ra $a = -1, b = 3, c = 0, d = -1$. Vậy $2025(-1) + 3 + 0 - 1 = -2023$.",
+        "statements": [
+          "Giá trị cực tiểu của hàm số $f(x)$ bằng $-1$.",
+          "Phương trình $\\log_3(f(x) + 6) = 2$ có $2$ nghiệm.",
+          "Hàm số $y = f(x)$ đồng biến trên khoảng $(1; 3)$.",
+          "Tổng $2025a + b + c + d = -2023$."
+        ],
+        "source": "Chuyên Phan Bội Châu - Nghệ An 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 2: Xét dấu hệ số",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 9,
+      "type": "tf4",
+      "prompt": "Cho hàm đa thức $y = f(x)$ có đồ thị của hàm số $y = f'(x)$ là đường cong trong hình vẽ bên.\n![Hình Câu 9](/bank-images/tf4-hambacba/q9_p0.jpeg)",
+      "points": 1,
+      "sort_order": 9,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} $f'(t) = 3 \\Leftrightarrow t = a \\in (-1; 0)$, $t = b \\in (0; 1)$ hoặc $t = c > 2$ (loại). Trên $\\left[0; \\frac{5\\pi}{2}\\right]$, $\\cos x = a \\in (-1; 0)$ có $2$ nghiệm và $\\cos x = b \\in (0; 1)$ có $3$ nghiệm, tổng cộng $5$ nghiệm.\nb) \\textbf{Đúng.} $f'(x) < 0$ trên $(-\\infty; -1)$ và $f'(x) \\ge 0$ trên $(-1; +\\infty)$ nên $\\min_{\\mathbb{R}} f(x) = f(-1)$.\nc) \\textbf{Sai.} Trên $(0; 2)$, $f'(x) > 0$ nên $f(x)$ đồng biến.\nd) \\textbf{Sai.} $g'(x) = f'(x - 2024) - 2023 = 0 \\Leftrightarrow f'(x - 2024) = 2023$ chỉ có duy nhất $1$ nghiệm đơn nên $g(x)$ chỉ có $1$ điểm cực trị.",
+        "statements": [
+          "Phương trình $f'(\\cos x) = 3$ có đúng $4$ nghiệm thuộc $\\left[0; \\frac{5\\pi}{2}\\right]$.",
+          "$\\min_{\\mathbb{R}} f(x) = f(-1)$.",
+          "Hàm số $f(x)$ nghịch biến trên khoảng $(0; 2)$.",
+          "Hàm số $g(x) = f(x - 2024) - 2023x + 2022$ có đúng $2$ điểm cực trị."
+        ],
+        "source": "HSG Hải Phòng 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 10,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x)$ có đạo hàm $f'(x) = (x - 1)^2(x^2 - 3x + 2)$ với mọi $x \\in \\mathbb{R}$.",
+      "points": 1,
+      "sort_order": 10,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $f'(x) = (x - 1)^3(x - 2)$.\na) \\textbf{Sai.} $f'(x) = 0$ có $2$ nghiệm $x = 1$ và $x = 2$.\nb) \\textbf{Đúng.} $f'(x) > 0$ trên $(-\\infty; 1) \\supset (-3; 0)$.\nc) \\textbf{Đúng.} Cả $x = 1$ (bội 3) và $x = 2$ (bội 1) đều là nghiệm bội lẻ.\nd) \\textbf{Sai.} $y' = (2x - 6)f'(x^2 - 6x + 1) = 0$ có $5$ nghiệm đơn: $3 - \\sqrt{10} < 0 < 3 < 6 < 3 + \\sqrt{10}$. Đạo hàm đổi dấu từ $+$ sang $-$ tại $2$ điểm $x = 0$ và $x = 6$, nên chỉ có $2$ điểm cực đại.",
+        "statements": [
+          "Phương trình $f'(x) = 0$ có duy nhất một nghiệm $x = 2$.",
+          "Hàm số $f(x)$ đồng biến trên khoảng $(-3; 0)$.",
+          "Hàm số $f(x)$ có hai điểm cực trị.",
+          "Hàm số $y = f(x^2 - 6x + 1)$ có ba điểm cực đại."
+        ],
+        "source": "THPT Cụm trường Hải Dương 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 2: Cực trị (f'(x) / Đồ thị / BBT)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 11,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x)$ có đạo hàm trên $\\mathbb{R}$ và hàm số $y = f'(x)$ là hàm số bậc ba có đồ thị là đường cong trong hình vẽ.\n![Hình Câu 11](/bank-images/tf4-hambacba/q11_p0.png)",
+      "points": 1,
+      "sort_order": 11,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Trên $(-\\infty; 1)$, $f'(x) \\le 0$ nên $f(x)$ nghịch biến trên $(-\\infty; 1)$.\nb) \\textbf{Sai.} $f'(x)$ chỉ đổi dấu tại $x = 1$ (tiếp xúc tại $x = -2$) nên chỉ có $1$ điểm cực trị.\nc) \\textbf{Sai.} Đồ thị bậc ba của $f'(x)$ tiếp xúc $Ox$ tại $x = -2$, cắt $Ox$ tại $x = 1$ và qua $(0; -4)$ nên $f'(x) = (x + 2)^2(x - 1) \\Rightarrow f'(2) = 16$.\nd) \\textbf{Đúng.} $g'(x) = f'(x) - (x - 1) = (x - 1)(x + 3)(x + 1) > 0$ trên $(-3; -1) \\cup (1; +\\infty)$, mà $\\left(-\\frac{5}{2}; -\\frac{3}{2}\\right) \\subset (-3; -1)$.",
+        "statements": [
+          "Hàm số $y = f(x)$ đồng biến trên khoảng $(-\\infty; -2)$.",
+          "Hàm số $y = f(x)$ có hai điểm cực trị.",
+          "$f'(2) = 4$.",
+          "$g(x) = f(x) - \\frac{1}{2}x^2 + x + 2024$ đồng biến trên khoảng $\\left(-\\frac{5}{2}; -\\frac{3}{2}\\right)$."
+        ],
+        "source": "THPT Cụm trường Hải Dương 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 12,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x) = ax^3 + bx^2 + cx + d$ có đồ thị như hình dưới đây:\n![Hình Câu 12](/bank-images/tf4-hambacba/q12_p0.jpeg)",
+      "points": 1,
+      "sort_order": 12,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Hàm số đạt cực tiểu tại $(0; 1) \\Rightarrow c = 0, d = 1$. Đồ thị qua $(-1; 2)$ và $(-2; 1)$ nên $-a + b = 1$ và $-8a + 4b = 0 \\Rightarrow a = 1, b = 2$. Có $3$ số dương ($a, b, d$).\nb) \\textbf{Sai.} $f'(x) = 3x^2 + 4x = 0 \\Leftrightarrow x = 0, x = -\\frac{4}{3} \\in (-\\infty; -1)$ nên hàm vừa đồng biến vừa nghịch biến trên $(-\\infty; -1)$.\nc) \\textbf{Đúng.} Đồ thị cắt $Oy$ tại $(0; 1)$.\nd) \\textbf{Sai.} Hàm số đạt cực tiểu tại $x = 0$.",
+        "statements": [
+          "Trong $4$ số $a, b, c, d$ có ba số dương.",
+          "Hàm số đồng biến trên khoảng $(-\\infty; -1)$.",
+          "Đồ thị hàm số cắt $Oy$ tại điểm có tọa độ $(0; 1)$.",
+          "Hàm số đạt cực tiểu tại $x = 1$."
+        ],
+        "source": "THPT Lê Xoay - Vĩnh Phúc 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 2: Xét dấu hệ số",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 13,
+      "type": "tf4",
+      "prompt": "Cho hàm số bậc ba $y = f(x) = ax^3 + bx^2 + cx + d$ có đồ thị là đường cong như hình vẽ bên.\n![Hình Câu 13](/bank-images/tf4-hambacba/q13_p0.png)",
+      "points": 1,
+      "sort_order": 13,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Từ đồ thị đi qua $(-1; 3), (1; -1), (0; 1), (-2; -1)$ suy ra $f(x) = x^3 - 3x + 1$, tức $a = 1, b = 0, c = -3, d = 1$ (chỉ có $2$ số dương).\nb) \\textbf{Đúng.} Trên $(-2; 1)$, GTLN là $f(-1) = 3$.\nc) \\textbf{Sai.} Điểm uốn (tâm đối xứng) là $(0; 1)$, có hoành độ bằng $0$.\nd) \\textbf{Sai.} $f(f(x)) = \\frac{5}{2} \\Leftrightarrow f(x) = a \\in (-2; -1)$ ($1$ nghiệm), $f(x) = b \\in (-1; 0)$ ($3$ nghiệm), $f(x) = c \\in (1; 2)$ ($3$ nghiệm). Tổng cộng có $7$ nghiệm phân biệt.",
+        "statements": [
+          "Trong các số $a, b, c, d$ có ba giá trị dương.",
+          "Hàm số đạt giá trị lớn nhất trên $(-2; 1)$ bằng $3$.",
+          "Tâm đối xứng của đồ thị hàm số có hoành độ bằng $1$.",
+          "Phương trình $f(f(x)) = \\frac{5}{2}$ có sáu nghiệm phân biệt."
+        ],
+        "source": "Cụm trường THPT Bắc Ninh 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 2: Xét dấu hệ số",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 14,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x)$. Hàm số $y = f'(x)$ có đồ thị như hình vẽ.\n![Hình Câu 14](/bank-images/tf4-hambacba/q14_p0.jpeg)",
+      "points": 1,
+      "sort_order": 14,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Trên $(-\\infty; -1)$, $f'(x) < 0$ nên $f(x)$ nghịch biến $\\Rightarrow f(-1) < f(-3)$.\nb) \\textbf{Đúng.} $f'(x)$ đổi dấu từ $-$ sang $+$ tại $x = -1$ và $x = 4$.\nc) \\textbf{Đúng.} $g'(x) = -f'(2 - x)$. Khi $x \\in (1; 3)$ thì $2 - x \\in (-1; 1) \\Rightarrow f'(2 - x) > 0 \\Rightarrow g'(x) < 0$.\nd) \\textbf{Đúng.} Khi $x \\in [2024; 2025]$ thì $2 - x < -1 \\Rightarrow f'(2 - x) < 0 \\Rightarrow g'(x) > 0$, nên $g(x)$ đồng biến trên $[2024; 2025]$ và đạt GTNN tại $x = 2024$.",
+        "statements": [
+          "$f(-1) > f(-3)$.",
+          "Hàm số $f(x)$ đạt cực tiểu tại $x = -1$ và $x = 4$.",
+          "Hàm số $y = f(2 - x)$ nghịch biến trên khoảng $(1; 3)$.",
+          "Trên đoạn $[2024; 2025]$ hàm số $g(x) = f(2 - x)$ đạt giá trị nhỏ nhất tại $x = 2024$."
+        ],
+        "source": "THPT Cẩm Xuyên - Hà Tĩnh 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 15,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x)$ có bảng biến thiên như hình vẽ:\n![Hình Câu 15](/bank-images/tf4-hambacba/q15_p0.png)",
+      "points": 1,
+      "sort_order": 15,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Hàm số có $2$ điểm cực tiểu ($x = -2, x = 3$) và $1$ điểm cực đại ($x = 1$).\nb) \\textbf{Đúng.} Đặt $t = \\sqrt{x - 3} + 1 \\ge 1$. Trên $[1; +\\infty)$, $\\min f(t) = f(3) = 1$ (đạt tại $x = 7$).\nc) \\textbf{Đúng.} Xét $h(x) = f(x) + x^2 - 6x$ trên $(1; +\\infty)$: $h'(x) = f'(x) + 2x - 6$ đổi dấu từ $-$ sang $+$ tại duy nhất $x = 3$, với $h(1) = 1 > 0$, $h(3) = -8 < 0$, $\\lim_{x \\to +\\infty} h(x) = +\\infty$ nên có đúng $2$ nghiệm lớn hơn $1$.\nd) \\textbf{Sai.} Đặt $t = \\sqrt{x - 3} + 1 \\ge 1$, phương trình thành $m = \\frac{10 - f(t)}{t^2 - 4t + 8}$. Vì $1 \\le f(t) < 8$ và $t^2 - 4t + 8 \\ge 4$ nên $m \\in \\left(0; \\frac{9}{4}\\right]$, chỉ có tối đa $2$ giá trị nguyên ($m \\in \\{1; 2\\}$), không thể có $7$ số nguyên.",
+        "statements": [
+          "Hàm số đã cho có hai điểm cực đại.",
+          "Giá trị nhỏ nhất của hàm số $y = f(\\sqrt{x - 3} + 1)$ trên nửa khoảng $[3; +\\infty)$ là $1$.",
+          "Phương trình $f(x) + x^2 - 6x = 0$ có đúng hai nghiệm phân biệt lớn hơn $1$.",
+          "Có đúng $7$ số nguyên $m$ để phương trình $f(\\sqrt{x - 3} + 1) + m(x + 2 - 4\\sqrt{x - 3}) = 10$ có hai nghiệm."
+        ],
+        "source": "Chuyên KHTN Hà Nội 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 16,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x) = ax^3 + bx^2 + cx + d$ có bảng biến thiên như hình vẽ:\n![Hình Câu 16](/bank-images/tf4-hambacba/q16_p0.jpeg)",
+      "points": 1,
+      "sort_order": 16,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Hàm số có $2$ điểm cực trị là $x = 0$ và $x = 2$.\nb) \\textbf{Sai.} Vì $\\lim_{x \\to \\pm\\infty} f(x) = \\pm\\infty$ nên hàm số không có GTLN, GTNN trên $\\mathbb{R}$.\nc) \\textbf{Sai.} $g'(x) = -2f'(x) > 0$ trên $(0; 2)$ nên $g(x)$ đồng biến trên $(0; 2)$.\nd) \\textbf{Đúng.} Từ cực trị $(0; 2)$ và $(2; -2)$ tìm được $f(x) = x^3 - 3x^2 + 2$, suy ra $f(-1) = -2$.",
+        "statements": [
+          "Hàm số $y = f(x)$ có hai điểm cực trị.",
+          "Hàm số $y = f(x)$ có giá trị lớn nhất bằng $2$, giá trị nhỏ nhất bằng $-2$.",
+          "Hàm số $g(x) = 3 - 2f(x)$ nghịch biến trên $(0; 2)$.",
+          "Đồ thị hàm số $y = f(x)$ đi qua điểm $A(-1; -2)$."
+        ],
+        "source": "Chuyên Thái Bình 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 17,
+      "type": "tf4",
+      "prompt": "Cho hàm số bậc ba $y = f(x)$ có đồ thị là đường cong như hình vẽ.\n![Hình Câu 17](/bank-images/tf4-hambacba/q17_p0.png)",
+      "points": 1,
+      "sort_order": 17,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Hàm số đạt cực đại tại $x = -1$ và cực tiểu tại $x = 1$.\nb) \\textbf{Đúng.} Trên $[0; 3]$, GTNN là $f(1) = -4$.\nc) \\textbf{Sai.} Hàm số đồng biến trên $(1; +\\infty)$.\nd) \\textbf{Đúng.} Phương trình $f(x) = 0$ có đúng $2$ nghiệm phân biệt $x = -1$ và $x = 2$, nên $y = \\frac{1}{f(x)}$ có đúng $2$ tiệm cận đứng.",
+        "statements": [
+          "Hàm số $y = f(x)$ có hai điểm cực trị.",
+          "Giá trị nhỏ nhất của hàm số $y = f(x)$ trên đoạn $[0; 3]$ bằng $-4$.",
+          "Hàm số $y = f(x)$ nghịch biến trên khoảng $(1; +\\infty)$.",
+          "Đồ thị hàm số $y = \\frac{1}{f(x)}$ có đúng hai đường tiệm cận đứng."
+        ],
+        "source": "Cụm trường Nghệ An 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 18,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = -x^3 + 3x^2 + 4$ có đồ thị $(C)$.",
+      "points": 1,
+      "sort_order": 18,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Đạo hàm đúng là $y' = -3x^2 + 6x$.\nb) \\textbf{Đúng.} $y' = -3x^2 + 6x > 0 \\Leftrightarrow 0 < x < 2$.\nc) \\textbf{Sai.} Hai điểm cực trị là $A(0; 4)$ và $B(2; 8)$, đường thẳng $AB$ là $y = 2x + 4 \\Leftrightarrow 2x - y + 4 = 0$.\nd) \\textbf{Đúng.} $S_{OAB} = \\frac{1}{2} \\cdot OA \\cdot |x_B| = \\frac{1}{2} \\cdot 4 \\cdot 2 = 4$.",
+        "statements": [
+          "Tập xác định của hàm số là $D = \\mathbb{R}$ và $y' = -3x^3 + 6x$.",
+          "Hàm số đồng biến trên khoảng $(0; 2)$.",
+          "Đồ thị $(C)$ có hai điểm cực trị và phương trình đường thẳng đi qua $2$ điểm cực trị là $2x + y - 4 = 0$.",
+          "Diện tích của tam giác $OAB$ bằng $4$, với $O$ là gốc tọa độ và $A, B$ là các điểm cực trị của $(C)$."
+        ],
+        "source": "Cụm trường Nguyễn Hiền - Lê Hồng Phong - Quảng Nam 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 19,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x)$ có đạo hàm liên tục trên $\\mathbb{R}$ và có đồ thị của hàm số $y = f'(x)$ như hình vẽ.\n![Hình Câu 19](/bank-images/tf4-hambacba/q19_p0.png)",
+      "points": 1,
+      "sort_order": 19,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Trên $(-\\infty; -2)$, $f'(x) < 0$ nên hàm số nghịch biến.\nb) \\textbf{Sai.} $f'(x)$ chỉ đổi dấu tại $x = 1$ nên chỉ có $1$ điểm cực trị.\nc) \\textbf{Đúng.} Trên $[-2; 1]$, $f'(x) \\le 0$ nên $f(x)$ nghịch biến, đạt GTNN tại $x = 1$.\nd) \\textbf{Sai.} $g'(x) = 2x f'(x^2 - 2)$. Với $x \\in (0; \\sqrt{3})$ thì $x^2 - 2 < 1 \\Rightarrow f'(x^2 - 2) \\le 0 \\Rightarrow g'(x) \\le 0$ (nghịch biến, không đồng biến).",
+        "statements": [
+          "Hàm số $y = f(x)$ đồng biến trên khoảng $(-\\infty; -2)$.",
+          "Hàm số $y = f(x)$ có hai điểm cực trị.",
+          "Trên đoạn $[-2; 1]$, hàm số $y = f(x)$ đạt giá trị nhỏ nhất tại $x = 1$.",
+          "Hàm số $g(x) = f(x^2 - 2)$ đồng biến trên các khoảng $(-\\infty; -\\sqrt{3})$ và $(0; \\sqrt{3})$."
+        ],
+        "source": "THPT Anh Sơn 3 - Nghệ An 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          false,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 20,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x) = x^3 - 3x^2 + 4$.",
+      "points": 1,
+      "sort_order": 20,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $f'(x) = 3x^2 - 6x < 0 \\Leftrightarrow 0 < x < 2$.\nb) \\textbf{Đúng.} Hệ số bậc cao nhất $a = 1 > 0$ nên $\\lim_{x \\to +\\infty} f(x) = +\\infty$.\nc) \\textbf{Sai.} $A(0; 4), B(2; 0) \\Rightarrow AB = \\sqrt{2^2 + 4^2} = 2\\sqrt{5}$.\nd) \\textbf{Sai.} $f(x) = (x - 2)^2(x + 1) \\Rightarrow y = \\frac{x + 1}{(x - 2)^2(x + 1)} = \\frac{1}{(x - 2)^2}$, chỉ có $1$ tiệm cận đứng $x = 2$.",
+        "statements": [
+          "Hàm số $y = f(x)$ nghịch biến trên khoảng $(0; 2)$.",
+          "Giới hạn $\\lim_{x \\to +\\infty} f(x) = +\\infty$.",
+          "Gọi $A, B$ lần lượt là hai điểm cực trị của đồ thị hàm số $y = f(x)$. Khi đó độ dài $AB$ bằng $\\sqrt{5}$.",
+          "Đồ thị hàm số $y = \\frac{x + 1}{f(x)}$ có đúng hai đường tiệm cận đứng."
+        ],
+        "source": "Sở Quảng Bình 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 21,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = -2x^4 + 4x^2 + 1$ có đồ thị $(C)$.",
+      "points": 1,
+      "sort_order": 21,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Hệ số bậc cao nhất là $-2 < 0$ (bậc chẵn) nên $\\lim_{x \\to -\\infty} f(x) = -\\infty$.\nb) \\textbf{Sai.} $f'(x) = -8x^3 + 8x$.\nc) \\textbf{Đúng.} $-8x^3 + 8x = 0 \\Leftrightarrow x \\in \\{-1; 0; 1\\}$.\nd) \\textbf{Sai.} $f(x) = -2(x^2 - 1)^2 + 3 \\le 3$, GTLN là $3$ đạt tại $x = \\pm 1$.",
+        "statements": [
+          "$\\lim_{x \\to -\\infty} f(x) = -\\infty$.",
+          "Đạo hàm của hàm số đã cho là $f'(x) = -8x^3 + 8x + 1$.",
+          "Tập nghiệm của phương trình $f'(x) = 0$ là $S = \\{-1; 0; 1\\}$.",
+          "Giá trị lớn nhất của $f(x)$ là $1$."
+        ],
+        "source": "Sở Đà Nẵng 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 22,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x) = x^3 + bx^2 + cx + 2$ đạt cực trị bằng $0$ tại $x = 1$ (với $b$ và $c$ là hằng số).",
+      "points": 1,
+      "sort_order": 22,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $f(1) = 0 \\Leftrightarrow b + c = -3$ và $f'(1) = 0 \\Leftrightarrow 2b + c = -3$, giải ra $b = 0, c = -3$.\nb) \\textbf{Đúng.} $f(x) = x^3 - 3x + 2$ có $f'(x) = 3x^2 - 3 = 0 \\Leftrightarrow x = \\pm 1$, đạt cực đại tại $x = -1$.\nc) \\textbf{Sai.} Giá trị cực đại là $f(-1) = 4$.\nd) \\textbf{Sai.} Trên $(-1; 1)$, $f'(x) < 0$ nên hàm số nghịch biến trên $(-1; 0)$.",
+        "statements": [
+          "Giá trị của $b + c$ bằng $-3$.",
+          "Hàm số $y = f(x)$ đạt cực trị tại $x = -1$.",
+          "Giá trị cực đại của hàm số đã cho bằng $0$.",
+          "Hàm số $y = f(x)$ đồng biến trên $(-1; 0)$."
+        ],
+        "source": "Sở Thái Nguyên 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 23,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x)$ xác định và liên tục trên $\\mathbb{R}$ có đồ thị như hình vẽ:\n![Hình Câu 23](/bank-images/tf4-hambacba/q23_p0.png)",
+      "points": 1,
+      "sort_order": 23,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Trên $(-1; 1)$ đồ thị đi xuống.\nb) \\textbf{Đúng.} Trên $(-\\infty; -1)$ và $(1; +\\infty)$ đồ thị đi lên.\nc) \\textbf{Sai.} $g'(x) = f'(x)$ đổi dấu tại $x = 1 \\in (0; 2)$, nên không nghịch biến trên $(0; 2)$.\nd) \\textbf{Đúng.} Đồ thị $y = f(|x|)$ đối xứng qua $Oy$ phần $x \\ge 0$ của $f(x)$, nên đồng biến trên $(-1; 0)$ và $(1; +\\infty)$.",
+        "statements": [
+          "Hàm số nghịch biến trên khoảng $(-1; 1)$.",
+          "Hàm số có $f'(x) > 0, \\forall x \\in (-\\infty; -1) \\cup (1; +\\infty)$.",
+          "Hàm số $g(x) = f(x) + 1$ nghịch biến trên khoảng $(0; 2)$.",
+          "Hàm số $y = f(|x|)$ đồng biến trên $(-1; 0)$ và $(1; +\\infty)$."
+        ],
+        "source": "THPT Hoằng Hóa 2 - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 24,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x)$ liên tục trên $\\mathbb{R}$, đạo hàm $f'(x)$ có đồ thị như hình sau:\n![Hình Câu 24](/bank-images/tf4-hambacba/q24_p0.jpeg)",
+      "points": 1,
+      "sort_order": 24,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Đồ thị $f'(x)$ cắt $Ox$ tại $2$ điểm $x = -3$ và $x = 1$.\nb) \\textbf{Sai.} Trên $(-3; 1) \\supset (-1; 1)$, $f'(x) > 0$ nên $f(x)$ đồng biến.\nc) \\textbf{Sai.} $f'(x)$ đổi dấu từ $-$ sang $+$ qua $x = -3$ nên $x = -3$ là điểm cực tiểu.\nd) \\textbf{Đúng.} $g'(x) = -2x f'(1 - x^2)$. Với $x \\in (2025; 2026)$ thì $1 - x^2 < -3 \\Rightarrow f'(1 - x^2) < 0 \\Rightarrow g'(x) > 0$, nên $g(x)$ đồng biến trên $(2025; 2026) \\Rightarrow g(2025) < g(2026)$.",
+        "statements": [
+          "Phương trình $f'(x) = 0$ có $2$ nghiệm phân biệt.",
+          "Hàm số $y = f(x)$ nghịch biến trên $(-1; 1)$.",
+          "Hàm số $y = f(x)$ có điểm cực đại $x = -3$.",
+          "Nếu $g(x) = f(1 - x^2)$ thì $g(2025) < g(2026)$."
+        ],
+        "source": "Đề thi vào ĐHSPHN 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 25,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x)$ có đạo hàm trên $\\mathbb{R}$ và $f'(x)$ là hàm số bậc ba có đồ thị là đường cong trong hình vẽ bên dưới.\n![Hình Câu 25](/bank-images/tf4-hambacba/q25_p0.jpeg)",
+      "points": 1,
+      "sort_order": 25,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} $f'(x) \\le 0, \\forall x \\le 1$ nên $f(x)$ nghịch biến trên $(-\\infty; 1)$.\nb) \\textbf{Sai.} $f'(x)$ chỉ đổi dấu tại $x = 1$ nên chỉ có $1$ cực trị.\nc) \\textbf{Đúng.} Vì $f(x)$ nghịch biến trên $[-2; 1]$ nên $\\max_{[-2; 1]} f(x) = f(-2)$.\nd) \\textbf{Sai.} $f'(x) = (x + 2)^2(x - 1) \\Rightarrow g(x) = \\frac{1}{(x + 2)(x - 1)}$ có $2$ tiệm cận đứng ($x = -2, x = 1$) và $1$ tiệm cận ngang ($y = 0$), tổng cộng $3$ tiệm cận.",
+        "statements": [
+          "Hàm số $y = f(x)$ đồng biến trên khoảng $(-\\infty; -2)$.",
+          "Hàm số $y = f(x)$ có hai cực trị.",
+          "$\\max_{[-2; 1]} f(x) = f(-2)$.",
+          "Đồ thị hàm số $g(x) = \\frac{x + 2}{f'(x)}$ có tất cả $2$ đường tiệm cận."
+        ],
+        "source": "THPT Triệu Quang Phục - Hưng Yên 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          false,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 4 · Dạng 2: Tiệm cận (Đồ thị / BBT)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 26,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x)$ liên tục trên $\\mathbb{R}$ và có bảng biến thiên như hình vẽ, $m$ là số thực tùy ý.\n![Hình Câu 26](/bank-images/tf4-hambacba/q26_p0.jpeg)",
+      "points": 1,
+      "sort_order": 26,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Trên $[-1; 3]$, $f(x)$ đồng biến từ $0$ lên $2022$ nên GTLN bằng $2022$ tại $x = 3$.\nb) \\textbf{Sai.} $y' = f'(x - 2024) > 0 \\Leftrightarrow -1 < x - 2024 < 3 \\Leftrightarrow 2023 < x < 2027$.\nc) \\textbf{Đúng.} Đồ thị $y = f(x) - 2$ tịnh tiến xuống dưới $2$ đơn vị, nên điểm cực tiểu $(-1; 0)$ thành $(-1; -2)$.\nd) \\textbf{Đúng.} $f(x) \\ge a$ có nghiệm trên $[-1; 3] \\Leftrightarrow a \\le \\max_{[-1; 3]} f(x) = 2022$.",
+        "statements": [
+          "Giá trị lớn nhất của hàm số $y = f(x)$ trên $[-1; 3]$ bằng $2022$ đạt tại $x = 3$.",
+          "Hàm số $y = f(x - 2024)$ đồng biến trên $(-2025; -2021)$.",
+          "Đồ thị hàm số $y = f(x) - 2$ có tọa độ điểm cực tiểu là $(-1; -2)$.",
+          "Bất phương trình $f(x) \\ge a$ (tham số $a$) có nghiệm trên đoạn $[-1; 3]$ khi $a \\le 2022$."
+        ],
+        "source": "THPT Triệu Quang Phục - Hưng Yên 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 27,
+      "type": "tf4",
+      "prompt": "Cho hàm số bậc ba $y = f(x)$ có bảng biến thiên như hình dưới đây:\n![Hình Câu 27](/bank-images/tf4-hambacba/q27_p0.png)",
+      "points": 1,
+      "sort_order": 27,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Hàm số có $2$ điểm cực trị tại $x = 0$ và $x = 4$.\nb) \\textbf{Sai.} Hàm số đồng biến trên $(0; 4)$.\nc) \\textbf{Đúng.} Vì $f(x)$ là bậc ba đạt cực đại $(4; 5)$ và cực tiểu $(0; -3)$ nên $f(x) - 5 = -\\frac{1}{4}(x - 4)^2(x + 2)$, rút gọn $g(x) = \\frac{-4}{(x - 4)(x + 2)}$ có $2$ tiệm cận đứng ($x = 4, x = -2$) và $1$ tiệm cận ngang ($y = 0$), tổng cộng $3$ tiệm cận.\nd) \\textbf{Đúng.} $g'(x) = 2(2 - x)[f'(4x - x^2) - (x - 4)]$. Trên $[1; 3]$ ta có $4x - x^2 \\in [3; 4] \\Rightarrow f'(4x - x^2) \\ge 0$ và $-(x - 4) > 0$, nên $g'(x) = 0 \\Leftrightarrow x = 2$. So sánh $g(1) = f(3) + \\frac{17}{3}$, $g(3) = f(3) + \\frac{19}{3}$, $g(2) = f(4) + 7 = 12$ thấy $\\max_{[1; 3]} g(x) = 12$.",
+        "statements": [
+          "Hàm số $y = f(x)$ có $2$ điểm cực trị.",
+          "Hàm số $y = f(x)$ đồng biến trên $(-3; 5)$.",
+          "Đồ thị hàm số $g(x) = \\frac{x - 4}{f(x) - 5}$ có $3$ đường tiệm cận.",
+          "Giá trị lớn nhất của hàm số $g(x) = f(4x - x^2) + \\frac{1}{3}x^3 - 3x^2 + 8x + \\frac{1}{3}$ trên đoạn $[1; 3]$ bằng $12$."
+        ],
+        "source": "Sở Bắc Ninh 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 28,
+      "type": "tf4",
+      "prompt": "Cho hàm số bậc ba $y = f(x)$ có đồ thị như hình vẽ:\n![Hình Câu 28](/bank-images/tf4-hambacba/q28_p0.png)",
+      "points": 1,
+      "sort_order": 28,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Đồ thị đi xuống trên $(-1; 1)$.\nb) \\textbf{Đúng.} Hai điểm cực trị là $x = -1$ và $x = 1$.\nc) \\textbf{Sai.} Trên $[-2; 2]$, GTLN của hàm số bằng $3$ (đạt tại $x = -1$ và $x = 2$).\nd) \\textbf{Đúng.} Đồ thị có cực trị $x = \\pm 1$ và qua $(0; 1), (1; -1)$ nên $f(x) = x^3 - 3x + 1$.",
+        "statements": [
+          "Hàm số $f(x)$ nghịch biến trên khoảng $(-1; 1)$.",
+          "Hàm số $f(x)$ có hai điểm cực trị.",
+          "Trên đoạn $[-2; 2]$, hàm số $f(x)$ đạt giá trị lớn nhất bằng $2$.",
+          "$f(x) = x^3 - 3x + 1$."
+        ],
+        "source": "Sở Hậu Giang 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 30,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x)$ xác định và có đạo hàm trên $\\mathbb{R}$. Hàm số $y = f'(x)$ có bảng biến thiên như dưới đây:\n![Hình Câu 30](/bank-images/tf4-hambacba/q30_p0.png)",
+      "points": 1,
+      "sort_order": 29,
+      "choices": [],
+      "settings": {
+        "explanation": "Từ BBT của $f'(x)$: $f'(x) < 0$ trên $(-\\infty; -2) \\cup (0; 2)$ và $f'(x) > 0$ trên $(-2; 0) \\cup (2; +\\infty)$.\na) \\textbf{Sai.} Trên $[0; 2]$, $f(x)$ nghịch biến nên $\\min_{[0; 2]} f(x) = f(2)$.\nb) \\textbf{Đúng.} Trên $[-2; 2]$, $f(x)$ tăng trên $[-2; 0]$ và giảm trên $[0; 2]$ nên GTLN đạt tại $x = 0$.\nc) \\textbf{Sai.} Trên $[0; 2]$, $f(x) \\in [f(2); f(0)]$ nên nếu $m > f(0)$ thì phương trình vô nghiệm trên $[0; 2]$.\nd) \\textbf{Đúng.} Với $x \\in [-1; 1]$, $g(x) = f(x) - \\sin^2 x \\le f(x) \\le f(0)$, dấu bằng xảy ra tại $x = 0$.",
+        "statements": [
+          "$\\min_{[0; 2]} f(x) = f(1)$.",
+          "Trên $[-2; 2]$, hàm số đạt giá trị lớn nhất tại $x = 0$.",
+          "$\\forall m \\ge f(-2)$, phương trình $f(x) = m$ luôn có nghiệm trên $[0; 2]$.",
+          "Giá trị lớn nhất của $g(x) = f(x) - \\sin^2 x$ trên đoạn $[-1; 1]$ là $f(0)$."
+        ],
+        "source": "Cụm THPT Hoàn Kiếm - Hai Bà Trưng - Hà Nội 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hambacba"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Vận dụng"
+      ]
+    }
+  ]
+}

@@ -1062,7 +1062,7 @@ export async function fetchQuestionBank({ limit = 100, offset = 0 } = {}) {
   const [questionsResult, countResult] = await withTimeout(Promise.all([
     client
       .from('questions')
-      .select('*, answer_keys(*), profiles(full_name)')
+      .select('*, answer_keys(*)')
       .eq('is_bank_question', true)
       .order('created_at', { ascending: false })
       .range(offset, offset + limit - 1),

@@ -1573,7 +1573,7 @@ export function renderAssignmentEditor(lectures) {
             <div style="width: 32px; height: 32px; border-radius: 8px; background: #F0F4E8; color: #455120; display: flex; align-items: center; justify-content: center;">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="20" y2="15"></line><line x1="10" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="14" y2="21"></line></svg>
             </div>
-            <h3 style="margin: 0; font-family: 'Beautique Display', serif; font-size: 17px; font-weight: 700; color: #101828;">Soạn thảo LaTeX (EX_TEST)</h3>
+            <h3 style="margin: 0; font-family: var(--md-ref-typeface-brand); font-size: 17px; font-weight: 700; color: #101828;">Soạn thảo LaTeX (EX_TEST)</h3>
           </div>
           <div style="display: flex; gap: 8px; align-items: center;">
             <input type="file" id="latex-image-upload" accept="image/*" style="display: none;">
@@ -1659,7 +1659,7 @@ export function renderQuestionEditor(question, index) {
         
         <!-- Question Title & Prompt -->
         <div style="font-size: 15px; color: #1e293b; line-height: 1.6;">
-          <span style="font-weight: 900; color: #455120; font-size: 17px; font-family: 'Beautique Display', serif; letter-spacing: 0.5px; margin-right: 12px; display: inline-block;">CÂU ${qNumStr}</span>
+          <span style="font-weight: 900; color: #455120; font-size: 17px; font-family: var(--md-ref-typeface-brand); letter-spacing: 0.5px; margin-right: 12px; display: inline-block;">CÂU ${qNumStr}</span>
           <span style="font-weight: 500; color: #1e293b; font-size: 15px; font-family: 'Google Sans', sans-serif;">${renderLatexText(cleanPrompt)}</span>
         </div>
         
@@ -1718,7 +1718,7 @@ export function renderQuestionEditor(question, index) {
 
         ${question.type === 'mcq' && correctAnswer ? `
         <div style="margin-top: 14px;">
-          <div style="font-size: 16px; font-weight: 900; color: #455120; font-family: 'Beautique Display', serif; margin-bottom: 6px;">Đáp án</div>
+          <div style="font-size: 16px; font-weight: 900; color: #455120; font-family: var(--md-ref-typeface-brand); margin-bottom: 6px;">Đáp án</div>
           <div style="font-family: 'Google Sans', sans-serif; font-size: 14.5px; font-weight: 700; color: #1e293b; line-height: 1.6;">
             ${correctAnswer}. ${question.choices && question.choices[String(correctAnswer).charCodeAt(0) - 65] ? renderLatexText(question.choices[String(correctAnswer).charCodeAt(0) - 65]) : ''}
           </div>
@@ -1727,7 +1727,7 @@ export function renderQuestionEditor(question, index) {
 
         ${question.type === 'short' ? `
         <div style="margin-top: 14px;">
-          <div style="font-size: 16px; font-weight: 900; color: #455120; font-family: 'Beautique Display', serif; margin-bottom: 6px;">Đáp án</div>
+          <div style="font-size: 16px; font-weight: 900; color: #455120; font-family: var(--md-ref-typeface-brand); margin-bottom: 6px;">Đáp án</div>
           <div style="font-family: 'Google Sans', sans-serif; font-size: 14.5px; font-weight: 700; color: #1e293b; line-height: 1.6; padding: 8px 12px; background: #f8fafc; border-radius: 6px; border: 1px dashed #cbd5e1;">
             ${correctAnswer || '(Chưa có đáp án)'}
           </div>
@@ -1736,7 +1736,7 @@ export function renderQuestionEditor(question, index) {
 
         ${question.settings?.explanation ? `
         <div style="margin-top: 18px;">
-          <div style="font-size: 16px; font-weight: 900; color: #455120; font-family: 'Beautique Display', serif; margin-bottom: 8px;">Hướng dẫn giải chi tiết</div>
+          <div style="font-size: 16px; font-weight: 900; color: #455120; font-family: var(--md-ref-typeface-brand); margin-bottom: 8px;">Hướng dẫn giải chi tiết</div>
           <div style="font-family: 'Google Sans', sans-serif; font-size: 14.5px; line-height: 2.2; color: #334155; max-width: 100%; overflow-x: auto;">
             ${renderLatexText(question.settings.explanation)}
           </div>

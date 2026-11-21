@@ -1,0 +1,848 @@
+{
+  "pack_id": "tf4-hamlogarit",
+  "title": "Chủ đề 6 · Khảo sát hàm Logarit - Mũ — Đúng/Sai (2025)",
+  "chapter": "GĐ1 · Chương 1",
+  "count": 24,
+  "questions": [
+    {
+      "source_num": 1,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = \\log_2(x - 1)$.",
+      "points": 1,
+      "sort_order": 1,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $\\log_2(x - 1) = 0 \\Leftrightarrow x - 1 = 1 \\Leftrightarrow x = 2$.\nb) \\textbf{Đúng.} $\\log_2(x - 1) \\ge 1 \\Leftrightarrow x - 1 \\ge 2 \\Leftrightarrow x \\ge 3$.\nc) \\textbf{Sai.} Điều kiện $x > 1$; phương trình tương đương $x - 1 = x^2 - x - 4 \\Leftrightarrow x^2 - 2x - 3 = 0 \\Leftrightarrow x = 3$ (loại $x = -1$). Tổng các nghiệm là $3$.\nd) \\textbf{Đúng.} Với $x > 5$, $f(x) = \\log_2(x - 1)$ đồng biến còn $g(x) = \\sqrt{x + 7} - \\sqrt{x - 5} = \\frac{12}{\\sqrt{x + 7} + \\sqrt{x - 5}}$ nghịch biến. Có $f(6) \\approx 2{,}32 < g(6) \\approx 2{,}61$ và $f(7) \\approx 2{,}58 > g(7) \\approx 2{,}33$. Vậy các nghiệm nguyên nhỏ hơn $2025$ là $x \\in \\{7; 8; \\dots; 2024\\}$, có $2018$ nghiệm.",
+        "statements": [
+          "Tập nghiệm của phương trình $f(x) = 0$ là $\\{2\\}$.",
+          "Tập nghiệm của bất phương trình $f(x) \\ge 1$ là $[3; +\\infty)$.",
+          "Tổng tất cả các nghiệm của phương trình $f(x) = 2\\log_4(x^2 - x - 4)$ bằng $2$.",
+          "Số nghiệm nguyên nhỏ hơn $2025$ của bất phương trình $\\frac{f(x)}{\\sqrt{x + 7} - \\sqrt{x - 5}} \\ge 1$ là $2018$."
+        ],
+        "source": "THPT Nguyễn Đăng Đạo - Bắc Ninh 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hamlogarit"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 2,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x) = e^{x + \\sqrt{16 - x^2}}$.",
+      "points": 1,
+      "sort_order": 2,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} $f'(x) = 0 \\Leftrightarrow \\sqrt{16 - x^2} = x \\Leftrightarrow x = 2\\sqrt{2}$ (duy nhất $1$ nghiệm).\nb) \\textbf{Sai.} Đạo hàm chỉ xác định trên khoảng mở $(-4; 4)$ (không xác định tại $x = \\pm 4$).\nc) \\textbf{Đúng.} Trên $[-4; 4]$ có $f(-4) = e^{-4}$, $f(4) = e^4$, $f(2\\sqrt{2}) = e^{4\\sqrt{2}}$. Tích $\\max \\cdot \\min = e^{4\\sqrt{2}} \\cdot e^{-4} = e^{-4 + 4\\sqrt{2}} \\Rightarrow a = -4, b = 4, c = 2 \\Rightarrow a + 2b + 3c = 10$.\nd) \\textbf{Đúng.} $f(-4) = e^{-4 + 0} = \\frac{1}{e^4}$.",
+        "statements": [
+          "$f'(x) = 0$ có hai nghiệm phân biệt.",
+          "$f'(x) = \\left(1 - \\frac{x}{\\sqrt{16 - x^2}}\\right)e^{x + \\sqrt{16 - x^2}}, \\forall x \\in [-4; 4]$.",
+          "Tích của giá trị lớn nhất và giá trị nhỏ nhất của hàm số $f(x)$ là $e^{a + b\\sqrt{c}}$ (với $a, b, c \\in \\mathbb{Z}$ và $c$ là số nguyên tố). Khi đó $a + 2b + 3c = 10$.",
+          "$f(-4) = \\frac{1}{e^4}$."
+        ],
+        "source": "Sở Ninh Bình 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamlogarit"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          false,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 3,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = 3^{\\sqrt{x^2 + 1} + x} - 3^{\\sqrt{x^2 + 1} - x}$.",
+      "points": 1,
+      "sort_order": 3,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Đặt $t = \\sqrt{x^2 + 1} + x > 0$ có $t' > 0, \\forall x \\in \\mathbb{R}$; hàm $g(t) = 3^t - 3^{1/t}$ có $g'(t) > 0, \\forall t > 0$. Do đó $f'(x) > 0, \\forall x \\in \\mathbb{R}$.\nb) \\textbf{Đúng.} Chia hai vế cho $3^{\\sqrt{x^2 + 1}} > 0$ được $3^x - 3^{-x} - \\frac{80}{9} \\le 0 \\Leftrightarrow 9 \\cdot 3^{2x} - 80 \\cdot 3^x - 9 \\le 0 \\Leftrightarrow 3^x \\le 9 \\Leftrightarrow x \\le 2$. Có đúng $2$ nghiệm nguyên dương $x \\in \\{1; 2\\}$.\nc) \\textbf{Sai.} $f(x) = 0 \\Leftrightarrow \\sqrt{x^2 + 1} + x = \\sqrt{x^2 + 1} - x \\Leftrightarrow x = 0$ (duy nhất $1$ nghiệm).\nd) \\textbf{Đúng.} Vì $f$ lẻ và đồng biến trên $\\mathbb{R}$, bất phương trình tương đương $x^2 + 1 > \\frac{mx}{2}, \\forall x < 0 \\Leftrightarrow m > 2x + \\frac{2}{x}, \\forall x < 0 \\Leftrightarrow m > -4$. Từ $-3$ đến $2025$ có $2029$ giá trị nguyên.",
+        "statements": [
+          "Tập nghiệm của bất phương trình $f'(x) > 0$ là $(0; +\\infty)$.",
+          "Bất phương trình $f(x) - 80 \\cdot 3^{\\sqrt{x^2 + 1} - 2} \\le 0$ có đúng hai nghiệm nguyên dương.",
+          "Phương trình $f(x) = 0$ có hai nghiệm phân biệt.",
+          "Số giá trị nguyên của $m$ thuộc đoạn $[-2024; 2025]$ để bất phương trình $f(x^2 + 1) + f\\left(-\\frac{mx}{2}\\right) > 0$ nghiệm đúng $\\forall x \\in (-\\infty; 0)$ là $2029$."
+        ],
+        "source": "HSG Hải Phòng 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hamlogarit"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 4,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = 2x - \\log_5(x + 1)$.",
+      "points": 1,
+      "sort_order": 4,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} $f'(x) = 2 - \\frac{1}{(x + 1)\\ln 5}, \\forall x > -1$.\nb) \\textbf{Đúng.} $f'(x) = 0 \\Leftrightarrow x = \\frac{1}{2\\ln 5} - 1 \\approx -0{,}69$, đạo hàm đổi dấu từ $-$ sang $+$ nên có $1$ điểm cực tiểu.\nc) \\textbf{Sai.} $f(4) = 8 - \\log_5 5 = 7$.\nd) \\textbf{Đúng.} Hàm số đồng biến trên $\\left(\\frac{1}{2\\ln 5} - 1; +\\infty\\right) \\supset (0; +\\infty)$.",
+        "statements": [
+          "Đạo hàm của hàm số $f(x)$ là $f'(x) = 1 - \\frac{1}{x + 1}, \\forall x \\in (-1; +\\infty)$.",
+          "Hàm số $f(x)$ có một điểm cực tiểu.",
+          "Giá trị của hàm số $f(x)$ tại điểm $x = 4$ là $f(4) = 8$.",
+          "Hàm số đồng biến trên khoảng $(0; +\\infty)$."
+        ],
+        "source": "Sở Vĩnh Phúc 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamlogarit"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 5,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = \\frac{x^3}{3} - 3x - 6\\ln(2 - x) + 1$.",
+      "points": 1,
+      "sort_order": 5,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Trên $(-\\infty; 2)$: $f'(x) = x^2 - 3 + \\frac{6}{2 - x} = \\frac{x^3 - 2x^2 - 3x}{x - 2}$.\nb) \\textbf{Đúng.} $f'(x) = \\frac{x(x + 1)(x - 3)}{x - 2} > 0$ trên $(-\\infty; -1)$.\nc) \\textbf{Đúng.} Trên $(-\\infty; 2)$, cực đại tại $x = -1$ ($y_{\\text{CĐ}} = \\frac{11}{3} - 6\\ln 3$) và cực tiểu tại $x = 0$ ($y_{\\text{CT}} = 1 - 6\\ln 2$), tổng bằng $\\frac{14}{3} - 6\\ln 6$.\nd) \\textbf{Sai.} Khi $x \\to -\\infty$, $a = \\lim \\frac{g(x)}{x} = \\frac{1}{3}$ và $b = \\lim\\left(g(x) - \\frac{1}{3}x\\right) = -\\frac{2}{3} \\Rightarrow a + b = -\\frac{1}{3}$.",
+        "statements": [
+          "Đạo hàm của hàm số đã cho là $f'(x) = \\frac{x^3 - 2x^2 - 3x}{x - 2}$.",
+          "Hàm số đã cho đồng biến trong khoảng $(-\\infty; -1)$.",
+          "Tổng các giá trị cực đại và cực tiểu của đồ thị hàm số bằng $\\frac{14}{3} - 6\\ln 6$.",
+          "Hàm số $g(x) = \\frac{f(x)}{x^2 + 2x + 2}$ có đường tiệm cận xiên có dạng $y = ax + b$. Khi đó $a + b = \\frac{1}{3}$."
+        ],
+        "source": "THPT Lê Thánh Tông - HCM 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hamlogarit"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 6,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = \\log_2(x + 4)$.",
+      "points": 1,
+      "sort_order": 6,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} $D = (-4; +\\infty)$ chỉ chứa $3$ số nguyên âm là $-3, -2, -1$.\nb) \\textbf{Đúng.} Điều kiện $x > -4$, $x + 4 = x^2 + 2x - 16 \\Leftrightarrow x^2 + x - 20 = 0 \\Leftrightarrow x = 4$ (loại $x = -5$).\nc) \\textbf{Sai.} $g'(x) = -2x + \\frac{10}{x + 4} = 0 \\Leftrightarrow x = 1$ ($x > -4$), với $\\lim_{x \\to -4^+} g(x) = \\lim_{x \\to +\\infty} g(x) = -\\infty$, nên đạt giá trị \\textbf{lớn nhất} tại $x = 1$.\nd) \\textbf{Sai.} Xét $h(x) = \\log_2(x + 4) - x + 1$ có cực đại dương và tiến về $-\\infty$ ở hai đầu nên cắt $Ox$ tại $2$ điểm phân biệt.",
+        "statements": [
+          "Tập xác định của hàm số đã cho chứa đúng $4$ số nguyên âm.",
+          "Phương trình $f(x) = \\log_2(x^2 + 2x - 16)$ có nghiệm duy nhất là $x = 4$.",
+          "Hàm số $g(x) = -x^2 + f(x)\\cdot\\ln 1024$ đạt giá trị nhỏ nhất tại $x = 1$.",
+          "Đường thẳng $y = x - 1$ cắt đồ thị hàm số $y = f(x)$ tại duy nhất một điểm."
+        ],
+        "source": "Chuyên Vinh 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamlogarit"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 7,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = \\ln x - x$.",
+      "points": 1,
+      "sort_order": 7,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} $f\\left(\\frac{1}{e}\\right) = -1 - \\frac{1}{e} = -\\frac{e + 1}{e}$; $f(e^2) = 2 - e^2$.\nb) \\textbf{Sai.} $f'(x) = \\frac{1}{x} - 1 = \\frac{1 - x}{x}$.\nc) \\textbf{Đúng.} $f'(x) < 0$ trên $(1; +\\infty) \\supset (1; e^2)$.\nd) \\textbf{Sai.} Trên $\\left[\\frac{1}{e}; e^2\\right]$, $f(1) = -1$ là GTLN, còn GTNN là $f(e^2) = 2 - e^2$.",
+        "statements": [
+          "$f\\left(\\frac{1}{e}\\right) = \\frac{e + 1}{e}$; $f(e^2) = 2 + e^2$.",
+          "Đạo hàm của hàm số đã cho là $f'(x) = \\frac{x - 1}{x}$.",
+          "Hàm số đã cho nghịch biến trên $(1; e^2)$.",
+          "Giá trị nhỏ nhất của hàm số trên $\\left[\\frac{1}{e}; e^2\\right]$ là $-1$."
+        ],
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamlogarit"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          false,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 8,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = \\ln x - 2x^2, \\forall x \\in (0; +\\infty)$.",
+      "points": 1,
+      "sort_order": 8,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $f'(x) = \\frac{1}{x} - 4x = 0 \\Leftrightarrow x = \\frac{1}{2}$ (vì $x > 0$).\na) \\textbf{Sai.} Trên $[1; e^2]$ hàm nghịch biến nên $\\max = f(1) = -2$, $\\min = f(e^2) = 2 - 2e^4$, tổng bằng $-2e^4$.\nb) \\textbf{Sai.} Hàm số chỉ có $1$ điểm cực đại $x = \\frac{1}{2}$.\nc) \\textbf{Sai.} Hàm đồng biến trên $\\left(0; \\frac{1}{2}\\right)$ và nghịch biến trên $\\left(\\frac{1}{2}; +\\infty\\right)$.\nd) \\textbf{Đúng.} $f(1) = -2$ và $f(e^2) = 2 - 2e^4$.",
+        "statements": [
+          "Tổng giá trị lớn nhất và nhỏ nhất của hàm số trên $[1; e^2]$ là $-\\frac{5}{2} - \\ln 2$.",
+          "Hàm số $y = f(x)$ có hai điểm cực trị.",
+          "Hàm số luôn đồng biến trên tập xác định.",
+          "$f(1) = -2$; $f(e^2) = 2 - 2e^4$."
+        ],
+        "source": "THPT Trần Phú - Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamlogarit"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 9,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x) = (x^2 - 5x + 7)e^x$.",
+      "points": 1,
+      "sort_order": 9,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $f(0) = 7e^0 = 7$.\nb) \\textbf{Sai.} $f'(x) = (2x - 5)e^x + (x^2 - 5x + 7)e^x = (x^2 - 3x + 2)e^x$.\nc) \\textbf{Sai.} $f'(x) = 0 \\Leftrightarrow x = 1$ hoặc $x = 2$, nên hàm đồng biến trên $(-\\infty; 1), (2; +\\infty)$ và nghịch biến trên $(1; 2)$.\nd) \\textbf{Đúng.} So sánh $f(0) = 7$, $f(1) = 3e \\approx 8{,}15$, $f(2) = e^2 \\approx 7{,}39$ suy ra GTNN là $7$ và GTLN là $3e$.",
+        "statements": [
+          "$f(0) = 7$.",
+          "Đạo hàm của hàm số đã cho là $f'(x) = (2x - 5)e^x$.",
+          "Hàm số $y = f(x)$ nghịch biến trên khoảng $\\left(-\\infty; \\frac{5}{2}\\right)$ và đồng biến trên khoảng $\\left(\\frac{5}{2}; +\\infty\\right)$.",
+          "Giá trị nhỏ nhất và lớn nhất của hàm $y = f(x)$ trên đoạn $[0; 2]$ lần lượt là $7$ và $3e$."
+        ],
+        "source": "Cụm trường Hải Dương 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamlogarit"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 10,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = \\log_{\\frac{1}{2}}(x^2 - 5x + 4)$.",
+      "points": 1,
+      "sort_order": 10,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Điều kiện $x^2 - 5x + 4 > 0 \\Leftrightarrow x < 1$ hoặc $x > 4$, nên $D = (-\\infty; 1) \\cup (4; +\\infty)$.\nb) \\textbf{Đúng.} $f'(x) = \\frac{2x - 5}{(x^2 - 5x + 4)\\ln\\frac{1}{2}} = \\frac{5 - 2x}{(x^2 - 5x + 4)\\ln 2}$.\nc) \\textbf{Sai.} Hàm không xác định trên $\\left[1; \\frac{5}{2}\\right)$.\nd) \\textbf{Sai.} $f(x) > 0 \\Leftrightarrow 0 < x^2 - 5x + 4 < 1 \\Leftrightarrow x \\in \\left(\\frac{5 - \\sqrt{13}}{2}; 1\\right) \\cup \\left(4; \\frac{5 + \\sqrt{13}}{2}\\right) \\approx (0{,}7; 1) \\cup (4; 4{,}3)$, không có nghiệm nguyên nào.",
+        "statements": [
+          "Hàm số $y = f(x)$ có tập xác định $D = (-\\infty; 1] \\cup [4; +\\infty)$.",
+          "Hàm số $y = f(x)$ có đạo hàm $f'(x) = \\frac{5 - 2x}{(x^2 - 5x + 4)\\ln 2}$.",
+          "Hàm số $y = f(x)$ đồng biến trên khoảng $\\left(-\\infty; \\frac{5}{2}\\right)$.",
+          "Bất phương trình $f(x) > 0$ có đúng $4$ nghiệm nguyên."
+        ],
+        "source": "THPT Anh Sơn 3 - Nghệ An 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamlogarit"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 11,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = \\ln x - \\frac{x}{2}$.",
+      "points": 1,
+      "sort_order": 11,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Điều kiện $x > 0$.\nb) \\textbf{Sai.} $f(e) = \\ln e - \\frac{e}{2} = 1 - \\frac{e}{2}$.\nc) \\textbf{Đúng.} $f'(x) = \\frac{1}{x} - \\frac{1}{2} = 0 \\Leftrightarrow x = 2 \\in [1; e]$.\nd) \\textbf{Sai.} $f(2) = \\ln 2 - 1 \\approx -0{,}31 > f(1) = -0{,}5 > f(e) \\approx -0{,}36$, nên GTLN là $\\ln 2 - 1$.",
+        "statements": [
+          "Tập xác định của hàm là $D = (0; +\\infty)$.",
+          "$f(1) = -\\frac{1}{2}$; $f(e) = -\\frac{e}{2}$.",
+          "Nghiệm của phương trình $f'(x) = 0$ trên đoạn $[1; e]$ là $x = 2$.",
+          "Giá trị lớn nhất của hàm số $f(x)$ trên đoạn $[1; e]$ bằng $-\\frac{1}{2}$."
+        ],
+        "source": "Sở Phú Thọ 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamlogarit"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 12,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = e^{x^2 - 1} - x^2$.",
+      "points": 1,
+      "sort_order": 12,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $f'(x) = 2xe^{x^2 - 1} - 2x$.\nb) \\textbf{Đúng.} $f(0) = e^{-1} = \\frac{1}{e}$; $f(1) = 1 - 1 = 0$.\nc) \\textbf{Sai.} $f'(x) = 2x(e^{x^2 - 1} - 1) = 0 \\Leftrightarrow x = 0$ hoặc $x = \\pm 1$.\nd) \\textbf{Sai.} Trên khoảng mở $(-1; 1)$, $f(x)$ tăng từ $0$ lên $\\frac{1}{e}$ rồi giảm về $0$ nhưng không nhận giá trị tại $\\pm 1$, nên không tồn tại GTNN trên $(-1; 1)$.",
+        "statements": [
+          "Đạo hàm của hàm số đã cho là $f'(x) = 2xe^{x^2 - 1} - 2x$.",
+          "$f(0) = \\frac{1}{e}$; $f(1) = 0$.",
+          "Tập nghiệm của phương trình $f'(x) = 0$ là $\\{0; 1\\}$.",
+          "Giá trị nhỏ nhất của hàm số đã cho trên khoảng $(-1; 1)$ là $0$."
+        ],
+        "source": "Chuyên Lê Quý Đôn - Đà Nẵng 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamlogarit"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 13,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = e^{2x} - 2x$.",
+      "points": 1,
+      "sort_order": 13,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Tập xác định $D = \\mathbb{R}$.\nb) \\textbf{Đúng.} $f'(x) = 2e^{2x} - 2$.\nc) \\textbf{Đúng.} $2e^{2x} - 2 > 0 \\Leftrightarrow e^{2x} > 1 \\Leftrightarrow x > 0$.\nd) \\textbf{Sai.} Hàm số đạt cực tiểu tại $x = 0$ với giá trị cực tiểu $f(0) = e^0 - 0 = 1$.",
+        "statements": [
+          "Hàm số có tập xác định là $\\mathbb{R}$.",
+          "Đạo hàm của hàm số đã cho là $f'(x) = 2e^{2x} - 2$.",
+          "Tập nghiệm của bất phương trình $f'(x) > 0$ là $S = (0; +\\infty)$.",
+          "Hàm số đã cho có giá trị cực tiểu bằng $0$."
+        ],
+        "source": "Sở Hà Nội 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamlogarit"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 14,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = x - \\frac{1}{x} + 2\\log x$.",
+      "points": 1,
+      "sort_order": 14,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Điều kiện $x > 0$.\nb) \\textbf{Sai.} $\\log x$ là logarit thập phân nên $f'(x) = 1 + \\frac{1}{x^2} + \\frac{2}{x\\ln 10}$.\nc) \\textbf{Đúng.} $f\\left(\\frac{1}{x}\\right) = \\frac{1}{x} - x - 2\\log x = -f(x)$.\nd) \\textbf{Đúng.} Phương trình tương đương $f(\\cos x + 3) = f(\\sin x + 3)$. Vì $f'(x) > 0$ trên $(0; +\\infty)$ nên $\\cos x + 3 = \\sin x + 3 \\Leftrightarrow \\tan x = 1$. Trên $[0; 2\\pi]$ có $2$ nghiệm $\\frac{\\pi}{4}$ và $\\frac{5\\pi}{4}$, tổng bằng $\\frac{3\\pi}{2}$.",
+        "statements": [
+          "Hàm số $y = f(x)$ có tập xác định là $(0; +\\infty)$.",
+          "Đạo hàm của hàm số $f(x)$ là $f'(x) = 1 + \\frac{1}{x^2} + \\frac{2}{x}$, với mọi $x \\in (0; +\\infty)$.",
+          "Hàm số $y = f(x)$ luôn thỏa mãn hệ thức $f\\left(\\frac{1}{x}\\right) = -f(x)$, với mọi $x \\in (0; +\\infty)$.",
+          "Tổng các nghiệm thuộc đoạn $[0; 2\\pi]$ của phương trình $f(\\cos x + 3) + f\\left(\\frac{1}{\\sin x + 3}\\right) = 0$ bằng $\\frac{3\\pi}{2}$."
+        ],
+        "source": "Chuyên Hùng Vương - Phú Thọ 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hamlogarit"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 15,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x) = \\ln(4ex - x^2)$.",
+      "points": 1,
+      "sort_order": 15,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} $f(e) = \\ln(3e^2) = 2 + \\ln 3$.\nb) \\textbf{Sai.} $4ex - x^2 > 0 \\Leftrightarrow 0 < x < 4e$, tập xác định là $(0; 4e)$.\nc) \\textbf{Đúng.} $f'(x) = \\frac{4e - 2x}{4ex - x^2} = 0 \\Leftrightarrow x = 2e$.\nd) \\textbf{Đúng.} Trên $[1; 3e]$, hàm đạt cực đại tại $x = 2e$ với $f(2e) = \\ln(4e^2) = 2\\ln 2 + 2 \\Rightarrow a = 2, b = 2 \\Rightarrow a + b = 4$.",
+        "statements": [
+          "$f(e) = 3$.",
+          "Hàm số có tập xác định là $[0; 4e]$.",
+          "Phương trình $f'(x) = 0$ có một nghiệm $x = 2e$.",
+          "Giá trị lớn nhất của hàm số đã cho trên đoạn $[1; 3e]$ có dạng $a\\ln 2 + b$ thì $a + b = 4$."
+        ],
+        "source": "Sở Yên Bái 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamlogarit"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          false,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 16,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = \\log_3(x^2) + 4$.",
+      "points": 1,
+      "sort_order": 16,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $f(x) = m \\Leftrightarrow x^2 = 3^{m - 4} > 0$, luôn có $2$ nghiệm phân biệt $x = \\pm\\sqrt{3^{m - 4}}$ với mọi $m \\in \\mathbb{R}$.\nb) \\textbf{Đúng.} $f(1) = \\log_3 1 + 4 = 4$.\nc) \\textbf{Sai.} $f(x) = 4 \\Leftrightarrow x^2 = 1 \\Leftrightarrow x = \\pm 1$ ($2$ nghiệm).\nd) \\textbf{Sai.} Điều kiện xác định $x^2 > 0 \\Leftrightarrow x \\neq 0$.",
+        "statements": [
+          "Phương trình $f(x) = m$ luôn có hai nghiệm phân biệt với mọi giá trị của tham số $m$.",
+          "$f(1) = 4$.",
+          "Phương trình $f(x) = 4$ có một nghiệm duy nhất $x = 1$.",
+          "Hàm số $f(x)$ xác định với mọi số thực $x$."
+        ],
+        "source": "THPT Triệu Sơn 1 - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamlogarit"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 17,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x) = \\log_9\\frac{x - 7}{x - 5}$ có đồ thị là $(C)$.",
+      "points": 1,
+      "sort_order": 17,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $\\lim_{x \\to 5^-} f(x) = +\\infty$ và $\\lim_{x \\to 7^+} f(x) = -\\infty$, nên có $2$ tiệm cận đứng $x = 5$ và $x = 7$.\nb) \\textbf{Đúng.} $\\frac{x - 7}{x - 5} > 0 \\Leftrightarrow x < 5$ hoặc $x > 7$.\nc) \\textbf{Đúng.} $\\lim_{x \\to \\pm\\infty} f(x) = \\log_9 1 = 0$ nên có $1$ tiệm cận ngang $y = 0$.\nd) \\textbf{Đúng.} Do khoảng cách giữa hai nhánh $(-\\infty; 5)$ và $(7; +\\infty)$ bằng $2$, nên $0 < x_M - x_N < 2$ buộc $x_N < x_M$ cùng thuộc một nhánh. Trên mỗi nhánh $f'(x) = \\frac{2}{(x - 5)(x - 7)\\ln 9} > 0$ (đồng biến) nên $y_M > y_N$.",
+        "statements": [
+          "$(C)$ có hai tiệm cận đứng.",
+          "Tập xác định của hàm số là $D = (-\\infty; 5) \\cup (7; +\\infty)$.",
+          "$(C)$ có một đường tiệm cận ngang.",
+          "Gọi $M(x_M; y_M), N(x_N; y_N)$ là hai điểm thuộc $(C)$ sao cho $x_M, x_N$ thỏa mãn $0 < x_M - x_N < 2$. Khi đó $y_M$ luôn lớn hơn $y_N$."
+        ],
+        "source": "Sở Bắc Ninh 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hamlogarit"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 4 · Dạng 1: Tiệm cận (Biểu thức)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 18,
+      "type": "tf4",
+      "prompt": "Cho hai hàm số $f(x) = \\log_2(x + 2)$ và $g(x) = \\log_4(5x + 6)$.",
+      "points": 1,
+      "sort_order": 18,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $x + 2 > 0 \\Leftrightarrow x > -2$.\nb) \\textbf{Sai.} $g(x)$ chỉ xác định và đồng biến trên $\\left(-\\frac{6}{5}; +\\infty\\right)$.\nc) \\textbf{Đúng.} $\\log_2(x + 2) = 5 \\Leftrightarrow x + 2 = 32 \\Leftrightarrow x = 30$.\nd) \\textbf{Sai.} Điều kiện chung $x > -\\frac{6}{5} = -1{,}2$. Phương trình tương đương $(x + 2)^2 = 5x + 6 \\Leftrightarrow x^2 - x - 2 = 0 \\Leftrightarrow x = -1$ hoặc $x = 2$. Cả hai nghiệm đều thỏa $x > -1{,}2$ ($f(-1) = g(-1) = 0$ và $f(2) = g(2) = 2$), nên có $2$ nghiệm phân biệt.",
+        "statements": [
+          "Tập xác định của hàm số $y = f(x)$ là $(-2; +\\infty)$.",
+          "Hàm số $y = g(x)$ đồng biến trên $\\mathbb{R}$.",
+          "Phương trình $f(x) = 5$ có nghiệm $x = 30$.",
+          "Phương trình $f(x) = g(x)$ có một nghiệm duy nhất."
+        ],
+        "source": "Sở Hòa Bình 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamlogarit"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 19,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = \\log_5(4x + 1)$.",
+      "points": 1,
+      "sort_order": 19,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $4x + 1 > 0 \\Leftrightarrow x > -\\frac{1}{4}$.\nb) \\textbf{Sai.} $f'(x) = \\frac{4}{(4x + 1)\\ln 5}$.\nc) \\textbf{Đúng.} $f'(x) > 0, \\forall x > -\\frac{1}{4}$.\nd) \\textbf{Đúng.} Tại $x = 1$: $f(1) = 1$, $f'(1) = \\frac{4}{5\\ln 5}$, tiếp tuyến là $y = \\frac{4}{5\\ln 5}(x - 1) + 1 = \\frac{4}{5\\ln 5}x - \\frac{4}{5\\ln 5} + 1$.",
+        "statements": [
+          "Tập xác định của hàm số $f(x)$ là khoảng $\\left(-\\frac{1}{4}; +\\infty\\right)$.",
+          "Đạo hàm của hàm số $f(x)$ là $f'(x) = \\frac{4\\ln 5}{4x + 1}$.",
+          "Hàm số $y = f(x)$ đồng biến trên khoảng xác định của nó.",
+          "Phương trình tiếp tuyến của đồ thị $y = f(x)$ tại điểm $x = 1$ là $y = \\frac{4}{5\\ln 5}x - \\frac{4}{5\\ln 5} + 1$."
+        ],
+        "source": "THPT Lê Thánh Tông - HCM 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamlogarit"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 20,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = e^x - ex$.",
+      "points": 1,
+      "sort_order": 20,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $f(0) = 1$; $f(2) = e^2 - 2e$.\nb) \\textbf{Sai.} $f'(x) = e^x - e$.\nc) \\textbf{Sai.} $e^x - e = 0 \\Leftrightarrow x = 1$.\nd) \\textbf{Đúng.} Trên $[1; 2]$, $f'(x) \\ge 0$ nên $\\max_{[1; 2]} f(x) = f(2) = e^2 - 2e$.",
+        "statements": [
+          "$f(0) = 1$; $f(2) = e^2 - 2e$.",
+          "Đạo hàm của hàm số đã cho là $f'(x) = e^x + e$.",
+          "Nghiệm của phương trình $f'(x) = 0$ là $x = -1$.",
+          "Giá trị lớn nhất của $f(x)$ trên đoạn $[1; 2]$ là $e^2 - 2e$."
+        ],
+        "source": "Sở Long An 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamlogarit"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 21,
+      "type": "tf4",
+      "prompt": "Cho $x, y$ là các số thực thỏa mãn $f(x, y) = \\log_4(x + y) + \\log_4(x - y) \\ge 1$.",
+      "points": 1,
+      "sort_order": 21,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Điều kiện để hai logarit có nghĩa là $x + y > 0$ và $x - y > 0$.\nb) \\textbf{Sai.} $f(x, y) = \\log_4(x^2 - y^2)$.\nc) \\textbf{Sai.} Khi $x = 8, y = 16$ thì $x - y = -8 < 0$, không xác định.\nd) \\textbf{Đúng.} Từ điều kiện suy ra $x > 0$ và $x^2 - y^2 \\ge 4 \\Rightarrow x \\ge \\sqrt{y^2 + 4}$. Khi đó $P = 2x - y \\ge 2\\sqrt{y^2 + 4} - y$. Khảo sát $h(y) = 2\\sqrt{y^2 + 4} - y$ có $h'(y) = 0 \\Leftrightarrow y = \\frac{2}{\\sqrt{3}}$, đạt GTNN $P_{\\min} = 2\\sqrt{3}$ tại $x = \\frac{4}{\\sqrt{3}}, y = \\frac{2}{\\sqrt{3}}$.",
+        "statements": [
+          "Điều kiện xác định của biểu thức $f(x, y)$ là $\\begin{cases} x + y > 0 \\\\ x - y > 0 \\end{cases}$.",
+          "Với cặp số $x, y$ thỏa mãn điều kiện xác định của biểu thức $f(x, y)$, ta có $f(x, y) = x^2 - y^2$.",
+          "Cặp số $\\begin{cases} x = 8 \\\\ y = 16 \\end{cases}$ thỏa mãn $f(x, y) = \\log_4(x + y) + \\log_4(x - y) \\ge 1$.",
+          "Với $P = 2x - y$ thì $P_{\\min} = 2\\sqrt{3}$."
+        ],
+        "source": "THPT Hoằng Hóa 2 - Thanh Hóa 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hamlogarit"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 22,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = 2^x - 2^{-x}$.",
+      "points": 1,
+      "sort_order": 22,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Tập xác định là $D = \\mathbb{R}$.\nb) \\textbf{Đúng.} $f(x)$ đồng biến trên $\\mathbb{R}$ còn $g(x) = -\\frac{1}{2}x + 2$ nghịch biến trên $\\mathbb{R}$, và $x = 1$ là nghiệm ($f(1) = g(1) = \\frac{3}{2}$), nên có nghiệm duy nhất.\nc) \\textbf{Đúng.} $f'(x) = (2^x + 2^{-x})\\ln 2 > 0$.\nd) \\textbf{Đúng.} $f$ là hàm lẻ và đồng biến trên $\\mathbb{R}$ nên $f(m) < f(2^{12} - 2m) \\Leftrightarrow 3m < 4096 \\Leftrightarrow m \\le 1365$, vậy $m_0 = 1365$.",
+        "statements": [
+          "Tập xác định của hàm số là $D = \\mathbb{R} \\setminus \\{0\\}$.",
+          "Phương trình $f(x) = -\\frac{1}{2}x + 2$ có nghiệm duy nhất.",
+          "Đạo hàm của hàm số là $f'(x) = (2^x + 2^{-x})\\ln 2$.",
+          "Gọi $m_0$ là số lớn nhất trong các số nguyên $m$ thỏa mãn $f(m) + f(2m - 2^{12}) < 0$ thì $m_0 = 1365$."
+        ],
+        "source": "Cụm Ninh Giang - Tứ Kỳ - Gia Lộc 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hamlogarit"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 23,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = \\frac{1}{2}x^2 + x - 6\\ln(x + 2)$.",
+      "points": 1,
+      "sort_order": 23,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Trên $(-2; +\\infty)$, $f'(x) = x + 1 - \\frac{6}{x + 2}$.\nb) \\textbf{Sai.} $f'(x) = 0 \\Leftrightarrow x^2 + 3x - 4 = 0 \\Leftrightarrow x = 1$ (thuộc $[-1; 2]$) hoặc $x = -4$ (loại).\nc) \\textbf{Đúng.} $f(-1) = -\\frac{1}{2}$ và $f(2) = 4 - 6\\ln 4 = 4 - 12\\ln 2$.\nd) \\textbf{Sai.} GTNN trên $[-1; 2]$ là $f(1) = \\frac{3}{2} - 6\\ln 3 \\approx -5{,}09 < -5$.",
+        "statements": [
+          "Đạo hàm của hàm số là $f'(x) = x + 1 - \\frac{6}{x + 2}$.",
+          "Trên đoạn $[-1; 2]$, phương trình $f'(x) = 0$ có hai nghiệm phân biệt.",
+          "$f(-1) = -\\frac{1}{2}$ và $f(2) = 4 - 12\\ln 2$.",
+          "Giá trị nhỏ nhất của $f(x)$ trên đoạn $[-1; 2]$ lớn hơn $-5$."
+        ],
+        "source": "Sở Vũng Tàu 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamlogarit"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 24,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = (x^2 - 2)e^{2x}$.",
+      "points": 1,
+      "sort_order": 24,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $f'(x) = 2xe^{2x} + 2(x^2 - 2)e^{2x} = (2x^2 + 2x - 4)e^{2x}$.\nb) \\textbf{Sai.} $f'(0) = -4$ và $f(\\ln 2) = 4(\\ln^2 2 - 2)$.\nc) \\textbf{Sai.} $2x^2 + 2x - 4 = 0 \\Leftrightarrow x = 1$ hoặc $x = -2$.\nd) \\textbf{Đúng.} Trên $[-1; 2]$, $f'(x) = 0 \\Leftrightarrow x = 1$; so sánh $f(-1) = -e^{-2}$, $f(1) = -e^2$, $f(2) = 2e^4$ suy ra GTNN là $-e^2$.",
+        "statements": [
+          "Đạo hàm của hàm số đã cho là $f'(x) = (2x^2 + 2x - 4)e^{2x}$.",
+          "$f'(0) = 4$; $f(\\ln 2) = 2(\\ln^2 2 - 2)$.",
+          "Phương trình $f'(x) = 0$ có nghiệm là $x = 1$ và $x = 2$.",
+          "Giá trị nhỏ nhất của hàm số $f(x) = (x^2 - 2)e^{2x}$ trên đoạn $[-1; 2]$ bằng $-e^2$."
+        ],
+        "source": "Chuyên Lương Thế Vinh - Đồng Nai 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamlogarit"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    }
+  ]
+}

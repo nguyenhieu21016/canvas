@@ -1,0 +1,1413 @@
+{
+  "pack_id": "short-hinhhoc",
+  "title": "Chủ đề 11 · Tối ưu Hình học — Trả lời ngắn (2025)",
+  "chapter": "GĐ1 · Chương 1",
+  "count": 53,
+  "questions": [
+    {
+      "source_num": 1,
+      "type": "short",
+      "prompt": "Cho hình vuông $ABCD$ có cạnh bằng $4\\text{ m}$, chính giữa có một hình vuông đồng tâm với hình vuông $ABCD$ (xem hình vẽ). Biết rằng bốn tam giác tô màu trên hình là bốn tam giác cân. Người ta cần sơn cho hình vuông ở giữa và bốn tam giác cân trên, chi phí là $900$ nghìn đồng trên $1\\text{ m}^2$. Hỏi cần bỏ ra ít nhất bao nhiêu triệu đồng (kết quả làm tròn đến hàng phần chục)?\n![Hình vuông ABCD và phần cần sơn](/bank-images/short-hinhhoc/q1.jpeg)",
+      "points": 1,
+      "sort_order": 1,
+      "choices": [],
+      "settings": {
+        "explanation": "Đặt cạnh góc vuông của bốn tam giác vuông trắng ở góc là $x$ ($0 < x < 2$). Khi đó cạnh đáy tam giác cân tô màu là $4 - 2x$, cạnh hình vuông ở giữa bằng $x\\sqrt{2}$ (vì bốn đường chéo song song tạo thành các tam giác vuông cân).\nTổng diện tích cần sơn gồm hình vuông ở giữa diện tích $(x\\sqrt{2})^2 = 2x^2$ và $4$ tam giác vuông cân có cạnh huyền $4 - 2x$, diện tích $4 \\cdot \\dfrac{(4 - 2x)^2}{4} = (4 - 2x)^2$.\nSuy ra $S(x) = 2x^2 + (4 - 2x)^2 = 6x^2 - 16x + 16$. Đạo hàm $S'(x) = 12x - 16 = 0 \\Leftrightarrow x = \\dfrac{4}{3}$.\nGiá trị nhỏ nhất $S_{\\min} = \\dfrac{16}{3}\\text{ m}^2 \\Rightarrow$ chi phí ít nhất là $\\dfrac{16}{3} \\cdot 0,9 = 4,8$ triệu đồng.",
+        "source": "THPT Hàm Rồng - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "4,8",
+        "accepted_answers": [
+          "4,8",
+          "4.8"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 2,
+      "type": "short",
+      "prompt": "Một ông chủ nhà muốn làm một cái thang cứu hộ khi có nguy hiểm xảy ra. Ông ta muốn làm cái thang để nó đứng dưới đất vươn qua hàng rào tựa vào ngôi nhà (tham khảo hình vẽ). Với hàng rào cao $2,4\\text{ m}$ được đặt song song và cách bức tường của ngôi nhà một khoảng bằng $1,5\\text{ m}$. Chiều dài ngắn nhất của cây thang là bao nhiêu centimét ($\\text{cm}$) để nó đứng dưới đất vươn qua hàng rào tựa vào ngôi nhà (làm tròn đến hàng đơn vị)?\n![Cây thang vươn qua hàng rào tựa vào tường](/bank-images/short-hinhhoc/q2.jpeg)",
+      "points": 1,
+      "sort_order": 2,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $\\alpha \\in \\left(0; \\dfrac{\\pi}{2}\\right)$ là góc giữa thang và mặt đất. Chiều dài thang là $L(\\alpha) = \\dfrac{2,4}{\\sin\\alpha} + \\dfrac{1,5}{\\cos\\alpha}$.\nĐạo hàm $L'(\\alpha) = \\dfrac{-2,4\\cos^3\\alpha + 1,5\\sin^3\\alpha}{\\sin^2\\alpha\\cos^2\\alpha} = 0 \\Leftrightarrow \\tan^3\\alpha = \\dfrac{2,4}{1,5} = \\dfrac{8}{5} \\Leftrightarrow \\tan\\alpha = \\sqrt[3]{\\dfrac{8}{5}}$.\nKhi đó $L_{\\min} = \\left(2,4^{2/3} + 1,5^{2/3}\\right)^{3/2} \\approx 5,4659\\text{ m} \\approx 547\\text{ cm}$.",
+        "source": "THPT Hàm Rồng - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "547",
+        "accepted_answers": [
+          "547"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 3,
+      "type": "short",
+      "prompt": "Một hộp không nắp được làm từ một mảnh các tông theo hình vẽ. Hộp có đáy là một hình vuông cạnh $x\\text{ (cm)}$, chiều cao là $h\\text{ (cm)}$ và thể tích là $4000\\text{ cm}^3$. Tìm $x\\text{ (cm)}$ sao cho chiếc hộp làm ra tốn ít bìa các tông nhất.\n![Khai triển chiếc hộp không nắp](/bank-images/short-hinhhoc/q3.jpeg)",
+      "points": 1,
+      "sort_order": 3,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $V = x^2 h = 4000 \\Rightarrow h = \\dfrac{4000}{x^2}$.\nDiện tích bìa cần dùng là $S(x) = x^2 + 4xh = x^2 + \\dfrac{16000}{x}$ ($x > 0$).\nĐạo hàm $S'(x) = 2x - \\dfrac{16000}{x^2} = 0 \\Leftrightarrow x^3 = 8000 \\Leftrightarrow x = 20\\text{ cm}$.",
+        "source": "THPT Văn Giang - Hưng Yên 2025",
+        "level": "Nhận biết",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "20",
+        "accepted_answers": [
+          "20"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 4,
+      "type": "short",
+      "prompt": "Cho một tấm tôn hình tam giác đều có cạnh bằng $2\\text{ m}$. Người ta thiết kế một hình lục giác đều và sáu hình chữ nhật ở phía ngoài lục giác có một cạnh bằng cạnh của lục giác, một cạnh bằng $x$ (mét) với $0 < x < \\dfrac{2}{3}$. Sau đó người ta cắt theo nét đứt đoạn để thu được một hình hợp bởi một lục giác đều và sáu hình chữ nhật rồi gấp các hình chữ nhật để tạo thành khối lăng trụ lục giác đều (tham khảo hình vẽ dưới đây). Thể tích của khối lăng trụ lớn nhất bằng bao nhiêu đề-xi-mét khối ($\\text{dm}^3$, làm tròn kết quả đến hàng phần mười)?\n![Thiết kế khối lăng trụ lục giác đều từ tam giác đều](/bank-images/short-hinhhoc/q4.jpeg)",
+      "points": 1,
+      "sort_order": 4,
+      "choices": [],
+      "settings": {
+        "explanation": "Tam giác đều cạnh $2\\text{ m}$ có khoảng cách từ tâm $O$ đến mỗi cạnh là $r = \\dfrac{\\sqrt{3}}{3}$.\nKhoảng cách từ tâm $O$ đến cạnh lục giác đều đáy là $OH = \\dfrac{\\sqrt{3}}{3} - x$, suy ra cạnh lục giác đều là $a = \\dfrac{2}{\\sqrt{3}}\\left(\\dfrac{\\sqrt{3}}{3} - x\\right)$.\nDiện tích đáy lục giác đều là $S = 6 \\cdot \\dfrac{a^2\\sqrt{3}}{4} = 2\\sqrt{3}\\left(\\dfrac{\\sqrt{3}}{3} - x\\right)^2$.\nThể tích lăng trụ: $V(x) = 2\\sqrt{3}x\\left(\\dfrac{\\sqrt{3}}{3} - x\\right)^2$ với $x \\in \\left(0; \\dfrac{\\sqrt{3}}{3}\\right)$.\nTa có $V'(x) = 2\\sqrt{3}\\left(\\dfrac{\\sqrt{3}}{3} - x\\right)\\left(\\dfrac{\\sqrt{3}}{3} - 3x\\right) = 0 \\Leftrightarrow x = \\dfrac{\\sqrt{3}}{9}$.\nThể tích lớn nhất là $V\\left(\\dfrac{\\sqrt{3}}{9}\\right) = \\dfrac{8}{81}\\text{ m}^3 = \\dfrac{8000}{81}\\text{ dm}^3 \\approx 98,8\\text{ dm}^3$.",
+        "source": "THPT Tiên Du - Bắc Ninh 2025",
+        "level": "Vận dụng",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "98,8",
+        "accepted_answers": [
+          "98,8",
+          "98.8"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 5,
+      "type": "short",
+      "prompt": "Ông An đang ở trong rừng để đào vàng. Ông tìm thấy vàng ở điểm $X$, cách điểm $A$ là $3\\text{ km}$. Điểm $A$ nằm trên đường bờ biển (đường bờ biển là đường thẳng). Trại của ông An nằm ở $Y$, cách điểm $B$ là $3\\text{ km}$ ($B$ cũng thuộc đường bờ biển). Biết rằng $AB = 18\\text{ km}$, $AM = NB = x\\text{ km}$ và $AX = BY = 3\\text{ km}$ (như hình vẽ).\n![Sơ đồ đường chạy của ông An](/bank-images/short-hinhhoc/q5.jpeg)\nKhi đang đào vàng, ông An bị rắn cắn. Sau khi bị cắn, nồng độ chất độc trong máu tăng theo thời gian bởi hàm số $y = 50\\log(t + 2)\\text{ (mg/l)}$, trong đó $t$ là thời gian tính bằng giờ. Ông chạy trong rừng với vận tốc $5\\text{ km/h}$ và trên bờ biển với vận tốc $13\\text{ km/h}$ theo đường $X \\to M \\to N \\to Y$. Tính nồng độ chất độc trong máu thấp nhất khi ông An về đến trại (làm tròn đến hàng phần chục).",
+      "points": 1,
+      "sort_order": 5,
+      "choices": [],
+      "settings": {
+        "explanation": "Vì hàm $y = 50\\log(t + 2)$ đồng biến nên nồng độ chất độc thấp nhất khi thời gian di chuyển $T(x)$ nhỏ nhất.\nTa có $XM = NY = \\sqrt{x^2 + 9}$ và $MN = 18 - 2x$ ($0 \\le x \\le 9$).\nThời gian $T(x) = \\dfrac{2\\sqrt{x^2 + 9}}{5} + \\dfrac{18 - 2x}{13}$. Đạo hàm $T'(x) = 2\\left(\\dfrac{x}{5\\sqrt{x^2 + 9}} - \\dfrac{1}{13}\\right) = 0 \\Leftrightarrow 13x = 5\\sqrt{x^2 + 9} \\Leftrightarrow x = \\dfrac{5}{4}$.\nThời gian nhỏ nhất $T\\left(\\dfrac{5}{4}\\right) = \\dfrac{162}{65}$ giờ. Khi đó $y_{\\min} = 50\\log\\left(\\dfrac{162}{65} + 2\\right) \\approx 32,6\\text{ mg/l}$.",
+        "source": "THPT Thạch Thành 1 - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "32,6",
+        "accepted_answers": [
+          "32,6",
+          "32.6"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 6,
+      "type": "short",
+      "prompt": "Hai con tàu $A$ và $B$ đang ở cùng một vĩ tuyến và cách nhau $6$ hải lí. Cả hai tàu đồng thời cùng khởi hành. Tàu $A$ chạy về hướng Nam với vận tốc $5$ hải lí/giờ, còn tàu $B$ chạy về vị trí hiện tại của tàu $A$ với vận tốc $7$ hải lí/giờ. Hỏi sau bao nhiêu giờ thì khoảng cách giữa hai tàu là bé nhất (làm tròn kết quả đến hàng phần trăm)?\n![Sơ đồ chuyển động hai con tàu A và B](/bank-images/short-hinhhoc/q6.jpeg)",
+      "points": 1,
+      "sort_order": 6,
+      "choices": [],
+      "settings": {
+        "explanation": "Sau $t$ giờ, khoảng cách từ $A_1$ đến $A$ là $5t$ và từ $B_1$ đến $A$ là $|6 - 7t|$.\nBình phương khoảng cách giữa hai tàu là $d^2(t) = (6 - 7t)^2 + (5t)^2 = 74t^2 - 84t + 36$.\nHàm bậc hai này đạt GTNN tại $t = \\dfrac{84}{2 \\cdot 74} = \\dfrac{21}{37} \\approx 0,57$ giờ.",
+        "source": "THPT Chuyên Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "0,57",
+        "accepted_answers": [
+          "0,57",
+          "0.57"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 7,
+      "type": "short",
+      "prompt": "Một thanh dầm hình hộp chữ nhật được cắt từ một khúc gỗ hình trụ có bán kính đáy bằng $20\\text{ cm}$ sao cho thanh dầm có diện tích mặt cắt ngang lớn nhất, tức là thanh dầm có mặt cắt ngang là hình vuông. Sau khi cắt thanh dầm đó, người ta lại cắt bốn tấm ván hình hộp chữ nhật từ bốn phần còn lại của khúc gỗ (tham khảo hình vẽ dưới đây). Xác định diện tích mặt cắt ngang tối đa của mỗi tấm ván (theo đơn vị $\\text{cm}^2$ và làm tròn kết quả đến hàng phần chục).\n![Mặt cắt ngang thanh dầm và 4 tấm ván](/bank-images/short-hinhhoc/q7.png)",
+      "points": 1,
+      "sort_order": 7,
+      "choices": [],
+      "settings": {
+        "explanation": "Hình vuông nội tiếp đường tròn bán kính $R = 20\\text{ cm}$ có nửa cạnh là $10\\sqrt{2}\\text{ cm}$.\nĐặt hệ trục $Oxy$ tại tâm hình tròn, xét phần cung phía trên đường thẳng $y = 10\\sqrt{2}$. Điểm góc trên bên phải của tấm ván là $P(x; \\sqrt{400 - x^2})$ với $0 < x < 10\\sqrt{2}$.\nDiện tích mặt cắt mỗi tấm ván là $S(x) = 2x\\left(\\sqrt{400 - x^2} - 10\\sqrt{2}\\right)$.\nGiải $S'(x) = 0 \\Leftrightarrow 200 - x^2 = 5\\sqrt{2}\\sqrt{400 - x^2} \\Leftrightarrow x^4 - 350x^2 + 20000 = 0 \\Leftrightarrow x^2 = 175 - \\sqrt{10625}$ (do $x^2 < 200$).\nThay vào được $S_{\\max} = 2\\sqrt{175 - \\sqrt{10625}}\\left(\\sqrt{225 + \\sqrt{10625}} - 10\\sqrt{2}\\right) \\approx 67,35 \\approx 67,3\\text{ cm}^2$.",
+        "source": "Sở Ninh Bình 2025",
+        "level": "Vận dụng",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "67,3",
+        "accepted_answers": [
+          "67,3",
+          "67.3"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 8,
+      "type": "short",
+      "prompt": "Cho một tấm bìa hình vuông có cạnh $2\\text{ m}$. Từ tấm bìa này làm một mô hình kim tự tháp Ai Cập, người ta cắt bỏ bốn tam giác cân bằng nhau có cạnh đáy là các cạnh của hình vuông rồi gấp lên và ghép lại thành một hình chóp tứ giác đều (như hình vẽ).\n![Khai triển mô hình kim tự tháp từ tấm bìa hình vuông](/bank-images/short-hinhhoc/q8.png)\nThể tích của mô hình lớn nhất khi cạnh đáy của mô hình bằng $\\dfrac{a\\sqrt{2}}{b}\\text{ (m)}$ ($a, b \\in \\mathbb{N}^*$, $a, b$ nguyên tố cùng nhau). Tính tổng $a^2 + b^2$.",
+      "points": 1,
+      "sort_order": 8,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi cạnh đáy hình chóp tứ giác đều là $x\\text{ (m)}$ ($0 < x < \\sqrt{2}$). Nửa đường chéo tấm bìa là $OA = \\sqrt{2}$, nên trung đoạn mặt bên là $SK = \\sqrt{2} - \\dfrac{x}{2}$.\nĐường cao hình chóp là $SO = \\sqrt{\\left(\\sqrt{2} - \\dfrac{x}{2}\\right)^2 - \\left(\\dfrac{x}{2}\\right)^2} = \\sqrt{2 - \\sqrt{2}x}$.\nThể tích $V(x) = \\dfrac{1}{3}x^2\\sqrt{2 - \\sqrt{2}x}$. Xét $g(x) = x^4(2 - \\sqrt{2}x) = 2x^4 - \\sqrt{2}x^5$, có $g'(x) = 8x^3 - 5\\sqrt{2}x^4 = 0 \\Leftrightarrow x = \\dfrac{4\\sqrt{2}}{5}$.\nVậy $a = 4,\\ b = 5 \\Rightarrow a^2 + b^2 = 16 + 25 = 41$.",
+        "source": "THPT Diễn Châu 5 - Nghệ An 2025",
+        "level": "Vận dụng",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "41",
+        "accepted_answers": [
+          "41"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 9,
+      "type": "short",
+      "prompt": "Một tấm kẽm hình vuông $ABCD$ có cạnh bằng $30\\text{ cm}$. Người ta gập tấm kẽm theo hai cạnh $EF$ và $GH$ cho đến khi $AD$ và $BC$ trùng nhau như hình vẽ bên để được một hình lăng trụ khuyết hai đáy. Khi thể tích khối lăng trụ lớn nhất thì khoảng cách từ $A$ đến mặt phẳng $(EFGH)$ bằng $a\\sqrt{b}\\text{ (cm)}$ với $a, b$ là các số nguyên dương ($b$ không chia hết cho bình phương số nguyên tố nào). Tính $T = a + 2025b$.\n![Gập tấm kẽm thành lăng trụ tam giác](/bank-images/short-hinhhoc/q9.png)",
+      "points": 1,
+      "sort_order": 9,
+      "choices": [],
+      "settings": {
+        "explanation": "Tam giác đáy $AEG$ có $AE = AG = x$ và $EG = 30 - 2x$ ($7,5 < x < 15$). Nửa chu vi $p = 15$, diện tích $S = \\sqrt{15(15 - x)^2(2x - 15)}$.\nXét $g(x) = (15 - x)^2(2x - 15)$ trên $(7,5; 15)$ có $g'(x) = 6(15 - x)(10 - x) = 0 \\Leftrightarrow x = 10\\text{ cm}$.\nKhi $x = 10$, tam giác $AEG$ đều cạnh $10\\text{ cm}$. Do $(AEG) \\perp (EFGH)$ nên $d(A, (EFGH)) = d(A, EG) = \\dfrac{10\\sqrt{3}}{2} = 5\\sqrt{3}\\text{ cm}$.\nSuy ra $a = 5,\\ b = 3 \\Rightarrow T = 5 + 2025 \\cdot 3 = 6080$.",
+        "source": "THPT Hùng Vương - Bình Thuận 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "6080",
+        "accepted_answers": [
+          "6080"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 10,
+      "type": "short",
+      "prompt": "Từ một tấm tôn hình chữ nhật có các kích thước là $x\\text{ (m)},\\ y\\text{ (m)}$ với $x > 1,\\ y > 1$ và diện tích bằng $4\\text{ m}^2$, người ta cắt bốn hình vuông bằng nhau ở bốn góc rồi gập lại thành một cái thùng dạng hình hộp chữ nhật không nắp có chiều cao bằng $0,5\\text{ m}$.\n![Cắt bốn góc tấm tôn để gập thành thùng không nắp](/bank-images/short-hinhhoc/q10.jpeg)\nThể tích của thùng là hàm số $V(x)$ trên khoảng $(1; 4)$. Đồ thị hàm số $y = \\dfrac{1}{V(x)}$ có bao nhiêu đường tiệm cận đứng?",
+      "points": 1,
+      "sort_order": 10,
+      "choices": [],
+      "settings": {
+        "explanation": "Do $xy = 4 \\Rightarrow y = \\dfrac{4}{x}$ (và $y > 1 \\Leftrightarrow x < 4$). Kích thước đáy thùng là $x - 1$ và $\\dfrac{4}{x} - 1$.\nThể tích $V(x) = 0,5(x - 1)\\left(\\dfrac{4}{x} - 1\\right) = \\dfrac{(x - 1)(4 - x)}{2x}$.\nSuy ra $y = \\dfrac{1}{V(x)} = \\dfrac{2x}{(x - 1)(4 - x)}$. Khi $x \\to 1^+$ và $x \\to 4^-$ thì $y \\to +\\infty$, nên đồ thị có đúng $2$ đường tiệm cận đứng là $x = 1$ và $x = 4$.",
+        "source": "THPT Lý Thường Kiệt - Hà Nội 2025",
+        "level": "Nhận biết",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "2",
+        "accepted_answers": [
+          "2"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 11,
+      "type": "short",
+      "prompt": "Trong một bài thực hành huấn luyện quân sự có một tình huống chiến sĩ phải bơi qua sông để tấn công mục tiêu ở ngay phía bờ bên kia sông. Biết rằng lòng sông rộng $100\\text{ m}$ và vận tốc bơi của chiến sĩ bằng một phần ba vận tốc chạy trên bộ. Biết dòng sông là thẳng, mục tiêu cách chiến sĩ $1\\text{ km}$ theo đường chim bay và chiến sĩ ở sát bờ bên này (cách bờ bên kia $100\\text{ m}$). Hãy cho biết chiến sĩ phải bơi bao nhiêu mét để đến được mục tiêu nhanh nhất (làm tròn kết quả đến hàng đơn vị)?",
+      "points": 1,
+      "sort_order": 11,
+      "choices": [],
+      "settings": {
+        "explanation": "Chọn đơn vị là $100\\text{ m}$ và vận tốc bơi là $1$, vận tốc chạy là $3$. Khoảng cách dọc bờ giữa chiến sĩ và mục tiêu là $\\sqrt{10^2 - 1^2} = 3\\sqrt{11}$.\nGọi $x$ là quãng đường bơi ($1 \\le x \\le 10$), quãng đường chạy là $3\\sqrt{11} - \\sqrt{x^2 - 1}$.\nThời gian $t(x) = x + \\dfrac{3\\sqrt{11} - \\sqrt{x^2 - 1}}{3}$. Đạo hàm $t'(x) = 1 - \\dfrac{x}{3\\sqrt{x^2 - 1}} = 0 \\Leftrightarrow 9(x^2 - 1) = x^2 \\Leftrightarrow x = \\dfrac{3\\sqrt{2}}{4}$.\nQuãng đường bơi ngắn nhất là $\\dfrac{3\\sqrt{2}}{4} \\cdot 100 = 75\\sqrt{2} \\approx 106\\text{ m}$.",
+        "source": "THPT Triệu Sơn 4 - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "106",
+        "accepted_answers": [
+          "106"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 12,
+      "type": "short",
+      "prompt": "Nhà thầy Hùng cách bờ biển $1\\text{ km}$. Mỗi buổi sáng thầy chạy bộ từ nhà ra bờ biển, sau đó chạy dọc bờ biển $500\\text{ m}$, rồi thầy chạy qua chợ hải sản để lấy thức ăn trong ngày, cuối cùng thầy chạy về nhà. Biết chợ hải sản cách bờ biển $400\\text{ m}$ và cách nhà thầy Hùng $1\\text{ km}$. Tính quãng đường ngắn nhất mà thầy Hùng đã chạy trong mỗi buổi sáng (đơn vị $\\text{m}$ và làm tròn đến hàng đơn vị).\n![Sơ đồ đường chạy từ nhà qua bờ biển và chợ hải sản](/bank-images/short-hinhhoc/q12.jpeg)",
+      "points": 1,
+      "sort_order": 12,
+      "choices": [],
+      "settings": {
+        "explanation": "Đổi $500\\text{ m} = 0,5\\text{ km}$, $400\\text{ m} = 0,4\\text{ km}$. Gọi $H, K$ là hình chiếu của Nhà ($A$) và Chợ ($D$) xuống bờ biển.\nTa có $AH = 1$, $DK = 0,4$, $AD = 1 \\Rightarrow HK = \\sqrt{1^2 - (1 - 0,4)^2} = 0,8\\text{ km}$.\nĐặt điểm ra bờ biển là $B$ với $HB = x$, chạy dọc bờ biển đoạn $BC = 0,5$ về phía $K$ nên $CK = 0,3 - x$.\nTổng quãng đường $f(x) = \\sqrt{x^2 + 1} + \\sqrt{(0,3 - x)^2 + 0,4^2} + 0,5 + 1$.\nTịnh tiến $D$ ngược $0,5\\text{ km}$ song song bờ biển về $D_1$ (cách $H$ theo phương ngang $0,3\\text{ km}$, cách bờ $0,4\\text{ km}$) rồi lấy đối xứng $A$ qua bờ biển thành $A_1$:\n$AB + CD = A_1B + BD_1 \\ge A_1D_1 = \\sqrt{(1 + 0,4)^2 + 0,3^2} = \\dfrac{\\sqrt{205}}{10}$.\nQuãng đường ngắn nhất là $\\dfrac{\\sqrt{205}}{10} + 1,5 \\approx 2,9318\\text{ km} \\approx 2932\\text{ m}$.",
+        "source": "THPT Chuyên Phan Bội Châu - Nghệ An 2025",
+        "level": "Vận dụng",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "2932",
+        "accepted_answers": [
+          "2932"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 13,
+      "type": "short",
+      "prompt": "Trong rừng, có hai điểm du lịch ở vị trí $X$ và $Y$ đều cách bờ biển một khoảng bằng $3\\text{ km}$ (coi đường bờ biển là một đường thẳng). Khoảng cách giữa hai vị trí $X$ và $Y$ là $18\\text{ km}$. Người ta dự định đặt hai điểm nghỉ chân tại vị trí $M, N$ trên bờ biển sao cho $XM = YN$ và làm đường từ $X$ lần lượt qua $M, N$ đến $Y$. Biết chi phí làm đường trong rừng là $1300$ triệu/km và đường trên bờ biển là $500$ triệu/km. Khoảng cách giữa hai vị trí $M$ và $N$ là bao nhiêu kilômét để tổng chi phí làm đường nêu trên ít nhất?\n![Sơ đồ làm đường từ X qua M, N đến Y](/bank-images/short-hinhhoc/q13.jpeg)",
+      "points": 1,
+      "sort_order": 13,
+      "choices": [],
+      "settings": {
+        "explanation": "Đặt $XM = YN = x$ ($x \\ge 3$). Khi đó hình chiếu $AM = NB = \\sqrt{x^2 - 9}$ và $MN = 18 - 2\\sqrt{x^2 - 9}$.\nTổng chi phí (tỉ đồng): $f(x) = 1,3 \\cdot 2x + 0,5\\left(18 - 2\\sqrt{x^2 - 9}\\right) = 2,6x + 9 - \\sqrt{x^2 - 9}$.\nĐạo hàm $f'(x) = 2,6 - \\dfrac{x}{\\sqrt{x^2 - 9}} = 0 \\Leftrightarrow 2,6\\sqrt{x^2 - 9} = x \\Leftrightarrow 5,76x^2 = 60,84 \\Leftrightarrow x = 3,25$.\nKhi đó $MN = 18 - 2\\sqrt{3,25^2 - 9} = 18 - 2 \\cdot 1,25 = 15,5\\text{ km}$.",
+        "source": "HSG Hải Phòng 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "15,5",
+        "accepted_answers": [
+          "15,5",
+          "15.5"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 14,
+      "type": "short",
+      "prompt": "Để làm một cái hộp đựng quà tặng bạn nhân dịp sinh nhật, từ một tấm bìa hình chữ nhật với kích thước $40\\text{ cm} \\times 20\\text{ cm}$, bạn Hoa cắt bỏ hai hình vuông có cạnh là $x\\text{ cm}$ và hai hình chữ nhật (phần gạch sọc như hình bên) rồi gấp theo đường nét đứt và dán các mép để được một cái hộp có dạng hình hộp chữ nhật (có nắp). Hỏi bạn Hoa cần cắt bỏ cạnh hình vuông $x$ bằng bao nhiêu $\\text{cm}$ (làm tròn kết quả đến hàng phần trăm) để phần không gian của hộp đựng nhiều quà nhất?\n![Khai triển cắt tấm bìa 40cm x 20cm](/bank-images/short-hinhhoc/q14.jpeg)",
+      "points": 1,
+      "sort_order": 14,
+      "choices": [],
+      "settings": {
+        "explanation": "Ba kích thước của hình hộp chữ nhật tạo thành là $x$, $20 - 2x$ và $\\dfrac{40 - 2x}{2} = 20 - x$ (với $0 < x < 10$).\nThể tích hộp là $V(x) = x(20 - x)(20 - 2x) = 2x^3 - 60x^2 + 400x$.\nĐạo hàm $V'(x) = 6x^2 - 120x + 400 = 0 \\Leftrightarrow x = \\dfrac{30 - 10\\sqrt{3}}{3} \\approx 4,23\\text{ cm}$ (vì $0 < x < 10$).",
+        "source": "HSG Vũng Tàu 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "4,23",
+        "accepted_answers": [
+          "4,23",
+          "4.23"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 15,
+      "type": "short",
+      "prompt": "Trong một cửa hàng, nhà quản lý dự định treo một đồ trang trí trên cao. Vật trang trí được đặt trên giá đỡ nằm dưới thanh treo $1\\text{ m}$. Biết khoảng cách giữa hai thanh treo là $3\\text{ m}$ (hệ dây xích đối xứng hai đầu như hình vẽ). Biết tổng độ dài nhỏ nhất của các đoạn dây xích là $a + b\\sqrt{c}$ (trong đó $a, b, c$ là các số tự nhiên, $c$ là số nguyên tố). Tính $a - b - c$.\n![Hệ dây xích treo giá đỡ](/bank-images/short-hinhhoc/q15.jpeg)",
+      "points": 1,
+      "sort_order": 15,
+      "choices": [],
+      "settings": {
+        "explanation": "Xét một đầu giá đỡ: đặt khoảng cách từ nút nối dây đến mặt phẳng hai thanh treo là $x$ ($0 \\le x \\le 1$). Khi đó hai đoạn xích chéo dài $\\sqrt{x^2 + 1,5^2} = \\sqrt{x^2 + \\dfrac{9}{4}}$ và đoạn xích đứng dài $1 - x$.\nTổng độ dài dây xích ở cả hai đầu là $L(x) = 2\\left(2\\sqrt{x^2 + \\dfrac{9}{4}} + 1 - x\\right) = 4\\sqrt{x^2 + \\dfrac{9}{4}} + 2 - 2x$.\nĐạo hàm $L'(x) = \\dfrac{4x}{\\sqrt{x^2 + \\frac{9}{4}}} - 2 = 0 \\Leftrightarrow 4x^2 = x^2 + \\dfrac{9}{4} \\Leftrightarrow x = \\dfrac{\\sqrt{3}}{2}$.\nSuy ra $L_{\\min} = L\\left(\\dfrac{\\sqrt{3}}{2}\\right) = 2 + 3\\sqrt{3} \\Rightarrow a = 2,\\ b = 3,\\ c = 3 \\Rightarrow a - b - c = -4$.",
+        "source": "THPT Triệu Sơn 1 - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "-4",
+        "accepted_answers": [
+          "-4"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 16,
+      "type": "short",
+      "prompt": "Có hai xã $A, B$ cùng ở một bên bờ sông. Khoảng cách từ hai xã đó đến bờ sông lần lượt là $AA' = 500\\text{ (m)}$, $BB' = 600\\text{ (m)}$. Người ta đo được $A'B' = 2200\\text{ (m)}$ như hình vẽ dưới đây. Các kỹ sư muốn xây dựng một trạm cung cấp nước sạch đặt tại vị trí $M$ trên đoạn $A'B'$ sao cho tổng khoảng cách từ hai xã đến vị trí $M$ là nhỏ nhất. Giá trị nhỏ nhất của tổng khoảng cách đó bằng bao nhiêu mét (làm tròn kết quả đến hàng đơn vị)?\n![Sơ đồ vị trí hai xã A, B và trạm nước M](/bank-images/short-hinhhoc/q16.jpeg)",
+      "points": 1,
+      "sort_order": 16,
+      "choices": [],
+      "settings": {
+        "explanation": "Lấy $A_1$ đối xứng với $A$ qua bờ sông $A'B'$. Khi đó $MA + MB = MA_1 + MB \\ge A_1B$.\nTa có $A_1B = \\sqrt{A'B'^2 + (AA' + BB')^2} = \\sqrt{2200^2 + (500 + 600)^2} = 1100\\sqrt{5} \\approx 2460\\text{ m}$.",
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "level": "Nhận biết",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "2460",
+        "accepted_answers": [
+          "2460"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 17,
+      "type": "short",
+      "prompt": "Một người cưỡi ngựa xuất phát từ $A$ đi đến $C$. Điểm $A$ nằm trong vùng đất ướt nên vận tốc của ngựa khi đi trong vùng này là $12\\text{ km/h}$. Điểm $C$ nằm trong vùng đất khô hơn nên vận tốc của ngựa khi đi trong vùng này là $24\\text{ km/h}$. Hai phần đất này giáp nhau bởi một đường thẳng $d$ đi qua trung điểm của $AC$ và khoảng cách từ $A$ và $C$ đến đường thẳng này đều bằng $10\\text{ km}$.\n![Sơ đồ vùng đất ướt và vùng đất khô](/bank-images/short-hinhhoc/q17.jpeg)\nBiết $AC = 5\\sqrt{41}\\text{ km}$, thời gian ít nhất để đi từ $A$ đến $C$ là $t = \\dfrac{a\\sqrt{5}}{b}$ ($a, b \\in \\mathbb{N}^*$, $a, b$ nguyên tố cùng nhau). Tính $T = 3a + b$.",
+      "points": 1,
+      "sort_order": 17,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $H, K$ là hình chiếu của $A, C$ lên $d$. Do $d$ đi qua trung điểm $I$ của $AC$ nên $HK = 2HI = 2\\sqrt{\\dfrac{AC^2}{4} - 10^2} = 2\\sqrt{\\dfrac{1025}{4} - 100} = 25\\text{ km}$.\nGọi $M \\in d$ là giao điểm với $HM = x$ ($0 \\le x \\le 25$). Thời gian đi là $f(x) = \\dfrac{\\sqrt{x^2 + 100}}{12} + \\dfrac{\\sqrt{(25 - x)^2 + 100}}{24}$.\nĐạo hàm $f'(x) = \\dfrac{1}{24}\\left(\\dfrac{2x}{\\sqrt{x^2 + 100}} - \\dfrac{25 - x}{\\sqrt{(25 - x)^2 + 100}}\\right)$. Dễ thấy $f''(x) > 0$ nên $f'(x)$ đồng biến và có nghiệm duy nhất $x = 5$ (kiểm tra: $\\dfrac{10}{5\\sqrt{5}} - \\dfrac{20}{10\\sqrt{5}} = 0$).\nThời gian nhỏ nhất là $f(5) = \\dfrac{5\\sqrt{5}}{12} + \\dfrac{10\\sqrt{5}}{24} = \\dfrac{5\\sqrt{5}}{6}$. Vậy $a = 5,\\ b = 6 \\Rightarrow T = 3 \\cdot 5 + 6 = 21$.",
+        "source": "THPT Lê Xoay - Vĩnh Phúc 2025",
+        "level": "Vận dụng",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "21",
+        "accepted_answers": [
+          "21"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 18,
+      "type": "short",
+      "prompt": "Một gia đình dự định sử dụng một mảnh đất hình chữ nhật trong vườn có diện tích $384\\text{ m}^2$ để làm kinh tế gia đình. Sau khi bờ bên trái được trừ đi $4\\text{ m}$, $3$ bờ còn lại đều trừ $2\\text{ m}$ dùng làm lối đi và trồng cây thì diện tích còn lại được sử dụng để đào một cái ao dạng hình hộp chữ nhật có chiều sâu $2\\text{ m}$ để thả cá (như hình vẽ). Khi thể tích của ao thả cá là lớn nhất thì chu vi mảnh vườn hình chữ nhật là bao nhiêu mét?\n![Sơ đồ mảnh vườn và phần đào ao](/bank-images/short-hinhhoc/q18.jpeg)",
+      "points": 1,
+      "sort_order": 18,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi kích thước mảnh vườn là $x, y$ ($xy = 384$, $x > 4$, $y > 6$), trong đó $y$ là chiều ngang trừ $4 + 2 = 6\\text{ m}$ và $x$ là chiều dọc trừ $2 + 2 = 4\\text{ m}$.\nThể tích ao: $V = 2(x - 4)(y - 6) = 2(xy - 6x - 4y + 24) = 2(408 - (6x + 4y))$.\nTheo Cô-si: $6x + 4y \\ge 2\\sqrt{24xy} = 2\\sqrt{24 \\cdot 384} = 192$, dấu bằng khi $6x = 4y$ và $xy = 384 \\Rightarrow x = 16\\text{ m},\\ y = 24\\text{ m}$.\nChu vi mảnh vườn là $2(16 + 24) = 80\\text{ m}$.",
+        "source": "Sở Bình Phước 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "80",
+        "accepted_answers": [
+          "80"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 19,
+      "type": "short",
+      "prompt": "Người ta muốn xây một cái bể chứa nước lớn dạng một khối hộp chữ nhật không nắp (xây bốn mặt xung quanh với mặt đáy) chứa được $288\\text{ m}^3$ nước. Đáy bể là một hình chữ nhật có chiều dài gấp đôi chiều rộng, tiền chi phí xây bể là $500\\,000\\text{ đồng/m}^2$ (tính trên diện tích mặt trong của bể). Hỏi chi phí thấp nhất để xây bể là bao nhiêu triệu đồng?",
+      "points": 1,
+      "sort_order": 19,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi chiều rộng đáy là $x$ ($x > 0$), chiều dài đáy là $2x$ và chiều cao là $h$.\nVì thể tích $V = 2x^2 h = 288 \\Rightarrow h = \\dfrac{144}{x^2}$.\nDiện tích cần xây (gồm $1$ đáy và $4$ mặt bên): $S(x) = 2x^2 + 2(x + 2x)h = 2x^2 + \\dfrac{864}{x}$.\nĐạo hàm $S'(x) = 4x - \\dfrac{864}{x^2} = 0 \\Leftrightarrow x^3 = 216 \\Leftrightarrow x = 6\\text{ m}$ (khi đó $2x = 12\\text{ m},\\ h = 4\\text{ m}$).\nDiện tích nhỏ nhất là $S(6) = 2 \\cdot 36 + \\dfrac{864}{6} = 72 + 144 = 216\\text{ m}^2$.\nChi phí thấp nhất là $216 \\cdot 0,5 = 108$ triệu đồng.",
+        "source": "Sở Vĩnh Phúc 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "108",
+        "accepted_answers": [
+          "108"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 20,
+      "type": "short",
+      "prompt": "Một chiếc thang dài $9\\text{ m}$ tựa vào một bức tường thẳng đứng trên một mặt đất bằng phẳng. Khi đầu dưới của thang di chuyển (trên mặt đất) ra xa bức tường với vận tốc không đổi là $2\\text{ (m/s)}$ thì đầu trên cùng của thang sẽ trượt xuống dọc theo bức tường. Khi điểm đầu thang cách mặt đất $3\\text{ m}$ thì tốc độ di chuyển của nó bằng bao nhiêu $\\text{m/s}$ (kết quả làm tròn đến hàng phần trăm)?\n![Chiếc thang tựa vào tường](/bank-images/short-hinhhoc/q20.jpeg)",
+      "points": 1,
+      "sort_order": 20,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $x(t)$ là khoảng cách chân thang đến tường và $y(t)$ là độ cao đầu thang. Ta có $x^2(t) + y^2(t) = 81$.\nLấy đạo hàm theo $t$: $2x(t)x'(t) + 2y(t)y'(t) = 0 \\Rightarrow y'(t) = -\\dfrac{x(t)x'(t)}{y(t)}$.\nKhi $y = 3\\text{ m}$ thì $x = \\sqrt{81 - 9} = 6\\sqrt{2}\\text{ m}$ và $x' = 2\\text{ m/s}$, suy ra $y' = -\\dfrac{6\\sqrt{2} \\cdot 2}{3} = -4\\sqrt{2}\\text{ m/s}$.\nTốc độ di chuyển là $|y'| = 4\\sqrt{2} \\approx 5,66\\text{ m/s}$.",
+        "source": "THPT Chuyên KHTN Hà Nội 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "5,66",
+        "accepted_answers": [
+          "5,66",
+          "5.66"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 21,
+      "type": "short",
+      "prompt": "Một đường dây điện được nối từ một nhà máy điện ở $A$ đến một hòn đảo ở $C$. Khoảng cách từ $C$ đến $B$ là $4\\text{ km}$. Bờ biển chạy thẳng từ $A$ đến $B$ với khoảng cách là $10\\text{ km}$. Tổng chi phí lắp đặt cho $1\\text{ km}$ dây điện trên biển là $50$ triệu đồng, còn trên đất liền là $30$ triệu đồng (hình vẽ mô tả đường dây từ $A$ đến $M$ được lắp trên đất liền, từ $M$ đến $C$ được lắp trên biển). Tính chi phí lắp đặt nhỏ nhất có thể đạt được (đơn vị triệu đồng).\n![Sơ đồ kéo dây điện từ A qua M đến đảo C](/bank-images/short-hinhhoc/q21.jpeg)",
+      "points": 1,
+      "sort_order": 21,
+      "choices": [],
+      "settings": {
+        "explanation": "Đặt $BM = x$ ($0 \\le x \\le 10$), suy ra $AM = 10 - x$ và $CM = \\sqrt{x^2 + 16}$.\nTổng chi phí: $f(x) = 50\\sqrt{x^2 + 16} + 30(10 - x)$ (triệu đồng).\nĐạo hàm $f'(x) = \\dfrac{50x}{\\sqrt{x^2 + 16}} - 30 = 0 \\Leftrightarrow 5x = 3\\sqrt{x^2 + 16} \\Leftrightarrow 16x^2 = 144 \\Leftrightarrow x = 3$.\nChi phí nhỏ nhất là $f(3) = 50 \\cdot 5 + 30 \\cdot 7 = 460$ triệu đồng.",
+        "source": "THPT Chuyên Thái Bình 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "460",
+        "accepted_answers": [
+          "460"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 22,
+      "type": "short",
+      "prompt": "Chào đón năm mới, Thành phố trang trí đèn LED cho biểu tượng hình chữ $V$ được ghép từ các thanh $AB = 4\\text{ m}$, $AC = 5\\text{ m}$ sao cho tam giác $ABC$ vuông tại $B$ (tham khảo hình vẽ).\n![Biểu tượng hình chữ V bằng hai thanh AB, AC](/bank-images/short-hinhhoc/q22.jpeg)\nĐể tăng hiệu ứng, các kỹ sư đã thiết kế một chuỗi LED chạy từ $B$ xuống $A$ với vận tốc $4\\text{ m/phút}$ và một chuỗi LED chạy từ $A$ đến $C$ với vận tốc $10\\text{ m/phút}$. Sau khi đóng nguồn điện thì cả hai chuỗi LED đồng thời xuất phát. Hỏi sau bao nhiêu giây từ thời điểm đóng nguồn điện thì khoảng cách giữa hai điểm sáng đầu tiên của hai chuỗi LED là nhỏ nhất?",
+      "points": 1,
+      "sort_order": 22,
+      "choices": [],
+      "settings": {
+        "explanation": "Đổi $4\\text{ m/phút} = \\dfrac{1}{15}\\text{ m/s}$ và $10\\text{ m/phút} = \\dfrac{1}{6}\\text{ m/s}$. Trong tam giác $ABC$ vuông tại $B$ có $\\cos\\widehat{BAC} = \\dfrac{AB}{AC} = \\dfrac{4}{5}$.\nSau $x$ giây ($0 \\le x \\le 30$), hai điểm sáng ở $M \\in AB$ và $N \\in AC$ với $AM = 4 - \\dfrac{x}{15}$ và $AN = \\dfrac{x}{6}$.\nTheo định lý côsin: $MN^2 = \\left(4 - \\dfrac{x}{15}\\right)^2 + \\left(\\dfrac{x}{6}\\right)^2 - 2\\left(4 - \\dfrac{x}{15}\\right)\\dfrac{x}{6} \\cdot \\dfrac{4}{5} = \\dfrac{1}{20}x^2 - \\dfrac{8}{5}x + 16$.\nHàm bậc hai đạt GTNN tại $x = \\dfrac{8/5}{2 \\cdot (1/20)} = 16$ giây.",
+        "source": "THPT Chuyên ĐH Vinh - Nghệ An 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "16",
+        "accepted_answers": [
+          "16"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 23,
+      "type": "short",
+      "prompt": "Để tạo một kiện hàng dạng hình lăng trụ đứng (kín hai đáy) với đáy là hình chữ nhật có chiều dài gấp đôi chiều rộng, người ta dùng các thanh gỗ ghép khít đóng lại với nhau. Biết rằng dung tích kiện hàng bằng $9\\text{ m}^3$ và giá thành $1\\text{ m}^2$ gỗ sử dụng là $200\\,000$ đồng. Hỏi sau khi hoàn thành kiện hàng đó, người ta cần bỏ ra ít nhất bao nhiêu triệu đồng (diện tích các mép giữa hai mặt kề nhau không đáng kể)?\n![Kiện hàng gỗ dạng hình hộp chữ nhật](/bank-images/short-hinhhoc/q23.jpeg)",
+      "points": 1,
+      "sort_order": 23,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi chiều rộng đáy là $x$ ($x > 0$), chiều dài đáy là $2x$. Từ $V = 2x^2 h = 9 \\Rightarrow h = \\dfrac{9}{2x^2}$.\nDiện tích toàn phần kiện hàng (gồm $2$ đáy và $4$ mặt bên): $S(x) = 4x^2 + 6xh = 4x^2 + \\dfrac{27}{x}$.\nĐạo hàm $S'(x) = 8x - \\dfrac{27}{x^2} = 0 \\Leftrightarrow x^3 = \\dfrac{27}{8} \\Leftrightarrow x = 1,5\\text{ m}$.\nDiện tích nhỏ nhất $S(1,5) = 27\\text{ m}^2 \\Rightarrow$ chi phí ít nhất là $27 \\cdot 0,2 = 5,4$ triệu đồng.",
+        "source": "THPT Chuyên ĐH Vinh - Nghệ An 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "5,4",
+        "accepted_answers": [
+          "5,4",
+          "5.4"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 24,
+      "type": "short",
+      "prompt": "Cho một tấm nhôm hình lục giác đều cạnh $90\\text{ (cm)}$. Người ta cắt ở mỗi đỉnh của tấm nhôm hai hình tam giác vuông bằng nhau, biết cạnh góc vuông nhỏ bằng $x\\text{ (cm)}$ (cắt phần tô đậm của tấm nhôm) rồi gập tấm nhôm như hình vẽ để được một hình lăng trụ lục giác đều không có nắp. Tìm $x$ để thể tích của khối lăng trụ lục giác đều trên là lớn nhất (đơn vị $\\text{cm}$).\n![Cắt 6 góc tấm nhôm lục giác đều thành lăng trụ lục giác đều](/bank-images/short-hinhhoc/q24.png)",
+      "points": 1,
+      "sort_order": 24,
+      "choices": [],
+      "settings": {
+        "explanation": "Cạnh đáy lăng trụ lục giác đều là $a = 90 - 2x$ ($0 < x < 45$), chiều cao là $h = x\\tan 60^\\circ = x\\sqrt{3}$.\nDiện tích đáy là $S = 6 \\cdot \\dfrac{(90 - 2x)^2\\sqrt{3}}{4}$. Thể tích $V(x) = h \\cdot S = \\dfrac{9}{2}x(90 - 2x)^2$.\nĐạo hàm $V'(x) = \\dfrac{9}{2}(90 - 2x)(90 - 6x) = 0 \\Leftrightarrow x = 15\\text{ cm}$ (vì $0 < x < 45$).",
+        "source": "THPT Trần Phú - Vĩnh Phúc 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "15",
+        "accepted_answers": [
+          "15"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 25,
+      "type": "short",
+      "prompt": "Hai thành phố ở hai vị trí $A$ và $B$ cách nhau một con sông. Người ta xây dựng một cây cầu $EF$ bắc vuông góc qua sông biết rằng vị trí $A$ cách con sông một khoảng là $4\\text{ km}$, vị trí $B$ cách con sông một khoảng là $6\\text{ km}$ (được mô hình hóa như hình vẽ bên dưới), $HE + KF = 20\\text{ km}$ và độ dài $EF$ không đổi. Hỏi độ dài $EH$ là bao nhiêu $\\text{km}$ để đường đi từ thành phố $A$ đến thành phố $B$ theo đường $AEFB$ là ngắn nhất?\n![Sơ đồ hai thành phố A, B và cầu EF bắc qua sông](/bank-images/short-hinhhoc/q25.jpeg)",
+      "points": 1,
+      "sort_order": 25,
+      "choices": [],
+      "settings": {
+        "explanation": "Đặt $HE = x$ ($0 \\le x \\le 20$) thì $KF = 20 - x$. Tổng quãng đường là $f(x) = \\sqrt{x^2 + 16} + EF + \\sqrt{(20 - x)^2 + 36}$.\nĐạo hàm $f'(x) = \\dfrac{x}{\\sqrt{x^2 + 16}} - \\dfrac{20 - x}{\\sqrt{(20 - x)^2 + 36}} = 0 \\Leftrightarrow \\dfrac{x}{4} = \\dfrac{20 - x}{6} \\Leftrightarrow 6x = 80 - 4x \\Leftrightarrow x = 8\\text{ km}$.",
+        "source": "THPT Chuyên Lê Khiết - Quảng Ngãi 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "8",
+        "accepted_answers": [
+          "8"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 26,
+      "type": "short",
+      "prompt": "Một chiếc cổng hình Parabol có chiều cao $9\\text{ m}$, khoảng cách giữa hai chân cổng là $6\\text{ m}$. Để vận chuyển thùng hàng hình chữ nhật qua cổng, người ta dùng một xe kéo có chiều cao $1\\text{ m}$. Biết rằng mặt cắt của thùng hàng qua cổng là hình chữ nhật, hỏi diện tích hình chữ nhật đó lớn nhất là bao nhiêu $\\text{m}^2$ để xe chở thùng hàng có thể đi qua được cổng (kết quả làm tròn đến hàng phần chục)?\n![Xe chở thùng hàng đi qua cổng hình Parabol](/bank-images/short-hinhhoc/q26.png)",
+      "points": 1,
+      "sort_order": 26,
+      "choices": [],
+      "settings": {
+        "explanation": "Chọn hệ trục $Oxy$ sao cho trục $Oy$ là trục đối xứng cổng, mặt đất là trục $Ox$. Parabol đi qua $(0; 9)$ và $(\\pm 3; 0)$ có phương trình $y = -x^2 + 9$.\nVới nửa chiều rộng thùng hàng là $a \\in (0; 2\\sqrt{2})$, chiều cao tối đa của thùng hàng là $9 - a^2 - 1 = 8 - a^2$.\nDiện tích mặt cắt thùng hàng là $S(a) = 2a(8 - a^2) = -2a^3 + 16a$.\nĐạo hàm $S'(a) = -6a^2 + 16 = 0 \\Leftrightarrow a = \\dfrac{2\\sqrt{6}}{3}$. Suy ra $S_{\\max} = S\\left(\\dfrac{2\\sqrt{6}}{3}\\right) = \\dfrac{64\\sqrt{6}}{9} \\approx 17,4\\text{ m}^2$.",
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "17,4",
+        "accepted_answers": [
+          "17,4",
+          "17.4"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 27,
+      "type": "short",
+      "prompt": "Công ty Sơn X cần làm những hộp hình trụ kín hai đáy có thể tích $5$ lít. Giả thiết rằng vật liệu và chi phí dùng để sản xuất các mặt của hộp là như nhau. Tính bán kính $r$ của đáy hộp để chi phí là bé nhất (đơn vị là $\\text{cm}$ và làm tròn đến hàng phần trăm).",
+      "points": 1,
+      "sort_order": 27,
+      "choices": [],
+      "settings": {
+        "explanation": "Đổi $5\\text{ lít} = 5\\text{ dm}^3$. Gọi bán kính đáy là $r\\text{ (dm)}$, chiều cao $h\\text{ (dm)}$. Ta có $V = \\pi r^2 h = 5 \\Rightarrow h = \\dfrac{5}{\\pi r^2}$.\nDiện tích toàn phần: $S(r) = 2\\pi r^2 + 2\\pi rh = 2\\pi r^2 + \\dfrac{10}{r}$.\nĐạo hàm $S'(r) = 4\\pi r - \\dfrac{10}{r^2} = 0 \\Leftrightarrow r = \\sqrt[3]{\\dfrac{5}{2\\pi}} \\approx 0,9267\\text{ dm} \\approx 9,27\\text{ cm}$.",
+        "source": "Cụm trường Nguyễn Hiền - Lê Hồng Phong - Quảng Nam 2025",
+        "level": "Nhận biết",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "9,27",
+        "accepted_answers": [
+          "9,27",
+          "9.27"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 28,
+      "type": "short",
+      "prompt": "Một bể chứa nước có mặt đáy và miệng bể đều là hình chữ nhật nằm trên hai mặt phẳng song song với nhau, miệng bể có chiều ngang $15\\text{ m}$ và chiều dài $24\\text{ m}$, đáy bể có kích thước $15\\text{ m} \\times 12\\text{ m}$. Độ sâu của bể nước (tính từ miệng đến đáy) là $6\\text{ m}$, mặt cắt vuông góc với chiều ngang của bể có hình dạng là hình thang cân (như hình vẽ). Lúc đầu bể không có nước, người ta sử dụng một máy bơm để bơm nước vào bể với tốc độ $50\\text{ m}^3\\text{/phút}$. Vào lúc mực nước đúng $5\\text{ m}$ thì tốc độ dâng lên của mực nước trong bể là bao nhiêu $\\text{m/phút}$ (kết quả làm tròn đến hàng phần trăm)?\n![Hình dạng bể chứa nước và mặt cắt hình thang cân](/bank-images/short-hinhhoc/q28.png)",
+      "points": 1,
+      "sort_order": 28,
+      "choices": [],
+      "settings": {
+        "explanation": "Khi mực nước cao $h\\text{ (m)}$ ($0 \\le h \\le 6$), mặt thoáng nước có chiều dài là $12 + 2h$ (do hai bên đều nghiêng $45^\\circ$: $\\dfrac{6}{6} = 1$). Diện tích mặt cắt ngang phần nước là $\\dfrac{12 + (12 + 2h)}{2}h = h(12 + h)$.\nThể tích nước trong bể là $V(t) = 15h(12 + h) = 50t$.\nLấy đạo hàm hai vế theo thời gian $t$: $15(12 + 2h)h'(t) = 50 \\Rightarrow h'(t) = \\dfrac{50}{15(12 + 2h)}$.\nTại $h = 5\\text{ m}$, tốc độ dâng của mực nước là $h' = \\dfrac{50}{15 \\cdot 22} = \\dfrac{5}{33} \\approx 0,15\\text{ m/phút}$.",
+        "source": "Sở Bình Phước 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "0,15",
+        "accepted_answers": [
+          "0,15",
+          "0.15"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 29,
+      "type": "short",
+      "prompt": "Một hồ nước hình bán nguyệt có đường kính $AB = 150\\text{ m}$. Một người chèo thuyền theo một đường thẳng với vận tốc $1,5\\text{ km/h}$ từ vị trí $A$ đến vị trí $C$ bất kỳ trên nửa đường tròn. Tại vị trí $C$ người đó nghỉ $2$ phút rồi tiếp tục đi bộ dọc theo cung nhỏ $CB$ đến $B$, sau đó đi bộ theo đường thẳng $BA$ để quay về $A$ với vận tốc $3\\text{ km/h}$ (tham khảo hình vẽ). Hỏi thời gian chậm nhất mà người đó về đến $A$ là bao nhiêu phút (kết quả làm tròn đến hàng phần mười)?\n![Hồ nước hình bán nguyệt đường kính AB](/bank-images/short-hinhhoc/q29.jpeg)",
+      "points": 1,
+      "sort_order": 29,
+      "choices": [],
+      "settings": {
+        "explanation": "Đổi $1,5\\text{ km/h} = 25\\text{ m/phút}$ và $3\\text{ km/h} = 50\\text{ m/phút}$; bán kính $R = 75\\text{ m}$.\nĐặt góc nội tiếp $\\widehat{CAB} = \\alpha \\in \\left[0; \\dfrac{\\pi}{2}\\right]$, khi đó $AC = 150\\cos\\alpha$ và cung $\\widehat{CB} = 75 \\cdot 2\\alpha = 150\\alpha$.\nTổng thời gian (phút): $T(\\alpha) = \\dfrac{150\\cos\\alpha}{25} + 2 + \\dfrac{150\\alpha}{50} + \\dfrac{150}{50} = 6\\cos\\alpha + 3\\alpha + 5$.\nĐạo hàm $T'(\\alpha) = -6\\sin\\alpha + 3 = 0 \\Leftrightarrow \\sin\\alpha = \\dfrac{1}{2} \\Leftrightarrow \\alpha = \\dfrac{\\pi}{6}$.\nThời gian chậm nhất là $T\\left(\\dfrac{\\pi}{6}\\right) = 3\\sqrt{3} + \\dfrac{\\pi}{2} + 5 \\approx 11,8$ phút.",
+        "source": "Sở Thái Nguyên 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "11,8",
+        "accepted_answers": [
+          "11,8",
+          "11.8"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 30,
+      "type": "short",
+      "prompt": "Ông An muốn mua một chiếc ôtô. Ngõ từ đường vào sân nhà ông An có dạng hình chữ $L$: đoạn đường đầu tiên có chiều rộng $x\\text{ (m)}$, đoạn đường thẳng vào sân có chiều rộng $2,6\\text{ (m)}$. Để tính toán an toàn, ông An coi ôtô như một khối hộp chữ nhật có chiều dài $5\\text{ (m)}$ và chiều rộng $1,9\\text{ (m)}$ (như hình vẽ). Chiều rộng nhỏ nhất của đoạn đường đầu tiên để ôtô có thể đi vào được sân là $x = \\dfrac{p}{q}\\text{ (m)}$ (với $p, q \\in \\mathbb{N}^*$, $\\dfrac{p}{q}$ tối giản). Khi đó $p^2 - q$ bằng bao nhiêu?\n![Kích thước ôtô và ngõ hình chữ L vào sân](/bank-images/short-hinhhoc/q30.png)",
+      "points": 1,
+      "sort_order": 30,
+      "choices": [],
+      "settings": {
+        "explanation": "Đặt hệ trục $Oxy$ tại góc ngoài của khúc cua chữ $L$, góc trong là $M(-2,6; h)$ (với $h = x$). Gọi mép ngoài xe là đoạn $AB = 5$ với $B(-a; 0)$, $A(0; \\sqrt{25 - a^2})$ ($0 < a \\le 5$).\nĐường thẳng $AB$ có phương trình $-\\dfrac{x}{a} + \\dfrac{y}{\\sqrt{25 - a^2}} = 1$. Mép trong $CD \\parallel AB$ cách $AB$ đoạn $1,9$ có phương trình $-\\dfrac{x}{a} + \\dfrac{y}{\\sqrt{25 - a^2}} - 1 - \\dfrac{9,5}{a\\sqrt{25 - a^2}} = 0$.\nĐể xe qua lọt mọi góc cua, điểm $M(-2,6; h)$ luôn nằm cùng phía phía trên $CD$ với mọi $a \\in (0; 5]$, tức là:\n$h \\ge f(a) = \\sqrt{25 - a^2} + \\dfrac{9,5}{a} - \\dfrac{2,6\\sqrt{25 - a^2}}{a}$.\nTa có $f'(a) = \\dfrac{65 - 9,5\\sqrt{25 - a^2} - a^3}{a^2\\sqrt{25 - a^2}} = 0 \\Leftrightarrow a = 3 \\in (0; 5)$.\nGiá trị lớn nhất của $f(a)$ là $f(3) = 4 + \\dfrac{9,5}{3} - \\dfrac{10,4}{3} = 3,7 = \\dfrac{37}{10}$.\nVậy $p = 37,\\ q = 10 \\Rightarrow p^2 - q = 37^2 - 10 = 1359$.",
+        "source": "THPT Lê Hồng Phong - Hải Phòng 2025",
+        "level": "Vận dụng",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "1359",
+        "accepted_answers": [
+          "1359"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 31,
+      "type": "short",
+      "prompt": "Trước sân nhà A của một trường THPT có một mảnh đất là nửa hình tròn có đường kính $AB = 10\\text{ m}$. Nhà trường muốn trồng hoa trong hình chữ nhật $MNPQ$ nội tiếp nửa hình tròn và phần đất còn lại trồng cỏ Nhật. Biết chi phí trồng hoa là $100$ ngàn đồng/$\\text{m}^2$, trồng cỏ Nhật hết $150$ ngàn đồng/$\\text{m}^2$. Hỏi chi phí (làm tròn đến đơn vị ngàn đồng) hết ít nhất là bao nhiêu?\n![Mảnh đất nửa hình tròn và hình chữ nhật trồng hoa MNPQ](/bank-images/short-hinhhoc/q31.jpeg)",
+      "points": 1,
+      "sort_order": 31,
+      "choices": [],
+      "settings": {
+        "explanation": "Bán kính $R = 5\\text{ m}$, diện tích nửa hình tròn là $\\dfrac{25\\pi}{2}\\text{ m}^2$.\nĐặt $MN = 2x$ ($0 < x < 5$) thì $MQ = \\sqrt{25 - x^2}$, diện tích trồng hoa là $S_1 = 2x\\sqrt{25 - x^2}$.\nTổng chi phí (ngàn đồng): $T = 100S_1 + 150\\left(\\dfrac{25\\pi}{2} - S_1\\right) = 1875\\pi - 50S_1$.\nTheo Cô-si: $S_1 = 2x\\sqrt{25 - x^2} \\le x^2 + (25 - x^2) = 25$ (đạt khi $x = \\dfrac{5}{\\sqrt{2}}$).\nSuy ra $T_{\\min} = 1875\\pi - 50 \\cdot 25 = 1875\\pi - 1250 \\approx 4640$ ngàn đồng.",
+        "source": "THPT Lê Hồng Phong - Hải Phòng 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "4640",
+        "accepted_answers": [
+          "4640"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 32,
+      "type": "short",
+      "prompt": "Người ta muốn lắp một ống dẫn dầu từ nhà máy lọc dầu ở vị trí $A$ đến kho chứa dầu đặt ở vị trí $B$ qua một con sông rộng $2\\text{ km}$, dài $6\\text{ km}$. Chi phí lắp đặt đường ống dẫn dầu trên mặt đất để nối từ nhà máy lọc dầu đến trạm trung chuyển tại vị trí $P$ là $4$ tỉ VNĐ/$1\\text{ km}$ và chi phí lắp đặt đường ống dẫn dầu dưới dòng sông để nối từ $P$ đến kho chứa dầu tại vị trí $B$ là $8$ tỉ VNĐ/$1\\text{ km}$ (như hình vẽ).\n![Sơ đồ đường ống dẫn dầu từ A qua P đến B](/bank-images/short-hinhhoc/q32.png)\nHỏi để chi phí lắp đặt ít nhất, cần đặt vị trí $P$ cách nhà máy lọc dầu là bao nhiêu kilômét (làm tròn kết quả đến hàng phần trăm)?",
+      "points": 1,
+      "sort_order": 32,
+      "choices": [],
+      "settings": {
+        "explanation": "Đặt $AP = x$ ($0 \\le x \\le 6$). Khi đó $PB = \\sqrt{(6 - x)^2 + 4}$.\nTổng chi phí (tỉ đồng): $T(x) = 4x + 8\\sqrt{(6 - x)^2 + 4}$.\nĐạo hàm $T'(x) = 4 - \\dfrac{8(6 - x)}{\\sqrt{(6 - x)^2 + 4}} = 0 \\Leftrightarrow 2(6 - x) = \\sqrt{(6 - x)^2 + 4} \\Leftrightarrow 3(6 - x)^2 = 4 \\Leftrightarrow 6 - x = \\dfrac{2\\sqrt{3}}{3}$.\nSuy ra $x = 6 - \\dfrac{2\\sqrt{3}}{3} \\approx 4,85\\text{ km}$.",
+        "source": "Sở Quảng Bình 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "4,85",
+        "accepted_answers": [
+          "4,85",
+          "4.85"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 33,
+      "type": "short",
+      "prompt": "Một nhà địa chất học đang ở tại điểm $A$ trên sa mạc, muốn đến điểm $B$ cách $A$ một đoạn $100\\text{ km}$. Trong sa mạc xe chỉ đi được với vận tốc $30\\text{ km/h}$. May mắn thay, có một con đường nhựa song song với $AB$ và cách $AB$ một đoạn $15\\text{ km}$, trên đó xe đi được với vận tốc $50\\text{ km/h}$ (như hình vẽ). Thời gian ngắn nhất để nhà địa chất di chuyển từ $A$ đến $B$ là bao nhiêu phút?\n![Sơ đồ sa mạc và con đường nhựa song song AB](/bank-images/short-hinhhoc/q33.png)",
+      "points": 1,
+      "sort_order": 33,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $C, D$ là hai điểm lên/xuống đường nhựa với $HC = x,\\ DK = y$ ($x, y \\ge 0,\\ x + y \\le 100$).\nTổng thời gian (giờ): $T(x, y) = \\dfrac{\\sqrt{x^2 + 225}}{30} + \\dfrac{\\sqrt{y^2 + 225}}{30} + \\dfrac{100 - x - y}{50} = f(x) + f(y)$, trong đó $f(u) = \\dfrac{\\sqrt{u^2 + 225}}{30} + \\dfrac{50 - u}{50}$.\nĐạo hàm $f'(u) = \\dfrac{u}{30\\sqrt{u^2 + 225}} - \\dfrac{1}{50} = 0 \\Leftrightarrow 5u = 3\\sqrt{u^2 + 225} \\Leftrightarrow u = \\dfrac{45}{4} = 11,25$.\nKhi đó $f_{\\min} = f\\left(\\dfrac{45}{4}\\right) = \\dfrac{7}{5}$ giờ. Tổng thời gian ngắn nhất là $T_{\\min} = \\dfrac{14}{5}\\text{ giờ} = 168$ phút.",
+        "source": "Sở Bạc Liêu 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "168",
+        "accepted_answers": [
+          "168"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 34,
+      "type": "short",
+      "prompt": "Có hai thùng hàng $A$ và $B$ được đặt trên sàn nhà kho, nối với nhau bằng một sợi dây dài $15\\text{ m}$ luôn căng và vắt qua một ròng rọc gắn tại điểm $P$ trên trần nhà. Biết trần nhà cao $4\\text{ m}$ so với mặt sàn ($PQ = 4\\text{ m}$) và hai thùng hàng luôn nằm trên mặt sàn (bỏ qua ma sát). Nếu thùng $A$ cách $Q$ khoảng $3\\text{ m}$ và đang được kéo ra xa $Q$ với tốc độ không đổi $0,5\\text{ m/s}$, hỏi thùng $B$ đang di chuyển về phía $Q$ với tốc độ bao nhiêu $\\text{m/s}$ (làm tròn kết quả đến hàng phần trăm)?\n![Hai thùng hàng A, B nối qua ròng rọc P](/bank-images/short-hinhhoc/q34.jpeg)",
+      "points": 1,
+      "sort_order": 34,
+      "choices": [],
+      "settings": {
+        "explanation": "Đặt $QA = x(t)$ và $QB = y(t)$. Ta có $PA + PB = 15 \\Leftrightarrow \\sqrt{x^2 + 16} + \\sqrt{y^2 + 16} = 15$.\nTại thời điểm $x = 3$: $PA = 5 \\Rightarrow PB = 10 \\Rightarrow y = \\sqrt{10^2 - 16} = 2\\sqrt{21}$.\nLấy đạo hàm theo thời gian $t$: $\\dfrac{x \\cdot x'}{\\sqrt{x^2 + 16}} + \\dfrac{y \\cdot y'}{\\sqrt{y^2 + 16}} = 0 \\Rightarrow \\dfrac{3 \\cdot 0,5}{5} + \\dfrac{2\\sqrt{21} \\cdot y'}{10} = 0$.\nSuy ra $|y'| = \\dfrac{3}{2\\sqrt{21}} \\approx 0,33\\text{ m/s}$.",
+        "source": "THPT Lê Thánh Tông - Nguyễn Khuyến 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "0,33",
+        "accepted_answers": [
+          "0,33",
+          "0.33"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 35,
+      "type": "short",
+      "prompt": "Trên sân vận động hình chữ nhật $ABCD$ có kích thước $AB = 100\\text{ m}$ và $AD = 80\\text{ m}$, ở chính giữa sân người ta vẽ một hình tròn có tâm $O$ trùng với tâm hình chữ nhật, bán kính $25\\text{ m}$ như hình vẽ. Lấy $E$ là vị trí trên cạnh $AB$ sao cho $EB = 20\\text{ m}$. Mỗi vận động viên cần xuất phát từ một điểm $M$ trên đường tròn và chạy theo cung đường $MDCBEMD$. Tính độ dài quãng đường ngắn nhất vận động viên phải chạy (đơn vị $\\text{m}$, kết quả làm tròn đến hàng đơn vị).\n![Sơ đồ sân vận động và đường chạy MDCBEMD](/bank-images/short-hinhhoc/q35.png)",
+      "points": 1,
+      "sort_order": 35,
+      "choices": [],
+      "settings": {
+        "explanation": "Quãng đường chạy là $L = DC + CB + BE + 2MD + ME = 200 + (2MD + ME)$, đạt GTNN khi $2MD + ME$ nhỏ nhất.\nTa có $OE = \\sqrt{40^2 + 30^2} = 50\\text{ m} = 2R$. Trên tia $OE$ lấy $H$ sao cho $OH = \\dfrac{R}{2} = 12,5\\text{ m}$ (tức $OH \\cdot OE = R^2 = OM^2$).\nKhi đó $\\triangle OMH \\sim \\triangle OEM$ (c-g-c) $\\Rightarrow \\dfrac{ME}{MH} = \\dfrac{OE}{OM} = 2 \\Rightarrow ME = 2MH$.\nSuy ra $2MD + ME = 2(MD + MH) \\ge 2DH$ (dấu bằng khi $M = DH \\cap (O)$).\nTrong hệ trục tâm $O$: $D(-50; -40)$, $E(30; 40) \\Rightarrow H = \\dfrac{1}{4}E = (7,5; 10)$.\nĐộ dài $DH = \\sqrt{57,5^2 + 50^2} = \\dfrac{5\\sqrt{929}}{2} \\Rightarrow 2DH = 5\\sqrt{929}$.\nVậy $L_{\\min} = 200 + 5\\sqrt{929} \\approx 352\\text{ m}$.",
+        "source": "THPT Chuyên KHTN Hà Nội 2025",
+        "level": "Vận dụng",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "352",
+        "accepted_answers": [
+          "352"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 36,
+      "type": "short",
+      "prompt": "Hình vẽ bên minh họa một màn hình $BC$ có chiều cao $1,26\\text{ m}$ được đặt thẳng đứng và mép dưới của màn hình cách mặt đất một khoảng $BA = 1,62\\text{ m}$. Một chiếc đèn quan sát màn hình được đặt ở vị trí $O$ trên mặt đất. Để góc quan sát $\\widehat{BOC}$ là lớn nhất thì độ dài $OA$ bằng bao nhiêu mét?\n![Màn hình BC đặt thẳng đứng và điểm quan sát O](/bank-images/short-hinhhoc/q36.png)",
+      "points": 1,
+      "sort_order": 36,
+      "choices": [],
+      "settings": {
+        "explanation": "Đặt $OA = x > 0$. Ta có $AB = 1,62$, $AC = 1,62 + 1,26 = 2,88$.\nÁp dụng công thức cộng tang: $\\tan\\widehat{BOC} = \\tan(\\widehat{AOC} - \\widehat{AOB}) = \\dfrac{\\frac{2,88}{x} - \\frac{1,62}{x}}{1 + \\frac{2,88 \\cdot 1,62}{x^2}} = \\dfrac{1,26}{x + \\frac{4,6656}{x}}$.\nDo góc $\\widehat{BOC} \\in \\left(0; \\dfrac{\\pi}{2}\\right)$ lớn nhất khi $\\tan\\widehat{BOC}$ lớn nhất, tức mẫu $x + \\dfrac{4,6656}{x}$ nhỏ nhất.\nTheo Cô-si, mẫu đạt GTNN khi $x^2 = 4,6656 \\Leftrightarrow x = \\sqrt{1,62 \\cdot 2,88} = 2,16\\text{ m}$.",
+        "source": "Sở Bắc Ninh 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "2,16",
+        "accepted_answers": [
+          "2,16",
+          "2.16"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 37,
+      "type": "short",
+      "prompt": "Anh A bơm nước vào một chiếc thùng nhựa đựng nước có dạng hình chóp cụt với hai đáy là hai hình chữ nhật, các cạnh bên bằng nhau và có kích thước như hình bên dưới, với tốc độ bơm nước vào thùng là $20\\text{ lít/phút}$. Vận tốc nước dâng lên dọc theo cạnh bên của thùng nhựa (đơn vị $\\text{cm/phút}$) khi chiều cao mực nước là $25\\text{ cm}$ bằng bao nhiêu (kết quả làm tròn đến hàng phần trăm)?\n![Thùng nhựa hình chóp cụt chữ nhật](/bank-images/short-hinhhoc/q37.png)",
+      "points": 1,
+      "sort_order": 37,
+      "choices": [],
+      "settings": {
+        "explanation": "Kéo dài bốn cạnh bên cắt nhau tại $S$ tạo hình chóp $S.ABCD$ có chiều cao $SO$, khoảng cách hai đáy $O'O = 60\\text{ cm}$.\nTỉ số đồng dạng hai đáy là $\\dfrac{66}{88} = \\dfrac{3}{4} \\Rightarrow \\dfrac{SO'}{SO' + 60} = \\dfrac{3}{4} \\Rightarrow SO' = 180\\text{ cm}$ và $A'D' = \\dfrac{3}{4} \\cdot 124 = 93\\text{ cm}$.\nTại chiều cao mực nước $h = 25\\text{ cm}$, tỉ lệ mặt thoáng là $\\dfrac{180 + 25}{180} = \\dfrac{41}{36}$, nên diện tích mặt thoáng là $S(25) = \\left(93 \\cdot \\dfrac{41}{36}\\right)\\left(66 \\cdot \\dfrac{41}{36}\\right) = 93 \\cdot 66 \\cdot \\left(\\dfrac{41}{36}\\right)^2\\text{ cm}^2$.\nTốc độ dâng theo phương thẳng đứng là $h' = \\dfrac{20000}{S(25)}\\text{ cm/phút}$.\nĐường chéo đáy nhỏ $B'D' = \\sqrt{93^2 + 66^2} = 3\\sqrt{1445} = 51\\sqrt{5}$, nên tỉ số cạnh bên chia chiều cao là $C = \\dfrac{SB'}{SO'} = \\dfrac{\\sqrt{180^2 + (51\\sqrt{5}/2)^2}}{180} = \\dfrac{\\sqrt{15845}}{120}$.\nVận tốc nước dâng dọc cạnh bên là $v = C \\cdot h' = \\dfrac{20000 \\cdot C}{S(25)} \\approx 2,64\\text{ cm/phút}$.",
+        "source": "Sở Hòa Bình 2025",
+        "level": "Vận dụng",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "2,64",
+        "accepted_answers": [
+          "2,64",
+          "2.64"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 38,
+      "type": "short",
+      "prompt": "Một đoàn cứu trợ lũ lụt đang ở vị trí $A$ muốn đến xã $C$ để tiếp tế lương thực và thuốc men. Do nước ngập con đường từ $A$ đến $B$ nên đoàn cứu trợ phải chèo thuyền từ $A$ đến vị trí $D$ trên đoạn đường $BC$ với vận tốc $4\\text{ km/h}$, rồi đi bộ từ $D$ đến $C$ với vận tốc $6\\text{ km/h}$. Biết $AB = 5\\text{ km}$, $BC = 7\\text{ km}$ và $AB \\perp BC$ (như hình vẽ). Hỏi vị trí điểm $D$ cách $A$ bao nhiêu $\\text{km}$ để đoàn cứu trợ đi đến xã $C$ nhanh nhất (kết quả làm tròn tới hàng phần trăm)?\n![Sơ đồ đường cứu trợ từ A qua D đến C](/bank-images/short-hinhhoc/q38.jpeg)",
+      "points": 1,
+      "sort_order": 38,
+      "choices": [],
+      "settings": {
+        "explanation": "Đặt $AD = x$ ($5 \\le x \\le \\sqrt{74}$). Khi đó $BD = \\sqrt{x^2 - 25}$ và $CD = 7 - \\sqrt{x^2 - 25}$.\nTổng thời gian $f(x) = \\dfrac{x}{4} + \\dfrac{7 - \\sqrt{x^2 - 25}}{6}$.\nĐạo hàm $f'(x) = \\dfrac{1}{4} - \\dfrac{x}{6\\sqrt{x^2 - 25}} = 0 \\Leftrightarrow 3\\sqrt{x^2 - 25} = 2x \\Leftrightarrow 5x^2 = 225 \\Leftrightarrow x = 3\\sqrt{5} \\approx 6,71\\text{ km}$.",
+        "source": "Sở Sơn La 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "6,71",
+        "accepted_answers": [
+          "6,71",
+          "6.71"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 39,
+      "type": "short",
+      "prompt": "Bạn Hoa thường đi bơi ở hồ Sky Garden cạnh nhà. Hồ bơi có thiết kế là một hình chữ nhật với chiều dài $25\\text{ m}$, chiều rộng $15,5\\text{ m}$ và bên cạnh đó là một hình bán nguyệt đường kính $10\\text{ m}$. Trong một lần bể bơi vắng người, Hoa thực hiện chu trình bơi theo đoạn thẳng $AC$ rồi bơi tiếp đoạn thẳng $CM$ (với $M$ là một vị trí bất kỳ trên cung bán nguyệt), sau đó đi bộ theo một hướng qua điểm $D$ dọc bờ hồ bơi để quay lại vị trí $A$ (tham khảo hình vẽ).\n![Sơ đồ hồ bơi Sky Garden](/bank-images/short-hinhhoc/q39.jpeg)\nBiết rằng vận tốc bơi của Hoa là $2,4\\text{ km/h}$ và vận tốc đi bộ là $4,8\\text{ km/h}$. Hỏi thời gian chậm nhất để Hoa thực hiện xong chu trình trên là bao nhiêu phút (kết quả làm tròn đến hàng phần chục)?",
+      "points": 1,
+      "sort_order": 39,
+      "choices": [],
+      "settings": {
+        "explanation": "Đổi $2,4\\text{ km/h} = \\dfrac{2}{3}\\text{ m/s}$ và $4,8\\text{ km/h} = \\dfrac{4}{3}\\text{ m/s}$.\nTa có $AC = \\sqrt{25^2 + 15,5^2}$, phần đi bộ cố định $DE + EA = (25 - 10) + 15,5 = 30,5\\text{ m}$.\nĐặt góc nội tiếp $\\widehat{MCD} = \\alpha \\in \\left[0; \\dfrac{\\pi}{2}\\right]$, khi đó $CM = 10\\cos\\alpha$ và cung $\\widehat{MD} = 5 \\cdot 2\\alpha = 10\\alpha$.\nPhần thời gian biến thiên là $f(\\alpha) = \\dfrac{10\\cos\\alpha}{2/3} + \\dfrac{10\\alpha}{4/3} = 15\\cos\\alpha + \\dfrac{15}{2}\\alpha$.\nĐạo hàm $f'(\\alpha) = -15\\sin\\alpha + \\dfrac{15}{2} = 0 \\Leftrightarrow \\alpha = \\dfrac{\\pi}{6}$.\nTổng thời gian lớn nhất: $T_{\\max} = \\dfrac{3\\sqrt{25^2 + 15,5^2}}{2} + 15\\dfrac{\\sqrt{3}}{2} + \\dfrac{5\\pi}{4} + \\dfrac{3 \\cdot 30,5}{4} \\approx 83,92\\text{ giây} \\approx 1,4$ phút.",
+        "source": "Liên trường THPT Nghệ An 2025",
+        "level": "Vận dụng",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "1,4",
+        "accepted_answers": [
+          "1,4",
+          "1.4"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 40,
+      "type": "short",
+      "prompt": "Tìm chiều dài bé nhất của cái thang (đơn vị mét) để nó có thể tựa vào tường và mặt đất, ngang qua cột đỡ cao $4\\text{ m}$, song song và cách tường $0,5\\text{ m}$ kể từ gốc của cột đỡ như hình vẽ (kết quả làm tròn đến hàng phần trăm).\n![Cái thang tựa tường qua cột đỡ cao 4m](/bank-images/short-hinhhoc/q40.jpeg)",
+      "points": 1,
+      "sort_order": 40,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $\\alpha \\in \\left(0; \\dfrac{\\pi}{2}\\right)$ là góc giữa thang và mặt đất. Chiều dài thang là $L(\\alpha) = \\dfrac{4}{\\sin\\alpha} + \\dfrac{0,5}{\\cos\\alpha}$.\nĐạo hàm $L'(\\alpha) = 0 \\Leftrightarrow \\tan^3\\alpha = \\dfrac{4}{0,5} = 8 \\Leftrightarrow \\tan\\alpha = 2$.\nKhi đó $L_{\\min} = \\left(4^{2/3} + 0,5^{2/3}\\right)^{3/2} = \\dfrac{5\\sqrt{5}}{2} \\approx 5,59\\text{ m}$.",
+        "source": "THPT DTNT - Nghệ An 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "5,59",
+        "accepted_answers": [
+          "5,59",
+          "5.59"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 41,
+      "type": "short",
+      "prompt": "Công ty nước sạch Bình An đang cần lắp đặt đường ống dẫn nước từ nhà máy nước tới hòn đảo như trong sơ đồ (đường ống xuất phát từ nhà máy đến điểm $T$ trên bờ rồi đi thẳng ra đảo). Bến tàu cách đảo $1\\text{ km}$, đó chính là vị trí trên đất liền gần với đảo nhất. Nhà máy nước cách bến tàu $4\\text{ km}$. Biết rằng chi phí đặt mỗi kilômét ống nước trên đất liền là $30$ triệu đồng, còn đặt dưới nước là $50$ triệu đồng.\n![Sơ đồ đường ống nước từ nhà máy qua T ra đảo](/bank-images/short-hinhhoc/q41.jpeg)\nTổng chi phí lắp đặt ít nhất bằng bao nhiêu triệu đồng?",
+      "points": 1,
+      "sort_order": 41,
+      "choices": [],
+      "settings": {
+        "explanation": "Đặt khoảng cách từ $T$ đến nhà máy là $x\\text{ (km)}$ ($0 \\le x \\le 4$), suy ra khoảng cách từ $T$ đến đảo là $\\sqrt{(4 - x)^2 + 1}$.\nTổng chi phí (triệu đồng): $f(x) = 30x + 50\\sqrt{(4 - x)^2 + 1}$.\nĐạo hàm $f'(x) = 30 - \\dfrac{50(4 - x)}{\\sqrt{(4 - x)^2 + 1}} = 0 \\Leftrightarrow 5(4 - x) = 3\\sqrt{(4 - x)^2 + 1} \\Leftrightarrow 4 - x = \\dfrac{3}{4} \\Leftrightarrow x = \\dfrac{13}{4}$.\nChi phí ít nhất là $f\\left(\\dfrac{13}{4}\\right) = 30 \\cdot \\dfrac{13}{4} + 50 \\cdot \\dfrac{5}{4} = 160$ triệu đồng.",
+        "source": "Đề thi Đánh giá năng lực ĐHSPHN 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "160",
+        "accepted_answers": [
+          "160"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 42,
+      "type": "short",
+      "prompt": "Một người nông dân có $15\\,000\\,000$ đồng để làm một hàng rào hình chữ $E$ dọc theo một con sông bao quanh hai khu đất trồng rau có dạng hai hình chữ nhật bằng nhau (như hình vẽ). Đối với mặt hàng rào song song với bờ sông thì chi phí nguyên vật liệu là $60\\,000$ đồng/mét, còn đối với ba mặt hàng rào vuông góc bờ sông thì chi phí nguyên vật liệu là $50\\,000$ đồng/mét, mặt giáp bờ sông không phải rào. Tìm diện tích lớn nhất ($\\text{m}^2$) của hai khu đất thu được sau khi làm hàng rào.\n![Hàng rào hình chữ E dọc bờ sông](/bank-images/short-hinhhoc/q42.jpeg)",
+      "points": 1,
+      "sort_order": 42,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi $x$ là chiều rộng vuông góc bờ sông ($3$ cạnh) và $y$ là tổng chiều dài song song bờ sông ($x, y > 0$).\nTổng chi phí: $3x \\cdot 50000 + y \\cdot 60000 = 15\\,000\\,000 \\Leftrightarrow 5x + 2y = 500 \\Rightarrow y = \\dfrac{500 - 5x}{2}$.\nDiện tích $S(x) = xy = \\dfrac{500x - 5x^2}{2}$, đạt GTLN tại $x = 50\\text{ m}$ ($y = 125\\text{ m}$) với $S_{\\max} = 6250\\text{ m}^2$.",
+        "source": "THPT Quế Võ 1 - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "6250",
+        "accepted_answers": [
+          "6250"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 43,
+      "type": "short",
+      "prompt": "Từ một tấm bìa hình chữ nhật có chiều rộng $30\\text{ cm}$ và chiều dài $80\\text{ cm}$, người ta cắt ở bốn góc bốn hình vuông có cạnh $x\\text{ (cm)}$ với $5 \\le x \\le 10$ và gấp lại để tạo thành chiếc hộp có dạng hình hộp chữ nhật không nắp như hình vẽ.\n![Cắt bốn góc tấm bìa 30cm x 80cm](/bank-images/short-hinhhoc/q43.jpeg)\nTìm $x$ để thể tích chiếc hộp là lớn nhất (kết quả làm tròn đến hàng phần chục).",
+      "points": 1,
+      "sort_order": 43,
+      "choices": [],
+      "settings": {
+        "explanation": "Thể tích hộp là $V(x) = x(30 - 2x)(80 - 2x) = 4x^3 - 220x^2 + 2400x$ trên $[5; 10]$.\nĐạo hàm $V'(x) = 12x^2 - 440x + 2400 = 0 \\Leftrightarrow x = \\dfrac{20}{3} \\in [5; 10]$ hoặc $x = 30$ (loại).\nLập bảng biến thiên suy ra thể tích lớn nhất khi $x = \\dfrac{20}{3} \\approx 6,7\\text{ cm}$.",
+        "source": "THPT Triệu Quang Phục - Hưng Yên 2025",
+        "level": "Nhận biết",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "6,7",
+        "accepted_answers": [
+          "6,7",
+          "6.7"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 44,
+      "type": "short",
+      "prompt": "Một mảnh vườn hình chữ nhật có diện tích $1000\\text{ m}^2$, người ta muốn mở rộng thêm $4$ phần đất sao cho tạo thành hình tròn ngoại tiếp mảnh vườn (tham khảo hình vẽ). Biết tâm của hình tròn trùng với tâm của hình chữ nhật. Tìm diện tích nhỏ nhất $S_{\\min}$ ($\\text{m}^2$) của $4$ phần đất mở rộng (làm tròn đến hàng đơn vị).\n![Hình tròn ngoại tiếp mảnh vườn hình chữ nhật](/bank-images/short-hinhhoc/q44.jpeg)",
+      "points": 1,
+      "sort_order": 44,
+      "choices": [],
+      "settings": {
+        "explanation": "Gọi kích thước hình chữ nhật là $a, b$ ($ab = 1000$). Bán kính hình tròn ngoại tiếp là $R = \\dfrac{\\sqrt{a^2 + b^2}}{2}$.\nDiện tích $4$ phần mở rộng là $S = \\pi R^2 - 1000 = \\dfrac{\\pi(a^2 + b^2)}{4} - 1000$.\nTheo bất đẳng thức Cô-si: $a^2 + b^2 \\ge 2ab = 2000$ (đạt khi $a = b = 10\\sqrt{10}$).\nVậy $S_{\\min} = 500\\pi - 1000 \\approx 571\\text{ m}^2$.",
+        "source": "Cụm Chuyên Môn Đăk Lak 2025",
+        "level": "Nhận biết",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "571",
+        "accepted_answers": [
+          "571"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 45,
+      "type": "short",
+      "prompt": "Một đường dây điện được nối từ một nhà máy điện ở $A$ (nằm tại bờ biển là đường thẳng $AB$) đến một hòn đảo $C$, khoảng cách ngắn nhất từ đảo về bờ biển là đoạn $BC$ dài $1\\text{ km}$, khoảng cách từ $B$ đến $A$ là $4\\text{ km}$ được minh họa bằng hình vẽ dưới đây.\n![Sơ đồ kéo dây điện từ nhà máy A qua S ra đảo C](/bank-images/short-hinhhoc/q45.png)\nBiết rằng mỗi $\\text{km}$ dây điện đặt dưới nước chi phí mất $5000\\text{ USD}$, còn đặt dưới đất chi phí mất $3000\\text{ USD}$. Hỏi điểm $S$ trên bờ cách $A$ bao nhiêu $\\text{km}$ để khi mắc dây điện từ $A$ qua $S$ rồi đến $C$ có chi phí là ít nhất?",
+      "points": 1,
+      "sort_order": 45,
+      "choices": [],
+      "settings": {
+        "explanation": "Đặt $AS = x$ ($0 \\le x \\le 4$), suy ra $BS = 4 - x$ và $CS = \\sqrt{(4 - x)^2 + 1}$.\nTổng chi phí: $f(x) = 3000x + 5000\\sqrt{(4 - x)^2 + 1}$.\nĐạo hàm $f'(x) = 3000 - \\dfrac{5000(4 - x)}{\\sqrt{(4 - x)^2 + 1}} = 0 \\Leftrightarrow 5(4 - x) = 3\\sqrt{(4 - x)^2 + 1} \\Leftrightarrow 4 - x = \\dfrac{3}{4} \\Leftrightarrow x = \\dfrac{13}{4} = 3,25\\text{ km}$.",
+        "source": "Sở Bắc Ninh 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "3,25",
+        "accepted_answers": [
+          "3,25",
+          "3.25"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 46,
+      "type": "short",
+      "prompt": "Anh Tí muốn chèo thuyền từ vị trí $A$ đến vị trí $B$ về phía hạ lưu bờ đối diện càng nhanh càng tốt, trên một con sông thẳng rộng $3\\text{ km}$ (như hình vẽ). Anh có thể chèo đến một vị trí $D$ trên đoạn $CB$ rồi chạy bộ đến $B$. Biết anh ấy chèo thuyền với tốc độ $6\\text{ km/h}$, chạy bộ với tốc độ $8\\text{ km/h}$ và $BC = 8\\text{ km}$ (bỏ qua vận tốc dòng nước). Khoảng thời gian ngắn nhất để anh Tí đến $B$ là bao nhiêu phút (kết quả làm tròn đến hàng đơn vị)?\n![Sơ đồ chèo thuyền từ A qua D đến B](/bank-images/short-hinhhoc/q46.jpeg)",
+      "points": 1,
+      "sort_order": 46,
+      "choices": [],
+      "settings": {
+        "explanation": "Đặt $CD = x$ ($0 \\le x \\le 8$), khi đó $AD = \\sqrt{x^2 + 9}$ và $DB = 8 - x$.\nThời gian di chuyển (giờ): $t(x) = \\dfrac{\\sqrt{x^2 + 9}}{6} + \\dfrac{8 - x}{8}$.\nĐạo hàm $t'(x) = \\dfrac{x}{6\\sqrt{x^2 + 9}} - \\dfrac{1}{8} = 0 \\Leftrightarrow 4x = 3\\sqrt{x^2 + 9} \\Leftrightarrow 7x^2 = 81 \\Leftrightarrow x = \\dfrac{9}{\\sqrt{7}}$.\nThời gian ngắn nhất là $t\\left(\\dfrac{9}{\\sqrt{7}}\\right) = \\dfrac{8 + \\sqrt{7}}{8}\\text{ giờ} \\approx 79,84 \\approx 80$ phút.",
+        "source": "Sở Hậu Giang 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "80",
+        "accepted_answers": [
+          "80"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 47,
+      "type": "short",
+      "prompt": "Một xưởng sản xuất cửa nhôm kính uốn vòm gồm phần dưới là hình chữ nhật có chiều rộng $x\\text{ (cm)}$, chiều dài $y\\text{ (cm)}$, phần vòm là hình bán nguyệt có bán kính $\\dfrac{x}{2}\\text{ (cm)}$. Biết chu vi của cửa không đổi là $8\\text{ m}$ và đơn giá làm cửa là $1\\,600\\,000\\text{ đồng/m}^2$. Khi diện tích của cái cửa lớn nhất thì cái cửa trị giá bao nhiêu triệu đồng (làm tròn đến hàng phần mười)?\n![Cửa nhôm kính uốn vòm hình bán nguyệt](/bank-images/short-hinhhoc/q47.png)",
+      "points": 1,
+      "sort_order": 47,
+      "choices": [],
+      "settings": {
+        "explanation": "Tính theo đơn vị mét: chu vi cửa là $x + 2y + \\dfrac{\\pi x}{2} = 8 \\Rightarrow y = 4 - \\left(\\dfrac{1}{2} + \\dfrac{\\pi}{4}\\right)x$.\nDiện tích cửa: $S(x) = xy + \\dfrac{\\pi x^2}{8} = 4x - \\left(\\dfrac{1}{2} + \\dfrac{\\pi}{8}\\right)x^2$.\nĐạo hàm $S'(x) = 4 - \\left(1 + \\dfrac{\\pi}{4}\\right)x = 0 \\Leftrightarrow x = \\dfrac{16}{4 + \\pi}$.\nDiện tích lớn nhất là $S_{\\max} = \\dfrac{32}{4 + \\pi} \\approx 4,4808\\text{ m}^2 \\Rightarrow$ giá trị cửa là $4,4808 \\cdot 1,6 \\approx 7,2$ triệu đồng.",
+        "source": "Sở Lai Châu 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "7,2",
+        "accepted_answers": [
+          "7,2",
+          "7.2"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 48,
+      "type": "short",
+      "prompt": "Một xưởng thủ công mỹ nghệ sản xuất loại chụp đèn trang trí dạng hình chóp cụt tứ giác đều. Gọi $x$ là độ dài cạnh đáy lớn (đơn vị $\\text{dm}$, $x > 0$). Tổng chi phí vật liệu cho một chụp đèn là $C(x) = x^2 + 108$ (nghìn đồng), thời gian sản xuất là $T(x) = x + 6$ (giờ). Hãy tìm giá trị của $x$ để chi phí vật liệu trung bình trên một giờ sản xuất là thấp nhất.\n![Chụp đèn trang trí hình chóp cụt tứ giác đều](/bank-images/short-hinhhoc/q48.jpeg)",
+      "points": 1,
+      "sort_order": 48,
+      "choices": [],
+      "settings": {
+        "explanation": "Chi phí trung bình trên một giờ là $f(x) = \\dfrac{x^2 + 108}{x + 6}$ ($x > 0$).\nĐạo hàm $f'(x) = \\dfrac{x^2 + 12x - 108}{(x + 6)^2} = 0 \\Leftrightarrow x = 6$ (vì $x > 0$).\nLập bảng biến thiên suy ra $f(x)$ đạt GTNN tại $x = 6\\text{ dm}$.",
+        "source": "Sở Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "6",
+        "accepted_answers": [
+          "6"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 49,
+      "type": "short",
+      "prompt": "Xét hệ gồm hai nguyên tử khí argon ($\\text{Ar}$) ở trạng thái cơ bản, khoảng cách $d$ giữa tâm hai nguyên tử được mô tả qua thế năng tương tác Lennard-Jones: $V(d) = 4\\varepsilon\\left[\\left(\\dfrac{\\sigma}{d}\\right)^{12} - \\left(\\dfrac{\\sigma}{d}\\right)^6\\right]$, trong đó đối với $\\text{Ar}$ có $\\varepsilon = 0,930$ và $\\sigma = 3,62$. Biết hệ bền nhất khi thế năng $V(d)$ đạt giá trị nhỏ nhất, tìm khoảng cách $d$ lúc đó (kết quả làm tròn đến hàng phần trăm).\n![Hai nguyên tử khí Argon cách nhau khoảng d](/bank-images/short-hinhhoc/q49.jpeg)",
+      "points": 1,
+      "sort_order": 49,
+      "choices": [],
+      "settings": {
+        "explanation": "Đặt $u = \\left(\\dfrac{\\sigma}{d}\\right)^6 > 0$. Khi đó $V = 4\\varepsilon(u^2 - u) = 4\\varepsilon\\left(u - \\dfrac{1}{2}\\right)^2 - \\varepsilon$ đạt GTNN khi $u = \\dfrac{1}{2}$.\nSuy ra $\\left(\\dfrac{\\sigma}{d}\\right)^6 = \\dfrac{1}{2} \\Leftrightarrow d = \\sigma\\sqrt[6]{2} = 3,62\\sqrt[6]{2} \\approx 4,06$.",
+        "source": "Sở Hải Phòng 2025",
+        "level": "Nhận biết",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "4,06",
+        "accepted_answers": [
+          "4,06",
+          "4.06"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 50,
+      "type": "short",
+      "prompt": "Một khu đất trống bằng phẳng hình chữ nhật $ABCD$ có $AB = 1\\text{ km}$, $AD = 0,6\\text{ km}$ như hình vẽ. Từ vị trí $A$, anh An chạy bộ theo đường gấp khúc $ABEFA$ để quay lại vị trí $A$ (trong đó $E, F$ là hai vị trí bất kì trên đoạn $CD$). Vận tốc của anh An trên đoạn $AB$ và $EF$ bằng $10\\text{ km/h}$, vận tốc trên đoạn $BE$ và $AF$ là $6\\text{ km/h}$. Thời gian ngắn nhất mà anh An di chuyển theo cách trên là bao nhiêu phút?\n![Đường chạy bộ ABEFA trên khu đất ABCD](/bank-images/short-hinhhoc/q50.jpeg)",
+      "points": 1,
+      "sort_order": 50,
+      "choices": [],
+      "settings": {
+        "explanation": "Đặt $EC = x$, $DF = y$ ($x, y \\ge 0,\\ x + y \\le 1$). Tổng thời gian (giờ):\n$T(x, y) = \\dfrac{1}{10} + \\dfrac{\\sqrt{x^2 + 0,36}}{6} + \\dfrac{\\sqrt{y^2 + 0,36}}{6} + \\dfrac{1 - x - y}{10} = \\dfrac{1}{10} + f(x) + f(y)$, với $f(u) = \\dfrac{\\sqrt{u^2 + 0,36}}{6} + \\dfrac{0,5 - u}{10}$.\nĐạo hàm $f'(u) = \\dfrac{u}{6\\sqrt{u^2 + 0,36}} - \\dfrac{1}{10} = 0 \\Leftrightarrow 5u = 3\\sqrt{u^2 + 0,36} \\Leftrightarrow u = 0,45$.\nKhi đó $f(0,45) = \\dfrac{0,75}{6} + \\dfrac{0,05}{10} = 0,13$ giờ. Tổng thời gian ngắn nhất $T_{\\min} = 0,1 + 0,26 = 0,36\\text{ giờ} = 21,6$ phút.",
+        "source": "Cụm THPT Hoàn Kiếm - Hai Bà Trưng - Hà Nội 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "21,6",
+        "accepted_answers": [
+          "21,6",
+          "21.6"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 51,
+      "type": "short",
+      "prompt": "Một người muốn tạo một hộp đựng quà khối lăng trụ tam giác đều không có nắp bằng cách cắt ba góc của một tam giác đều cạnh bằng $a$ các đoạn bằng $x\\ \\left(0 < x < \\dfrac{a}{2}\\right)$ như hình vẽ, rồi gấp lại tạo thành khối lăng trụ tam giác đều. Thể tích khối lăng trụ lớn nhất khi $x = \\dfrac{a}{b}$. Tìm $b$.\n![Cắt ba góc tam giác đều thành lăng trụ tam giác đều](/bank-images/short-hinhhoc/q51.jpeg)",
+      "points": 1,
+      "sort_order": 51,
+      "choices": [],
+      "settings": {
+        "explanation": "Cạnh đáy lăng trụ là $a - 2x$, chiều cao là $h = x\\tan 30^\\circ = \\dfrac{x\\sqrt{3}}{3}$.\nThể tích $V(x) = \\dfrac{(a - 2x)^2\\sqrt{3}}{4} \\cdot \\dfrac{x\\sqrt{3}}{3} = \\dfrac{1}{4}x(a - 2x)^2$.\nĐạo hàm $V'(x) = \\dfrac{1}{4}(a - 2x)(a - 6x) = 0 \\Leftrightarrow x = \\dfrac{a}{6}$ (vì $0 < x < \\dfrac{a}{2}$). Vậy $b = 6$.",
+        "source": "THPT Bắc Đông Quan - Thái Bình 2025",
+        "level": "Nhận biết",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "6",
+        "accepted_answers": [
+          "6"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 52,
+      "type": "short",
+      "prompt": "Một cái ao có hình $ABCDE$ (như hình vẽ), ở giữa ao có một mảnh vườn hình tròn bán kính $12\\text{ m}$, người ta muốn bắc một cây cầu từ bờ $AB$ của ao đến vườn. Biết hai bờ $AE$ và $BC$ vuông góc nhau tại $O$; bờ $AB$ là một phần parabol đỉnh $A$, trục đối xứng $OA$; $OA = 40\\text{ m}$, $OB = 20\\text{ m}$; tâm $I$ mảnh vườn cách $AE$ và $BC$ lần lượt $40\\text{ m}$ và $30\\text{ m}$. Hỏi độ dài ngắn nhất $l$ (đơn vị mét) của cây cầu là bao nhiêu (làm tròn đến hàng phần chục)?\n![Cái ao ABCDE và mảnh vườn tròn tâm I](/bank-images/short-hinhhoc/q52.jpeg)",
+      "points": 1,
+      "sort_order": 52,
+      "choices": [],
+      "settings": {
+        "explanation": "Chọn hệ trục $Oxy$ với $O$ là gốc, $OB$ trên $Ox$, $OA$ trên $Oy$. Parabol đỉnh $A(0; 40)$ qua $B(20; 0)$ có phương trình $y = -\\dfrac{1}{10}x^2 + 40$. Tâm vườn là $I(40; 30)$, bán kính $R = 12$.\nVới $M\\left(a; -\\dfrac{1}{10}a^2 + 40\\right)$ ($a \\in [0; 20]$), độ dài cầu là $IM - 12$ với $IM^2 = (a - 40)^2 + \\left(10 - \\dfrac{1}{10}a^2\\right)^2 = \\dfrac{1}{100}a^4 - a^2 - 80a + 1700 = f(a)$.\nĐạo hàm $f'(a) = \\dfrac{1}{25}a^3 - 2a - 80 = 0 \\Leftrightarrow a \\approx 13,9177 \\in [0; 20]$.\nKhi đó $IM_{\\min} = \\sqrt{f(13,9177)} \\approx 27,714\\text{ m} \\Rightarrow l_{\\min} = IM_{\\min} - 12 \\approx 15,7\\text{ m}$.",
+        "source": "Liên trường THPT Ninh Bình 2025",
+        "level": "Vận dụng",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "15,7",
+        "accepted_answers": [
+          "15,7",
+          "15.7"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 53,
+      "type": "short",
+      "prompt": "Hai nhà máy sản xuất đặt tại các vị trí $A$ và $B$ cách nhau $4\\text{ km}$. Một nhà máy cung cấp nước được đặt ở vị trí $C$ nằm trên đường trung trực của đoạn thẳng $AB$, cách trung điểm $M$ của $AB$ một khoảng $4\\text{ km}$. Người ta muốn làm một đường ống dẫn nước từ $C$ đến một vị trí $I$ nằm trên đoạn thẳng $MC$ sau đó chia ra hai nhánh dẫn tới $A$ và $B$ (như hình vẽ). Tổng độ dài đường ống dẫn nước nhỏ nhất bằng bao nhiêu $\\text{km}$ (làm tròn kết quả đến hàng phần trăm)?\n![Sơ đồ đường ống nước từ C qua I tới A và B](/bank-images/short-hinhhoc/q53.png)",
+      "points": 1,
+      "sort_order": 53,
+      "choices": [],
+      "settings": {
+        "explanation": "Đặt $IM = x$ ($0 \\le x \\le 4$), suy ra $IC = 4 - x$ và $IA = IB = \\sqrt{x^2 + 4}$.\nTổng độ dài đường ống là $f(x) = 4 - x + 2\\sqrt{x^2 + 4}$.\nĐạo hàm $f'(x) = -1 + \\dfrac{2x}{\\sqrt{x^2 + 4}} = 0 \\Leftrightarrow 2x = \\sqrt{x^2 + 4} \\Leftrightarrow x = \\dfrac{2\\sqrt{3}}{3}$.\nTổng độ dài nhỏ nhất là $f\\left(\\dfrac{2\\sqrt{3}}{3}\\right) = 4 + 2\\sqrt{3} \\approx 7,46\\text{ km}$.",
+        "source": "Sở Hà Tĩnh 2025",
+        "level": "Thông hiểu",
+        "pack": "short-hinhhoc"
+      },
+      "answer_key": {
+        "correct_answer": "7,46",
+        "accepted_answers": [
+          "7,46",
+          "7.46"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 6: Ứng dụng đạo hàm thực tiễn",
+        "Thông hiểu"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1758 @@
+{
+  "pack_id": "tf4-hamphanthuc",
+  "title": "Chủ đề 4 · Khảo sát hàm phân thức — Đúng/Sai (2025)",
+  "chapter": "GĐ1 · Chương 1",
+  "count": 50,
+  "questions": [
+    {
+      "source_num": 1,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = \\frac{2x + 1}{x - 1}$ có đồ thị $(C)$.",
+      "points": 1,
+      "sort_order": 1,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Đồ thị $(C)$ có tiệm cận đứng $x = 1$ và tiệm cận ngang $y = 2$.\nb) \\textbf{Đúng.} $y' = \\frac{-3}{(x - 1)^2} < 0, \\forall x \\neq 1$ nên hàm số nghịch biến trên từng khoảng xác định.\nc) \\textbf{Sai.} $y = 2 + \\frac{3}{x - 1} \\in \\mathbb{Z} \\Leftrightarrow x - 1 \\in \\{\\pm 1; \\pm 3\\}$, có $4$ điểm nguyên: $(2; 5), (0; -1), (4; 3), (-2; 1)$.\nd) \\textbf{Sai.} $S_{MHOK} = |a| \\cdot \\left|\\frac{2a + 1}{a - 1}\\right| = 2 \\Leftrightarrow a = \\frac{1}{2}$ hoặc $a = -2$. Chỉ có $1$ điểm có hoành độ dương là $M\\left(\\frac{1}{2}; 4\\right)$.",
+        "statements": [
+          "Đồ thị $(C)$ có tiệm cận đứng $x = 1$ và tiệm cận ngang $y = 1$.",
+          "Hàm số đã cho nghịch biến trên các khoảng xác định của nó.",
+          "Có đúng $3$ điểm thuộc đồ thị $(C)$ mà tọa độ của chúng là những số nguyên.",
+          "Gọi $M$ là điểm nằm trên đồ thị $(C)$ và $H, K$ tương ứng là hình chiếu vuông góc của $M$ trên các trục $Ox$ và $Oy$. Có $2$ điểm $M$ có hoành độ dương thỏa mãn tứ giác $MHOK$ có diện tích bằng $2$."
+        ],
+        "source": "THPT Đào Duy Từ - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 2,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = \\frac{2x - 3}{x^2 + 4}$.",
+      "points": 1,
+      "sort_order": 2,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $f(24) = \\frac{45}{580} = \\frac{9}{116}$.\nb) \\textbf{Đúng.} $\\lim_{x \\to \\pm\\infty} f(x) = 0$ nên $y = 0$ (trục hoành) là tiệm cận ngang.\nc) \\textbf{Đúng.} $f'(x) = \\frac{-2x^2 + 6x + 8}{(x^2 + 4)^2} = 0 \\Leftrightarrow x = -1$ ($y = -1$) hoặc $x = 4$ ($y = \\frac{1}{4}$). Lập BBT suy ra $x = 4$ là điểm cực đại.\nd) \\textbf{Sai.} Tập giá trị là $\\left[-1; \\frac{1}{4}\\right] \\Rightarrow 3a + 4b = -3 + 1 = -2$.",
+        "statements": [
+          "$f(24) = \\frac{9}{116}$.",
+          "Đồ thị hàm số $y = f(x)$ nhận trục hoành làm tiệm cận ngang.",
+          "Hàm số $f(x)$ có điểm cực đại là $x = 4$.",
+          "Tập giá trị của hàm số đã cho là đoạn $[a; b]$ thì $3a + 4b = 2$."
+        ],
+        "source": "THPT Hàm Rồng - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 3,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = \\frac{x^2 - x + 7}{x + 1}$.",
+      "points": 1,
+      "sort_order": 3,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $y = x - 2 + \\frac{9}{x + 1}$, $y' = 1 - \\frac{9}{(x + 1)^2} = 0 \\Leftrightarrow x = -4$ ($y = -9$) hoặc $x = 2$ ($y = 3$).\na) \\textbf{Đúng.} Đồ thị có hai điểm cực trị $A(-4; -9)$ và $B(2; 3)$.\nb) \\textbf{Đúng.} Trên $(-4; -1)$, $y' < 0$ nên hàm số nghịch biến.\nc) \\textbf{Đúng.} $\\lim_{x \\to \\pm\\infty} [y - (x - 2)] = \\lim_{x \\to \\pm\\infty} \\frac{9}{x + 1} = 0$ nên tiệm cận xiên là $y = x - 2$.\nd) \\textbf{Sai.} Trên $(-\\infty; -1)$, GTLN của hàm số là $y(-4) = -9$.",
+        "statements": [
+          "Đồ thị hàm số có hai điểm cực trị.",
+          "Hàm số nghịch biến trên khoảng $(-4; -1)$.",
+          "Đường tiệm cận xiên của đồ thị hàm số là đường thẳng $y = x - 2$.",
+          "Giá trị lớn nhất của hàm số trên khoảng $(-\\infty; -1)$ bằng $3$."
+        ],
+        "source": "THPT Lương Tài 2 - Bắc Ninh 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 4,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = \\frac{x^2 + 2x - 1}{x - 1}$ có đồ thị $(C)$.",
+      "points": 1,
+      "sort_order": 4,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $y = x + 3 + \\frac{2}{x - 1}$ ($x \\neq 1$), $y' = 1 - \\frac{2}{(x - 1)^2} = 0 \\Leftrightarrow x = 1 \\pm \\sqrt{2}$.\na) \\textbf{Đúng.} Hàm số có hai điểm cực trị tại $x = 1 \\pm \\sqrt{2}$.\nb) \\textbf{Đúng.} $\\lim_{x \\to 1^+} y = +\\infty$ nên $x = 1$ là tiệm cận đứng.\nc) \\textbf{Sai.} Hàm số không xác định tại $x = 1 \\in (0; 2)$.\nd) \\textbf{Đúng.} Với $M\\left(m; m + 3 + \\frac{2}{m - 1}\\right) \\in (C)$, khoảng cách đến TCĐ $x = 1$ là $|m - 1|$ và đến TCX $x - y + 3 = 0$ là $\\frac{2}{\\sqrt{2}|m - 1|} = \\frac{\\sqrt{2}}{|m - 1|}$. Tích bằng $\\sqrt{2}$.",
+        "statements": [
+          "Hàm số có hai điểm cực trị.",
+          "Đồ thị $(C)$ có tiệm cận đứng là đường thẳng có phương trình $x = 1$.",
+          "Hàm số nghịch biến trên khoảng $(0; 2)$.",
+          "$M$ là điểm bất kì thuộc đồ thị $(C)$. Tích khoảng cách từ $M$ đến tiệm cận đứng và tiệm cận xiên của đồ thị $(C)$ bằng $\\sqrt{2}$."
+        ],
+        "source": "THPT Văn Giang - Hưng Yên 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 4 · Dạng 1: Tiệm cận (Biểu thức)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 5,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x) = \\frac{ax - 1}{bx + c}$ với $a, b, c \\in \\mathbb{R}$ có bảng biến thiên như hình vẽ dưới đây:\n![Hình Câu 5](/bank-images/tf4-hamphanthuc/q5_p0.png)",
+      "points": 1,
+      "sort_order": 5,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Trên $(-\\infty; 3)$, hàm nghịch biến từ $\\frac{1}{2}$ xuống $-\\infty$, nên tại $x = 0 < 3$ ta có $f(0) < \\frac{1}{2}$.\nb) \\textbf{Sai.} Từ BBT, tiệm cận đứng là $x = 3$ (còn $y = \\frac{1}{2}$ là tiệm cận ngang).\nc) \\textbf{Đúng.} Trên $(-\\infty; 3)$, $f'(x) < 0$.\nd) \\textbf{Đúng.} $f(0) = -\\frac{1}{c} < \\frac{1}{2} \\Leftrightarrow \\frac{c + 2}{2c} > 0 \\Leftrightarrow c \\in (-\\infty; -2) \\cup (0; +\\infty)$.",
+        "statements": [
+          "Đồ thị cắt trục tung tại điểm có tung độ nhỏ hơn $\\frac{1}{2}$.",
+          "Đồ thị hàm số có tiệm cận đứng $x = \\frac{1}{2}$.",
+          "Hàm số nghịch biến trên khoảng $(-\\infty; 3)$.",
+          "$c \\in (-\\infty; -2) \\cup (0; +\\infty)$."
+        ],
+        "source": "THPT Tiên Du - Bắc Ninh 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 2: Xét dấu hệ số",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 6,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x) = \\frac{ax^2 + bx + 1}{cx + d}$ đạt cực đại tại $x = 0$ và có đồ thị như hình vẽ sau:\n![Hình Câu 6](/bank-images/tf4-hamphanthuc/q6_p0.jpeg)",
+      "points": 1,
+      "sort_order": 6,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} TCĐ $x = 1$ và qua $(0; -1)$ nên $c = 1, d = -1$. TCX là $y = x$ nên $a = 1, b = -1$. Suy ra $a + b + c + d = 0$.\nb) \\textbf{Đúng.} Từ đồ thị thấy trên $(-1; 0)$ đường cong đi lên.\nc) \\textbf{Sai.} $f(x) = x + \\frac{1}{x - 1}$ có hai cực trị $A(0; -1), B(2; 3)$. Với $M(t; 0) \\in Ox$, $\\overrightarrow{MA} \\cdot \\overrightarrow{MB} \\ge 0 \\Leftrightarrow t^2 - 2t - 3 \\ge 0 \\Leftrightarrow t \\le -1$ hoặc $t \\ge 3$, nên không có GTNN (t có thể âm tùy ý).\nd) \\textbf{Sai.} Đường thẳng qua $A(0; -1), B(2; 3)$ là $y = 2x - 1$.",
+        "statements": [
+          "Giá trị của biểu thức $a + b + c + d = 0$.",
+          "Hàm số đồng biến trên $(-1; 0)$.",
+          "Gọi $A, B$ là các điểm cực trị của đồ thị hàm số; $M$ là điểm di động trên trục $Ox$ sao cho góc $\\widehat{AMB}$ không tù. Giá trị nhỏ nhất của hoành độ điểm $M$ là $3$.",
+          "Đường thẳng đi qua hai điểm cực trị của hàm số có phương trình: $y = x - 1$."
+        ],
+        "source": "THPT Nguyễn Đăng Đạo - Bắc Ninh 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 2: Xét dấu hệ số",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 7,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x) = \\frac{ax^2 + bx + c}{mx + n}$ (với $a, m \\neq 0$) có đồ thị là đường cong như hình vẽ:\n![Hình Câu 7](/bank-images/tf4-hamphanthuc/q7_p0.jpeg)",
+      "points": 1,
+      "sort_order": 7,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Từ đồ thị thấy hàm số đồng biến trên $(-\\infty; -3)$ và $(-1; +\\infty)$.\nb) \\textbf{Đúng.} Do hàm đồng biến trên $(-1; +\\infty)$ nên $f(2024) < f(2025)$.\nc) \\textbf{Sai.} Tiệm cận đứng là $x = -2$ (TCX là $y = x + 1$).\nd) \\textbf{Đúng.} TCĐ $x = -2$, TCX $y = x + 1$ và đi qua $(-1; 1)$ suy ra $f(x) = x + 1 + \\frac{1}{x + 2} = \\frac{x^2 + 3x + 3}{x + 2}$. Thay $x = 2$ được $f(2) = \\frac{13}{4}$.",
+        "statements": [
+          "Hàm số đồng biến trên các khoảng $(-\\infty; -3)$ và $(-1; +\\infty)$.",
+          "$f(2024) < f(2025)$.",
+          "Đồ thị hàm số có tiệm cận đứng $x = -3$ và đường tiệm cận xiên $y = x + 1$.",
+          "Đồ thị hàm số đi qua điểm $A\\left(2; \\frac{13}{4}\\right)$."
+        ],
+        "source": "THPT Gia Bình - Bắc Ninh 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 2: Xét dấu hệ số",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 8,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x)$ liên tục trên các khoảng xác định và có bảng biến thiên như hình vẽ sau:\n![Hình Câu 8](/bank-images/tf4-hamphanthuc/q8_p0.jpeg)",
+      "points": 1,
+      "sort_order": 8,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Đồ thị có $2$ tiệm cận đứng là $x = -2$ ($\\lim_{x \\to -2^-} y = +\\infty$) và $x = 0$ ($\\lim_{x \\to 0^+} y = -\\infty$).\nb) \\textbf{Sai.} Hai tiệm cận ngang là $y = 2$ và $y = -3$.\nc) \\textbf{Sai.} Từ BBT, trên $(1; 2)$ có $y' > 0$ (đồng biến), hàm chỉ nghịch biến trên $(2; +\\infty)$.\nd) \\textbf{Sai.} $y'$ chỉ đổi dấu một lần khi qua $x = 2$ nên hàm số chỉ có $1$ điểm cực trị.",
+        "statements": [
+          "Số đường tiệm cận đứng của đồ thị hàm số đã cho là $2$.",
+          "Đồ thị hàm số $y = f(x)$ có hai đường tiệm cận ngang $y = 2; y = 3$.",
+          "Hàm số $y = f(x)$ nghịch biến trong khoảng $(1; +\\infty)$.",
+          "Hàm số $y = f(x)$ có hai điểm cực trị."
+        ],
+        "source": "THPT Thạch Thành 1 - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 4 · Dạng 2: Tiệm cận (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 9,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = \\begin{cases} 2^{\\frac{3x - 2}{x - 1}} + 1 & \\text{khi } x > 1 \\\\ 12 & \\text{khi } x = 1 \\\\ \\frac{x^2 - 3x - 1}{x - 1} & \\text{khi } x < 1 \\end{cases}$.",
+      "points": 1,
+      "sort_order": 9,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $\\lim_{x \\to 1^-} f(x) = +\\infty$, $\\lim_{x \\to 1^+} f(x) = +\\infty$, $\\lim_{x \\to +\\infty} f(x) = 2^3 + 1 = 9$, và khi $x \\to -\\infty$ thì $f(x) = x - 2 - \\frac{3}{x - 1}$ có tiệm cận xiên $y = x - 2$.\na) \\textbf{Đúng.} Ba đường tiệm cận $x = 1$, $y = 9$, $y = x - 2$ cắt nhau tại $A(1; 9), B(11; 9), C(1; -1)$ tạo tam giác vuông cân tại $A$ với $AB = AC = 10 \\Rightarrow S = \\frac{1}{2} \\cdot 10 \\cdot 10 = 50$.\nb) \\textbf{Sai.} Tiệm cận ngang là $y = 9$.\nc) \\textbf{Sai.} $\\lim_{x \\to 1^-} f(x) = +\\infty \\neq f(1)$ nên hàm không liên tục tại $x = 1$.\nd) \\textbf{Đúng.} $x = 1$ là tiệm cận đứng.",
+        "statements": [
+          "Ba đường tiệm cận của đồ thị hàm số cắt nhau tạo thành tam giác có diện tích bằng $50$.",
+          "Tiệm cận ngang của đồ thị hàm số là đường thẳng $y = 12$.",
+          "Hàm số liên tục tại điểm $x = 1$.",
+          "Đồ thị hàm số có tiệm cận đứng là đường thẳng $x = 1$."
+        ],
+        "source": "THPT Yên Lạc - Vĩnh Phúc 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 4 · Dạng 1: Tiệm cận (Biểu thức)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 10,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = \\frac{ax + b}{cx + d}$ với $a, b, c, d \\in \\mathbb{R}$ và $c \\neq 0$ có đồ thị hàm số $y = f'(x)$ nhận đường thẳng $x = -1$ làm tiệm cận đứng như hình vẽ dưới. Biết rằng giá trị lớn nhất của hàm số $y = f(x)$ trên đoạn $[-3; -2]$ bằng $8$.\n![Hình Câu 10](/bank-images/tf4-hamphanthuc/q10_p0.jpeg)",
+      "points": 1,
+      "sort_order": 10,
+      "choices": [],
+      "settings": {
+        "explanation": "Đồ thị $f'(x)$ có TCĐ $x = -1 \\Rightarrow c = d \\neq 0$ (chọn $c = d = 1$), nằm hoàn toàn phía trên $Ox$ ($f'(x) > 0$) và $f'(0) = 3 \\Rightarrow a - b = 3$. Do $f(x)$ đồng biến trên $[-3; -2]$ nên $\\max_{[-3; -2]} f(x) = f(-2) = 2a - b = 8 \\Rightarrow a = 5, b = 2$, tức $f(x) = \\frac{5x + 2}{x + 1}$.\na) \\textbf{Đúng.} Trên $[2; 4]$, $\\min f(x) = f(2) = \\frac{12}{3} = 4$.\nb) \\textbf{Sai.} $f(-3) = \\frac{-13}{-2} = \\frac{13}{2}$.\nc) \\textbf{Sai.} Hàm số đồng biến trên $(-1; +\\infty)$.\nd) \\textbf{Đúng.} $\\lim_{x \\to \\pm\\infty} f'(x) = \\lim_{x \\to \\pm\\infty} \\frac{3}{(x + 1)^2} = 0$.",
+        "statements": [
+          "Giá trị nhỏ nhất của hàm số $y = f(x)$ trên đoạn $[2; 4]$ bằng $4$.",
+          "$f(-3) = 8$.",
+          "Hàm số $y = f(x)$ nghịch biến trên khoảng $(-1; +\\infty)$.",
+          "Đồ thị hàm số $y = f'(x)$ nhận đường thẳng $y = 0$ làm tiệm cận ngang."
+        ],
+        "source": "THPT Chuyên Vĩnh Phúc 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 2: GTLN - GTNN (Đồ thị / BBT)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 11,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x) = \\frac{ax^2 + bx + c}{x + d}$ có đồ thị là đường cong trong hình vẽ dưới đây, biết đường tiệm cận xiên của đồ thị hàm số đi qua hai điểm $(0; 1)$ và $(1; 0)$.\n![Hình Câu 11](/bank-images/tf4-hamphanthuc/q11_p0.jpeg)",
+      "points": 1,
+      "sort_order": 11,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Hàm số không xác định tại $x = -2 \\in (-4; 0)$ nên chỉ đồng biến trên $(-4; -2)$ và $(-2; 0)$.\nb) \\textbf{Đúng.} TCĐ $x = -2 \\Rightarrow d = 2$; TCX $y = -x + 1 \\Rightarrow a = -1$; qua $(0; -1)$ và $(-4; 7)$ suy ra $c = -2, b = -1$. Vậy $a + b + c + d = -1 - 1 - 2 + 2 = -2$.\nc) \\textbf{Đúng.} Hai điểm cực trị là $A(0; -1)$ và $B(-4; 7)$, đường thẳng $AB: 2x + y + 1 = 0$. Khoảng cách $d(M, AB) = \\frac{|2 - 8 + 1|}{\\sqrt{5}} = \\sqrt{5}$.\nd) \\textbf{Sai.} Tập xác định là $\\mathbb{R} \\setminus \\{-2\\}$.",
+        "statements": [
+          "Hàm số đồng biến trên khoảng $(-4; 0)$.",
+          "Ta có $a + b + c + d = -2$.",
+          "Khoảng cách từ $M(1; -8)$ đến đường thẳng đi qua các điểm cực trị của đồ thị hàm số là $\\sqrt{5}$.",
+          "Tập xác định của hàm số là $\\mathbb{R} \\setminus \\{2\\}$."
+        ],
+        "source": "Sở Ninh Bình 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 2: Xét dấu hệ số",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 13,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = \\frac{x + 1}{x - 1}$ có đồ thị là đường cong $(C)$. Giả sử $A, B$ là hai điểm thuộc hai nhánh và $AB$ đi qua tâm đối xứng của $(C)$.",
+      "points": 1,
+      "sort_order": 12,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} TCĐ $x = 1$, TCN $y = 1$ nên tâm đối xứng là $I(1; 1)$.\nb) \\textbf{Đúng.} $y' = \\frac{-2}{(x - 1)^2} < 0, \\forall x \\neq 1$.\nc) \\textbf{Đúng.} $y'(a) = -2 \\Leftrightarrow a = 0$ (tiếp tuyến $y = -2x - 1$, loại vì trùng $d$) hoặc $a = 2$ (tiếp tuyến $y = -2x + 7$, thỏa mãn). Vậy có đúng $1$ tiếp tuyến song song $d$.\nd) \\textbf{Sai.} Với $A\\left(1 + a; 1 + \\frac{2}{a}\\right)$ ($a > 0$) và $B\\left(1 - a; 1 - \\frac{2}{a}\\right)$, $AB = \\sqrt{4a^2 + \\frac{16}{a^2}} \\ge 4$ (đạt khi $a = \\sqrt{2}$).",
+        "statements": [
+          "Tâm đối xứng của $(C)$ là điểm $I(1; -1)$.",
+          "Hàm số nghịch biến trên khoảng $(-\\infty; 1)$.",
+          "Có $1$ tiếp tuyến của đồ thị $(C)$ song song với đường thẳng $d: y = -2x - 1$.",
+          "Giá trị nhỏ nhất của đoạn thẳng $AB$ bằng $3\\sqrt{2}$."
+        ],
+        "source": "THPT Triệu Sơn 3 - Thanh Hóa 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 14,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x) = ax + b + \\frac{c}{x + d}$ ($a, b, c, d \\in \\mathbb{R}$) có đồ thị như hình vẽ sau:\n![Hình Câu 14](/bank-images/tf4-hamphanthuc/q14_p0.jpeg)",
+      "points": 1,
+      "sort_order": 13,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Đồ thị có tiệm cận đứng $x = -2 \\Rightarrow d = 2$.\nb) \\textbf{Đúng.} Đồ thị cắt $Oy$ tại $(0; -5) \\Rightarrow f(0) = -5$.\nc) \\textbf{Sai.} Tiệm cận xiên đi qua $(-2; 0)$ và $(0; -4)$ nên có phương trình $y = -2x - 4$.\nd) \\textbf{Đúng.} Từ $y = -2x - 4 + \\frac{c}{x + 2}$ và $f(0) = -5 \\Rightarrow c = -2$.",
+        "statements": [
+          "Đồ thị hàm số đã cho có tiệm cận đứng là đường thẳng $x = -2$.",
+          "Giá trị $f(0) = -5$.",
+          "Đồ thị hàm số đã cho có tiệm cận xiên là đường thẳng $y = 2x - 4$.",
+          "Hàm số đã cho là $y = -2x - 4 - \\frac{2}{x + 2}$."
+        ],
+        "source": "Sở Bình Phước 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 2: Xét dấu hệ số",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 15,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = \\frac{x^2 + bx + c}{x + n}$ có đồ thị và hai đường tiệm cận $d_1, d_2$ như hình vẽ dưới đây:\n![Hình Câu 15](/bank-images/tf4-hamphanthuc/q15_p0.png)",
+      "points": 1,
+      "sort_order": 14,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Từ đồ thị có tiệm cận đứng $d_1: x = -1 \\Rightarrow n = 1$.\nb) \\textbf{Đúng.} Đồ thị đi lên trên $(0; +\\infty)$.\nc) \\textbf{Sai.} TCX $d_2: y = x$ đi qua $(-1; -1)$ và cực tiểu là $(0; 1)$ nên $y = x + \\frac{1}{x + 1} = \\frac{x^2 + x + 1}{x + 1}$. Đường thẳng qua hai cực trị là $y = 2x + 1$, không đi qua $M(50; 98)$ (vì $2 \\cdot 50 + 1 = 101$).\nd) \\textbf{Sai.} Trục đối xứng là phân giác của $x = -1$ và $y = x$, đi qua $I(-1; -1)$ với hệ số góc $1 + \\sqrt{2}$: $y = (1 + \\sqrt{2})(x + 1) - 1 \\Rightarrow p = 1, q = 2, r = 1 \\Rightarrow p + 10q + 15r = 36$.",
+        "statements": [
+          "Đồ thị hàm số có tiệm cận đứng là $x = -1$.",
+          "Hàm số đồng biến trên khoảng $(0; +\\infty)$.",
+          "Điểm $M(50; 98)$ và hai điểm cực trị của đồ thị hàm số thẳng hàng.",
+          "Đồ thị hàm số có một trục đối xứng là đường thẳng $y = (p + \\sqrt{q})(x + 1) - r$ (trong đó $p, q, r$ là các số nguyên). Khi đó $p + 10q + 15r = 90$."
+        ],
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 2: Xét dấu hệ số",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 16,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = \\frac{ax^2 + bx + c}{mx + n}$ có đồ thị như hình vẽ sau:\n![Hình Câu 16](/bank-images/tf4-hamphanthuc/q16_p0.png)",
+      "points": 1,
+      "sort_order": 15,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Hàm số không xác định tại $x = -1 \\in (-2; 0)$.\nb) \\textbf{Đúng.} Tiệm cận xiên đi qua $(-1; 0)$ và $(0; 1)$ nên là $y = x + 1$.\nc) \\textbf{Sai.} Hai điểm cực trị là $A(-2; -2)$ và $B(0; 2) \\Rightarrow S_{OAB} = \\frac{1}{2} \\cdot OB \\cdot |x_A| = \\frac{1}{2} \\cdot 2 \\cdot 2 = 2$.\nd) \\textbf{Đúng.} Trục đối xứng là hai đường phân giác của $x - y + 1 = 0$ và $x + 1 = 0$: $\\frac{|x - y + 1|}{\\sqrt{2}} = |x + 1| \\Leftrightarrow y = (1 + \\sqrt{2})(x + 1) = (x + 1)\\tan\\frac{3\\pi}{8}$ hoặc $y = (1 - \\sqrt{2})(x + 1)$.",
+        "statements": [
+          "Hàm số đã cho nghịch biến trên khoảng $(-2; 0)$.",
+          "Đồ thị của hàm số đã cho có tiệm cận xiên $y = x + 1$.",
+          "Gọi $A, B$ là hai điểm cực trị của đồ thị hàm số đã cho, diện tích của tam giác $OAB$ bằng $8$ (với $O$ là gốc tọa độ).",
+          "Một trục đối xứng của đồ thị đã cho là $d: y = (x + 1)\\tan\\frac{3\\pi}{8}$."
+        ],
+        "source": "THPT Nguyễn Khuyến - Lê Thánh Tông 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 17,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = \\frac{x^2 + 3x + 3}{x + 2}$.",
+      "points": 1,
+      "sort_order": 16,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $y = x + 1 + \\frac{1}{x + 2}$, $y' = \\frac{x^2 + 4x + 3}{(x + 2)^2} = 0 \\Leftrightarrow x = -3$ ($y = -3$) hoặc $x = -1$ ($y = 1$).\na) \\textbf{Đúng.} $y' > 0$ trên $(-\\infty; -3)$ và $(-1; +\\infty)$.\nb) \\textbf{Sai.} $y_{\\text{CĐ}} + y_{\\text{CT}} = -3 + 1 = -2$.\nc) \\textbf{Sai.} TCX là $y = x + 1$, không đi qua $A(0; 2)$.\nd) \\textbf{Đúng.} $y' = -3 \\Leftrightarrow x = -\\frac{5}{2}$ (tiếp tuyến $y = -3x - 11$, loại do trùng) hoặc $x = -\\frac{3}{2}$ (tiếp tuyến $y = -3x - 3$, đi qua $B(1; -6)$).",
+        "statements": [
+          "Hàm số đã cho đồng biến trên $(-\\infty; -3)$ và $(-1; +\\infty)$.",
+          "Tổng giá trị cực đại và giá trị cực tiểu của hàm số đã cho bằng $-4$.",
+          "Đường tiệm cận xiên của đồ thị hàm số đã cho đi qua điểm $A(0; 2)$.",
+          "Phương trình tiếp tuyến của đồ thị hàm số đã cho song song với đường thẳng $y = -3x - 11$ đi qua điểm $B(1; -6)$."
+        ],
+        "source": "THPT Kinh Môn - Hải Dương 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 18,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = \\frac{x^2 + 3x - 8}{x - 2}$ (1) và đường tròn $(C): (x + 3)^2 + (y - 1)^2 = 4$. Gọi $I$ là tâm đường tròn $(C)$.",
+      "points": 1,
+      "sort_order": 17,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $y = x + 5 + \\frac{2}{x - 2}$, $y' = \\frac{x^2 - 4x + 2}{(x - 2)^2} = 0 \\Leftrightarrow x = 2 \\pm \\sqrt{2}$.\na) \\textbf{Đúng.} Vì $2 - \\sqrt{2} > 0$ nên trên $(-\\infty; 0)$ có $y' > 0$.\nb) \\textbf{Đúng.} $2 + \\sqrt{2} \\in [3; 5]$ là điểm cực tiểu nên $\\min_{[3; 5]} y = y(2 + \\sqrt{2}) = 7 + 2\\sqrt{2}$.\nc) \\textbf{Sai.} Tâm $I(-3; 1)$, TCĐ $x = 2$ và TCX $x - y + 5 = 0$: tổng khoảng cách là $|-3 - 2| + \\frac{|-3 - 1 + 5|}{\\sqrt{2}} = 5 + \\frac{\\sqrt{2}}{2} = \\frac{10 + \\sqrt{2}}{2}$.\nd) \\textbf{Đúng.} Đường thẳng qua hai cực trị là $y = 2x + 3$, cắt $(C)$ tại $M(-1; 1)$ và $N\\left(-\\frac{9}{5}; -\\frac{3}{5}\\right)$. Tính được $S_{INM} = \\frac{8}{5}$ và $S_{ONM} = \\frac{6}{5} \\Rightarrow S_{IMON} = \\frac{14}{5}$.",
+        "statements": [
+          "Hàm số (1) đồng biến trên khoảng $(-\\infty; 0)$.",
+          "Giá trị nhỏ nhất của hàm số (1) trên đoạn $[3; 5]$ bằng $7 + 2\\sqrt{2}$.",
+          "Tổng khoảng cách từ điểm $I$ đến hai tiệm cận của đồ thị hàm số (1) bằng $\\frac{10 + 3\\sqrt{2}}{2}$.",
+          "Đường thẳng đi qua hai điểm cực trị của đồ thị hàm số (1) cắt đường tròn $(C)$ tại hai điểm phân biệt $M, N$. Diện tích tứ giác $IMON$ bằng $\\frac{14}{5}$ (với $O$ là gốc tọa độ)."
+        ],
+        "source": "HSG Vũng Tàu 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 19,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = \\frac{mx^2 + nx + 1}{px + 2}$ có đồ thị như hình vẽ bên dưới:\n![Hình Câu 19](/bank-images/tf4-hamphanthuc/q19_p0.jpeg)",
+      "points": 1,
+      "sort_order": 18,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Từ đồ thị có TCĐ $x = -2$.\nb) \\textbf{Sai.} Trên $(-2; +\\infty)$ đồ thị đi lên nên hàm đồng biến.\nc) \\textbf{Sai.} Thay $x = 0$ được $y = \\frac{1}{2}$, đồ thị qua $\\left(0; \\frac{1}{2}\\right)$.\nd) \\textbf{Đúng.} TCĐ $x = -2 \\Rightarrow p = 1$; TCX là $y = mx + (n - 2m)$ trùng với $y = x + 1$ nên $m = 1, n = 3$. Vậy $2m + 3n - p = 2 + 9 - 1 = 10$.",
+        "statements": [
+          "Đường tiệm cận đứng của đồ thị là đường thẳng $x = -2$.",
+          "Hàm số nghịch biến trên khoảng $(-2; +\\infty)$.",
+          "Đồ thị hàm số đi qua điểm $A(0; 1)$.",
+          "Ta có $2m + 3n - p = 10$."
+        ],
+        "source": "THPT Triệu Sơn 1 - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 2: Xét dấu hệ số",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 20,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = \\frac{2x + 1}{x - 1}$ có đồ thị $(C)$.",
+      "points": 1,
+      "sort_order": 19,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} $y' = \\frac{-3}{(x - 1)^2} < 0, \\forall x \\neq 1$ nên hàm nghịch biến trên từng khoảng $(-\\infty; 1)$ và $(1; +\\infty)$ (không viết nghịch biến trên $\\mathbb{R} \\setminus \\{1\\}$).\nb) \\textbf{Sai.} Hàm phân thức bậc nhất trên bậc nhất không có cực trị.\nc) \\textbf{Đúng.} Tiếp tuyến tại $(2; 5)$ là $y = -3x + 11$, cắt $Ox, Oy$ tạo tam giác có diện tích $\\frac{1}{2} \\cdot \\frac{11}{3} \\cdot 11 = \\frac{121}{6} \\Rightarrow a = 121, b = 6 \\Rightarrow a - 20b = 1$.\nd) \\textbf{Đúng.} Điều kiện $AB \\parallel \\Delta$ cho $(x_A - 1)(x_B - 1) = 3$, và $d(A, \\Delta) = AB$ giải ra $x_A = 2 + \\sqrt{10}, x_B = \\frac{2 + \\sqrt{10}}{3}$ (hoặc hoán vị). Khi đó $S_{ABCD} = AB^2 = 2\\left(\\frac{4 + 2\\sqrt{10}}{3}\\right)^2 \\approx 23{,}7$.",
+        "statements": [
+          "Hàm số $y = \\frac{2x + 1}{x - 1}$ nghịch biến trên $\\mathbb{R} \\setminus \\{1\\}$.",
+          "Hàm số đã cho có hai điểm cực trị.",
+          "Tiếp tuyến với đồ thị $(C)$ tại điểm có hoành độ bằng $2$ tạo với hai trục tọa độ một tam giác có diện tích bằng $\\frac{a}{b}$ (với $a, b \\in \\mathbb{N}$ và $(a, b) = 1$). Khi đó $a - 20b = 1$.",
+          "Lấy hai điểm $A, B$ thuộc một nhánh của đồ thị $(C)$ sao cho $x_A > 1; x_B > 1$ và hai điểm $C, D$ thuộc đường thẳng $\\Delta: y = -x + 1$. Khi $ABCD$ là hình vuông thì diện tích hình vuông đó (làm tròn đến hàng phần chục) là $23{,}7$ đơn vị diện tích."
+        ],
+        "source": "Cụm trường THPT Bắc Ninh 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          false,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 21,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x) = \\frac{ax + b}{cx + 1}$ với $a, b, c \\in \\mathbb{R}$ có đồ thị như hình vẽ dưới:\n![Hình Câu 21](/bank-images/tf4-hamphanthuc/q21_p0.jpeg)",
+      "points": 1,
+      "sort_order": 20,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Hàm số không xác định tại $x = 1$ nên $f'(x) < 0, \\forall x \\neq 1$.\nb) \\textbf{Sai.} Hàm số nghịch biến trên cả $(-\\infty; 1)$ và $(1; +\\infty)$.\nc) \\textbf{Đúng.} Nhìn đồ thị có TCĐ $x = 1$ và TCN $y = -1$.\nd) \\textbf{Sai.} TCĐ $x = -\\frac{1}{c} = 1 \\Rightarrow c = -1$; TCN $y = \\frac{a}{c} = -1 \\Rightarrow a = 1$; qua $(0; -2) \\Rightarrow b = -2$. Vậy $a + b + c = -2$.",
+        "statements": [
+          "Đạo hàm của hàm số $f'(x) < 0, \\forall x \\in \\mathbb{R}$.",
+          "Hàm số $y = f(x)$ nghịch biến trên khoảng $(1; +\\infty)$ và đồng biến trên khoảng $(-\\infty; 1)$.",
+          "Đồ thị hàm số $y = f(x)$ có đường tiệm cận đứng là $x = 1$ và đường tiệm cận ngang là $y = -1$.",
+          "Tổng $a + b + c = 5$."
+        ],
+        "source": "Chuyên Thái Bình 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          false,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 2: Xét dấu hệ số",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 22,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = \\frac{3x - 2}{x + 2}$ có đồ thị $(C)$.",
+      "points": 1,
+      "sort_order": 21,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Giao $Oy$ tại $M(0; -1)$, $y'(0) = \\frac{8}{4} = 2$ nên tiếp tuyến là $y = 2x - 1$.\nb) \\textbf{Đúng.} $\\frac{3x - 2}{x + 2} = x - 1 \\Leftrightarrow x^2 - 2x = 0 \\Leftrightarrow x = 0$ hoặc $x = 2$ ($2$ giao điểm).\nc) \\textbf{Sai.} $y = 3$ là tiệm cận ngang (TCĐ là $x = -2$).\nd) \\textbf{Đúng.} Giao của TCĐ $x = -2$ và TCN $y = 3$ là $I(-2; 3)$.",
+        "statements": [
+          "Tiếp tuyến của đồ thị $(C)$ tại giao điểm của đồ thị $(C)$ với trục $Oy$ là đường thẳng $y = 2x + 1$.",
+          "Đồ thị $(C)$ cắt đường thẳng $y = x - 1$ tại hai điểm phân biệt.",
+          "Đường thẳng $y = 3$ là tiệm cận đứng của đồ thị hàm số.",
+          "Điểm $I(-2; 3)$ là giao điểm của các đường tiệm cận của đồ thị $(C)$."
+        ],
+        "source": "Sở Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 23,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x) = \\frac{x^2 + 2x - 1}{x - 1}$.",
+      "points": 1,
+      "sort_order": 22,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $f(x) = x + 3 + \\frac{2}{x - 1}$ nên tiệm cận xiên là $y = x + 3$.\nb) \\textbf{Sai.} $f'(x) = 1 - \\frac{2}{(x - 1)^2} = 0 \\Leftrightarrow x = 1 \\pm \\sqrt{2}$. Vì $1 - \\sqrt{2} \\approx -0{,}41 < 0$ nên hàm không đồng biến trên $(-\\infty; 0)$.\nc) \\textbf{Đúng.} Trên $[-3; -1] \\subset (-\\infty; 1 - \\sqrt{2})$, hàm đồng biến nên GTLN là $f(-1) = 1$.\nd) \\textbf{Sai.} Phương trình vô nghiệm $\\Leftrightarrow 4 - 2\\sqrt{2} < m < 4 + 2\\sqrt{2}$ ($\\approx 1{,}17 < m < 6{,}83$), có $5$ giá trị nguyên $m \\in \\{2; 3; 4; 5; 6\\}$.",
+        "statements": [
+          "Đường thẳng $y = x + 3$ là tiệm cận xiên của đồ thị hàm số đã cho.",
+          "Hàm số đồng biến trên khoảng $(-\\infty; 0)$.",
+          "Giá trị lớn nhất của hàm số $y = f(x)$ trên đoạn $[-3; -1]$ là $1$.",
+          "Có $6$ giá trị nguyên của $m$ để phương trình $f(x) = m$ vô nghiệm."
+        ],
+        "source": "THPT Sào Nam - Quảng Nam 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 24,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = \\frac{x^2 + x - 1}{x - 1}$ có đồ thị là $(C)$.",
+      "points": 1,
+      "sort_order": 23,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Đạo hàm đúng là $y' = \\frac{x^2 - 2x}{(x - 1)^2}$.\nb) \\textbf{Đúng.} $y = x + 2 + \\frac{1}{x - 1}$ có TCĐ $x = 1$ và TCX $y = x + 2$, giao nhau tại $I(1; 3)$.\nc) \\textbf{Đúng.} $y' = 0 \\Leftrightarrow x = 0$ hoặc $x = 2$; trên $(1; +\\infty)$ hàm đạt cực tiểu tại $x = 2$ với $y(2) = 5$.\nd) \\textbf{Sai.} Hai cực trị là $A(0; 1)$ và $B(2; 5) \\Rightarrow AB = \\sqrt{2^2 + 4^2} = 2\\sqrt{5}$.",
+        "statements": [
+          "Tập xác định $D = \\mathbb{R} \\setminus \\{1\\}$ và đạo hàm $y' = \\frac{x^2 - 2x - 2}{(x - 1)^2}$ với $x \\neq 1$.",
+          "Tâm đối xứng của đồ thị $(C)$ là điểm $I(1; 3)$.",
+          "Giá trị nhỏ nhất của hàm số trên khoảng $(1; +\\infty)$ bằng $5$.",
+          "Gọi $A$ và $B$ là hai điểm cực trị của $(C)$. Khi đó $AB = 4\\sqrt{2}$."
+        ],
+        "source": "Cụm trường Nguyễn Hiền - Lê Hồng Phong - Quảng Nam 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 25,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = \\frac{x^2 - 3x + 6}{x - 1}$.",
+      "points": 1,
+      "sort_order": 24,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $y = x - 2 + \\frac{4}{x - 1}$, $y' = \\frac{x^2 - 2x - 3}{(x - 1)^2} = 0 \\Leftrightarrow x = -1$ ($y = -5$) hoặc $x = 3$ ($y = 3$).\na) \\textbf{Đúng.} Điểm cực tiểu là $(3; 3) \\Rightarrow a^2 + b = 9 + 3 = 12$.\nb) \\textbf{Đúng.} Tiệm cận xiên là $y = x - 2$.\nc) \\textbf{Sai.} $I(1; -1)$; tiếp tuyến tại $(2; 4)$ là $y = -3x + 10$, cắt TCĐ tại $A(1; 7)$ và TCX tại $B(3; 1) \\Rightarrow S_{IAB} = \\frac{1}{2} \\cdot 8 \\cdot 2 = 8$.\nd) \\textbf{Đúng.} Từ BBT trên $(1; 15)$: $y(2) = 4, y(3) = 3, y(15) = \\frac{93}{7} \\approx 13{,}29$. Để có $x_1 < 2 < x_2 < 15$ (tức $1 < x_1 < 2 < x_2 < 15$) cần $4 < m < \\frac{93}{7}$, suy ra $m \\in \\{5; 6; \\dots; 13\\}$ (có $9$ giá trị nguyên).",
+        "statements": [
+          "Điểm cực tiểu của đồ thị hàm số là $(a; b)$ với $a^2 + b = 12$.",
+          "Tiệm cận xiên của đồ thị hàm số là $y = x - 2$.",
+          "Gọi $I$ là giao điểm hai đường tiệm cận của đồ thị hàm số. Tiếp tuyến của đồ thị hàm số tại điểm có hoành độ $x = 2$ cắt hai đường tiệm cận tại $A, B$. Diện tích tam giác $IAB$ bằng $12$.",
+          "Có tất cả $9$ giá trị nguyên của tham số $m$ để phương trình $\\frac{x^2 - 3x + 6}{x - 1} = m$ có hai nghiệm phân biệt $x_1, x_2$ thỏa mãn $x_1 < 2 < x_2 < 15$."
+        ],
+        "source": "THPT Nông Cống 3 - Thanh Hóa 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 26,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = \\frac{-x^2 - 3x + 4}{x - 3}$ có đồ thị là $(C)$.",
+      "points": 1,
+      "sort_order": 25,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $y' = \\frac{-x^2 + 6x + 5}{(x - 3)^2} = 0 \\Leftrightarrow x = 3 \\pm \\sqrt{14}$, tích hai nghiệm bằng $-5 < 0$ nên nằm hai phía trục $Oy$.\nb) \\textbf{Đúng.} $y = -x - 6 - \\frac{14}{x - 3}$ nên tiệm cận xiên là $y = -x - 6$.\nc) \\textbf{Đúng.} Giao điểm của TCĐ $x = 3$ và TCX $y = -x - 6$ là $I(3; -9)$.\nd) \\textbf{Sai.} $-x^2 - 3x + 4 = 0 \\Leftrightarrow x = 1$ hoặc $x = -4$ nên đồ thị cắt $Ox$ tại $2$ điểm.",
+        "statements": [
+          "Đồ thị $(C)$ có hai điểm cực trị nằm $2$ phía đối với $Oy$.",
+          "Đồ thị $(C)$ có tiệm cận xiên là $y = -x - 6$.",
+          "Đồ thị $(C)$ nhận giao điểm $I(3; -9)$ làm tâm đối xứng.",
+          "Đồ thị không cắt trục $Ox$."
+        ],
+        "source": "THPT Trực Ninh - Nam Định 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 27,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x) = \\frac{2x - 3}{x - 6}$ có đồ thị $(C)$.",
+      "points": 1,
+      "sort_order": 26,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Tiệm cận ngang là $y = 2$, tiệm cận đứng là $x = 6$.\nb) \\textbf{Đúng.} $f'(x) = \\frac{-9}{(x - 6)^2} < 0, \\forall x \\neq 6$.\nc) \\textbf{Đúng.} $f'(x) < 0$ trên từng khoảng xác định nên không có cực trị.\nd) \\textbf{Sai.} Hàm số gián đoạn tại $x = 6 \\in (0; +\\infty)$.",
+        "statements": [
+          "Đường thẳng $x = -6$ là tiệm cận ngang của đồ thị $(C)$.",
+          "$f'(x) < 0, \\forall x \\in (6; +\\infty)$.",
+          "Hàm số đã cho không có điểm cực trị.",
+          "Hàm số đã cho nghịch biến trên khoảng $(0; +\\infty)$."
+        ],
+        "source": "THPT Lê Thánh Tông - Nguyễn Khuyến HCM 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 4 · Dạng 1: Tiệm cận (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 28,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x)$ có bảng biến thiên như sau:\n![Hình Câu 28](/bank-images/tf4-hamphanthuc/q28_p0.jpeg)",
+      "points": 1,
+      "sort_order": 27,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Đồ thị chỉ có $1$ tiệm cận đứng $x = -1$ (không có tiệm cận ngang).\nb) \\textbf{Đúng.} Trên $(3; +\\infty)$, $y' > 0$.\nc) \\textbf{Đúng.} Hàm số có đúng $1$ điểm cực tiểu tại $x = 3$.\nd) \\textbf{Sai.} Trên $[3; 2025]$, $f(x)$ và $2025x$ đều đồng biến nên $\\min h(x) = h(3) = 2(-4) + 2025 \\cdot 3 = 6067$.",
+        "statements": [
+          "Đồ thị hàm số $y = f(x)$ có đúng hai đường tiệm cận.",
+          "Hàm số $y = f(x)$ đồng biến trên khoảng $(3; +\\infty)$.",
+          "Hàm số $y = f(x)$ có đúng một điểm cực trị.",
+          "Giá trị nhỏ nhất của $h(x) = 2f(x) + 2025x$ trên đoạn $[3; 2025]$ bằng $6083$."
+        ],
+        "source": "Sở Bắc Giang 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 4 · Dạng 2: Tiệm cận (Đồ thị / BBT)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 29,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x) = \\frac{x^2 + x - 1}{x + 2}$.",
+      "points": 1,
+      "sort_order": 28,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Điều kiện $x + 2 \\neq 0 \\Leftrightarrow x \\neq -2$.\nb) \\textbf{Sai.} $f(x) = x - 1 + \\frac{1}{x + 2}$ có TCĐ $x = -2$, TCX $y = x - 1$ nên tâm đối xứng là $I(-2; -3)$.\nc) \\textbf{Đúng.} $f'(x) = \\frac{x^2 + 4x + 3}{(x + 2)^2} = 0 \\Leftrightarrow x = -1$ ($y = -1$) hoặc $x = -3$ ($y = -5$). Vì $y_1 y_2 = 5 > 0$ nên hai điểm cực trị nằm cùng phía (phía dưới) trục hoành.\nd) \\textbf{Đúng.} $M\\left(0; -\\frac{1}{2}\\right)$ và $f'(0) = \\frac{3}{4}$ nên tiếp tuyến là $y = \\frac{3}{4}x - \\frac{1}{2}$.",
+        "statements": [
+          "Tập xác định của hàm số $y = f(x)$ là $\\mathbb{R} \\setminus \\{-2\\}$.",
+          "Tâm đối xứng của đồ thị hàm số $y = f(x)$ là điểm $I(2; 1)$.",
+          "Đồ thị hàm số $y = f(x)$ có hai điểm cực trị nằm cùng phía đối với trục hoành.",
+          "Gọi $M$ là giao điểm của đồ thị hàm số $y = f(x)$ với trục tung. Phương trình tiếp tuyến của đồ thị hàm số tại điểm $M$ là $y = \\frac{3}{4}x - \\frac{1}{2}$."
+        ],
+        "source": "Sở Thái Nguyên 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 30,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = \\frac{x^2 - x - 1}{x + 1}$ và điểm $A(-1; -3)$.",
+      "points": 1,
+      "sort_order": 29,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $f'(x) = \\frac{x^2 + 2x}{(x + 1)^2} = 0 \\Leftrightarrow x = -2$ hoặc $x = 0$.\nb) \\textbf{Sai.} Hàm số không xác định tại $x = -1 \\in (-2; 0)$.\nc) \\textbf{Đúng.} $f(x) = x - 2 + \\frac{1}{x + 1}$ nên tiệm cận xiên là $y = x - 2$.\nd) \\textbf{Sai.} Với $M\\left(a; a - 2 + \\frac{1}{a + 1}\\right)$, đặt $t = (a + 1)^2 > 0$, ta có $AM^2 = t + \\frac{(t + 1)^2}{t} = 2t + \\frac{1}{t} + 2 \\ge 2\\sqrt{2} + 2 \\Rightarrow AM \\ge \\sqrt{2\\sqrt{2} + 2} \\approx 2{,}197 < 2{,}2$.",
+        "statements": [
+          "Hàm số $f(x)$ có đúng $2$ điểm cực trị.",
+          "Hàm số $f(x)$ nghịch biến trên khoảng $(-2; 0)$.",
+          "Đường thẳng $y = x - 2$ là đường tiệm cận xiên của đồ thị hàm số $y = f(x)$.",
+          "Xét điểm $M$ thuộc đồ thị hàm số $y = f(x)$, đoạn thẳng $AM$ có độ dài luôn lớn hơn $2{,}2$."
+        ],
+        "source": "Chuyên KHTN Hà Nội 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 32,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = \\frac{2x + 1}{x - 1}$ có đồ thị $(C)$.",
+      "points": 1,
+      "sort_order": 30,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} $y' = \\frac{-3}{(x - 1)^2} < 0, \\forall x \\neq 1$ nên hàm số không có cực trị.\nb) \\textbf{Đúng.} Hàm nghịch biến trên $[2; 4]$ nên $\\max_{[2; 4]} y = y(2) = 5$.\nc) \\textbf{Đúng.} $\\lim_{x \\to 1^+} y = +\\infty$ nên $x = 1$ là tiệm cận đứng.\nd) \\textbf{Sai.} $y' < 0$ nên hàm số nghịch biến (không phải đồng biến) trên $(-\\infty; 1)$ và $(1; +\\infty)$.",
+        "statements": [
+          "Hàm số đạt cực đại tại $x = -3$.",
+          "Giá trị lớn nhất của hàm số trên $[2; 4]$ bằng $5$.",
+          "Đường thẳng $x = 1$ là tiệm cận đứng của đồ thị $(C)$.",
+          "Hàm số đồng biến trên khoảng $(-\\infty; 1)$ và $(1; +\\infty)$."
+        ],
+        "source": "Sở Bạc Liêu 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 33,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = \\frac{x^2 - 2x - 3}{x - 1}$.",
+      "points": 1,
+      "sort_order": 31,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} $y = x - 1 - \\frac{4}{x - 1}$ nên tiệm cận xiên là $y = x - 1$.\nb) \\textbf{Sai.} $y' = 1 + \\frac{4}{(x - 1)^2} > 0, \\forall x \\neq 1$ nên không có cực trị.\nc) \\textbf{Đúng.} Giao $Ox$ tại $A(-1; 0), B(3; 0)$ ($AB = 4$), giao $Oy$ tại $C(0; 3)$ ($OC = 3$) nên $S_{ABC} = \\frac{1}{2} \\cdot 4 \\cdot 3 = 6$.\nd) \\textbf{Sai.} $f'(x) = 1 - m^2 + \\frac{4}{(x - 1)^2} \\ge 0, \\forall x \\neq 1 \\Leftrightarrow 1 - m^2 \\ge 0 \\Leftrightarrow -1 \\le m \\le 1$. Có $3$ giá trị nguyên $m \\in \\{-1; 0; 1\\}$.",
+        "statements": [
+          "Đồ thị hàm số nhận đường thẳng $y = x + 1$ làm tiệm cận xiên.",
+          "Hàm số có $2$ điểm cực trị.",
+          "Gọi $A, B, C$ là giao điểm của đồ thị hàm số với các trục $Ox, Oy$. Diện tích tam giác $ABC$ bằng $6$.",
+          "Có đúng $2$ giá trị nguyên của tham số $m$ để hàm số $f(x) = \\frac{x^2 - 2x - 3}{x - 1} - m^2 x$ đồng biến trên từng khoảng xác định."
+        ],
+        "source": "Chuyên KHTN Hà Nội 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          false,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 1 · Dạng 2: Đơn điệu (Biểu thức)",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 34,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x) = \\frac{x^2 + x - m}{x - 2}$ có đồ thị $(C_m)$ (với $m$ là tham số thực).",
+      "points": 1,
+      "sort_order": 32,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $f'(x) = \\frac{x^2 - 4x - 2 + m}{(x - 2)^2}$ ($x \\neq 2$).\na) \\textbf{Sai.} Để có $2$ cực trị cần $\\Delta' = 6 - m > 0 \\Leftrightarrow m < 6$.\nb) \\textbf{Đúng.} Khi $m = 5$, $f'(x) = \\frac{x^2 - 4x + 3}{(x - 2)^2} > 0$ trên $(3; +\\infty)$.\nc) \\textbf{Sai.} Tập xác định là $\\mathbb{R} \\setminus \\{2\\}$ nên không thể đơn điệu trên $\\mathbb{R}$.\nd) \\textbf{Sai.} Hàm số có hai điểm cực trị khi $m < 6$.",
+        "statements": [
+          "Đồ thị $(C_m)$ luôn có hai điểm cực trị.",
+          "Khi $m = 5$ thì hàm số $f(x)$ đồng biến trên khoảng $(3; +\\infty)$.",
+          "Hàm số $f(x)$ nghịch biến trên $\\mathbb{R}$.",
+          "Hàm số $f(x)$ có hai điểm cực trị khi $m > 6$."
+        ],
+        "source": "THPT Triệu Sơn 1 - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 36,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = -x + 4 - \\frac{9}{x + 2}$.",
+      "points": 1,
+      "sort_order": 33,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $f(-7) = 11 + \\frac{9}{5} = \\frac{64}{5}$; $f(-4) = 8 + \\frac{9}{2} = \\frac{25}{2}$.\nb) \\textbf{Đúng.} Mẫu $x + 2 = 0 \\Leftrightarrow x = -2$ là tiệm cận đứng.\nc) \\textbf{Sai.} $f'(x) = -1 + \\frac{9}{(x + 2)^2} = \\frac{-x^2 - 4x + 5}{(x + 2)^2}$.\nd) \\textbf{Sai.} $f'(x) = 0$ có nghiệm $x = -5 \\in [-7; -4]$ với $f(-5) = 12 < \\frac{25}{2} < \\frac{64}{5}$. Vậy GTNN là $12$.",
+        "statements": [
+          "$f(-7) = \\frac{64}{5}$; $f(-4) = \\frac{25}{2}$.",
+          "Đồ thị của hàm số đã cho có đường tiệm cận đứng $x = -2$.",
+          "Đạo hàm của hàm số đã cho là $f'(x) = \\frac{-x^2 - 4x - 5}{(x + 2)^2}$.",
+          "Giá trị nhỏ nhất của hàm số đã cho trên đoạn $[-7; -4]$ là $\\frac{25}{2}$."
+        ],
+        "source": "THPT Anh Sơn 3 - Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 38,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = \\frac{x^2 - 3x + 3}{x - 1}$.",
+      "points": 1,
+      "sort_order": 34,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Điều kiện $x \\neq 1$.\nb) \\textbf{Đúng.} $f'(x) = \\frac{x^2 - 2x}{(x - 1)^2} > 0$ trên $(2; +\\infty) \\supset (3; +\\infty)$.\nc) \\textbf{Sai.} $f(x) = x - 2 + \\frac{1}{x - 1}$ nên tiệm cận xiên là $y = x - 2$.\nd) \\textbf{Sai.} Hai cực trị là $A(0; -3)$ và $B(2; 1) \\Rightarrow AB = \\sqrt{2^2 + 4^2} = 2\\sqrt{5}$.",
+        "statements": [
+          "Tập xác định của hàm số là $D = (-\\infty; 1) \\cup (1; +\\infty)$.",
+          "Hàm số đã cho đồng biến trên khoảng $(3; +\\infty)$.",
+          "Đường tiệm cận xiên của đồ thị hàm số đã cho là đường thẳng $y = x + 2$.",
+          "Khoảng cách giữa hai điểm cực trị của đồ thị hàm số đã cho là $5\\sqrt{2}$."
+        ],
+        "source": "Sở Sơn La 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 39,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = \\frac{x - 2}{x + 1}$.",
+      "points": 1,
+      "sort_order": 35,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $f'(x) = \\frac{1 \\cdot 1 - (-2) \\cdot 1}{(x + 1)^2} = \\frac{3}{(x + 1)^2}$.\nb) \\textbf{Sai.} Hàm đồng biến trên $(-1; 3]$ nên $\\max_{(-1; 3]} f(x) = f(3) = \\frac{1}{4}$.\nc) \\textbf{Đúng.} Đồ thị có TCĐ $x = -1$, TCN $y = 1$, đồng biến, qua $(2; 0)$ và $(0; -2)$.\nd) \\textbf{Sai.} $f(0) = -2$ và $f(-2) = 4$.",
+        "statements": [
+          "Đạo hàm của hàm số đã cho là $f'(x) = \\frac{3}{(x + 1)^2}$.",
+          "Giá trị lớn nhất của hàm số trên nửa khoảng $(-1; 3]$ bằng $1$.",
+          "Hàm số có đồ thị là đường cong trong hình bên dưới:\n![Hình Câu 39](/bank-images/tf4-hamphanthuc/q39_p0.png)",
+          "$f(0) = 2, f(-2) = 0$."
+        ],
+        "source": "THPT Hương Hóa - Quảng Trị 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 41,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = x - 1 + \\frac{9}{x + 2}$.",
+      "points": 1,
+      "sort_order": 36,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Điều kiện $x + 2 \\neq 0 \\Leftrightarrow x \\neq -2$.\nb) \\textbf{Đúng.} $y' = 1 - \\frac{9}{(x + 2)^2} = \\frac{x^2 + 4x - 5}{(x + 2)^2}$.\nc) \\textbf{Đúng.} $y' > 0 \\Leftrightarrow x \\in (-\\infty; -5) \\cup (1; +\\infty)$.\nd) \\textbf{Sai.} $y_{\\text{CĐ}} = y(-5) = -9 < y_{\\text{CT}} = y(1) = 3$.",
+        "statements": [
+          "Tập xác định của hàm số là $\\mathbb{R} \\setminus \\{-2\\}$.",
+          "Hàm số có đạo hàm là $y' = 1 - \\frac{9}{(x + 2)^2}, \\forall x \\neq -2$.",
+          "Hàm số đồng biến trên các khoảng $(-\\infty; -5)$ và $(1; +\\infty)$.",
+          "Hàm số có giá trị cực đại lớn hơn giá trị cực tiểu."
+        ],
+        "source": "Sở Quảng Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 42,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = \\frac{ax^2 + x + b}{x + c}$ ($a > 0$), có đồ thị $(C)$ như hình vẽ bên dưới. Biết đường tiệm cận xiên của đồ thị $(C)$ tạo với hai trục tọa độ một tam giác cân.\n![Hình Câu 42](/bank-images/tf4-hamphanthuc/q42_p0.jpeg)",
+      "points": 1,
+      "sort_order": 37,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Đồ thị có tiệm cận đứng $x = -2 \\Rightarrow c = 2$, TXĐ $\\mathbb{R} \\setminus \\{-2\\}$.\nb) \\textbf{Đúng.} Tiệm cận xiên đi lên và tạo với $Ox, Oy$ tam giác cân nên hệ số góc $a = 1$.\nc) \\textbf{Đúng.} Cực đại nằm dưới $Ox$, cực tiểu nằm trên $Ox$.\nd) \\textbf{Đúng.} Tiệm cận xiên là $y = ax + (1 - ac) = x - 1$, cắt $Oy$ tại $(0; -1)$. Đồ thị cắt $Oy$ tại $\\left(0; \\frac{b}{2}\\right)$ nằm phía trên $Ox$ (và lớn hơn $0{,}5$) nên $b > 1 \\Rightarrow 24a + 4b + 1000c > 24 + 4 + 2000 = 2028 > 2025$.",
+        "statements": [
+          "Tập xác định của hàm số là $\\mathbb{R} \\setminus \\{-2\\}$.",
+          "$a = 1$.",
+          "Đồ thị $(C)$ có $2$ điểm cực trị nằm về hai phía đối với trục $Ox$.",
+          "$24a + 4b + 1000c > 2025$."
+        ],
+        "source": "Liên Trường Nghệ An 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 2: Xét dấu hệ số",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 43,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x) = \\frac{a_1 x^2 + b_1 x + c_1}{a_2 x + b_2}$ có đồ thị như hình dưới đây:\n![Hình Câu 43](/bank-images/tf4-hamphanthuc/q43_p0.jpeg)",
+      "points": 1,
+      "sort_order": 38,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Quan sát đồ thị thấy có $1$ điểm cực tiểu và $1$ điểm cực đại.\nb) \\textbf{Sai.} Trục tung $x = 0$ là tiệm cận đứng nên đồ thị không cắt trục tung.\nc) \\textbf{Sai.} Trên $(0; +\\infty)$, hàm số đồng biến rồi nghịch biến.\nd) \\textbf{Sai.} Tiệm cận xiên đi qua $(-2; 0)$ và $(0; -2)$ nên có phương trình $y = -x - 2$.",
+        "statements": [
+          "Hàm số có điểm cực trị.",
+          "Đồ thị hàm số cắt trục tung.",
+          "Hàm số nghịch biến trên khoảng $(0; +\\infty)$.",
+          "Tiệm cận xiên của đồ thị là $y = -x - \\frac{15}{4}$."
+        ],
+        "source": "THPT DTNT - Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 44,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = \\frac{-x^2 + x + 1}{x + 1}$ có đồ thị $(C)$.",
+      "points": 1,
+      "sort_order": 39,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $y = -x + 2 - \\frac{1}{x + 1}$, $y' = -1 + \\frac{1}{(x + 1)^2} = 0 \\Leftrightarrow x = -2$ ($y = 5$) hoặc $x = 0$ ($y = 1$).\na) \\textbf{Sai.} Với $M \\in (C)$ và $t = (x_0 + 1)^2 > 0$, $MI^2 = 2t + \\frac{1}{t} + 2 \\ge 2 + 2\\sqrt{2} \\Rightarrow MN_{\\min} = \\sqrt{2 + 2\\sqrt{2}} - 1$.\nb) \\textbf{Sai.} Đường thẳng qua $E(-2; 5), F(0; 1)$ là $y = -2x + 1$, cắt $Ox, Oy$ tại $A\\left(\\frac{1}{2}; 0\\right), B(0; 1) \\Rightarrow S_{OAB} = \\frac{1}{4}$.\nc) \\textbf{Đúng.} $y' > 0$ trên $(-2; -1)$ và $(-1; 0)$.\nd) \\textbf{Đúng.} $\\lim_{x \\to -1^+} y = -\\infty$ nên $x = -1$ là tiệm cận đứng.",
+        "statements": [
+          "Gọi $(C')$ là đường tròn tâm $I(-1; 3)$, bán kính bằng $1$. Khoảng cách nhỏ nhất giữa hai điểm $M, N$ với $M \\in (C)$ và $N \\in (C')$ bằng $1 + 2\\sqrt{2}$.",
+          "Đường thẳng nối hai điểm cực trị của đồ thị $(C)$ cắt hai trục tọa độ tại hai điểm $A$ và $B$. Khi đó diện tích tam giác $OAB$ là $S = \\frac{1}{2}$.",
+          "Hàm số đồng biến trên các khoảng $(-2; -1)$ và $(-1; 0)$.",
+          "Tiệm cận đứng của đồ thị $(C)$ là đường thẳng có phương trình $x = -1$."
+        ],
+        "source": "Cụm Ninh Giang - Tứ Kỳ - Gia Lộc 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          false,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 45,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = \\frac{2x^2 - 3x}{e^x}$.",
+      "points": 1,
+      "sort_order": 40,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Vì $e^x > 0, \\forall x \\in \\mathbb{R}$ nên tập xác định là $D = \\mathbb{R}$.\nb) \\textbf{Sai.} $f'(x) = \\frac{(4x - 3)e^x - (2x^2 - 3x)e^x}{e^{2x}} = \\frac{-2x^2 + 7x - 3}{e^x}$.\nc) \\textbf{Đúng.} $-2x^2 + 7x - 3 = 0 \\Leftrightarrow x = \\frac{1}{2} \\in (0; 4)$ hoặc $x = 3 \\in (0; 4)$.\nd) \\textbf{Đúng.} Lập BBT trên $(0; 4)$: hàm đạt cực đại tại $x = 3$ với $f(3) = \\frac{9}{e^3} > f(0) = 0$ và $f(3) > f(4) = \\frac{20}{e^4}$.",
+        "statements": [
+          "Tập xác định của hàm số đã cho là $D = \\mathbb{R} \\setminus \\{0\\}$.",
+          "$f'(x) = \\frac{-2x^2 + 7x - 3}{e^{2x}}$.",
+          "Phương trình $f'(x) = 0$ có hai nghiệm phân biệt trong $(0; 4)$.",
+          "Giá trị lớn nhất của hàm số đã cho trong $(0; 4)$ bằng $\\frac{9}{e^3}$."
+        ],
+        "source": "THPT Mai Trúc Loan - Hà Tĩnh 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          false,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 3 · Dạng 1: GTLN - GTNN (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 46,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x) = \\frac{x^2 + 2x - 2}{x - 1}$ có đồ thị $(C)$.",
+      "points": 1,
+      "sort_order": 41,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Hàm số không xác định tại $x = 1 \\in (0; 2)$.\nb) \\textbf{Đúng.} $f(x) = x + 3 + \\frac{1}{x - 1}$ nên tiệm cận xiên là $y = x + 3$.\nc) \\textbf{Sai.} $f'(x) = 1 - \\frac{1}{(x - 1)^2} \\ge 0$ trên $[2; 4]$ nên $\\min_{[2; 4]} f(x) = f(2) = 6$.\nd) \\textbf{Sai.} $y' = \\frac{x^2 - 2x + m - 2}{(x - 1)^2} = 0$ có $2$ nghiệm phân biệt khác $1 \\Leftrightarrow m < 3$. Có $2$ số nguyên dương thỏa mãn ($m = 1, m = 2$).",
+        "statements": [
+          "Hàm số đã cho nghịch biến trên khoảng $(0; 2)$.",
+          "Đường tiệm cận xiên của $(C)$ có phương trình là $y = x + 3$.",
+          "Giá trị nhỏ nhất của hàm số $y = f(x)$ trên đoạn $[2; 4]$ bằng $\\frac{13}{2}$.",
+          "Có $3$ số nguyên dương $m$ để hàm số $y = \\frac{x^2 + 2x - m}{x - 1}$ có hai điểm cực trị."
+        ],
+        "source": "THPT Quế Võ 1 - Bắc Ninh 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 47,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x) = \\frac{-x^2 + x - 2}{x + 1}$ có đồ thị $(C)$.",
+      "points": 1,
+      "sort_order": 42,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $f'(x) = \\frac{(-2x + 1)(x + 1) - (-x^2 + x - 2)}{(x + 1)^2} = \\frac{-x^2 - 2x + 3}{(x + 1)^2}$.\nb) \\textbf{Đúng.} $f'(x) = 0 \\Leftrightarrow x = 1$ hoặc $x = -3$ (hai điểm cực trị trái dấu).\nc) \\textbf{Sai.} Hai điểm cực trị là $A(1; -1)$ và $B(-3; 7) \\Rightarrow AB = \\sqrt{4^2 + (-8)^2} = 4\\sqrt{5}$.\nd) \\textbf{Sai.} $f(x) = -x + 2 - \\frac{4}{x + 1} \\in \\mathbb{Z} \\Leftrightarrow x + 1 \\in \\{\\pm 1; \\pm 2; \\pm 4\\}$, có đúng $6$ điểm có tọa độ nguyên.",
+        "statements": [
+          "$y' = f'(x) = \\frac{-x^2 - 2x + 3}{(x + 1)^2}, \\forall x \\neq -1$.",
+          "Hàm số có hai điểm cực trị trái dấu.",
+          "Khoảng cách giữa hai điểm cực trị của đồ thị $(C)$ bằng $4$.",
+          "Trên đồ thị $(C)$ có đúng $8$ điểm có tọa độ nguyên."
+        ],
+        "source": "Cụm Chương Mỹ - Thanh Oai 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 48,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x)$ có bảng biến thiên như sau:\n![Hình Câu 48](/bank-images/tf4-hamphanthuc/q48_p0.png)",
+      "points": 1,
+      "sort_order": 43,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Trên $(0; 1)$, $y' > 0$.\nb) \\textbf{Đúng.} $y'$ đổi dấu từ $+$ sang $-$ qua $x = 1$ ($f(1) = 2$).\nc) \\textbf{Sai.} Đồ thị chỉ có $1$ tiệm cận đứng là $x = 0$ (không có tiệm cận ngang).\nd) \\textbf{Đúng.} Đường thẳng $y = 1$ cắt nhánh $(-\\infty; 0)$ tại $1$ điểm và nhánh $(0; +\\infty)$ tại $2$ điểm, tổng cộng $3$ nghiệm phân biệt.",
+        "statements": [
+          "Hàm số $y = f(x)$ đồng biến trên khoảng $(0; 1)$.",
+          "Hàm số $y = f(x)$ đạt cực đại tại $x = 1$.",
+          "Đồ thị của hàm số có hai đường tiệm cận.",
+          "Phương trình $f(x) - 1 = 0$ có $3$ nghiệm phân biệt."
+        ],
+        "source": "Cụm Chuyên Môn Đăk Lak 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 4 · Dạng 2: Tiệm cận (Đồ thị / BBT)",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 49,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = \\frac{3x + 2}{x + 2}$ có đồ thị là $(C)$. Hai điểm $A, B$ thuộc hai nhánh của đồ thị $(C)$.",
+      "points": 1,
+      "sort_order": 44,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $y = 3 - \\frac{4}{x + 2}$ và $y' = \\frac{4}{(x + 2)^2} > 0, \\forall x \\neq -2$.\na) \\textbf{Đúng.} Hàm số đồng biến trên $[2; 5]$ nên $\\min_{[2; 5]} y = y(2) = \\frac{8}{4} = 2$.\nb) \\textbf{Sai.} Gọi $A\\left(-2 - a; 3 + \\frac{4}{a}\\right)$ và $B\\left(-2 + b; 3 - \\frac{4}{b}\\right)$ ($a, b > 0$). Ta có $AB^2 = (a + b)^2 + \\left(\\frac{4}{a} + \\frac{4}{b}\\right)^2 \\ge 4ab + \\frac{64}{ab} \\ge 32 \\Rightarrow AB_{\\min} = 4\\sqrt{2}$ khi $a = b = 2$, tức $A(-4; 5), B(0; 1)$. Khi đó $OA \\cdot OB = \\sqrt{41} \\cdot 1 = \\sqrt{41}$.\nc) \\textbf{Sai.} Hàm số chỉ đồng biến trên từng khoảng $(-\\infty; -2)$ và $(-2; +\\infty)$, không kết luận đồng biến trên $\\mathbb{R} \\setminus \\{-2\\}$.\nd) \\textbf{Đúng.} $\\lim_{x \\to \\pm\\infty} y = 3$ nên $y = 3$ là tiệm cận ngang.",
+        "statements": [
+          "Giá trị nhỏ nhất của hàm số $y = \\frac{3x + 2}{x + 2}$ trên đoạn $[2; 5]$ là $2$.",
+          "Khi độ dài đoạn $AB$ ngắn nhất thì $OA \\cdot OB = \\sqrt{29}$.",
+          "Hàm số đồng biến trên $\\mathbb{R} \\setminus \\{-2\\}$.",
+          "Đường thẳng $y = 3$ là tiệm cận ngang của đồ thị $(C)$."
+        ],
+        "source": "THPT Hà Trung - Thanh Hóa 2025",
+        "level": "Vận dụng",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 50,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = f(x) = x + 2 + \\frac{1}{x - 1}$.",
+      "points": 1,
+      "sort_order": 45,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} Điều kiện $x \\neq 1$.\nb) \\textbf{Sai.} Tiệm cận xiên là $y = x + 2$.\nc) \\textbf{Sai.} $y' = 1 - \\frac{1}{(x - 1)^2} = \\frac{x(x - 2)}{(x - 1)^2}$ đổi dấu nên không nghịch biến trên $D$.\nd) \\textbf{Đúng.} Hai điểm cực trị là $A(0; 1)$ và $B(2; 5)$, đường thẳng $AB: 2x - y + 1 = 0$. Khoảng cách $d(O, AB) = \\frac{1}{\\sqrt{5}}$.",
+        "statements": [
+          "Tập xác định của hàm số $D = \\mathbb{R} \\setminus \\{1\\}$.",
+          "Tiệm cận xiên của đồ thị hàm số là đường thẳng $y = x - 2$.",
+          "Hàm số nghịch biến trên tập xác định.",
+          "Đồ thị hàm số có $2$ điểm cực trị là $A, B$. Khoảng cách từ gốc tọa độ đến đường thẳng $AB$ là $\\frac{1}{\\sqrt{5}}$."
+        ],
+        "source": "Sưu tầm 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 51,
+      "type": "tf4",
+      "prompt": "Cho hàm số $f(x) = \\frac{2x^2 + 3x - 5}{x + 3}$.",
+      "points": 1,
+      "sort_order": 46,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} Đạo hàm đúng là $f'(x) = \\frac{2x^2 + 12x + 14}{(x + 3)^2}$.\nb) \\textbf{Đúng.} $f(x) = 2x - 3 + \\frac{4}{x + 3}$ nên tiệm cận xiên là $y = 2x - 3$.\nc) \\textbf{Sai.} Giao của TCĐ $x = -3$ và TCX $y = 2x - 3$ là $I(-3; -9)$.\nd) \\textbf{Đúng.} $\\Delta$ cắt $Ox, Oy$ tại $A\\left(\\frac{3}{2}; 0\\right), B(0; -3) \\Rightarrow S_{OAB} = \\frac{1}{2} \\cdot \\frac{3}{2} \\cdot 3 = \\frac{9}{4} > 2$.",
+        "statements": [
+          "Hàm số có đạo hàm $f'(x) = \\frac{2x^2 + 12x - 14}{(x + 3)^2}$.",
+          "Tiệm cận xiên của đồ thị hàm số đã cho là đường thẳng $\\Delta: y = 2x - 3$.",
+          "Đồ thị hàm số nhận điểm $I(3; 3)$ làm tâm đối xứng.",
+          "Đường tiệm cận xiên của đồ thị hàm số $f(x) = \\frac{2x^2 + 3x - 5}{x + 3}$ cắt trục hoành, trục tung lần lượt tại $A, B$. Khi đó diện tích của tam giác $OAB$ lớn hơn $2$."
+        ],
+        "source": "Sở Bình Phước 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 54,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = \\frac{x^2 + 3x + 3}{x + 2}$ có đồ thị $(C)$ và $2$ điểm $A, B$ là hai điểm cực trị của $(C)$.",
+      "points": 1,
+      "sort_order": 47,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $y' = \\frac{(2x + 3)(x + 2) - (x^2 + 3x + 3)}{(x + 2)^2} = \\frac{x^2 + 4x + 3}{(x + 2)^2}$.\nb) \\textbf{Sai.} $y' = 0 \\Leftrightarrow x = -3$ hoặc $x = -1$, cùng nằm bên trái trục tung ($x_A x_B = 3 > 0$).\nc) \\textbf{Sai.} $A(-3; -3), B(-1; 1) \\Rightarrow$ đường thẳng $AB: y = 2x + 3$.\nd) \\textbf{Đúng.} $\\overrightarrow{AB} = (2; 4)$ cùng phương $\\vec{n}_\\Delta = (1; 2)$ nên $AB \\perp \\Delta$, và trung điểm $I(-2; -1)$ thuộc $\\Delta$ ($-2 - 2 + 4 = 0$).",
+        "statements": [
+          "$y' = \\frac{x^2 + 4x + 3}{(x + 2)^2}$.",
+          "$2$ điểm $A$ và $B$ nằm ở hai phía của trục tung.",
+          "Đường thẳng $AB$ có phương trình là $y = 2x + 1$.",
+          "$A$ và $B$ đối xứng nhau qua đường thẳng $\\Delta$ có phương trình là $x + 2y + 4 = 0$."
+        ],
+        "source": "Sở Hải Phòng 2025",
+        "level": "Thông hiểu",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 2 · Dạng 1: Cực trị (Biểu thức)",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 55,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = \\frac{x^2 - 2x + 2}{x - 1}$.",
+      "points": 1,
+      "sort_order": 48,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Đúng.} $\\frac{(x - 1)^2 + 1}{x - 1} = x - 1 + \\frac{1}{x - 1}$.\nb) \\textbf{Đúng.} $y' = \\frac{x^2 - 2x}{(x - 1)^2} = 0 \\Leftrightarrow x = 0$ hoặc $x = 2$.\nc) \\textbf{Sai.} Hàm số không xác định tại $x = 1 \\in (0; 2)$.\nd) \\textbf{Đúng.} Đồ thị có TCĐ $x = 1$, TCX $y = x - 1$, cực đại $(0; -2)$ và cực tiểu $(2; 2)$.",
+        "statements": [
+          "Hàm số đã cho được viết lại $y = x - 1 + \\frac{1}{x - 1}$.",
+          "Phương trình $y' = 0$ có hai nghiệm $x_1 = 2$ và $x_2 = 0$.",
+          "Hàm số đã cho nghịch biến trên khoảng $(0; 2)$.",
+          "Đồ thị của hàm số là hình vẽ dưới đây:\n![Hình Câu 55](/bank-images/tf4-hamphanthuc/q55_p0.png)"
+        ],
+        "source": "Sở Gia Lai 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 56,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = \\frac{x^2 + 4}{x}$.",
+      "points": 1,
+      "sort_order": 49,
+      "choices": [],
+      "settings": {
+        "explanation": "Ta có $y = x + \\frac{4}{x}$ ($x \\neq 0$), $y' = 1 - \\frac{4}{x^2} = \\frac{x^2 - 4}{x^2} = 0 \\Leftrightarrow x = \\pm 2$.\na) \\textbf{Đúng.} $y' < 0$ trên $(-2; 0) \\cup (0; 2)$ và $y' > 0$ trên $(-\\infty; -2) \\cup (2; +\\infty)$.\nb) \\textbf{Đúng.} $y' = 1 - \\frac{4}{x^2}$.\nc) \\textbf{Sai.} BBT trong hình ngược dấu $y'$ (đúng phải đạt cực đại $y(-2) = -4$ và cực tiểu $y(2) = 4$).\nd) \\textbf{Sai.} Đồ thị trong hình có tiệm cận xiên $y = -x$ (sai, đúng phải là $y = x$).",
+        "statements": [
+          "Đạo hàm của hàm số đã cho nhận giá trị âm trên các khoảng $(-2; 0) \\cup (0; 2)$ và nhận giá trị dương trên các khoảng $(-\\infty; -2) \\cup (2; +\\infty)$.",
+          "Đạo hàm của hàm số đã cho là $y' = 1 - \\frac{4}{x^2}$.",
+          "Bảng biến thiên của hàm số đã cho là:\n![Hình Câu 56](/bank-images/tf4-hamphanthuc/q56_p0.png)",
+          "Đồ thị của hàm số đã cho là:\n![Hình Câu 56](/bank-images/tf4-hamphanthuc/q56_d.png)"
+        ],
+        "source": "Sở Thái Bình 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 58,
+      "type": "tf4",
+      "prompt": "Cho hàm số $y = \\frac{x^2 - 3x + 6}{x - 1}$.",
+      "points": 1,
+      "sort_order": 50,
+      "choices": [],
+      "settings": {
+        "explanation": "a) \\textbf{Sai.} $f(0) = \\frac{6}{-1} = -6$ nên giao với trục tung là $M(0; -6)$.\nb) \\textbf{Đúng.} $y = x - 2 + \\frac{4}{x - 1}$ nên tiệm cận xiên là $y = x - 2$.\nc) \\textbf{Đúng.} Điều kiện $x \\neq 1$.\nd) \\textbf{Đúng.} Đồ thị có TCĐ $x = 1$, TCX $y = x - 2$, cực đại $(-1; -5)$, cực tiểu $(3; 3)$ và qua $(0; -6)$.",
+        "statements": [
+          "Đồ thị hàm số cắt trục tung tại điểm $M(0; -5)$.",
+          "Tiệm cận xiên của đồ thị hàm số có phương trình $y = x - 2$.",
+          "Tập xác định của hàm số là $\\mathbb{R} \\setminus \\{1\\}$.",
+          "Đồ thị $(C)$ của hàm số $y = f(x)$ là hình vẽ bên:\n![Hình Câu 58](/bank-images/tf4-hamphanthuc/q58_d.png)"
+        ],
+        "source": "Sở Hà Tĩnh 2025",
+        "level": "Nhận biết",
+        "pack": "tf4-hamphanthuc"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 1",
+        "Bài 5 · Dạng 1: Nhận dạng đồ thị",
+        "Nhận biết"
+      ]
+    }
+  ]
+}
