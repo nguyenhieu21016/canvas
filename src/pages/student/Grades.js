@@ -7,36 +7,127 @@ import { fetchLearningPath } from '../../services/lmsApi.js';
 
 export async function mountStudentGrades() {
   const root = pageRoot();
-  root.innerHTML = renderLoading('Đang tải bảng điểm cá nhân...');
+  root.innerHTML = renderLoading('Đang tải bảng điểm...');
   try {
     const data = await fetchLearningPath(state.profile.role);
     const assignmentGroups = collectLearningPathAssignments(data);
-    const totalAssignments = assignmentGroups.reduce((sum, g) => sum + g.assignments.length, 0);
+    const allAssignments = assignmentGroups.flatMap((g) => g.assignments);
+    const totalAssignments = allAssignments.length;
+    const submitted = allAssignments.filter((a) => a.progress?.status === 'submitted');
+    const doneCount = submitted.length;
+    const pendingCount = totalAssignments - doneCount;
+    const avgScore = doneCount > 0
+      ? submitted.reduce((sum, a) => sum + Number(a.progress?.bestScore ?? 0), 0) / doneCount
+      : null;
+
+    let activeFilter = 'all';
+    let searchQuery = '';
 
     root.innerHTML = `
-      <div style="background: #EDF2E4; min-height: calc(100vh - 64px); padding: 28px max(var(--page-gutter), 24px);">
-        <div style="max-width: 1040px; margin: 0 auto; background: #ffffff; border-radius: 18px; padding: 28px 32px; border: 1px solid #D8E2C4; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid #D8E2C4;">
-            <div>
-              <h2 style="font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 26px; font-weight: 700; color: #455120; margin: 0;">Bảng điểm cá nhân</h2>
-              <p style="margin: 4px 0 0; font-size: 13px; color: #667085; font-family: 'Be Vietnam Pro', sans-serif;">Theo dõi tiến độ và kết quả làm bài tập</p>
+      <section class="grades-hub">
+        <!-- Dark Hero Banner -->
+        <header class="asg-overview-hero">
+          <a href="#/learn" class="phase-back-link">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            <span>Lộ trình học tập</span>
+          </a>
+          <div class="asg-overview-hero-row">
+            <div class="asg-overview-hero-left">
+              <h1 class="phase-hero-title">Bảng điểm</h1>
             </div>
-            <span style="background: #F0F4E8; color: #455120; font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 14px; font-weight: 700; padding: 6px 16px; border-radius: 9999px; border: 1px solid #D8E2CA;">
-              ${totalAssignments} bài tập
-            </span>
+          </div>
+        </header>
+
+        <!-- 3 Compact Soft Stat Blocks -->
+        <div class="asg-stat-grid">
+          <div class="asg-stat-card">
+            <span class="asg-stat-label">Điểm trung bình</span>
+            <div class="asg-stat-value">${avgScore !== null ? formatScore(avgScore) : '—'}${avgScore !== null ? '<span class="asg-stat-unit">/10</span>' : ''}</div>
+          </div>
+          <div class="asg-stat-card">
+            <span class="asg-stat-label">Đã hoàn thành</span>
+            <div class="asg-stat-value">${doneCount}/${totalAssignments}<span class="asg-stat-unit">đề</span></div>
+          </div>
+          <div class="asg-stat-card">
+            <span class="asg-stat-label">Chưa làm</span>
+            <div class="asg-stat-value">${pendingCount}<span class="asg-stat-unit">đề</span></div>
+          </div>
+        </div>
+
+        ${totalAssignments > 0 ? `
+          <!-- Filter & Search Bar -->
+          <div class="phase-toolbar">
+            <div class="phase-filter-group" id="grades-filter-group">
+              <button type="button" class="phase-filter-pill active" data-filter="all">Tất cả (${totalAssignments})</button>
+              <button type="button" class="phase-filter-pill" data-filter="pending">Chưa làm (${pendingCount})</button>
+              <button type="button" class="phase-filter-pill" data-filter="done">Đã làm (${doneCount})</button>
+            </div>
+            <div class="phase-search-wrap">
+              <svg class="phase-search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="grades-search-input" class="phase-search-input" placeholder="Tìm đề..." />
+            </div>
           </div>
 
-          ${assignmentGroups.length === 0 ? '<div class="empty-state">Chưa có bài tập về nhà.</div>' : ''}
-          ${assignmentGroups.map(group => `
-            <div style="margin-top: 28px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
-              <div style="width: 4px; height: 18px; background: #455120; border-radius: 2px;"></div>
-              <h3 style="margin: 0; font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 17px; font-weight: 700; color: #455120;">${escapeHtml(group.title)}</h3>
-            </div>
-            ${renderStudentGradesTable(group.assignments)}
-          `).join('')}
-        </div>
-      </div>
+          <div id="grades-groups-host" class="grades-groups"></div>
+        ` : `
+          <div class="phase-empty-card">
+            <p>Chưa có bài tập nào.</p>
+          </div>
+        `}
+      </section>
     `;
+
+    const host = root.querySelector('#grades-groups-host');
+    const renderGroups = () => {
+      if (!host) return;
+      const q = searchQuery.trim().toLowerCase();
+      const blocks = assignmentGroups
+        .map((group) => {
+          const filtered = group.assignments.filter((a) => {
+            const isDone = a.progress?.status === 'submitted';
+            if (activeFilter === 'done' && !isDone) return false;
+            if (activeFilter === 'pending' && isDone) return false;
+            if (q) {
+              const hay = `${a.title || ''} ${a.context || ''}`.toLowerCase();
+              if (!hay.includes(q)) return false;
+            }
+            return true;
+          });
+          if (!filtered.length) return '';
+          return `
+            <section class="grades-group">
+              <div class="grades-group-head">
+                <h2 class="grades-group-title">${escapeHtml(group.title)}</h2>
+                <span class="grades-group-count">${filtered.length} đề</span>
+              </div>
+              ${renderStudentGradesTable(filtered)}
+            </section>
+          `;
+        })
+        .filter(Boolean);
+
+      host.innerHTML = blocks.length
+        ? blocks.join('')
+        : '<div class="phase-empty-card"><p>Không có bài tập phù hợp.</p></div>';
+    };
+
+    root.querySelectorAll('#grades-filter-group .phase-filter-pill').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        activeFilter = btn.dataset.filter;
+        root.querySelectorAll('#grades-filter-group .phase-filter-pill').forEach((b) => b.classList.toggle('active', b === btn));
+        renderGroups();
+      });
+    });
+
+    const searchInput = root.querySelector('#grades-search-input');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        renderGroups();
+      });
+    }
+
+    renderGroups();
   } catch (error) {
     root.innerHTML = renderErrorState(error);
     wireRouteRetry(root);
@@ -100,41 +191,32 @@ export function collectLearningPathAssignments(data) {
 }
 
 export function renderStudentGradesTable(assignments) {
-  if (!assignments.length) return '<div class="empty-state">Chưa có bài tập về nhà.</div>';
+  if (!assignments.length) return '<div class="phase-empty-card"><p>Chưa có bài tập.</p></div>';
   return `
-    <div style="display: flex; flex-direction: column; gap: 10px;">
-      ${assignments
-      .map((assignment) => {
+    <div class="grades-card">
+      ${assignments.map((assignment) => {
         const hasSubmitted = assignment.progress?.status === 'submitted';
-        const score = assignment.progress?.bestScore;
+        const score = Number(assignment.progress?.bestScore ?? 0);
+        const isGood = hasSubmitted && score >= 8;
+        const cleanedTitle = (assignment.title || '').replace(/Bài tập về nhà/gi, 'Bài tập');
         return `
-            <div style="background: #F7F9F4; border-radius: 12px; padding: 14px 18px; border: 1px solid #E5ECD9; display: flex; align-items: center; justify-content: space-between; gap: 16px; transition: all 0.15s ease;" onmouseover="this.style.borderColor='#455120'" onmouseout="this.style.borderColor='#E5ECD9'">
-              <div style="min-width: 0; flex: 1;">
-                <h4 style="margin: 0 0 4px 0; font-size: 14px; font-weight: 700; color: #101828; font-family: 'Be Vietnam Pro', sans-serif;">${escapeHtml(assignment.title)}</h4>
-                <p style="margin: 0; font-size: 12px; color: #667085; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(assignment.context ?? '-')}</p>
-              </div>
-
-              <div style="display: flex; align-items: center; gap: 16px; flex-shrink: 0;">
-                <span style="font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 9999px; ${hasSubmitted ? 'background: #F0F4E8; color: #455120;' : 'background: #EAECF0; color: #667085;'}">
-                  ${hasSubmitted ? 'Đã làm' : 'Chưa làm'}
-                </span>
-
-                <div style="min-width: 60px; text-align: right;">
-                  ${hasSubmitted
-            ? `<span style="font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 16px; font-weight: 800; color: #455120;">${formatScore(score)}/10</span>`
-            : '<span style="color: #98A2B3; font-weight: 600;">-</span>'
-          }
-                </div>
-
-                <a href="#/assignment/${assignment.id}" style="text-decoration: none; background: ${hasSubmitted ? '#F0F4E8' : '#455120'}; color: ${hasSubmitted ? '#455120' : '#ffffff'}; border: 1px solid ${hasSubmitted ? '#D8E2CA' : '#455120'}; padding: 6px 14px; border-radius: 9999px; font-size: 12px; font-weight: 700; transition: all 0.15s ease; display: inline-flex; align-items: center; gap: 4px;">
-                  ${hasSubmitted ? 'Làm lại' : 'Làm bài'}
-                  <md-icon style="font-size: 14px;">arrow_forward</md-icon>
-                </a>
-              </div>
+          <a href="#/assignment/${assignment.id}" class="grades-row">
+            <div class="grades-row-main">
+              <div class="grades-row-title">${escapeHtml(cleanedTitle)}</div>
+              <div class="grades-row-context">${escapeHtml(assignment.context ?? '')}</div>
             </div>
-          `;
-      })
-      .join('')}
+            <div class="grades-row-right">
+              ${hasSubmitted
+                ? `<span class="grades-score ${isGood ? 'is-good' : ''}">${formatScore(score)}<span class="grades-score-max">/10</span></span>`
+                : '<span class="grades-pending-pill">Chưa làm</span>'
+              }
+              <span class="grades-row-arrow" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </span>
+            </div>
+          </a>
+        `;
+      }).join('')}
     </div>
   `;
 }

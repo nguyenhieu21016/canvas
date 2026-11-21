@@ -61,7 +61,7 @@ export function driveFrame(url, title, embed = false) {
   return `
     <div class="drive-link">
       <a class="nh-lecture-slide-btn" href="${escapeHtml(url)}" target="_blank" rel="noreferrer noopener">
-        <md-icon style="font-size: 18px; color: #455120;">open_in_new</md-icon>
+        <md-icon style="font-size: 18px; color: #181B16;">open_in_new</md-icon>
         <span>Mở bài giảng</span>
       </a>
     </div>

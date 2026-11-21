@@ -48,7 +48,7 @@ export async function mountProgressManager() {
     const totalLectures = learningPath.lectures.length;
 
     root.innerHTML = `
-      <div style="background-color: #EDF2E4; min-height: calc(100vh - 64px); padding: 0 0 60px 0; margin: 0; font-family: 'Be Vietnam Pro', sans-serif;">
+      <div style="background-color: #F7F7F2; min-height: calc(100vh - 64px); padding: 0 0 60px 0; margin: 0; font-family: 'Google Sans', sans-serif;">
         <!-- Top Breadcrumb Bar -->
         <div class="nh-admin-breadcrumb-bar" style="margin-bottom: 24px;">
           <div class="nh-admin-breadcrumb-inner" style="max-width: 1140px;">
@@ -65,7 +65,7 @@ export async function mountProgressManager() {
               border-radius: 9999px;
               cursor: pointer;
               transition: all 0.15s ease;
-              font-family: 'Be Vietnam Pro', sans-serif;
+              font-family: 'Google Sans', sans-serif;
               display: flex;
               align-items: center;
               justify-content: space-between;
@@ -74,7 +74,7 @@ export async function mountProgressManager() {
               background: #f1f5f9 !important;
             }
             .progress-sidebar-item.selected {
-              background: #F0F4E8 !important;
+              background: #EBEDE6 !important;
             }
             .teaching-lecture-row:hover {
               background: #f8faf5 !important;
@@ -82,7 +82,7 @@ export async function mountProgressManager() {
             .nh-tab-btn {
               padding: 9px 18px;
               border-radius: 9999px;
-              border: 1px solid #D8E2C4;
+              border: 1px solid #E4E6DE;
               background: #ffffff;
               color: #475569;
               font-size: 13px;
@@ -95,12 +95,12 @@ export async function mountProgressManager() {
             }
             .nh-tab-btn:hover {
               background: #f8fafc;
-              color: #455120;
+              color: #181B16;
             }
             .nh-tab-btn.active {
-              background: #455120;
+              background: #181B16;
               color: #ffffff;
-              border-color: #455120;
+              border-color: #181B16;
             }
             details > summary::-webkit-details-marker { display: none; }
             details > summary { list-style: none; }
@@ -111,16 +111,16 @@ export async function mountProgressManager() {
 
             <!-- Sidebar: students list -->
             <div style="display: flex; flex-direction: column; gap: 12px; width: 290px; min-width: 290px; flex-shrink: 0;">
-              <div class="panel" style="padding: 20px 16px; border-radius: 18px; background: #ffffff; border: 1px solid #D8E2C4; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03); display: flex; flex-direction: column; gap: 12px;">
+              <div class="panel" style="padding: 20px 16px; border-radius: 18px; background: #ffffff; border: 1px solid #E4E6DE; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03); display: flex; flex-direction: column; gap: 12px;">
                 <div style="display: flex; align-items: center; justify-content: space-between; padding: 0 4px;">
-                  <h3 style="margin: 0; font-family: 'Beautique Display', serif; font-size: 17px; font-weight: 700; color: #455120;">Danh sách Học sinh</h3>
-                  <button id="nh-add-student-trigger" type="button" style="border: none; background: #F0F4E8; color: #455120; border: 1px solid #D8E2CA; border-radius: 9999px; padding: 4px 10px; font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 4px; transition: all 0.15s ease;" onmouseover="this.style.background='#e2ebda'" onmouseout="this.style.background='#F0F4E8'">
+                  <h3 style="margin: 0; font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif; font-size: 17px; font-weight: 700; color: #181B16;">Danh sách Học sinh</h3>
+                  <button id="nh-add-student-trigger" type="button" style="border: none; background: #EBEDE6; color: #181B16; border: 1px solid #E4E6DE; border-radius: 9999px; padding: 4px 10px; font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 4px; transition: all 0.15s ease;" onmouseover="this.style.background='#e2ebda'" onmouseout="this.style.background='#EBEDE6'">
                     + Tạo mới
                   </button>
                 </div>
 
                 <div style="position: relative; width: 100%;">
-                  <input id="student-search-input" type="text" placeholder="Tìm tên học sinh..." style="width: 100%; padding: 8px 12px 8px 32px; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 13px; font-family: 'Be Vietnam Pro', sans-serif; outline: none; box-sizing: border-box;" />
+                  <input id="student-search-input" type="text" placeholder="Tìm tên học sinh..." style="width: 100%; padding: 8px 12px 8px 32px; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 13px; font-family: 'Google Sans', sans-serif; outline: none; box-sizing: border-box;" />
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 10px; top: 10px;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 </div>
 
@@ -129,7 +129,7 @@ export async function mountProgressManager() {
             </div>
 
             <!-- Main: detail pane -->
-            <div class="progress-detail-pane panel" style="flex: 1; min-width: 320px; padding: 28px; border-radius: 18px; background: #ffffff; border: 1px solid #D8E2C4; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03); min-height: 520px; display: flex; flex-direction: column; gap: 20px;">
+            <div class="progress-detail-pane panel" style="flex: 1; min-width: 320px; padding: 28px; border-radius: 18px; background: #ffffff; border: 1px solid #E4E6DE; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03); min-height: 520px; display: flex; flex-direction: column; gap: 20px;">
               <div class="progress-detail-loading" style="display: flex; align-items: center; justify-content: center; min-height: 200px; color: #64748b;">
                 <md-circular-progress indeterminate></md-circular-progress>
               </div>
@@ -143,7 +143,7 @@ export async function mountProgressManager() {
       <div class="nh-modal-overlay" id="nh-create-student-modal" style="display: none;">
         <div class="nh-modal-card">
           <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 14px;">
-            <h3 style="font-family: 'Beautique Display', serif; font-size: 17px; font-weight: 700; color: #455120; margin: 0;">Tạo tài khoản Học sinh mới</h3>
+            <h3 style="font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif; font-size: 17px; font-weight: 700; color: #181B16; margin: 0;">Tạo tài khoản Học sinh mới</h3>
             <button id="nh-close-create-modal" type="button" style="border: none; background: transparent; cursor: pointer; color: #94a3b8; padding: 4px; border-radius: 50%;">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
@@ -204,18 +204,18 @@ export async function mountProgressManager() {
         <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-bottom: 20px; border-bottom: 1px solid #f1f5f9;">
           <div style="display: flex; align-items: center; gap: 16px;">
             <div style="position: relative;">
-              <div style="width: 52px; height: 52px; border-radius: 50%; background: #455120; color: #ffffff; display: grid; place-items: center; font-size: 20px; font-weight: 500; flex-shrink: 0; aspect-ratio: 1/1;">
+              <div style="width: 52px; height: 52px; border-radius: 50%; background: #181B16; color: #ffffff; display: grid; place-items: center; font-size: 20px; font-weight: 500; flex-shrink: 0; aspect-ratio: 1/1;">
                 ${escapeHtml((student.full_name || 'U').charAt(0).toUpperCase())}
               </div>
               ${isOnline ? '<span style="position: absolute; bottom: 1px; right: 1px; width: 13px; height: 13px; border-radius: 50%; background: #22c55e; border: 2.5px solid #ffffff;" title="Đang hoạt động"></span>' : ''}
             </div>
             <div>
               <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 2px;">
-                <span style="font-family: 'Beautique Display', serif; font-size: 20px; font-weight: 700; color: #455120;">${escapeHtml(student.full_name ?? '')}</span>
+                <span style="font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif; font-size: 20px; font-weight: 700; color: #181B16;">${escapeHtml(student.full_name ?? '')}</span>
               </div>
-              <div style="font-size: 13px; color: #64748b; font-family: 'Be Vietnam Pro', sans-serif; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <div style="font-size: 13px; color: #64748b; font-family: 'Google Sans', sans-serif; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
                 <span>${escapeHtml(student.email ?? '')}</span>
-                <span style="color: #cbd5e1;">•</span>
+                <span style="color: #cbd5e1;">-</span>
                 <span style="font-weight: 500; color: ${statusInfo.isOnline ? '#16a34a' : '#64748b'}; display: inline-flex; align-items: center; gap: 4px;">
                   ${statusInfo.isOnline ? '<span style="width: 7px; height: 7px; border-radius: 50%; background: #22c55e; display: inline-block;"></span>' : ''}
                   ${statusInfo.text}
@@ -265,17 +265,17 @@ export async function mountProgressManager() {
                 return `
                   <div class="teaching-lecture-row" data-lecture-id="${lecture.id}" data-student-id="${studentId}" data-taught="${isTaught}"
                     style="display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 10px; cursor: pointer; transition: all 0.15s ease; margin-bottom: 4px;
-                           background: ${isTaught ? '#F0F4E8' : '#f8fafc'}; border: 1px solid ${isTaught ? '#D8E2CA' : '#f1f5f9'};">
+                           background: ${isTaught ? '#EBEDE6' : '#f8fafc'}; border: 1px solid ${isTaught ? '#E4E6DE' : '#f1f5f9'};">
                     <div class="lecture-checkbox" style="width: 20px; height: 20px; border-radius: 6px; flex-shrink: 0; transition: all 0.15s;
-                      border: 2px solid ${isTaught ? '#455120' : '#cbd5e1'};
-                      background: ${isTaught ? '#455120' : '#ffffff'};
+                      border: 2px solid ${isTaught ? '#181B16' : '#cbd5e1'};
+                      background: ${isTaught ? '#181B16' : '#ffffff'};
                       display: flex; align-items: center; justify-content: center;">
                       ${isTaught ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>' : ''}
                     </div>
                     <div style="flex: 1; min-width: 0;">
                       <div style="font-size: 13.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
                         font-weight: ${isTaught ? '600' : '500'};
-                        color: ${isTaught ? '#455120' : '#334155'};">  
+                        color: ${isTaught ? '#181B16' : '#334155'};">  
                         ${escapeHtml(lecture.title)}
                       </div>
                     </div>
@@ -287,8 +287,8 @@ export async function mountProgressManager() {
                 const groupLectures = (group.lectures || []).map(renderRow).join('');
                 if (!groupLectures) return '';
                 return `
-                  <div style="margin-left: 12px; margin-bottom: 8px; border-left: 2px solid #D8E2CA; padding-left: 14px;">
-                    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #455120; margin-bottom: 6px;">
+                  <div style="margin-left: 12px; margin-bottom: 8px; border-left: 2px solid #E4E6DE; padding-left: 14px;">
+                    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #181B16; margin-bottom: 6px;">
                       ${escapeHtml(group.title)}
                     </div>
                     ${groupLectures}
@@ -302,9 +302,9 @@ export async function mountProgressManager() {
                 <details class="progress-module-details" ${modTaught < modTotal ? 'open' : ''} style="margin-bottom: 10px; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: #ffffff;">
                   <summary style="padding: 12px 16px; background: #f8fafc; font-weight: 600; font-size: 14px; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px; user-select: none; color: #334155;">
                     <svg class="dropdown-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition: transform 0.2s ease;"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#181B16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
                     <span style="flex: 1; font-weight: 600;">${escapeHtml(mod.title)}</span>
-                    <span style="font-size: 12px; font-weight: 600; background: ${modTaught === modTotal ? '#455120' : '#e2e8f0'}; color: ${modTaught === modTotal ? '#ffffff' : '#475569'}; padding: 3px 10px; border-radius: 9999px;">${modTaught}/${modTotal}</span>
+                    <span style="font-size: 12px; font-weight: 600; background: ${modTaught === modTotal ? '#181B16' : '#e2e8f0'}; color: ${modTaught === modTotal ? '#ffffff' : '#475569'}; padding: 3px 10px; border-radius: 9999px;">${modTaught}/${modTotal}</span>
                   </summary>
                   <div style="padding: 14px; background: #ffffff;">
                     ${groupsMarkup}
@@ -316,12 +316,12 @@ export async function mountProgressManager() {
 
             if (!modulesMarkup.trim()) return '';
             return `
-              <details class="progress-phase-details" ${phaseTaught < phaseTotal ? 'open' : ''} style="margin-bottom: 16px; border: 1px solid #D8E2C4; border-radius: 14px; overflow: hidden; background: #ffffff;">
-                <summary style="padding: 14px 18px; background: #F0F4E8; font-weight: 700; font-size: 15px; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px; user-select: none; color: #455120; font-family: 'Beautique Display', serif;">
-                  <svg class="dropdown-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition: transform 0.2s ease;"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+              <details class="progress-phase-details" ${phaseTaught < phaseTotal ? 'open' : ''} style="margin-bottom: 16px; border: 1px solid #E4E6DE; border-radius: 14px; overflow: hidden; background: #ffffff;">
+                <summary style="padding: 14px 18px; background: #EBEDE6; font-weight: 700; font-size: 15px; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px; user-select: none; color: #181B16; font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif;">
+                  <svg class="dropdown-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#181B16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition: transform 0.2s ease;"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#181B16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
                   <span style="flex: 1; font-weight: 700;">${escapeHtml(phase.title)}</span>
-                  <span style="font-size: 12px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif; background: ${phaseTaught === phaseTotal ? '#455120' : '#D8E2CA'}; color: ${phaseTaught === phaseTotal ? '#ffffff' : '#455120'}; padding: 4px 12px; border-radius: 9999px;">${phaseTaught}/${phaseTotal}</span>
+                  <span style="font-size: 12px; font-weight: 700; font-family: 'Google Sans', sans-serif; background: ${phaseTaught === phaseTotal ? '#181B16' : '#E4E6DE'}; color: ${phaseTaught === phaseTotal ? '#ffffff' : '#181B16'}; padding: 4px 12px; border-radius: 9999px;">${phaseTaught}/${phaseTotal}</span>
                 </summary>
                 <div style="padding: 16px; background: #ffffff;">
                   ${modulesMarkup}
@@ -332,15 +332,15 @@ export async function mountProgressManager() {
 
           pane.innerHTML = headerHTML + `
             <!-- Progress bar -->
-            <div style="background: #F0F4E8; border-radius: 14px; padding: 18px 20px; display: flex; align-items: center; gap: 20px; border: 1px solid #D8E2CA;">
+            <div style="background: #EBEDE6; border-radius: 14px; padding: 18px 20px; display: flex; align-items: center; gap: 20px; border: 1px solid #E4E6DE;">
               <div style="flex: 1;">
-                <div style="font-size: 14px; font-weight: 600; color: #455120; margin-bottom: 10px;">Tiến độ hoàn thành bài giảng</div>
+                <div style="font-size: 14px; font-weight: 600; color: #181B16; margin-bottom: 10px;">Tiến độ hoàn thành bài giảng</div>
                 <div style="background: #e2ebda; border-radius: 9999px; height: 10px; overflow: hidden;">
-                  <div style="height: 100%; width: ${progressPct}%; background: #455120; border-radius: 9999px; transition: width 0.4s ease;"></div>
+                  <div style="height: 100%; width: ${progressPct}%; background: #181B16; border-radius: 9999px; transition: width 0.4s ease;"></div>
                 </div>
               </div>
-              <div style="text-align: center; min-width: 80px; background: #ffffff; padding: 10px 16px; border-radius: 12px; border: 1px solid #D8E2CA;">
-                <div style="font-size: 22px; font-weight: 800; color: #455120; line-height: 1;">${taughtCount}</div>
+              <div style="text-align: center; min-width: 80px; background: #ffffff; padding: 10px 16px; border-radius: 12px; border: 1px solid #E4E6DE;">
+                <div style="font-size: 22px; font-weight: 800; color: #181B16; line-height: 1;">${taughtCount}</div>
                 <div style="font-size: 11px; color: #64748b; margin-top: 4px; font-weight: 500;">/ ${totalLectures} bài</div>
               </div>
             </div>
@@ -391,9 +391,9 @@ export async function mountProgressManager() {
             const dateStr = g.submitted_at ? new Date(g.submitted_at).toLocaleString('vi-VN', { dateStyle: 'short', timeStyle: 'short' }) : '---';
             const score10 = g.score_10 != null ? Number(g.score_10) : (g.max_points ? (g.score / g.max_points) * 10 : 0);
             return `
-              <div style="background: #ffffff; border: 1px solid #D8E2C4; border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);">
+              <div style="background: #ffffff; border: 1px solid #E4E6DE; border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);">
                 <div style="flex: 1; min-width: 0;">
-                  <div style="font-size: 14.5px; font-weight: 700; color: #455120; margin-bottom: 4px;">${escapeHtml(g.assignments?.title || 'Bài kiểm tra')}</div>
+                  <div style="font-size: 14.5px; font-weight: 700; color: #181B16; margin-bottom: 4px;">${escapeHtml(g.assignments?.title || 'Bài kiểm tra')}</div>
                   <div style="font-size: 12px; color: #64748b;">Nộp bài lúc: ${dateStr}</div>
                 </div>
                 <div style="display: flex; align-items: center; gap: 12px;">
@@ -401,7 +401,7 @@ export async function mountProgressManager() {
                     <div style="font-size: 11px; color: #64748b; font-weight: 500;">Điểm thô: ${g.score ?? 0}/${g.max_points ?? 10}</div>
                     <div style="font-size: 18px; font-weight: 800; color: ${score10 >= 8 ? '#16a34a' : score10 >= 5 ? '#d97706' : '#dc2626'};">${fmt.format(score10)} / 10</div>
                   </div>
-                  <a href="#/review/${g.id}" style="padding: 6px 12px; border-radius: 9999px; background: #F0F4E8; color: #455120; border: 1px solid #D8E2CA; font-size: 12px; font-weight: 600; text-decoration: none;">Xem bài làm</a>
+                  <a href="#/review/${g.id}" style="padding: 6px 12px; border-radius: 9999px; background: #EBEDE6; color: #181B16; border: 1px solid #E4E6DE; font-size: 12px; font-weight: 600; text-decoration: none;">Xem bài làm</a>
                 </div>
               </div>
             `;
@@ -409,7 +409,7 @@ export async function mountProgressManager() {
 
           gradesHTML = `
             <div style="display: flex; flex-direction: column; gap: 12px;">
-              <div style="font-size: 14px; font-weight: 600; color: #455120;">Tổng số bài đã làm: ${studentGrades.length} bài</div>
+              <div style="font-size: 14px; font-weight: 600; color: #181B16;">Tổng số bài đã làm: ${studentGrades.length} bài</div>
               ${rowsHTML}
             </div>
           `;
@@ -432,20 +432,20 @@ export async function mountProgressManager() {
           const listUsers = onlineUsers.map((u) => {
             const timeStr = u.online_at ? new Date(u.online_at).toLocaleTimeString('vi-VN') : 'vừa xong';
             return `
-              <div style="background: #ffffff; border: 1px solid #D8E2C4; border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 14px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);">
+              <div style="background: #ffffff; border: 1px solid #E4E6DE; border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 14px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);">
                 <div style="display: flex; align-items: center; gap: 12px;">
                   <div style="position: relative;">
-                    <div style="width: 40px; height: 40px; border-radius: 50%; background: #455120; color: #ffffff; font-weight: 600; font-size: 16px; display: grid; place-items: center;">
+                    <div style="width: 40px; height: 40px; border-radius: 50%; background: #181B16; color: #ffffff; font-weight: 600; font-size: 16px; display: grid; place-items: center;">
                       ${escapeHtml((u.full_name || 'U').charAt(0).toUpperCase())}
                     </div>
                     <span style="position: absolute; bottom: 0; right: 0; width: 11px; height: 11px; border-radius: 50%; background: #22c55e; border: 2px solid #ffffff;"></span>
                   </div>
                   <div>
-                    <div style="font-size: 14px; font-weight: 700; color: #455120;">${escapeHtml(u.full_name || 'Học sinh')}</div>
+                    <div style="font-size: 14px; font-weight: 700; color: #181B16;">${escapeHtml(u.full_name || 'Học sinh')}</div>
                     <div style="font-size: 12px; color: #64748b;">${escapeHtml(u.email || '')}</div>
                   </div>
                 </div>
-                <div style="font-size: 12px; font-weight: 600; color: #16a34a; background: #F0F4E8; padding: 4px 12px; border-radius: 9999px; border: 1px solid #D8E2CA;">
+                <div style="font-size: 12px; font-weight: 600; color: #16a34a; background: #EBEDE6; padding: 4px 12px; border-radius: 9999px; border: 1px solid #E4E6DE;">
                   Online từ ${timeStr}
                 </div>
               </div>
@@ -454,7 +454,7 @@ export async function mountProgressManager() {
 
           onlineHTML = `
             <div style="display: flex; flex-direction: column; gap: 12px;">
-              <div style="font-size: 14px; font-weight: 600; color: #455120; display: flex; align-items: center; gap: 6px;">
+              <div style="font-size: 14px; font-weight: 600; color: #181B16; display: flex; align-items: center; gap: 6px;">
                 <span style="width: 10px; height: 10px; border-radius: 50%; background: #22c55e; display: inline-block;"></span>
                 Học sinh đang mở ứng dụng (${onlineUsers.length} người)
               </div>
@@ -466,8 +466,8 @@ export async function mountProgressManager() {
         pane.innerHTML = headerHTML + onlineHTML;
       } else if (activeTab === 'account') {
         pane.innerHTML = headerHTML + `
-          <div style="background: #ffffff; border: 1px solid #D8E2C4; border-radius: 14px; padding: 24px; display: flex; flex-direction: column; gap: 20px;">
-            <h4 style="margin: 0; font-family: 'Beautique Display', serif; font-size: 16px; color: #455120;">Chỉnh sửa tài khoản Học sinh</h4>
+          <div style="background: #ffffff; border: 1px solid #E4E6DE; border-radius: 14px; padding: 24px; display: flex; flex-direction: column; gap: 20px;">
+            <h4 style="margin: 0; font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif; font-size: 16px; color: #181B16;">Chỉnh sửa tài khoản Học sinh</h4>
             
             <div style="display: flex; flex-direction: column; gap: 6px;">
               <label style="font-size: 13px; font-weight: 600; color: #334155;">Họ và tên</label>
@@ -592,13 +592,13 @@ export async function mountProgressManager() {
           <div class="progress-sidebar-item ${isSelected ? 'selected' : ''}" data-sid="${s.id}" style="padding: 8px 12px;">
             <div style="display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1;">
               <div style="position: relative; flex-shrink: 0;">
-                <div style="width: 32px; height: 32px; border-radius: 50%; background: ${isSelected ? '#455120' : '#cbd5e1'}; color: #ffffff; font-size: 13px; font-weight: 600; display: grid; place-items: center;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: ${isSelected ? '#181B16' : '#cbd5e1'}; color: #ffffff; font-size: 13px; font-weight: 600; display: grid; place-items: center;">
                   ${escapeHtml(initial)}
                 </div>
                 ${isOnline ? '<span style="position: absolute; bottom: 0; right: 0; width: 9px; height: 9px; border-radius: 50%; background: #22c55e; border: 1.5px solid #ffffff;" title="Đang hoạt động"></span>' : ''}
               </div>
               <div style="display: flex; flex-direction: column; min-width: 0; flex: 1;">
-                <span style="font-size: 13.5px; font-weight: ${isSelected ? '700' : '600'}; color: ${isSelected ? '#455120' : '#334155'}; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                <span style="font-size: 13.5px; font-weight: ${isSelected ? '700' : '600'}; color: ${isSelected ? '#181B16' : '#334155'}; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
                   ${escapeHtml(s.full_name || 'Học sinh')}
                 </span>
                 <span style="font-size: 11px; font-weight: 500; color: ${isOnline ? '#16a34a' : '#94a3b8'};">
@@ -856,8 +856,8 @@ export async function mountDashboard() {
           </div>
 
           <!-- Account settings details accordion -->
-          <details style="margin-top: 24px; border: 1px solid #D8E2C4; border-radius: 12px; background: #ffffff;">
-            <summary style="padding: 16px; font-weight: 600; cursor: pointer; color: #455120; outline: none; list-style: none;">
+          <details style="margin-top: 24px; border: 1px solid #E4E6DE; border-radius: 12px; background: #ffffff;">
+            <summary style="padding: 16px; font-weight: 600; cursor: pointer; color: #181B16; outline: none; list-style: none;">
               <div style="display: flex; align-items: center; justify-content: space-between;">
                 <div style="display: flex; align-items: center; gap: 8px;">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> Quản lý tài khoản

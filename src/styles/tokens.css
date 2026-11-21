@@ -1,43 +1,62 @@
 /* ── Design Tokens: Colors, Typography, Motion, Elevation ── */
 
+@font-face {
+  font-family: 'BT Danta';
+  src: url('/fonts/BTDantaVF.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   color-scheme: light;
-  --md-ref-typeface-brand: 'Be Vietnam Pro', 'Google Sans', sans-serif;
-  --md-ref-typeface-plain: 'Be Vietnam Pro', 'Google Sans', sans-serif;
-  --md-sys-color-primary: #455120;
-  --md-sys-color-on-primary: #ffffff;
-  --md-sys-color-primary-container: #D8E2C4;
-  --md-sys-color-on-primary-container: #0f1a00;
-  --md-sys-color-secondary: #5a6644;
-  --md-sys-color-on-secondary: #ffffff;
-  --md-sys-color-secondary-container: #dde8c8;
-  --md-sys-color-on-secondary-container: #171f0c;
-  --md-sys-color-tertiary: #386a56;
-  --md-sys-color-on-tertiary: #ffffff;
-  --md-sys-color-tertiary-container: #bcecda;
-  --md-sys-color-on-tertiary-container: #002117;
+  --df-bg: #F7F7F2;
+  --df-surface: #EBEDE6;
+  --df-surface-hover: #E2E5DC;
+  --df-card: #FFFFFF;
+  --df-card-hover: #F2F3EE;
+  --df-ink: #181B16;
+  --df-ink-hover: #2C3028;
+  --df-muted: #64695F;
+  --df-line: #E4E6DE;
+  --df-line-strong: #D3D7CB;
+  --df-accent: #D3F27A;
+  --md-ref-typeface-brand: 'BT Danta', 'Google Sans', ui-sans-serif, system-ui, sans-serif;
+  --md-ref-typeface-plain: 'Google Sans', ui-sans-serif, system-ui, sans-serif;
+  --md-sys-color-primary: #181B16;
+  --md-sys-color-on-primary: #F7F7F2;
+  --md-sys-color-primary-container: #EBEDE6;
+  --md-sys-color-on-primary-container: #181B16;
+  --md-sys-color-secondary: #64695F;
+  --md-sys-color-on-secondary: #FFFFFF;
+  --md-sys-color-secondary-container: #EBEDE6;
+  --md-sys-color-on-secondary-container: #181B16;
+  --md-sys-color-tertiary: #4A5247;
+  --md-sys-color-on-tertiary: #FFFFFF;
+  --md-sys-color-tertiary-container: #E4E6DE;
+  --md-sys-color-on-tertiary-container: #181B16;
   --md-sys-color-error: #ba1a1a;
   --md-sys-color-on-error: #ffffff;
   --md-sys-color-error-container: #ffdad6;
   --md-sys-color-on-error-container: #410002;
-  --md-sys-color-background: #F4F8EE;
-  --md-sys-color-on-background: #1a1c17;
-  --md-sys-color-surface: #F4F8EE;
-  --md-sys-color-surface-dim: #d4d9cc;
-  --md-sys-color-surface-bright: #f9fcf2;
-  --md-sys-color-surface-container-lowest: #ffffff;
-  --md-sys-color-surface-container-low: #eef3e7;
-  --md-sys-color-surface-container: #e8ede1;
-  --md-sys-color-surface-container-high: #e2e8db;
-  --md-sys-color-surface-container-highest: #dce2d5;
-  --md-sys-color-on-surface: #1a1c17;
-  --md-sys-color-surface-variant: #dce4cc;
-  --md-sys-color-on-surface-variant: #43493c;
-  --md-sys-color-outline: #737969;
-  --md-sys-color-outline-variant: #C5D6A0;
-  --md-sys-color-inverse-surface: #2d3228;
-  --md-sys-color-inverse-on-surface: #f1f2ea;
-  --md-sys-color-inverse-primary: #b5cc92;
+  --md-sys-color-background: #F7F7F2;
+  --md-sys-color-on-background: #181B16;
+  --md-sys-color-surface: #F7F7F2;
+  --md-sys-color-surface-dim: #E2E5DC;
+  --md-sys-color-surface-bright: #FFFFFF;
+  --md-sys-color-surface-container-lowest: #FFFFFF;
+  --md-sys-color-surface-container-low: #EBEDE6;
+  --md-sys-color-surface-container: #E5E7DF;
+  --md-sys-color-surface-container-high: #DFE2D9;
+  --md-sys-color-surface-container-highest: #D9DDD1;
+  --md-sys-color-on-surface: #181B16;
+  --md-sys-color-surface-variant: #EBEDE6;
+  --md-sys-color-on-surface-variant: #64695F;
+  --md-sys-color-outline: #8A8F84;
+  --md-sys-color-outline-variant: #D3D7CB;
+  --md-sys-color-inverse-surface: #181B16;
+  --md-sys-color-inverse-on-surface: #F7F7F2;
+  --md-sys-color-inverse-primary: #D3F27A;
   --md-sys-shape-corner-small: 8px;
   --md-sys-shape-corner-medium: 12px;
   --md-sys-shape-corner-large: 16px;
@@ -119,5 +138,32 @@
   --md-sys-color-surface-container: #f3edf7;
   --md-sys-color-surface-container-high: #ece6f0;
   --md-sys-color-surface-container-highest: #e6e0e9;
+}
+
+/* ── Auto-hide 4px Scrollbar ── */
+* { --scrollbar-thumb: transparent; }
+*:hover { --scrollbar-thumb: color-mix(in srgb, var(--md-sys-color-on-surface) 16%, transparent); }
+.is-scrolling { --scrollbar-thumb: color-mix(in srgb, var(--md-sys-color-on-surface) 28%, transparent); }
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--md-sys-color-on-surface) 40%, transparent); }
+
+@supports not selector(::-webkit-scrollbar) {
+  * { scrollbar-width: thin; scrollbar-color: transparent transparent; }
+  *:hover { scrollbar-color: color-mix(in srgb, var(--md-sys-color-on-surface) 18%, transparent) transparent; }
+  .is-scrolling { scrollbar-color: color-mix(in srgb, var(--md-sys-color-on-surface) 28%, transparent) transparent; }
+}
+
+.scrollbar-clean {
+  scrollbar-width: none;
+}
+.scrollbar-clean::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 

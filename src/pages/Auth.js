@@ -37,7 +37,7 @@ function renderAuth() {
             isUpdatePassword || isReset
               ? `
                 <div class="auth-form-heading">
-                  <h2 style="font-family: 'Beautique Display', serif; font-size: 24px; font-weight: 700; color: #1e293b; margin: 0;">${isReset ? 'Đặt lại mật khẩu' : 'Tạo mật khẩu mới'}</h2>
+                  <h2 style="font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif; font-size: 24px; font-weight: 700; color: #1e293b; margin: 0;">${isReset ? 'Đặt lại mật khẩu' : 'Tạo mật khẩu mới'}</h2>
                   <p class="muted" style="font-size: 13px; color: #64748b; margin: 6px 0 0 0; line-height: 1.5;">${isReset ? 'Nhập email tài khoản, hệ thống sẽ gửi link đặt lại mật khẩu.' : 'Nhập mật khẩu mới để hoàn tất khôi phục tài khoản.'}</p>
                 </div>
               `

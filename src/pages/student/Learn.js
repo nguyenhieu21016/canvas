@@ -5,212 +5,459 @@ import { escapeHtml } from '../../lib/html.js';
 import { driveFrame } from '../../lib/drive.js';
 import { fetchLearningPath, fetchTeachingLogs } from '../../services/lmsApi.js';
 
+function getFreeAssignmentCategory(title = '') {
+  const tagMatch = title.match(/^\[([^\]]+)\]/);
+  let cat = tagMatch ? tagMatch[1].trim() : '';
+  if (!cat) {
+    const lower = title.toLowerCase();
+    if (title.includes('Đại số') || lower.includes('hàm số') || lower.includes('mũ') || lower.includes('logarit')) cat = 'Đại số & Giải tích';
+    else if (title.includes('Hình học') || lower.includes('tọa độ') || lower.includes('khối đa diện')) cat = 'Hình học';
+    else if (lower.includes('xác suất') || lower.includes('tổ hợp')) cat = 'Xác suất & Thống kê';
+    else if (lower.includes('đề') || lower.includes('luyện') || lower.includes('kiểm tra')) cat = 'Đề luyện tập';
+    else cat = 'Khác';
+  }
+  return cat;
+}
+
+function getPhaseStats(phase, taughtSet = new Set()) {
+  let lectureCount = 0;
+  let taughtCount = 0;
+  let assignmentCount = 0;
+  let submittedCount = 0;
+  const modules = phase.modules || [];
+
+  modules.forEach((mod) => {
+    (mod.lectures || []).forEach((lec) => {
+      lectureCount++;
+      if (taughtSet.has(lec.id)) taughtCount++;
+      (lec.assignments || []).forEach((a) => {
+        assignmentCount++;
+        if (a.progress?.status === 'submitted') submittedCount++;
+      });
+    });
+  });
+
+  const progressPct = lectureCount > 0 ? Math.min(100, Math.round((taughtCount / lectureCount) * 100)) : 0;
+  return {
+    chapterCount: modules.length,
+    lectureCount,
+    taughtCount,
+    assignmentCount,
+    submittedCount,
+    progressPct,
+    isActive: lectureCount > 0,
+  };
+}
+
+function shortPhaseLabel(title = '') {
+  const dashIdx = title.indexOf('-');
+  if (dashIdx > 0) return title.slice(0, dashIdx).trim();
+  return title.length > 26 ? `${title.slice(0, 26).trim()}…` : title;
+}
+
 export async function mountLearn() {
   const root = pageRoot();
   root.innerHTML = renderLoading();
   try {
+    const isStudent = state.profile.role === 'student';
     const data = await fetchLearningPath(state.profile.role);
+    let teachingLogs = [];
     let taughtSet = new Set();
-    if (state.profile.role === 'student') {
-      const teachingLogs = await fetchTeachingLogs(state.profile.id);
+    if (isStudent) {
+      teachingLogs = await fetchTeachingLogs(state.profile.id);
       taughtSet = new Set(teachingLogs.map((l) => l.lecture_id));
     }
 
     const phases = data.phases || [];
+    const freeAssignments = data.freeAssignments || [];
+    const daysLeft = Math.max(
+      0,
+      Math.ceil((new Date(2027, 5, 11) - new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate())) / 86400000),
+    );
 
-    root.innerHTML = `
-      <section class="nh-body-container">
-        <!-- Sidebar -->
-        <aside class="nh-sidebar">
-          <div class="nh-sidebar-header-pill">
-            <div class="nh-header-icon-circle">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
-                <rect x="3" y="3" width="8" height="8" rx="2.5"></rect>
-                <rect x="13" y="3" width="8" height="8" rx="2.5"></rect>
-                <rect x="13" y="13" width="8" height="8" rx="2.5"></rect>
-                <rect x="3" y="13" width="8" height="8" rx="2.5"></rect>
-              </svg>
-            </div>
-            <span class="nh-header-pill-title">Trang chủ</span>
-          </div>
+    const phaseEntries = phases.map((phase, idx) => ({
+      phase,
+      idx,
+      stats: getPhaseStats(phase, taughtSet),
+    }));
 
-          <hr class="nh-sidebar-divider" />
+    const totals = phaseEntries.reduce(
+      (acc, entry) => {
+        acc.lectures += entry.stats.lectureCount;
+        acc.taught += entry.stats.taughtCount;
+        acc.assignments += entry.stats.assignmentCount;
+        acc.submitted += entry.stats.submittedCount;
+        return acc;
+      },
+      { lectures: 0, taught: 0, assignments: 0, submitted: 0 },
+    );
 
-          <div class="nh-sidebar-menu" id="nh-category-menu">
-            <span class="nh-sidebar-item active" data-filter="all">Tất cả khóa học</span>
-            <span class="nh-sidebar-item" data-filter="free">Bài tập tự do</span>
-          </div>
+    let continuePhase = null;
+    if (isStudent && teachingLogs.length > 0) {
+      const recentLectureIds = new Set(teachingLogs.slice(0, 5).map((l) => l.lecture_id));
+      for (const entry of phaseEntries) {
+        const hasRecent = (entry.phase.modules || []).some((m) =>
+          (m.lectures || []).some((l) => recentLectureIds.has(l.id)),
+        );
+        if (hasRecent) {
+          continuePhase = entry.phase;
+          break;
+        }
+      }
+    }
+    if (!continuePhase) {
+      continuePhase = (phaseEntries.find((e) => e.stats.isActive) || phaseEntries[0])?.phase || null;
+    }
 
-          <!-- Lịch thi Widget -->
-          <div class="nh-countdown-widget">
-            <div style="font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 15px; font-weight: 700; margin-bottom: 6px; line-height: 1;">
-              Lịch thi
-            </div>
-            <div style="font-size: 26px; font-weight: 900; letter-spacing: -0.5px; margin-top: 4px; display: flex; align-items: baseline; gap: 6px;">
-              ${Math.max(0, Math.ceil((new Date(2027, 5, 11) - new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate())) / 86400000))}
-              <span style="font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 13px; font-weight: 700; opacity: 0.95;">ngày nữa</span>
-            </div>
-            <p style="font-size: 11px; margin: 4px 0 0; opacity: 0.88; font-family: 'Be Vietnam Pro', sans-serif;">Đếm ngược kỳ thi THPTQG 2027</p>
-          </div>
+    const pendingFree = freeAssignments.filter((a) => a.progress?.status !== 'submitted');
+    const previewFree = (isStudent && pendingFree.length > 0 ? pendingFree : freeAssignments).slice(0, 3);
 
-          ${isManager() ? `
-            <!-- Admin Shortcut Card -->
-            <div class="nh-admin-shortcut-card">
-              <div class="nh-admin-card-header">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="3" width="7" height="7" rx="1"></rect>
-                  <rect x="14" y="3" width="7" height="7" rx="1"></rect>
-                  <rect x="14" y="14" width="7" height="7" rx="1"></rect>
-                  <rect x="3" y="14" width="7" height="7" rx="1"></rect>
-                </svg>
-                <span>Quản trị hệ thống</span>
-              </div>
-              <a href="#/manage" class="nh-admin-shortcut-btn">
-                Vào trang quản lý
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </a>
-            </div>
-          ` : ''}
-        </aside>
+    const freeCategories = Array.from(
+      new Set(freeAssignments.map((a) => getFreeAssignmentCategory(a.title || ''))),
+    ).filter(Boolean);
 
-        <!-- Main Content Area -->
-        <main class="nh-main-content">
-          <div class="nh-course-grid" id="nh-course-grid">
-            ${phases.length
-        ? phases.map((p, idx) => renderPhaseCard(p, idx, taughtSet)).join('')
-        : renderStateMessage({
+    const renderPhaseGrid = () => {
+      if (!phaseEntries.length) {
+        return renderStateMessage({
           title: 'Chưa có lộ trình học',
           message: isManager() ? 'Tạo giai đoạn đầu tiên để học sinh nhìn thấy kế hoạch học.' : 'Giáo viên chưa mở nội dung cho lớp này.',
           actionHref: isManager() ? '#/content' : '',
           actionLabel: isManager() ? 'Tạo lộ trình' : '',
           actionIcon: 'add',
-        })
+        });
       }
+
+      if (phaseEntries.length === 5) {
+        const topTwo = phaseEntries.slice(0, 2);
+        const bottomThree = phaseEntries.slice(2);
+        return `
+          <div class="learn-phase-stack">
+            <div class="learn-phase-grid learn-phase-grid--two">
+              ${topTwo.map((e) => renderPhaseCard(e.phase, e.idx, taughtSet)).join('')}
+            </div>
+            <div class="learn-phase-grid learn-phase-grid--three">
+              ${bottomThree.map((e) => renderPhaseCard(e.phase, e.idx, taughtSet)).join('')}
+            </div>
           </div>
-
-          ${data.freeAssignments && data.freeAssignments.length
-        ? `
-                <section class="panel nh-free-assignments" style="margin-top: 24px; display: none; padding: 24px; border-radius: 20px; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(69, 81, 32, 0.12); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);">
-                  <div class="panel-heading" style="margin-bottom: 18px;">
-                    <h2 style="font-family: 'Beautique Display', serif; font-size: 22px; color: #101828; margin: 0;">Bài tập tự do</h2>
-                  </div>
-
-                  <!-- Free Assignment Filter Pills -->
-                  <div id="free-category-pills" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;">
-                    <button class="nh-pill-filter active" data-cat="all" style="padding: 6px 14px; border-radius: 20px; font-size: 12.5px; font-weight: 500; font-family: 'Be Vietnam Pro', sans-serif; border: 1px solid #455120; background: #455120; color: #ffffff; cursor: pointer; transition: all 0.2s ease;">Tất cả (${data.freeAssignments.length})</button>
-                    ${(() => {
-                      const cats = new Set();
-                      data.freeAssignments.forEach(a => {
-                        const title = a.title || '';
-                        const tagMatch = title.match(/^\[([^\]]+)\]/);
-                        let cat = tagMatch ? tagMatch[1].trim() : '';
-                        if (!cat) {
-                          if (title.includes('Đại số') || title.toLowerCase().includes('hàm số') || title.toLowerCase().includes('mũ') || title.toLowerCase().includes('logarit')) cat = 'Đại số & Giải tích';
-                          else if (title.includes('Hình học') || title.toLowerCase().includes('tọa độ') || title.toLowerCase().includes('khối đa diện')) cat = 'Hình học';
-                          else if (title.toLowerCase().includes('xác suất') || title.toLowerCase().includes('tổ hợp')) cat = 'Xác suất & Thống kê';
-                          else if (title.toLowerCase().includes('đề') || title.toLowerCase().includes('luyện') || title.toLowerCase().includes('kiểm tra')) cat = 'Đề luyện tập';
-                          else cat = 'Khác';
-                        }
-                        if (cat) cats.add(cat);
-                      });
-                      return Array.from(cats).map(c => `<button class="nh-pill-filter" data-cat="${escapeHtml(c)}" style="padding: 6px 14px; border-radius: 20px; font-size: 12.5px; font-weight: 500; font-family: 'Be Vietnam Pro', sans-serif; border: 1px solid #d0d5dd; background: #ffffff; color: #344054; cursor: pointer; transition: all 0.2s ease;">${escapeHtml(c)}</button>`).join('');
-                    })()}
-                  </div>
-
-                  <!-- Free Assignment Grid -->
-                  <div class="item-grid" id="free-assignments-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px;">
-                    ${data.freeAssignments.map(renderEnhancedFreeAssignmentCard).join('')}
-                  </div>
-                </section>
-              `
-        : ''
+        `;
       }
-        </main>
+
+      return `
+        <div class="learn-phase-grid learn-phase-grid--auto">
+          ${phaseEntries.map((e) => renderPhaseCard(e.phase, e.idx, taughtSet)).join('')}
+        </div>
+      `;
+    };
+
+    const heroMeta = isStudent && totals.taught > 0
+      ? `Đã học ${totals.taught}/${totals.lectures} bài`
+      : '';
+
+    const freeTabBadge = isStudent && pendingFree.length > 0
+      ? `${pendingFree.length}`
+      : `${freeAssignments.length}`;
+
+    root.innerHTML = `
+      <section class="learn-hub">
+        <header class="learn-hero">
+          <div class="learn-hero-left">
+            <div class="learn-hero-eyebrow">THPTQG 2027</div>
+            <div class="learn-hero-countdown">
+              <span class="learn-hero-days">${daysLeft}</span>
+              <span class="learn-hero-days-unit">ngày nữa</span>
+            </div>
+            ${heroMeta ? `<p class="learn-hero-meta">${escapeHtml(heroMeta)}</p>` : ''}
+          </div>
+          <div class="learn-hero-actions">
+            ${continuePhase ? `
+              <a href="#/phase/${continuePhase.id}" class="learn-hero-cta">
+                <span>${isStudent ? 'Học tiếp' : 'Vào học'}</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+            ` : ''}
+            ${isManager() ? `
+              <a href="#/manage" class="learn-hero-secondary">
+                <span>Quản trị</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+            ` : ''}
+          </div>
+        </header>
+
+        <div class="learn-toolbar" id="nh-category-menu">
+          <div class="learn-tabs" role="tablist" aria-label="Chế độ xem học tập">
+            <button type="button" class="learn-tab active" data-filter="all" role="tab" aria-selected="true">
+              <span>Khóa học</span>
+              <span class="learn-tab-count">${phases.length}</span>
+            </button>
+            ${freeAssignments.length > 0 ? `
+              <button type="button" class="learn-tab" data-filter="free" role="tab" aria-selected="false">
+                <span>Bài tập tự do</span>
+                <span class="learn-tab-count">${escapeHtml(freeTabBadge)}</span>
+              </button>
+            ` : ''}
+          </div>
+        </div>
+
+        <div id="nh-course-grid" class="learn-panel">
+          ${renderPhaseGrid()}
+
+          ${previewFree.length > 0 ? `
+            <section class="learn-quick-free">
+              <div class="learn-quick-free-head">
+                <h2 class="learn-section-title">Bài tập tự do</h2>
+                <button type="button" class="learn-text-btn" id="learn-open-free-tab">
+                  <span>Tất cả (${freeAssignments.length})</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
+              </div>
+              <div class="learn-free-list">
+                ${previewFree.map(renderEnhancedFreeAssignmentCard).join('')}
+              </div>
+            </section>
+          ` : ''}
+        </div>
+
+        ${freeAssignments.length > 0 ? `
+          <section class="nh-free-assignments learn-free-section" style="display: none;">
+            <div class="learn-free-filters" id="free-category-pills">
+              <button type="button" class="nh-pill-filter learn-pill active" data-cat="all">Tất cả (${freeAssignments.length})</button>
+              ${isStudent && pendingFree.length > 0 ? `<button type="button" class="nh-pill-filter learn-pill" data-cat="__pending">Chưa làm (${pendingFree.length})</button>` : ''}
+              ${freeCategories.map((c) => `<button type="button" class="nh-pill-filter learn-pill" data-cat="${escapeHtml(c)}">${escapeHtml(c)}</button>`).join('')}
+            </div>
+
+            <div class="learn-free-list" id="free-assignments-grid">
+              ${freeAssignments.map(renderEnhancedFreeAssignmentCard).join('')}
+            </div>
+          </section>
+        ` : ''}
       </section>
     `;
 
-    // Free assignment filter events
     const pills = root.querySelectorAll('.nh-pill-filter');
     const freeGrid = root.querySelector('#free-assignments-grid');
 
     const filterFreeAssignments = () => {
-      if (!freeGrid || !data.freeAssignments) return;
+      if (!freeGrid) return;
       const activePill = root.querySelector('.nh-pill-filter.active');
       const selectedCat = activePill ? activePill.dataset.cat : 'all';
 
-      const filtered = data.freeAssignments.filter(a => {
-        const title = a.title || '';
-        const tagMatch = title.match(/^\[([^\]]+)\]/);
-        let cat = tagMatch ? tagMatch[1].trim() : '';
-        if (!cat) {
-          if (title.includes('Đại số') || title.toLowerCase().includes('hàm số') || title.toLowerCase().includes('mũ') || title.toLowerCase().includes('logarit')) cat = 'Đại số & Giải tích';
-          else if (title.includes('Hình học') || title.toLowerCase().includes('tọa độ') || title.toLowerCase().includes('khối đa diện')) cat = 'Hình học';
-          else if (title.toLowerCase().includes('xác suất') || title.toLowerCase().includes('tổ hợp')) cat = 'Xác suất & Thống kê';
-          else if (title.toLowerCase().includes('đề') || title.toLowerCase().includes('luyện') || title.toLowerCase().includes('kiểm tra')) cat = 'Đề luyện tập';
-          else cat = 'Khác';
-        }
-
-        return selectedCat === 'all' || cat === selectedCat;
+      const filtered = freeAssignments.filter((a) => {
+        if (selectedCat === 'all') return true;
+        if (selectedCat === '__pending') return a.progress?.status !== 'submitted';
+        return getFreeAssignmentCategory(a.title || '') === selectedCat;
       });
 
       if (filtered.length === 0) {
-        freeGrid.innerHTML = `
-          <div style="grid-column: 1 / -1; padding: 32px; text-align: center; color: #667085; font-family: 'Be Vietnam Pro', sans-serif;">
-            <p style="margin: 0; font-size: 14px; font-weight: 500;">Không có bài tập tự do phù hợp</p>
-          </div>
-        `;
+        freeGrid.innerHTML = `<div class="learn-empty-inline">Không có bài tập tự do phù hợp</div>`;
       } else {
         freeGrid.innerHTML = filtered.map(renderEnhancedFreeAssignmentCard).join('');
       }
     };
 
-    pills.forEach(p => {
+    pills.forEach((p) => {
       p.addEventListener('click', () => {
-        pills.forEach(item => {
-          item.classList.remove('active');
-          item.style.background = '#ffffff';
-          item.style.color = '#344054';
-          item.style.borderColor = '#d0d5dd';
-        });
+        pills.forEach((item) => item.classList.remove('active'));
         p.classList.add('active');
-        p.style.background = '#455120';
-        p.style.color = '#ffffff';
-        p.style.borderColor = '#455120';
         filterFreeAssignments();
       });
     });
 
-    // Category Filter Interaction
-    const filterItems = root.querySelectorAll('.nh-sidebar-item');
-    filterItems.forEach(item => {
-      item.addEventListener('click', () => {
-        filterItems.forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
-        const filter = item.dataset.filter;
-
-        const grid = root.querySelector('#nh-course-grid');
-        const freeSection = root.querySelector('.nh-free-assignments');
-
-        if (filter === 'all') {
-          if (grid) grid.style.display = 'grid';
-          if (freeSection) freeSection.style.display = 'none';
-        } else if (filter === 'free') {
-          if (grid) grid.style.display = 'none';
-          if (freeSection) freeSection.style.display = 'block';
-        }
+    const switchTab = (filter) => {
+      const tabBtns = root.querySelectorAll('.learn-tab');
+      tabBtns.forEach((btn) => {
+        const isActive = btn.dataset.filter === filter;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
       });
+
+      const coursePanel = root.querySelector('#nh-course-grid');
+      const freeSection = root.querySelector('.nh-free-assignments');
+      if (filter === 'free') {
+        if (coursePanel) coursePanel.style.display = 'none';
+        if (freeSection) freeSection.style.display = 'block';
+      } else {
+        if (coursePanel) coursePanel.style.display = 'block';
+        if (freeSection) freeSection.style.display = 'none';
+      }
+    };
+
+    root.querySelectorAll('.learn-tab').forEach((item) => {
+      item.addEventListener('click', () => switchTab(item.dataset.filter));
     });
 
+    const openFreeBtn = root.querySelector('#learn-open-free-tab');
+    if (openFreeBtn) {
+      openFreeBtn.addEventListener('click', () => {
+        switchTab('free');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
   } catch (error) {
     root.innerHTML = renderErrorState(error);
     wireRouteRetry(root);
   }
 }
 
+function splitChapterTitle(title = '', fallbackIndex = 1) {
+  const match = title.match(/^(Chương\s*\d+)\s*[:\-–]\s*(.+)$/i);
+  if (match) {
+    return {
+      short: match[1].trim(),
+      sub: match[2].trim(),
+    };
+  }
+  return {
+    short: `Chương ${fallbackIndex}`,
+    sub: title.trim() || `Chương ${fallbackIndex}`,
+  };
+}
+
+function renderPhaseLectureItem(lecture, stepIndex, taughtSet = new Set(), isStudent = false) {
+  const isTaught = isStudent && taughtSet.has(lecture.id);
+  const hasSlide = !!lecture.slide_url;
+  const assignmentCount = lecture.assignments ? lecture.assignments.length : 0;
+  const hasAssignments = assignmentCount > 0;
+  const hasContent = hasSlide || hasAssignments || !!lecture.description;
+
+  const metaParts = [];
+  if (hasSlide) metaParts.push('1 bài giảng');
+  if (assignmentCount > 0) metaParts.push(`${assignmentCount} bài tập`);
+  const metaText = metaParts.join(' - ');
+
+  const badgeIcon = isTaught
+    ? `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`
+    : `${stepIndex}`;
+
+  return `
+    <details class="phase-lecture-item ${isTaught ? 'is-taught' : ''}" data-lecture-id="${escapeHtml(String(lecture.id))}">
+      <summary class="phase-lecture-summary ${hasContent ? '' : 'is-static'}">
+        <div class="phase-lecture-left">
+          <span class="phase-lecture-badge ${isTaught ? 'is-taught' : ''}">${badgeIcon}</span>
+          <div class="phase-lecture-text">
+            <div class="phase-lecture-title">${escapeHtml(lecture.title)}</div>
+            ${metaText ? `<div class="phase-lecture-meta">${escapeHtml(metaText)}</div>` : ''}
+          </div>
+        </div>
+        <div class="phase-lecture-right">
+          ${isTaught ? `<span class="phase-lecture-done">Đã học</span>` : ''}
+          ${hasContent ? `
+            <span class="phase-lecture-chevron" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </span>
+          ` : ''}
+        </div>
+      </summary>
+      ${hasContent ? `
+        <div class="phase-lecture-body">
+          ${lecture.description ? `<p class="phase-lecture-desc">${escapeHtml(lecture.description)}</p>` : ''}
+          <div class="phase-lecture-actions">
+            ${hasSlide ? `
+              <a class="phase-action-pill is-surface" href="${escapeHtml(lecture.slide_url)}" target="_blank" rel="noreferrer noopener">Xem bài giảng</a>
+            ` : ''}
+            ${hasAssignments ? lecture.assignments.map((a, idx) => renderPhaseAssignmentPill(a, idx, lecture.assignments.length)).join('') : ''}
+          </div>
+        </div>
+      ` : ''}
+    </details>
+  `;
+}
+
+function renderPhaseAssignmentPill(assignment, idx = 0, total = 1) {
+  const hasSubmitted = assignment.progress?.status === 'submitted';
+  const cleanedTitle = (assignment.title || '').replace(/Bài tập về nhà/gi, 'Bài tập');
+  const isPdfAssignment = assignment.pdf_url && assignment.pdf_url !== 'latex';
+  const isStudent = state.profile?.role === 'student';
+  const isLocked = isStudent && isPdfAssignment;
+  const href = isLocked ? 'javascript:void(0)' : `#/assignment/${assignment.id}`;
+  const lockedAttrs = isLocked ? 'data-pdf-locked="true"' : '';
+
+  let actionLabel;
+  if (total === 1) {
+    actionLabel = hasSubmitted ? 'Xem lại bài tập' : 'Làm bài tập';
+  } else {
+    actionLabel = hasSubmitted ? `Xem lại bài tập ${idx + 1}` : `Làm bài tập ${idx + 1}`;
+  }
+
+  return `
+    <a class="phase-action-pill is-primary ${isLocked ? 'locked-pdf-chip' : ''}" href="${href}" ${lockedAttrs} title="${escapeHtml(cleanedTitle)}">
+      <span>${escapeHtml(actionLabel)}</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </a>
+  `;
+}
+
+function renderChapterBody(module, taughtSet, isStudent, filterMode = 'all', query = '') {
+  const q = query.trim().toLowerCase();
+  const matches = (lec) => {
+    const isTaught = taughtSet.has(lec.id);
+    if (isStudent && filterMode === 'taught' && !isTaught) return false;
+    if (isStudent && filterMode === 'untaught' && isTaught) return false;
+    if (q) {
+      const hay = `${lec.title || ''} ${lec.description || ''} ${(lec.assignments || []).map((a) => a.title || '').join(' ')}`.toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  };
+
+  const hasGroups = module.lecture_groups && module.lecture_groups.length > 0;
+  let stepIndex = 0;
+  let html = '';
+
+  if (hasGroups) {
+    for (const group of module.lecture_groups) {
+      const groupLectures = group.lectures || [];
+      const renderedRows = [];
+      for (const lec of groupLectures) {
+        stepIndex++;
+        if (matches(lec)) {
+          renderedRows.push(renderPhaseLectureItem(lec, stepIndex, taughtSet, isStudent));
+        }
+      }
+      if (renderedRows.length > 0) {
+        html += `
+          <div class="phase-group-section">
+            ${group.title ? `<div class="phase-group-title">${escapeHtml(group.title)}</div>` : ''}
+            <div class="phase-lecture-list">
+              ${renderedRows.join('')}
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    const orphanLectures = (module.lectures || []).filter((l) => !l.group_id);
+    const orphanRows = [];
+    for (const lec of orphanLectures) {
+      stepIndex++;
+      if (matches(lec)) {
+        orphanRows.push(renderPhaseLectureItem(lec, stepIndex, taughtSet, isStudent));
+      }
+    }
+    if (orphanRows.length > 0) {
+      html += `<div class="phase-group-section"><div class="phase-lecture-list">${orphanRows.join('')}</div></div>`;
+    }
+  } else {
+    const rows = [];
+    for (const lec of (module.lectures || [])) {
+      stepIndex++;
+      if (matches(lec)) {
+        rows.push(renderPhaseLectureItem(lec, stepIndex, taughtSet, isStudent));
+      }
+    }
+    if (rows.length > 0) {
+      html += `<div class="phase-group-section"><div class="phase-lecture-list">${rows.join('')}</div></div>`;
+    }
+  }
+
+  return html;
+}
+
 export async function mountPhaseDetail(id) {
   const root = pageRoot();
   root.innerHTML = renderLoading('Đang mở giai đoạn');
   try {
+    const isStudent = state.profile.role === 'student';
     const data = await fetchLearningPath(state.profile.role);
     const phase = data.phases.find((item) => item.id === id);
     if (!phase) {
@@ -218,167 +465,251 @@ export async function mountPhaseDetail(id) {
       return;
     }
 
+    const modules = phase.modules || [];
     let taughtSet = new Set();
-    let taughtMap = new Map();
     let taughtCount = 0;
     let totalLectures = 0;
     let totalAssignments = 0;
     let completedAssignments = 0;
     let firstUnfinishedLecture = null;
-    let recentActivity = null; // { lecture, assignment } — most recently worked assignment
+    let firstUnfinishedModuleId = null;
+    let recentActivity = null;
 
-    if (state.profile.role === 'student') {
+    if (isStudent) {
       const teachingLogs = await fetchTeachingLogs(state.profile.id);
       taughtSet = new Set(teachingLogs.map((l) => l.lecture_id));
-      taughtMap = new Map(teachingLogs.map((l) => [l.lecture_id, l]));
 
-      // Build a lookup map: lectureId -> lecture object, for finding recentActivity
-      const lectureById = new Map();
-      phase.modules.forEach(mod => mod.lectures.forEach(l => lectureById.set(l.id, l)));
+      const lectureOwnerMap = new Map();
+      modules.forEach((mod) => {
+        (mod.lectures || []).forEach((l) => lectureOwnerMap.set(l.id, { lecture: l, moduleId: mod.id }));
+      });
 
-      // Teaching logs are ordered desc by taught_at — walk through to find most recent
-      // lecture (in this phase) that has at least one assignment
       for (const log of teachingLogs) {
-        const lec = lectureById.get(log.lecture_id);
-        if (lec && lec.assignments && lec.assignments.length > 0) {
-          // Find the most recently submitted assignment, or just first one
-          const submitted = lec.assignments.find(a => a.progress?.status === 'submitted');
-          recentActivity = { lecture: lec, assignment: submitted || lec.assignments[0], log };
+        const hit = lectureOwnerMap.get(log.lecture_id);
+        if (hit) {
+          recentActivity = hit;
           break;
         }
       }
     }
 
-    phase.modules.forEach(mod => {
-      mod.lectures.forEach(l => {
+    const moduleStats = modules.map((mod, idx) => {
+      let modLectures = 0;
+      let modTaught = 0;
+      (mod.lectures || []).forEach((l) => {
+        modLectures++;
         totalLectures++;
         if (taughtSet.has(l.id)) {
+          modTaught++;
           taughtCount++;
         } else if (!firstUnfinishedLecture) {
           firstUnfinishedLecture = l;
+          firstUnfinishedModuleId = mod.id;
         }
-        if (l.assignments) {
-          l.assignments.forEach(a => {
-            totalAssignments++;
-            if (a.progress?.status === 'submitted') completedAssignments++;
-          });
+        (l.assignments || []).forEach((a) => {
+          totalAssignments++;
+          if (a.progress?.status === 'submitted') completedAssignments++;
+        });
+      });
+      const parsed = splitChapterTitle(mod.title, idx + 1);
+      return {
+        mod,
+        idx,
+        short: parsed.short,
+        sub: parsed.sub,
+        total: modLectures,
+        taught: modTaught,
+      };
+    });
+
+    const targetContinue = recentActivity || (firstUnfinishedLecture ? { lecture: firstUnfinishedLecture, moduleId: firstUnfinishedModuleId } : null);
+    let activeModuleId = targetContinue?.moduleId || modules[0]?.id || null;
+    let activeFilter = 'all';
+    let searchQuery = '';
+
+    const heroMetaParts = isStudent
+      ? [`Đã học ${taughtCount}/${totalLectures} bài`, ...(totalAssignments > 0 ? [`${completedAssignments}/${totalAssignments} đề`] : [])]
+      : [`${modules.length} chương`, `${totalLectures} bài giảng`, ...(totalAssignments > 0 ? [`${totalAssignments} bài tập`] : [])];
+
+    root.innerHTML = `
+      <section class="phase-hub">
+        <!-- Dark Hero Banner (from C) -->
+        <header class="phase-hero">
+          <div class="phase-hero-top">
+            <a href="#/learn" class="phase-back-link">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+              <span>Lộ trình học tập</span>
+            </a>
+          </div>
+          <div class="phase-hero-row">
+            <div class="phase-hero-left">
+              <h1 class="phase-hero-title">${escapeHtml(phase.title)}</h1>
+              <p class="phase-hero-meta">${escapeHtml(heroMetaParts.join(' - '))}</p>
+            </div>
+            ${targetContinue ? `
+              <button type="button" class="phase-hero-cta" id="phase-continue-btn">
+                <span>${recentActivity ? 'Học tiếp' : 'Bắt đầu học'}</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            ` : ''}
+          </div>
+        </header>
+
+        ${modules.length ? `
+          <!-- 2-Column Layout (from B) -->
+          <div class="phase-layout">
+            <aside class="phase-sidebar" aria-label="Danh sách chương">
+              <div class="phase-chapter-nav" id="phase-chapter-nav">
+                ${moduleStats.map((entry) => `
+                  <button type="button" class="phase-chapter-btn ${entry.mod.id === activeModuleId ? 'active' : ''}" data-module-id="${escapeHtml(String(entry.mod.id))}">
+                    <div class="phase-chapter-btn-text">
+                      <span class="phase-chapter-short">${escapeHtml(entry.short)}</span>
+                      <span class="phase-chapter-sub">${escapeHtml(entry.sub)}</span>
+                    </div>
+                    <span class="phase-chapter-count">${isStudent ? `${entry.taught}/${entry.total}` : `${entry.total}`}</span>
+                  </button>
+                `).join('')}
+              </div>
+            </aside>
+
+            <div class="phase-main">
+              ${recentActivity ? `
+                <div class="phase-recent-bar">
+                  <div class="phase-recent-text">
+                    <span class="phase-recent-eyebrow">Học gần đây</span>
+                    <span class="phase-recent-title">${escapeHtml(recentActivity.lecture.title)}</span>
+                  </div>
+                  <button type="button" class="phase-recent-btn" id="phase-recent-open-btn">Mở</button>
+                </div>
+              ` : ''}
+
+              <div class="phase-toolbar">
+                ${isStudent ? `
+                  <div class="phase-filter-group" id="phase-filter-group">
+                    <button type="button" class="phase-filter-pill active" data-filter="all">Tất cả</button>
+                    <button type="button" class="phase-filter-pill" data-filter="untaught">Chưa học</button>
+                    <button type="button" class="phase-filter-pill" data-filter="taught">Đã học</button>
+                  </div>
+                ` : '<div></div>'}
+                <div class="phase-search-wrap">
+                  <svg class="phase-search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                  <input type="text" id="nh-course-search-input" class="phase-search-input" placeholder="Tìm dạng bài..." />
+                </div>
+              </div>
+
+              <div id="phase-chapter-content"></div>
+            </div>
+          </div>
+        ` : `
+          <div class="phase-empty-card">
+            <p>Chưa có chương nào trong giai đoạn này.</p>
+          </div>
+        `}
+      </section>
+    `;
+
+    const contentHost = root.querySelector('#phase-chapter-content');
+    const navButtons = root.querySelectorAll('.phase-chapter-btn');
+    const filterButtons = root.querySelectorAll('.phase-filter-pill');
+    const searchInput = root.querySelector('#nh-course-search-input');
+
+    const renderChapterView = (openLectureId = null) => {
+      if (!contentHost) return;
+      const q = searchQuery.trim();
+
+      if (q) {
+        const matchedBlocks = moduleStats
+          .map((entry) => {
+            const body = renderChapterBody(entry.mod, taughtSet, isStudent, activeFilter, q);
+            if (!body) return '';
+            return `
+              <section class="phase-chapter-card">
+                <div class="phase-chapter-card-head">
+                  <h2 class="phase-chapter-card-title">${escapeHtml(entry.mod.title)}</h2>
+                  <span class="phase-chapter-card-badge">${isStudent ? `${entry.taught}/${entry.total}` : `${entry.total} bài`}</span>
+                </div>
+                ${body}
+              </section>
+            `;
+          })
+          .filter(Boolean);
+
+        contentHost.innerHTML = matchedBlocks.length
+          ? `<div class="phase-search-results">${matchedBlocks.join('')}</div>`
+          : `<div class="phase-empty-card"><p>Không tìm thấy bài học phù hợp với "${escapeHtml(q)}".</p></div>`;
+        return;
+      }
+
+      const activeEntry = moduleStats.find((e) => String(e.mod.id) === String(activeModuleId)) || moduleStats[0];
+      if (!activeEntry) return;
+
+      const bodyHtml = renderChapterBody(activeEntry.mod, taughtSet, isStudent, activeFilter, '');
+      contentHost.innerHTML = `
+        <section class="phase-chapter-card">
+          <div class="phase-chapter-card-head">
+            <h2 class="phase-chapter-card-title">${escapeHtml(activeEntry.mod.title)}</h2>
+            <span class="phase-chapter-card-badge">${isStudent ? `${activeEntry.taught}/${activeEntry.total}` : `${activeEntry.total} bài`}</span>
+          </div>
+          ${bodyHtml || '<div class="phase-empty-inline">Không có bài học phù hợp bộ lọc.</div>'}
+        </section>
+      `;
+
+      if (openLectureId) {
+        const targetEl = contentHost.querySelector(`details[data-lecture-id="${CSS.escape(String(openLectureId))}"]`);
+        if (targetEl) {
+          targetEl.open = true;
+          targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
+      }
+    };
+
+    navButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        activeModuleId = btn.dataset.moduleId;
+        searchQuery = '';
+        if (searchInput) searchInput.value = '';
+        navButtons.forEach((b) => b.classList.toggle('active', b === btn));
+        renderChapterView();
       });
     });
 
-    let recentStepIndex = 1;
-    let recentGroupTitle = '';
-    if (recentActivity) {
-      let found = false;
-      for (const mod of phase.modules) {
-        let idx = 0;
-        if (mod.lecture_groups && mod.lecture_groups.length > 0) {
-          for (const group of mod.lecture_groups) {
-            for (const l of (group.lectures || [])) {
-              idx++;
-              if (l.id === recentActivity.lecture.id) {
-                recentStepIndex = idx;
-                recentGroupTitle = group.title || '';
-                found = true;
-                break;
-              }
-            }
-            if (found) break;
-          }
-        } else {
-          for (const l of mod.lectures) {
-            idx++;
-            if (l.id === recentActivity.lecture.id) {
-              recentStepIndex = idx;
-              recentGroupTitle = '';
-              found = true;
-              break;
-            }
-          }
-        }
-        if (found) break;
-      }
-    }
+    filterButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        activeFilter = btn.dataset.filter;
+        filterButtons.forEach((b) => b.classList.toggle('active', b === btn));
+        renderChapterView();
+      });
+    });
 
-    root.innerHTML = `
-      <div style="background: #EDF2E4; min-height: calc(100vh - 64px); padding: 24px max(var(--page-gutter), 24px);">
-        <div class="nh-course-detail-container">
-          <!-- Breadcrumb & Header Hero Card -->
-          <div class="nh-course-hero-card">
-            <div class="nh-breadcrumb">
-              <a href="#/learn">Lộ trình học tập</a>
-              <span>/</span>
-              <span>${escapeHtml(phase.title)}</span>
-            </div>
-
-            <div class="nh-course-title-row">
-              <div>
-                <h1 class="nh-course-main-title">${escapeHtml(phase.title)}</h1>
-                ${phase.description ? `<p style="margin: 6px 0 0 0; font-size: 13px; color: #667085; font-family: 'Be Vietnam Pro', sans-serif;">${escapeHtml(phase.description)}</p>` : ''}
-              </div>
-              <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-                <span style="background: #F0F4E8; color: #455120; font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: 9999px; border: 1px solid #D8E2CA; display: inline-flex; align-items: center; gap: 4px;">
-                  <md-icon style="font-size: 16px;">article</md-icon>
-                  Đã học: ${taughtCount}/${totalLectures} bài
-                </span>
-                ${totalAssignments > 0 ? `
-                  <span style="background: #F0F4E8; color: #455120; font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: 9999px; border: 1px solid #D8E2CA; display: inline-flex; align-items: center; gap: 4px;">
-                    <md-icon style="font-size: 16px;">edit_note</md-icon>
-                    Bài tập: ${completedAssignments}/${totalAssignments}
-                  </span>
-                ` : ''}
-              </div>
-            </div>
-
-            <!-- Bài học gần đây — render nguyên ô bài học gốc -->
-            ${recentActivity ? `
-              <div class="nh-recent-activity-section">
-                <h2 class="nh-recent-activity-label">Bài học gần đây</h2>
-                <div class="nh-recent-activity-wrapper" style="background: #ffffff; border: 1px solid #D8E2C4; border-radius: 14px; padding: 4px 12px; box-shadow: 0 2px 10px rgba(69, 81, 32, 0.03);">
-                  ${renderLectureNode(recentActivity.lecture, recentStepIndex, taughtSet, taughtMap, recentGroupTitle)}
-                </div>
-              </div>
-            ` : ''}
-          </div>
-
-          <!-- Course Search & Filter Bar -->
-          <div style="background: #ffffff; border-radius: 18px; padding: 20px 24px; border: 1px solid #D8E2C4; box-shadow: 0 4px 14px rgba(69, 81, 32, 0.03);">
-            <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
-              <strong style="font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 17px; font-weight: 700; color: #455120; white-space: nowrap;">Danh sách bài học</strong>
-              <div style="position: relative; flex: 1; max-width: 420px; min-width: 280px; margin-left: auto;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#667085" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); pointer-events: none;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" id="nh-course-search-input" class="nh-course-search-input" placeholder="Tìm kiếm Bài giảng - Bài tập tại đây" />
-              </div>
-            </div>
-
-            <div class="module-stack phase-module-stack">
-              ${phase.modules.length
-        ? phase.modules.map(m => renderModule(m, taughtSet, taughtMap)).join('')
-        : '<div class="empty-state compact">Chưa có Chương.</div>'
-      }
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-    wireAnimatedDetails(root);
-
-    // Wire live in-course search
-    const searchInput = root.querySelector('#nh-course-search-input');
     if (searchInput) {
       searchInput.addEventListener('input', (e) => {
-        const query = e.target.value.trim().toLowerCase();
-        root.querySelectorAll('.lecture-row').forEach((row) => {
-          const text = row.textContent.toLowerCase();
-          const match = text.includes(query);
-          row.style.display = match ? '' : 'none';
-          if (match) {
-            const parentDetails = row.closest('details');
-            if (parentDetails) parentDetails.open = true;
-          }
-        });
+        searchQuery = e.target.value;
+        renderChapterView();
       });
     }
+
+    const jumpToLecture = (target) => {
+      if (!target) return;
+      activeModuleId = target.moduleId;
+      activeFilter = 'all';
+      searchQuery = '';
+      if (searchInput) searchInput.value = '';
+      navButtons.forEach((b) => b.classList.toggle('active', String(b.dataset.moduleId) === String(activeModuleId)));
+      filterButtons.forEach((b) => b.classList.toggle('active', b.dataset.filter === 'all'));
+      renderChapterView(target.lecture.id);
+    };
+
+    const continueBtn = root.querySelector('#phase-continue-btn');
+    if (continueBtn && targetContinue) {
+      continueBtn.addEventListener('click', () => jumpToLecture(targetContinue));
+    }
+
+    const recentOpenBtn = root.querySelector('#phase-recent-open-btn');
+    if (recentOpenBtn && recentActivity) {
+      recentOpenBtn.addEventListener('click', () => jumpToLecture(recentActivity));
+    }
+
+    renderChapterView();
   } catch (error) {
     root.innerHTML = renderErrorState(error);
     wireRouteRetry(root);
@@ -408,42 +739,37 @@ export function wireAnimatedDetails(root) {
   });
 }
 
-const CARO_GRID_PATTERN = {
-  pattern: 'linear-gradient(to right, rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.2) 1px, transparent 1px)',
-  size: '16px 16px'
-};
-
 export function renderPhaseCard(phase, idx = 0, taughtSet = new Set()) {
-  const lectureCount = phase.modules.reduce((sum, module) => sum + module.lectures.length, 0);
-  const groupCount = phase.modules.reduce((sum, module) => sum + (module.lecture_groups?.length || 0), 0);
-  const assignmentCount = phase.modules.reduce(
-    (sum, module) => sum + module.lectures.reduce((total, lecture) => total + (lecture.assignments?.length || 0), 0),
-    0,
-  );
-
+  const isStudent = state.profile?.role === 'student';
+  const stats = getPhaseStats(phase, taughtSet);
   const title = phase.title || 'Giai đoạn học tập';
 
+  const metaLine = !stats.isActive
+    ? 'Sắp mở'
+    : (isStudent && stats.taughtCount > 0
+      ? `${stats.taughtCount}/${stats.lectureCount} bài${stats.assignmentCount > 0 ? ` - ${stats.submittedCount}/${stats.assignmentCount} đề` : ''}`
+      : `${stats.lectureCount} bài${stats.assignmentCount > 0 ? ` - ${stats.assignmentCount} đề` : ''}`);
+
+  const barWidth = stats.taughtCount > 0 ? Math.max(stats.progressPct, 6) : 0;
+
   return `
-    <a class="nh-course-card" href="#/phase/${phase.id}">
-      <div class="nh-card-banner" style="background-color: #455120; background-image: ${CARO_GRID_PATTERN.pattern}; background-size: ${CARO_GRID_PATTERN.size};">
+    <a class="learn-phase-card ${stats.isActive ? 'is-active' : 'is-upcoming'}" href="#/phase/${phase.id}">
+      <div class="learn-phase-head">
+        <h3 class="learn-phase-title">${escapeHtml(title)}</h3>
+        <span class="learn-phase-arrow" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </span>
       </div>
 
-      <div class="nh-card-body">
-        <h3 class="nh-card-title">${escapeHtml(title)}</h3>
-        
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; font-size: 13px; color: #475467; margin-bottom: 4px;">
-          <span style="display: flex; align-items: center; gap: 6px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>${phase.modules.length} Chương</span>
-          <span style="display: flex; align-items: center; gap: 6px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>${lectureCount} Bài giảng</span>
-          <span style="display: flex; align-items: center; gap: 6px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>${groupCount} Bài học</span>
-          <span style="display: flex; align-items: center; gap: 6px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4z"></path></svg>${assignmentCount} Bài tập</span>
-        </div>
-
-        <hr class="nh-card-dashed-line" />
-
-        <div class="nh-card-footer">
-          <span style="font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 14px; font-weight: 700; color: #455120; display: flex; align-items: center; gap: 4px;">
-            Mở giai đoạn <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </span>
+      <div class="learn-phase-bottom">
+        ${stats.isActive && isStudent ? `
+          <div class="learn-progress-track" aria-hidden="true">
+            <div class="learn-progress-fill" style="width: ${barWidth}%;"></div>
+          </div>
+        ` : ''}
+        <div class="learn-phase-meta-row">
+          <p class="learn-phase-meta">${escapeHtml(metaLine)}</p>
+          ${stats.isActive && isStudent && stats.taughtCount > 0 ? `<span class="learn-phase-metric is-strong">${stats.progressPct}%</span>` : ''}
         </div>
       </div>
     </a>
@@ -577,7 +903,7 @@ export function renderLectureNode(lecture, stepIndex, taughtSet = new Set(), tau
           </summary>
           ${hasContent ? `
             <div class="nh-timeline-body">
-              ${lecture.description ? `<p style="margin: 0 0 12px 0; font-size: 13px; color: #475467; font-family: 'Be Vietnam Pro', sans-serif;">${escapeHtml(lecture.description)}</p>` : ''}
+              ${lecture.description ? `<p style="margin: 0 0 12px 0; font-size: 13px; color: #475467; font-family: 'Google Sans', sans-serif;">${escapeHtml(lecture.description)}</p>` : ''}
               <div class="lecture-actions">
                 ${driveFrame(lecture.slide_url, lecture.title)}
                 ${hasAssignments
@@ -607,64 +933,29 @@ export function renderEnhancedFreeAssignmentCard(assignment) {
   if (tagMatch) {
     cleanedTitle = cleanedTitle.replace(/^\[[^\]]+\]\s*/, '');
   }
-
   if (!catTag) {
-    const lower = cleanedTitle.toLowerCase();
-    if (cleanedTitle.includes('Đại số') || lower.includes('hàm số') || lower.includes('mũ') || lower.includes('logarit')) catTag = 'Đại số';
-    else if (cleanedTitle.includes('Hình học') || lower.includes('tọa độ') || lower.includes('khối đa diện')) catTag = 'Hình học';
-    else if (lower.includes('xác suất') || lower.includes('tổ hợp')) catTag = 'Xác suất';
-    else if (lower.includes('đề') || lower.includes('luyện') || lower.includes('kiểm tra')) catTag = 'Đề thi';
-    else catTag = 'Luyện tập';
+    catTag = getFreeAssignmentCategory(cleanedTitle);
   }
 
-  if (isStudent && isPdfAssignment) {
-    return `
-      <div class="nh-free-card ${hasSubmitted ? 'completed' : ''}" style="background: #ffffff; border-radius: 16px; padding: 16px; border: 1px solid #eaecf0; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; transition: all 0.2s ease; position: relative;">
-        <div>
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-            <span style="font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 12px; background: #f2f4f7; color: #344054; font-family: 'Be Vietnam Pro', sans-serif;">${escapeHtml(catTag)}</span>
-            <span style="font-size: 11px; font-weight: 600; color: ${hasSubmitted ? '#455120' : '#d97706'}; display: flex; align-items: center; gap: 4px; font-family: 'Be Vietnam Pro', sans-serif;">
-              <span style="width: 6px; height: 6px; border-radius: 50%; background: currentColor;"></span>
-              ${hasSubmitted ? 'Đã làm' : 'Chưa hoàn thành'}
-            </span>
-          </div>
-          <h3 style="font-size: 14.5px; font-weight: 600; color: #101828; margin: 0 0 6px 0; line-height: 1.4; font-family: 'Be Vietnam Pro', sans-serif;">${escapeHtml(cleanedTitle)}</h3>
-        </div>
-        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f2f4f7; margin-top: 4px; padding-top: 8px;">
-          <div style="font-size: 12px; color: #667085; display: flex; gap: 8px; font-family: 'Be Vietnam Pro', sans-serif;">
-            <span>${questionsCount} câu</span>
-            ${timeLimit ? `<span>•</span><span>${timeLimit}</span>` : ''}
-          </div>
-          <a class="locked-pdf-chip" href="javascript:void(0)" data-pdf-locked="true" style="font-size: 12.5px; font-weight: 600; color: #455120; text-decoration: none; display: flex; align-items: center; gap: 4px; font-family: 'Be Vietnam Pro', sans-serif;">
-            Chi tiết <md-icon style="font-size: 16px;">arrow_forward</md-icon>
-          </a>
-        </div>
-      </div>
-    `;
-  }
+  const isLocked = isStudent && isPdfAssignment;
+  const href = isLocked ? 'javascript:void(0)' : `#/assignment/${assignment.id}`;
+  const lockedAttrs = isLocked ? 'data-pdf-locked="true"' : '';
+  const statusText = hasSubmitted ? 'Đã làm' : 'Chưa làm';
+  const metaParts = [catTag, `${questionsCount} câu`, timeLimit].filter(Boolean);
 
   return `
-    <div class="nh-free-card ${hasSubmitted ? 'completed' : ''}" style="background: #ffffff; border-radius: 16px; padding: 16px; border: 1px solid #eaecf0; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; transition: all 0.2s ease; position: relative;">
-      <div>
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <span style="font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 12px; background: #f2f4f7; color: #344054; font-family: 'Be Vietnam Pro', sans-serif;">${escapeHtml(catTag)}</span>
-          <span style="font-size: 11px; font-weight: 600; color: ${hasSubmitted ? '#455120' : '#d97706'}; display: flex; align-items: center; gap: 4px; font-family: 'Be Vietnam Pro', sans-serif;">
-            <span style="width: 6px; height: 6px; border-radius: 50%; background: currentColor;"></span>
-            ${hasSubmitted ? 'Đã làm' : 'Chưa làm'}
-          </span>
-        </div>
-        <h3 style="font-size: 14.5px; font-weight: 600; color: #101828; margin: 0 0 6px 0; line-height: 1.4; font-family: 'Be Vietnam Pro', sans-serif;">${escapeHtml(cleanedTitle)}</h3>
+    <a class="learn-free-row ${hasSubmitted ? 'is-done' : ''} ${isLocked ? 'locked-pdf-chip' : ''}" href="${href}" ${lockedAttrs}>
+      <div class="learn-free-row-main">
+        <div class="learn-free-row-title">${escapeHtml(cleanedTitle)}</div>
+        <div class="learn-free-row-meta">${escapeHtml(metaParts.join(' - '))}</div>
       </div>
-      <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f2f4f7; margin-top: 4px; padding-top: 8px;">
-        <div style="font-size: 12px; color: #667085; display: flex; gap: 8px; font-family: 'Be Vietnam Pro', sans-serif;">
-          <span>${questionsCount} câu</span>
-          ${timeLimit ? `<span>•</span><span>${timeLimit}</span>` : ''}
-        </div>
-        <a href="#/assignment/${assignment.id}" style="font-size: 12.5px; font-weight: 600; color: #455120; text-decoration: none; display: flex; align-items: center; gap: 4px; font-family: 'Be Vietnam Pro', sans-serif;">
-          Làm bài <md-icon style="font-size: 16px;">arrow_forward</md-icon>
-        </a>
+      <div class="learn-free-row-right">
+        ${isStudent ? `<span class="learn-free-status ${hasSubmitted ? 'is-done' : 'is-pending'}">${statusText}</span>` : ''}
+        <span class="learn-free-arrow" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </span>
       </div>
-    </div>
+    </a>
   `;
 }
 
@@ -682,7 +973,7 @@ export function renderAssignmentChip(assignment) {
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4z"></path></svg>
             <span>${escapeHtml(cleanedTitle)}</span>
           </div>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#181B16" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
       </div>
     `;
@@ -695,7 +986,7 @@ export function renderAssignmentChip(assignment) {
           <md-icon>edit_note</md-icon>
           <span>${escapeHtml(cleanedTitle)}</span>
         </div>
-        <md-icon style="font-size: 1.1rem; color: #455120;">arrow_forward</md-icon>
+        <md-icon style="font-size: 1.1rem; color: #181B16;">arrow_forward</md-icon>
       </a>
     </div>
   `;

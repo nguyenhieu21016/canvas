@@ -35,94 +35,63 @@ export async function mountStudentAssignmentOverview(id) {
     const draft = loadDraft(localStorage, state.profile.id, id);
     const hasDraftInProgress = draft && draft.answers && Object.values(draft.answers).some(Boolean);
 
+    const cleanedTitle = (assignment.title || '').replace(/Bài tập về nhà/gi, 'Bài tập');
+    const questionCount = assignment.question_count ?? 0;
+    const timeText = assignment.time_limit ? `${assignment.time_limit} phút` : 'Không giới hạn';
+
     root.innerHTML = `
-      <div>
-        <!-- Tràn viền Breadcrumb Bar chuẩn ngochuyenlb (Nền mạ nhạt tràn lề) -->
-        <div style="background: #DCE8CC; padding: 10px max(var(--page-gutter), 24px); border-bottom: 1px solid #D1DFC0;">
-          <div style="max-width: 1040px; margin: 0 auto; font-family: 'Be Vietnam Pro', sans-serif; font-size: 13px; color: #455120; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-            <a href="#/learn" style="color: #455120; text-decoration: none; font-weight: 500; opacity: 0.9; transition: color 0.15s ease;">Danh mục khóa học</a>
-            <span style="opacity: 0.6; font-size: 13px;">&rsaquo;</span>
-            <a href="javascript:history.back()" style="color: #455120; text-decoration: none; font-weight: 500; opacity: 0.9; transition: color 0.15s ease;">Giai đoạn</a>
-            <span style="opacity: 0.6; font-size: 13px;">&rsaquo;</span>
-            <span style="color: #455120; font-weight: 700;">${escapeHtml((assignment.title || '').replace(/Bài tập về nhà/gi, 'Bài tập'))}</span>
+      <section class="asg-overview-hub">
+        <!-- Dark Hero Banner (consistent with #/learn & #/phase/:id) -->
+        <header class="asg-overview-hero">
+          <a href="javascript:history.back()" class="phase-back-link">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            <span>Quay lại</span>
+          </a>
+          <div class="asg-overview-hero-row">
+            <div class="asg-overview-hero-left">
+              <h1 class="phase-hero-title">${escapeHtml(cleanedTitle)}</h1>
+            </div>
+            <div class="asg-overview-hero-actions">
+              ${isLockedPdfForStudent ? `
+                <span class="asg-locked-pill">Bài tập PDF đã đóng</span>
+              ` : `
+                <button type="button" id="start-assignment" class="phase-hero-cta">
+                  <span>${hasDraftInProgress ? 'Làm tiếp' : 'Bắt đầu làm bài'}</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
+              `}
+            </div>
+          </div>
+        </header>
+
+        <!-- 3 Compact Soft Stat Blocks -->
+        <div class="asg-stat-grid">
+          <div class="asg-stat-card">
+            <span class="asg-stat-label">Điểm gần nhất</span>
+            <div class="asg-stat-value">${latest ? formatScore(latestScore10) : '—'}${latest ? '<span class="asg-stat-unit">/10</span>' : ''}</div>
+          </div>
+          <div class="asg-stat-card">
+            <span class="asg-stat-label">Số câu hỏi</span>
+            <div class="asg-stat-value">${questionCount}<span class="asg-stat-unit">câu</span></div>
+          </div>
+          <div class="asg-stat-card">
+            <span class="asg-stat-label">Thời gian</span>
+            <div class="asg-stat-value ${assignment.time_limit ? '' : 'is-text'}">${escapeHtml(timeText)}</div>
           </div>
         </div>
 
-        <div style="background: #EDF2E4; min-height: calc(100vh - 108px); padding: 24px max(var(--page-gutter), 24px);">
-          <div style="max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px;">
-
-            <!-- Page Main Title -->
-            <h1 style="font-family: 'Beautique Display', 'Beautique Display Condensed', serif; font-size: 26px; font-weight: 700; color: #101828; margin: 0; line-height: 1.25;">
-              ${escapeHtml((assignment.title || '').replace(/Bài tập về nhà/gi, 'Bài tập'))}
-            </h1>
-
-          <!-- Stats Block Layout — 1 card trắng duy nhất -->
-          <div style="background: #ffffff; border-radius: 16px; border: 1px solid #D8E2C4; padding: 32px 36px; display: flex; align-items: center; gap: 48px; box-shadow: 0 2px 8px rgba(69, 81, 32, 0.04);">
-
-            <!-- Score Circle -->
-            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; flex-shrink: 0;">
-              <div style="position: relative; width: 160px; height: 160px; display: flex; align-items: center; justify-content: center;">
-                <svg viewBox="0 0 36 36" style="position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg);">
-                  <path stroke="#EDF2E4" stroke-width="3" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                  <path stroke="#455120" stroke-width="3" stroke-dasharray="${latestScore10 * 10}, 100" stroke-linecap="round" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                </svg>
-                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1;">
-                  <span style="font-family: 'Beautique Display', serif; font-size: 13px; font-weight: 700; color: #667085; margin-bottom: 2px;">Điểm của em</span>
-                  <span style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 44px; font-weight: 800; color: #455120; line-height: 1;">${latest ? formatScore(latestScore10) : '—'}</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Vertical Divider -->
-            <div style="width: 1px; height: 80px; background: #E5ECD9; flex-shrink: 0;"></div>
-
-            <!-- Stats Right -->
-            <div style="display: flex; gap: 48px; flex: 1;">
-
-              <!-- Số câu hỏi -->
-              <div style="display: flex; flex-direction: column; gap: 8px;">
-                <span style="font-family: 'Beautique Display', serif; font-size: 15px; font-weight: 700; color: #475467;">Số câu hỏi</span>
-                <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px;">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #455120; opacity: 0.85;"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-                  <span style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 18px; font-weight: 600; color: #101828; line-height: 1; display: inline-block; transform: translateY(1px);">${assignment.question_count ?? 0}</span>
-                </div>
-              </div>
-
-              <!-- Thời gian làm bài -->
-              <div style="display: flex; flex-direction: column; gap: 8px;">
-                <span style="font-family: 'Beautique Display', serif; font-size: 15px; font-weight: 700; color: #475467;">Thời gian làm bài</span>
-                <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px;">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #455120; opacity: 0.85;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                  <span style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 17px; font-weight: 600; color: #101828; line-height: 1; display: inline-block; transform: translateY(1px);">${assignment.time_limit ? `${assignment.time_limit}<span style="font-size: 14px; font-weight: 500; margin-left: 4px; color: #475467;">phút</span>` : 'Không giới hạn'}</span>
-                </div>
-              </div>
-
-            </div>
+        <!-- History Card -->
+        <section class="asg-history-card">
+          <div class="asg-history-head">
+            <h2 class="asg-history-title">Lịch sử làm bài</h2>
+            ${attempts.length > 0 ? `<span class="asg-history-count">${attempts.length} lần</span>` : ''}
           </div>
-
-          <!-- Action Button Center -->
-          <div style="display: flex; justify-content: center; gap: 12px; margin: 8px 0;">
-            ${isLockedPdfForStudent ? `
-              <div style="padding: 12px 24px; background: #FEF3F2; color: #B42318; border: 1px solid #FECDCA; border-radius: 9999px; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                Hiện tại toàn bộ bài tập dùng link PDF đã đóng truy cập
-              </div>
-            ` : `
-              <button id="start-assignment" style="background: #455120; color: #ffffff; border: none; padding: 12px 42px; border-radius: 6px; font-family: 'Be Vietnam Pro', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: transform 0.1s ease, background-color 0.2s ease;">
-                ${hasDraftInProgress ? 'Làm tiếp' : 'Bắt đầu làm bài'}
-              </button>
-            `}
-          </div>
-
-          <!-- History Panel -->
-          <div style="background: #ffffff; border-radius: 16px; border: 1px solid #D8E2C4; padding: 24px; box-shadow: 0 2px 8px rgba(69, 81, 32, 0.04);">
-            <h3 style="font-size: 16px; font-weight: 800; color: #101828; margin: 0 0 16px 0; font-family: 'Be Vietnam Pro', sans-serif;">Lịch sử làm bài</h3>
-            ${attempts.length > 0 ? renderStudentAssignmentHistory(attempts) : '<div style="text-align: center; color: #667085; padding: 32px 0; font-size: 14px;">Chưa có lần nộp nào.</div>'}
-          </div>
-
-        </div>
-      </div>
-    </div>
+          ${attempts.length > 0
+            ? renderStudentAssignmentHistory(attempts)
+            : '<div class="asg-history-empty">Chưa có lần nộp nào.</div>'
+          }
+        </section>
+      </section>
     `;
     document.querySelector('#start-assignment')?.addEventListener('click', () => mountAssignmentExam(id));
   } catch (error) {
@@ -131,9 +100,8 @@ export async function mountStudentAssignmentOverview(id) {
   }
 }
 
-
 export function renderStudentAssignmentHistory(attempts) {
-  if (!attempts.length) return '<div style="text-align: center; color: #667085; padding: 24px; font-family: \'Be Vietnam Pro\', sans-serif; font-size: 14px;">Chưa có lần nộp nào.</div>';
+  if (!attempts.length) return '<div class="asg-history-empty">Chưa có lần nộp nào.</div>';
 
   function fmtShort(value) {
     if (!value) return '-';
@@ -147,30 +115,23 @@ export function renderStudentAssignmentHistory(attempts) {
   }
 
   return `
-    <div style="display: flex; flex-direction: column;">
-      ${attempts
-        .map((attempt, index) => {
-          const isPassed = (attempt.score_10 ?? 0) >= 8.0;
-          const isLast = index === attempts.length - 1;
-          return `
-            <div style="display: flex; align-items: center; justify-content: space-between; padding: 14px 0; ${isLast ? '' : 'border-bottom: 1px solid #E5ECD9;'}">
-              <div style="display: flex; align-items: center; gap: 14px;">
-                <span style="padding: 3px 8px; border: 1px solid ${isPassed ? '#455120' : '#455120'}; color: #455120; font-size: 11px; font-weight: 700; border-radius: 4px; font-family: 'Be Vietnam Pro', sans-serif; letter-spacing: 0.3px; white-space: nowrap;">
-                  ${isPassed ? 'ĐẠT' : 'CHƯA ĐẠT'}
-                </span>
-                <span style="font-size: 15px; font-weight: 700; color: #101828; font-family: 'Be Vietnam Pro', sans-serif; min-width: 28px;">
-                  ${formatScore(attempt.score_10)}
-                </span>
-                <span style="font-size: 13px; color: #667085; font-family: 'Be Vietnam Pro', sans-serif; display: flex; align-items: center; gap: 5px;">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                  ${fmtShort(attempt.submitted_at)}
-                </span>
-              </div>
-              <a href="#/review/${attempt.id}" style="padding: 5px 16px; border: 1px solid #455120; color: #455120; border-radius: 9999px; font-size: 13px; font-weight: 500; text-decoration: none; font-family: 'Be Vietnam Pro', sans-serif; white-space: nowrap;">Chi tiết</a>
+    <div class="asg-history-list">
+      ${attempts.map((attempt) => {
+        const isPassed = (attempt.score_10 ?? 0) >= 8.0;
+        return `
+          <a href="#/review/${attempt.id}" class="asg-history-row">
+            <div class="asg-history-left">
+              <span class="asg-history-score">${formatScore(attempt.score_10)}</span>
+              <span class="asg-history-pill ${isPassed ? 'is-pass' : 'is-warn'}">${isPassed ? 'Đạt' : 'Chưa đạt'}</span>
+              <span class="asg-history-time">${fmtShort(attempt.submitted_at)}</span>
             </div>
-          `;
-        })
-        .join('')}
+            <span class="asg-history-link">
+              <span>Xem bài làm</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </span>
+          </a>
+        `;
+      }).join('')}
     </div>
   `;
 }
@@ -185,249 +146,195 @@ export async function mountAssignmentExam(id) {
       root.innerHTML = `
         <div class="panel" style="max-width: 600px; margin: 60px auto; padding: 48px 32px; text-align: center; border-radius: 20px;">
           <md-icon style="font-size: 56px; color: #B42318; margin-bottom: 16px;">lock</md-icon>
-          <h2 style="margin: 0 0 12px 0; color: #101828; font-family: 'Beautique Display', serif;">Bài tập PDF đã bị khóa</h2>
-          <p style="color: #667085; line-height: 1.6; margin-bottom: 24px; font-family: 'Be Vietnam Pro', sans-serif;">Hệ thống không còn cho phép làm bài hoặc mở đề PDF này nữa. Kết quả điểm số cũ của bạn vẫn được ghi nhận trong lịch sử.</p>
-          <a class="nh-btn-primary" href="#/assignment/${id}" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 24px; background: #455120; color: #fff; text-decoration: none; border-radius: 9999px; font-weight: 600;">Xem lịch sử điểm</a>
+          <h2 style="margin: 0 0 12px 0; color: #101828; font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif;">Bài tập PDF đã bị khóa</h2>
+          <p style="color: #667085; line-height: 1.6; margin-bottom: 24px; font-family: 'Google Sans', sans-serif;">Hệ thống không còn cho phép làm bài hoặc mở đề PDF này nữa. Kết quả điểm số cũ của bạn vẫn được ghi nhận trong lịch sử.</p>
+          <a class="nh-btn-primary" href="#/assignment/${id}" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 24px; background: #181B16; color: #fff; text-decoration: none; border-radius: 9999px; font-weight: 600;">Xem lịch sử điểm</a>
         </div>
       `;
       return;
     }
     const draft = loadDraft(localStorage, state.profile.id, id);
     const answers = draft?.answers ?? {};
+    const sections = [];
+    let currentSection = null;
+    questions.forEach((q, index) => {
+      if (!currentSection || currentSection.type !== q.type) {
+        const sIdx = sections.length + 1;
+        const roman = ['I', 'II', 'III', 'IV', 'V'][sIdx - 1] || sIdx;
+        let label = 'Trắc nghiệm';
+        if (q.type === 'tf4') label = 'Đúng / Sai';
+        if (q.type === 'short') label = 'Trả lời ngắn';
+        currentSection = { type: q.type, roman, label, questions: [] };
+        sections.push(currentSection);
+      }
+      currentSection.questions.push({ ...q, globalIndex: index });
+    });
+
+    const initialAnsweredCount = Object.values(answers).filter(
+      (v) => v !== null && v !== undefined && v !== '' && (!Array.isArray(v) || v.some((val) => val !== null)),
+    ).length;
+    const initialPct = Math.round((initialAnsweredCount / (questions.length || 1)) * 100);
+    const cleanedAssignmentTitle = (assignment.title || '').replace(/Bài tập về nhà/gi, 'Bài tập');
+    const examTimeText = assignment.time_limit ? `${assignment.time_limit} phút` : 'Không giới hạn';
+
     root.innerHTML = `
       ${assignment.pdf_url === 'latex' ? `
-        <div style="background-color: #EDF2E4; min-height: 100vh; padding: 0 0 60px 0; margin: 0; font-family: 'Be Vietnam Pro', sans-serif;">
-          <!-- Top Breadcrumb Bar -->
-          <div style="background: #DCE8CC; color: #455120; border-bottom: 1px solid #D1DFC0; padding: 12px 0; margin-bottom: 24px;">
-            <div style="max-width: 1420px; width: 100%; margin: 0 auto; padding: 0 40px; font-size: 13.5px; font-weight: 500; display: flex; align-items: center; gap: 8px;">
-              <a href="#/learn" style="color: #455120; text-decoration: none; font-weight: 500;">Danh mục khóa học</a>
-              <span style="opacity: 0.6; font-size: 13px;">&rsaquo;</span>
-              <span style="font-weight: 700; color: #455120;">${escapeHtml(assignment.title)}</span>
+        <section class="exam-hub">
+          <!-- Block 1: Dark Hero Banner (consistent with #/learn, #/phase/:id, overview) -->
+          <header class="asg-overview-hero">
+            <a href="javascript:history.back()" class="phase-back-link">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+              <span>Quay lại khóa học</span>
+            </a>
+            <div class="asg-overview-hero-row">
+              <div class="asg-overview-hero-left">
+                <h1 class="phase-hero-title">${escapeHtml(cleanedAssignmentTitle)}</h1>
+              </div>
             </div>
-          </div>
+          </header>
 
-                    <section class="exam-shell" style="height: auto; max-width: 1420px; width: 100%; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: minmax(0, 1fr) 290px; gap: 24px; align-items: start;">
-            <!-- Left Main Content Column -->
-            <form id="answer-form" style="min-width: 0; width: 100%; display: flex; flex-direction: column; gap: 28px; background: #ffffff; padding: 32px 40px; border-radius: 16px; border: 1px solid #D8E2C4; box-shadow: 0 2px 12px rgba(69, 81, 32, 0.02);">
-              
-              ${(() => {
-                const sections = [];
-                let currentSection = null;
-                
-                questions.forEach((q, index) => {
-                  if (!currentSection || currentSection.type !== q.type) {
-                    const sIdx = sections.length + 1;
-                    const roman = ['I', 'II', 'III', 'IV', 'V'][sIdx - 1] || sIdx;
-                    let label = 'Trắc nghiệm';
-                    if (q.type === 'tf4') label = 'Đúng/sai';
-                    if (q.type === 'short') label = 'Trả lời ngắn';
-                    
-                    currentSection = {
-                      type: q.type,
-                      roman: roman,
-                      label: label,
-                      questions: []
-                    };
-                    sections.push(currentSection);
-                  }
-                  currentSection.questions.push({ ...q, globalIndex: index });
-                });
+          <!-- 2-Column Layout: Separate Question Cards + 2x2 MCQ (from B3) & Sticky Navigator (from A3) -->
+          <div class="exam-layout">
+            <form id="answer-form" class="exam-paper-col">
+              ${sections.map((sec) => `
+                <div class="exam-section-block">
+                  <div class="exam-section-label">Phần ${sec.roman} - ${sec.label}</div>
+                  <div class="exam-card-stack">
+                    ${sec.questions.map((q, i) => {
+                      const cleanPrompt = q.prompt ? q.prompt.replace(/^Câu\s*\d+[\.\:\s]*/i, '') : '';
+                      const qNumStr = String(i + 1).padStart(2, '0');
 
-                return sections.map(sec => 
-                  "<!-- Section Header -->\n" +
-                  "<div style=\"display: flex; align-items: center; justify-content: flex-start; gap: 10px; padding: 4px 16px 4px 4px; background: linear-gradient(90deg, #f0f4e8 0%, rgba(255,255,255,0) 100%); border-radius: 9999px; color: #455120; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 700; font-size: 15px; box-sizing: border-box; width: 100%;\">\n" +
-                  "  <span style=\"width: 28px; height: 28px; border-radius: 50%; background: #455120; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif;\">" + sec.roman + "</span>\n" +
-                  "  <span>" + sec.label + "</span>\n" +
-                  "</div>\n" +
-                  sec.questions.map((q, i) => {
-                    const cleanPrompt = q.prompt ? q.prompt.replace(/^Câu\\s*\\d+[\\.\\:\\s]*/i, '') : '';
-                    const qNumStr = String(i + 1).padStart(2, '0');
-                    
-                    let qHTML = 
-                    "<article class=\"latex-exam-card\" data-question-id=\"" + q.id + "\" data-type=\"" + q.type + "\" style=\"display: flex; flex-direction: column; gap: 14px; padding-bottom: 24px; border-bottom: 1px solid #f1f5f9;\">\n" +
-                    "  <div style=\"font-size: 15px; color: #1e293b; line-height: 1.6;\">\n" +
-                    "    <span style=\"font-weight: 800; color: #455120; font-size: 17px; font-family: 'Beautique Display', serif; letter-spacing: 0.5px; margin-right: 12px; display: inline-block;\">CÂU " + qNumStr + "</span>\n" +
-                    "    <span style=\"font-weight: 500; color: #1e293b; font-size: 15px;\">" + renderLatexText(cleanPrompt) + "</span>\n" +
-                    "  </div>\n";
+                      let inputHtml = '';
+                      if (q.type === 'mcq') {
+                        inputHtml = `
+                          <div class="exam-mcq-grid">
+                            ${(q.choices ?? []).map((choice, cIdx) => {
+                              const value = String.fromCharCode(65 + cIdx);
+                              const isChecked = answers[q.id] === value;
+                              return `
+                                <label class="latex-choice-tile exam-choice-tile ${isChecked ? 'selected' : ''}">
+                                  <input type="radio" name="q-${q.id}" value="${value}" ${isChecked ? 'checked' : ''} class="exam-sr-input" />
+                                  <span class="exam-choice-letter">${value}</span>
+                                  <span class="exam-choice-text">${renderLatexText(choice)}</span>
+                                </label>
+                              `;
+                            }).join('')}
+                          </div>
+                        `;
+                      } else if (q.type === 'tf4') {
+                        inputHtml = `
+                          <div class="exam-tf-list">
+                            ${(q.settings?.statements || []).map((stmt, cIdx) => {
+                              const currentAns = answers[q.id]?.[cIdx];
+                              const isTrueChecked = currentAns === true;
+                              const isFalseChecked = currentAns === false;
+                              return `
+                                <div class="exam-tf-row">
+                                  <div class="exam-tf-stmt">${renderLatexText(stmt)}</div>
+                                  <div class="exam-tf-actions">
+                                    <label class="exam-tf-pill ${isTrueChecked ? 'selected' : ''}">
+                                      <input type="radio" name="q-${q.id}-${cIdx}" value="true" ${isTrueChecked ? 'checked' : ''} class="exam-sr-input" />
+                                      <span>Đúng</span>
+                                    </label>
+                                    <label class="exam-tf-pill ${isFalseChecked ? 'selected' : ''}">
+                                      <input type="radio" name="q-${q.id}-${cIdx}" value="false" ${isFalseChecked ? 'checked' : ''} class="exam-sr-input" />
+                                      <span>Sai</span>
+                                    </label>
+                                  </div>
+                                </div>
+                              `;
+                            }).join('')}
+                          </div>
+                        `;
+                      } else if (q.type === 'short') {
+                        const currentVal = answers[q.id] || '';
+                        inputHtml = `
+                          <div class="exam-short-row">
+                            <span class="exam-short-label">Đáp số</span>
+                            <input type="text" name="q-${q.id}" value="${escapeHtml(currentVal)}" placeholder="Nhập kết quả..." class="exam-short-input" />
+                          </div>
+                        `;
+                      }
 
-                    if (q.type === 'mcq') {
-                      qHTML += 
-                      "<div class=\"choice-grid\" style=\"display: flex; flex-direction: column; gap: 10px; padding-left: 2px; margin-top: 4px;\">\n" +
-                      (q.choices ?? []).map((choice, cIdx) => {
-                        const value = String.fromCharCode(65 + cIdx);
-                        const isChecked = answers[q.id] === value;
-                        return "" +
-                          "<label class=\"latex-choice-tile " + (isChecked ? 'selected' : '') + "\" style=\"display: flex; gap: 10px; align-items: center; cursor: pointer; padding: 2px 0; border: none; background: transparent; transition: all 0.15s ease;\">\n" +
-                          "  <input type=\"radio\" name=\"q-" + q.id + "\" value=\"" + value + "\" " + (isChecked ? 'checked' : '') + " style=\"opacity: 0; position: absolute; pointer-events: none;\">\n" +
-                          "  <div class=\"latex-radio-circle\" style=\"width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid " + (isChecked ? '#455120' : '#cbd5e1') + "; background: #ffffff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.15s ease;\">\n" +
-                          "    <div class=\"dot\" style=\"width: 8px; height: 8px; border-radius: 50%; background: #455120; display: " + (isChecked ? 'block' : 'none') + ";\"></div>\n" +
-                          "  </div>\n" +
-                          "  <div style=\"font-size: 14.5px; line-height: 1.5; color: #1e293b; display: flex; align-items: center; gap: 4px;\">\n" +
-                          "    <span style=\"font-weight: 800; color: #1e293b;\">" + value + ".</span><span>" + renderLatexText(choice) + "</span>\n" +
-                          "  </div>\n" +
-                          "</label>\n";
-                      }).join('') +
-                      "</div>\n";
-                    } else if (q.type === 'tf4') {
-                      qHTML += 
-                      "<div style=\"margin-top: 8px; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;\">\n" +
-                      "  <table style=\"width: 100%; border-collapse: collapse; font-size: 14px; text-align: left;\">\n" +
-                      "    <thead>\n" +
-                      "      <tr style=\"background: #f8fafc; border-bottom: 1px solid #e2e8f0;\">\n" +
-                      "        <th style=\"padding: 12px 16px; font-weight: 700; color: #1e293b; text-align: left;\">Phát biểu</th>\n" +
-                      "        <th style=\"padding: 12px 16px; font-weight: 700; color: #1e293b; width: 60px; text-align: center; border-left: 1px solid #e2e8f0;\">Đúng</th>\n" +
-                      "        <th style=\"padding: 12px 16px; font-weight: 700; color: #1e293b; width: 60px; text-align: center; border-left: 1px solid #e2e8f0;\">Sai</th>\n" +
-                      "      </tr>\n" +
-                      "    </thead>\n" +
-                      "    <tbody>\n" +
-                      (q.settings?.statements || []).map((stmt, cIdx) => {
-                        const currentAns = answers[q.id]?.[cIdx];
-                        const isTrueChecked = currentAns === true;
-                        const isFalseChecked = currentAns === false;
-                        
-                        return "" +
-                        "<tr style=\"border-bottom: 1px solid #e2e8f0;\">\n" +
-                        "  <td style=\"padding: 12px 16px; color: #1e293b; line-height: 1.5;\">" + renderLatexText(stmt) + "</td>\n" +
-                        "  <td style=\"padding: 12px 16px; text-align: center; border-left: 1px solid #e2e8f0; vertical-align: middle;\">\n" +
-                        "    <label style=\"display: inline-flex; cursor: pointer; position: relative;\">\n" +
-                        "      <input type=\"radio\" name=\"q-" + q.id + "-" + cIdx + "\" value=\"true\" " + (isTrueChecked ? 'checked' : '') + " style=\"opacity: 0; position: absolute;\">\n" +
-                        "      <div class=\"latex-radio-circle\" style=\"width: 20px; height: 20px; border-radius: 50%; border: 2px solid " + (isTrueChecked ? '#455120' : '#cbd5e1') + "; background: #ffffff; display: flex; align-items: center; justify-content: center; transition: all 0.15s ease; margin: 0 auto;\">\n" +
-                        "        <div style=\"width: 10px; height: 10px; border-radius: 50%; background: #455120; display: " + (isTrueChecked ? 'block' : 'none') + ";\"></div>\n" +
-                        "      </div>\n" +
-                        "    </label>\n" +
-                        "  </td>\n" +
-                        "  <td style=\"padding: 12px 16px; text-align: center; border-left: 1px solid #e2e8f0; vertical-align: middle;\">\n" +
-                        "    <label style=\"display: inline-flex; cursor: pointer; position: relative;\">\n" +
-                        "      <input type=\"radio\" name=\"q-" + q.id + "-" + cIdx + "\" value=\"false\" " + (isFalseChecked ? 'checked' : '') + " style=\"opacity: 0; position: absolute;\">\n" +
-                        "      <div class=\"latex-radio-circle\" style=\"width: 20px; height: 20px; border-radius: 50%; border: 2px solid " + (isFalseChecked ? '#455120' : '#cbd5e1') + "; background: #ffffff; display: flex; align-items: center; justify-content: center; transition: all 0.15s ease; margin: 0 auto;\">\n" +
-                        "        <div style=\"width: 10px; height: 10px; border-radius: 50%; background: #455120; display: " + (isFalseChecked ? 'block' : 'none') + ";\"></div>\n" +
-                        "      </div>\n" +
-                        "    </label>\n" +
-                        "  </td>\n" +
-                        "</tr>\n";
-                      }).join('') +
-                      "    </tbody>\n" +
-                      "  </table>\n" +
-                      "</div>\n";
-                    } else if (q.type === 'short') {
-                      const currentVal = answers[q.id] || '';
-                      qHTML += 
-                      "<div style=\"margin-top: 12px; display: flex; align-items: center; gap: 12px;\">\n" +
-                      "  <span style=\"font-size: 15px; font-weight: 700; color: #1e293b;\">Đáp số:</span>\n" +
-                      "  <input type=\"text\" name=\"q-" + q.id + "\" value=\"" + escapeHtml(currentVal) + "\" placeholder=\"Nhập đáp án...\" style=\"width: 160px; height: 36px; padding: 0 12px; border-radius: 8px; border: 1px solid #cbd5e1; background: #f8fafc; font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 600; color: #0f172a; outline: none; transition: border-color 0.2s;\" onfocus=\"this.style.borderColor='#455120'\" onblur=\"this.style.borderColor='#cbd5e1'\">\n" +
-                      "</div>\n";
-                    }
-
-                    qHTML += "</article>\n";
-                    return qHTML;
-                  }).join('')
-                ).join('');
-              })()}
+                      return `
+                        <article class="latex-exam-card exam-q-card" data-question-id="${q.id}" data-type="${q.type}">
+                          <div class="exam-q-head">
+                            <span class="exam-q-badge">Câu ${qNumStr}</span>
+                            <div class="exam-q-prompt">${renderLatexText(cleanPrompt)}</div>
+                          </div>
+                          ${inputHtml}
+                        </article>
+                      `;
+                    }).join('')}
+                  </div>
+                </div>
+              `).join('')}
             </form>
 
-            <!-- Right Sidebar: Navigator -->
-            <aside class="exam-navigator" style="position: sticky; top: 88px; display: flex; flex-direction: column; gap: 16px;">
-              
-              <!-- Progress & Navigator Card -->
-              <div style="background: #ffffff; border-radius: 16px; border: 1px solid #e2e8f0; padding: 20px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 2px 10px rgba(0,0,0,0.02);">
-                
-                <!-- Completion Bar -->
-                <div>
-                  <div style="font-size: 13.5px; color: #334155; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between;">
-                    <span style="font-family: 'Be Vietnam Pro', sans-serif; font-weight: 500; color: #334155;">Bạn đã hoàn thành</span>
-                    <span style="color: #455120; font-weight: 700; font-size: 15px; font-family: 'Be Vietnam Pro', sans-serif;" id="completion-count-display">${Object.values(answers).filter(v => v !== null && v !== undefined && v !== '' && (!Array.isArray(v) || v.some(val => val !== null))).length}/${questions.length}</span>
+            <!-- Right Sticky Navigator (from A3) -->
+            <aside class="exam-navigator exam-nav-col">
+              <div class="exam-nav-card">
+                <div class="exam-nav-progress">
+                  <div class="exam-nav-progress-head">
+                    <span class="exam-nav-progress-label">Đã làm</span>
+                    <span class="exam-nav-progress-count" id="completion-count-display">${initialAnsweredCount}/${questions.length}</span>
                   </div>
-                  <div style="display: flex; align-items: center; gap: 10px;">
-                    <div style="flex: 1; background: #e2e8f0; height: 10px; border-radius: 999px; overflow: hidden; position: relative;">
-                      <div id="completion-progress-bar" style="width: ${Math.round((Object.values(answers).filter(v => v !== null && v !== undefined && v !== '' && (!Array.isArray(v) || v.some(val => val !== null))).length / (questions.length || 1)) * 100)}%; background: #455120; height: 100%; border-radius: 999px; transition: width 0.3s ease;"></div>
+                  <div class="exam-nav-bar-track">
+                    <div id="completion-progress-bar" class="exam-nav-bar-fill" style="width: ${initialPct}%;"></div>
+                  </div>
+                </div>
+
+                <div class="exam-nav-sections">
+                  ${sections.map((sec) => `
+                    <div class="exam-nav-section">
+                      ${sections.length > 1 ? `<div class="exam-nav-sec-title">Phần ${sec.roman} - ${sec.label}</div>` : ''}
+                      <div class="exam-nav-grid">
+                        ${sec.questions.map((q, localIdx) => {
+                          const ans = answers[q.id];
+                          const isAns = q.type === 'tf4'
+                            ? Array.isArray(ans) && ans.some((val) => val !== null)
+                            : Boolean(ans);
+                          const dispNum = String(localIdx + 1).padStart(2, '0');
+                          return `
+                            <button type="button" class="nav-btn exam-nav-btn ${isAns ? 'answered' : ''}" data-nav="${q.id}" onclick="document.querySelector('[data-question-id=\\'${q.id}\\']')?.scrollIntoView({behavior: 'smooth', block: 'center'})">
+                              ${dispNum}
+                            </button>
+                          `;
+                        }).join('')}
+                      </div>
                     </div>
-                  </div>
+                  `).join('')}
                 </div>
 
-                <!-- Section Navigator Pill -->
-                <div style="display: flex; flex-direction: column; gap: 16px;">
-                  ${(() => {
-                    const sections = [];
-                    let currentSection = null;
-                    
-                    questions.forEach((q, index) => {
-                      if (!currentSection || currentSection.type !== q.type) {
-                        const sIdx = sections.length + 1;
-                        const roman = ['I', 'II', 'III', 'IV', 'V'][sIdx - 1] || sIdx;
-                        let label = 'Trắc nghiệm';
-                        if (q.type === 'tf4') label = 'Đúng/sai';
-                        if (q.type === 'short') label = 'Trả lời ngắn';
-                        
-                        currentSection = {
-                          type: q.type,
-                          roman: roman,
-                          label: label,
-                          questions: []
-                        };
-                        sections.push(currentSection);
-                      }
-                      currentSection.questions.push({ ...q, globalIndex: index });
-                    });
-
-                    return sections.map(sec => 
-                    "<div style=\"display: flex; flex-direction: column; gap: 12px;\">\n" +
-                    "  <div style=\"display: flex; align-items: center; justify-content: flex-start; gap: 10px; padding: 4px 14px 4px 4px; background: linear-gradient(90deg, #f0f4e8 0%, rgba(255,255,255,0) 100%); border-radius: 9999px; color: #455120; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 700; font-size: 14px; box-sizing: border-box; width: 100%;\">\n" +
-                    "    <span style=\"width: 26px; height: 26px; border-radius: 50%; background: #455120; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif;\">" + sec.roman + "</span>\n" +
-                    "    <span>" + sec.label + "</span>\n" +
-                    "  </div>\n" +
-                    "  <div style=\"display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px 10px;\">\n" +
-                    sec.questions.map((q, localIdx) => {
-                      const ans = answers[q.id];
-                      let isAns = false;
-                      if (q.type === 'tf4') {
-                        isAns = Array.isArray(ans) && ans.some(val => val !== null);
-                      } else {
-                        isAns = !!ans;
-                      }
-                      const dispNum = String(localIdx + 1).padStart(2, '0');
-                      return "" +
-                        "<button type=\"button\" class=\"nav-btn " + (isAns ? 'answered' : '') + "\" data-nav=\"" + q.id + "\" onclick=\"document.querySelector('[data-question-id=\\'" + q.id + "\\']').scrollIntoView({behavior: 'smooth', block: 'center'})\" style=\"width: 40px; height: 40px; border-radius: 50%; border: 1px solid " + (isAns ? '#455120' : '#e2e8f0') + "; background: " + (isAns ? '#455120' : '#ffffff') + "; color: " + (isAns ? '#ffffff' : '#1e293b') + "; cursor: pointer; font-family: 'Be Vietnam Pro', sans-serif; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; margin: 0 auto; transition: all 0.15s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.03);\">\n" +
-                        "  " + dispNum + "\n" +
-                        "</button>\n";
-                    }).join('') +
-                    "  </div>\n" +
-                    "</div>\n"
-                    ).join('');
-                  })()}
-                </div>
-
-                <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 10px;">
-                  <p id="autosave-status" class="autosave-status" style="font-size: 12px; text-align: center; color: #64748b; font-weight: 400; margin: 0;">${draft ? 'Đã lưu ' + formatDateTime(draft.savedAt) : 'Tự động lưu khi chọn'}</p>
-                  <button type="button" id="trigger-submit-modal-btn" style="width: 100%; height: 42px; background: #455120; color: #ffffff; border: none; border-radius: 9999px; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 500; font-size: 14.5px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s ease;">
-                    Kết thúc
-                  </button>
+                <div class="exam-nav-footer">
+                  <p id="autosave-status" class="autosave-status exam-autosave">${draft ? 'Đã lưu ' + formatDateTime(draft.savedAt) : 'Tự động lưu khi chọn'}</p>
+                  <button type="button" id="trigger-submit-modal-btn" class="exam-submit-btn">Nộp bài</button>
                 </div>
               </div>
             </aside>
-          </section>
+          </div>
 
           <!-- Submission Confirmation Modal -->
-          <div id="submit-confirm-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(2px); z-index: 9999; align-items: center; justify-content: center;">
-            <div style="background: #ffffff; border-radius: 20px; width: 90%; max-width: 400px; padding: 28px 24px; text-align: center; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.15); display: flex; flex-direction: column; align-items: center; gap: 16px;">
-              <button type="button" id="close-submit-modal-btn" style="position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 20px; color: #94a3b8; cursor: pointer;">&times;</button>
-              
-              <h3 style="margin: 0; color: #455120; font-family: 'Beautique Display', serif; font-size: 22px; font-weight: 700;">Xác nhận nộp bài</h3>
-              
-              <!-- Circular Progress Badge -->
-              <div style="width: 96px; height: 96px; border-radius: 50%; background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(#455120 calc(var(--modal-pct, 0) * 1%), #e2e8f0 0); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 8px 0;">
-                <span style="font-size: 20px; font-weight: 800; color: #455120; font-family: 'Beautique Display', serif;" id="modal-completion-ratio">0/0</span>
-                <span style="font-size: 11px; color: #64748b;">Tổng câu hỏi</span>
+          <div id="submit-confirm-modal" style="display: none; position: fixed; inset: 0; background: rgba(24, 27, 22, 0.42); backdrop-filter: blur(2px); z-index: 9999; align-items: center; justify-content: center;">
+            <div style="background: #ffffff; border-radius: 22px; width: 90%; max-width: 390px; padding: 28px 24px; text-align: center; position: relative; border: 1px solid #E4E6DE; box-shadow: 0 16px 36px rgba(24, 27, 22, 0.14); display: flex; flex-direction: column; align-items: center; gap: 16px;">
+              <button type="button" id="close-submit-modal-btn" style="position: absolute; top: 14px; right: 16px; background: none; border: none; font-size: 22px; color: #64695F; cursor: pointer;">&times;</button>
+
+              <h3 style="margin: 0; color: #181B16; font-family: var(--md-ref-typeface-brand); font-size: 22px; font-weight: 800;">Xác nhận nộp bài</h3>
+
+              <div style="width: 96px; height: 96px; border-radius: 50%; background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(#181B16 calc(var(--modal-pct, 0) * 1%), #EBEDE6 0); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 4px 0;">
+                <span style="font-size: 20px; font-weight: 800; color: #181B16;" id="modal-completion-ratio">0/0</span>
+                <span style="font-size: 11px; color: #64695F;">Câu đã làm</span>
               </div>
 
-              <p style="margin: 0; font-size: 14px; color: #475569; line-height: 1.5;">Bạn chưa hoàn thành bài thi.<br>Bạn có chắc chắn muốn nộp bài?</p>
-              
-              <div style="display: flex; gap: 12px; width: 100%; margin-top: 8px;">
-                <button type="button" id="modal-continue-btn" style="flex: 1; height: 42px; background: #f0f4e8; color: #455120; border: 1px solid #d8e2ca; border-radius: 9999px; font-weight: 600; font-size: 14px; cursor: pointer;">Làm tiếp</button>
-                <button type="button" id="modal-submit-btn" style="flex: 1; height: 42px; background: #455120; color: #ffffff; border: none; border-radius: 9999px; font-weight: 600; font-size: 14px; cursor: pointer;">Nộp bài</button>
+              <p style="margin: 0; font-size: 14px; color: #64695F; line-height: 1.5;">Bạn có chắc chắn muốn nộp bài ngay bây giờ?</p>
+
+              <div style="display: flex; gap: 10px; width: 100%; margin-top: 6px;">
+                <button type="button" id="modal-continue-btn" style="flex: 1; height: 42px; background: #EBEDE6; color: #181B16; border: none; border-radius: 9999px; font-weight: 600; font-size: 14px; cursor: pointer;">Làm tiếp</button>
+                <button type="button" id="modal-submit-btn" style="flex: 1; height: 42px; background: #181B16; color: #F7F7F2; border: none; border-radius: 9999px; font-weight: 600; font-size: 14px; cursor: pointer;">Nộp bài</button>
               </div>
             </div>
           </div>
-        </div>
+        </section>
         <style>
           .latex-exam-card img {
             display: block !important;
@@ -439,12 +346,12 @@ export async function mountAssignmentExam(id) {
             object-fit: contain !important;
           }
           .latex-choice-tile:hover .latex-radio-circle {
-            border-color: #455120 !important;
-            box-shadow: 0 0 0 3px rgba(69, 81, 32, 0.12) !important;
+            border-color: #181B16 !important;
+            box-shadow: 0 0 0 3px rgba(24, 27, 22, 0.12) !important;
           }
           .nav-btn:hover {
-            border-color: #455120 !important;
-            color: #455120 !important;
+            border-color: #181B16 !important;
+            color: #181B16 !important;
           }
           .nav-btn.answered:hover {
             color: #ffffff !important;
@@ -795,14 +702,8 @@ export function wireAnswerAutosave(assignment, assignmentId, draft) {
       }
       if (isAnswered) {
         btn.classList.add('answered');
-        btn.style.background = '#455120';
-        btn.style.color = '#ffffff';
-        btn.style.borderColor = '#455120';
       } else {
         btn.classList.remove('answered');
-        btn.style.background = '#ffffff';
-        btn.style.color = '#1e293b';
-        btn.style.borderColor = '#e2e8f0';
       }
     });
   };
@@ -827,21 +728,10 @@ export function wireAnswerAutosave(assignment, assignmentId, draft) {
       if (event.target?.type === 'radio') {
         const examCard = event.target.closest('.latex-exam-card');
         if (examCard) {
-          const labels = examCard.querySelectorAll('label');
-          labels.forEach(lbl => {
+          examCard.querySelectorAll('label').forEach((lbl) => {
             const radio = lbl.querySelector('input[type="radio"]');
-            const circle = lbl.querySelector('.latex-radio-circle');
-            const dot = circle ? circle.querySelector('div') : null;
-            if (radio && circle && dot) {
-              if (radio.checked) {
-                lbl.classList.add('selected');
-                circle.style.borderColor = '#455120';
-                dot.style.display = 'block';
-              } else {
-                lbl.classList.remove('selected');
-                circle.style.borderColor = '#cbd5e1';
-                dot.style.display = 'none';
-              }
+            if (radio) {
+              lbl.classList.toggle('selected', radio.checked);
             }
           });
         }
@@ -979,360 +869,230 @@ export async function mountReview(id) {
     
     if (review.assignment?.pdf_url === 'latex') {
       const score10 = review.attempt?.score_10 ?? 0;
+      const cleanedReviewTitle = (review.assignment?.title ?? 'Đề bài').replace(/Bài tập về nhà/gi, 'Bài tập');
+      const hasAnswerFn = (i) => {
+        if (Array.isArray(i.answer)) return i.answer.some((v) => v !== null && v !== undefined);
+        return i.answer !== null && i.answer !== undefined && String(i.answer).trim() !== '';
+      };
+      const correctCount = itemsWithQuestions.filter((i) => hasAnswerFn(i) && i.is_correct).length;
+      const wrongCount = itemsWithQuestions.filter((i) => hasAnswerFn(i) && !i.is_correct).length;
+      const skippedCount = itemsWithQuestions.filter((i) => !hasAnswerFn(i)).length;
+      const correctPct = Math.round((correctCount / (itemsWithQuestions.length || 1)) * 100);
+
+      const sections = [];
+      let currentSection = null;
+      itemsWithQuestions.forEach((item, index) => {
+        if (!currentSection || currentSection.type !== item.type) {
+          const sIdx = sections.length + 1;
+          const roman = ['I', 'II', 'III', 'IV', 'V'][sIdx - 1] || sIdx;
+          let label = 'Trắc nghiệm';
+          if (item.type === 'tf4') label = 'Đúng / Sai';
+          if (item.type === 'short') label = 'Trả lời ngắn';
+          currentSection = { type: item.type, roman, label, items: [] };
+          sections.push(currentSection);
+        }
+        currentSection.items.push({ ...item, globalIndex: index });
+      });
+
       root.innerHTML = `
-        <div style="background-color: #ebf1eb; min-height: 100vh; padding: 0 0 60px 0; margin: 0; font-family: 'Be Vietnam Pro', sans-serif;">
-          <!-- Top Breadcrumb Bar -->
-          <div style="background: #e2e8f0; color: #455120; border-bottom: 1px solid #cbd5e1; padding: 12px 0; margin-bottom: 24px;">
-            <div style="max-width: 1420px; width: 100%; margin: 0 auto; padding: 0 40px; font-size: 13.5px; font-weight: 500; display: flex; align-items: center; gap: 8px;">
-              <a href="#/learn" style="color: #455120; text-decoration: none; font-weight: 500;">Danh mục khóa học</a>
-              <span style="opacity: 0.6; font-size: 13px;">&rsaquo;</span>
-              <span style="font-weight: 700; color: #455120;">Kết quả làm bài - ${escapeHtml(review.assignment?.title ?? 'Đề bài')}</span>
+        <section class="exam-hub">
+          <!-- Dark Hero Banner -->
+          <header class="asg-overview-hero">
+            <a href="${review.assignment?.id ? `#/assignment/${review.assignment.id}` : '#/learn'}" class="phase-back-link">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+              <span>Quay lại</span>
+            </a>
+            <div class="asg-overview-hero-row">
+              <div class="asg-overview-hero-left">
+                <h1 class="phase-hero-title">${escapeHtml(cleanedReviewTitle)}</h1>
+              </div>
+              ${review.assignment?.id ? `
+                <div class="asg-overview-hero-actions">
+                  <a href="#/assignment/${review.assignment.id}" class="phase-hero-cta" style="text-decoration: none;">
+                    <span>Làm lại</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  </a>
+                </div>
+              ` : ''}
+            </div>
+          </header>
+
+          <!-- 3 Compact Soft Stat Blocks -->
+          <div class="asg-stat-grid">
+            <div class="asg-stat-card">
+              <span class="asg-stat-label">Điểm</span>
+              <div class="asg-stat-value">${formatScore(score10)}<span class="asg-stat-unit">/10</span></div>
+            </div>
+            <div class="asg-stat-card">
+              <span class="asg-stat-label">Trả lời đúng</span>
+              <div class="asg-stat-value">${correctCount}/${itemsWithQuestions.length}<span class="asg-stat-unit">câu</span></div>
+            </div>
+            <div class="asg-stat-card">
+              <span class="asg-stat-label">Thời gian</span>
+              <div class="asg-stat-value is-text">${escapeHtml(durationStr)}</div>
             </div>
           </div>
 
-          <section class="exam-shell" style="height: auto; max-width: 1420px; width: 100%; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: minmax(0, 1fr) 290px; gap: 24px; align-items: start;">
-            <!-- Left Main Content Column -->
-            <div style="min-width: 0; width: 100%; display: flex; flex-direction: column; gap: 24px;">
-              
-              <!-- Clean 1-Card Stats Block (Score, Questions, Time) -->
-              <div style="background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; padding: 32px 36px; display: flex; align-items: center; gap: 48px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);">
-                
-                <!-- Score Circle -->
-                <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; flex-shrink: 0;">
-                  <div style="position: relative; width: 160px; height: 160px; display: flex; align-items: center; justify-content: center;">
-                    <svg viewBox="0 0 36 36" style="position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg);">
-                      <path stroke="#e2e8f0" stroke-width="3" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                      <path stroke="#455120" stroke-width="3" stroke-dasharray="${score10 * 10}, 100" stroke-linecap="round" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                    </svg>
-                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1;">
-                      <span style="font-family: 'Beautique Display', serif; font-size: 13px; font-weight: 700; color: #667085; margin-bottom: 2px;">Điểm của em</span>
-                      <span style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 44px; font-weight: 800; color: #455120; line-height: 1;">${formatScore(score10)}</span>
-                    </div>
-                  </div>
-                </div>
+          <!-- 2-Column Review Layout -->
+          <div class="exam-layout">
+            <div class="exam-paper-col">
+              ${sections.map((sec) => `
+                <div class="exam-section-block">
+                  <div class="exam-section-label">Phần ${sec.roman} - ${sec.label}</div>
+                  <div class="exam-card-stack">
+                    ${sec.items.map((item, localIdx) => {
+                      const index = item.globalIndex;
+                      const hasAns = hasAnswerFn(item);
+                      const isCorrect = item.is_correct;
+                      const chosenAnswer = formatAnswer(item.answer);
+                      const correctAnswer = formatAnswer(item.correct_answer ?? item.accepted_answers);
+                      const cleanPrompt = item.prompt ? item.prompt.replace(/^Câu\s*\d+[\.\:\s]*/i, '') : '';
+                      const qNumStr = String(localIdx + 1).padStart(2, '0');
 
-                <!-- Vertical Divider -->
-                <div style="width: 1px; height: 80px; background: #E5ECD9; flex-shrink: 0;"></div>
+                      const statusClass = !hasAns ? 'is-skip' : (isCorrect ? 'is-ok' : 'is-bad');
+                      const statusText = !hasAns ? 'Chưa làm' : (isCorrect ? 'Đúng' : 'Sai');
 
-                <!-- Stats Right: Số câu hỏi & Thời gian làm bài -->
-                <div style="display: flex; gap: 48px; flex: 1;">
-                  <!-- Số câu hỏi -->
-                  <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <span style="font-family: 'Beautique Display', serif; font-size: 15px; font-weight: 700; color: #475467;">Số câu hỏi</span>
-                    <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px;">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #455120; opacity: 0.85;"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-                      <span style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 18px; font-weight: 600; color: #101828; line-height: 1; display: inline-block; transform: translateY(1px);">${items.length}</span>
-                    </div>
-                  </div>
-
-                  <!-- Thời gian làm bài -->
-                  <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <span style="font-family: 'Beautique Display', serif; font-size: 15px; font-weight: 700; color: #475467;">Thời gian làm bài</span>
-                    <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px;">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #455120; opacity: 0.85;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                      <span style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 17px; font-weight: 600; color: #101828; line-height: 1; display: inline-block; transform: translateY(1px);">${durationStr}</span>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            
-            <div class="latex-review-list" style="display: flex; flex-direction: column; gap: 28px; background: #ffffff; padding: 32px 40px; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 2px 12px rgba(0,0,0,0.02);">
-
-            ${(() => {
-              const sections = [];
-              let currentSection = null;
-              
-              itemsWithQuestions.forEach((item, index) => {
-                if (!currentSection || currentSection.type !== item.type) {
-                  const sIdx = sections.length + 1;
-                  const roman = ['I', 'II', 'III', 'IV', 'V'][sIdx - 1] || sIdx;
-                  let label = 'Trắc nghiệm';
-                  if (item.type === 'tf4') label = 'Đúng/sai';
-                  if (item.type === 'short') label = 'Trả lời ngắn';
-                  
-                  currentSection = {
-                    type: item.type,
-                    roman: roman,
-                    label: label,
-                    items: []
-                  };
-                  sections.push(currentSection);
-                }
-                currentSection.items.push({ ...item, globalIndex: index });
-              });
-
-              return sections.map(sec => 
-                "<!-- Section Header -->\n" +
-                "<div style=\"display: flex; align-items: center; justify-content: flex-start; gap: 10px; padding: 4px 16px 4px 4px; background: #f0f4e8; border: 1px solid #d8e2ca; border-radius: 9999px; color: #455120; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 700; font-size: 15px; box-sizing: border-box; width: 100%;\">\n" +
-                "  <span style=\"width: 28px; height: 28px; border-radius: 50%; background: #455120; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif;\">" + sec.roman + "</span>\n" +
-                "  <span>" + sec.label + "</span>\n" +
-                "</div>\n" +
-                sec.items.map((item, localIdx) => {
-                  const index = item.globalIndex;
-                  const hasAns = item.answer !== null && item.answer !== undefined && String(item.answer).trim() !== '';
-                  const isCorrect = item.is_correct;
-                  const chosenAnswer = formatAnswer(item.answer);
-                  const correctAnswer = formatAnswer(item.correct_answer ?? item.accepted_answers);
-                  const cleanPrompt = item.prompt ? item.prompt.replace(/^Câu\\s*\\d+[\\.\\:\\s]*/i, '') : '';
-                  const qNumStr = String(localIdx + 1).padStart(2, '0');
-
-                  let badgeHtml = '';
-                  if (!hasAns) {
-                    badgeHtml = `<span style="background: #f1f5f9; color: #475467; border: 1px solid #cbd5e1; padding: 4px 12px; border-radius: 9999px; font-size: 12.5px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif;">Chưa trả lời</span>`;
-                  } else if (isCorrect) {
-                    badgeHtml = `<span style="background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; padding: 4px 12px; border-radius: 9999px; font-size: 12.5px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif;">Đúng</span>`;
-                  } else {
-                    badgeHtml = `<span style="background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; padding: 4px 12px; border-radius: 9999px; font-size: 12.5px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif;">Sai</span>`;
-                  }
-
-                  let qHTML = 
-                  "<article id=\"latex-review-q" + index + "\" class=\"latex-exam-card\" style=\"display: flex; flex-direction: column; gap: 14px; padding-bottom: 28px; border-bottom: 1px solid #f1f5f9;\">\n" +
-                  "  <div style=\"display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;\">\n" +
-                  "    <div style=\"font-size: 15px; color: #1e293b; line-height: 1.6; flex: 1;\">\n" +
-                  "      <span style=\"font-weight: 900; color: #455120; font-size: 17px; font-family: 'Beautique Display', serif; letter-spacing: 0.5px; margin-right: 12px; display: inline-block;\">CÂU " + qNumStr + "</span>\n" +
-                  "      <span style=\"font-weight: 500; color: #1e293b; font-size: 15px;\">" + renderLatexText(cleanPrompt) + "</span>\n" +
-                  "    </div>\n" +
-                  "    <div style=\"flex-shrink: 0;\">" + badgeHtml + "</div>\n" +
-                  "  </div>\n";
-
-                  if (item.type === 'mcq') {
-                    qHTML += 
-                    "<div class=\"choice-grid\" style=\"display: flex; flex-direction: column; gap: 8px; padding-left: 2px; margin-top: 4px;\">\n" +
-                    (item.choices ?? []).map((choice, cIdx) => {
-                      const letter = String.fromCharCode(65 + cIdx);
-                      const isChosen = chosenAnswer === letter;
-                      const isCorrectChoice = correctAnswer === letter;
-                      
-                      let wrapperBg = '#ffffff';
-                      let wrapperBorder = 'transparent';
-                      let circleBorder = '#cbd5e1';
-                      let circleBg = '#ffffff';
-                      let dotDisplay = 'none';
-                      let dotColor = '#455120';
-                      let tag = '';
-
-                      if (isChosen && isCorrectChoice) {
-                        wrapperBg = '#f0fdf4';
-                        wrapperBorder = '#bbf7d0';
-                        circleBorder = '#166534';
-                        circleBg = '#ffffff';
-                        dotDisplay = 'block';
-                        dotColor = '#166534';
-                        tag = `<span style="background: #166534; color: #ffffff; padding: 2px 8px; border-radius: 6px; font-size: 11.5px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif; margin-left: auto; flex-shrink: 0;">Bạn chọn (Đúng)</span>`;
-                      } else if (isChosen && !isCorrectChoice) {
-                        wrapperBg = '#fef2f2';
-                        wrapperBorder = '#fecaca';
-                        circleBorder = '#dc2626';
-                        circleBg = '#ffffff';
-                        dotDisplay = 'block';
-                        dotColor = '#dc2626';
-                        tag = `<span style="background: #dc2626; color: #ffffff; padding: 2px 8px; border-radius: 6px; font-size: 11.5px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif; margin-left: auto; flex-shrink: 0;">Bạn chọn (Sai)</span>`;
-                      } else if (isCorrectChoice) {
-                        wrapperBg = '#f0fdf4';
-                        wrapperBorder = '#bbf7d0';
-                        circleBorder = '#166534';
-                        circleBg = '#ffffff';
-                        tag = `<span style="background: #455120; color: #ffffff; padding: 2px 8px; border-radius: 6px; font-size: 11.5px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif; margin-left: auto; flex-shrink: 0;">Đáp án đúng</span>`;
+                      let bodyHtml = '';
+                      if (item.type === 'mcq') {
+                        bodyHtml = `
+                          <div class="exam-mcq-grid">
+                            ${(item.choices ?? []).map((choice, cIdx) => {
+                              const letter = String.fromCharCode(65 + cIdx);
+                              const isChosen = chosenAnswer === letter;
+                              const isCorrectChoice = correctAnswer === letter;
+                              let stateCls = '';
+                              if (isCorrectChoice) stateCls = 'is-correct';
+                              else if (isChosen) stateCls = 'is-wrong';
+                              return `
+                                <div class="review-choice-tile ${stateCls}">
+                                  <span class="review-choice-letter">${letter}</span>
+                                  <span class="review-choice-text">${renderLatexText(choice)}</span>
+                                </div>
+                              `;
+                            }).join('')}
+                          </div>
+                        `;
+                      } else if (item.type === 'tf4') {
+                        bodyHtml = `
+                          <div class="exam-tf-list">
+                            ${(item.settings?.statements || []).map((stmt, cIdx) => {
+                              const userAns = Array.isArray(item.answer) ? item.answer[cIdx] : null;
+                              const correctAns = Array.isArray(item.correct_answer) ? item.correct_answer[cIdx] : null;
+                              const pillState = (val) => {
+                                if (correctAns === val) return 'is-correct';
+                                if (userAns === val && userAns !== correctAns) return 'is-wrong';
+                                return '';
+                              };
+                              return `
+                                <div class="exam-tf-row">
+                                  <div class="exam-tf-stmt">${renderLatexText(stmt)}</div>
+                                  <div class="exam-tf-actions">
+                                    <span class="review-tf-pill ${pillState(true)}">Đúng</span>
+                                    <span class="review-tf-pill ${pillState(false)}">Sai</span>
+                                  </div>
+                                </div>
+                              `;
+                            }).join('')}
+                          </div>
+                        `;
+                      } else if (item.type === 'short') {
+                        bodyHtml = `
+                          <div class="review-short-grid">
+                            <div class="review-short-chip ${!hasAns ? '' : (isCorrect ? 'is-correct' : 'is-wrong')}">
+                              <span class="review-short-k">Bạn trả lời</span>
+                              <strong class="review-short-v">${escapeHtml(hasAns ? String(item.answer) : '—')}</strong>
+                            </div>
+                            <div class="review-short-chip is-correct">
+                              <span class="review-short-k">Đáp án</span>
+                              <strong class="review-short-v">${escapeHtml(String(item.correct_answer ?? item.accepted_answers ?? '—'))}</strong>
+                            </div>
+                          </div>
+                        `;
                       }
 
-                      return "" +
-                        "<div style=\"display: flex; gap: 10px; align-items: center; padding: 8px 12px; border-radius: 8px; background: " + wrapperBg + "; border: 1px solid " + wrapperBorder + "; transition: all 0.15s ease;\">\n" +
-                        "  <div class=\"latex-radio-circle\" style=\"width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid " + circleBorder + "; background: " + circleBg + "; display: flex; align-items: center; justify-content: center; flex-shrink: 0;\">\n" +
-                        "    <div class=\"dot\" style=\"width: 8px; height: 8px; border-radius: 50%; background: " + dotColor + "; display: " + dotDisplay + ";\"></div>\n" +
-                        "  </div>\n" +
-                        "  <div style=\"font-size: 14.5px; line-height: 1.5; color: #1e293b; display: flex; align-items: center; gap: 4px; flex: 1;\">\n" +
-                        "    <span style=\"font-weight: 800; color: #1e293b;\">" + letter + ".</span><span>" + renderLatexText(choice) + "</span>\n" +
-                        "  </div>\n" +
-                        "  " + tag + "\n" +
-                        "</div>\n";
-                    }).join('') +
-                    "</div>\n" +
-                    "<div style=\"margin-top: 14px;\">\n" +
-                    "  <div style=\"font-size: 16px; font-weight: 900; color: #455120; font-family: 'Beautique Display', serif; margin-bottom: 6px;\">Đáp án</div>\n" +
-                    "  <div style=\"font-size: 14.5px; font-weight: 700; color: #1e293b; line-height: 1.6;\">\n" +
-                    "    " + correctAnswer + ". " + (item.choices && item.choices[correctAnswer.charCodeAt(0) - 65] ? renderLatexText(item.choices[correctAnswer.charCodeAt(0) - 65]) : '') + "\n" +
-                    "  </div>\n" +
-                    "</div>\n";
-                  } else if (item.type === 'tf4') {
-                    qHTML += 
-                    "<div style=\"margin-top: 8px; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;\">\n" +
-                    "  <table style=\"width: 100%; border-collapse: collapse; font-size: 14px; text-align: left;\">\n" +
-                    "    <thead>\n" +
-                    "      <tr style=\"background: #f8fafc; border-bottom: 1px solid #e2e8f0;\">\n" +
-                    "        <th style=\"padding: 12px 16px; font-weight: 700; color: #1e293b; text-align: left;\">Phát biểu</th>\n" +
-                    "        <th style=\"padding: 12px 16px; font-weight: 700; color: #1e293b; width: 90px; text-align: center; border-left: 1px solid #e2e8f0;\">Đúng</th>\n" +
-                    "        <th style=\"padding: 12px 16px; font-weight: 700; color: #1e293b; width: 90px; text-align: center; border-left: 1px solid #e2e8f0;\">Sai</th>\n" +
-                    "      </tr>\n" +
-                    "    </thead>\n" +
-                    "    <tbody>\n" +
-                    (item.settings?.statements || []).map((stmt, cIdx) => {
-                      const userAns = Array.isArray(item.answer) ? item.answer[cIdx] : null;
-                      const correctAns = Array.isArray(item.correct_answer) ? item.correct_answer[cIdx] : null;
-                      const isCorrectRow = userAns === correctAns;
-                      const bg = userAns !== null ? (isCorrectRow ? '#f0fdf4' : '#fef2f2') : '#ffffff';
-                      
-                      const renderCircle = (val) => {
-                        const isChosen = userAns === val;
-                        const isCorrectTarget = correctAns === val;
-                        
-                        let circleBorder = '#cbd5e1';
-                        let dotDisplay = 'none';
-                        let dotColor = '#455120';
-                        let checkIcon = '';
+                      const explanationHtml = item.settings?.explanation
+                        ? `
+                          <div class="review-explain">
+                            <div class="review-explain-title">Lời giải</div>
+                            <div class="review-explain-body">${renderLatexText(item.settings.explanation)}</div>
+                          </div>
+                        `
+                        : '';
 
-                        if (isChosen) {
-                          circleBorder = isCorrectRow ? '#166534' : '#dc2626';
-                          dotDisplay = 'block';
-                          dotColor = isCorrectRow ? '#166534' : '#dc2626';
-                        }
-                        
-                        if (isCorrectTarget && !isChosen) {
-                          checkIcon = `<div style="position: absolute; width: 10px; height: 10px; border-radius: 50%; background: #455120;"></div>`;
-                          circleBorder = '#455120';
-                        }
-
-                        return "" +
-                        "<div style=\"width: 20px; height: 20px; border-radius: 50%; border: 2px solid " + circleBorder + "; background: #ffffff; display: flex; align-items: center; justify-content: center; position: relative; margin: 0 auto;\">\n" +
-                        "  <div style=\"width: 10px; height: 10px; border-radius: 50%; background: " + dotColor + "; display: " + dotDisplay + ";\"></div>\n" +
-                        "  " + checkIcon + "\n" +
-                        "</div>\n";
-                      };
-
-                      return "" +
-                      "<tr style=\"border-bottom: 1px solid #e2e8f0; background: " + bg + ";\">\n" +
-                      "  <td style=\"padding: 12px 16px; color: #1e293b; line-height: 1.5;\">" + renderLatexText(stmt) + "</td>\n" +
-                      "  <td style=\"padding: 12px 16px; text-align: center; border-left: 1px solid #e2e8f0; vertical-align: middle;\">\n" +
-                      "    " + renderCircle(true) + "\n" +
-                      "  </td>\n" +
-                      "  <td style=\"padding: 12px 16px; text-align: center; border-left: 1px solid #e2e8f0; vertical-align: middle;\">\n" +
-                      "    " + renderCircle(false) + "\n" +
-                      "  </td>\n" +
-                      "</tr>\n";
-                    }).join('') +
-                    "    </tbody>\n" +
-                    "  </table>\n" +
-                    "</div>\n";
-                  } else if (item.type === 'short') {
-                    qHTML += 
-                    "<div style=\"margin-top: 12px; display: flex; align-items: center; gap: 12px;\">\n" +
-                    "  <span style=\"font-size: 15px; font-weight: 700; color: #1e293b;\">Bạn trả lời:</span>\n" +
-                    "  <div style=\"height: 36px; padding: 0 16px; border-radius: 8px; border: 1px solid " + (isCorrect ? '#bbf7d0' : '#fecaca') + "; background: " + (isCorrect ? '#f0fdf4' : '#fef2f2') + "; font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 600; color: " + (isCorrect ? '#166534' : '#991b1b') + "; display: flex; align-items: center;\">\n" +
-                    "    " + escapeHtml(item.answer || '') + "\n" +
-                    "  </div>\n" +
-                    "</div>\n" +
-                    "<div style=\"margin-top: 12px; display: flex; align-items: center; gap: 12px;\">\n" +
-                    "  <span style=\"font-size: 15px; font-weight: 700; color: #1e293b;\">Đáp án đúng:</span>\n" +
-                    "  <div style=\"height: 36px; padding: 0 16px; border-radius: 8px; border: 1px solid #cbd5e1; background: #f8fafc; font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 600; color: #0f172a; display: flex; align-items: center;\">\n" +
-                    "    " + escapeHtml(item.correct_answer ?? item.accepted_answers ?? '') + "\n" +
-                    "  </div>\n" +
-                    "</div>\n";
-                  }
-
-                  qHTML += 
-                  "<div style=\"margin-top: 18px;\">\n" +
-                  "  <div style=\"font-size: 16px; font-weight: 900; color: #455120; font-family: 'Beautique Display', serif; margin-bottom: 8px;\">Hướng dẫn giải chi tiết</div>\n" +
-                  "  <div style=\"font-size: 14.5px; line-height: 2.2; color: #334155;\">\n" +
-                  "    " + (item.settings?.explanation ? renderLatexText(item.settings.explanation) : '<i style=\"color: #94a3b8;\">Chưa có lời giải chi tiết cho câu hỏi này.</i>') + "\n" +
-                  "  </div>\n" +
-                  "</div>\n" +
-                  "</article>\n";
-
-                  return qHTML;
-                }).join('')
-              ).join('');
-            })()}
-            </div>
-            </div>
-            
-            <aside class="exam-navigator" style="position: sticky; top: 88px; display: flex; flex-direction: column; gap: 16px;">
-              <div style="background: #ffffff; border-radius: 16px; border: 1px solid #e2e8f0; padding: 20px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 2px 10px rgba(0,0,0,0.02);">
-                <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 14px;">
-                  <span style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 14px; font-weight: 700; color: #1e293b;">Bạn trả lời đúng</span>
-                  <span style="font-size: 16px; font-weight: 800; color: #455120; font-family: 'Be Vietnam Pro', sans-serif;">${items.filter(i => (i.answer !== null && i.answer !== undefined && String(i.answer).trim() !== '') && i.is_correct).length}/${items.length}</span>
+                      return `
+                        <article id="latex-review-q${index}" class="latex-exam-card exam-q-card">
+                          <div class="review-q-top">
+                            <div class="exam-q-head">
+                              <span class="exam-q-badge">Câu ${qNumStr}</span>
+                              <div class="exam-q-prompt">${renderLatexText(cleanPrompt)}</div>
+                            </div>
+                            <span class="review-status-pill ${statusClass}">${statusText}</span>
+                          </div>
+                          ${bodyHtml}
+                          ${explanationHtml}
+                        </article>
+                      `;
+                    }).join('')}
+                  </div>
                 </div>
-          
-          <div style="display: flex; flex-direction: column; gap: 16px;">
-            ${(() => {
-              const sections = [];
-              let currentSection = null;
-              
-              itemsWithQuestions.forEach((item, index) => {
-                if (!currentSection || currentSection.type !== item.type) {
-                  const sIdx = sections.length + 1;
-                  const roman = ['I', 'II', 'III', 'IV', 'V'][sIdx - 1] || sIdx;
-                  let label = 'Trắc nghiệm';
-                  if (item.type === 'tf4') label = 'Đúng/sai';
-                  if (item.type === 'short') label = 'Trả lời ngắn';
-                  
-                  currentSection = {
-                    type: item.type,
-                    roman: roman,
-                    label: label,
-                    items: []
-                  };
-                  sections.push(currentSection);
-                }
-                currentSection.items.push({ ...item, globalIndex: index });
-              });
+              `).join('')}
+            </div>
 
-              return sections.map(sec => 
-              "<div style=\"display: flex; flex-direction: column; gap: 12px;\">\n" +
-              "  <div style=\"display: flex; align-items: center; justify-content: flex-start; gap: 10px; padding: 4px 14px 4px 4px; background: #f0f4e8; border: 1px solid #d8e2ca; border-radius: 9999px; color: #455120; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 700; font-size: 14px; width: 100%; box-sizing: border-box;\">\n" +
-              "    <span style=\"width: 26px; height: 26px; border-radius: 50%; background: #455120; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; font-family: 'Be Vietnam Pro', sans-serif;\">" + sec.roman + "</span>\n" +
-              "    <span>" + sec.label + "</span>\n" +
-              "  </div>\n" +
-              "  <div style=\"display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px 10px;\">\n" +
-              sec.items.map((i, localIdx) => {
-                const idx = i.globalIndex;
-                const hasAns = i.answer !== null && i.answer !== undefined && String(i.answer).trim() !== '';
-                let bg = '#ffffff';
-                let border = '#cbd5e1';
-                let color = '#475467';
+            <!-- Right Sticky Review Navigator -->
+            <aside class="exam-navigator exam-nav-col">
+              <div class="exam-nav-card">
+                <div class="exam-nav-progress">
+                  <div class="exam-nav-progress-head">
+                    <span class="exam-nav-progress-label">Đúng</span>
+                    <span class="exam-nav-progress-count">${correctCount}/${itemsWithQuestions.length}</span>
+                  </div>
+                  <div class="exam-nav-bar-track">
+                    <div class="exam-nav-bar-fill" style="width: ${correctPct}%;"></div>
+                  </div>
+                </div>
 
-                if (!hasAns) {
-                  bg = '#f1f5f9';
-                  border = '#cbd5e1';
-                  color = '#475467';
-                } else if (i.is_correct) {
-                  bg = '#455120';
-                  border = '#455120';
-                  color = '#ffffff';
-                } else {
-                  bg = '#c62828';
-                  border = '#c62828';
-                  color = '#ffffff';
-                }
-                const dispNum = String(localIdx + 1).padStart(2, '0');
-                return "" +
-                  "<button type=\"button\" onclick=\"document.getElementById('latex-review-q" + idx + "').scrollIntoView({behavior: 'smooth', block: 'center'})\" style=\"width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: " + bg + "; color: " + color + "; font-weight: 700; font-size: 13px; border: 1px solid " + border + "; cursor: pointer; transition: all 0.15s ease; font-family: 'Be Vietnam Pro', sans-serif; margin: 0 auto; box-shadow: 0 1px 3px rgba(0,0,0,0.02);\">\n" +
-                  "  " + dispNum + "\n" +
-                  "</button>\n";
-              }).join('') +
-              "  </div>\n" +
-              "</div>\n"
-              ).join('');
-            })()}
+                <div class="exam-nav-sections">
+                  ${sections.map((sec) => `
+                    <div class="exam-nav-section">
+                      ${sections.length > 1 ? `<div class="exam-nav-sec-title">Phần ${sec.roman} - ${sec.label}</div>` : ''}
+                      <div class="exam-nav-grid">
+                        ${sec.items.map((i, localIdx) => {
+                          const idx = i.globalIndex;
+                          const hasAns = hasAnswerFn(i);
+                          const cls = !hasAns ? '' : (i.is_correct ? 'is-ok' : 'is-bad');
+                          const dispNum = String(localIdx + 1).padStart(2, '0');
+                          return `
+                            <button type="button" class="exam-nav-btn ${cls}" onclick="document.getElementById('latex-review-q${idx}')?.scrollIntoView({behavior: 'smooth', block: 'center'})">
+                              ${dispNum}
+                            </button>
+                          `;
+                        }).join('')}
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+
+                <div class="review-legend">
+                  <div class="review-legend-row">
+                    <span class="review-legend-dot is-ok"></span>
+                    <span>Đúng</span>
+                    <strong>${correctCount}</strong>
+                  </div>
+                  <div class="review-legend-row">
+                    <span class="review-legend-dot is-bad"></span>
+                    <span>Sai</span>
+                    <strong>${wrongCount}</strong>
+                  </div>
+                  <div class="review-legend-row">
+                    <span class="review-legend-dot is-skip"></span>
+                    <span>Chưa làm</span>
+                    <strong>${skippedCount}</strong>
+                  </div>
+                </div>
+              </div>
+            </aside>
           </div>
-          
-          <div style="margin-top: 8px; border-top: 1px solid #e2e8f0; padding-top: 16px; display: flex; flex-direction: column; gap: 10px;">
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <div style="width: 24px; height: 24px; border-radius: 50%; background: #f1f5f9; color: #475467; border: 1px solid #cbd5e1; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; font-family: 'Be Vietnam Pro', sans-serif;">${items.filter(i => i.answer === null || i.answer === undefined || String(i.answer).trim() === '').length}</div>
-              <span style="font-size: 13.5px; color: #475467; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 500;">Câu chưa trả lời</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <div style="width: 24px; height: 24px; border-radius: 50%; background: #455120; color: #ffffff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; font-family: 'Be Vietnam Pro', sans-serif;">${items.filter(i => (i.answer !== null && i.answer !== undefined && String(i.answer).trim() !== '') && i.is_correct).length}</div>
-              <span style="font-size: 13.5px; color: #475467; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 500;">Câu trả lời đúng</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <div style="width: 24px; height: 24px; border-radius: 50%; background: #c62828; color: #ffffff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; font-family: 'Be Vietnam Pro', sans-serif;">${items.filter(i => (i.answer !== null && i.answer !== undefined && String(i.answer).trim() !== '') && !i.is_correct).length}</div>
-              <span style="font-size: 13.5px; color: #475467; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 500;">Câu trả lời sai</span>
-            </div>
-          </div>
-        </div>
-        </aside>
         </section>
-        </div>
         <style>
           .latex-exam-card img {
             display: block !important;
@@ -1363,8 +1123,8 @@ export async function mountReview(id) {
             ${state.profile.role === 'student' && review.assignment?.pdf_url && review.assignment?.pdf_url !== 'latex' ? `
               <div class="panel" style="padding: 48px 24px; text-align: center; color: #667085; background: #ffffff; border-radius: 16px; border: 1px solid #E5ECD9; margin-top: 12px;">
                 <md-icon style="font-size: 48px; color: #98A2B3; margin-bottom: 12px;">lock</md-icon>
-                <h3 style="font-family: 'Beautique Display', serif; font-size: 18px; color: #455120; margin: 0 0 8px 0;">Đề bài PDF đã khóa truy cập</h3>
-                <p style="margin: 0; font-size: 14px; color: #667085; font-family: 'Be Vietnam Pro', sans-serif;">Tài liệu đề bài PDF đã đóng. Bạn vẫn có thể xem lại đáp án và kết quả chấm điểm ở cột bên phải.</p>
+                <h3 style="font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif; font-size: 18px; color: #181B16; margin: 0 0 8px 0;">Đề bài PDF đã khóa truy cập</h3>
+                <p style="margin: 0; font-size: 14px; color: #667085; font-family: 'Google Sans', sans-serif;">Tài liệu đề bài PDF đã đóng. Bạn vẫn có thể xem lại đáp án và kết quả chấm điểm ở cột bên phải.</p>
               </div>
             ` : driveFrame(review.assignment?.pdf_url, review.assignment?.title ?? 'Đề bài', true)}
           </div>

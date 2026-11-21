@@ -33,48 +33,60 @@ function renderShell() {
   app.innerHTML = `
     <div class="app-shell">
       <header class="nh-header">
-        <div class="nh-header-left">
-          <a href="#/learn" class="nh-logo-box">
-            <span class="nh-logo-title">CANVAS</span>
-            <span class="nh-logo-sub">Hướng tới kỳ thi THPTQG 2027</span>
-          </a>
-        </div>
-
-        <div class="nh-header-right">
-          <div class="nh-user-avatar" id="nh-avatar-trigger" title="Hồ sơ cá nhân">
-            ${initial}
+        <div class="nh-header-inner">
+          <div class="nh-header-left">
+            <a href="#/learn" class="nh-logo-box">
+              <span class="nh-logo-title">CANVAS</span>
+            </a>
           </div>
 
-          <!-- User Dropdown -->
-          <div class="nh-user-dropdown" id="nh-user-dropdown">
-            <div class="nh-dropdown-header">
-              <div class="nh-dropdown-avatar">${initial}</div>
-              <div class="nh-dropdown-info">
-                <span class="nh-dropdown-name">${fullName}</span>
-                <span class="nh-dropdown-email">${userEmail}</span>
+          <div class="nh-header-right">
+            ${isManager() ? `
+              <a href="#/manage" class="nh-header-pill">Quản trị</a>
+            ` : `
+              <a href="#/grades" class="nh-header-pill">Bảng điểm</a>
+            `}
+            <button type="button" class="nh-user-avatar" id="nh-avatar-trigger" title="Hồ sơ cá nhân" aria-label="Hồ sơ cá nhân">
+              ${initial}
+            </button>
+
+            <!-- User Dropdown -->
+            <div class="nh-user-dropdown" id="nh-user-dropdown">
+              <div class="nh-dropdown-header">
+                <div class="nh-dropdown-avatar">${initial}</div>
+                <div class="nh-dropdown-info">
+                  <span class="nh-dropdown-name">${fullName}</span>
+                  <span class="nh-dropdown-email">${userEmail}</span>
+                </div>
               </div>
-            </div>
-            <div class="nh-dropdown-menu">
-              ${isManager() ? `
-                <a href="#/manage" class="nh-dropdown-item" style="color: var(--md-sys-color-primary); font-weight: 600;">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                  Trang Quản lý
+              <div class="nh-dropdown-menu">
+                ${isManager() ? `
+                  <a href="#/manage" class="nh-dropdown-item nh-dropdown-item--strong">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    Trang Quản lý
+                  </a>
+                  <div class="nh-dropdown-sep"></div>
+                ` : ''}
+                <a href="#/learn" class="nh-dropdown-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                  Khoá học của tôi
                 </a>
-                <div style="height: 1px; background: #f0f2f5; margin: 2px 0;"></div>
-              ` : ''}
-              <a href="#/settings" class="nh-dropdown-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                Trang cá nhân
-              </a>
-              <a href="#/learn" class="nh-dropdown-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-                Khoá học của tôi
-              </a>
-              <div style="height: 1px; background: #f0f2f5; margin: 2px 0;"></div>
-              <button id="nh-logout-btn" class="nh-dropdown-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-                Đăng xuất
-              </button>
+                ${!isManager() ? `
+                  <a href="#/grades" class="nh-dropdown-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="m19 9-5 5-4-4-3 3"></path></svg>
+                    Bảng điểm
+                  </a>
+                ` : ''}
+                <a href="#/settings" class="nh-dropdown-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                  Trang cá nhân
+                </a>
+                <div class="nh-dropdown-sep"></div>
+                <button type="button" id="nh-logout-btn" class="nh-dropdown-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                  Đăng xuất
+                </button>
+              </div>
             </div>
           </div>
         </div>

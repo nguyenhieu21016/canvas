@@ -44,9 +44,9 @@ export function renderAccountAvatar(profile, className = 'account-avatar') {
 
 export function renderLoading(label = 'Đang tải dữ liệu') {
   return `
-    <div class="loading-state" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 48px; color: #455120;">
+    <div class="loading-state" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 48px; color: #181B16;">
       <svg class="nh-spinner" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation: nh-spin 0.8s linear infinite;"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>
-      <span style="font-size: 14px; font-weight: 500;">${escapeHtml(label)}</span>
+      <span style="font-size: 14px; font-weight: 500; color: #64695F;">${escapeHtml(label)}</span>
     </div>
   `;
 }
@@ -86,18 +86,47 @@ export function renderSkeletonDashboard() {
 
 export function renderSkeletonAssignments() {
   return `
-    <section class="assignment-manager" style="display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 18px; align-items: start; opacity: 0.85; padding: var(--page-gutter);">
-      <aside class="panel list-panel" style="border-radius: 16px; background: #ffffff; padding: 16px; display: flex; flex-direction: column; gap: 16px;">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <div class="skeleton" style="width: 120px; height: 22px;"></div>
-          <div class="skeleton" style="width: 60px; height: 32px; border-radius: 16px;"></div>
+    <div class="nh-admin-breadcrumb-bar">
+      <div class="nh-admin-breadcrumb-inner">
+        <span class="skeleton" style="width: 112px; height: 14px; border-radius: 4px;"></span>
+        <span class="sep" aria-hidden="true">/</span>
+        <span class="skeleton" style="width: 150px; height: 14px; border-radius: 4px;"></span>
+      </div>
+    </div>
+    <section style="min-height: calc(100vh - 110px); background: #F7F7F2; padding-bottom: 48px;">
+      <div style="max-width: 920px; width: 100%; margin: 0 auto; padding: 24px 16px 0; display: flex; flex-direction: column; gap: 20px; opacity: 0.88;">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div class="skeleton" style="width: 240px; height: 30px; border-radius: 8px;"></div>
+            <div class="skeleton" style="width: 210px; height: 14px; border-radius: 4px;"></div>
+          </div>
+          <div class="skeleton" style="width: 130px; height: 40px; border-radius: 9999px;"></div>
         </div>
-      </aside>
-
-      <div style="display: flex; flex-direction: column; gap: 18px;">
-        <div class="panel" style="border-radius: 16px; background: #ffffff; padding: 24px; display: flex; flex-direction: column; gap: 16px; height: 400px;">
-          <div class="skeleton" style="width: 200px; height: 28px;"></div>
-          <div class="skeleton" style="width: 100%; height: 200px; border-radius: 8px; margin-top: 12px;"></div>
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+          <div style="display: flex; gap: 8px;">
+            <div class="skeleton" style="width: 92px; height: 36px; border-radius: 9999px;"></div>
+            <div class="skeleton" style="width: 124px; height: 36px; border-radius: 9999px;"></div>
+            <div class="skeleton" style="width: 112px; height: 36px; border-radius: 9999px;"></div>
+          </div>
+          <div class="skeleton" style="width: 288px; max-width: 100%; height: 40px; border-radius: 9999px;"></div>
+        </div>
+        <div style="border-radius: 20px; border: 1px solid #E4E6DE; background: #ffffff; overflow: hidden;">
+          ${[1, 2, 3, 4, 5].map((i) => `
+            <div style="padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; ${i > 1 ? 'border-top: 1px solid #E4E6DE;' : ''}">
+              <div style="display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 0;">
+                <div class="skeleton" style="width: 62%; height: 16px; border-radius: 4px;"></div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div class="skeleton" style="width: 96px; height: 22px; border-radius: 9999px;"></div>
+                  <div class="skeleton" style="width: 40%; height: 12px; border-radius: 4px;"></div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div class="skeleton" style="width: 68px; height: 14px; border-radius: 4px;"></div>
+                <div class="skeleton" style="width: 32px; height: 32px; border-radius: 8px;"></div>
+                <div class="skeleton" style="width: 32px; height: 32px; border-radius: 8px;"></div>
+              </div>
+            </div>
+          `).join('')}
         </div>
       </div>
     </section>
@@ -119,7 +148,7 @@ export function renderStateMessage({ tone = 'empty', icon = 'info', title, messa
       }
       ${
         retry
-          ? '<button class="text-link state-action" type="button" data-retry-route style="padding: 8px 16px; border-radius: 9999px; background: #F0F4E8; color: #455120; border: 1px solid #D8E2CA; font-weight: 600; cursor: pointer;">Thử lại</button>'
+          ? '<button class="text-link state-action" type="button" data-retry-route style="padding: 8px 16px; border-radius: 9999px; background: #EBEDE6; color: #181B16; border: 0; font-weight: 600; cursor: pointer;">Thử lại</button>'
           : ''
       }
     </div>

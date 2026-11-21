@@ -46,7 +46,7 @@ export async function mountContentManager() {
         .content-manager-layout {
           display: flex;
           height: calc(100vh - 110px);
-          background: #EDF2E4;
+          background: #F7F7F2;
           overflow: hidden;
         }
         .phase-list-column {
@@ -55,7 +55,7 @@ export async function mountContentManager() {
           background: #ffffff;
           border-radius: 18px;
           padding: 20px 0;
-          border: 1px solid #D8E2C4;
+          border: 1px solid #E4E6DE;
           box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
           height: fit-content;
           margin: 40px 0 40px 40px;
@@ -68,7 +68,7 @@ export async function mountContentManager() {
           margin: 0 16px 6px 16px;
           border-radius: 9999px;
           cursor: pointer;
-          font-family: 'Beautique Display', 'Beautique Display Condensed', serif;
+          font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif;
           font-size: 14px;
           font-weight: 600;
           color: #475467;
@@ -76,11 +76,11 @@ export async function mountContentManager() {
         }
         .phase-list-item:hover {
           background: #FAFBF8;
-          color: #455120;
+          color: #181B16;
         }
         .phase-list-item.active {
-          background: #F0F4E8;
-          color: #455120;
+          background: #EBEDE6;
+          color: #181B16;
           font-weight: 700;
         }
         .phase-list-item svg {
@@ -90,7 +90,7 @@ export async function mountContentManager() {
         }
         .phase-list-item.active svg {
           opacity: 1;
-          stroke: #455120;
+          stroke: #181B16;
         }
         .structure-column {
           flex: 1;
@@ -101,7 +101,7 @@ export async function mountContentManager() {
         .structure-card-wrapper {
           background: #ffffff;
           border-radius: 18px;
-          border: 1px solid #D8E2C4;
+          border: 1px solid #E4E6DE;
           box-shadow: 0 4px 16px rgba(0,0,0,0.03);
           padding: 28px;
         }
@@ -111,8 +111,8 @@ export async function mountContentManager() {
           gap: 6px;
           font-size: 13px;
           font-weight: 600;
-          color: #455120;
-          border: 1.5px solid #455120;
+          color: #181B16;
+          border: 1.5px solid #181B16;
           background: transparent;
           border-radius: 9999px;
           padding: 6px 16px;
@@ -120,7 +120,7 @@ export async function mountContentManager() {
           transition: all 0.15s ease;
         }
         .btn-pill-action:hover {
-          background: #455120;
+          background: #181B16;
           color: #ffffff;
         }
         /* Tree Hierarchy Styles */
@@ -161,7 +161,7 @@ export async function mountContentManager() {
           font-weight: 400;
         }
         /* Level Colors & Typography */
-        .manage-node[data-entity="phase"] strong { font-size: 16px; color: #455120; font-weight: 700; }
+        .manage-node[data-entity="phase"] strong { font-size: 16px; color: #181B16; font-weight: 700; }
         .manage-node[data-entity="module"] strong { font-size: 15px; color: #1e293b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; }
         .manage-node[data-entity="lectureGroup"] strong { font-size: 14.5px; color: #334155; font-weight: 600; }
         .manage-node[data-entity="lecture"] strong { font-size: 14px; font-weight: 400; color: #475569; }
@@ -197,7 +197,7 @@ export async function mountContentManager() {
           flex-shrink: 0;
           background: #ffffff;
           border-radius: 18px;
-          border: 1px solid #D8E2C4;
+          border: 1px solid #E4E6DE;
           box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
           padding: 32px 24px;
           max-height: calc(100vh - 144px);
@@ -340,8 +340,8 @@ export function renderPhaseForm(students = []) {
   return `
     <form class="entity-form compact-entity-form" data-entity="phase" style="display: flex; flex-direction: column; gap: 16px;">
       <div class="entity-form-heading" style="display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; margin-bottom: 4px;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
-        <h3 style="font-family: 'Beautique Display', serif; font-size: 17px; font-weight: 700; color: #455120; margin: 0;">Cấu hình Giai đoạn</h3>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#181B16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+        <h3 style="font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif; font-size: 17px; font-weight: 700; color: #181B16; margin: 0;">Cấu hình Giai đoạn</h3>
       </div>
       <input type="hidden" name="id">
       <input type="hidden" name="description" value="">
@@ -354,10 +354,10 @@ export function renderPhaseForm(students = []) {
       </div>
 
       <div style="max-height: 140px; overflow-y: auto; border: 1px solid #cbd5e1; border-radius: 10px; padding: 10px; background: #ffffff;">
-        <div style="font-size: 12px; font-weight: 600; margin-bottom: 8px; color: #455120;">Hiển thị cho học sinh (để trống = tất cả):</div>
+        <div style="font-size: 12px; font-weight: 600; margin-bottom: 8px; color: #181B16;">Hiển thị cho học sinh (để trống = tất cả):</div>
         ${students.map(s => `
           <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 13px; color: #334155; cursor: pointer;">
-            <input type="checkbox" name="student_ids" value="${escapeHtml(s.id)}" style="accent-color: #455120; width: 15px; height: 15px;">
+            <input type="checkbox" name="student_ids" value="${escapeHtml(s.id)}" style="accent-color: #181B16; width: 15px; height: 15px;">
             ${escapeHtml(s.full_name)}
           </label>
         `).join('')}
@@ -375,8 +375,8 @@ export function renderModuleForm(phases) {
   return `
     <form class="entity-form compact-entity-form" data-entity="module" style="display: flex; flex-direction: column; gap: 16px;">
       <div class="entity-form-heading" style="display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; margin-bottom: 4px;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-        <h3 style="font-family: 'Beautique Display', serif; font-size: 17px; font-weight: 700; color: #455120; margin: 0;">Cấu hình Chương</h3>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#181B16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+        <h3 style="font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif; font-size: 17px; font-weight: 700; color: #181B16; margin: 0;">Cấu hình Chương</h3>
       </div>
       <input type="hidden" name="id">
       <input type="hidden" name="description" value="">
@@ -408,8 +408,8 @@ export function renderLectureGroupForm(phases, modules) {
   return `
     <form class="entity-form compact-entity-form" data-entity="lectureGroup" style="display: flex; flex-direction: column; gap: 16px;">
       <div class="entity-form-heading" style="display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; margin-bottom: 4px;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-        <h3 style="font-family: 'Beautique Display', serif; font-size: 17px; font-weight: 700; color: #455120; margin: 0;">Cấu hình Bài học (Nhóm)</h3>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#181B16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        <h3 style="font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif; font-size: 17px; font-weight: 700; color: #181B16; margin: 0;">Cấu hình Bài học (Nhóm)</h3>
       </div>
       <input type="hidden" name="id">
       <input type="hidden" name="description" value="">
@@ -449,8 +449,8 @@ export function renderLectureForm(phases, modules, lectureGroups) {
   return `
     <form class="entity-form compact-entity-form" data-entity="lecture" style="display: flex; flex-direction: column; gap: 16px;">
       <div class="entity-form-heading" style="display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; margin-bottom: 4px;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#455120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
-        <h3 style="font-family: 'Beautique Display', serif; font-size: 17px; font-weight: 700; color: #455120; margin: 0;">Cấu hình Dạng bài (Bài giảng)</h3>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#181B16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+        <h3 style="font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif; font-size: 17px; font-weight: 700; color: #181B16; margin: 0;">Cấu hình Dạng bài (Bài giảng)</h3>
       </div>
       <input type="hidden" name="id">
       <input type="hidden" name="description" value="">
@@ -524,7 +524,7 @@ export function renderManagePhase(phase) {
             <div class="toggle-children" aria-expanded="true">
               <svg class="expand-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; transition: transform 0.2s;"><polyline points="6 9 12 15 18 9"></polyline></svg>
               <strong>${escapeHtml(module.title)}</strong>
-              <span class="node-meta">${module.lecture_groups.length} nhóm · ${module.lectures.length} bài giảng</span>
+              <span class="node-meta">${module.lecture_groups.length} nhóm - ${module.lectures.length} bài giảng</span>
             </div>
             <div class="icon-actions">
               <button class="icon-btn-utility" data-edit-module="${module.id}" data-payload="${escapeHtml(JSON.stringify(module))}" title="Sửa Chương">
