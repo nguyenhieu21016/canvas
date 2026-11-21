@@ -108,59 +108,18 @@ const ASG_STYLES = `
       max-width: 920px;
       width: 100%;
       margin: 0 auto;
-      padding: 28px 16px 0;
+      padding: 28px 20px 0;
       display: flex;
       flex-direction: column;
       gap: 20px;
       box-sizing: border-box;
     }
 
-    @media (min-width: 640px) {
-      .nh-asg-wrap {
-        padding: 36px 24px 0;
-      }
-    }
-
-    .nh-asg-header {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    @media (min-width: 640px) {
-      .nh-asg-header {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-      }
-    }
-
-    .nh-asg-header-text {
-      min-width: 0;
-    }
-
-    .nh-asg-title {
-      margin: 0;
-      font-family: var(--md-ref-typeface-brand);
-      font-size: 26px;
-      font-weight: 800;
-      font-variation-settings: 'wght' 800;
-      line-height: 1.2;
-      letter-spacing: -0.015em;
-      color: #181B16;
-    }
-
-    @media (min-width: 640px) {
-      .nh-asg-title {
-        font-size: 28px;
-      }
-    }
-
-    .nh-asg-subtitle {
+    .nh-asg-hero-meta {
       margin: 6px 0 0;
-      font-size: 13px;
+      font-size: 13.5px;
       line-height: 1.4;
-      color: #64695F;
+      color: rgba(247, 247, 242, 0.7);
       font-variant-numeric: tabular-nums;
     }
 
@@ -173,26 +132,28 @@ const ASG_STYLES = `
       padding: 0 18px;
       border: 0;
       border-radius: 9999px;
-      background: #181B16;
-      color: #F7F7F2;
+      background: #F7F7F2;
+      color: #181B16;
       font-family: inherit;
-      font-size: 14px;
-      font-weight: 500;
+      font-size: 13.5px;
+      font-weight: 600;
       cursor: pointer;
       flex-shrink: 0;
-      align-self: flex-start;
       outline: none;
       transition: background-color 0.15s ease;
     }
 
     .nh-asg-create-btn:hover {
-      background: #2C3028;
+      background: #EBEDE6;
     }
 
-    @media (min-width: 640px) {
-      .nh-asg-create-btn {
-        align-self: auto;
-      }
+    .nh-asg-create-btn--dark {
+      background: #181B16;
+      color: #F7F7F2;
+    }
+
+    .nh-asg-create-btn--dark:hover {
+      background: #2C3028;
     }
 
     .nh-asg-toolbar {
@@ -235,11 +196,11 @@ const ASG_STYLES = `
       padding: 0 14px;
       border: 0;
       border-radius: 9999px;
-      background: transparent;
-      color: #64695F;
+      background: #EBEDE6;
+      color: #181B16;
       font-family: inherit;
-      font-size: 14px;
-      font-weight: 500;
+      font-size: 13px;
+      font-weight: 600;
       white-space: nowrap;
       cursor: pointer;
       outline: none;
@@ -247,21 +208,23 @@ const ASG_STYLES = `
     }
 
     .nh-asg-tab:hover {
-      background: #EBEDE6;
-      color: #181B16;
+      background: #E2E5DC;
     }
 
     .nh-asg-tab[aria-selected="true"] {
-      background: #EBEDE6;
-      color: #181B16;
-      font-weight: 600;
+      background: #181B16;
+      color: #F7F7F2;
     }
 
     .nh-asg-tab-count {
       font-size: 12px;
-      font-weight: 400;
+      font-weight: 500;
       font-variant-numeric: tabular-nums;
       color: #64695F;
+    }
+
+    .nh-asg-tab[aria-selected="true"] .nh-asg-tab-count {
+      color: rgba(247, 247, 242, 0.72);
     }
 
     .nh-asg-mobile-opt .nh-asg-tab-count {
@@ -430,41 +393,45 @@ const ASG_STYLES = `
 
     .nh-asg-topic-chip {
       display: inline-flex;
-      height: 36px;
+      height: 32px;
       flex-shrink: 0;
       align-items: center;
       gap: 6px;
-      padding: 0 16px;
-      border: 0;
+      padding: 0 13px;
+      border: 1px solid #E4E6DE;
       border-radius: 9999px;
-      background: #EBEDE6;
-      color: #181B16;
+      background: #FFFFFF;
+      color: #64695F;
       font-family: inherit;
-      font-size: 13px;
-      font-weight: 600;
+      font-size: 12.5px;
+      font-weight: 500;
       cursor: pointer;
       outline: none;
-      transition: background-color 0.15s ease, color 0.15s ease;
+      transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
     }
 
     .nh-asg-topic-chip:hover {
-      background: #E2E5DC;
+      background: #EBEDE6;
+      border-color: #EBEDE6;
+      color: #181B16;
     }
 
     .nh-asg-topic-chip[aria-pressed="true"] {
-      background: #181B16;
-      color: #F7F7F2;
+      background: #EBEDE6;
+      border-color: #D3D7CB;
+      color: #181B16;
+      font-weight: 600;
     }
 
     .nh-asg-topic-chip-count {
-      font-size: 12px;
-      font-weight: 400;
-      color: #64695F;
+      font-size: 11.5px;
+      font-weight: 500;
+      color: #8A8F84;
       font-variant-numeric: tabular-nums;
     }
 
     .nh-asg-topic-chip[aria-pressed="true"] .nh-asg-topic-chip-count {
-      color: rgba(247, 247, 242, 0.72);
+      color: #64695F;
     }
 
     .nh-asg-topic-arrow-wrap {
@@ -520,12 +487,17 @@ const ASG_STYLES = `
 
     .nh-asg-row {
       display: flex;
-      align-items: stretch;
+      align-items: center;
       justify-content: space-between;
+      transition: background-color 0.14s ease;
+    }
+
+    .nh-asg-row:hover {
+      background: #F7F7F2;
     }
 
     .nh-asg-row + .nh-asg-row {
-      border-top: 1px solid #E4E6DE;
+      border-top: 1px solid #EFEFE9;
     }
 
     .nh-asg-row-link {
@@ -534,29 +506,23 @@ const ASG_STYLES = `
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 4px;
-      padding: 14px 16px;
+      gap: 5px;
+      padding: 15px 16px;
       text-decoration: none;
       color: #181B16;
       outline: none;
-      transition: background-color 0.15s ease;
     }
 
     @media (min-width: 640px) {
       .nh-asg-row-link {
-        padding: 14px 20px;
+        padding: 15px 20px;
       }
-    }
-
-    .nh-asg-row-link:hover,
-    .nh-asg-row-link:focus-visible {
-      background: #F2F3EE;
     }
 
     .nh-asg-row-title {
       display: block;
       min-width: 0;
-      font-size: 14px;
+      font-size: 14.5px;
       font-weight: 600;
       line-height: 1.4;
       color: #181B16;
@@ -659,8 +625,8 @@ const ASG_STYLES = `
 
     .nh-asg-icon-btn--danger:hover,
     .nh-asg-icon-btn--danger:focus-visible {
-      background: #FEF2F2;
-      color: #B91C1C;
+      background: #F8EAE8;
+      color: #B8433A;
     }
 
     .nh-asg-mobile-only { display: inline; }
@@ -835,29 +801,28 @@ export function renderAssignmentsListView(root, assignments = [], path = { lectu
 
   if (!items.length) {
     root.innerHTML = `
-      <div class="nh-admin-breadcrumb-bar">
-        <nav aria-label="Đường dẫn" class="nh-admin-breadcrumb-inner">
-          <a href="#/manage">Trung tâm Quản trị</a>
-          <span class="sep" aria-hidden="true">/</span>
-          <span class="active">Quản lý Bài tập &amp; Đề thi</span>
-        </nav>
-      </div>
       ${ASG_STYLES}
       <section class="nh-asg-page">
         <div class="nh-asg-wrap">
-          <div class="nh-asg-header">
-            <div class="nh-asg-header-text">
-              <h1 class="nh-asg-title">Đề thi &amp; Bài tập về nhà</h1>
-            </div>
-          </div>
-          <section class="nh-asg-card">
-            <div class="nh-asg-empty" style="padding: 48px 24px;">
-              <p class="nh-asg-empty-title" style="font-size: 16px; font-weight: 600;">Chưa có đề thi hoặc bài tập nào</p>
-              <p class="nh-asg-empty-sub" style="font-size: 14px;">Hãy tạo đề trắc nghiệm LaTeX hoặc gắn link PDF đầu tiên để giao cho 2 học sinh.</p>
-              <button type="button" id="new-assignment" class="nh-asg-create-btn" style="margin-top: 8px; align-self: center;">
+          <header class="asg-overview-hero">
+            <a href="#/manage" class="phase-back-link">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+              <span>Trung tâm Quản trị</span>
+            </a>
+            <div class="asg-overview-hero-row">
+              <div class="asg-overview-hero-left">
+                <h1 class="phase-hero-title">Đề thi &amp; Bài tập</h1>
+              </div>
+              <button type="button" id="new-assignment" class="nh-asg-create-btn">
                 ${ASG_ICONS.plus}
                 <span>Tạo đề mới</span>
               </button>
+            </div>
+          </header>
+          <section class="nh-asg-card">
+            <div class="nh-asg-empty" style="padding: 48px 24px;">
+              <p class="nh-asg-empty-title" style="font-size: 16px; font-weight: 600;">Chưa có đề thi hoặc bài tập nào</p>
+              <p class="nh-asg-empty-sub" style="font-size: 14px;">Hãy tạo đề trắc nghiệm LaTeX hoặc gắn link PDF đầu tiên để giao cho học sinh.</p>
             </div>
           </section>
         </div>
@@ -882,26 +847,25 @@ export function renderAssignmentsListView(root, assignments = [], path = { lectu
   };
 
   root.innerHTML = `
-    <div class="nh-admin-breadcrumb-bar">
-      <nav aria-label="Đường dẫn" class="nh-admin-breadcrumb-inner">
-        <a href="#/manage">Trung tâm Quản trị</a>
-        <span class="sep" aria-hidden="true">/</span>
-        <span class="active">Quản lý Bài tập &amp; Đề thi</span>
-      </nav>
-    </div>
     ${ASG_STYLES}
     <section class="nh-asg-page">
       <div class="nh-asg-wrap">
-        <div class="nh-asg-header">
-          <div class="nh-asg-header-text">
-            <h1 class="nh-asg-title">Đề thi &amp; Bài tập về nhà</h1>
-            <p class="nh-asg-subtitle" id="nh-asg-summary">${totalCount} đề thi - ${lectureCount} theo bài giảng - ${freeCount} bài tập tự do</p>
+        <header class="asg-overview-hero">
+          <a href="#/manage" class="phase-back-link">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            <span>Trung tâm Quản trị</span>
+          </a>
+          <div class="asg-overview-hero-row">
+            <div class="asg-overview-hero-left">
+              <h1 class="phase-hero-title">Đề thi &amp; Bài tập</h1>
+              <p class="nh-asg-hero-meta" id="nh-asg-summary">${totalCount} đề thi - ${lectureCount} theo bài giảng - ${freeCount} tự do</p>
+            </div>
+            <button type="button" id="new-assignment" class="nh-asg-create-btn">
+              ${ASG_ICONS.plus}
+              <span>Tạo đề mới</span>
+            </button>
           </div>
-          <button type="button" id="new-assignment" class="nh-asg-create-btn">
-            ${ASG_ICONS.plus}
-            <span>Tạo đề mới</span>
-          </button>
-        </div>
+        </header>
 
         <div class="nh-asg-toolbar">
           <div class="nh-asg-toolbar-top">
@@ -1040,7 +1004,7 @@ export function renderAssignmentsListView(root, assignments = [], path = { lectu
     listContainer.innerHTML = `
       <ul class="nh-asg-list">
         ${pageItems.map((item) => `
-          <li class="nh-asg-row assignment-row">
+          <li class="nh-asg-row">
             <a
               href="#/assignments"
               data-load-assignment="${escapeHtml(item.id)}"

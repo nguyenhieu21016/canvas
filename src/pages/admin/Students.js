@@ -20,6 +20,14 @@ import {
 
 let selectedStudentId = null;
 
+function splitStudentChapterTitle(title = '', fallbackIndex = 1) {
+  const match = title.match(/^(Chương\s*\d+)\s*[:\-–]\s*(.+)$/i);
+  if (match) {
+    return { short: match[1].trim(), sub: match[2].trim() };
+  }
+  return { short: `Chương ${fallbackIndex}`, sub: title.trim() || `Chương ${fallbackIndex}` };
+}
+
 export async function mountProgressManager() {
   const root = pageRoot();
   root.innerHTML = renderSkeletonDashboard();
@@ -36,623 +44,283 @@ export async function mountProgressManager() {
       return;
     }
 
-    let selectedStudentId = students[0].id;
-    let activeTab = 'progress'; // 'progress' | 'grades' | 'account'
+    let currentStudentId = students[0].id;
+    let activeTab = 'progress';
+    let activeModuleId = null;
 
-    // Build flat lecture map by module
     const lecturesByModuleId = new Map();
-    for (const lecture of learningPath.lectures) {
+    for (const lecture of learningPath.lectures || []) {
       if (!lecturesByModuleId.has(lecture.module_id)) lecturesByModuleId.set(lecture.module_id, []);
       lecturesByModuleId.get(lecture.module_id).push(lecture);
     }
-    const totalLectures = learningPath.lectures.length;
+    const totalLectures = (learningPath.lectures || []).length;
+
+    const phaseChapters = [];
+    for (const phase of learningPath.phases || []) {
+      const mods = (phase.modules || [])
+        .map((mod, idx) => {
+          const lectures = lecturesByModuleId.get(mod.id) ?? [];
+          if (!lectures.length) return null;
+          const parsed = splitStudentChapterTitle(mod.title, idx + 1);
+          return { mod, lectures, short: parsed.short, sub: parsed.sub };
+        })
+        .filter(Boolean);
+      if (mods.length) {
+        phaseChapters.push({ phase, mods });
+      }
+    }
+    const allModulesFlat = phaseChapters.flatMap((p) => p.mods);
+    if (!activeModuleId && allModulesFlat.length) {
+      activeModuleId = allModulesFlat[0].mod.id;
+    }
+
+    const taughtCache = new Map();
+
+    async function ensureTaughtSet(studentId) {
+      if (taughtCache.has(studentId)) return taughtCache.get(studentId);
+      const logs = await fetchTeachingLogs(studentId);
+      const set = new Set(logs.map((l) => l.lecture_id));
+      taughtCache.set(studentId, set);
+      return set;
+    }
 
     root.innerHTML = `
-      <div style="background-color: #F7F7F2; min-height: calc(100vh - 64px); padding: 0 0 60px 0; margin: 0; font-family: 'Google Sans', sans-serif;">
-        <!-- Top Breadcrumb Bar -->
-        <div class="nh-admin-breadcrumb-bar" style="margin-bottom: 24px;">
-          <div class="nh-admin-breadcrumb-inner" style="max-width: 1140px;">
-            <a href="#/manage">Trung tâm Quản trị</a>
-            <span class="sep">&rsaquo;</span>
-            <span class="active">Theo dõi & Quản lý Học sinh</span>
+      <section class="students-hub">
+        <header class="asg-overview-hero">
+          <a href="#/manage" class="phase-back-link">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            <span>Trung tâm Quản trị</span>
+          </a>
+          <div class="asg-overview-hero-row">
+            <div class="asg-overview-hero-left">
+              <h1 class="phase-hero-title">Theo dõi Học sinh</h1>
+            </div>
+          </div>
+        </header>
+
+        <div class="students-top-row">
+          <div class="students-pill-bar" id="students-pill-bar"></div>
+          <div class="students-subtabs" id="students-subtabs">
+            <button type="button" class="students-subtab active" data-tab="progress">Tiến độ</button>
+            <button type="button" class="students-subtab" data-tab="grades">Bảng điểm</button>
           </div>
         </div>
 
-        <section style="max-width: 1140px; margin: 0 auto; padding: 0 max(var(--page-gutter), 24px);">
-          <style>
-            .progress-sidebar-item {
-              padding: 10px 14px;
-              border-radius: 9999px;
-              cursor: pointer;
-              transition: all 0.15s ease;
-              font-family: 'Google Sans', sans-serif;
-              display: flex;
-              align-items: center;
-              justify-content: space-between;
-            }
-            .progress-sidebar-item:hover {
-              background: #f1f5f9 !important;
-            }
-            .progress-sidebar-item.selected {
-              background: #EBEDE6 !important;
-            }
-            .teaching-lecture-row:hover {
-              background: #f8faf5 !important;
-            }
-            .nh-tab-btn {
-              padding: 9px 18px;
-              border-radius: 9999px;
-              border: 1px solid #E4E6DE;
-              background: #ffffff;
-              color: #475569;
-              font-size: 13px;
-              font-weight: 600;
-              cursor: pointer;
-              transition: all 0.15s ease;
-              display: inline-flex;
-              align-items: center;
-              gap: 6px;
-            }
-            .nh-tab-btn:hover {
-              background: #f8fafc;
-              color: #181B16;
-            }
-            .nh-tab-btn.active {
-              background: #181B16;
-              color: #ffffff;
-              border-color: #181B16;
-            }
-            details > summary::-webkit-details-marker { display: none; }
-            details > summary { list-style: none; }
-            details[open] > summary .dropdown-icon { transform: rotate(90deg); }
-          </style>
-
-          <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: start;">
-
-            <!-- Sidebar: students list -->
-            <div style="display: flex; flex-direction: column; gap: 12px; width: 290px; min-width: 290px; flex-shrink: 0;">
-              <div class="panel" style="padding: 20px 16px; border-radius: 18px; background: #ffffff; border: 1px solid #E4E6DE; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03); display: flex; flex-direction: column; gap: 12px;">
-                <div style="display: flex; align-items: center; justify-content: space-between; padding: 0 4px;">
-                  <h3 style="margin: 0; font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif; font-size: 17px; font-weight: 700; color: #181B16;">Danh sách Học sinh</h3>
-                  <button id="nh-add-student-trigger" type="button" style="border: none; background: #EBEDE6; color: #181B16; border: 1px solid #E4E6DE; border-radius: 9999px; padding: 4px 10px; font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 4px; transition: all 0.15s ease;" onmouseover="this.style.background='#e2ebda'" onmouseout="this.style.background='#EBEDE6'">
-                    + Tạo mới
-                  </button>
-                </div>
-
-                <div style="position: relative; width: 100%;">
-                  <input id="student-search-input" type="text" placeholder="Tìm tên học sinh..." style="width: 100%; padding: 8px 12px 8px 32px; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 13px; font-family: 'Google Sans', sans-serif; outline: none; box-sizing: border-box;" />
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 10px; top: 10px;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                </div>
-
-                <div class="progress-sidebar-list" style="display: flex; flex-direction: column; gap: 4px; max-height: 520px; overflow-y: auto;"></div>
-              </div>
-            </div>
-
-            <!-- Main: detail pane -->
-            <div class="progress-detail-pane panel" style="flex: 1; min-width: 320px; padding: 28px; border-radius: 18px; background: #ffffff; border: 1px solid #E4E6DE; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03); min-height: 520px; display: flex; flex-direction: column; gap: 20px;">
-              <div class="progress-detail-loading" style="display: flex; align-items: center; justify-content: center; min-height: 200px; color: #64748b;">
-                <md-circular-progress indeterminate></md-circular-progress>
-              </div>
-            </div>
-
-          </div>
-        </section>
-      </div>
-
-      <!-- Modal: Tạo học sinh mới -->
-      <div class="nh-modal-overlay" id="nh-create-student-modal" style="display: none;">
-        <div class="nh-modal-card">
-          <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 14px;">
-            <h3 style="font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif; font-size: 17px; font-weight: 700; color: #181B16; margin: 0;">Tạo tài khoản Học sinh mới</h3>
-            <button id="nh-close-create-modal" type="button" style="border: none; background: transparent; cursor: pointer; color: #94a3b8; padding: 4px; border-radius: 50%;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-            </button>
-          </div>
-          <form id="create-student-form-modal" style="display: flex; flex-direction: column; gap: 16px; margin-top: 8px;">
-            <div style="display: flex; flex-direction: column; gap: 6px;">
-              <label style="font-size: 13px; font-weight: 600; color: #334155;">Họ và tên <span style="color: #ef4444;">*</span></label>
-              <input name="full_name" class="nh-form-input-clean" placeholder="Nhập họ tên..." required />
-            </div>
-            <div style="display: flex; flex-direction: column; gap: 6px;">
-              <label style="font-size: 13px; font-weight: 600; color: #334155;">Email <span style="color: #ef4444;">*</span></label>
-              <input name="email" type="email" class="nh-form-input-clean" placeholder="Nhập địa chỉ email..." required />
-            </div>
-            <div style="display: flex; flex-direction: column; gap: 6px;">
-              <label style="font-size: 13px; font-weight: 600; color: #334155;">Mật khẩu tạm <span style="color: #ef4444;">*</span></label>
-              <input name="password" type="text" class="nh-form-input-clean" value="123456" placeholder="Mật khẩu khởi tạo" required />
-            </div>
-            <input type="hidden" name="role" value="student" />
-            <div style="display: flex; justify-content: flex-end; margin-top: 8px;">
-              <button type="submit" class="nh-modal-btn-primary">Tạo tài khoản</button>
-            </div>
-          </form>
-        </div>
-      </div>
+        <div class="progress-detail-pane" id="students-detail-host"></div>
+      </section>
     `;
 
-    async function renderStudentDetail(studentId) {
-      const pane = document.querySelector('.progress-detail-pane');
-      if (!pane) return;
+    function renderStudentPills() {
+      const bar = root.querySelector('#students-pill-bar');
+      if (!bar) return;
+      const onlineSet = new Set(getOnlineUsers().map((u) => u.id));
+      bar.innerHTML = students.map((s) => {
+        const isActive = s.id === currentStudentId;
+        const isOnline = onlineSet.has(s.id);
+        return `
+          <button type="button" class="students-pill ${isActive ? 'active' : ''}" data-sid="${escapeHtml(s.id)}">
+            <span class="students-dot ${isOnline ? 'is-online' : ''}" title="${isOnline ? 'Đang hoạt động' : 'Ngoại tuyến'}"></span>
+            <span>${escapeHtml(s.full_name || 'Học sinh')}</span>
+          </button>
+        `;
+      }).join('');
 
+      bar.querySelectorAll('[data-sid]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          currentStudentId = btn.dataset.sid;
+          renderStudentPills();
+          renderStudentDetail(currentStudentId);
+        });
+      });
+    }
+
+    function syncSubtabs() {
+      root.querySelectorAll('#students-subtabs [data-tab]').forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.tab === activeTab);
+      });
+    }
+
+    root.querySelectorAll('#students-subtabs [data-tab]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        activeTab = btn.dataset.tab;
+        syncSubtabs();
+        renderStudentDetail(currentStudentId);
+      });
+    });
+
+    async function renderStudentDetail(studentId) {
+      const pane = root.querySelector('#students-detail-host');
+      if (!pane) return;
       const student = students.find((s) => s.id === studentId);
       if (!student) return;
 
-      const onlineUsers = getOnlineUsers();
-      const onlineUserMap = new Map(onlineUsers.map((u) => [u.id, u]));
-      const onlineData = onlineUserMap.get(studentId);
-      const isOnline = !!onlineData;
-
-      function formatMessengerStatus(userObj, studentObj) {
-        if (userObj) return { text: 'Đang hoạt động', isOnline: true };
-        const timeVal = studentObj?.updated_at || studentObj?.created_at;
-        if (!timeVal) return { text: 'Ngoại tuyến', isOnline: false };
-        const diffSec = Math.floor((Date.now() - new Date(timeVal).getTime()) / 1000);
-        if (diffSec < 60) return { text: 'Hoạt động vừa xong', isOnline: false };
-        const diffMin = Math.floor(diffSec / 60);
-        if (diffMin < 60) return { text: `Hoạt động ${diffMin} phút trước`, isOnline: false };
-        const diffHours = Math.floor(diffMin / 60);
-        if (diffHours < 24) return { text: `Hoạt động ${diffHours} giờ trước`, isOnline: false };
-        const diffDays = Math.floor(diffHours / 24);
-        if (diffDays < 30) return { text: `Hoạt động ${diffDays} ngày trước`, isOnline: false };
-        return { text: `Ngoại tuyến`, isOnline: false };
-      }
-
-      const statusInfo = formatMessengerStatus(onlineData, student);
-
-      // Header profile + Tabs bar
-      const headerHTML = `
-        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-bottom: 20px; border-bottom: 1px solid #f1f5f9;">
-          <div style="display: flex; align-items: center; gap: 16px;">
-            <div style="position: relative;">
-              <div style="width: 52px; height: 52px; border-radius: 50%; background: #181B16; color: #ffffff; display: grid; place-items: center; font-size: 20px; font-weight: 500; flex-shrink: 0; aspect-ratio: 1/1;">
-                ${escapeHtml((student.full_name || 'U').charAt(0).toUpperCase())}
-              </div>
-              ${isOnline ? '<span style="position: absolute; bottom: 1px; right: 1px; width: 13px; height: 13px; border-radius: 50%; background: #22c55e; border: 2.5px solid #ffffff;" title="Đang hoạt động"></span>' : ''}
-            </div>
-            <div>
-              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 2px;">
-                <span style="font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif; font-size: 20px; font-weight: 700; color: #181B16;">${escapeHtml(student.full_name ?? '')}</span>
-              </div>
-              <div style="font-size: 13px; color: #64748b; font-family: 'Google Sans', sans-serif; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-                <span>${escapeHtml(student.email ?? '')}</span>
-                <span style="color: #cbd5e1;">-</span>
-                <span style="font-weight: 500; color: ${statusInfo.isOnline ? '#16a34a' : '#64748b'}; display: inline-flex; align-items: center; gap: 4px;">
-                  ${statusInfo.isOnline ? '<span style="width: 7px; height: 7px; border-radius: 50%; background: #22c55e; display: inline-block;"></span>' : ''}
-                  ${statusInfo.text}
-                </span>
-                ${student.status === 'disabled' ? '<span style="padding: 2px 8px; border-radius: 9999px; font-size: 11px; font-weight: 600; background: #fef2f2; color: #ef4444;">Vô hiệu</span>' : ''}
-              </div>
-            </div>
-          </div>
-
-          <!-- Tabs Switcher -->
-          <div style="display: flex; gap: 6px; background: #f8fafc; padding: 4px; border-radius: 9999px; border: 1px solid #e2e8f0; flex-wrap: wrap;">
-            <button type="button" class="nh-tab-btn ${activeTab === 'progress' ? 'active' : ''}" data-tab="progress">
-              Tiến độ bài giảng
-            </button>
-            <button type="button" class="nh-tab-btn ${activeTab === 'grades' ? 'active' : ''}" data-tab="grades">
-              Bảng điểm & Bài tập
-            </button>
-            <button type="button" class="nh-tab-btn ${activeTab === 'account' ? 'active' : ''}" data-tab="account">
-              Quản lý tài khoản
-            </button>
-          </div>
-        </div>
-      `;
-
       if (activeTab === 'progress') {
-        pane.innerHTML = headerHTML + `<div style="display: flex; align-items: center; justify-content: center; min-height: 200px;"><md-circular-progress indeterminate></md-circular-progress></div>`;
+        if (!taughtCache.has(studentId)) {
+          pane.innerHTML = `<div class="phase-empty-card"><p>Đang tải tiến độ...</p></div>`;
+        }
         try {
-          const teachingLogs = await fetchTeachingLogs(studentId);
-          const taughtSet = new Set(teachingLogs.map((l) => l.lecture_id));
-          const taughtCount = learningPath.lectures.filter((l) => taughtSet.has(l.id)).length;
+          const taughtSet = await ensureTaughtSet(studentId);
+          if (currentStudentId !== studentId || activeTab !== 'progress') return;
+
+          const taughtCount = (learningPath.lectures || []).filter((l) => taughtSet.has(l.id)).length;
           const progressPct = totalLectures > 0 ? Math.round((taughtCount / totalLectures) * 100) : 0;
 
-          const phasesMarkup = learningPath.phases.map((phase) => {
-            let phaseTaught = 0;
-            let phaseTotal = 0;
-            
-            const modulesMarkup = phase.modules.map((mod) => {
-              let modTaught = 0;
-              const lectures = lecturesByModuleId.get(mod.id) ?? [];
-              if (lectures.length === 0) return '';
-              const modTotal = lectures.length;
-              phaseTotal += modTotal;
-              
-              const renderRow = (lecture) => {
-                const isTaught = taughtSet.has(lecture.id);
-                if (isTaught) { modTaught++; phaseTaught++; }
-                return `
-                  <div class="teaching-lecture-row" data-lecture-id="${lecture.id}" data-student-id="${studentId}" data-taught="${isTaught}"
-                    style="display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 10px; cursor: pointer; transition: all 0.15s ease; margin-bottom: 4px;
-                           background: ${isTaught ? '#EBEDE6' : '#f8fafc'}; border: 1px solid ${isTaught ? '#E4E6DE' : '#f1f5f9'};">
-                    <div class="lecture-checkbox" style="width: 20px; height: 20px; border-radius: 6px; flex-shrink: 0; transition: all 0.15s;
-                      border: 2px solid ${isTaught ? '#181B16' : '#cbd5e1'};
-                      background: ${isTaught ? '#181B16' : '#ffffff'};
-                      display: flex; align-items: center; justify-content: center;">
-                      ${isTaught ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>' : ''}
-                    </div>
-                    <div style="flex: 1; min-width: 0;">
-                      <div style="font-size: 13.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-                        font-weight: ${isTaught ? '600' : '500'};
-                        color: ${isTaught ? '#181B16' : '#334155'};">  
-                        ${escapeHtml(lecture.title)}
-                      </div>
-                    </div>
-                  </div>
-                `;
-              };
-              
-              const groupsMarkup = (mod.lecture_groups || []).map(group => {
-                const groupLectures = (group.lectures || []).map(renderRow).join('');
-                if (!groupLectures) return '';
-                return `
-                  <div style="margin-left: 12px; margin-bottom: 8px; border-left: 2px solid #E4E6DE; padding-left: 14px;">
-                    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #181B16; margin-bottom: 6px;">
-                      ${escapeHtml(group.title)}
-                    </div>
-                    ${groupLectures}
-                  </div>
-                `;
-              }).join('');
-              
-              const ungrouped = lectures.filter(l => !l.group_id).map(renderRow).join('');
-              
-              return `
-                <details class="progress-module-details" ${modTaught < modTotal ? 'open' : ''} style="margin-bottom: 10px; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: #ffffff;">
-                  <summary style="padding: 12px 16px; background: #f8fafc; font-weight: 600; font-size: 14px; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px; user-select: none; color: #334155;">
-                    <svg class="dropdown-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition: transform 0.2s ease;"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#181B16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                    <span style="flex: 1; font-weight: 600;">${escapeHtml(mod.title)}</span>
-                    <span style="font-size: 12px; font-weight: 600; background: ${modTaught === modTotal ? '#181B16' : '#e2e8f0'}; color: ${modTaught === modTotal ? '#ffffff' : '#475569'}; padding: 3px 10px; border-radius: 9999px;">${modTaught}/${modTotal}</span>
-                  </summary>
-                  <div style="padding: 14px; background: #ffffff;">
-                    ${groupsMarkup}
-                    ${ungrouped}
-                  </div>
-                </details>
-              `;
-            }).join('');
+          if (!allModulesFlat.length) {
+            pane.innerHTML = `<div class="phase-empty-card"><p>Chưa có bài giảng nào trong hệ thống.</p></div>`;
+            return;
+          }
 
-            if (!modulesMarkup.trim()) return '';
+          const activeEntry = allModulesFlat.find((m) => String(m.mod.id) === String(activeModuleId)) || allModulesFlat[0];
+          activeModuleId = activeEntry.mod.id;
+
+          const checkSvg = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+
+          const renderLectureRow = (lecture) => {
+            const isTaught = taughtSet.has(lecture.id);
             return `
-              <details class="progress-phase-details" ${phaseTaught < phaseTotal ? 'open' : ''} style="margin-bottom: 16px; border: 1px solid #E4E6DE; border-radius: 14px; overflow: hidden; background: #ffffff;">
-                <summary style="padding: 14px 18px; background: #EBEDE6; font-weight: 700; font-size: 15px; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px; user-select: none; color: #181B16; font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif;">
-                  <svg class="dropdown-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#181B16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition: transform 0.2s ease;"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#181B16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-                  <span style="flex: 1; font-weight: 700;">${escapeHtml(phase.title)}</span>
-                  <span style="font-size: 12px; font-weight: 700; font-family: 'Google Sans', sans-serif; background: ${phaseTaught === phaseTotal ? '#181B16' : '#E4E6DE'}; color: ${phaseTaught === phaseTotal ? '#ffffff' : '#181B16'}; padding: 4px 12px; border-radius: 9999px;">${phaseTaught}/${phaseTotal}</span>
-                </summary>
-                <div style="padding: 16px; background: #ffffff;">
-                  ${modulesMarkup}
-                </div>
-              </details>
+              <button type="button" class="students-lecture-row ${isTaught ? 'is-taught' : ''}" data-lecture-id="${escapeHtml(String(lecture.id))}">
+                <span class="students-check ${isTaught ? 'is-checked' : ''}">${checkSvg}</span>
+                <span class="students-lecture-title">${escapeHtml(lecture.title)}</span>
+              </button>
             `;
-          }).join('');
+          };
 
-          pane.innerHTML = headerHTML + `
-            <!-- Progress bar -->
-            <div style="background: #EBEDE6; border-radius: 14px; padding: 18px 20px; display: flex; align-items: center; gap: 20px; border: 1px solid #E4E6DE;">
-              <div style="flex: 1;">
-                <div style="font-size: 14px; font-weight: 600; color: #181B16; margin-bottom: 10px;">Tiến độ hoàn thành bài giảng</div>
-                <div style="background: #e2ebda; border-radius: 9999px; height: 10px; overflow: hidden;">
-                  <div style="height: 100%; width: ${progressPct}%; background: #181B16; border-radius: 9999px; transition: width 0.4s ease;"></div>
+          const groups = activeEntry.mod.lecture_groups || [];
+          let chapterBodyHtml = '';
+          if (groups.length) {
+            for (const group of groups) {
+              const rows = (group.lectures || []).map(renderLectureRow).join('');
+              if (!rows) continue;
+              chapterBodyHtml += `
+                <div class="phase-group-section">
+                  ${group.title ? `<div class="phase-group-title">${escapeHtml(group.title)}</div>` : ''}
+                  <div class="students-lecture-list">${rows}</div>
                 </div>
-              </div>
-              <div style="text-align: center; min-width: 80px; background: #ffffff; padding: 10px 16px; border-radius: 12px; border: 1px solid #E4E6DE;">
-                <div style="font-size: 22px; font-weight: 800; color: #181B16; line-height: 1;">${taughtCount}</div>
-                <div style="font-size: 11px; color: #64748b; margin-top: 4px; font-weight: 500;">/ ${totalLectures} bài</div>
-              </div>
-            </div>
+              `;
+            }
+            const ungrouped = activeEntry.lectures.filter((l) => !l.group_id).map(renderLectureRow).join('');
+            if (ungrouped) {
+              chapterBodyHtml += `<div class="phase-group-section"><div class="students-lecture-list">${ungrouped}</div></div>`;
+            }
+          } else {
+            chapterBodyHtml = `<div class="phase-group-section"><div class="students-lecture-list">${activeEntry.lectures.map(renderLectureRow).join('')}</div></div>`;
+          }
 
-            <!-- Lecture checklist -->
-            <div style="display: flex; flex-direction: column; gap: 10px; overflow-y: auto; flex: 1;">
-              ${phasesMarkup || '<div style="text-align: center; padding: 48px; color: #64748b; background: #f8fafc; border-radius: 14px; border: 1px dashed #cbd5e1;">Chưa có bài giảng nào trong hệ thống.</div>'}
+          const activeDone = activeEntry.lectures.filter((l) => taughtSet.has(l.id)).length;
+
+          pane.innerHTML = `
+            <div class="students-progress-layout">
+              <aside class="students-progress-side">
+                <div class="students-progress-box">
+                  <div class="students-progress-head">
+                    <span class="students-progress-k">Hoàn thành</span>
+                    <strong class="students-progress-v">${taughtCount}/${totalLectures} bài (${progressPct}%)</strong>
+                  </div>
+                  <div class="learn-progress-track">
+                    <div class="learn-progress-fill" style="width: ${progressPct}%;"></div>
+                  </div>
+                </div>
+
+                <div class="students-chapter-nav">
+                  ${phaseChapters.map((group) => `
+                    <div class="students-phase-group">
+                      <div class="students-phase-label">${escapeHtml(group.phase.title)}</div>
+                      ${group.mods.map((entry) => {
+                        const done = entry.lectures.filter((l) => taughtSet.has(l.id)).length;
+                        const isSel = String(entry.mod.id) === String(activeModuleId);
+                        return `
+                          <button type="button" class="phase-chapter-btn ${isSel ? 'active' : ''}" data-mod-id="${escapeHtml(String(entry.mod.id))}">
+                            <div class="phase-chapter-btn-text">
+                              <span class="phase-chapter-short">${escapeHtml(entry.short)}</span>
+                              <span class="phase-chapter-sub">${escapeHtml(entry.sub)}</span>
+                            </div>
+                            <span class="phase-chapter-count">${done}/${entry.lectures.length}</span>
+                          </button>
+                        `;
+                      }).join('')}
+                    </div>
+                  `).join('')}
+                </div>
+              </aside>
+
+              <section class="phase-chapter-card">
+                <div class="phase-chapter-card-head">
+                  <h2 class="phase-chapter-card-title">${escapeHtml(activeEntry.mod.title)}</h2>
+                  <span class="phase-chapter-card-badge">${activeDone}/${activeEntry.lectures.length}</span>
+                </div>
+                ${chapterBodyHtml}
+              </section>
             </div>
           `;
 
-          // Wire teaching log toggles
-          pane.querySelectorAll('.teaching-lecture-row').forEach((row) => {
-            row.addEventListener('click', async () => {
-              const lectureId = row.dataset.lectureId;
-              const sid = row.dataset.studentId;
-              const wasTaught = row.dataset.taught === 'true';
-              row.dataset.taught = String(!wasTaught);
+          pane.querySelectorAll('[data-mod-id]').forEach((btn) => {
+            btn.addEventListener('click', () => {
+              activeModuleId = btn.dataset.modId;
+              renderStudentDetail(studentId);
+            });
+          });
+
+          pane.querySelectorAll('.students-lecture-row').forEach((btn) => {
+            btn.addEventListener('click', async () => {
+              const lectureId = btn.dataset.lectureId;
+              const wasTaught = taughtSet.has(lectureId);
+              if (wasTaught) taughtSet.delete(lectureId);
+              else taughtSet.add(lectureId);
+              renderStudentDetail(studentId);
 
               try {
-                if (!wasTaught) await upsertTeachingLog({ studentId: sid, lectureId });
-                else await deleteTeachingLog({ studentId: sid, lectureId });
-                renderStudentDetail(sid);
-                renderStudentSidebarList();
+                if (!wasTaught) await upsertTeachingLog({ studentId, lectureId });
+                else await deleteTeachingLog({ studentId, lectureId });
               } catch (err) {
+                if (wasTaught) taughtSet.add(lectureId);
+                else taughtSet.delete(lectureId);
                 toast(err.message, 'error');
-                row.dataset.taught = String(wasTaught);
+                renderStudentDetail(studentId);
               }
             });
           });
         } catch (err) {
-          pane.innerHTML = headerHTML + `<div style="color: #ef4444; padding: 24px;">Lỗi: ${escapeHtml(err.message)}</div>`;
+          pane.innerHTML = `<div class="phase-empty-card"><p>Lỗi: ${escapeHtml(err.message)}</p></div>`;
         }
       } else if (activeTab === 'grades') {
         const studentGrades = gradebook.filter((g) => g.student_id === studentId);
-
-        let gradesHTML = '';
         if (!studentGrades.length) {
-          gradesHTML = `
-            <div style="text-align: center; padding: 48px 24px; color: #64748b; background: #f8fafc; border-radius: 14px; border: 1px dashed #cbd5e1;">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5" style="margin-bottom: 8px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-              <div style="font-size: 15px; font-weight: 600; color: #334155; margin-bottom: 4px;">Chưa có bài nộp nào</div>
-              <div style="font-size: 13px;">Học sinh chưa hoàn thành đề thi hoặc bài kiểm tra nào.</div>
-            </div>
-          `;
-        } else {
-          const fmt = new Intl.NumberFormat('vi-VN', { maximumFractionDigits: 1 });
-          const rowsHTML = studentGrades.map((g) => {
-            const dateStr = g.submitted_at ? new Date(g.submitted_at).toLocaleString('vi-VN', { dateStyle: 'short', timeStyle: 'short' }) : '---';
-            const score10 = g.score_10 != null ? Number(g.score_10) : (g.max_points ? (g.score / g.max_points) * 10 : 0);
-            return `
-              <div style="background: #ffffff; border: 1px solid #E4E6DE; border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);">
-                <div style="flex: 1; min-width: 0;">
-                  <div style="font-size: 14.5px; font-weight: 700; color: #181B16; margin-bottom: 4px;">${escapeHtml(g.assignments?.title || 'Bài kiểm tra')}</div>
-                  <div style="font-size: 12px; color: #64748b;">Nộp bài lúc: ${dateStr}</div>
-                </div>
-                <div style="display: flex; align-items: center; gap: 12px;">
-                  <div style="text-align: right;">
-                    <div style="font-size: 11px; color: #64748b; font-weight: 500;">Điểm thô: ${g.score ?? 0}/${g.max_points ?? 10}</div>
-                    <div style="font-size: 18px; font-weight: 800; color: ${score10 >= 8 ? '#16a34a' : score10 >= 5 ? '#d97706' : '#dc2626'};">${fmt.format(score10)} / 10</div>
-                  </div>
-                  <a href="#/review/${g.id}" style="padding: 6px 12px; border-radius: 9999px; background: #EBEDE6; color: #181B16; border: 1px solid #E4E6DE; font-size: 12px; font-weight: 600; text-decoration: none;">Xem bài làm</a>
-                </div>
-              </div>
-            `;
-          }).join('');
-
-          gradesHTML = `
-            <div style="display: flex; flex-direction: column; gap: 12px;">
-              <div style="font-size: 14px; font-weight: 600; color: #181B16;">Tổng số bài đã làm: ${studentGrades.length} bài</div>
-              ${rowsHTML}
-            </div>
-          `;
+          pane.innerHTML = `<div class="phase-empty-card"><p>Học sinh chưa có bài nộp nào.</p></div>`;
+          return;
         }
-
-        pane.innerHTML = headerHTML + gradesHTML;
-      } else if (activeTab === 'online') {
-        const onlineUsers = getOnlineUsers();
-        let onlineHTML = '';
-
-        if (!onlineUsers.length) {
-          onlineHTML = `
-            <div style="text-align: center; padding: 48px 24px; color: #64748b; background: #f8fafc; border-radius: 14px; border: 1px dashed #cbd5e1;">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5" style="margin-bottom: 8px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-              <div style="font-size: 15px; font-weight: 600; color: #334155; margin-bottom: 4px;">Hiện chưa có ai online</div>
-              <div style="font-size: 13px;">Hệ thống sẽ cập nhật trạng thái ngay khi có học sinh mở ứng dụng.</div>
-            </div>
-          `;
-        } else {
-          const listUsers = onlineUsers.map((u) => {
-            const timeStr = u.online_at ? new Date(u.online_at).toLocaleTimeString('vi-VN') : 'vừa xong';
-            return `
-              <div style="background: #ffffff; border: 1px solid #E4E6DE; border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 14px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                  <div style="position: relative;">
-                    <div style="width: 40px; height: 40px; border-radius: 50%; background: #181B16; color: #ffffff; font-weight: 600; font-size: 16px; display: grid; place-items: center;">
-                      ${escapeHtml((u.full_name || 'U').charAt(0).toUpperCase())}
-                    </div>
-                    <span style="position: absolute; bottom: 0; right: 0; width: 11px; height: 11px; border-radius: 50%; background: #22c55e; border: 2px solid #ffffff;"></span>
+        const fmt = new Intl.NumberFormat('vi-VN', { maximumFractionDigits: 1 });
+        pane.innerHTML = `
+          <section class="grades-card">
+            ${studentGrades.map((g) => {
+              const dateStr = g.submitted_at ? new Date(g.submitted_at).toLocaleString('vi-VN', { dateStyle: 'short', timeStyle: 'short' }) : '-';
+              const score10 = g.score_10 != null ? Number(g.score_10) : (g.max_points ? (g.score / g.max_points) * 10 : 0);
+              const title = (g.assignments?.title || 'Bài kiểm tra').replace(/Bài tập về nhà/gi, 'Bài tập');
+              return `
+                <a href="#/review/${g.id}" class="grades-row">
+                  <div class="grades-row-main">
+                    <div class="grades-row-title">${escapeHtml(title)}</div>
+                    <div class="grades-row-context">Nộp lúc ${escapeHtml(dateStr)}</div>
                   </div>
-                  <div>
-                    <div style="font-size: 14px; font-weight: 700; color: #181B16;">${escapeHtml(u.full_name || 'Học sinh')}</div>
-                    <div style="font-size: 12px; color: #64748b;">${escapeHtml(u.email || '')}</div>
+                  <div class="grades-row-right">
+                    <span class="grades-score ${score10 >= 8 ? 'is-good' : ''}">${fmt.format(score10)}<span class="grades-score-max">/10</span></span>
+                    <span class="grades-row-arrow" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </span>
                   </div>
-                </div>
-                <div style="font-size: 12px; font-weight: 600; color: #16a34a; background: #EBEDE6; padding: 4px 12px; border-radius: 9999px; border: 1px solid #E4E6DE;">
-                  Online từ ${timeStr}
-                </div>
-              </div>
-            `;
-          }).join('');
-
-          onlineHTML = `
-            <div style="display: flex; flex-direction: column; gap: 12px;">
-              <div style="font-size: 14px; font-weight: 600; color: #181B16; display: flex; align-items: center; gap: 6px;">
-                <span style="width: 10px; height: 10px; border-radius: 50%; background: #22c55e; display: inline-block;"></span>
-                Học sinh đang mở ứng dụng (${onlineUsers.length} người)
-              </div>
-              ${listUsers}
-            </div>
-          `;
-        }
-
-        pane.innerHTML = headerHTML + onlineHTML;
-      } else if (activeTab === 'account') {
-        pane.innerHTML = headerHTML + `
-          <div style="background: #ffffff; border: 1px solid #E4E6DE; border-radius: 14px; padding: 24px; display: flex; flex-direction: column; gap: 20px;">
-            <h4 style="margin: 0; font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif; font-size: 16px; color: #181B16;">Chỉnh sửa tài khoản Học sinh</h4>
-            
-            <div style="display: flex; flex-direction: column; gap: 6px;">
-              <label style="font-size: 13px; font-weight: 600; color: #334155;">Họ và tên</label>
-              <input id="edit-student-name" type="text" class="nh-form-input-clean" value="${escapeHtml(student.full_name ?? '')}" />
-            </div>
-
-            <div style="display: flex; flex-direction: column; gap: 6px;">
-              <label style="font-size: 13px; font-weight: 600; color: #334155;">Trạng thái tài khoản</label>
-              <select id="edit-student-status" class="nh-form-input-clean" style="height: 40px;">
-                <option value="active" ${student.status !== 'disabled' ? 'selected' : ''}>Hoạt động (Active)</option>
-                <option value="disabled" ${student.status === 'disabled' ? 'selected' : ''}>Vô hiệu (Disabled)</option>
-              </select>
-            </div>
-
-            <div style="display: flex; gap: 12px; margin-top: 8px; flex-wrap: wrap;">
-              <button id="save-student-account-btn" type="button" class="nh-modal-btn-primary">Lưu thay đổi</button>
-              <button id="reset-student-pwd-btn" type="button" class="nh-modal-btn-secondary">Khôi phục mật khẩu tạm</button>
-              <button id="delete-student-account-btn" type="button" class="nh-modal-btn-secondary danger">Xóa tài khoản này</button>
-            </div>
-          </div>
+                </a>
+              `;
+            }).join('')}
+          </section>
         `;
-
-        // Wire account actions
-        pane.querySelector('#save-student-account-btn')?.addEventListener('click', async () => {
-          const name = pane.querySelector('#edit-student-name')?.value;
-          const status = pane.querySelector('#edit-student-status')?.value;
-          try {
-            await invokeAdminFunction('admin-update-user', {
-              id: studentId,
-              full_name: name,
-              status,
-              role: 'student',
-            });
-            student.full_name = name;
-            student.status = status;
-            toast('Đã cập nhật thông tin học sinh.', 'success');
-            renderStudentSidebarList();
-            renderStudentDetail(studentId);
-          } catch (err) {
-            toast(err.message, 'error');
-          }
-        });
-
-        pane.querySelector('#reset-student-pwd-btn')?.addEventListener('click', async () => {
-          const password = window.prompt('Mật khẩu tạm mới, bỏ trống để hệ thống đặt 123456:') || '123456';
-          try {
-            const result = await invokeAdminFunction('admin-reset-password', {
-              id: studentId,
-              password,
-            });
-            toast(`Mật khẩu tạm mới: ${result.temporaryPassword}`, 'success');
-          } catch (err) {
-            toast(err.message, 'error');
-          }
-        });
-
-        pane.querySelector('#delete-student-account-btn')?.addEventListener('click', async () => {
-          if (!window.confirm(`Xóa vĩnh viễn tài khoản của học sinh ${student.full_name}?`)) return;
-          try {
-            await deleteManagedUser(studentId);
-            toast('Đã xóa học sinh.', 'success');
-            mountProgressManager();
-          } catch (err) {
-            toast(err.message, 'error');
-          }
-        });
       }
-
-      // Wire Tab Clicks
-      pane.querySelectorAll('.nh-tab-btn').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          activeTab = btn.dataset.tab;
-          renderStudentDetail(studentId);
-        });
-      });
     }
 
-    function renderStudentSidebarList() {
-      const listContainer = document.querySelector('.progress-sidebar-list');
-      if (!listContainer) return;
+    const onPresenceChange = () => renderStudentPills();
+    presenceTarget.addEventListener('change', onPresenceChange);
 
-      const onlineUsers = getOnlineUsers();
-      const onlineSet = new Set(onlineUsers.map((u) => u.id));
-
-      const searchVal = (document.querySelector('#student-search-input')?.value || '').toLowerCase().trim();
-      const filtered = students.filter((s) => 
-        (s.full_name || '').toLowerCase().includes(searchVal) || 
-        (s.email || '').toLowerCase().includes(searchVal)
-      );
-
-      if (!filtered.length) {
-        listContainer.innerHTML = `<div style="font-size: 13px; color: #94a3b8; padding: 12px 8px; text-align: center;">Không tìm thấy học sinh.</div>`;
-        return;
-      }
-
-      listContainer.innerHTML = filtered.map((s) => {
-        const isSelected = s.id === selectedStudentId;
-        const isOnline = onlineSet.has(s.id);
-        const initial = (s.full_name || 'U').charAt(0).toUpperCase();
-
-        let subtext = 'Ngoại tuyến';
-        if (isOnline) {
-          subtext = 'Đang hoạt động';
-        } else {
-          const timeVal = s.updated_at || s.created_at;
-          if (timeVal) {
-            const diffSec = Math.floor((Date.now() - new Date(timeVal).getTime()) / 1000);
-            if (diffSec < 60) subtext = 'Vừa xong';
-            else {
-              const diffMin = Math.floor(diffSec / 60);
-              if (diffMin < 60) subtext = `${diffMin}p trước`;
-              else {
-                const diffHours = Math.floor(diffMin / 60);
-                if (diffHours < 24) subtext = `${diffHours}h trước`;
-                else subtext = `${Math.floor(diffHours / 24)}d trước`;
-              }
-            }
-          }
-        }
-
-        return `
-          <div class="progress-sidebar-item ${isSelected ? 'selected' : ''}" data-sid="${s.id}" style="padding: 8px 12px;">
-            <div style="display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1;">
-              <div style="position: relative; flex-shrink: 0;">
-                <div style="width: 32px; height: 32px; border-radius: 50%; background: ${isSelected ? '#181B16' : '#cbd5e1'}; color: #ffffff; font-size: 13px; font-weight: 600; display: grid; place-items: center;">
-                  ${escapeHtml(initial)}
-                </div>
-                ${isOnline ? '<span style="position: absolute; bottom: 0; right: 0; width: 9px; height: 9px; border-radius: 50%; background: #22c55e; border: 1.5px solid #ffffff;" title="Đang hoạt động"></span>' : ''}
-              </div>
-              <div style="display: flex; flex-direction: column; min-width: 0; flex: 1;">
-                <span style="font-size: 13.5px; font-weight: ${isSelected ? '700' : '600'}; color: ${isSelected ? '#181B16' : '#334155'}; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                  ${escapeHtml(s.full_name || 'Học sinh')}
-                </span>
-                <span style="font-size: 11px; font-weight: 500; color: ${isOnline ? '#16a34a' : '#94a3b8'};">
-                  ${subtext}
-                </span>
-              </div>
-            </div>
-            ${s.status === 'disabled' ? '<span style="font-size: 10px; background: #fee2e2; color: #ef4444; padding: 1px 6px; border-radius: 9999px;">Tắt</span>' : ''}
-          </div>
-        `;
-      }).join('');
-
-      listContainer.querySelectorAll('.progress-sidebar-item').forEach((item) => {
-        item.addEventListener('click', () => {
-          selectedStudentId = item.dataset.sid;
-          renderStudentSidebarList();
-          renderStudentDetail(selectedStudentId);
-        });
-      });
-    }
-
-    // Wire Search Input
-    document.querySelector('#student-search-input')?.addEventListener('input', () => {
-      renderStudentSidebarList();
-    });
-
-    // Wire Create Student Modal
-    const createModal = root.querySelector('#nh-create-student-modal');
-    root.querySelector('#nh-add-student-trigger')?.addEventListener('click', () => { createModal.style.display = 'flex'; });
-    root.querySelector('#nh-close-create-modal')?.addEventListener('click', () => { createModal.style.display = 'none'; });
-    createModal?.addEventListener('click', (e) => { if (e.target === createModal) createModal.style.display = 'none'; });
-
-    root.querySelector('#create-student-form-modal')?.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const form = e.currentTarget;
-      const submitBtn = form.querySelector('button[type="submit"]');
-      const restore = setButtonLoading(submitBtn, 'Đang tạo...');
-      const values = Object.fromEntries(new FormData(form).entries());
-      try {
-        await createManagedUser({ ...values, role: 'student' });
-        toast('Đã tạo tài khoản học sinh mới thành công.', 'success');
-        createModal.style.display = 'none';
-        mountProgressManager();
-      } catch (err) {
-        toast(err.message, 'error');
-      } finally {
-        restore();
-      }
-    });
-
-    // Initial render
-    renderStudentSidebarList();
-    renderStudentDetail(selectedStudentId);
-
+    renderStudentPills();
+    syncSubtabs();
+    await renderStudentDetail(currentStudentId);
   } catch (error) {
     root.innerHTML = renderErrorState(error);
     wireRouteRetry(root);

@@ -2489,6 +2489,7 @@ tbody tr:hover {
 }
 
 @media (max-width: 520px) {
+
   .nh-logo-dot,
   .nh-logo-sub {
     display: none;
@@ -3029,9 +3030,9 @@ tbody tr:hover {
 }
 
 .nh-admin-breadcrumb-bar {
-  background: #DCE8CC;
-  color: #455120;
-  border-bottom: 1px solid #D1DFC0;
+  background: #EBEDE6;
+  color: #181B16;
+  border-bottom: 1px solid #E4E6DE;
   padding: 4px 0;
 }
 
@@ -4707,7 +4708,7 @@ tbody tr:hover {
   transition: transform 0.15s ease;
 }
 
-.phase-lecture-item[open] > .phase-lecture-summary .phase-lecture-chevron {
+.phase-lecture-item[open]>.phase-lecture-summary .phase-lecture-chevron {
   transform: rotate(180deg);
 }
 
@@ -5861,5 +5862,1017 @@ tbody tr:hover {
 
   .grades-row {
     padding: 13px 16px;
+  }
+}
+
+/* ── SALARY & SCHEDULE MANAGER (#/salary) ── */
+.salary-hub {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 28px 20px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+.salary-hero-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.salary-hero-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.salary-month-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 40px;
+  padding: 0 6px;
+  border-radius: 9999px;
+  background: rgba(247, 247, 242, 0.12);
+}
+
+.salary-month-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: #F7F7F2;
+  font-size: 18px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.salary-month-btn:hover {
+  background: rgba(247, 247, 242, 0.18);
+}
+
+.salary-month-label {
+  min-width: 68px;
+  text-align: center;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #F7F7F2;
+}
+
+.salary-grand-pill {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  height: 40px;
+  padding: 0 18px;
+  border-radius: 9999px;
+  background: #F7F7F2;
+  color: #181B16;
+  align-items: center;
+}
+
+.salary-grand-k {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #64695F;
+}
+
+.salary-grand-v {
+  font-family: var(--md-ref-typeface-brand);
+  font-size: 17px;
+  font-weight: 800;
+  color: #181B16;
+}
+
+.salary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+.salary-empty-full {
+  grid-column: 1 / -1;
+}
+
+.salary-card {
+  background: #FFFFFF;
+  border: 1px solid #E4E6DE;
+  border-radius: 20px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.salary-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.salary-student-name {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #181B16;
+}
+
+.salary-del-btn {
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 9999px;
+  border: none;
+  background: transparent;
+  color: #64695F;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.salary-del-btn:hover {
+  background: #F8EAE8;
+  color: #8C2D26;
+}
+
+.salary-stat-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.45fr;
+  background: #EBEDE6;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.salary-stat-cell {
+  padding: 10px 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-right: 1px solid #E2E5DC;
+}
+
+.salary-stat-cell:last-child {
+  border-right: none;
+}
+
+.salary-stat-k {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #64695F;
+}
+
+.salary-stat-v {
+  font-size: 15px;
+  font-weight: 700;
+  color: #181B16;
+}
+
+.salary-stat-v.is-money {
+  font-family: var(--md-ref-typeface-brand);
+  font-weight: 800;
+}
+
+.salary-rate-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #EFEFE9;
+}
+
+.salary-rate-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64695F;
+}
+
+.salary-rate-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.salary-rate-input {
+  width: 112px;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 9999px;
+  border: 1px solid #E4E6DE;
+  background: #F7F7F2;
+  color: #181B16;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+  text-align: right;
+  outline: none;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.salary-rate-input:focus {
+  border-color: #181B16;
+  background: #FFFFFF;
+}
+
+.salary-rate-unit {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64695F;
+}
+
+.salary-legend {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 12px;
+  color: #64695F;
+}
+
+.salary-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.salary-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.salary-swatch.is-none {
+  background: #F7F7F2;
+  border: 1px solid #E4E6DE;
+}
+
+.salary-swatch.is-scheduled {
+  background: #EBEDE6;
+  border: 1.5px solid #181B16;
+}
+
+.salary-swatch.is-taught {
+  background: #181B16;
+}
+
+.salary-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 5px;
+  text-align: center;
+}
+
+.salary-cal-dow {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #64695F;
+  padding: 2px 0 4px;
+}
+
+.salary-cal-dow.is-weekend {
+  color: #B8433A;
+}
+
+.salary-day-cell {
+  aspect-ratio: 1;
+  padding: 0;
+  border-radius: 10px;
+  border: 1px solid #EFEFE9;
+  background: #F7F7F2;
+  color: #64695F;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.14s ease, border-color 0.14s ease, color 0.14s ease;
+}
+
+.salary-day-cell:hover {
+  background: #EBEDE6;
+}
+
+.salary-day-cell.is-weekend {
+  color: #B8433A;
+}
+
+.salary-day-cell[data-state="scheduled"] {
+  background: #EBEDE6;
+  border: 1.5px solid #181B16;
+  color: #181B16;
+  font-weight: 700;
+}
+
+.salary-day-cell[data-state="scheduled"].is-weekend {
+  color: #8C2D26;
+}
+
+.salary-day-cell[data-state="taught"] {
+  background: #181B16;
+  border: 1.5px solid #181B16;
+  color: #F7F7F2;
+  font-weight: 700;
+}
+
+.salary-add-bar {
+  background: #F7F7F2;
+  border: 1px dashed #D3D7CB;
+  border-radius: 20px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.salary-add-select {
+  flex: 1;
+  min-width: 200px;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 9999px;
+  border: 1px solid #E4E6DE;
+  background: #FFFFFF;
+  color: #181B16;
+  font-family: inherit;
+  font-size: 13.5px;
+  outline: none;
+}
+
+.salary-add-btn {
+  height: 40px;
+  padding: 0 20px;
+  border-radius: 9999px;
+  border: none;
+  background: #181B16;
+  color: #F7F7F2;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.salary-add-btn:hover {
+  background: #2C3028;
+}
+
+@media (max-width: 760px) {
+  .salary-hub {
+    padding: 20px 16px 48px;
+  }
+
+  .salary-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Option B additions for #/salary */
+.salary-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.salary-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 9999px;
+  border: none;
+  background: #EBEDE6;
+  color: #181B16;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.salary-tab:hover {
+  background: #E2E5DC;
+}
+
+.salary-tab.active {
+  background: #181B16;
+  color: #F7F7F2;
+}
+
+.salary-tab-money {
+  font-size: 12.5px;
+  font-weight: 600;
+  opacity: 0.78;
+}
+
+.salary-b-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 18px;
+  align-items: start;
+}
+
+.salary-cal-grid--lg {
+  gap: 8px;
+}
+
+.salary-day-cell--lg {
+  border-radius: 13px;
+  font-size: 14px;
+}
+
+.salary-b-side {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.salary-summary-box {
+  background: #EBEDE6;
+  border-radius: 20px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.salary-summary-k {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #64695F;
+}
+
+.salary-summary-money {
+  font-family: var(--md-ref-typeface-brand);
+  font-size: 28px;
+  font-weight: 800;
+  font-variation-settings: 'wght' 800;
+  color: #181B16;
+  line-height: 1.1;
+}
+
+.salary-summary-sub {
+  font-size: 13px;
+  color: #64695F;
+  margin-top: 2px;
+}
+
+.salary-detail-card {
+  background: #FFFFFF;
+  border: 1px solid #E4E6DE;
+  border-radius: 20px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.salary-upcoming-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.salary-upcoming-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12.5px;
+  color: #64695F;
+  font-weight: 600;
+}
+
+.salary-upcoming-head strong {
+  color: #181B16;
+}
+
+.salary-upcoming-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.salary-date-pill {
+  padding: 4px 10px;
+  border-radius: 9999px;
+  background: #EBEDE6;
+  color: #181B16;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.salary-upcoming-empty {
+  font-size: 12.5px;
+  color: #64695F;
+}
+
+.salary-detail-foot {
+  padding-top: 10px;
+  border-top: 1px solid #EFEFE9;
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 780px) {
+  .salary-b-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .salary-cal-grid--lg {
+    gap: 5px;
+  }
+}
+
+/* ── STUDENTS MANAGER (#/students · Option A) ── */
+.students-hub {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 28px 20px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+.students-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.students-pill-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.students-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 9999px;
+  border: none;
+  background: #EBEDE6;
+  color: #181B16;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.students-pill:hover {
+  background: #E2E5DC;
+}
+
+.students-pill.active {
+  background: #181B16;
+  color: #F7F7F2;
+}
+
+.students-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #A1A59B;
+  flex-shrink: 0;
+}
+
+.students-dot.is-online {
+  background: #2F6F4E;
+}
+
+.students-subtabs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: nowrap;
+}
+
+.students-subtab {
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 9999px;
+  border: none;
+  background: #EBEDE6;
+  color: #181B16;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.students-subtab:hover {
+  background: #E2E5DC;
+}
+
+.students-subtab.active {
+  background: #181B16;
+  color: #F7F7F2;
+}
+
+.students-progress-layout {
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.students-progress-side {
+  position: sticky;
+  top: 76px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.students-progress-box {
+  background: #EBEDE6;
+  border-radius: 20px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.students-progress-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.students-progress-k {
+  color: #64695F;
+  font-weight: 600;
+}
+
+.students-progress-v {
+  color: #181B16;
+  font-weight: 700;
+}
+
+.students-chapter-nav {
+  background: #FFFFFF;
+  border: 1px solid #E4E6DE;
+  border-radius: 20px;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+
+.students-phase-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.students-phase-label {
+  padding: 2px 12px 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #64695F;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.students-lecture-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.students-lecture-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 20px;
+  border: none;
+  border-bottom: 1px solid #EFEFE9;
+  background: #FFFFFF;
+  color: #181B16;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.14s ease;
+}
+
+.students-lecture-row:last-child {
+  border-bottom: none;
+}
+
+.students-lecture-row:hover {
+  background: #F7F7F2;
+}
+
+.students-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  border: 1.5px solid #D3D7CB;
+  background: #F7F7F2;
+  color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background-color 0.14s ease, border-color 0.14s ease, color 0.14s ease;
+}
+
+.students-check.is-checked {
+  background: #181B16;
+  border-color: #181B16;
+  color: #F7F7F2;
+}
+
+.students-lecture-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #181B16;
+  line-height: 1.4;
+}
+
+@media (max-width: 820px) {
+  .students-hub {
+    padding: 20px 16px 48px;
+  }
+
+  .students-progress-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .students-progress-side {
+    position: static;
+  }
+
+  .students-chapter-nav {
+    max-height: none;
+  }
+}
+
+/* ── STUDENTS MANAGER (#/students · Option A) ── */
+.students-hub {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 28px 20px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+.students-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.students-pill-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.students-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 9999px;
+  border: none;
+  background: #EBEDE6;
+  color: #181B16;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.students-pill:hover {
+  background: #E2E5DC;
+}
+
+.students-pill.active {
+  background: #181B16;
+  color: #F7F7F2;
+}
+
+.students-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #A1A59B;
+  flex-shrink: 0;
+}
+
+.students-dot.is-online {
+  background: #2F6F4E;
+}
+
+.students-subtabs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: nowrap;
+}
+
+.students-subtab {
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 9999px;
+  border: none;
+  background: #EBEDE6;
+  color: #181B16;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.students-subtab:hover {
+  background: #E2E5DC;
+}
+
+.students-subtab.active {
+  background: #181B16;
+  color: #F7F7F2;
+}
+
+.students-progress-layout {
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.students-progress-side {
+  position: sticky;
+  top: 76px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.students-progress-box {
+  background: #EBEDE6;
+  border-radius: 20px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.students-progress-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.students-progress-k {
+  color: #64695F;
+  font-weight: 600;
+}
+
+.students-progress-v {
+  color: #181B16;
+  font-weight: 700;
+}
+
+.students-chapter-nav {
+  background: #FFFFFF;
+  border: 1px solid #E4E6DE;
+  border-radius: 20px;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+
+.students-phase-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.students-phase-label {
+  padding: 2px 12px 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #64695F;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.students-lecture-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.students-lecture-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 20px;
+  border: none;
+  border-bottom: 1px solid #EFEFE9;
+  background: #FFFFFF;
+  color: #181B16;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.14s ease;
+}
+
+.students-lecture-row:last-child {
+  border-bottom: none;
+}
+
+.students-lecture-row:hover {
+  background: #F7F7F2;
+}
+
+.students-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  border: 1.5px solid #D3D7CB;
+  background: #F7F7F2;
+  color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background-color 0.14s ease, border-color 0.14s ease, color 0.14s ease;
+}
+
+.students-check.is-checked {
+  background: #181B16;
+  border-color: #181B16;
+  color: #F7F7F2;
+}
+
+.students-lecture-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #181B16;
+  line-height: 1.4;
+}
+
+@media (max-width: 820px) {
+  .students-hub {
+    padding: 20px 16px 48px;
+  }
+
+  .students-progress-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .students-progress-side {
+    position: static;
+  }
+
+  .students-chapter-nav {
+    max-height: none;
   }
 }

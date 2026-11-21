@@ -1,5 +1,5 @@
 import { state, pageRoot } from '../../store.js';
-import { wireRouteRetry } from '../../router.js';
+import { wireRouteRetry, registerCleanup } from '../../router.js';
 import { toast, renderLoading, renderErrorState } from '../../lib/ui.js';
 import { escapeHtml, option, setButtonLoading } from '../../lib/html.js';
 import {
@@ -12,885 +12,498 @@ import {
   deleteLectureGroup,
   upsertLecture,
   deleteLecture,
-  reorderContentNodes as reorderContentNodesApi,
   fetchStudents,
 } from '../../services/lmsApi.js';
 
 let currentContentPhaseId = null;
+let currentContentModuleId = null;
 
-export async function mountContentManager() {
-  const root = pageRoot();
-  root.innerHTML = renderLoading();
+const CM_ICONS = {
+  plus: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>`,
+  edit: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"></path></svg>`,
+  trash: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path><line x1="10" x2="10" y1="11" y2="17"></line><line x1="14" x2="14" y1="11" y2="17"></line></svg>`,
+  close: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`,
+  slide: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>`,
+};
 
-  try {
-    const [data, students] = await Promise.all([
-      fetchLearningPath(state.profile.role),
-      fetchStudents()
-    ]);
-
-    if (data.phases.length > 0 && !currentContentPhaseId) {
-      currentContentPhaseId = data.phases[0].id;
-    }
-
-    root.innerHTML = `
-      <!-- Top Breadcrumb Bar -->
-      <div class="nh-admin-breadcrumb-bar">
-        <div class="nh-admin-breadcrumb-inner">
-          <a href="#/manage">Trung tâm Quản trị</a>
-          <span class="sep">&rsaquo;</span>
-          <span class="active">Quản lý Nội dung khóa học</span>
-        </div>
-      </div>
-
-      <style>
-        .content-manager-layout {
-          display: flex;
-          height: calc(100vh - 110px);
-          background: #F7F7F2;
-          overflow: hidden;
-        }
-        .phase-list-column {
-          width: 280px;
-          flex-shrink: 0;
-          background: #ffffff;
-          border-radius: 18px;
-          padding: 20px 0;
-          border: 1px solid #E4E6DE;
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
-          height: fit-content;
-          margin: 40px 0 40px 40px;
-        }
-        .phase-list-item {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 10px 18px;
-          margin: 0 16px 6px 16px;
-          border-radius: 9999px;
-          cursor: pointer;
-          font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif;
-          font-size: 14px;
-          font-weight: 600;
-          color: #475467;
-          transition: all 0.15s ease;
-        }
-        .phase-list-item:hover {
-          background: #FAFBF8;
-          color: #181B16;
-        }
-        .phase-list-item.active {
-          background: #EBEDE6;
-          color: #181B16;
-          font-weight: 700;
-        }
-        .phase-list-item svg {
-          opacity: 0.5;
-          transition: opacity 0.15s ease;
-          stroke: currentColor;
-        }
-        .phase-list-item.active svg {
-          opacity: 1;
-          stroke: #181B16;
-        }
-        .structure-column {
-          flex: 1;
-          padding: 40px 24px;
-          overflow-y: auto;
-          background: transparent;
-        }
-        .structure-card-wrapper {
-          background: #ffffff;
-          border-radius: 18px;
-          border: 1px solid #E4E6DE;
-          box-shadow: 0 4px 16px rgba(0,0,0,0.03);
-          padding: 28px;
-        }
-        .btn-pill-action {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          font-size: 13px;
-          font-weight: 600;
-          color: #181B16;
-          border: 1.5px solid #181B16;
-          background: transparent;
-          border-radius: 9999px;
-          padding: 6px 16px;
-          cursor: pointer;
-          transition: all 0.15s ease;
-        }
-        .btn-pill-action:hover {
-          background: #181B16;
-          color: #ffffff;
-        }
-        /* Tree Hierarchy Styles */
-        .structure-children {
-          margin-left: 24px;
-          padding-left: 20px;
-          border-left: 1.5px dashed #cbd5e1;
-          position: relative;
-        }
-        .manage-node {
-          padding: 10px 0;
-          border-bottom: 1.5px solid #f1f5f9;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 12px;
-        }
-        .manage-node:last-child {
-          border-bottom: none;
-        }
-        .toggle-children {
-          display: flex;
-          align-items: center;
-          cursor: pointer;
-          flex: 1;
-          min-width: 0;
-          gap: 8px;
-        }
-        .toggle-children strong {
-          white-space: normal;
-          word-break: break-word;
-          line-height: 1.4;
-        }
-        .node-meta {
-          margin-left: 8px;
-          color: #64748b;
-          font-size: 12px;
-          font-weight: 400;
-        }
-        /* Level Colors & Typography */
-        .manage-node[data-entity="phase"] strong { font-size: 16px; color: #181B16; font-weight: 700; }
-        .manage-node[data-entity="module"] strong { font-size: 15px; color: #1e293b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; }
-        .manage-node[data-entity="lectureGroup"] strong { font-size: 14.5px; color: #334155; font-weight: 600; }
-        .manage-node[data-entity="lecture"] strong { font-size: 14px; font-weight: 400; color: #475569; }
-        
-        .icon-actions {
-          display: flex;
-          align-items: center;
-          gap: 2px;
-        }
-        .icon-btn-utility {
-          background: none;
-          border: none;
-          padding: 6px;
-          border-radius: 50%;
-          color: #94a3b8;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: all 0.15s ease;
-        }
-        .icon-btn-utility:hover {
-          background: #f1f5f9;
-          color: #475569;
-        }
-        .icon-btn-utility.delete:hover {
-          background: #fef2f2;
-          color: #ef4444;
-        }
-        
-        .editor-column {
-          width: 360px;
-          flex-shrink: 0;
-          background: #ffffff;
-          border-radius: 18px;
-          border: 1px solid #E4E6DE;
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
-          padding: 32px 24px;
-          max-height: calc(100vh - 144px);
-          overflow-y: auto;
-          margin: 40px 40px 40px 0;
-        }
-        .editor-column .entity-form { display: none; }
-        .editor-column .entity-form.active { display: grid; gap: 16px; }
-        .editor-placeholder {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-          color: #64748b;
-          border: 1.5px dashed #cbd5e1;
-          border-radius: 12px;
-          padding: 48px 16px;
-          gap: 12px;
-        }
-        .editor-placeholder.hidden { display: none; }
-      </style>
-      <div class="content-manager-layout">
-        <aside class="phase-list-column">
-          <div style="padding: 0 24px 20px; border-bottom: 1px solid #f1f5f9; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
-            <div>
-              <h2 style="margin: 0; font-size: 18px; font-weight: 700; color: #1e293b;">Danh sách</h2>
-            </div>
-            <button data-create="phase" class="icon-btn-utility" style="border: 1px solid #e2e8f0;" title="Thêm giai đoạn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-            </button>
-          </div>
-          <div id="phase-list-container">
-            ${renderPhaseList(data.phases, currentContentPhaseId)}
-          </div>
-        </aside>
-
-        <section class="structure-column">
-          <div class="structure-card-wrapper">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
-              <div>
-                <h2 style="margin: 0; font-size: 20px; font-weight: 700; color: #1e293b;">Cấu trúc chi tiết</h2>
-              </div>
-              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <button data-create="module" class="btn-pill-action">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                  Chương
-                </button>
-                <button data-create="lectureGroup" class="btn-pill-action">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                  Nhóm
-                </button>
-                <button data-create="lecture" class="btn-pill-action">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                  Bài giảng
-                </button>
-              </div>
-            </div>
-            <div id="manage-structure-container">
-              ${renderActivePhaseStructure(data.phases, currentContentPhaseId)}
-            </div>
-          </div>
-        </section>
-
-        <aside class="editor-column">
-          <div class="editor-placeholder" id="content-editor-placeholder">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.5;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4z"></path></svg>
-            <p style="margin: 0; font-size: 13.5px; line-height: 1.55;">Chọn một mục bên trái để sửa hoặc bấm nút Thêm mới.</p>
-          </div>
-          <div id="content-forms-container">
-            ${renderPhaseForm(students)}
-            ${renderModuleForm(data.phases)}
-            ${renderLectureGroupForm(data.phases, data.modules)}
-            ${renderLectureForm(data.phases, data.modules, data.lectureGroups)}
-          </div>
-        </aside>
-      </div>
-    `;
-
-    // Dynamically calculate topbar height for perfect sticky offset
-    setTimeout(() => {
-      const topbar = document.querySelector('.topbar');
-      if (topbar) {
-        document.documentElement.style.setProperty('--actual-topbar-height', topbar.getBoundingClientRect().height + 'px');
-      }
-    }, 50);
-
-    wireContentForms(data);
-    wirePhaseSelection(data);
-    wireCascadingDropdowns(root);
-  } catch (error) {
-    root.innerHTML = renderErrorState(error);
-    wireRouteRetry(root);
+function splitChapterTitle(title = '', fallbackIndex = 1) {
+  const match = String(title).match(/^(Chương\s*\d+)\s*[:\-–]\s*(.+)$/i);
+  if (match) {
+    return { short: match[1].trim(), sub: match[2].trim() };
   }
+  return { short: `Chương ${fallbackIndex}`, sub: String(title).trim() || `Chương ${fallbackIndex}` };
 }
 
-export function renderPhaseList(phases, activeId) {
-  if (!phases.length) return '<div class="empty-state" style="padding: 16px;">Chưa có Giai đoạn</div>';
-  return phases.map(p => `
-    <div class="phase-list-item ${p.id === activeId ? 'active' : ''}" data-phase-id="${p.id}">
-      <span>${escapeHtml(p.title)}</span>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-    </div>
-  `).join('');
-}
-
-export function renderActivePhaseStructure(phases, activeId) {
-  const activePhase = phases.find(p => p.id === activeId);
-  if (!activePhase) return '<div class="empty-state">Vui lòng chọn một giai đoạn.</div>';
-  return renderManagePhase(activePhase);
-}
-
-export function wirePhaseSelection(pathData) {
-  document.querySelectorAll('.phase-list-item').forEach(item => {
-    item.addEventListener('click', () => {
-      const phaseId = item.dataset.phaseId;
-      if (phaseId === currentContentPhaseId) return;
-      currentContentPhaseId = phaseId;
-
-      // Update list active state
-      document.querySelectorAll('.phase-list-item').forEach(el => el.classList.remove('active'));
-      item.classList.add('active');
-
-      // Update middle column
-      const container = document.getElementById('manage-structure-container');
-      if (container) {
-        container.innerHTML = renderActivePhaseStructure(pathData.phases, currentContentPhaseId);
-        wireStructureEvents();
-      }
-
-      // Reset right column form
-      document.getElementById('content-editor-placeholder')?.classList.remove('hidden');
-      document.querySelectorAll('.editor-column .entity-form').forEach(f => f.classList.remove('active'));
-    });
-  });
-}
-
-
-export function renderPhaseForm(students = []) {
-  return `
-    <form class="entity-form compact-entity-form" data-entity="phase" style="display: flex; flex-direction: column; gap: 16px;">
-      <div class="entity-form-heading" style="display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; margin-bottom: 4px;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#181B16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
-        <h3 style="font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif; font-size: 17px; font-weight: 700; color: #181B16; margin: 0;">Cấu hình Giai đoạn</h3>
-      </div>
-      <input type="hidden" name="id">
-      <input type="hidden" name="description" value="">
-      <input type="hidden" name="sort_order" value="0">
-      <input type="hidden" name="published" value="true">
-      
-      <div style="display: flex; flex-direction: column; gap: 6px;">
-        <label style="font-size: 12.5px; font-weight: 600; color: #334155;">Tên Giai đoạn</label>
-        <input class="nh-form-input-clean" name="title" placeholder="Nhập tên giai đoạn..." required>
-      </div>
-
-      <div style="max-height: 140px; overflow-y: auto; border: 1px solid #cbd5e1; border-radius: 10px; padding: 10px; background: #ffffff;">
-        <div style="font-size: 12px; font-weight: 600; margin-bottom: 8px; color: #181B16;">Hiển thị cho học sinh (để trống = tất cả):</div>
-        ${students.map(s => `
-          <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 13px; color: #334155; cursor: pointer;">
-            <input type="checkbox" name="student_ids" value="${escapeHtml(s.id)}" style="accent-color: #181B16; width: 15px; height: 15px;">
-            ${escapeHtml(s.full_name)}
-          </label>
-        `).join('')}
-      </div>
-
-      <div style="display: flex; gap: 10px; margin-top: 8px;">
-        <button type="submit" class="nh-modal-btn-primary">Lưu</button>
-        <button type="reset" class="nh-modal-btn-secondary">Thêm mới</button>
-      </div>
-    </form>
-  `;
-}
-
-export function renderModuleForm(phases) {
-  return `
-    <form class="entity-form compact-entity-form" data-entity="module" style="display: flex; flex-direction: column; gap: 16px;">
-      <div class="entity-form-heading" style="display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; margin-bottom: 4px;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#181B16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-        <h3 style="font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif; font-size: 17px; font-weight: 700; color: #181B16; margin: 0;">Cấu hình Chương</h3>
-      </div>
-      <input type="hidden" name="id">
-      <input type="hidden" name="description" value="">
-      <input type="hidden" name="sort_order" value="0">
-      <input type="hidden" name="published" value="true">
-
-      <div style="display: flex; flex-direction: column; gap: 6px;">
-        <label style="font-size: 12.5px; font-weight: 600; color: #334155;">Thuộc Giai đoạn</label>
-        <select class="nh-form-input-clean" name="phase_id" required style="height: 40px;">
-          <option value="">-- Chọn giai đoạn --</option>
-          ${phases.map((phase) => option(phase.id, phase.title)).join('')}
-        </select>
-      </div>
-
-      <div style="display: flex; flex-direction: column; gap: 6px;">
-        <label style="font-size: 12.5px; font-weight: 600; color: #334155;">Tên Chương</label>
-        <input class="nh-form-input-clean" name="title" placeholder="Nhập tên chương..." required>
-      </div>
-
-      <div style="display: flex; gap: 10px; margin-top: 8px;">
-        <button type="submit" class="nh-modal-btn-primary">Lưu</button>
-        <button type="reset" class="nh-modal-btn-secondary">Thêm mới</button>
-      </div>
-    </form>
-  `;
-}
-
-export function renderLectureGroupForm(phases, modules) {
-  return `
-    <form class="entity-form compact-entity-form" data-entity="lectureGroup" style="display: flex; flex-direction: column; gap: 16px;">
-      <div class="entity-form-heading" style="display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; margin-bottom: 4px;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#181B16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-        <h3 style="font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif; font-size: 17px; font-weight: 700; color: #181B16; margin: 0;">Cấu hình Bài học (Nhóm)</h3>
-      </div>
-      <input type="hidden" name="id">
-      <input type="hidden" name="description" value="">
-      <input type="hidden" name="sort_order" value="0">
-      <input type="hidden" name="published" value="true">
-
-      <div style="display: flex; flex-direction: column; gap: 6px;">
-        <label style="font-size: 12.5px; font-weight: 600; color: #334155;">Giai đoạn</label>
-        <select class="nh-form-input-clean cascade-phase" name="phase_id" required style="height: 40px;">
-          <option value="">-- Chọn giai đoạn --</option>
-          ${phases.map((phase) => option(phase.id, phase.title)).join('')}
-        </select>
-      </div>
-
-      <div style="display: flex; flex-direction: column; gap: 6px;">
-        <label style="font-size: 12.5px; font-weight: 600; color: #334155;">Chương</label>
-        <select class="nh-form-input-clean cascade-module" name="module_id" required disabled style="height: 40px;">
-          <option value="">-- Chọn chương --</option>
-          ${modules.map((module) => `<option value="${escapeHtml(module.id)}" data-phase-id="${escapeHtml(module.phase_id)}">${escapeHtml(module.title)}</option>`).join('')}
-        </select>
-      </div>
-
-      <div style="display: flex; flex-direction: column; gap: 6px;">
-        <label style="font-size: 12.5px; font-weight: 600; color: #334155;">Tên Bài học</label>
-        <input class="nh-form-input-clean" name="title" placeholder="VD: Bài 1: Sự đồng biến..." required>
-      </div>
-
-      <div style="display: flex; gap: 10px; margin-top: 8px;">
-        <button type="submit" class="nh-modal-btn-primary">Lưu</button>
-        <button type="reset" class="nh-modal-btn-secondary">Thêm mới</button>
-      </div>
-    </form>
-  `;
-}
-
-export function renderLectureForm(phases, modules, lectureGroups) {
-  return `
-    <form class="entity-form compact-entity-form" data-entity="lecture" style="display: flex; flex-direction: column; gap: 16px;">
-      <div class="entity-form-heading" style="display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; margin-bottom: 4px;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#181B16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
-        <h3 style="font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif; font-size: 17px; font-weight: 700; color: #181B16; margin: 0;">Cấu hình Dạng bài (Bài giảng)</h3>
-      </div>
-      <input type="hidden" name="id">
-      <input type="hidden" name="description" value="">
-      <input type="hidden" name="sort_order" value="0">
-      <input type="hidden" name="published" value="true">
-
-      <div style="display: flex; flex-direction: column; gap: 6px;">
-        <label style="font-size: 12.5px; font-weight: 600; color: #334155;">Giai đoạn</label>
-        <select class="nh-form-input-clean cascade-phase" name="phase_id" required style="height: 40px;">
-          <option value="">-- Chọn giai đoạn --</option>
-          ${phases.map((phase) => option(phase.id, phase.title)).join('')}
-        </select>
-      </div>
-
-      <div style="display: flex; flex-direction: column; gap: 6px;">
-        <label style="font-size: 12.5px; font-weight: 600; color: #334155;">Chương</label>
-        <select class="nh-form-input-clean cascade-module" name="module_id" required disabled style="height: 40px;">
-          <option value="">-- Chọn chương --</option>
-          ${modules.map((module) => `<option value="${escapeHtml(module.id)}" data-phase-id="${escapeHtml(module.phase_id)}">${escapeHtml(module.title)}</option>`).join('')}
-        </select>
-      </div>
-
-      <div style="display: flex; flex-direction: column; gap: 6px;">
-        <label style="font-size: 12.5px; font-weight: 600; color: #334155;">Bài học (Nhóm)</label>
-        <select class="nh-form-input-clean cascade-group" name="group_id" disabled style="height: 40px;">
-          <option value="">-- Chưa chọn nhóm --</option>
-          ${lectureGroups.map((group) => `<option value="${escapeHtml(group.id)}" data-module-id="${escapeHtml(group.module_id)}">${escapeHtml(group.title)}</option>`).join('')}
-        </select>
-      </div>
-
-      <div style="display: flex; flex-direction: column; gap: 6px;">
-        <label style="font-size: 12.5px; font-weight: 600; color: #334155;">Tên Dạng bài</label>
-        <input class="nh-form-input-clean" name="title" placeholder="VD: 1.1. Dạng 1 - Xét tính đơn điệu..." required>
-      </div>
-
-      <div style="display: flex; flex-direction: column; gap: 6px;">
-        <label style="font-size: 12.5px; font-weight: 600; color: #334155;">Link Google Drive Slide / Tài liệu</label>
-        <input class="nh-form-input-clean" name="slide_url" placeholder="https://drive.google.com/...">
-      </div>
-
-      <div style="display: flex; gap: 10px; margin-top: 8px;">
-        <button type="submit" class="nh-modal-btn-primary">Lưu</button>
-        <button type="reset" class="nh-modal-btn-secondary">Thêm mới</button>
-      </div>
-    </form>
-  `;
-}
-
-export function renderManagePhase(phase) {
-  return `
-    <div class="manage-node" data-entity="phase" data-parent="root" data-id="${phase.id}" data-payload="${escapeHtml(JSON.stringify(phase))}">
-      <div class="toggle-children" aria-expanded="true">
-        <svg class="expand-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; transition: transform 0.2s;"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        <strong>${escapeHtml(phase.title)}</strong>
-        <span class="node-meta">${phase.modules.length} Chương</span>
-      </div>
-      <div class="icon-actions">
-        <button class="icon-btn-utility" data-edit-phase="${phase.id}" data-payload="${escapeHtml(JSON.stringify(phase))}" title="Sửa giai đoạn">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4z"></path></svg>
-        </button>
-        <button class="icon-btn-utility delete" data-delete-phase="${phase.id}" title="Xóa giai đoạn">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-        </button>
-      </div>
-    </div>
-    <div class="structure-children">
-    ${phase.modules
-      .map(
-        (module) => `
-          <div class="manage-node child" data-entity="module" data-parent="${phase.id}" data-id="${module.id}" data-payload="${escapeHtml(JSON.stringify(module))}">
-            <div class="toggle-children" aria-expanded="true">
-              <svg class="expand-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; transition: transform 0.2s;"><polyline points="6 9 12 15 18 9"></polyline></svg>
-              <strong>${escapeHtml(module.title)}</strong>
-              <span class="node-meta">${module.lecture_groups.length} nhóm - ${module.lectures.length} bài giảng</span>
-            </div>
-            <div class="icon-actions">
-              <button class="icon-btn-utility" data-edit-module="${module.id}" data-payload="${escapeHtml(JSON.stringify(module))}" title="Sửa Chương">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4z"></path></svg>
-              </button>
-              <button class="icon-btn-utility delete" data-delete-module="${module.id}" title="Xóa Chương">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-              </button>
-            </div>
-          </div>
-          <div class="structure-children">
-          ${module.lecture_groups
-            .map(
-              (group) => `
-                <div class="manage-node grandchild" data-entity="lectureGroup" data-parent="${module.id}" data-id="${group.id}" data-payload="${escapeHtml(JSON.stringify(group))}">
-                  <div class="toggle-children" aria-expanded="false">
-                    <svg class="expand-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; transition: transform 0.2s; transform: rotate(-90deg);"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    <strong>${escapeHtml(group.title)}</strong>
-                    <span class="node-meta">${group.lectures.length} bài giảng</span>
-                  </div>
-                  <div class="icon-actions">
-                    <button class="icon-btn-utility" data-edit-lecture-group="${group.id}" data-payload="${escapeHtml(JSON.stringify(group))}" title="Sửa Bài học">
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4z"></path></svg>
-                    </button>
-                    <button class="icon-btn-utility delete" data-delete-lecture-group="${group.id}" title="Xóa Bài học">
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-                    </button>
-                  </div>
-                </div>
-                <div class="structure-children" style="display: none;">
-                ${(group.lectures ?? []).map((lecture) => renderManageLecture(lecture, group.id, 'Trong nhóm')).join('')}
-                </div>
-              `,
-            )
-            .join('')}
-          <div class="structure-children" style="display: none;">
-          ${module.lectures
-            .filter((lecture) => !lecture.group_id)
-            .map((lecture) => renderManageLecture(lecture, `module:${module.id}`, 'Chưa nhóm'))
-            .join('')}
-          </div>
-          </div>
-        `,
-      )
-      .join('')}
-    </div>
-  `;
-}
-
-export function renderManageLecture(lecture, parent, statusText) {
-  return `
-    <div class="manage-node greatgrandchild" data-entity="lecture" data-parent="${escapeHtml(parent)}" data-id="${lecture.id}" data-payload="${escapeHtml(JSON.stringify(lecture))}">
-      <div style="display: flex; align-items: center; flex: 1; padding-left: 28px; min-width: 0; gap: 8px;">
-        <span style="width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #94a3b8; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #64748b; flex-shrink: 0;">L</span>
-        <strong style="white-space: normal; word-break: break-word; line-height: 1.4;">${escapeHtml(lecture.title)}</strong>
-        <span class="node-meta">${escapeHtml(statusText)}</span>
-      </div>
-      <div class="icon-actions">
-        <button class="icon-btn-utility" data-edit-lecture="${lecture.id}" data-payload="${escapeHtml(JSON.stringify(lecture))}" title="Sửa bài giảng">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4z"></path></svg>
-        </button>
-        <button class="icon-btn-utility delete" data-delete-lecture="${lecture.id}" title="Xóa bài giảng">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-        </button>
-      </div>
-    </div>
-  `;
-}
-
-export function showContentForm(kind) {
-  const placeholder = document.getElementById('content-editor-placeholder');
-  if (placeholder) placeholder.classList.add('hidden');
-  document.querySelectorAll('.editor-column .entity-form').forEach(f => f.classList.remove('active'));
-  const target = document.querySelector(`.editor-column [data-entity="${kind}"]`);
-  if (target) target.classList.add('active');
-}
-
-export function wireContentForms(pathData) {
-  document.querySelectorAll('[data-create]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const kind = btn.dataset.create;
-      const form = document.querySelector(`.editor-column [data-entity="${kind}"]`);
-      if (form) {
-        form.reset();
-        const idInput = form.querySelector('[name="id"]');
-        if (idInput) idInput.value = '';
-        if (kind === 'phase') {
-          form.querySelectorAll('[name="student_ids"]').forEach(cb => cb.checked = false);
-        }
-      }
-      showContentForm(kind);
-    });
-  });
-
-  document.querySelectorAll('.entity-form').forEach((form) => {
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      if (form.dataset.saving === 'true') return;
-      const formData = new FormData(form);
-      const values = Object.fromEntries(formData.entries());
-      if (form.dataset.entity === 'phase') {
-        const studentIds = formData.getAll('student_ids');
-        values.student_ids = studentIds.length > 0 ? studentIds : null;
-      }
-      const sortOrder = values.id
-        ? Number(values.sort_order || 0)
-        : nextContentSortOrder(form.dataset.entity, values, pathData);
-      const payload = {
-        ...values,
-        sort_order: sortOrder,
-        published: form.querySelector('[name="published"]')?.type === 'checkbox'
-          ? form.querySelector('[name="published"]').checked
-          : values.published !== 'false',
-        owner_id: state.profile.id,
-      };
-      if (!payload.id) {
-        delete payload.id;
-      }
-      if (form.dataset.entity === 'phase') {
-        payload.student_ids = formData.getAll('student_ids');
-      }
-
-      const restore = setButtonLoading(form.querySelector('md-filled-button'));
-      form.dataset.saving = 'true';
-
-      try {
-        let savedResult;
-        if (form.dataset.entity === 'phase') {
-          savedResult = await upsertPhase(payload);
-        } else if (form.dataset.entity === 'module') {
-          savedResult = await upsertModule(payload);
-        } else if (form.dataset.entity === 'lectureGroup') {
-          delete payload.phase_id;
-          savedResult = await upsertLectureGroup(payload);
-        } else if (form.dataset.entity === 'lecture') {
-          delete payload.phase_id;
-          let group_id = payload.group_id || null;
-          if (group_id === 'undefined') group_id = null;
-          savedResult = await upsertLecture({ ...payload, group_id });
-        }
-
-        const isUpdate = !!values.id;
-        toast(isUpdate ? 'Đã cập nhật nội dung.' : 'Đã lưu thành công.', 'success');
-
-        // Clear text inputs but keep context
-        const titleInput = form.querySelector('[name="title"]');
-        const idInput = form.querySelector('[name="id"]');
-        const urlInput = form.querySelector('[name="slide_url"]');
-        if (titleInput) titleInput.value = '';
-        if (idInput) idInput.value = '';
-        if (urlInput) urlInput.value = '';
-        if (form.dataset.entity === 'phase') {
-          form.querySelectorAll('[name="student_ids"]').forEach(cb => cb.checked = false);
-        }
-
-        // Add new item to dropdowns so it can be selected immediately
-        if (!isUpdate && values.title && savedResult) {
-          const actualId = savedResult.id;
-          if (form.dataset.entity === 'phase') {
-            document.querySelectorAll('.cascade-phase').forEach(sel => {
-              sel.insertAdjacentHTML('beforeend', `<option value="${actualId}">${escapeHtml(values.title)}</option>`);
-            });
-          }
-          if (form.dataset.entity === 'module') {
-            document.querySelectorAll('.cascade-module').forEach(sel => {
-              sel.insertAdjacentHTML('beforeend', `<option value="${actualId}" data-phase-id="${escapeHtml(values.phase_id)}">${escapeHtml(values.title)}</option>`);
-            });
-          }
-          if (form.dataset.entity === 'lectureGroup') {
-            document.querySelectorAll('.cascade-group').forEach(sel => {
-              sel.insertAdjacentHTML('beforeend', `<option value="${actualId}" data-module-id="${escapeHtml(values.module_id)}">${escapeHtml(values.title)}</option>`);
-            });
-          }
-        }
-
-        const newData = await fetchLearningPath(state.profile.role);
-        const container = document.querySelector('#manage-structure-container');
-        if (container) {
-          container.innerHTML = renderActivePhaseStructure(newData.phases, currentContentPhaseId);
-          wireStructureEvents();
-        }
-        const phaseListContainer = document.querySelector('#phase-list-container');
-        if (phaseListContainer) {
-          phaseListContainer.innerHTML = renderPhaseList(newData.phases, currentContentPhaseId);
-          wirePhaseSelection(newData);
-        }
-      } catch (error) {
-        toast(`Lỗi lưu: ${error.message}`, 'error');
-      } finally {
-        delete form.dataset.saving;
-        restore();
-      }
-    });
-  });
-
-  wireStructureEvents();
-}
-
-export function wireStructureEvents() {
-  // Bind Accordion Toggles
-  document.querySelectorAll('.toggle-children').forEach(el => {
-    // Prevent binding multiple times if wireStructureEvents is called multiple times
-    if (el.dataset.wired) return;
-    el.dataset.wired = 'true';
-    el.addEventListener('click', (e) => {
-      // Don't toggle if dragging or clicking buttons inside
-      if (e.target.closest('button, md-icon-button')) return;
-      const node = e.target.closest('.manage-node');
-      const childrenContainer = node.nextElementSibling;
-      if (childrenContainer && childrenContainer.classList.contains('structure-children')) {
-        const isExpanded = el.getAttribute('aria-expanded') === 'true';
-        el.setAttribute('aria-expanded', !isExpanded);
-        const icon = el.querySelector('.expand-icon');
-        if (icon) {
-          icon.style.transform = isExpanded ? 'rotate(-90deg)' : '';
-        }
-        childrenContainer.style.display = isExpanded ? 'none' : 'block';
-      }
-    });
-  });
-
-  // Bind Edit Buttons
-  document.querySelectorAll('md-icon-button[data-payload], button[data-payload]').forEach((button) => {
-    button.addEventListener('click', () => {
-      const payload = JSON.parse(button.dataset.payload);
-      const kind = button.dataset.editPhase
-        ? 'phase'
-        : button.dataset.editModule
-          ? 'module'
-          : button.dataset.editLectureGroup
-            ? 'lectureGroup'
-            : 'lecture';
-      const form = document.querySelector(`.editor-column [data-entity="${kind}"]`);
-      if (!form) return;
-      showContentForm(kind);
-      Object.entries(payload).forEach(([key, value]) => {
-        if (key === 'student_ids' && Array.isArray(value)) {
-          form.querySelectorAll('[name="student_ids"]').forEach(cb => cb.checked = false);
-          value.forEach(id => {
-            const cb = form.querySelector(`[name="student_ids"][value="${id}"]`);
-            if (cb) cb.checked = true;
-          });
-          return;
-        }
-        const input = form.querySelector(`[name="${key}"]`);
-        if (!input) return;
-        if (input.type === 'checkbox') input.checked = Boolean(value);
-        else input.value = value ?? '';
-      });
-
-      // Force trigger cascading dropdowns manually if needed
-      const phaseSelect = form.querySelector('.cascade-phase');
-      const moduleSelect = form.querySelector('.cascade-module');
-
-      if (!payload.phase_id && payload.module_id && moduleSelect) {
-        const option = moduleSelect.querySelector(`option[value="${payload.module_id}"]`);
-        if (option) payload.phase_id = option.dataset.phaseId;
-      }
-
-      if (phaseSelect && moduleSelect && payload.phase_id) {
-        phaseSelect.value = payload.phase_id;
-        phaseSelect.dispatchEvent(new Event('change'));
-        setTimeout(() => {
-          moduleSelect.value = payload.module_id;
-          moduleSelect.dispatchEvent(new Event('change'));
-          const groupSelect = form.querySelector('.cascade-group');
-          if (groupSelect && payload.group_id) {
-            setTimeout(() => {
-              groupSelect.value = payload.group_id;
-            }, 0);
-          }
-        }, 0);
-      }
-
-      form.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
-  });
-
-  // Bind Delete Buttons
-  document.querySelectorAll('[data-delete-phase],[data-delete-module],[data-delete-lecture-group],[data-delete-lecture]').forEach((button) => {
-    button.addEventListener('click', async () => {
-      if (!window.confirm('Xóa mục này? Hành động này không thể hoàn tác.')) return;
-      try {
-        if (button.dataset.deletePhase) await deletePhase(button.dataset.deletePhase);
-        if (button.dataset.deleteModule) await deleteModule(button.dataset.deleteModule);
-        if (button.dataset.deleteLectureGroup) await deleteLectureGroup(button.dataset.deleteLectureGroup);
-        if (button.dataset.deleteLecture) await deleteLecture(button.dataset.deleteLecture);
-        toast('Đã xóa.', 'success');
-        const newData = await fetchLearningPath(state.profile.role);
-        const container = document.querySelector('#manage-structure-container');
-        if (container) {
-          container.innerHTML = renderActivePhaseStructure(newData.phases, currentContentPhaseId);
-          wireStructureEvents();
-        }
-        const phaseListContainer = document.querySelector('#phase-list-container');
-        if (phaseListContainer) {
-          phaseListContainer.innerHTML = renderPhaseList(newData.phases, currentContentPhaseId);
-          wirePhaseSelection(newData);
-        }
-      } catch (error) {
-        toast(error.message, 'error');
-      }
-    });
-  });
-}
-
-export function wireCascadingDropdowns(root) {
-  root.querySelectorAll('.entity-form').forEach((form) => {
-    const phaseSelect = form.querySelector('.cascade-phase');
-    const moduleSelect = form.querySelector('.cascade-module');
-    const groupSelect = form.querySelector('.cascade-group');
-
-    if (phaseSelect && moduleSelect) {
-      phaseSelect.addEventListener('change', () => {
-        const phaseId = phaseSelect.value;
-        moduleSelect.value = '';
-        if (groupSelect) groupSelect.value = '';
-
-        let hasModules = false;
-        Array.from(moduleSelect.options).forEach((opt) => {
-          if (!opt.value) return; // Skip placeholder
-          if (opt.dataset.phaseId === phaseId) {
-            opt.style.display = '';
-            hasModules = true;
-          } else {
-            opt.style.display = 'none';
-          }
-        });
-
-        moduleSelect.disabled = !phaseId || !hasModules;
-        if (groupSelect) groupSelect.disabled = true;
-      });
+const CM_STYLES = `
+  <style>
+    .cm-hub {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 28px 20px 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif;
+      color: #181B16;
     }
-
-    if (moduleSelect && groupSelect) {
-      moduleSelect.addEventListener('change', () => {
-        const moduleId = moduleSelect.value;
-        groupSelect.value = '';
-
-        let hasGroups = false;
-        Array.from(groupSelect.options).forEach((opt) => {
-          if (!opt.value) return; // Skip placeholder
-          if (opt.dataset.moduleId === moduleId) {
-            opt.style.display = '';
-            hasGroups = true;
-          } else {
-            opt.style.display = 'none';
-          }
-        });
-
-        groupSelect.disabled = !moduleId || !hasGroups;
-      });
+    .cm-hero-meta {
+      margin: 6px 0 0;
+      font-size: 13.5px;
+      line-height: 1.4;
+      color: rgba(247, 247, 242, 0.7);
+      font-variant-numeric: tabular-nums;
     }
-
-    // Also handle reset button
-    form.addEventListener('reset', () => {
-      setTimeout(() => {
-        if (moduleSelect) moduleSelect.disabled = true;
-        if (groupSelect) groupSelect.disabled = true;
-
-        Array.from(moduleSelect?.options || []).forEach(o => o.style.display = '');
-        Array.from(groupSelect?.options || []).forEach(o => o.style.display = '');
-      }, 0);
-    });
-  });
-}
+    .cm-hero-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      height: 40px;
+      padding: 0 18px;
+      border: 0;
+      border-radius: 9999px;
+      background: #F7F7F2;
+      color: #181B16;
+      font-family: inherit;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background-color 0.15s ease;
+    }
+    .cm-hero-btn:hover {
+      background: #EBEDE6;
+    }
+    .cm-phase-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .cm-phase-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      flex: 1;
+      min-width: 0;
+    }
+    .cm-phase-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 38px;
+      padding: 0 15px;
+      border: 0;
+      border-radius: 9999px;
+      background: #EBEDE6;
+      color: #181B16;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+    .cm-phase-pill:hover {
+      background: #E2E5DC;
+    }
+    .cm-phase-pill.active {
+      background: #181B16;
+      color: #F7F7F2;
+    }
+    .cm-phase-actions {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+    .cm-grid {
+      display: grid;
+      grid-template-columns: 268px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+    .cm-side-card {
+      position: sticky;
+      top: 76px;
+      background: #FFFFFF;
+      border: 1px solid #E4E6DE;
+      border-radius: 20px;
+      padding: 12px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-height: calc(100vh - 104px);
+      overflow-y: auto;
+    }
+    .cm-side-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 4px 8px 8px;
+      border-bottom: 1px solid #EFEFE9;
+      margin-bottom: 2px;
+    }
+    .cm-side-label {
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #64695F;
+    }
+    .cm-pill-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      height: 30px;
+      padding: 0 11px;
+      border: 0;
+      border-radius: 9999px;
+      background: #EBEDE6;
+      color: #181B16;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+    .cm-pill-sm:hover {
+      background: #181B16;
+      color: #F7F7F2;
+    }
+    .cm-detail-card {
+      background: #FFFFFF;
+      border: 1px solid #E4E6DE;
+      border-radius: 20px;
+      overflow: hidden;
+      min-width: 0;
+    }
+    .cm-detail-head {
+      padding: 18px 20px;
+      border-bottom: 1px solid #EFEFE9;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .cm-detail-head-text {
+      min-width: 0;
+      flex: 1;
+    }
+    .cm-detail-title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: #181B16;
+    }
+    .cm-detail-meta {
+      margin: 4px 0 0;
+      font-size: 12.5px;
+      color: #64695F;
+      font-variant-numeric: tabular-nums;
+    }
+    .cm-detail-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+    .cm-group-block + .cm-group-block {
+      border-top: 1px solid #EFEFE9;
+    }
+    .cm-group-head {
+      padding: 12px 20px;
+      background: #FAFAF7;
+      border-bottom: 1px solid #EFEFE9;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .cm-group-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #181B16;
+      min-width: 0;
+      line-height: 1.4;
+    }
+    .cm-group-count {
+      font-weight: 500;
+      color: #64695F;
+      margin-left: 6px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .cm-lec-list {
+      display: flex;
+      flex-direction: column;
+    }
+    .cm-lec-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 20px 12px 28px;
+      border-bottom: 1px solid #EFEFE9;
+      transition: background-color 0.14s ease;
+    }
+    .cm-lec-row:last-child {
+      border-bottom: none;
+    }
+    .cm-lec-row:hover {
+      background: #F7F7F2;
+    }
+    .cm-lec-main {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      flex: 1;
+    }
+    .cm-lec-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #C8CCC0;
+      flex-shrink: 0;
+    }
+    .cm-lec-title {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: #181B16;
+      line-height: 1.45;
+      min-width: 0;
+      word-break: break-word;
+    }
+    .cm-slide-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      background: #EBEDE6;
+      color: #64695F;
+      font-size: 11px;
+      font-weight: 600;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+    .cm-slide-tag:hover {
+      background: #E2E5DC;
+      color: #181B16;
+    }
+    .cm-icon-row {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      flex-shrink: 0;
+    }
+    .cm-icon-btn {
+      width: 30px;
+      height: 30px;
+      border: 0;
+      border-radius: 9999px;
+      background: transparent;
+      color: #64695F;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+    .cm-icon-btn:hover {
+      background: #EBEDE6;
+      color: #181B16;
+    }
+    .cm-icon-btn--danger:hover {
+      background: #F8EAE8;
+      color: #B8433A;
+    }
+    .cm-empty {
+      padding: 40px 24px;
+      text-align: center;
+      color: #64695F;
+      font-size: 13.5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .cm-empty p {
+      margin: 0;
+    }
+    /* Modal */
+    .cm-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(24, 27, 22, 0.42);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .cm-modal-backdrop.open {
+      display: flex;
+    }
+    .cm-modal {
+      width: 100%;
+      max-width: 440px;
+      max-height: calc(100vh - 48px);
+      overflow-y: auto;
+      background: #FFFFFF;
+      border: 1px solid #E4E6DE;
+      border-radius: 22px;
+      padding: 22px 24px 24px;
+      box-shadow: 0 24px 60px rgba(24, 27, 22, 0.18);
+    }
+    .cm-modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #EFEFE9;
+    }
+    .cm-modal-title {
+      margin: 0;
+      font-size: 16.5px;
+      font-weight: 700;
+      color: #181B16;
+    }
+    .cm-modal-form {
+      display: none;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .cm-modal-form.active {
+      display: flex;
+    }
+    .cm-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .cm-field label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #64695F;
+    }
+    .cm-input {
+      width: 100%;
+      height: 40px;
+      padding: 0 13px;
+      border-radius: 12px;
+      border: 1px solid #E4E6DE;
+      background: #F7F7F2;
+      color: #181B16;
+      font-family: inherit;
+      font-size: 14px;
+      box-sizing: border-box;
+      outline: none;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+    .cm-input:focus {
+      border-color: #181B16;
+      background: #FFFFFF;
+    }
+    .cm-input:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+    .cm-student-box {
+      max-height: 150px;
+      overflow-y: auto;
+      border: 1px solid #E4E6DE;
+      border-radius: 12px;
+      padding: 10px 12px;
+      background: #F7F7F2;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .cm-student-box-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #64695F;
+      margin-bottom: 2px;
+    }
+    .cm-student-check {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      color: #181B16;
+      cursor: pointer;
+    }
+    .cm-student-check input {
+      accent-color: #181B16;
+      width: 15px;
+      height: 15px;
+    }
+    .cm-modal-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 6px;
+    }
+    .cm-btn-primary {
+      height: 40px;
+      padding: 0 20px;
+      border: 0;
+      border-radius: 9999px;
+      background: #181B16;
+      color: #F7F7F2;
+      font-family: inherit;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+    .cm-btn-primary:hover {
+      background: #2C3028;
+    }
+    .cm-btn-secondary {
+      height: 40px;
+      padding: 0 16px;
+      border: 0;
+      border-radius: 9999px;
+      background: #EBEDE6;
+      color: #181B16;
+      font-family: inherit;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+    .cm-btn-secondary:hover {
+      background: #E2E5DC;
+    }
+    @media (max-width: 820px) {
+      .cm-hub {
+        padding: 20px 16px 48px;
+      }
+      .cm-grid {
+        grid-template-columns: 1fr;
+      }
+      .cm-side-card {
+        position: static;
+        max-height: none;
+      }
+      .cm-lec-row {
+        padding-left: 16px;
+      }
+    }
+  </style>
+`;
 
 export function nextContentSortOrder(kind, values, pathData) {
   const byParent = {
@@ -901,8 +514,611 @@ export function nextContentSortOrder(kind, values, pathData) {
       if (values.group_id) return item.group_id === values.group_id;
       return item.module_id === values.module_id && !item.group_id;
     }),
-  }[kind] ?? [];
+  };
+  const list = byParent[kind] ?? [];
+  return list.reduce((max, item) => Math.max(max, Number(item.sort_order ?? 0)), -1) + 1;
+}
 
-  const maxSortOrder = byParent.reduce((max, item) => Math.max(max, Number(item.sort_order ?? 0)), 0);
-  return maxSortOrder + 10;
+export async function mountContentManager() {
+  const root = pageRoot();
+  root.innerHTML = renderLoading();
+
+  try {
+    let [data, students] = await Promise.all([
+      fetchLearningPath(state.profile.role),
+      fetchStudents(),
+    ]);
+
+    function ensureSelections() {
+      if (!data.phases.length) {
+        currentContentPhaseId = null;
+        currentContentModuleId = null;
+        return;
+      }
+      if (!currentContentPhaseId || !data.phases.some((p) => p.id === currentContentPhaseId)) {
+        currentContentPhaseId = data.phases[0].id;
+      }
+      const activePhase = data.phases.find((p) => p.id === currentContentPhaseId);
+      const mods = activePhase?.modules ?? [];
+      if (!mods.length) {
+        currentContentModuleId = null;
+      } else if (!currentContentModuleId || !mods.some((m) => m.id === currentContentModuleId)) {
+        currentContentModuleId = mods[0].id;
+      }
+    }
+
+    ensureSelections();
+
+    const MODAL_TITLES = {
+      phase: { create: 'Thêm giai đoạn', edit: 'Sửa giai đoạn' },
+      module: { create: 'Thêm chương', edit: 'Sửa chương' },
+      lectureGroup: { create: 'Thêm bài học (nhóm)', edit: 'Sửa bài học (nhóm)' },
+      lecture: { create: 'Thêm bài giảng', edit: 'Sửa bài giảng' },
+    };
+
+    function closeModal() {
+      const backdrop = root.querySelector('#cm-modal-backdrop');
+      if (!backdrop) return;
+      backdrop.classList.remove('open');
+      backdrop.querySelectorAll('.cm-modal-form').forEach((f) => f.classList.remove('active'));
+    }
+
+    function onKeyDown(e) {
+      if (e.key === 'Escape') closeModal();
+    }
+    window.addEventListener('keydown', onKeyDown);
+    registerCleanup(() => window.removeEventListener('keydown', onKeyDown));
+
+    function renderAll() {
+      ensureSelections();
+      const totalPhases = data.phases.length;
+      const totalModules = (data.modules || []).length;
+      const totalLectures = (data.lectures || []).length;
+      const activePhase = data.phases.find((p) => p.id === currentContentPhaseId) || null;
+      const activeModules = activePhase?.modules ?? [];
+      const activeModule = activeModules.find((m) => m.id === currentContentModuleId) || null;
+
+      let detailHtml = '';
+      if (!activePhase) {
+        detailHtml = `
+          <div class="cm-empty">
+            <p>Chưa có giai đoạn nào. Hãy tạo giai đoạn đầu tiên để bắt đầu.</p>
+            <button type="button" class="cm-btn-primary" data-open-create="phase">Thêm giai đoạn</button>
+          </div>
+        `;
+      } else if (!activeModule) {
+        detailHtml = `
+          <div class="cm-empty">
+            <p>Giai đoạn này chưa có chương nào.</p>
+            <button type="button" class="cm-btn-primary" data-open-create="module">Thêm chương đầu tiên</button>
+          </div>
+        `;
+      } else {
+        const groups = activeModule.lecture_groups ?? [];
+        const ungrouped = (activeModule.lectures ?? []).filter((l) => !l.group_id);
+
+        const renderLectureRow = (lecture) => `
+          <div class="cm-lec-row">
+            <div class="cm-lec-main">
+              <span class="cm-lec-dot"></span>
+              <span class="cm-lec-title">${escapeHtml(lecture.title)}</span>
+              ${lecture.slide_url ? `<a href="${escapeHtml(lecture.slide_url)}" target="_blank" rel="noopener" class="cm-slide-tag" title="Mở tài liệu">${CM_ICONS.slide}<span>Slide</span></a>` : ''}
+            </div>
+            <div class="cm-icon-row">
+              <button type="button" class="cm-icon-btn" data-edit-entity="lecture" data-entity-id="${escapeHtml(lecture.id)}" title="Sửa bài giảng">${CM_ICONS.edit}</button>
+              <button type="button" class="cm-icon-btn cm-icon-btn--danger" data-delete-entity="lecture" data-entity-id="${escapeHtml(lecture.id)}" title="Xóa bài giảng">${CM_ICONS.trash}</button>
+            </div>
+          </div>
+        `;
+
+        let groupsHtml = '';
+        for (const group of groups) {
+          const lecs = group.lectures ?? [];
+          groupsHtml += `
+            <div class="cm-group-block">
+              <div class="cm-group-head">
+                <div class="cm-group-title">
+                  ${escapeHtml(group.title)}
+                  <span class="cm-group-count">${lecs.length} bài</span>
+                </div>
+                <div class="cm-icon-row">
+                  <button type="button" class="cm-pill-sm" data-open-create="lecture" data-prefill-group="${escapeHtml(group.id)}" title="Thêm bài giảng vào nhóm này">${CM_ICONS.plus}<span>Bài</span></button>
+                  <button type="button" class="cm-icon-btn" data-edit-entity="lectureGroup" data-entity-id="${escapeHtml(group.id)}" title="Sửa nhóm">${CM_ICONS.edit}</button>
+                  <button type="button" class="cm-icon-btn cm-icon-btn--danger" data-delete-entity="lectureGroup" data-entity-id="${escapeHtml(group.id)}" title="Xóa nhóm">${CM_ICONS.trash}</button>
+                </div>
+              </div>
+              <div class="cm-lec-list">
+                ${lecs.length ? lecs.map(renderLectureRow).join('') : `<div class="cm-empty" style="padding: 20px;"><p>Chưa có bài giảng trong nhóm này.</p></div>`}
+              </div>
+            </div>
+          `;
+        }
+
+        if (ungrouped.length) {
+          groupsHtml += `
+            <div class="cm-group-block">
+              <div class="cm-group-head">
+                <div class="cm-group-title">
+                  Chưa phân nhóm
+                  <span class="cm-group-count">${ungrouped.length} bài</span>
+                </div>
+              </div>
+              <div class="cm-lec-list">${ungrouped.map(renderLectureRow).join('')}</div>
+            </div>
+          `;
+        }
+
+        if (!groups.length && !ungrouped.length) {
+          groupsHtml = `
+            <div class="cm-empty">
+              <p>Chương này chưa có nhóm hoặc bài giảng nào.</p>
+            </div>
+          `;
+        }
+
+        detailHtml = `
+          <div class="cm-detail-head">
+            <div class="cm-detail-head-text">
+              <h2 class="cm-detail-title">${escapeHtml(activeModule.title)}</h2>
+              <p class="cm-detail-meta">${groups.length} nhóm - ${(activeModule.lectures ?? []).length} bài giảng</p>
+            </div>
+            <div class="cm-detail-actions">
+              <button type="button" class="cm-pill-sm" data-open-create="lectureGroup">${CM_ICONS.plus}<span>Nhóm</span></button>
+              <button type="button" class="cm-pill-sm" data-open-create="lecture">${CM_ICONS.plus}<span>Bài giảng</span></button>
+              <button type="button" class="cm-icon-btn" data-edit-entity="module" data-entity-id="${escapeHtml(activeModule.id)}" title="Sửa chương">${CM_ICONS.edit}</button>
+              <button type="button" class="cm-icon-btn cm-icon-btn--danger" data-delete-entity="module" data-entity-id="${escapeHtml(activeModule.id)}" title="Xóa chương">${CM_ICONS.trash}</button>
+            </div>
+          </div>
+          ${groupsHtml}
+        `;
+      }
+
+      root.innerHTML = `
+        ${CM_STYLES}
+        <section class="cm-hub">
+          <header class="asg-overview-hero">
+            <a href="#/manage" class="phase-back-link">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+              <span>Trung tâm Quản trị</span>
+            </a>
+            <div class="asg-overview-hero-row">
+              <div class="asg-overview-hero-left">
+                <h1 class="phase-hero-title">Nội dung khóa học</h1>
+                <p class="cm-hero-meta">${totalPhases} giai đoạn - ${totalModules} chương - ${totalLectures} bài giảng</p>
+              </div>
+              <button type="button" class="cm-hero-btn" data-open-create="phase">
+                ${CM_ICONS.plus}
+                <span>Thêm giai đoạn</span>
+              </button>
+            </div>
+          </header>
+
+          ${data.phases.length ? `
+            <div class="cm-phase-row">
+              <div class="cm-phase-bar">
+                ${data.phases.map((p) => `
+                  <button type="button" class="cm-phase-pill ${p.id === currentContentPhaseId ? 'active' : ''}" data-select-phase="${escapeHtml(p.id)}">
+                    ${escapeHtml(p.title)}
+                  </button>
+                `).join('')}
+              </div>
+              ${activePhase ? `
+                <div class="cm-phase-actions">
+                  <button type="button" class="cm-icon-btn" data-edit-entity="phase" data-entity-id="${escapeHtml(activePhase.id)}" title="Sửa giai đoạn đang chọn">${CM_ICONS.edit}</button>
+                  <button type="button" class="cm-icon-btn cm-icon-btn--danger" data-delete-entity="phase" data-entity-id="${escapeHtml(activePhase.id)}" title="Xóa giai đoạn đang chọn">${CM_ICONS.trash}</button>
+                </div>
+              ` : ''}
+            </div>
+          ` : ''}
+
+          <div class="cm-grid">
+            <aside class="cm-side-card">
+              <div class="cm-side-head">
+                <span class="cm-side-label">Chương (${activeModules.length})</span>
+                ${activePhase ? `<button type="button" class="cm-pill-sm" data-open-create="module">${CM_ICONS.plus}<span>Chương</span></button>` : ''}
+              </div>
+              ${activeModules.length ? activeModules.map((mod, idx) => {
+                const parsed = splitChapterTitle(mod.title, idx + 1);
+                const isSel = mod.id === currentContentModuleId;
+                return `
+                  <button type="button" class="phase-chapter-btn ${isSel ? 'active' : ''}" data-select-module="${escapeHtml(mod.id)}">
+                    <div class="phase-chapter-btn-text">
+                      <span class="phase-chapter-short">${escapeHtml(parsed.short)}</span>
+                      <span class="phase-chapter-sub">${escapeHtml(parsed.sub)}</span>
+                    </div>
+                    <span class="phase-chapter-count">${(mod.lectures ?? []).length}</span>
+                  </button>
+                `;
+              }).join('') : `<div class="cm-empty" style="padding: 20px 10px;"><p>Chưa có chương</p></div>`}
+            </aside>
+
+            <section class="cm-detail-card">
+              ${detailHtml}
+            </section>
+          </div>
+        </section>
+
+        <!-- Modal Form Host -->
+        <div class="cm-modal-backdrop" id="cm-modal-backdrop" role="dialog" aria-modal="true">
+          <div class="cm-modal">
+            <div class="cm-modal-head">
+              <h3 class="cm-modal-title" id="cm-modal-title">Cấu hình</h3>
+              <button type="button" class="cm-icon-btn" id="cm-modal-close" aria-label="Đóng">${CM_ICONS.close}</button>
+            </div>
+
+            <!-- Phase Form -->
+            <form class="cm-modal-form" data-entity="phase">
+              <input type="hidden" name="id">
+              <input type="hidden" name="description" value="">
+              <input type="hidden" name="sort_order" value="0">
+              <input type="hidden" name="published" value="true">
+              <div class="cm-field">
+                <label>Tên giai đoạn</label>
+                <input class="cm-input" name="title" placeholder="VD: Giai đoạn I - Nhận biết và thông hiểu" required>
+              </div>
+              <div class="cm-student-box">
+                <div class="cm-student-box-title">Hiển thị cho học sinh (để trống = tất cả)</div>
+                ${students.map((s) => `
+                  <label class="cm-student-check">
+                    <input type="checkbox" name="student_ids" value="${escapeHtml(s.id)}">
+                    <span>${escapeHtml(s.full_name)}</span>
+                  </label>
+                `).join('')}
+              </div>
+              <div class="cm-modal-actions">
+                <button type="button" class="cm-btn-secondary" data-close-modal>Hủy</button>
+                <button type="submit" class="cm-btn-primary">Lưu</button>
+              </div>
+            </form>
+
+            <!-- Module Form -->
+            <form class="cm-modal-form" data-entity="module">
+              <input type="hidden" name="id">
+              <input type="hidden" name="description" value="">
+              <input type="hidden" name="sort_order" value="0">
+              <input type="hidden" name="published" value="true">
+              <div class="cm-field">
+                <label>Thuộc giai đoạn</label>
+                <select class="cm-input" name="phase_id" required>
+                  <option value="">-- Chọn giai đoạn --</option>
+                  ${data.phases.map((p) => option(p.id, p.title)).join('')}
+                </select>
+              </div>
+              <div class="cm-field">
+                <label>Tên chương</label>
+                <input class="cm-input" name="title" placeholder="VD: CHƯƠNG 1: ỨNG DỤNG ĐẠO HÀM..." required>
+              </div>
+              <div class="cm-modal-actions">
+                <button type="button" class="cm-btn-secondary" data-close-modal>Hủy</button>
+                <button type="submit" class="cm-btn-primary">Lưu</button>
+              </div>
+            </form>
+
+            <!-- Lecture Group Form -->
+            <form class="cm-modal-form" data-entity="lectureGroup">
+              <input type="hidden" name="id">
+              <input type="hidden" name="description" value="">
+              <input type="hidden" name="sort_order" value="0">
+              <input type="hidden" name="published" value="true">
+              <div class="cm-field">
+                <label>Giai đoạn</label>
+                <select class="cm-input cascade-phase" name="phase_id" required>
+                  <option value="">-- Chọn giai đoạn --</option>
+                  ${data.phases.map((p) => option(p.id, p.title)).join('')}
+                </select>
+              </div>
+              <div class="cm-field">
+                <label>Chương</label>
+                <select class="cm-input cascade-module" name="module_id" required>
+                  <option value="">-- Chọn chương --</option>
+                  ${(data.modules || []).map((m) => `<option value="${escapeHtml(m.id)}" data-phase-id="${escapeHtml(m.phase_id)}">${escapeHtml(m.title)}</option>`).join('')}
+                </select>
+              </div>
+              <div class="cm-field">
+                <label>Tên bài học (nhóm)</label>
+                <input class="cm-input" name="title" placeholder="VD: Bài 1: Sự đồng biến, nghịch biến..." required>
+              </div>
+              <div class="cm-modal-actions">
+                <button type="button" class="cm-btn-secondary" data-close-modal>Hủy</button>
+                <button type="submit" class="cm-btn-primary">Lưu</button>
+              </div>
+            </form>
+
+            <!-- Lecture Form -->
+            <form class="cm-modal-form" data-entity="lecture">
+              <input type="hidden" name="id">
+              <input type="hidden" name="description" value="">
+              <input type="hidden" name="sort_order" value="0">
+              <input type="hidden" name="published" value="true">
+              <div class="cm-field">
+                <label>Giai đoạn</label>
+                <select class="cm-input cascade-phase" name="phase_id" required>
+                  <option value="">-- Chọn giai đoạn --</option>
+                  ${data.phases.map((p) => option(p.id, p.title)).join('')}
+                </select>
+              </div>
+              <div class="cm-field">
+                <label>Chương</label>
+                <select class="cm-input cascade-module" name="module_id" required>
+                  <option value="">-- Chọn chương --</option>
+                  ${(data.modules || []).map((m) => `<option value="${escapeHtml(m.id)}" data-phase-id="${escapeHtml(m.phase_id)}">${escapeHtml(m.title)}</option>`).join('')}
+                </select>
+              </div>
+              <div class="cm-field">
+                <label>Bài học (nhóm)</label>
+                <select class="cm-input cascade-group" name="group_id">
+                  <option value="">-- Chưa chọn nhóm --</option>
+                  ${(data.lectureGroups || []).map((g) => `<option value="${escapeHtml(g.id)}" data-module-id="${escapeHtml(g.module_id)}">${escapeHtml(g.title)}</option>`).join('')}
+                </select>
+              </div>
+              <div class="cm-field">
+                <label>Tên bài giảng</label>
+                <input class="cm-input" name="title" placeholder="VD: 1.1. Dạng 1 - Xét tính đơn điệu..." required>
+              </div>
+              <div class="cm-field">
+                <label>Link Google Drive Slide / Tài liệu</label>
+                <input class="cm-input" name="slide_url" placeholder="https://drive.google.com/...">
+              </div>
+              <div class="cm-modal-actions">
+                <button type="button" class="cm-btn-secondary" data-close-modal>Hủy</button>
+                <button type="submit" class="cm-btn-primary">Lưu</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      `;
+
+      wireEvents();
+    }
+
+    function syncCascade(form) {
+      const phaseSel = form.querySelector('.cascade-phase');
+      const modSel = form.querySelector('.cascade-module');
+      const grpSel = form.querySelector('.cascade-group');
+
+      if (phaseSel && modSel) {
+        const pid = phaseSel.value;
+        let hasMods = false;
+        Array.from(modSel.options).forEach((opt) => {
+          if (!opt.value) return;
+          const match = opt.dataset.phaseId === pid;
+          opt.hidden = !match;
+          opt.disabled = !match;
+          if (match) hasMods = true;
+        });
+        if (modSel.selectedOptions[0]?.disabled) modSel.value = '';
+        modSel.disabled = !pid || !hasMods;
+      }
+
+      if (modSel && grpSel) {
+        const mid = modSel.value;
+        let hasGrps = false;
+        Array.from(grpSel.options).forEach((opt) => {
+          if (!opt.value) return;
+          const match = opt.dataset.moduleId === mid;
+          opt.hidden = !match;
+          opt.disabled = !match;
+          if (match) hasGrps = true;
+        });
+        if (grpSel.selectedOptions[0]?.disabled) grpSel.value = '';
+        grpSel.disabled = !mid || !hasGrps;
+      }
+    }
+
+    function openModal(kind, mode, payload = null, prefillGroupId = null) {
+      const backdrop = root.querySelector('#cm-modal-backdrop');
+      const titleEl = root.querySelector('#cm-modal-title');
+      const form = backdrop?.querySelector(`.cm-modal-form[data-entity="${kind}"]`);
+      if (!backdrop || !form) return;
+
+      backdrop.querySelectorAll('.cm-modal-form').forEach((f) => f.classList.remove('active'));
+      form.reset();
+      form.querySelector('[name="id"]').value = '';
+      if (kind === 'phase') {
+        form.querySelectorAll('[name="student_ids"]').forEach((cb) => { cb.checked = false; });
+      }
+
+      titleEl.textContent = MODAL_TITLES[kind]?.[mode] || 'Cấu hình';
+
+      if (mode === 'edit' && payload) {
+        Object.entries(payload).forEach(([key, value]) => {
+          if (key === 'student_ids' && Array.isArray(value)) {
+            value.forEach((id) => {
+              const cb = form.querySelector(`[name="student_ids"][value="${id}"]`);
+              if (cb) cb.checked = true;
+            });
+            return;
+          }
+          const input = form.querySelector(`[name="${key}"]`);
+          if (!input) return;
+          if (input.type === 'checkbox') input.checked = Boolean(value);
+          else input.value = value ?? '';
+        });
+
+        const phaseSel = form.querySelector('.cascade-phase');
+        const modSel = form.querySelector('.cascade-module');
+        const grpSel = form.querySelector('.cascade-group');
+        if (phaseSel && modSel) {
+          let pid = payload.phase_id;
+          if (!pid && payload.module_id) {
+            pid = modSel.querySelector(`option[value="${payload.module_id}"]`)?.dataset.phaseId || '';
+          }
+          phaseSel.value = pid || '';
+          syncCascade(form);
+          if (payload.module_id) {
+            modSel.value = payload.module_id;
+            syncCascade(form);
+          }
+          if (grpSel && payload.group_id) {
+            grpSel.value = payload.group_id;
+          }
+        }
+      } else {
+        // Smart prefill for create mode
+        const phaseInput = form.querySelector('[name="phase_id"]');
+        if (phaseInput && currentContentPhaseId) {
+          phaseInput.value = currentContentPhaseId;
+        }
+        syncCascade(form);
+        const modSel = form.querySelector('.cascade-module');
+        if (modSel && currentContentModuleId) {
+          modSel.value = currentContentModuleId;
+          syncCascade(form);
+        }
+        const grpSel = form.querySelector('.cascade-group');
+        if (grpSel && prefillGroupId) {
+          grpSel.value = prefillGroupId;
+        }
+      }
+
+      form.classList.add('active');
+      backdrop.classList.add('open');
+      form.querySelector('input[name="title"]')?.focus();
+    }
+
+    function findEntity(kind, id) {
+      if (kind === 'phase') return data.phases.find((x) => x.id === id);
+      if (kind === 'module') return (data.modules || []).find((x) => x.id === id);
+      if (kind === 'lectureGroup') return (data.lectureGroups || []).find((x) => x.id === id);
+      if (kind === 'lecture') return (data.lectures || []).find((x) => x.id === id);
+      return null;
+    }
+
+    function wireEvents() {
+      // Phase selection
+      root.querySelectorAll('[data-select-phase]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          currentContentPhaseId = btn.dataset.selectPhase;
+          currentContentModuleId = null;
+          renderAll();
+        });
+      });
+
+      // Module selection
+      root.querySelectorAll('[data-select-module]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          currentContentModuleId = btn.dataset.selectModule;
+          renderAll();
+        });
+      });
+
+      // Open create modal
+      root.querySelectorAll('[data-open-create]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          openModal(btn.dataset.openCreate, 'create', null, btn.dataset.prefillGroup || null);
+        });
+      });
+
+      // Open edit modal
+      root.querySelectorAll('[data-edit-entity]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const kind = btn.dataset.editEntity;
+          const payload = findEntity(kind, btn.dataset.entityId);
+          if (payload) openModal(kind, 'edit', payload);
+        });
+      });
+
+      // Delete entity
+      root.querySelectorAll('[data-delete-entity]').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          if (!window.confirm('Xóa mục này? Hành động này không thể hoàn tác.')) return;
+          const kind = btn.dataset.deleteEntity;
+          const id = btn.dataset.entityId;
+          try {
+            if (kind === 'phase') await deletePhase(id);
+            else if (kind === 'module') await deleteModule(id);
+            else if (kind === 'lectureGroup') await deleteLectureGroup(id);
+            else if (kind === 'lecture') await deleteLecture(id);
+            toast('Đã xóa.', 'success');
+            data = await fetchLearningPath(state.profile.role);
+            renderAll();
+          } catch (err) {
+            toast(err.message, 'error');
+          }
+        });
+      });
+
+      // Modal close triggers
+      const backdrop = root.querySelector('#cm-modal-backdrop');
+      backdrop?.addEventListener('click', (e) => {
+        if (e.target === backdrop) closeModal();
+      });
+      root.querySelector('#cm-modal-close')?.addEventListener('click', closeModal);
+      root.querySelectorAll('[data-close-modal]').forEach((btn) => {
+        btn.addEventListener('click', closeModal);
+      });
+
+      // Cascading selects + submit handlers
+      root.querySelectorAll('.cm-modal-form').forEach((form) => {
+        const phaseSel = form.querySelector('.cascade-phase');
+        const modSel = form.querySelector('.cascade-module');
+        phaseSel?.addEventListener('change', () => syncCascade(form));
+        modSel?.addEventListener('change', () => syncCascade(form));
+
+        form.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          if (form.dataset.saving === 'true') return;
+
+          const kind = form.dataset.entity;
+          const formData = new FormData(form);
+          const values = Object.fromEntries(formData.entries());
+          const sortOrder = values.id
+            ? Number(values.sort_order || 0)
+            : nextContentSortOrder(kind, values, data);
+
+          const payload = {
+            ...values,
+            sort_order: sortOrder,
+            published: values.published !== 'false',
+            owner_id: state.profile.id,
+          };
+          if (!payload.id) delete payload.id;
+          if (kind === 'phase') {
+            payload.student_ids = formData.getAll('student_ids');
+          }
+
+          const submitBtn = form.querySelector('button[type="submit"]');
+          const restore = setButtonLoading(submitBtn);
+          form.dataset.saving = 'true';
+
+          try {
+            let saved;
+            if (kind === 'phase') {
+              saved = await upsertPhase(payload);
+              if (!values.id && saved?.id) currentContentPhaseId = saved.id;
+            } else if (kind === 'module') {
+              saved = await upsertModule(payload);
+              if (!values.id && saved?.id) {
+                currentContentPhaseId = payload.phase_id || currentContentPhaseId;
+                currentContentModuleId = saved.id;
+              }
+            } else if (kind === 'lectureGroup') {
+              delete payload.phase_id;
+              saved = await upsertLectureGroup(payload);
+            } else if (kind === 'lecture') {
+              delete payload.phase_id;
+              let group_id = payload.group_id || null;
+              if (group_id === 'undefined') group_id = null;
+              saved = await upsertLecture({ ...payload, group_id });
+            }
+
+            toast(values.id ? 'Đã cập nhật nội dung.' : 'Đã lưu thành công.', 'success');
+            closeModal();
+            data = await fetchLearningPath(state.profile.role);
+            renderAll();
+          } catch (err) {
+            toast(`Lỗi lưu: ${err.message}`, 'error');
+          } finally {
+            delete form.dataset.saving;
+            restore();
+          }
+        });
+      });
+    }
+
+    renderAll();
+  } catch (error) {
+    root.innerHTML = renderErrorState(error);
+    wireRouteRetry(root);
+  }
 }
