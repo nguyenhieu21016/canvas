@@ -17,9 +17,6 @@ export default defineConfig({
             if (id.includes('@supabase')) {
               return 'supabase';
             }
-            if (id.includes('@material/web')) {
-              return 'material-web';
-            }
             return 'vendor';
           }
         },

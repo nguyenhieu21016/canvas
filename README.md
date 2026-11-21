@@ -1,6 +1,34 @@
 # Canvas
 
-Vanilla HTML/CSS/JS LMS built with Vite, Supabase Auth/Postgres/Edge Functions, and Material Design 3 web components.
+Vanilla HTML/CSS/JS LMS built with Vite and Supabase (Auth, Postgres, Realtime, Edge Functions).
+
+## Project Structure
+
+```text
+src/
+├── main.js                   # App bootstrap, auth listener, header shell & route registration
+├── router.js                 # Hash router (#/...) and route teardown cleanup
+├── store.js                  # Shared user session/profile state and theme helpers
+├── styles/                   # CSS tokens, base rules, and component styles
+├── services/
+│   ├── supabaseClient.js     # Supabase client setup
+│   └── lmsApi.js             # Data fetching/mutations, presence & caching
+├── lib/                      # Small pure helpers (scoring, LaTeX/HTML, formatting, drafts)
+└── pages/
+    ├── Auth.js               # Login / Register / Password reset
+    ├── Settings.js           # User profile & activity settings
+    ├── student/
+    │   ├── Learn.js          # Learning path & lecture viewer
+    │   ├── Exam.js           # Assignment overview, exam runner, and review
+    │   └── Grades.js         # Student gradebook
+    └── admin/
+        ├── ManageHub.js      # Admin hub menu
+        ├── Students.js       # Student tracking, progress, and online users
+        ├── Courses.js        # Course phases, modules & lectures manager
+        ├── Assignments.js    # Assignment & LaTeX exam editor
+        ├── QuestionBank.js   # Reusable question bank
+        └── Salary.js         # Teaching schedule & salary calculator
+```
 
 ## Local Setup
 
@@ -18,16 +46,7 @@ cp .env.example .env
 
 3. Fill in `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`.
 
-4. Keep Prisma database URLs in `.env.local`. Prisma v7 loads them through `prisma.config.ts`; migration/introspection commands use `DIRECT_URL`.
-
-```bash
-npm run prisma:validate
-npm run prisma:generate
-```
-
-5. Apply the migration in `supabase/migrations/202606010001_lms_schema.sql`.
-
-6. Deploy functions:
+4. Apply migrations in `supabase/migrations/` and deploy Edge Functions:
 
 ```bash
 supabase functions deploy admin-create-user
@@ -39,13 +58,13 @@ supabase secrets set SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 
 The project id is already set in `supabase/config.toml`.
 
-7. Create the first admin user in Supabase Auth, then run:
+5. Create the first admin user in Supabase Auth, then run:
 
 ```sql
 update public.profiles set role = 'admin' where email = 'admin@example.com';
 ```
 
-8. Start the app:
+6. Start the app:
 
 ```bash
 npm run dev
@@ -58,11 +77,3 @@ npm test
 npm run build
 npm run test:e2e
 ```
-
-## V1 Scope
-
-- One-class LMS model.
-- Email/password login.
-- Public Google Drive preview embeds only.
-- Server-side grading via Supabase RPC.
-- Service-role Auth management only inside Edge Functions.

@@ -1,4 +1,4 @@
-import { isManager } from './store.js';
+import { isManager, pageRoot } from './store.js';
 
 export const routes = [];
 
@@ -59,4 +59,10 @@ export async function mountCurrentRoute() {
   } else {
     go('learn');
   }
+}
+
+export function wireRouteRetry(root = pageRoot()) {
+  root.querySelectorAll('[data-retry-route]').forEach((button) => {
+    button.addEventListener('click', () => mountCurrentRoute());
+  });
 }

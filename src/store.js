@@ -35,6 +35,40 @@ const detachedPageRoot = {
   },
 };
 
+export const APP_VERSION = '1.4.1';
+export const APP_LAST_UPDATE = 'Sửa lỗi hiển thị hình ảnh và định dạng Markdown trong đề thi của học sinh. Cập nhật hệ thống render đồng bộ với giáo viên.';
+
+export function applyTheme() {
+  if (typeof document === 'undefined') return;
+  document.documentElement.dataset.theme = state.theme;
+  document.documentElement.dataset.color = state.colorTheme;
+  document.querySelector('meta[name="theme-color"]')?.setAttribute(
+    'content',
+    colorThemes.find((theme) => theme.id === state.colorTheme)?.color ?? '#d3e4ff',
+  );
+}
+
+export function setThemeMode(_mode) {
+  // Dark mode removed – always light
+}
+
+export function setColorTheme(colorTheme) {
+  if (!colorThemes.some((theme) => theme.id === colorTheme)) return;
+  state.colorTheme = colorTheme;
+  if (typeof localStorage !== 'undefined') {
+    localStorage.setItem('lms:colorTheme', state.colorTheme);
+  }
+  applyTheme();
+}
+
+export function daysUntilExam() {
+  const today = new Date();
+  const start = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  const examDate = new Date(2027, 5, 11);
+  return Math.max(0, Math.ceil((examDate - start) / 86_400_000));
+}
+
 export function pageRoot() {
+  if (typeof document === 'undefined') return detachedPageRoot;
   return document.querySelector('#page-root') ?? detachedPageRoot;
 }
