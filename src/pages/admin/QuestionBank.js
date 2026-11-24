@@ -253,6 +253,8 @@ const QB_ICONS = {
   arrowUp: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>`,
   arrowDown: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>`,
   close: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`,
+  chevronDown: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>`,
+  search: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>`,
 };
 
 function shuffleArray(list) {
@@ -262,6 +264,33 @@ function shuffleArray(list) {
     [arr[i], arr[j]] = [arr[j], arr[i]];
   }
   return arr;
+}
+
+function getChapterTag(question) {
+  const tags = question.tags || [];
+  const ch = tags.find((t) => t.startsWith(CHAPTER_PREFIX) || /^Chương\s+\d+/i.test(t));
+  return ch || 'Khác';
+}
+
+function formatChapterPillLabel(chapter) {
+  if (chapter === 'all') return 'Tất cả chương';
+  return chapter.replace(/^GĐ\d+\s*[·-]\s*/i, '').trim() || chapter;
+}
+
+function sortChapterTags(chapters) {
+  return [...chapters].sort((a, b) => {
+    if (a === 'Khác') return 1;
+    if (b === 'Khác') return -1;
+    return a.localeCompare(b, 'vi', { numeric: true });
+  });
+}
+
+function normalizeSearchText(str) {
+  return String(str || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/đ/g, 'd');
 }
 
 function getTopicTag(question) {
@@ -937,7 +966,14 @@ const QB_STYLES = `
     .qb-topic-bar {
       display: flex;
       align-items: center;
-      gap: 7px;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .qb-chapter-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
       flex-wrap: wrap;
     }
     .qb-topic-chip {
@@ -966,6 +1002,178 @@ const QB_STYLES = `
       border-color: #D3D7CB;
       color: #181B16;
       font-weight: 600;
+    }
+    .qb-topic-picker {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .qb-topic-trigger {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      height: 34px;
+      max-width: 360px;
+      padding: 0 12px 0 14px;
+      border: 1px solid #D3D7CB;
+      border-radius: 9999px;
+      background: #FFFFFF;
+      color: #181B16;
+      font-family: inherit;
+      font-size: 12.5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+    .qb-topic-trigger:hover {
+      background: #EBEDE6;
+      border-color: #C4C9BC;
+    }
+    .qb-topic-trigger.has-value {
+      background: #EBEDE6;
+      border-color: #181B16;
+      font-weight: 600;
+    }
+    .qb-topic-trigger-label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      min-width: 0;
+    }
+    .qb-topic-trigger-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+    .qb-topic-chevron {
+      display: inline-flex;
+      color: #64695F;
+      transition: transform 0.16s ease;
+    }
+    .qb-topic-picker.open .qb-topic-chevron {
+      transform: rotate(180deg);
+    }
+    .qb-topic-clear {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      border: 1px solid #E4E6DE;
+      border-radius: 9999px;
+      background: #FFFFFF;
+      color: #64695F;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+    .qb-topic-clear:hover {
+      background: #EBEDE6;
+      border-color: #D3D7CB;
+      color: #181B16;
+    }
+    .qb-topic-menu {
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      width: 400px;
+      max-width: calc(100vw - 32px);
+      background: #FFFFFF;
+      border: 1px solid #D3D7CB;
+      border-radius: 16px;
+      box-shadow: 0 12px 32px rgba(24, 27, 22, 0.10), 0 2px 6px rgba(24, 27, 22, 0.04);
+      z-index: 60;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(-4px);
+      pointer-events: none;
+      visibility: hidden;
+      transition: opacity 0.15s ease, transform 0.15s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.15s ease;
+    }
+    .qb-topic-picker.open .qb-topic-menu {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+      visibility: visible;
+    }
+    .qb-topic-menu-search {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-bottom: 1px solid #E4E6DE;
+      background: #F7F7F2;
+      color: #64695F;
+    }
+    .qb-topic-menu-search input {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: #181B16;
+      font-family: inherit;
+      font-size: 13px;
+      outline: none;
+    }
+    .qb-topic-menu-search input::placeholder {
+      color: #64695F;
+    }
+    .qb-topic-menu-list {
+      max-height: 310px;
+      overflow-y: auto;
+      padding: 6px;
+      scrollbar-width: thin;
+      scrollbar-color: #D3D7CB transparent;
+    }
+    .qb-topic-menu-list::-webkit-scrollbar { width: 5px; }
+    .qb-topic-menu-list::-webkit-scrollbar-thumb {
+      background: #D3D7CB;
+      border-radius: 9999px;
+    }
+    .qb-topic-option {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      width: 100%;
+      padding: 8px 10px;
+      border: 0;
+      border-radius: 10px;
+      background: transparent;
+      color: #181B16;
+      font-family: inherit;
+      font-size: 12.5px;
+      line-height: 1.4;
+      text-align: left;
+      cursor: pointer;
+      transition: background-color 0.12s ease;
+    }
+    .qb-topic-option:hover {
+      background: #F7F7F2;
+    }
+    .qb-topic-option.active {
+      background: #EBEDE6;
+      font-weight: 600;
+    }
+    .qb-topic-option-right {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+      color: #64695F;
+      padding-top: 1px;
+    }
+    .qb-topic-option.active .qb-topic-option-right {
+      color: #181B16;
+    }
+    .qb-topic-menu-empty {
+      padding: 18px 12px;
+      text-align: center;
+      font-size: 12.5px;
+      color: #64695F;
     }
     .qb-search {
       width: 260px;
@@ -1270,6 +1478,9 @@ const QB_STYLES = `
       .qb-hub { padding: 20px 16px 56px; }
       .qb-gen-config, .qb-gen-grid, .qb-choices { grid-template-columns: 1fr; }
       .qb-search { width: 100%; }
+      .qb-topic-picker { width: 100%; }
+      .qb-topic-trigger { flex: 1; min-width: 0; max-width: none; }
+      .qb-topic-menu { left: 0; right: 0; width: 100%; }
     }
   </style>
 `;
@@ -1278,10 +1489,13 @@ export async function mountQuestionBank(root) {
   const PAGE_SIZE = 15;
   let currentQuestions = [];
   let currentLectures = [];
+  let selectedChapter = 'all';
   let selectedTopic = 'all';
   let selectedLevel = 'all';
   let selectedType = 'all';
   let searchQuery = '';
+  let topicMenuOpen = false;
+  let topicSearchQuery = '';
   let currentPage = 1;
   let selectedIds = new Set();
   let pickTargetId = null;
@@ -1293,7 +1507,36 @@ export async function mountQuestionBank(root) {
   let generatorOpen = Boolean(pickTargetId);
   let generatedItems = [];
 
+  const closeTopicMenu = () => {
+    if (!topicMenuOpen) return;
+    topicMenuOpen = false;
+    const pickerEl = root.querySelector('#qb-topic-picker');
+    const triggerEl = root.querySelector('#qb-topic-trigger');
+    pickerEl?.classList.remove('open');
+    triggerEl?.setAttribute('aria-expanded', 'false');
+  };
+
+  const handleDocumentClick = (e) => {
+    if (!topicMenuOpen) return;
+    const pickerEl = root.querySelector('#qb-topic-picker');
+    if (pickerEl && !pickerEl.contains(e.target)) {
+      closeTopicMenu();
+    }
+  };
+
+  const handleDocumentKeydown = (e) => {
+    if (e.key === 'Escape' && topicMenuOpen) {
+      closeTopicMenu();
+      root.querySelector('#qb-topic-trigger')?.focus();
+    }
+  };
+
+  document.addEventListener('click', handleDocumentClick);
+  document.addEventListener('keydown', handleDocumentKeydown);
+
   registerCleanup(() => {
+    document.removeEventListener('click', handleDocumentClick);
+    document.removeEventListener('keydown', handleDocumentKeydown);
     try {
       sessionStorage.removeItem('lms:qbPickTarget');
     } catch {
@@ -1576,11 +1819,12 @@ export async function mountQuestionBank(root) {
     }
   }
 
-  function getTopicStats(levelFilter = 'all', typeFilter = 'all') {
+  function getTopicStats(levelFilter = 'all', typeFilter = 'all', chapterFilter = 'all') {
     const map = new Map();
     for (const q of currentQuestions) {
       if (typeFilter !== 'all' && (q.type || 'mcq') !== typeFilter) continue;
       if (levelFilter !== 'all' && getLevelTag(q) !== levelFilter) continue;
+      if (chapterFilter !== 'all' && getChapterTag(q) !== chapterFilter) continue;
       const topic = getTopicTag(q);
       if (!map.has(topic)) map.set(topic, []);
       map.get(topic).push(q);
@@ -1588,6 +1832,20 @@ export async function mountQuestionBank(root) {
     return sortTopicTags(Array.from(map.keys())).map((topic) => ({
       topic,
       items: map.get(topic),
+    }));
+  }
+
+  function getChapterStats(levelFilter = 'all', typeFilter = 'all') {
+    const map = new Map();
+    for (const q of currentQuestions) {
+      if (typeFilter !== 'all' && (q.type || 'mcq') !== typeFilter) continue;
+      if (levelFilter !== 'all' && getLevelTag(q) !== levelFilter) continue;
+      const chapter = getChapterTag(q);
+      map.set(chapter, (map.get(chapter) || 0) + 1);
+    }
+    return sortChapterTags(Array.from(map.keys())).map((chapter) => ({
+      chapter,
+      count: map.get(chapter),
     }));
   }
 
@@ -2231,28 +2489,166 @@ export async function mountQuestionBank(root) {
       });
     });
 
-    const topicStats = getTopicStats(selectedLevel, selectedType);
+    const chapterStats = getChapterStats(selectedLevel, selectedType);
+    if (selectedChapter !== 'all' && !chapterStats.some((c) => c.chapter === selectedChapter)) {
+      selectedChapter = 'all';
+    }
+
+    const topicStats = getTopicStats(selectedLevel, selectedType, selectedChapter);
+    if (selectedTopic !== 'all' && !topicStats.some((t) => t.topic === selectedTopic)) {
+      selectedTopic = 'all';
+    }
+
     const totalForLevel = selectedLevel === 'all' ? typeFiltered.length : levelCounts[selectedLevel];
+    const totalForChapter = selectedChapter === 'all'
+      ? totalForLevel
+      : (chapterStats.find((c) => c.chapter === selectedChapter)?.count || 0);
+    const activeTopicStat = selectedTopic === 'all'
+      ? null
+      : topicStats.find((t) => t.topic === selectedTopic);
+
+    const buildTopicOptionsHtml = (queryText = '') => {
+      const qNorm = normalizeSearchText(queryText.trim());
+      const matched = qNorm
+        ? topicStats.filter(({ topic }) => normalizeSearchText(topic).includes(qNorm))
+        : topicStats;
+
+      const rows = [];
+      if (!qNorm) {
+        rows.push(`
+          <button type="button" class="qb-topic-option ${selectedTopic === 'all' ? 'active' : ''}" role="option" aria-selected="${selectedTopic === 'all'}" data-topic="all">
+            <span>Tất cả dạng${selectedChapter !== 'all' ? ` · ${escapeHtml(formatChapterPillLabel(selectedChapter))}` : ''}</span>
+            <span class="qb-topic-option-right">
+              <span class="qb-pill-cnt">${totalForChapter}</span>
+              ${selectedTopic === 'all' ? QB_ICONS.check : ''}
+            </span>
+          </button>
+        `);
+      }
+
+      for (const { topic, items } of matched) {
+        const isActive = selectedTopic === topic;
+        rows.push(`
+          <button type="button" class="qb-topic-option ${isActive ? 'active' : ''}" role="option" aria-selected="${isActive}" data-topic="${escapeHtml(topic)}">
+            <span>${escapeHtml(topic)}</span>
+            <span class="qb-topic-option-right">
+              <span class="qb-pill-cnt">${items.length}</span>
+              ${isActive ? QB_ICONS.check : ''}
+            </span>
+          </button>
+        `);
+      }
+
+      if (!rows.length) {
+        return `<div class="qb-topic-menu-empty">Không tìm thấy dạng bài phù hợp.</div>`;
+      }
+      return rows.join('');
+    };
+
+    const showChapters = chapterStats.length > 1;
     topicBarEl.innerHTML = `
-      <button type="button" class="qb-topic-chip ${selectedTopic === 'all' ? 'active' : ''}" data-topic="all">
-        <span>Tất cả dạng</span>
-        <span class="qb-pill-cnt">${totalForLevel}</span>
-      </button>
-      ${topicStats.map(({ topic, items }) => `
-        <button type="button" class="qb-topic-chip ${selectedTopic === topic ? 'active' : ''}" data-topic="${escapeHtml(topic)}">
-          <span>${escapeHtml(topic)}</span>
-          <span class="qb-pill-cnt">${items.length}</span>
+      ${showChapters ? `
+        <div class="qb-chapter-bar" role="group" aria-label="Lọc theo chương">
+          <button type="button" class="qb-topic-chip ${selectedChapter === 'all' ? 'active' : ''}" data-chapter="all">
+            <span>Tất cả chương</span>
+            <span class="qb-pill-cnt">${totalForLevel}</span>
+          </button>
+          ${chapterStats.map(({ chapter, count }) => `
+            <button type="button" class="qb-topic-chip ${selectedChapter === chapter ? 'active' : ''}" data-chapter="${escapeHtml(chapter)}" title="${escapeHtml(chapter)}">
+              <span>${escapeHtml(formatChapterPillLabel(chapter))}</span>
+              <span class="qb-pill-cnt">${count}</span>
+            </button>
+          `).join('')}
+        </div>
+      ` : '<div></div>'}
+      <div class="qb-topic-picker ${topicMenuOpen ? 'open' : ''}" id="qb-topic-picker">
+        <button
+          type="button"
+          class="qb-topic-trigger ${selectedTopic !== 'all' ? 'has-value' : ''}"
+          id="qb-topic-trigger"
+          aria-haspopup="listbox"
+          aria-expanded="${topicMenuOpen}"
+          title="${escapeHtml(selectedTopic === 'all' ? 'Chọn dạng bài' : selectedTopic)}"
+        >
+          <span class="qb-topic-trigger-label">${selectedTopic === 'all' ? 'Tất cả dạng' : escapeHtml(selectedTopic)}</span>
+          <span class="qb-topic-trigger-meta">
+            <span class="qb-pill-cnt">${selectedTopic === 'all' ? `${topicStats.length} dạng` : (activeTopicStat?.items.length ?? 0)}</span>
+            <span class="qb-topic-chevron">${QB_ICONS.chevronDown}</span>
+          </span>
         </button>
-      `).join('')}
+        ${selectedTopic !== 'all' ? `
+          <button type="button" class="qb-topic-clear" id="qb-topic-clear" title="Bỏ lọc dạng bài" aria-label="Bỏ lọc dạng bài">
+            ${QB_ICONS.close}
+          </button>
+        ` : ''}
+        <div class="qb-topic-menu" id="qb-topic-menu" role="listbox" aria-label="Danh sách dạng bài">
+          <div class="qb-topic-menu-search">
+            ${QB_ICONS.search}
+            <input type="search" id="qb-topic-search" placeholder="Tìm dạng bài..." value="${escapeHtml(topicSearchQuery)}" autocomplete="off" />
+          </div>
+          <div class="qb-topic-menu-list" id="qb-topic-menu-list">
+            ${buildTopicOptionsHtml(topicSearchQuery)}
+          </div>
+        </div>
+      </div>
     `;
 
-    topicBarEl.querySelectorAll('[data-topic]').forEach((btn) => {
+    topicBarEl.querySelectorAll('[data-chapter]').forEach((btn) => {
       btn.addEventListener('click', () => {
-        selectedTopic = btn.dataset.topic;
+        selectedChapter = btn.dataset.chapter;
+        topicMenuOpen = false;
+        topicSearchQuery = '';
         currentPage = 1;
         renderFilterBars();
         renderQuestionsList();
       });
+    });
+
+    const pickerEl = topicBarEl.querySelector('#qb-topic-picker');
+    const triggerEl = topicBarEl.querySelector('#qb-topic-trigger');
+    const clearBtn = topicBarEl.querySelector('#qb-topic-clear');
+    const topicSearchEl = topicBarEl.querySelector('#qb-topic-search');
+    const menuListEl = topicBarEl.querySelector('#qb-topic-menu-list');
+
+    const bindTopicOptions = () => {
+      menuListEl?.querySelectorAll('[data-topic]').forEach((opt) => {
+        opt.addEventListener('click', () => {
+          selectedTopic = opt.dataset.topic;
+          topicMenuOpen = false;
+          topicSearchQuery = '';
+          currentPage = 1;
+          renderFilterBars();
+          renderQuestionsList();
+        });
+      });
+    };
+    bindTopicOptions();
+
+    triggerEl?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      topicMenuOpen = !topicMenuOpen;
+      pickerEl?.classList.toggle('open', topicMenuOpen);
+      triggerEl.setAttribute('aria-expanded', String(topicMenuOpen));
+      if (topicMenuOpen) {
+        setTimeout(() => topicSearchEl?.focus(), 20);
+      }
+    });
+
+    clearBtn?.addEventListener('click', () => {
+      selectedTopic = 'all';
+      topicMenuOpen = false;
+      topicSearchQuery = '';
+      currentPage = 1;
+      renderFilterBars();
+      renderQuestionsList();
+    });
+
+    topicSearchEl?.addEventListener('input', () => {
+      topicSearchQuery = topicSearchEl.value;
+      if (menuListEl) {
+        menuListEl.innerHTML = buildTopicOptionsHtml(topicSearchQuery);
+        bindTopicOptions();
+      }
     });
   }
 
@@ -2261,6 +2657,7 @@ export async function mountQuestionBank(root) {
     return currentQuestions.filter((q) => {
       if (selectedType !== 'all' && (q.type || 'mcq') !== selectedType) return false;
       if (selectedLevel !== 'all' && getLevelTag(q) !== selectedLevel) return false;
+      if (selectedChapter !== 'all' && getChapterTag(q) !== selectedChapter) return false;
       if (selectedTopic !== 'all' && getTopicTag(q) !== selectedTopic) return false;
       if (!qLower) return true;
       return (
