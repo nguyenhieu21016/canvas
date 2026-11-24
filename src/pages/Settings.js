@@ -366,9 +366,9 @@ function renderOnlineChartCard(onlineHistory) {
       <div class="set-card-head">
         <h2 class="set-card-title">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-          <span>Online 14 ngày</span>
+          <span>Thời lượng Online (14 ngày)</span>
         </h2>
-        <span class="set-metric-pill">Hôm nay ${todayMin}p &middot; Tổng ${totalMin}p</span>
+        <span class="set-metric-pill">Hôm nay ${todayMin} phút &middot; Tổng ${totalMin} phút</span>
       </div>
       <div style="width:100%;overflow-x:auto;">
         <svg viewBox="0 0 756 196" style="width:100%;min-width:560px;height:196px;font-family:'Google Sans',sans-serif;">
@@ -405,9 +405,9 @@ function renderHistoryCard(submittedHistory) {
       <div class="set-card-head">
         <h2 class="set-card-title">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
-          <span>Lịch sử làm bài</span>
+          <span>Bài đã làm gần đây</span>
         </h2>
-        ${submittedHistory.length ? `<span class="set-card-sub">${submittedHistory.length} bài</span>` : ''}
+        ${submittedHistory.length ? `<span class="set-card-sub">${submittedHistory.length} bài gần nhất</span>` : ''}
       </div>
       ${submittedHistory.length ? `
         <div class="set-hist-list">
@@ -434,8 +434,8 @@ function renderHistoryCard(submittedHistory) {
         </div>
       ` : `
         <div class="set-empty">
-          <span>Chưa có bài nộp.</span>
-          <a class="set-btn" href="#/learn">Vào học</a>
+          <span>Chưa có bài kiểm tra nào đã nộp.</span>
+          <a class="set-btn" href="#/learn">Mở khóa học để làm bài</a>
         </div>
       `}
     </section>
@@ -493,7 +493,7 @@ function renderAccountTab(profile, initial) {
           </div>
         </div>
         <div style="margin-top:14px;display:flex;justify-content:flex-end;">
-          <button id="set-save-name-btn" type="submit" class="set-btn set-btn--primary">Lưu</button>
+          <button id="set-save-name-btn" type="submit" class="set-btn set-btn--primary">Lưu tên hiển thị</button>
         </div>
       </form>
     </section>
@@ -502,7 +502,7 @@ function renderAccountTab(profile, initial) {
       <div class="set-card-head">
         <h2 class="set-card-title">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <span>Bảo mật</span>
+          <span>Bảo mật &amp; Phiên đăng nhập</span>
         </h2>
       </div>
       <form id="password-edit-form">
@@ -516,7 +516,7 @@ function renderAccountTab(profile, initial) {
               class="set-input"
               minlength="6"
               autocomplete="new-password"
-              placeholder="Tối thiểu 6 ký tự"
+              placeholder="Tối thiểu 6 ký tự..."
               required
             />
           </div>
@@ -529,7 +529,7 @@ function renderAccountTab(profile, initial) {
               class="set-input"
               minlength="6"
               autocomplete="new-password"
-              placeholder="Nhập lại mật khẩu"
+              placeholder="Xác nhận mật khẩu mới..."
               required
             />
           </div>

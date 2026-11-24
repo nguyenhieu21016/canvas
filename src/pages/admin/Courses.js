@@ -660,7 +660,7 @@ export async function mountContentManager() {
           <div class="cm-detail-head">
             <div class="cm-detail-head-text">
               <h2 class="cm-detail-title">${escapeHtml(activeModule.title)}</h2>
-              <p class="cm-detail-meta">${groups.length} nhóm · ${(activeModule.lectures ?? []).length} bài</p>
+              <p class="cm-detail-meta">${groups.length} nhóm - ${(activeModule.lectures ?? []).length} bài giảng</p>
             </div>
             <div class="cm-detail-actions">
               <button type="button" class="cm-pill-sm" data-open-create="lectureGroup">${CM_ICONS.plus}<span>Nhóm</span></button>
@@ -679,12 +679,11 @@ export async function mountContentManager() {
           <header class="asg-overview-hero">
             <a href="#/manage" class="phase-back-link">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-              <span>Quản trị</span>
+              <span>Trung tâm Quản trị</span>
             </a>
             <div class="asg-overview-hero-row">
               <div class="asg-overview-hero-left">
-                <h1 class="phase-hero-title">Khóa học</h1>
-                <p class="cm-hero-meta">${totalPhases} giai đoạn · ${totalModules} chương · ${totalLectures} bài</p>
+                <h1 class="phase-hero-title">Nội dung khóa học</h1>
               </div>
               <button type="button" class="cm-hero-btn" data-open-create="phase">
                 ${CM_ICONS.plus}

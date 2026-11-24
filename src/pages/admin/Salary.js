@@ -113,7 +113,7 @@ export async function mountSalaryManager() {
       if (!host) return;
       const active = scheduleStates.find((s) => s.studentId === activeStudentId);
       if (!active) {
-        host.innerHTML = `<div class="phase-empty-card"><p>Chưa có lịch tháng ${monthLabel}.</p></div>`;
+        host.innerHTML = `<div class="phase-empty-card"><p>Chưa có lịch dạy trong tháng ${monthLabel}.</p></div>`;
         return;
       }
 
@@ -168,13 +168,13 @@ export async function mountSalaryManager() {
                 <div class="salary-upcoming-pills">
                   ${stats.scheduledDates.length
                     ? stats.scheduledDates.map((dayNum) => `<span class="salary-date-pill">${dayNum}/${monthNum}</span>`).join('')
-                    : '<span class="salary-upcoming-empty">Trống</span>'
+                    : '<span class="salary-upcoming-empty">Không có buổi nào</span>'
                   }
                 </div>
               </div>
 
               <div class="salary-detail-foot">
-                <button type="button" class="salary-del-btn" data-delete-schedule="${active.id}">Xóa lịch</button>
+                <button type="button" class="salary-del-btn" data-delete-schedule="${active.id}">Xóa lịch tháng này</button>
               </div>
             </div>
           </aside>
@@ -235,11 +235,11 @@ export async function mountSalaryManager() {
         <header class="asg-overview-hero">
           <a href="#/manage" class="phase-back-link">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-            <span>Quản trị</span>
+            <span>Trung tâm Quản trị</span>
           </a>
           <div class="salary-hero-row">
             <div class="asg-overview-hero-left">
-              <h1 class="phase-hero-title">Lịch &amp; Lương</h1>
+              <h1 class="phase-hero-title">Lịch dạy &amp; Lương</h1>
             </div>
             <div class="salary-hero-controls">
               <div class="salary-month-pill">
@@ -264,7 +264,7 @@ export async function mountSalaryManager() {
         ${(unscheduled.length > 0 && schedules.length < 2) ? `
           <div class="salary-add-bar">
             <select id="add-student-sel" class="salary-add-select" aria-label="Chọn học sinh">
-              <option value="">Chọn học sinh...</option>
+              <option value="">Chọn học sinh thêm vào tháng ${monthLabel}...</option>
               ${unscheduled.map((s) => `<option value="${escapeHtml(s.id)}">${escapeHtml(s.full_name)}</option>`).join('')}
             </select>
             <button id="add-student-btn" type="button" class="salary-add-btn">+ Thêm lịch</button>

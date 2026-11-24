@@ -14,14 +14,14 @@ const ROW_TOP = [
   {
     id: 'students',
     href: '#/students',
-    title: 'Học sinh',
-    pill: '2 học sinh · 0 online',
+    title: 'Theo dõi Học sinh',
+    pill: '2 học sinh - 0 online',
     icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
   },
   {
     id: 'salary',
     href: '#/salary',
-    title: 'Lịch & Lương',
+    title: 'Lịch dạy & Lương',
     pill: '8/12 buổi',
     icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h5"/><path d="M17.5 17.5 16 16.3V14"/><circle cx="16" cy="16" r="6"/></svg>`,
   },
@@ -31,22 +31,22 @@ const ROW_BOTTOM = [
   {
     id: 'content',
     href: '#/content',
-    title: 'Khóa học',
-    pill: '5 giai đoạn · 77 bài',
+    title: 'Nội dung khóa học',
+    pill: '5 giai đoạn - 77 bài',
     icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/><path d="M8 10v4"/><path d="M12 10v2"/><path d="M16 10v6"/></svg>`,
   },
   {
     id: 'assignments',
     href: '#/assignments',
-    title: 'Đề thi',
-    pill: '30 đề',
+    title: 'Đề thi & Bài tập',
+    pill: '30 đề thi',
     icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m9 15 2 2 4-4"/></svg>`,
   },
   {
     id: 'question-bank',
     href: '#/question-bank',
-    title: 'Ngân hàng',
-    pill: '1.141 câu',
+    title: 'Ngân hàng đề',
+    pill: '707 câu đã phân loại',
     icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>`,
   },
 ];
@@ -193,11 +193,11 @@ export function mountManageHub() {
       <header class="asg-overview-hero">
         <a href="#/learn" class="phase-back-link">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-          <span>Trang chủ</span>
+          <span>Lộ trình học tập</span>
         </a>
         <div class="asg-overview-hero-row">
           <div class="asg-overview-hero-left">
-            <h1 class="phase-hero-title">Quản trị</h1>
+            <h1 class="phase-hero-title">Trung tâm Quản trị</h1>
           </div>
         </div>
       </header>
@@ -218,7 +218,7 @@ export function mountManageHub() {
     const onlineStudents = getOnlineUsers().filter((u) => u.role === 'student').length;
     const pill = root.querySelector('[data-hub-pill="students"]');
     if (pill && root.contains(pill)) {
-      pill.textContent = `2 học sinh · ${onlineStudents} online`;
+      pill.textContent = `2 học sinh - ${onlineStudents} online`;
       pill.classList.toggle('is-online', onlineStudents > 0);
     }
   };
@@ -243,19 +243,19 @@ export function mountManageHub() {
         const phasesCount = (pathRes.value.phases ?? []).length;
         const lecturesCount = (pathRes.value.lectures ?? []).length;
         const el = root.querySelector('[data-hub-pill="content"]');
-        if (el) el.textContent = `${phasesCount} giai đoạn · ${lecturesCount} bài`;
+        if (el) el.textContent = `${phasesCount} giai đoạn - ${lecturesCount} bài`;
       }
 
       if (assignRes.status === 'fulfilled' && Array.isArray(assignRes.value)) {
         const el = root.querySelector('[data-hub-pill="assignments"]');
-        if (el) el.textContent = `${assignRes.value.length} đề`;
+        if (el) el.textContent = `${assignRes.value.length} đề thi`;
       }
 
       if (bankRes.status === 'fulfilled' && bankRes.value) {
         const dbCount = Number(bankRes.value.count ?? (bankRes.value.questions || []).length ?? 0);
         if (dbCount > 0) {
           const el = root.querySelector('[data-hub-pill="question-bank"]');
-          if (el) el.textContent = `${dbCount.toLocaleString('vi-VN')} câu`;
+          if (el) el.textContent = `${dbCount} câu hỏi`;
         }
       }
 

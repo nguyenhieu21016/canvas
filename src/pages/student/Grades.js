@@ -29,7 +29,7 @@ export async function mountStudentGrades() {
         <header class="asg-overview-hero">
           <a href="#/learn" class="phase-back-link">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-            <span>Trang chủ</span>
+            <span>Lộ trình học tập</span>
           </a>
           <div class="asg-overview-hero-row">
             <div class="asg-overview-hero-left">
@@ -41,11 +41,11 @@ export async function mountStudentGrades() {
         <!-- 3 Compact Soft Stat Blocks -->
         <div class="asg-stat-grid">
           <div class="asg-stat-card">
-            <span class="asg-stat-label">Trung bình</span>
+            <span class="asg-stat-label">Điểm trung bình</span>
             <div class="asg-stat-value">${avgScore !== null ? formatScore(avgScore) : '—'}${avgScore !== null ? '<span class="asg-stat-unit">/10</span>' : ''}</div>
           </div>
           <div class="asg-stat-card">
-            <span class="asg-stat-label">Đã làm</span>
+            <span class="asg-stat-label">Đã hoàn thành</span>
             <div class="asg-stat-value">${doneCount}/${totalAssignments}<span class="asg-stat-unit">đề</span></div>
           </div>
           <div class="asg-stat-card">

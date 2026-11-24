@@ -89,11 +89,11 @@ export async function mountProgressManager() {
         <header class="asg-overview-hero">
           <a href="#/manage" class="phase-back-link">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-            <span>Quản trị</span>
+            <span>Trung tâm Quản trị</span>
           </a>
           <div class="asg-overview-hero-row">
             <div class="asg-overview-hero-left">
-              <h1 class="phase-hero-title">Học sinh</h1>
+              <h1 class="phase-hero-title">Theo dõi Học sinh</h1>
             </div>
           </div>
         </header>
@@ -166,7 +166,7 @@ export async function mountProgressManager() {
           const progressPct = totalLectures > 0 ? Math.round((taughtCount / totalLectures) * 100) : 0;
 
           if (!allModulesFlat.length) {
-            pane.innerHTML = `<div class="phase-empty-card"><p>Chưa có bài giảng.</p></div>`;
+            pane.innerHTML = `<div class="phase-empty-card"><p>Chưa có bài giảng nào trong hệ thống.</p></div>`;
             return;
           }
 
@@ -285,7 +285,7 @@ export async function mountProgressManager() {
       } else if (activeTab === 'grades') {
         const studentGrades = gradebook.filter((g) => g.student_id === studentId);
         if (!studentGrades.length) {
-          pane.innerHTML = `<div class="phase-empty-card"><p>Chưa có bài nộp.</p></div>`;
+          pane.innerHTML = `<div class="phase-empty-card"><p>Học sinh chưa có bài nộp nào.</p></div>`;
           return;
         }
         const fmt = new Intl.NumberFormat('vi-VN', { maximumFractionDigits: 1 });
@@ -299,7 +299,7 @@ export async function mountProgressManager() {
                 <a href="#/review/${g.id}" class="grades-row">
                   <div class="grades-row-main">
                     <div class="grades-row-title">${escapeHtml(title)}</div>
-                    <div class="grades-row-context">${escapeHtml(dateStr)}</div>
+                    <div class="grades-row-context">Nộp lúc ${escapeHtml(dateStr)}</div>
                   </div>
                   <div class="grades-row-right">
                     <span class="grades-score ${score10 >= 8 ? 'is-good' : ''}">${fmt.format(score10)}<span class="grades-score-max">/10</span></span>
@@ -720,7 +720,7 @@ export function mountOnlineUsers() {
       <section class="panel">
         <div class="panel-heading">
           <div>
-            <h2>Đang online (${users.length})</h2>
+            <h2>Học sinh đang online (${users.length})</h2>
           </div>
         </div>
         ${users.length > 0 ? `
@@ -732,14 +732,14 @@ export function mountOnlineUsers() {
                   <div style="font-weight: 500;">${escapeHtml(u.full_name)}</div>
                   <div style="font-size: 0.85rem; color: var(--md-sys-color-on-surface-variant); display: flex; align-items: center; gap: 6px;">
                     <div style="width: 8px; height: 8px; border-radius: 50%; background: #4caf50;"></div>
-                    Từ ${new Date(u.online_at).toLocaleTimeString('vi-VN')}
+                    Online từ ${new Date(u.online_at).toLocaleTimeString('vi-VN')}
                   </div>
                 </div>
               </div>
             `).join('')}
           </div>
         ` : `
-          <div class="empty-state">Không có ai online.</div>
+          <div class="empty-state">Hiện không có ai đang online.</div>
         `}
       </section>
     `;

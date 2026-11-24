@@ -837,7 +837,7 @@ export function renderAssignmentsListView(root, assignments = [], path = { lectu
           </header>
           <section class="nh-asg-card">
             <div class="nh-asg-empty" style="padding: 48px 24px;">
-              <p class="nh-asg-empty-title" style="font-size: 16px; font-weight: 600;">Chưa có đề nào</p>
+              <p class="nh-asg-empty-title" style="font-size: 16px; font-weight: 600;">Chưa có đề thi hoặc bài tập nào</p>
             </div>
           </section>
         </div>
@@ -868,15 +868,15 @@ export function renderAssignmentsListView(root, assignments = [], path = { lectu
         <header class="asg-overview-hero">
           <a href="#/manage" class="phase-back-link">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-            <span>Quản trị</span>
+            <span>Trung tâm Quản trị</span>
           </a>
           <div class="asg-overview-hero-row">
             <div class="asg-overview-hero-left">
-              <h1 class="phase-hero-title">Đề thi</h1>
+              <h1 class="phase-hero-title">Đề thi &amp; Bài tập</h1>
             </div>
             <button type="button" id="new-assignment" class="nh-asg-create-btn">
               ${ASG_ICONS.plus}
-              <span>Tạo đề</span>
+              <span>Tạo đề mới</span>
             </button>
           </div>
         </header>
@@ -924,7 +924,7 @@ export function renderAssignmentsListView(root, assignments = [], path = { lectu
               <input
                 type="search"
                 id="assignment-search"
-                placeholder="Tìm đề..."
+                placeholder="Tìm tên đề hoặc bài giảng..."
                 class="nh-asg-search-input"
               />
             </div>
@@ -1004,7 +1004,7 @@ export function renderAssignmentsListView(root, assignments = [], path = { lectu
     if (!filtered.length) {
       listContainer.innerHTML = `
         <div class="nh-asg-empty">
-          <p class="nh-asg-empty-title">Không có đề phù hợp</p>
+          <p class="nh-asg-empty-title">Không tìm thấy đề thi phù hợp</p>
           <button type="button" data-asg-reset-filter class="nh-asg-reset-btn">
             Xoá bộ lọc
           </button>
@@ -1074,7 +1074,7 @@ export function renderAssignmentsListView(root, assignments = [], path = { lectu
       paginationWrap.innerHTML = `
         <div class="nh-asg-pagination">
           <p class="nh-asg-page-info">
-            <span class="nh-asg-desktop-only">${fromNum}–${toNum} / </span>${displayTotal} đề
+            <span class="nh-asg-desktop-only">${fromNum} tới ${toNum} trong </span>${displayTotal} đề thi
           </p>
           <nav aria-label="Phân trang" class="nh-asg-page-nav">
             <button
@@ -2250,7 +2250,7 @@ export function renderAssignmentEditor(lectures) {
 
         ${!isLatexMode ? `
           <div style="grid-column: 1 / -1;">
-            <label class="nh-ed-field-label" for="assignment-pdf-input">Link PDF *</label>
+            <label class="nh-ed-field-label" for="assignment-pdf-input">Link tài liệu PDF (Google Drive) *</label>
             <input class="nh-ed-input" id="assignment-pdf-input" name="pdf_url" value="${escapeHtml(assignment.pdf_url)}" placeholder="https://drive.google.com/..." required />
           </div>
         ` : ''}
@@ -2303,8 +2303,8 @@ export function renderAssignmentEditor(lectures) {
         ? questions.map((question, index) => renderQuestionEditor(question, index)).join('')
         : `
                     <div class="nh-ed-empty">
-                      <h3>Chưa có câu hỏi</h3>
-                      <p>Bốc từ ngân hàng hoặc dán mã EX_TEST.</p>
+                      <h3>Chưa có câu hỏi nào</h3>
+                      <p>Bốc câu từ Ngân hàng câu hỏi, dán mã EX_TEST bên phải hoặc chèn câu mẫu.</p>
                       <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
                         <button type="button" class="nh-ed-btn nh-ed-btn--primary" data-pick-bank="true">
                           ${ASG_ICONS.sparkles}
@@ -2350,8 +2350,8 @@ export function renderAssignmentEditor(lectures) {
             <textarea id="latex-live-input" style="flex:1;min-height:480px;width:100%;box-sizing:border-box;padding:16px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.65;border:0;background:#F7F7F2;color:#181B16;resize:none;outline:none;" placeholder="Dán mã LaTeX chuẩn EX_TEST vào đây...">${escapeHtml(state.assignmentEditor.latexSource || '')}</textarea>
           </div>
           <div class="nh-ed-code-foot">
-            <span id="nh-ed-code-lines">${latexLinesCount} dòng</span>
-            <span>Cmd/Ctrl + S</span>
+            <span id="nh-ed-code-lines">${latexLinesCount} dòng · Tự đồng bộ 0,4s</span>
+            <span>Ctrl/Cmd + S để cập nhật</span>
           </div>
         </section>
       </div>
@@ -2373,7 +2373,7 @@ export function renderAssignmentEditor(lectures) {
             <div class="question-builder" style="display:flex;flex-direction:column;gap:12px;">
               ${questions.length
       ? questions.map((question, index) => renderQuestionEditor(question, index)).join('')
-      : `<div class="nh-ed-empty"><h3>Chưa có câu hỏi</h3><p>Bấm + TN, + Đ/S hoặc + TLN để thêm câu.</p></div>`
+      : `<div class="nh-ed-empty"><h3>Chưa có câu hỏi nào</h3><p>Bấm + TN, + Đ/S hoặc + TLN ở góc trên để thêm đáp án cho đề PDF.</p></div>`
     }
             </div>
           </div>

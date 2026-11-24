@@ -13,7 +13,7 @@ function renderAuth() {
       ? 'Gửi link đặt lại'
       : state.authMode === 'login'
         ? 'Đăng nhập'
-        : 'Tạo tài khoản';
+        : 'Tạo tài khoản học sinh';
   const primaryIcon = isUpdatePassword ? 'lock_reset' : isReset ? 'mail' : state.authMode === 'login' ? 'login' : 'person_add';
   document.querySelector('#app').innerHTML = `
     <main class="auth-screen">
@@ -25,7 +25,7 @@ function renderAuth() {
               <img src="/logo.png" alt="Canvas Logo" style="width: 40px; height: 40px; border-radius: 10px; object-fit: contain;" />
             </div>
             <div style="display: flex; flex-direction: column; gap: 8px;">
-              <span class="auth-eyebrow">THPTQG 2027</span>
+              <span class="auth-eyebrow">HƯỚNG TỚI KÌ THI THPTQG 2027</span>
               <h1 class="auth-brand-name">CANVAS</h1>
             </div>
           </div>
@@ -37,8 +37,8 @@ function renderAuth() {
             isUpdatePassword || isReset
               ? `
                 <div class="auth-form-heading">
-                  <h2 style="font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif; font-size: 24px; font-weight: 700; color: #1e293b; margin: 0;">${isReset ? 'Đặt lại mật khẩu' : 'Mật khẩu mới'}</h2>
-                  <p class="muted" style="font-size: 13px; color: #64748b; margin: 6px 0 0 0; line-height: 1.5;">${isReset ? 'Nhập email để nhận link đặt lại.' : 'Nhập mật khẩu mới của bạn.'}</p>
+                  <h2 style="font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif; font-size: 24px; font-weight: 700; color: #1e293b; margin: 0;">${isReset ? 'Đặt lại mật khẩu' : 'Tạo mật khẩu mới'}</h2>
+                  <p class="muted" style="font-size: 13px; color: #64748b; margin: 6px 0 0 0; line-height: 1.5;">${isReset ? 'Nhập email tài khoản, hệ thống sẽ gửi link đặt lại mật khẩu.' : 'Nhập mật khẩu mới để hoàn tất khôi phục tài khoản.'}</p>
                 </div>
               `
               : `

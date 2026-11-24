@@ -1,0 +1,3248 @@
+{
+  "pack_id": "chude15-hetruc",
+  "title": "Chủ đề 15 · Hệ trục tọa độ Oxyz",
+  "chapter": "GĐ1 · Chương 3",
+  "count": 120,
+  "questions": [
+    {
+      "source_num": 1,
+      "type": "mcq",
+      "prompt": "(THPT Đào Duy Từ - Thanh Hóa 2025) Trong không gian tọa độ $Oxyz$, cho điểm $M(1;-\\sqrt{2};\\sqrt{3})$. Tìm điểm $M' \\in Ox$ sao cho độ dài đoạn thẳng $MM'$ ngắn nhất.",
+      "points": 0.25,
+      "sort_order": 10,
+      "choices": [
+        "$M'(-1;0;0)$.",
+        "$M'(1;0;0)$.",
+        "$M'(1;0;\\sqrt{3})$.",
+        "$M'(1;-\\sqrt{2};0)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$MM'$ ngắn nhất khi $M'$ là hình chiếu vuông góc của $M$ trên trục $Ox \\Rightarrow M'(1;0;0)$.",
+        "source": "THPT Đào Duy Từ - Thanh Hóa 2025",
+        "solution": "$MM'$ ngắn nhất khi $M'$ là hình chiếu vuông góc của $M$ trên trục $Ox \\Rightarrow M'(1;0;0)$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 2,
+      "type": "mcq",
+      "prompt": "(THPT Hàm Rồng - Thanh Hóa 2025) Trong không gian với hệ trục tọa độ $Oxyz$, cho hai điểm $A(-1;2;-3)$ và $B(2;-1;0)$. Tọa độ của vectơ $\\overrightarrow{AB}$ là",
+      "points": 0.25,
+      "sort_order": 20,
+      "choices": [
+        "$\\overrightarrow{AB}=(1;-1;1)$.",
+        "$\\overrightarrow{AB}=(3;3;-3)$.",
+        "$\\overrightarrow{AB}=(1;1;-3)$.",
+        "$\\overrightarrow{AB}=(3;-3;3)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Ta có $\\overrightarrow{AB} = (2-(-1); -1-2; 0-(-3)) = (3;-3;3)$.",
+        "source": "THPT Hàm Rồng - Thanh Hóa 2025",
+        "solution": "Ta có $\\overrightarrow{AB} = (2-(-1); -1-2; 0-(-3)) = (3;-3;3)$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 3,
+      "type": "mcq",
+      "prompt": "(THPT Hàm Rồng - Thanh Hóa 2025) Trong không gian $Oxyz$, cho điểm $M(1;2;3)$. Tìm tọa độ hình chiếu của $M$ lên trục $Ox$.",
+      "points": 0.25,
+      "sort_order": 30,
+      "choices": [
+        "$(2;0;0)$.",
+        "$(1;0;0)$.",
+        "$(3;0;0)$.",
+        "$(0;2;3)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Hình chiếu vuông góc của $M(1;2;3)$ lên trục $Ox$ có tọa độ $(1;0;0)$.",
+        "source": "THPT Hàm Rồng - Thanh Hóa 2025",
+        "solution": "Hình chiếu vuông góc của $M(1;2;3)$ lên trục $Ox$ có tọa độ $(1;0;0)$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 4,
+      "type": "mcq",
+      "prompt": "Trong không gian với hệ trục tọa độ $Oxyz$, cho vectơ $\\vec{u} = \\vec{j} - 4\\vec{k}$. Tọa độ của vectơ $\\vec{u}$ là",
+      "points": 0.25,
+      "sort_order": 40,
+      "choices": [
+        "$(1;-4)$.",
+        "$(0;1;-4)$.",
+        "$(1;0;-4)$.",
+        "$(0;-1;4)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Ta có $\\vec{u} = 0\\vec{i} + 1\\vec{j} - 4\\vec{k} \\Rightarrow \\vec{u} = (0;1;-4)$.",
+        "source": "Đề thi thử 2025",
+        "solution": "Ta có $\\vec{u} = 0\\vec{i} + 1\\vec{j} - 4\\vec{k} \\Rightarrow \\vec{u} = (0;1;-4)$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 5,
+      "type": "mcq",
+      "prompt": "(THPT Văn Giang - Hưng Yên 2025) Trong không gian với hệ tọa độ $Oxyz$, hình chiếu vuông góc của điểm $M(2;-2;1)$ trên mặt phẳng $(Oxy)$ có tọa độ là",
+      "points": 0.25,
+      "sort_order": 50,
+      "choices": [
+        "$(2;-2;0)$.",
+        "$(2;0;1)$.",
+        "$(0;-2;1)$.",
+        "$(0;0;1)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Hình chiếu vuông góc của điểm $M(2;-2;1)$ trên mặt phẳng $(Oxy)$ là $H(2;-2;0)$.",
+        "source": "THPT Văn Giang - Hưng Yên 2025",
+        "solution": "Hình chiếu vuông góc của điểm $M(2;-2;1)$ trên mặt phẳng $(Oxy)$ là $H(2;-2;0)$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 6,
+      "type": "mcq",
+      "prompt": "(THPT Văn Giang - Hưng Yên 2025) Trong không gian $Oxyz$, cho hai điểm $A(1;1;-2)$ và $B(2;2;1)$. Vectơ $\\overrightarrow{AB}$ có tọa độ là",
+      "points": 0.25,
+      "sort_order": 60,
+      "choices": [
+        "$(1;1;3)$.",
+        "$(3;1;1)$.",
+        "$(-1;-1;-3)$.",
+        "$(3;3;-1)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Ta có $\\overrightarrow{AB} = (2-1; 2-1; 1+2) = (1;1;3)$.",
+        "source": "THPT Văn Giang - Hưng Yên 2025",
+        "solution": "Ta có $\\overrightarrow{AB} = (2-1; 2-1; 1+2) = (1;1;3)$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 7,
+      "type": "mcq",
+      "prompt": "(THPT Tiên Du - Bắc Ninh 2025) Trong không gian với hệ tọa độ $Oxyz$, cho $\\vec{a}=(1;3;-1)$ và $\\vec{b}=(2;3;6)$. Khi đó tọa độ của vectơ $\\vec{a}+2\\vec{b}$ bằng",
+      "points": 0.25,
+      "sort_order": 70,
+      "choices": [
+        "$(5;-9;-11)$.",
+        "$(5;-9;11)$.",
+        "$(5;9;11)$.",
+        "$(-5;9;11)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Ta có $2\\vec{b}=(4;6;12)$ nên $\\vec{a}+2\\vec{b} = (1+4; 3+6; -1+12) = (5;9;11)$.",
+        "source": "THPT Tiên Du - Bắc Ninh 2025",
+        "solution": "Ta có $2\\vec{b}=(4;6;12)$ nên $\\vec{a}+2\\vec{b} = (1+4; 3+6; -1+12) = (5;9;11)$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 8,
+      "type": "mcq",
+      "prompt": "(THPT Tiên Du - Bắc Ninh 2025) Trong không gian với hệ tọa độ $Oxyz$, cho điểm $M(-2;5;7)$. Tọa độ của vectơ $\\overrightarrow{MO}$ là",
+      "points": 0.25,
+      "sort_order": 80,
+      "choices": [
+        "$(-2;-5;7)$.",
+        "$(-2;5;7)$.",
+        "$(2;-5;-7)$.",
+        "$(2;5;7)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Ta có $\\overrightarrow{MO} = (0-(-2); 0-5; 0-7) = (2;-5;-7)$.",
+        "source": "THPT Tiên Du - Bắc Ninh 2025",
+        "solution": "Ta có $\\overrightarrow{MO} = (0-(-2); 0-5; 0-7) = (2;-5;-7)$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 9,
+      "type": "mcq",
+      "prompt": "(THPT Lê Thánh Tông - HCM 2025) Trong không gian $Oxyz$, cho hai điểm $A(1;1;-2)$ và $B(3;-1;2)$. Tọa độ của vectơ $\\overrightarrow{BA}$ là",
+      "points": 0.25,
+      "sort_order": 90,
+      "choices": [
+        "$(2;-2;4)$.",
+        "$(2;0;0)$.",
+        "$(1;-1;2)$.",
+        "$(-2;2;-4)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Ta có $\\overrightarrow{BA} = (1-3; 1-(-1); -2-2) = (-2;2;-4)$.",
+        "source": "THPT Lê Thánh Tông - HCM 2025",
+        "solution": "Ta có $\\overrightarrow{BA} = (1-3; 1-(-1); -2-2) = (-2;2;-4)$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 10,
+      "type": "mcq",
+      "prompt": "(THPT Nguyễn Đăng Đạo - Bắc Ninh 2025) Trong không gian với hệ tọa độ $Oxyz$, cho điểm $A(1;2;-1)$. Tọa độ hình chiếu vuông góc của $A$ trên mặt phẳng $(Oyz)$ là",
+      "points": 0.25,
+      "sort_order": 100,
+      "choices": [
+        "$(0;2;-1)$.",
+        "$(1;0;0)$.",
+        "$(1;2;0)$.",
+        "$(1;0;-1)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Tọa độ hình chiếu vuông góc của $A(1;2;-1)$ trên mặt phẳng $(Oyz)$ là $(0;2;-1)$.",
+        "source": "THPT Nguyễn Đăng Đạo - Bắc Ninh 2025",
+        "solution": "Tọa độ hình chiếu vuông góc của $A(1;2;-1)$ trên mặt phẳng $(Oyz)$ là $(0;2;-1)$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 11,
+      "type": "mcq",
+      "prompt": "(THPT Nguyễn Đăng Đạo - Bắc Ninh 2025) Trong không gian với hệ tọa độ $Oxyz$, cho tam giác $ABC$ có $A(1;1;1)$ và $\\overrightarrow{AB}+\\overrightarrow{AC}=(4;0;-6)$. Tọa độ trung điểm $M$ của $BC$ là",
+      "points": 0.25,
+      "sort_order": 110,
+      "choices": [
+        "$(5;1;-5)$.",
+        "$(3;-1;-7)$.",
+        "$(1;-1;-4)$.",
+        "$(3;1;-2)$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $\\overrightarrow{AM} = \\dfrac{1}{2}(\\overrightarrow{AB}+\\overrightarrow{AC}) = (2;0;-3) \\Rightarrow M = (1+2; 1+0; 1-3) = (3;1;-2)$.",
+        "source": "THPT Nguyễn Đăng Đạo - Bắc Ninh 2025",
+        "solution": "Ta có $\\overrightarrow{AM} = \\dfrac{1}{2}(\\overrightarrow{AB}+\\overrightarrow{AC}) = (2;0;-3) \\Rightarrow M = (1+2; 1+0; 1-3) = (3;1;-2)$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 12,
+      "type": "mcq",
+      "prompt": "(THPT Gia Bình - Bắc Ninh 2025) Trong không gian với hệ trục tọa độ $Oxyz$, cho hai vectơ $\\vec{a}=(a_1;a_2;a_3)$, $\\vec{b}=(b_1;b_2;b_3)$ và $k \\in \\mathbb{R}$. Khẳng định nào dưới đây đúng?",
+      "points": 0.25,
+      "sort_order": 120,
+      "choices": [
+        "$k\\vec{a} = (ka_1; ka_2; ka_3)$.",
+        "$|\\vec{a}| = a_1^2 + a_2^2 + a_3^2$.",
+        "$\\vec{a}-\\vec{b} = (a_1+b_1; a_2+b_2; a_3+b_3)$.",
+        "$\\vec{a}\\cdot\\vec{b} = a_1b_1 - a_2b_2 - a_3b_3$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Theo định nghĩa phép nhân vectơ với một số: $k\\vec{a} = (ka_1; ka_2; ka_3)$.",
+        "source": "THPT Gia Bình - Bắc Ninh 2025",
+        "solution": "Theo định nghĩa phép nhân vectơ với một số: $k\\vec{a} = (ka_1; ka_2; ka_3)$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 13,
+      "type": "mcq",
+      "prompt": "(THPT Gia Bình - Bắc Ninh 2025) Trong không gian với hệ trục tọa độ $Oxyz$, cho vectơ $\\vec{u} = 2\\vec{i} - 3\\vec{j} + 4\\vec{k}$. Tọa độ của vectơ $\\vec{u}$ là",
+      "points": 0.25,
+      "sort_order": 130,
+      "choices": [
+        "$(2;3;4)$.",
+        "$(4;-3;2)$.",
+        "$(2;-3;4)$.",
+        "$(-3;2;4)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Tọa độ của vectơ $\\vec{u} = 2\\vec{i} - 3\\vec{j} + 4\\vec{k}$ là $(2;-3;4)$.",
+        "source": "THPT Gia Bình - Bắc Ninh 2025",
+        "solution": "Tọa độ của vectơ $\\vec{u} = 2\\vec{i} - 3\\vec{j} + 4\\vec{k}$ là $(2;-3;4)$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 14,
+      "type": "mcq",
+      "prompt": "(THPT Yên Lạc - Vĩnh Phúc 2025) Trong không gian với hệ tọa độ $Oxyz$, cho các điểm $A(3;0;0)$, $B(0;-4;0)$. Độ dài đoạn thẳng $AB$ bằng",
+      "points": 0.25,
+      "sort_order": 140,
+      "choices": [
+        "$7$.",
+        "$4$.",
+        "$3$.",
+        "$5$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Ta có $AB = \\sqrt{(0-3)^2 + (-4-0)^2 + (0-0)^2} = \\sqrt{9+16} = 5$.",
+        "source": "THPT Yên Lạc - Vĩnh Phúc 2025",
+        "solution": "Ta có $AB = \\sqrt{(0-3)^2 + (-4-0)^2 + (0-0)^2} = \\sqrt{9+16} = 5$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 15,
+      "type": "mcq",
+      "prompt": "(Sở Ninh Bình 2025) Trong không gian $Oxyz$, cho điểm $A(-5;2;3)$ và $B$ là điểm đối xứng với $A$ qua trục $Oy$. Độ dài đoạn thẳng $AB$ bằng",
+      "points": 0.25,
+      "sort_order": 150,
+      "choices": [
+        "$\\sqrt{34}$.",
+        "$2\\sqrt{38}$.",
+        "$2\\sqrt{34}$.",
+        "$\\sqrt{38}$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Vì $B$ đối xứng với $A(-5;2;3)$ qua trục $Oy$ nên $B(5;2;-3)$. Suy ra $\\overrightarrow{AB}=(10;0;-6) \\Rightarrow AB = \\sqrt{100+36} = 2\\sqrt{34}$.",
+        "source": "Sở Ninh Bình 2025",
+        "solution": "Vì $B$ đối xứng với $A(-5;2;3)$ qua trục $Oy$ nên $B(5;2;-3)$. Suy ra $\\overrightarrow{AB}=(10;0;-6) \\Rightarrow AB = \\sqrt{100+36} = 2\\sqrt{34}$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 16,
+      "type": "mcq",
+      "prompt": "(THPT Thuận Thành 1&2 - Bắc Ninh 2025) Trong không gian $Oxyz$, cho hai điểm $A(-1;2;3)$, $B(0;1;1)$. Độ dài đoạn thẳng $AB$ bằng",
+      "points": 0.25,
+      "sort_order": 160,
+      "choices": [
+        "$\\sqrt{12}$.",
+        "$\\sqrt{6}$.",
+        "$\\sqrt{10}$.",
+        "$\\sqrt{8}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Ta có $AB = \\sqrt{(0+1)^2 + (1-2)^2 + (1-3)^2} = \\sqrt{1+1+4} = \\sqrt{6}$.",
+        "source": "THPT Thuận Thành 1&2 - Bắc Ninh 2025",
+        "solution": "Ta có $AB = \\sqrt{(0+1)^2 + (1-2)^2 + (1-3)^2} = \\sqrt{1+1+4} = \\sqrt{6}$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 17,
+      "type": "mcq",
+      "prompt": "(THPT Thuận Thành 1&2 - Bắc Ninh 2025) Trong không gian $Oxyz$, cho $A(1;0;1)$. Tìm tọa độ điểm $C$ thỏa mãn $\\overrightarrow{AC} = (0;6;1)$.",
+      "points": 0.25,
+      "sort_order": 170,
+      "choices": [
+        "$C(-1;6;-1)$.",
+        "$C(1;6;2)$.",
+        "$C(1;6;0)$.",
+        "$C(-1;-6;-2)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Gọi $C(x;y;z)$, ta có $\\overrightarrow{AC}=(x-1;y;z-1)=(0;6;1) \\Leftrightarrow x=1, y=6, z=2$. Vậy $C(1;6;2)$.",
+        "source": "THPT Thuận Thành 1&2 - Bắc Ninh 2025",
+        "solution": "Gọi $C(x;y;z)$, ta có $\\overrightarrow{AC}=(x-1;y;z-1)=(0;6;1) \\Leftrightarrow x=1, y=6, z=2$. Vậy $C(1;6;2)$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 18,
+      "type": "mcq",
+      "prompt": "(THPT Diễn Châu 5 - Nghệ An 2025) Trong không gian với hệ trục tọa độ $Oxyz$, cho $\\vec{a}=(2;-3;3)$, $\\vec{b}=(0;2;-1)$, $\\vec{c}=(3;-1;5)$. Tọa độ của vectơ $\\vec{u} = 2\\vec{a}+3\\vec{b}-2\\vec{c}$ là",
+      "points": 0.25,
+      "sort_order": 180,
+      "choices": [
+        "$(-2;-2;7)$.",
+        "$(10;-2;13)$.",
+        "$(-2;2;-7)$.",
+        "$(-2;2;7)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Ta có $2\\vec{a}=(4;-6;6)$, $3\\vec{b}=(0;6;-3)$, $-2\\vec{c}=(-6;2;-10) \\Rightarrow \\vec{u}=(-2;2;-7)$.",
+        "source": "THPT Diễn Châu 5 - Nghệ An 2025",
+        "solution": "Ta có $2\\vec{a}=(4;-6;6)$, $3\\vec{b}=(0;6;-3)$, $-2\\vec{c}=(-6;2;-10) \\Rightarrow \\vec{u}=(-2;2;-7)$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 19,
+      "type": "mcq",
+      "prompt": "(THPT Hùng Vương - Bình Thuận 2025) Trong không gian $Oxyz$, cho hình bình hành $ABCD$ có $A(-3;1;2)$, $B(-2;4;-1)$, $C(1;-3;3)$. Tọa độ điểm $D$ là",
+      "points": 0.25,
+      "sort_order": 190,
+      "choices": [
+        "$(0;-6;6)$.",
+        "$(-6;7;-2)$.",
+        "$(2;0;0)$.",
+        "$(-4;2;5)$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Vì $ABCD$ là hình bình hành nên $\\overrightarrow{CD}=\\overrightarrow{BA}=(-1;-3;3) \\Rightarrow D=(1-1;-3-3;3+3)=(0;-6;6)$.",
+        "source": "THPT Hùng Vương - Bình Thuận 2025",
+        "solution": "Vì $ABCD$ là hình bình hành nên $\\overrightarrow{CD}=\\overrightarrow{BA}=(-1;-3;3) \\Rightarrow D=(1-1;-3-3;3+3)=(0;-6;6)$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 20,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Sơn 3 - Thanh Hóa 2025) Trong không gian $Oxyz$, cho điểm $A(1;2;-3)$. Hình chiếu vuông góc của $A$ lên mặt phẳng $(Oxy)$ có tọa độ là",
+      "points": 0.25,
+      "sort_order": 200,
+      "choices": [
+        "$(0;2;-3)$.",
+        "$(1;0;-3)$.",
+        "$(1;2;0)$.",
+        "$(1;0;0)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Hình chiếu vuông góc của $A(1;2;-3)$ lên mặt phẳng $(Oxy)$ có tọa độ $(1;2;0)$.",
+        "source": "THPT Triệu Sơn 3 - Thanh Hóa 2025",
+        "solution": "Hình chiếu vuông góc của $A(1;2;-3)$ lên mặt phẳng $(Oxy)$ có tọa độ $(1;2;0)$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 21,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Sơn 3 - Thanh Hóa 2025) Trong không gian $Oxyz$, cho hai vectơ $\\vec{u}=(1;3;-2)$ và $\\vec{v}=(2;1;-1)$. Tọa độ của vectơ $\\vec{u}-\\vec{v}$ là",
+      "points": 0.25,
+      "sort_order": 210,
+      "choices": [
+        "$(3;4;-3)$.",
+        "$(-1;2;-3)$.",
+        "$(-1;2;-1)$.",
+        "$(1;-2;1)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Ta có $\\vec{u}-\\vec{v} = (1-2; 3-1; -2+1) = (-1;2;-1)$.",
+        "source": "THPT Triệu Sơn 3 - Thanh Hóa 2025",
+        "solution": "Ta có $\\vec{u}-\\vec{v} = (1-2; 3-1; -2+1) = (-1;2;-1)$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 22,
+      "type": "mcq",
+      "prompt": "(THPT Lê Lợi - Thanh Hóa 2025) Trong không gian $Oxyz$, cho hai điểm $A(1;1;-2)$ và $B(2;2;1)$. Vectơ $\\overrightarrow{AB}$ có tọa độ là",
+      "points": 0.25,
+      "sort_order": 220,
+      "choices": [
+        "$(1;1;3)$.",
+        "$(3;1;1)$.",
+        "$(-1;-1;-3)$.",
+        "$(3;3;-1)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Ta có $\\overrightarrow{AB}=(2-1; 2-1; 1+2)=(1;1;3)$.",
+        "source": "THPT Lê Lợi - Thanh Hóa 2025",
+        "solution": "Ta có $\\overrightarrow{AB}=(2-1; 2-1; 1+2)=(1;1;3)$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 23,
+      "type": "mcq",
+      "prompt": "(THPT Lê Lợi - Thanh Hóa 2025) Trong không gian với hệ tọa độ $Oxyz$, hình chiếu vuông góc của điểm $M(2;-2;1)$ trên mặt phẳng $(Oxy)$ có tọa độ là",
+      "points": 0.25,
+      "sort_order": 230,
+      "choices": [
+        "$(2;-2;0)$.",
+        "$(2;0;1)$.",
+        "$(0;-2;1)$.",
+        "$(0;0;1)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Hình chiếu vuông góc của điểm $M(2;-2;1)$ trên mặt phẳng $(Oxy)$ là $(2;-2;0)$.",
+        "source": "THPT Lê Lợi - Thanh Hóa 2025",
+        "solution": "Hình chiếu vuông góc của điểm $M(2;-2;1)$ trên mặt phẳng $(Oxy)$ là $(2;-2;0)$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 24,
+      "type": "mcq",
+      "prompt": "(Cụm trường THPT Hải Dương 2025) Trong không gian $Oxyz$, cho hai điểm $A(2;1;3)$, $B(1;-1;5)$. Độ dài đoạn thẳng $AB$ là",
+      "points": 0.25,
+      "sort_order": 240,
+      "choices": [
+        "$5$.",
+        "$4$.",
+        "$3$.",
+        "$6$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Ta có $AB = \\sqrt{(1-2)^2 + (-1-1)^2 + (5-3)^2} = \\sqrt{1+4+4} = 3$.",
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "solution": "Ta có $AB = \\sqrt{(1-2)^2 + (-1-1)^2 + (5-3)^2} = \\sqrt{1+4+4} = 3$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 25,
+      "type": "mcq",
+      "prompt": "(Cụm trường THPT Hải Dương 2025) Trong không gian $Oxyz$, côsin của góc giữa hai vectơ $\\vec{u}=(10;10;20)$, $\\vec{v}=(10;-20;10)$ là",
+      "points": 0.25,
+      "sort_order": 250,
+      "choices": [
+        "$\\dfrac{1}{6}$.",
+        "$\\dfrac{1}{2}$.",
+        "$-\\dfrac{1}{2}$.",
+        "$-\\dfrac{1}{6}$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "$\\cos(\\vec{u},\\vec{v}) = \\dfrac{10\\cdot 10 + 10\\cdot(-20) + 20\\cdot 10}{\\sqrt{10^2+10^2+20^2}\\sqrt{10^2+(-20)^2+10^2}} = \\dfrac{100}{600} = \\dfrac{1}{6}$.",
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "solution": "$\\cos(\\vec{u},\\vec{v}) = \\dfrac{10\\cdot 10 + 10\\cdot(-20) + 20\\cdot 10}{\\sqrt{10^2+10^2+20^2}\\sqrt{10^2+(-20)^2+10^2}} = \\dfrac{100}{600} = \\dfrac{1}{6}$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 26,
+      "type": "mcq",
+      "prompt": "(Chuyên Phan Bội Châu - Nghệ An 2025) Trong không gian với hệ tọa độ $Oxyz$, cho hai vectơ $\\vec{a}=(1;-2;1)$, $\\vec{b}=(-2;1;1)$. Tính góc giữa hai vectơ $\\vec{a}$ và $\\vec{b}$.",
+      "points": 0.25,
+      "sort_order": 260,
+      "choices": [
+        "$60^\\circ$.",
+        "$120^\\circ$.",
+        "$30^\\circ$.",
+        "$-30^\\circ$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "$\\cos(\\vec{a},\\vec{b}) = \\dfrac{1(-2)-2(1)+1(1)}{\\sqrt{1+4+1}\\sqrt{4+1+1}} = -\\dfrac{1}{2} \\Rightarrow (\\vec{a},\\vec{b}) = 120^\\circ$.",
+        "source": "Chuyên Phan Bội Châu - Nghệ An 2025",
+        "solution": "$\\cos(\\vec{a},\\vec{b}) = \\dfrac{1(-2)-2(1)+1(1)}{\\sqrt{1+4+1}\\sqrt{4+1+1}} = -\\dfrac{1}{2} \\Rightarrow (\\vec{a},\\vec{b}) = 120^\\circ$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 27,
+      "type": "mcq",
+      "prompt": "(Chuyên Phan Bội Châu - Nghệ An 2025) Trong không gian với hệ tọa độ $Oxyz$, cho hai điểm $A(1;2;3)$, $B(3;8;5)$. Tọa độ trung điểm $I$ của đoạn thẳng $AB$ là",
+      "points": 0.25,
+      "sort_order": 270,
+      "choices": [
+        "$I(2;6;2)$.",
+        "$I(1;3;1)$.",
+        "$I(4;10;8)$.",
+        "$I(2;5;4)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Tọa độ trung điểm $I$ của $AB$: $x_I=\\dfrac{1+3}{2}=2$, $y_I=\\dfrac{2+8}{2}=5$, $z_I=\\dfrac{3+5}{2}=4 \\Rightarrow I(2;5;4)$.",
+        "source": "Chuyên Phan Bội Châu - Nghệ An 2025",
+        "solution": "Tọa độ trung điểm $I$ của $AB$: $x_I=\\dfrac{1+3}{2}=2$, $y_I=\\dfrac{2+8}{2}=5$, $z_I=\\dfrac{3+5}{2}=4 \\Rightarrow I(2;5;4)$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 28,
+      "type": "mcq",
+      "prompt": "(THPT Kinh Môn - Hải Dương 2025) Trong không gian tọa độ $Oxyz$, cho điểm $A(1;-2;3)$. Hình chiếu vuông góc của điểm $A$ trên mặt phẳng tọa độ $(Oxz)$ là",
+      "points": 0.25,
+      "sort_order": 280,
+      "choices": [
+        "$M(0;-2;0)$.",
+        "$M(1;0;3)$.",
+        "$M(1;0;0)$.",
+        "$M(0;2;0)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Hình chiếu của $A(1;-2;3)$ lên mặt phẳng $(Oxz)$ là $M(1;0;3)$.",
+        "source": "THPT Kinh Môn - Hải Dương 2025",
+        "solution": "Hình chiếu của $A(1;-2;3)$ lên mặt phẳng $(Oxz)$ là $M(1;0;3)$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 29,
+      "type": "mcq",
+      "prompt": "(THPT Kinh Môn - Hải Dương 2025) Trong không gian $Oxyz$, cho điểm $A(1;1;-3)$, $B(3;-1;1)$. Gọi $M$ là trung điểm $AB$, đoạn $OM$ có độ dài bằng",
+      "points": 0.25,
+      "sort_order": 290,
+      "choices": [
+        "$2\\sqrt{6}$.",
+        "$\\sqrt{6}$.",
+        "$2\\sqrt{5}$.",
+        "$\\sqrt{5}$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Trung điểm $AB$ là $M(2;0;-1) \\Rightarrow OM = \\sqrt{2^2+0^2+(-1)^2} = \\sqrt{5}$.",
+        "source": "THPT Kinh Môn - Hải Dương 2025",
+        "solution": "Trung điểm $AB$ là $M(2;0;-1) \\Rightarrow OM = \\sqrt{2^2+0^2+(-1)^2} = \\sqrt{5}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 30,
+      "type": "mcq",
+      "prompt": "(HSG Vũng Tàu 2025) Trong không gian $Oxyz$, cho tam giác $ABC$ có $A(1;2;-1)$, $B(2;-1;3)$, $C(-4;7;5)$. Tọa độ chân đường phân giác trong góc $B$ của tam giác $ABC$ là",
+      "points": 0.25,
+      "sort_order": 300,
+      "choices": [
+        "$\\left(\\dfrac{11}{3};-2;1\\right)$.",
+        "$(-2;11;1)$.",
+        "$\\left(\\dfrac{2}{3};\\dfrac{11}{3};\\dfrac{1}{3}\\right)$.",
+        "$\\left(-\\dfrac{2}{3};\\dfrac{11}{3};1\\right)$."
+      ],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Gọi $D$ là chân đường phân giác trong góc $B$. Ta có $BA = \\sqrt{1+9+16}=\\sqrt{26}$, $BC = \\sqrt{36+64+4}=2\\sqrt{26} \\Rightarrow \\dfrac{BA}{BC}=\\dfrac{1}{2}$. Do đó $\\overrightarrow{AD}=\\dfrac{1}{2}\\overrightarrow{DC} \\Rightarrow D = \\dfrac{2A+C}{3} = \\left(-\\dfrac{2}{3};\\dfrac{11}{3};1\\right)$.",
+        "source": "HSG Vũng Tàu 2025",
+        "solution": "Gọi $D$ là chân đường phân giác trong góc $B$. Ta có $BA = \\sqrt{1+9+16}=\\sqrt{26}$, $BC = \\sqrt{36+64+4}=2\\sqrt{26} \\Rightarrow \\dfrac{BA}{BC}=\\dfrac{1}{2}$. Do đó $\\overrightarrow{AD}=\\dfrac{1}{2}\\overrightarrow{DC} \\Rightarrow D = \\dfrac{2A+C}{3} = \\left(-\\dfrac{2}{3};\\dfrac{11}{3};1\\right)$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 31,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Sơn 1 - Thanh Hóa 2025) Trong không gian với hệ trục tọa độ $Oxyz$, cho vectơ $\\vec{u} = \\vec{j} - 4\\vec{k}$. Tọa độ vectơ $\\vec{u}$ là",
+      "points": 0.25,
+      "sort_order": 310,
+      "choices": [
+        "$(1;-4)$.",
+        "$(0;1;-4)$.",
+        "$(1;0;-4)$.",
+        "$(0;-1;4)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Ta có $\\vec{u} = (0;1;-4)$.",
+        "source": "THPT Triệu Sơn 1 - Thanh Hóa 2025",
+        "solution": "Ta có $\\vec{u} = (0;1;-4)$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 32,
+      "type": "mcq",
+      "prompt": "(Cụm trường THPT Hải Dương 2025) Trong không gian $Oxyz$, cho $\\overrightarrow{OA} = 6\\vec{j} + 4\\vec{i} - 3\\vec{k}$. Tọa độ của điểm $A$ là",
+      "points": 0.25,
+      "sort_order": 320,
+      "choices": [
+        "$(4;6;-3)$.",
+        "$(-4;-6;3)$.",
+        "$(-6;-4;3)$.",
+        "$(6;4;-3)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Ta có $\\overrightarrow{OA} = 4\\vec{i} + 6\\vec{j} - 3\\vec{k} \\Rightarrow A(4;6;-3)$.",
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "solution": "Ta có $\\overrightarrow{OA} = 4\\vec{i} + 6\\vec{j} - 3\\vec{k} \\Rightarrow A(4;6;-3)$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 33,
+      "type": "mcq",
+      "prompt": "(THPT Lê Xoay - Vĩnh Phúc 2025) Trong không gian với hệ trục tọa độ $Oxyz$, cho ba vectơ $\\vec{a}=(1;2;3)$, $\\vec{b}=(2;2;-1)$, $\\vec{c}=(4;0;-4)$. Tọa độ của vectơ $\\vec{d}=\\vec{a}-\\vec{b}+2\\vec{c}$ là",
+      "points": 0.25,
+      "sort_order": 330,
+      "choices": [
+        "$\\vec{d}=(7;0;-4)$.",
+        "$\\vec{d}=(-7;0;-4)$.",
+        "$\\vec{d}=(7;0;4)$.",
+        "$\\vec{d}=(-7;0;4)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{d} = (1-2+2\\cdot 4; 2-2+0; 3+1+2(-4)) = (7;0;-4)$.",
+        "source": "THPT Lê Xoay - Vĩnh Phúc 2025",
+        "solution": "$\\vec{d} = (1-2+2\\cdot 4; 2-2+0; 3+1+2(-4)) = (7;0;-4)$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 34,
+      "type": "mcq",
+      "prompt": "(THPT Lê Xoay - Vĩnh Phúc 2025) Trong không gian với hệ trục tọa độ $Oxyz$, cho hai vectơ $\\vec{a}=(1;2;3)$, $\\vec{b}=(2;-2;-1)$. Côsin của góc giữa hai vectơ $\\vec{a}$ và $\\vec{b}$ bằng",
+      "points": 0.25,
+      "sort_order": 340,
+      "choices": [
+        "$-\\dfrac{5\\sqrt{14}}{42}$.",
+        "$\\dfrac{5\\sqrt{14}}{42}$.",
+        "$\\dfrac{5\\sqrt{14}}{3}$.",
+        "$-\\dfrac{5\\sqrt{14}}{3}$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "$\\cos(\\vec{a},\\vec{b}) = \\dfrac{1\\cdot 2 + 2(-2) + 3(-1)}{\\sqrt{1+4+9}\\sqrt{4+4+1}} = \\dfrac{-5}{3\\sqrt{14}} = -\\dfrac{5\\sqrt{14}}{42}$.",
+        "source": "THPT Lê Xoay - Vĩnh Phúc 2025",
+        "solution": "$\\cos(\\vec{a},\\vec{b}) = \\dfrac{1\\cdot 2 + 2(-2) + 3(-1)}{\\sqrt{1+4+9}\\sqrt{4+4+1}} = \\dfrac{-5}{3\\sqrt{14}} = -\\dfrac{5\\sqrt{14}}{42}$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 35,
+      "type": "mcq",
+      "prompt": "(Cụm trường THPT Bắc Ninh 2025) Trong không gian, cho hình lập phương $ABCD.A'B'C'D'$ có độ dài các cạnh bằng $1$, điểm $A$ trùng với gốc tọa độ (như hình vẽ). Tọa độ vectơ $\\overrightarrow{A'C'}$ là\n![Hình Câu 35](/bank-images/chude15-hetruc/q35.jpeg)",
+      "points": 0.25,
+      "sort_order": 350,
+      "choices": [
+        "$(1;0;1)$.",
+        "$(0;1;1)$.",
+        "$(1;1;0)$.",
+        "$(1;1;1)$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $A'(0;0;1)$, $C'(1;1;1)$, suy ra $\\overrightarrow{A'C'} = (1;1;0)$.",
+        "source": "Cụm trường THPT Bắc Ninh 2025",
+        "solution": "Ta có $A'(0;0;1)$, $C'(1;1;1)$, suy ra $\\overrightarrow{A'C'} = (1;1;0)$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 36,
+      "type": "mcq",
+      "prompt": "(Cụm trường THPT Bắc Ninh 2025) Trong không gian $Oxyz$, cho điểm $A(-2;3;5)$ và $B$ là điểm đối xứng với $A$ qua trục $Oz$. Độ dài đoạn thẳng $AB$ bằng",
+      "points": 0.25,
+      "sort_order": 360,
+      "choices": [
+        "$2\\sqrt{34}$.",
+        "$\\sqrt{13}$.",
+        "$\\sqrt{34}$.",
+        "$2\\sqrt{13}$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Điểm $B$ đối xứng với $A(-2;3;5)$ qua trục $Oz$ là $B(2;-3;5)$. Do đó $AB = \\sqrt{(2+2)^2+(-3-3)^2+0^2} = 2\\sqrt{13}$.",
+        "source": "Cụm trường THPT Bắc Ninh 2025",
+        "solution": "Điểm $B$ đối xứng với $A(-2;3;5)$ qua trục $Oz$ là $B(2;-3;5)$. Do đó $AB = \\sqrt{(2+2)^2+(-3-3)^2+0^2} = 2\\sqrt{13}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 37,
+      "type": "mcq",
+      "prompt": "(Sở Hà Tĩnh 2025) Trong không gian $Oxyz$, cho $\\vec{a} = 2\\vec{i} - 3\\vec{j} + \\vec{k}$. Tọa độ của $\\vec{a}$ là",
+      "points": 0.25,
+      "sort_order": 370,
+      "choices": [
+        "$(-2;1;3)$.",
+        "$(2;-3;1)$.",
+        "$(2;1;3)$.",
+        "$(2;1;-3)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Ta có $\\vec{a} = 2\\vec{i} - 3\\vec{j} + \\vec{k} \\Rightarrow \\vec{a}=(2;-3;1)$.",
+        "source": "Sở Hà Tĩnh 2025",
+        "solution": "Ta có $\\vec{a} = 2\\vec{i} - 3\\vec{j} + \\vec{k} \\Rightarrow \\vec{a}=(2;-3;1)$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 38,
+      "type": "mcq",
+      "prompt": "(Sở Hà Tĩnh 2025) Trong không gian $Oxyz$, cho tam giác $ABC$ với $A(1;3;4)$, $B(2;-1;0)$ và $C(3;1;2)$. Tọa độ trọng tâm $G$ của tam giác $ABC$ là",
+      "points": 0.25,
+      "sort_order": 380,
+      "choices": [
+        "$G\\left(3;\\dfrac{2}{3};3\\right)$.",
+        "$G(2;-1;2)$.",
+        "$G(2;1;2)$.",
+        "$G(6;3;6)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Trọng tâm $G = \\left(\\dfrac{1+2+3}{3}; \\dfrac{3-1+1}{3}; \\dfrac{4+0+2}{3}\\right) = (2;1;2)$.",
+        "source": "Sở Hà Tĩnh 2025",
+        "solution": "Trọng tâm $G = \\left(\\dfrac{1+2+3}{3}; \\dfrac{3-1+1}{3}; \\dfrac{4+0+2}{3}\\right) = (2;1;2)$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 39,
+      "type": "mcq",
+      "prompt": "(Sở Hà Tĩnh 2025) Trong không gian $Oxyz$, cho $\\vec{a}=(1;-2;2)$, $\\vec{b}=(-1;2;1)$. Giá trị của tích vô hướng $\\vec{a}\\cdot\\vec{b}$ bằng",
+      "points": 0.25,
+      "sort_order": 390,
+      "choices": [
+        "$3$.",
+        "$-3$.",
+        "$2$.",
+        "$-2$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{a}\\cdot\\vec{b} = 1(-1) + (-2)(2) + 2(1) = -1-4+2 = -3$.",
+        "source": "Sở Hà Tĩnh 2025",
+        "solution": "$\\vec{a}\\cdot\\vec{b} = 1(-1) + (-2)(2) + 2(1) = -1-4+2 = -3$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 40,
+      "type": "mcq",
+      "prompt": "(THPT Cẩm Xuyên - Hà Tĩnh 2025) Trong không gian $Oxyz$, cho điểm $M$ thỏa mãn $\\overrightarrow{OM} = 2\\vec{i} + 3\\vec{j} - 4\\vec{k}$. Tìm tọa độ điểm $H$ là hình chiếu của điểm $M$ lên mặt phẳng $(Oxz)$.",
+      "points": 0.25,
+      "sort_order": 400,
+      "choices": [
+        "$H(0;3;-4)$.",
+        "$H(-2;-3;4)$.",
+        "$H(2;3;0)$.",
+        "$H(2;0;-4)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Điểm $M(2;3;-4)$ có hình chiếu lên mặt phẳng $(Oxz)$ là $H(2;0;-4)$.",
+        "source": "THPT Cẩm Xuyên - Hà Tĩnh 2025",
+        "solution": "Điểm $M(2;3;-4)$ có hình chiếu lên mặt phẳng $(Oxz)$ là $H(2;0;-4)$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 41,
+      "type": "mcq",
+      "prompt": "(THPT Cẩm Xuyên - Hà Tĩnh 2025) Trong không gian với hệ tọa độ $Oxyz$, cho hai điểm $A(4;2;-2)$ và $B(1;0;1)$. Độ dài đoạn thẳng $AB$ là",
+      "points": 0.25,
+      "sort_order": 410,
+      "choices": [
+        "$22$.",
+        "$2$.",
+        "$\\sqrt{22}$.",
+        "$4$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$AB = \\sqrt{(1-4)^2 + (0-2)^2 + (1+2)^2} = \\sqrt{9+4+9} = \\sqrt{22}$.",
+        "source": "THPT Cẩm Xuyên - Hà Tĩnh 2025",
+        "solution": "$AB = \\sqrt{(1-4)^2 + (0-2)^2 + (1+2)^2} = \\sqrt{9+4+9} = \\sqrt{22}$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 42,
+      "type": "mcq",
+      "prompt": "(THPT Lê Thánh Tông - HCM 2025) Trong không gian với hệ tọa độ $Oxyz$, cho các vectơ $\\vec{a}=(1;-1;2)$, $\\vec{b}=(2;1;-3)$, $\\vec{c}=(0;3;-2)$. Điểm $M(x;y;z)$ thỏa mãn $\\overrightarrow{OM}+\\vec{a}=2\\vec{b}-\\vec{c}$. Tổng $x+y+z$ bằng",
+      "points": 0.25,
+      "sort_order": 420,
+      "choices": [
+        "$3$.",
+        "$-3$.",
+        "$4$.",
+        "$-2$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "$\\overrightarrow{OM} = 2\\vec{b}-\\vec{c}-\\vec{a} = (4-0-1; 2-3+1; -6+2-2) = (3;0;-6) \\Rightarrow x+y+z = -3$.",
+        "source": "THPT Lê Thánh Tông - HCM 2025",
+        "solution": "$\\overrightarrow{OM} = 2\\vec{b}-\\vec{c}-\\vec{a} = (4-0-1; 2-3+1; -6+2-2) = (3;0;-6) \\Rightarrow x+y+z = -3$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 43,
+      "type": "mcq",
+      "prompt": "(Chuyên Hạ Long 2025) Trong không gian $Oxyz$, cho hai điểm $A(2;-1;3)$ và $B(0;4;1)$. Tính độ dài đoạn thẳng $AB$.",
+      "points": 0.25,
+      "sort_order": 430,
+      "choices": [
+        "$AB = 29$.",
+        "$AB = \\sqrt{29}$.",
+        "$AB = 33$.",
+        "$AB = \\sqrt{33}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\overrightarrow{AB} = (-2;5;-2) \\Rightarrow AB = \\sqrt{(-2)^2+5^2+(-2)^2} = \\sqrt{33}$.",
+        "source": "Chuyên Hạ Long 2025",
+        "solution": "$\\overrightarrow{AB} = (-2;5;-2) \\Rightarrow AB = \\sqrt{(-2)^2+5^2+(-2)^2} = \\sqrt{33}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 44,
+      "type": "mcq",
+      "prompt": "(Chuyên Hạ Long 2025) Trong không gian $Oxyz$, cho hình hộp $ABCD.A'B'C'D'$ có $\\overrightarrow{AB}=(2;0;0)$, $\\overrightarrow{AD}=(0;4;0)$ và $\\overrightarrow{AA'}=(0;1;3)$. Tìm tọa độ vectơ $\\overrightarrow{AC'}$.\n![Hình Câu 44](/bank-images/chude15-hetruc/q44.png)",
+      "points": 0.25,
+      "sort_order": 440,
+      "choices": [
+        "$\\overrightarrow{AC'}=(2;4;3)$.",
+        "$\\overrightarrow{AC'}=(2;3;5)$.",
+        "$\\overrightarrow{AC'}=(2;5;3)$.",
+        "$\\overrightarrow{AC'}=(1;5;3)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Theo quy tắc hình hộp: $\\overrightarrow{AC'} = \\overrightarrow{AB}+\\overrightarrow{AD}+\\overrightarrow{AA'} = (2;5;3)$.",
+        "source": "Chuyên Hạ Long 2025",
+        "solution": "Theo quy tắc hình hộp: $\\overrightarrow{AC'} = \\overrightarrow{AB}+\\overrightarrow{AD}+\\overrightarrow{AA'} = (2;5;3)$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 45,
+      "type": "mcq",
+      "prompt": "(Chuyên Thái Bình 2025) Trong không gian $Oxyz$, cho $\\vec{a} = -\\vec{i} + 3\\vec{j} - 5\\vec{k}$. Tọa độ của vectơ $\\vec{a}$ là",
+      "points": 0.25,
+      "sort_order": 450,
+      "choices": [
+        "$(-1;3;-5)$.",
+        "$(1;-3;5)$.",
+        "$(-5;3;-1)$.",
+        "$(5;-3;1)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Ta có $\\vec{a} = -\\vec{i} + 3\\vec{j} - 5\\vec{k} \\Rightarrow \\vec{a} = (-1;3;-5)$.",
+        "source": "Chuyên Thái Bình 2025",
+        "solution": "Ta có $\\vec{a} = -\\vec{i} + 3\\vec{j} - 5\\vec{k} \\Rightarrow \\vec{a} = (-1;3;-5)$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 46,
+      "type": "mcq",
+      "prompt": "(Chuyên Thái Bình 2025) Trong không gian với hệ trục tọa độ $Oxyz$, cho hai điểm $A(1;-2;3)$, $B(2;-3;4)$. Tìm điểm $M \\in (Oxy)$ sao cho ba điểm $A, B, M$ thẳng hàng.",
+      "points": 0.25,
+      "sort_order": 460,
+      "choices": [
+        "$M(1;1;0)$.",
+        "$M(3;-4;5)$.",
+        "$M(-3;5;0)$.",
+        "$M(-2;1;0)$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Gọi $M(x;y;0) \\in (Oxy)$. Ta có $\\overrightarrow{MA}=(1-x;-2-y;3)$ và $\\overrightarrow{AB}=(1;-1;1)$. Để $A,B,M$ thẳng hàng thì $\\dfrac{x-1}{1}=\\dfrac{y+2}{-1}=\\dfrac{-3}{1} \\Leftrightarrow x=-2, y=1$. Vậy $M(-2;1;0)$.",
+        "source": "Chuyên Thái Bình 2025",
+        "solution": "Gọi $M(x;y;0) \\in (Oxy)$. Ta có $\\overrightarrow{MA}=(1-x;-2-y;3)$ và $\\overrightarrow{AB}=(1;-1;1)$. Để $A,B,M$ thẳng hàng thì $\\dfrac{x-1}{1}=\\dfrac{y+2}{-1}=\\dfrac{-3}{1} \\Leftrightarrow x=-2, y=1$. Vậy $M(-2;1;0)$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 47,
+      "type": "mcq",
+      "prompt": "(Chuyên Vinh 2025) Trong không gian với hệ tọa độ $Oxyz$, cho các điểm $A(1;3;2)$, $B(1;0;1)$, $C(5;-3;2)$. Biết rằng $\\overrightarrow{AB}\\cdot\\overrightarrow{AC} = 2m$. Giá trị của $m$ là",
+      "points": 0.25,
+      "sort_order": 470,
+      "choices": [
+        "$m=-9$.",
+        "$m=9$.",
+        "$m=18$.",
+        "$m=-18$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $\\overrightarrow{AB}=(0;-3;-1)$, $\\overrightarrow{AC}=(4;-6;0) \\Rightarrow \\overrightarrow{AB}\\cdot\\overrightarrow{AC} = 0+18+0 = 18 = 2m \\Rightarrow m = 9$.",
+        "source": "Chuyên Vinh 2025",
+        "solution": "Ta có $\\overrightarrow{AB}=(0;-3;-1)$, $\\overrightarrow{AC}=(4;-6;0) \\Rightarrow \\overrightarrow{AB}\\cdot\\overrightarrow{AC} = 0+18+0 = 18 = 2m \\Rightarrow m = 9$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 48,
+      "type": "mcq",
+      "prompt": "(Chuyên Vinh 2025) Trong không gian với hệ tọa độ $Oxyz$, cho các vectơ $\\vec{u}=\\vec{i}+2\\vec{j}-3\\vec{k}$, $\\vec{v}=2\\vec{i}-\\vec{j}+\\vec{k}$, $\\vec{w}=\\vec{u}+\\vec{v}$. Tọa độ của vectơ $\\vec{w}$ là",
+      "points": 0.25,
+      "sort_order": 480,
+      "choices": [
+        "$\\vec{w}=(3;-1;2)$.",
+        "$\\vec{w}=(3;1;-2)$.",
+        "$\\vec{w}=(3;1;2)$.",
+        "$\\vec{w}=(3;-1;-2)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{u}=(1;2;-3)$, $\\vec{v}=(2;-1;1) \\Rightarrow \\vec{w}=\\vec{u}+\\vec{v}=(3;1;-2)$.",
+        "source": "Chuyên Vinh 2025",
+        "solution": "$\\vec{u}=(1;2;-3)$, $\\vec{v}=(2;-1;1) \\Rightarrow \\vec{w}=\\vec{u}+\\vec{v}=(3;1;-2)$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 49,
+      "type": "mcq",
+      "prompt": "(Sở Thanh Hóa 2025) Trong không gian $Oxyz$, cho điểm $A(1;-2;5)$. Hình chiếu vuông góc của điểm $A$ lên trục $Ox$ là",
+      "points": 0.25,
+      "sort_order": 490,
+      "choices": [
+        "$(0;-2;5)$.",
+        "$(0;0;5)$.",
+        "$(0;-2;0)$.",
+        "$(1;0;0)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Hình chiếu của $A(1;-2;5)$ lên trục $Ox$ là $(1;0;0)$.",
+        "source": "Sở Thanh Hóa 2025",
+        "solution": "Hình chiếu của $A(1;-2;5)$ lên trục $Ox$ là $(1;0;0)$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 50,
+      "type": "mcq",
+      "prompt": "(Cụm trường THPT Hải Dương 2025) Trong không gian với hệ tọa độ $Oxyz$, với $\\vec{i}, \\vec{j}, \\vec{k}$ là các vectơ đơn vị trên trục $Ox, Oy, Oz$ tương ứng và vectơ $\\vec{a}=(1;0;1)$. Kết quả nào sau đây đúng?",
+      "points": 0.25,
+      "sort_order": 500,
+      "choices": [
+        "$\\vec{a}=\\vec{i}+\\vec{j}+\\vec{k}$.",
+        "$\\vec{a}=\\vec{j}+\\vec{k}$.",
+        "$\\vec{a}=\\vec{i}+\\vec{j}$.",
+        "$\\vec{a}=\\vec{i}+\\vec{k}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Vì $\\vec{a}=(1;0;1)$ nên $\\vec{a} = \\vec{i} + \\vec{k}$.",
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "solution": "Vì $\\vec{a}=(1;0;1)$ nên $\\vec{a} = \\vec{i} + \\vec{k}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 51,
+      "type": "mcq",
+      "prompt": "(THPT Trần Nguyên Hãn - Hải Phòng 2025) Trong không gian $Oxyz$, cho hai vectơ $\\vec{a}=(1;1;-2)$, $\\vec{b}=(-2;1;4)$. Tọa độ của vectơ $\\vec{u}=\\vec{a}-2\\vec{b}$ là",
+      "points": 0.25,
+      "sort_order": 510,
+      "choices": [
+        "$(5;-1;-10)$.",
+        "$(5;-1;10)$.",
+        "$(5;1;10)$.",
+        "$(5;1;-10)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{u} = \\vec{a}-2\\vec{b} = (1+4; 1-2; -2-8) = (5;-1;-10)$.",
+        "source": "THPT Trần Nguyên Hãn - Hải Phòng 2025",
+        "solution": "$\\vec{u} = \\vec{a}-2\\vec{b} = (1+4; 1-2; -2-8) = (5;-1;-10)$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 52,
+      "type": "mcq",
+      "prompt": "(THPT Trần Phú - Vĩnh Phúc 2025) Trong không gian $Oxyz$, cho hai vectơ $\\vec{a}=(1;-2;1)$, $\\vec{b}=(-2;1;1)$. Tính góc giữa $\\vec{a}$ và $\\vec{b}$.",
+      "points": 0.25,
+      "sort_order": 520,
+      "choices": [
+        "$120^\\circ$.",
+        "$60^\\circ$.",
+        "$-30^\\circ$.",
+        "$30^\\circ$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "$\\cos(\\vec{a},\\vec{b}) = \\dfrac{-2-2+1}{\\sqrt{6}\\cdot\\sqrt{6}} = -\\dfrac{1}{2} \\Rightarrow (\\vec{a},\\vec{b}) = 120^\\circ$.",
+        "source": "THPT Trần Phú - Vĩnh Phúc 2025",
+        "solution": "$\\cos(\\vec{a},\\vec{b}) = \\dfrac{-2-2+1}{\\sqrt{6}\\cdot\\sqrt{6}} = -\\dfrac{1}{2} \\Rightarrow (\\vec{a},\\vec{b}) = 120^\\circ$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 53,
+      "type": "mcq",
+      "prompt": "(Cụm trường Nghệ An 2025) Trong không gian $Oxyz$, cho tam giác $ABC$ có $A(2;-3;1)$, $B(1;3;-4)$ và $C(3;-3;6)$. Trọng tâm của tam giác $ABC$ có tọa độ là",
+      "points": 0.25,
+      "sort_order": 530,
+      "choices": [
+        "$(2;-1;1)$.",
+        "$(-6;3;-3)$.",
+        "$(6;-3;3)$.",
+        "$(-2;1;-1)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Trọng tâm $G = \\left(\\dfrac{2+1+3}{3}; \\dfrac{-3+3-3}{3}; \\dfrac{1-4+6}{3}\\right) = (2;-1;1)$.",
+        "source": "Cụm trường Nghệ An 2025",
+        "solution": "Trọng tâm $G = \\left(\\dfrac{2+1+3}{3}; \\dfrac{-3+3-3}{3}; \\dfrac{1-4+6}{3}\\right) = (2;-1;1)$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 54,
+      "type": "mcq",
+      "prompt": "(Sở Vĩnh Phúc 2025) Trong không gian với hệ trục tọa độ $Oxyz$, cho hai vectơ $\\vec{a}=(1;2;1)$ và $\\vec{b}=(2;-4;-2)$. Khi đó $\\vec{a}\\cdot\\vec{b}$ bằng",
+      "points": 0.25,
+      "sort_order": 540,
+      "choices": [
+        "$12$.",
+        "$8$.",
+        "$-12$.",
+        "$-8$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{a}\\cdot\\vec{b} = 1\\cdot 2 + 2(-4) + 1(-2) = -8$.",
+        "source": "Sở Vĩnh Phúc 2025",
+        "solution": "$\\vec{a}\\cdot\\vec{b} = 1\\cdot 2 + 2(-4) + 1(-2) = -8$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 55,
+      "type": "mcq",
+      "prompt": "(Cụm trường Hải Dương 2025) Trong không gian với hệ trục tọa độ $Oxyz$, cho hai vectơ $\\vec{u}=(2;1;-2)$ và $\\vec{v}=(1;0;4)$. Mệnh đề nào dưới đây **sai**?",
+      "points": 0.25,
+      "sort_order": 550,
+      "choices": [
+        "$\\vec{u}+\\vec{v}=(3;1;2)$.",
+        "$\\vec{u}\\perp\\vec{v}$.",
+        "$|\\vec{u}|=3$.",
+        "$\\vec{u}-\\vec{v}=(1;1;-6)$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "$\\vec{u}\\cdot\\vec{v} = 2\\cdot 1 + 1\\cdot 0 + (-2)\\cdot 4 = -6 \\neq 0$ nên $\\vec{u}$ không vuông góc với $\\vec{v}$.",
+        "source": "Cụm trường Hải Dương 2025",
+        "solution": "$\\vec{u}\\cdot\\vec{v} = 2\\cdot 1 + 1\\cdot 0 + (-2)\\cdot 4 = -6 \\neq 0$ nên $\\vec{u}$ không vuông góc với $\\vec{v}$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 56,
+      "type": "mcq",
+      "prompt": "(Cụm trường Nguyễn Hiền - Lê Hồng Phong - Quảng Nam 2025) Trong không gian với hệ tọa độ $Oxyz$, cho tam giác $ABC$ biết $A(5;-2;0)$, $B(-2;3;0)$, $C(0;2;3)$. Tìm tọa độ trọng tâm $G$ của tam giác $ABC$.",
+      "points": 0.25,
+      "sort_order": 560,
+      "choices": [
+        "$(1;1;1)$.",
+        "$(2;0;-1)$.",
+        "$(1;1;-2)$.",
+        "$(1;2;1)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$G = \\left(\\dfrac{5-2+0}{3}; \\dfrac{-2+3+2}{3}; \\dfrac{0+0+3}{3}\\right) = (1;1;1)$.",
+        "source": "Cụm trường Nguyễn Hiền - Lê Hồng Phong - Quảng Nam 2025",
+        "solution": "$G = \\left(\\dfrac{5-2+0}{3}; \\dfrac{-2+3+2}{3}; \\dfrac{0+0+3}{3}\\right) = (1;1;1)$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 57,
+      "type": "mcq",
+      "prompt": "(THPT Nông Cống 3 - Thanh Hóa 2025) Trong không gian với hệ trục tọa độ $Oxyz$, cho ba điểm $A(3;2;1)$, $B(1;-1;2)$, $C(1;2;-1)$. Tìm tọa độ điểm $M$ thỏa mãn $\\overrightarrow{OM} = 2\\overrightarrow{AB} - \\overrightarrow{AC}$.",
+      "points": 0.25,
+      "sort_order": 570,
+      "choices": [
+        "$M(5;5;0)$.",
+        "$M(-2;-6;4)$.",
+        "$M(-2;6;-4)$.",
+        "$M(2;-6;4)$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $\\overrightarrow{AB}=(-2;-3;1)$, $\\overrightarrow{AC}=(-2;0;-2) \\Rightarrow \\overrightarrow{OM} = (-4+2; -6-0; 2+2) = (-2;-6;4)$.",
+        "source": "THPT Nông Cống 3 - Thanh Hóa 2025",
+        "solution": "Ta có $\\overrightarrow{AB}=(-2;-3;1)$, $\\overrightarrow{AC}=(-2;0;-2) \\Rightarrow \\overrightarrow{OM} = (-4+2; -6-0; 2+2) = (-2;-6;4)$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 58,
+      "type": "mcq",
+      "prompt": "(THPT Anh Sơn 3 - Nghệ An 2025) Trong không gian $Oxyz$, cho hai vectơ $\\vec{u}=(1;-4;0)$ và $\\vec{v}=(-1;-2;1)$. Vectơ $\\vec{u}+3\\vec{v}$ có tọa độ là",
+      "points": 0.25,
+      "sort_order": 580,
+      "choices": [
+        "$(-2;-10;3)$.",
+        "$(-4;-8;4)$.",
+        "$(-2;-6;3)$.",
+        "$(-2;-10;-3)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{u}+3\\vec{v} = (1-3; -4-6; 0+3) = (-2;-10;3)$.",
+        "source": "THPT Anh Sơn 3 - Nghệ An 2025",
+        "solution": "$\\vec{u}+3\\vec{v} = (1-3; -4-6; 0+3) = (-2;-10;3)$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 59,
+      "type": "mcq",
+      "prompt": "(THPT Trực Ninh - Nam Định 2025) Trong không gian $Oxyz$, cho tam giác $ABC$ với $A(1;2;-1)$, $B(2;-1;3)$, $C(-3;5;1)$. Tọa độ trọng tâm của tam giác $ABC$ là",
+      "points": 0.25,
+      "sort_order": 590,
+      "choices": [
+        "$(0;2;1)$.",
+        "$(0;2;-1)$.",
+        "$(0;-2;1)$.",
+        "$(0;-2;-1)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$G = \\left(\\dfrac{1+2-3}{3}; \\dfrac{2-1+5}{3}; \\dfrac{-1+3+1}{3}\\right) = (0;2;1)$.",
+        "source": "THPT Trực Ninh - Nam Định 2025",
+        "solution": "$G = \\left(\\dfrac{1+2-3}{3}; \\dfrac{2-1+5}{3}; \\dfrac{-1+3+1}{3}\\right) = (0;2;1)$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 60,
+      "type": "mcq",
+      "prompt": "(THPT Trực Ninh - Nam Định 2025) Trong không gian $Oxyz$, cho ba vectơ $\\vec{a}=(2;-1;0)$, $\\vec{b}=(-1;-3;2)$, $\\vec{c}=(-2;-4;-3)$. Tọa độ của $\\vec{u}=2\\vec{a}-3\\vec{b}+\\vec{c}$ là",
+      "points": 0.25,
+      "sort_order": 600,
+      "choices": [
+        "$(-3;-7;-9)$.",
+        "$(-5;-3;9)$.",
+        "$(5;3;-9)$.",
+        "$(3;7;9)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{u} = (4+3-2; -2+9-4; 0-6-3) = (5;3;-9)$.",
+        "source": "THPT Trực Ninh - Nam Định 2025",
+        "solution": "$\\vec{u} = (4+3-2; -2+9-4; 0-6-3) = (5;3;-9)$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 61,
+      "type": "mcq",
+      "prompt": "(THPT Trực Ninh - Nam Định 2025) Trong không gian $Oxyz$, cho hai điểm $A(0;2;1)$ và $B(3;-2;1)$. Độ dài đoạn thẳng $AB$ bằng",
+      "points": 0.25,
+      "sort_order": 610,
+      "choices": [
+        "$25$.",
+        "$5$.",
+        "$3$.",
+        "$9$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$AB = \\sqrt{3^2+(-4)^2+0^2} = 5$.",
+        "source": "THPT Trực Ninh - Nam Định 2025",
+        "solution": "$AB = \\sqrt{3^2+(-4)^2+0^2} = 5$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 62,
+      "type": "mcq",
+      "prompt": "(THPT Lê Thánh Tông - Nguyễn Khuyến HCM 2025) Trong không gian tọa độ $Oxyz$, cho điểm $M(1;2;-3)$, $N$ và vectơ $\\vec{v}=(2;-1;-2)$ thỏa mãn $\\vec{v}=\\overrightarrow{MN}$. Tọa độ của điểm $N$ là",
+      "points": 0.25,
+      "sort_order": 620,
+      "choices": [
+        "$(-1;3;-1)$.",
+        "$(3;1;-5)$.",
+        "$(1;-3;1)$.",
+        "$(-3;-1;5)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\overrightarrow{MN}=\\vec{v} \\Rightarrow N = M + \\vec{v} = (1+2; 2-1; -3-2) = (3;1;-5)$.",
+        "source": "THPT Lê Thánh Tông - Nguyễn Khuyến HCM 2025",
+        "solution": "$\\overrightarrow{MN}=\\vec{v} \\Rightarrow N = M + \\vec{v} = (1+2; 2-1; -3-2) = (3;1;-5)$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 63,
+      "type": "mcq",
+      "prompt": "(Sở Bắc Giang 2025) Trong không gian $Oxyz$, cho vectơ $\\vec{u}=2\\vec{i}-5\\vec{k}$. Tọa độ của vectơ $\\vec{u}$ là",
+      "points": 0.25,
+      "sort_order": 630,
+      "choices": [
+        "$(0;2;-5)$.",
+        "$(2;0;5)$.",
+        "$(2;-5;0)$.",
+        "$(2;0;-5)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{u} = 2\\vec{i} + 0\\vec{j} - 5\\vec{k} \\Rightarrow \\vec{u}=(2;0;-5)$.",
+        "source": "Sở Bắc Giang 2025",
+        "solution": "$\\vec{u} = 2\\vec{i} + 0\\vec{j} - 5\\vec{k} \\Rightarrow \\vec{u}=(2;0;-5)$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 64,
+      "type": "mcq",
+      "prompt": "(Sở Bắc Giang 2025) Trong không gian $Oxyz$, cho hai điểm $A(-1;2;1)$ và $B(2;1;-3)$. Tọa độ của vectơ $\\overrightarrow{AB}$ là",
+      "points": 0.25,
+      "sort_order": 640,
+      "choices": [
+        "$\\left(\\dfrac{1}{2};\\dfrac{3}{2};-1\\right)$.",
+        "$(-3;1;4)$.",
+        "$(3;-1;-4)$.",
+        "$(1;3;-2)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\overrightarrow{AB} = (2-(-1); 1-2; -3-1) = (3;-1;-4)$.",
+        "source": "Sở Bắc Giang 2025",
+        "solution": "$\\overrightarrow{AB} = (2-(-1); 1-2; -3-1) = (3;-1;-4)$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 65,
+      "type": "mcq",
+      "prompt": "(Sở Phú Thọ 2025) Trong không gian $Oxyz$, cho vectơ $\\overrightarrow{OM}=2\\vec{i}-3\\vec{j}+4\\vec{k}$. Tọa độ của điểm $M$ là",
+      "points": 0.25,
+      "sort_order": 650,
+      "choices": [
+        "$(2;-3;4)$.",
+        "$(2;4;-3)$.",
+        "$(2;3;4)$.",
+        "$(-2;3;-4)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\overrightarrow{OM}=2\\vec{i}-3\\vec{j}+4\\vec{k} \\Rightarrow M(2;-3;4)$.",
+        "source": "Sở Phú Thọ 2025",
+        "solution": "$\\overrightarrow{OM}=2\\vec{i}-3\\vec{j}+4\\vec{k} \\Rightarrow M(2;-3;4)$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 66,
+      "type": "mcq",
+      "prompt": "(Sở Phú Thọ 2025) Trong không gian $Oxyz$, cho hai điểm $A(-2;1;0)$, $B(3;-2;1)$. Tọa độ của vectơ $\\overrightarrow{AB}$ là",
+      "points": 0.25,
+      "sort_order": 660,
+      "choices": [
+        "$(-5;3;-1)$.",
+        "$(5;-3;1)$.",
+        "$(1;-1;1)$.",
+        "$(-1;1;-1)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\overrightarrow{AB}=(3-(-2); -2-1; 1-0)=(5;-3;1)$.",
+        "source": "Sở Phú Thọ 2025",
+        "solution": "$\\overrightarrow{AB}=(3-(-2); -2-1; 1-0)=(5;-3;1)$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 67,
+      "type": "mcq",
+      "prompt": "(THPT Lê Thánh Tông - Nguyễn Khuyến HCM 2025) Trong không gian tọa độ $Oxyz$, tính bán kính $R$ của mặt cầu $(S): x^2 + y^2 + z^2 = \\dfrac{1}{4}$.",
+      "points": 0.25,
+      "sort_order": 670,
+      "choices": [
+        "$R=2$.",
+        "$R=\\dfrac{1}{4}$.",
+        "$R=4$.",
+        "$R=\\dfrac{1}{2}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Mặt cầu $(S): x^2+y^2+z^2 = \\dfrac{1}{4}$ có $R = \\sqrt{\\dfrac{1}{4}} = \\dfrac{1}{2}$.",
+        "source": "THPT Lê Thánh Tông - Nguyễn Khuyến HCM 2025",
+        "solution": "Mặt cầu $(S): x^2+y^2+z^2 = \\dfrac{1}{4}$ có $R = \\sqrt{\\dfrac{1}{4}} = \\dfrac{1}{2}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 21: Phương trình mặt cầu",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 68,
+      "type": "mcq",
+      "prompt": "(Sở Thái Nguyên 2025) Trong không gian $Oxyz$, gọi $M'$ là hình chiếu vuông góc của điểm $M(1;3;-2)$ trên trục $Oz$. Khi đó vectơ $\\overrightarrow{MM'}$ có tọa độ là",
+      "points": 0.25,
+      "sort_order": 680,
+      "choices": [
+        "$(1;3;0)$.",
+        "$(0;0;2)$.",
+        "$(-1;-3;0)$.",
+        "$(0;0;-2)$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $M'(0;0;-2) \\Rightarrow \\overrightarrow{MM'}=(-1;-3;0)$.",
+        "source": "Sở Thái Nguyên 2025",
+        "solution": "Ta có $M'(0;0;-2) \\Rightarrow \\overrightarrow{MM'}=(-1;-3;0)$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 69,
+      "type": "mcq",
+      "prompt": "(Chuyên Lê Quý Đôn - Đà Nẵng 2025) Trong không gian $Oxyz$, cho hai vectơ $\\vec{m}=(1;-1;1)$ và $\\vec{n}=(-1;1;-1)$. Côsin của góc giữa hai vectơ $\\vec{m}, \\vec{n}$ bằng",
+      "points": 0.25,
+      "sort_order": 690,
+      "choices": [
+        "$1$.",
+        "$\\dfrac{\\sqrt{3}}{3}$.",
+        "$\\dfrac{1}{3}$.",
+        "$-1$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Vì $\\vec{n}=-\\vec{m}$ nên hai vectơ ngược hướng, suy ra $\\cos(\\vec{m},\\vec{n}) = -1$.",
+        "source": "Chuyên Lê Quý Đôn - Đà Nẵng 2025",
+        "solution": "Vì $\\vec{n}=-\\vec{m}$ nên hai vectơ ngược hướng, suy ra $\\cos(\\vec{m},\\vec{n}) = -1$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 70,
+      "type": "mcq",
+      "prompt": "(KHTN Hà Nội 2025) Trong không gian $Oxyz$, cho hai điểm $A(1;0;2)$ và $B(-1;2;0)$. Trung điểm của đoạn thẳng $AB$ có tọa độ là",
+      "points": 0.25,
+      "sort_order": 700,
+      "choices": [
+        "$(0;2;2)$.",
+        "$(-1;1;-1)$.",
+        "$(1;1;1)$.",
+        "$(0;1;1)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Trung điểm $AB$ là $M\\left(\\dfrac{1-1}{2}; \\dfrac{0+2}{2}; \\dfrac{2+0}{2}\\right) = (0;1;1)$.",
+        "source": "KHTN Hà Nội 2025",
+        "solution": "Trung điểm $AB$ là $M\\left(\\dfrac{1-1}{2}; \\dfrac{0+2}{2}; \\dfrac{2+0}{2}\\right) = (0;1;1)$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 71,
+      "type": "mcq",
+      "prompt": "(KHTN Hà Nội 2025) Trong không gian $Oxyz$, cho ba điểm $A(1;-1;2)$, $B(2;0;1)$ và $C(0;-1;3)$. Giá trị của $\\overrightarrow{AB}\\cdot\\overrightarrow{AC}$ bằng",
+      "points": 0.25,
+      "sort_order": 710,
+      "choices": [
+        "$0$.",
+        "$-4$.",
+        "$-2$.",
+        "$20$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "$\\overrightarrow{AB}=(1;1;-1)$, $\\overrightarrow{AC}=(-1;0;1) \\Rightarrow \\overrightarrow{AB}\\cdot\\overrightarrow{AC} = -1+0-1 = -2$.",
+        "source": "KHTN Hà Nội 2025",
+        "solution": "$\\overrightarrow{AB}=(1;1;-1)$, $\\overrightarrow{AC}=(-1;0;1) \\Rightarrow \\overrightarrow{AB}\\cdot\\overrightarrow{AC} = -1+0-1 = -2$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 72,
+      "type": "mcq",
+      "prompt": "(THPT Lê Hồng Phong - Hải Phòng 2025) Trong không gian $Oxyz$, cho hai vectơ $\\vec{u}=(1;3;-2)$ và $\\vec{v}=(2;1;-1)$. Tọa độ của vectơ $\\vec{u}-\\vec{v}$ là",
+      "points": 0.25,
+      "sort_order": 720,
+      "choices": [
+        "$(3;4;-3)$.",
+        "$(-1;2;-1)$.",
+        "$(1;-2;1)$.",
+        "$(-1;2;-3)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{u}-\\vec{v} = (1-2; 3-1; -2+1) = (-1;2;-1)$.",
+        "source": "THPT Lê Hồng Phong - Hải Phòng 2025",
+        "solution": "$\\vec{u}-\\vec{v} = (1-2; 3-1; -2+1) = (-1;2;-1)$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 73,
+      "type": "mcq",
+      "prompt": "(Sở Quảng Bình 2025) Trong không gian $Oxyz$, cho hai vectơ $\\vec{a}=(1;-2;1)$ và $\\vec{b}=(2;-4;-2)$. Khi đó $\\vec{a}\\cdot\\vec{b}$ bằng",
+      "points": 0.25,
+      "sort_order": 730,
+      "choices": [
+        "$8$.",
+        "$-8$.",
+        "$12$.",
+        "$-12$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{a}\\cdot\\vec{b} = 1\\cdot 2 + (-2)(-4) + 1(-2) = 2+8-2 = 8$.",
+        "source": "Sở Quảng Bình 2025",
+        "solution": "$\\vec{a}\\cdot\\vec{b} = 1\\cdot 2 + (-2)(-4) + 1(-2) = 2+8-2 = 8$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 74,
+      "type": "mcq",
+      "prompt": "(Sở Quảng Bình 2025) Trong không gian với hệ trục tọa độ $Oxyz$, cho tam giác $ABC$ có ba đỉnh $A(2;1;-3)$, $B(4;2;1)$, $C(3;0;5)$. Tọa độ trọng tâm $G$ của tam giác $ABC$ là",
+      "points": 0.25,
+      "sort_order": 740,
+      "choices": [
+        "$G(3;1;-1)$.",
+        "$G(3;1;1)$.",
+        "$G(1;3;1)$.",
+        "$G(-1;3;1)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$G = \\left(\\dfrac{2+4+3}{3}; \\dfrac{1+2+0}{3}; \\dfrac{-3+1+5}{3}\\right) = (3;1;1)$.",
+        "source": "Sở Quảng Bình 2025",
+        "solution": "$G = \\left(\\dfrac{2+4+3}{3}; \\dfrac{1+2+0}{3}; \\dfrac{-3+1+5}{3}\\right) = (3;1;1)$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 75,
+      "type": "mcq",
+      "prompt": "(Cụm trường THPT Hải Dương 2025) Trong không gian $Oxyz$, cho ba vectơ $\\vec{a}=(2;-1;0)$, $\\vec{b}=(-1;-3;2)$, $\\vec{c}=(-2;-4;-3)$. Tọa độ của $\\vec{u}=2\\vec{a}-3\\vec{b}+\\vec{c}$ là",
+      "points": 0.25,
+      "sort_order": 750,
+      "choices": [
+        "$(3;7;9)$.",
+        "$(-3;-7;-9)$.",
+        "$(5;3;-9)$.",
+        "$(-5;-3;9)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{u} = 2\\vec{a}-3\\vec{b}+\\vec{c} = (4+3-2; -2+9-4; 0-6-3) = (5;3;-9)$.",
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "solution": "$\\vec{u} = 2\\vec{a}-3\\vec{b}+\\vec{c} = (4+3-2; -2+9-4; 0-6-3) = (5;3;-9)$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 76,
+      "type": "mcq",
+      "prompt": "(Cụm trường THPT Hải Dương 2025) Trong không gian $Oxyz$, cho hai điểm $A(2;-2;1)$ và $B(0;1;2)$. Tọa độ điểm $M$ thuộc mặt phẳng $(Oxy)$ sao cho ba điểm $A, B, M$ thẳng hàng là",
+      "points": 0.25,
+      "sort_order": 760,
+      "choices": [
+        "$M(2;-3;0)$.",
+        "$M(4;5;0)$.",
+        "$M(0;0;1)$.",
+        "$M(4;-5;0)$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Gọi $M(a;b;0) \\in (Oxy)$. Ta có $\\overrightarrow{AM}=(a-2;b+2;-1)$, $\\overrightarrow{AB}=(-2;3;1)$. Cùng phương $\\Leftrightarrow \\dfrac{a-2}{-2}=\\dfrac{b+2}{3}=\\dfrac{-1}{1} \\Leftrightarrow a=4, b=-5$. Vậy $M(4;-5;0)$.",
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "solution": "Gọi $M(a;b;0) \\in (Oxy)$. Ta có $\\overrightarrow{AM}=(a-2;b+2;-1)$, $\\overrightarrow{AB}=(-2;3;1)$. Cùng phương $\\Leftrightarrow \\dfrac{a-2}{-2}=\\dfrac{b+2}{3}=\\dfrac{-1}{1} \\Leftrightarrow a=4, b=-5$. Vậy $M(4;-5;0)$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 77,
+      "type": "mcq",
+      "prompt": "(Sở Bạc Liêu 2025) Trong không gian với hệ trục tọa độ $Oxyz$, cho vectơ $\\vec{a}=2\\vec{i}-3\\vec{k}$. Tọa độ của vectơ $\\vec{a}$ là",
+      "points": 0.25,
+      "sort_order": 770,
+      "choices": [
+        "$(2;0;3)$.",
+        "$(-2;0;3)$.",
+        "$(2;-3;0)$.",
+        "$(2;0;-3)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{a} = 2\\vec{i}+0\\vec{j}-3\\vec{k} \\Rightarrow \\vec{a}=(2;0;-3)$.",
+        "source": "Sở Bạc Liêu 2025",
+        "solution": "$\\vec{a} = 2\\vec{i}+0\\vec{j}-3\\vec{k} \\Rightarrow \\vec{a}=(2;0;-3)$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 78,
+      "type": "mcq",
+      "prompt": "(Sở Hà Nội 2025) Trong không gian $Oxyz$, cho hai điểm $A(1;2;-1)$ và $B(2;4;1)$. Trọng tâm của tam giác $OAB$ có tọa độ là",
+      "points": 0.25,
+      "sort_order": 780,
+      "choices": [
+        "$(-1;-2;0)$.",
+        "$(1;3;0)$.",
+        "$(1;2;0)$.",
+        "$(3;6;0)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Trọng tâm tam giác $OAB$ là $\\left(\\dfrac{1+2+0}{3}; \\dfrac{2+4+0}{3}; \\dfrac{-1+1+0}{3}\\right) = (1;2;0)$.",
+        "source": "Sở Hà Nội 2025",
+        "solution": "Trọng tâm tam giác $OAB$ là $\\left(\\dfrac{1+2+0}{3}; \\dfrac{2+4+0}{3}; \\dfrac{-1+1+0}{3}\\right) = (1;2;0)$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 79,
+      "type": "mcq",
+      "prompt": "(Chuyên Hùng Vương - Phú Thọ 2025) Trong không gian $Oxyz$, cho hai vectơ $\\vec{a}=(-1;0;2)$ và $\\vec{b}=(2;3;-2)$. Giá trị của $\\vec{a}\\cdot\\vec{b}$ bằng",
+      "points": 0.25,
+      "sort_order": 790,
+      "choices": [
+        "$2$.",
+        "$-4$.",
+        "$-6$.",
+        "$-3$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{a}\\cdot\\vec{b} = (-1)\\cdot 2 + 0\\cdot 3 + 2\\cdot(-2) = -6$.",
+        "source": "Chuyên Hùng Vương - Phú Thọ 2025",
+        "solution": "$\\vec{a}\\cdot\\vec{b} = (-1)\\cdot 2 + 0\\cdot 3 + 2\\cdot(-2) = -6$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 80,
+      "type": "mcq",
+      "prompt": "(Sở Tuyên Quang 2025) Trong không gian với hệ trục tọa độ $Oxyz$, cho hai điểm $A(1;-3;1)$, $B(3;0;-2)$. Độ dài đoạn thẳng $AB$ bằng",
+      "points": 0.25,
+      "sort_order": 800,
+      "choices": [
+        "$\\sqrt{22}$.",
+        "$\\sqrt{26}$.",
+        "$26$.",
+        "$22$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$AB = \\sqrt{(3-1)^2 + (0+3)^2 + (-2-1)^2} = \\sqrt{4+9+9} = \\sqrt{22}$.",
+        "source": "Sở Tuyên Quang 2025",
+        "solution": "$AB = \\sqrt{(3-1)^2 + (0+3)^2 + (-2-1)^2} = \\sqrt{4+9+9} = \\sqrt{22}$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 81,
+      "type": "mcq",
+      "prompt": "(Sở Yên Bái 2025) Trong không gian $Oxyz$, cho hai vectơ $\\vec{u}=\\vec{i}+3\\vec{j}-2\\vec{k}$ và $\\vec{v}=(2;-1;1)$. Tích vô hướng $\\vec{u}\\cdot\\vec{v}$ bằng",
+      "points": 0.25,
+      "sort_order": 810,
+      "choices": [
+        "$\\vec{u}\\cdot\\vec{v}=-12$.",
+        "$\\vec{u}\\cdot\\vec{v}=5\\sqrt{2}$.",
+        "$\\vec{u}\\cdot\\vec{v}=-3$.",
+        "$\\vec{u}\\cdot\\vec{v}=2\\sqrt{21}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{u}=(1;3;-2) \\Rightarrow \\vec{u}\\cdot\\vec{v} = 1\\cdot 2 + 3(-1) + (-2)\\cdot 1 = -3$.",
+        "source": "Sở Yên Bái 2025",
+        "solution": "$\\vec{u}=(1;3;-2) \\Rightarrow \\vec{u}\\cdot\\vec{v} = 1\\cdot 2 + 3(-1) + (-2)\\cdot 1 = -3$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 82,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Sơn 1 - Thanh Hóa 2025) Trong không gian với hệ trục tọa độ $Oxyz$, cho hai điểm $A(2;3;1)$ và $B(4;-3;3)$. Tọa độ trung điểm của đoạn $AB$ là",
+      "points": 0.25,
+      "sort_order": 820,
+      "choices": [
+        "$(3;0;2)$.",
+        "$(6;0;4)$.",
+        "$(-1;3;-1)$.",
+        "$(2;-6;2)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Trung điểm của $AB$ là $\\left(\\dfrac{2+4}{2}; \\dfrac{3-3}{2}; \\dfrac{1+3}{2}\\right) = (3;0;2)$.",
+        "source": "THPT Triệu Sơn 1 - Thanh Hóa 2025",
+        "solution": "Trung điểm của $AB$ là $\\left(\\dfrac{2+4}{2}; \\dfrac{3-3}{2}; \\dfrac{1+3}{2}\\right) = (3;0;2)$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 83,
+      "type": "mcq",
+      "prompt": "(Chuyên Phan Bội Châu - Hà Tĩnh 2025) Trong không gian $Oxyz$, hình chiếu vuông góc của điểm $M(-2;3;4)$ lên trục $Oy$ là điểm nào?",
+      "points": 0.25,
+      "sort_order": 830,
+      "choices": [
+        "$M_1(-2;0;0)$.",
+        "$M_2(0;3;0)$.",
+        "$M_3(0;0;4)$.",
+        "$M_4(-2;0;4)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Hình chiếu vuông góc của $M(-2;3;4)$ lên trục $Oy$ là $M_2(0;3;0)$.",
+        "source": "Chuyên Phan Bội Châu - Hà Tĩnh 2025",
+        "solution": "Hình chiếu vuông góc của $M(-2;3;4)$ lên trục $Oy$ là $M_2(0;3;0)$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 84,
+      "type": "mcq",
+      "prompt": "(Chuyên Phan Bội Châu - Hà Tĩnh 2025) Trong không gian $Oxyz$, cho ba vectơ $\\vec{a}=(2;-1;0)$, $\\vec{b}=(-1;-3;2)$, $\\vec{c}=(-2;-4;-3)$. Tọa độ của vectơ $\\vec{u}=2\\vec{a}-3\\vec{b}+\\vec{c}$ là",
+      "points": 0.25,
+      "sort_order": 840,
+      "choices": [
+        "$(3;7;9)$.",
+        "$(-3;-7;-9)$.",
+        "$(5;3;-9)$.",
+        "$(-5;-3;9)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{u} = 2\\vec{a}-3\\vec{b}+\\vec{c} = (5;3;-9)$.",
+        "source": "Chuyên Phan Bội Châu - Hà Tĩnh 2025",
+        "solution": "$\\vec{u} = 2\\vec{a}-3\\vec{b}+\\vec{c} = (5;3;-9)$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 85,
+      "type": "mcq",
+      "prompt": "(Sở Bắc Ninh 2025) Trong không gian $Oxyz$, cho ba điểm $A(-3;1;-2)$, $B(-1;-1;-1)$, $C(-3;1;1)$. Độ dài của $\\overrightarrow{AB}+2\\overrightarrow{AC}$ bằng",
+      "points": 0.25,
+      "sort_order": 850,
+      "choices": [
+        "$\\sqrt{57}$.",
+        "$\\sqrt{7}$.",
+        "$3\\sqrt{33}$.",
+        "$\\sqrt{17}$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "$\\overrightarrow{AB}=(2;-2;1)$, $\\overrightarrow{AC}=(0;0;3) \\Rightarrow \\overrightarrow{AB}+2\\overrightarrow{AC}=(2;-2;7) \\Rightarrow |\\overrightarrow{AB}+2\\overrightarrow{AC}| = \\sqrt{4+4+49} = \\sqrt{57}$.",
+        "source": "Sở Bắc Ninh 2025",
+        "solution": "$\\overrightarrow{AB}=(2;-2;1)$, $\\overrightarrow{AC}=(0;0;3) \\Rightarrow \\overrightarrow{AB}+2\\overrightarrow{AC}=(2;-2;7) \\Rightarrow |\\overrightarrow{AB}+2\\overrightarrow{AC}| = \\sqrt{4+4+49} = \\sqrt{57}$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 86,
+      "type": "mcq",
+      "prompt": "(Sở Bắc Ninh 2025) Trong không gian $Oxyz$, cho hai điểm $A(7;-4;-2)$ và $B(-9;-9;7)$. Tọa độ của vectơ $\\overrightarrow{AB}$ là",
+      "points": 0.25,
+      "sort_order": 860,
+      "choices": [
+        "$(-16;-5;9)$.",
+        "$(-2;-13;5)$.",
+        "$(16;5;-9)$.",
+        "$\\left(-1;-\\dfrac{13}{2};\\dfrac{5}{2}\\right)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\overrightarrow{AB} = (-9-7; -9+4; 7+2) = (-16;-5;9)$.",
+        "source": "Sở Bắc Ninh 2025",
+        "solution": "$\\overrightarrow{AB} = (-9-7; -9+4; 7+2) = (-16;-5;9)$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 87,
+      "type": "mcq",
+      "prompt": "(THPT Anh Sơn 3 - Nghệ An 2025) Trong không gian $Oxyz$, cho hai vectơ $\\vec{a}=(1;2;3)$, $\\vec{b}=(2;2;-1)$. Tọa độ của vectơ $\\vec{a}-2\\vec{b}$ là",
+      "points": 0.25,
+      "sort_order": 870,
+      "choices": [
+        "$(-1;0;4)$.",
+        "$(-3;-2;5)$.",
+        "$(-3;-2;1)$.",
+        "$(3;2;5)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{a}-2\\vec{b} = (1-4; 2-4; 3+2) = (-3;-2;5)$.",
+        "source": "THPT Anh Sơn 3 - Nghệ An 2025",
+        "solution": "$\\vec{a}-2\\vec{b} = (1-4; 2-4; 3+2) = (-3;-2;5)$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 88,
+      "type": "mcq",
+      "prompt": "(THPT Anh Sơn 3 - Nghệ An 2025) Trong không gian $Oxyz$, cho hai điểm $A(1;2;0)$, $B(0;1;1)$. Tọa độ của vectơ $\\overrightarrow{AB}$ là",
+      "points": 0.25,
+      "sort_order": 880,
+      "choices": [
+        "$(1;1;0)$.",
+        "$(-1;-1;1)$.",
+        "$(1;1;-1)$.",
+        "$(1;3;1)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\overrightarrow{AB} = (0-1; 1-2; 1-0) = (-1;-1;1)$.",
+        "source": "THPT Anh Sơn 3 - Nghệ An 2025",
+        "solution": "$\\overrightarrow{AB} = (0-1; 1-2; 1-0) = (-1;-1;1)$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 89,
+      "type": "mcq",
+      "prompt": "(THPT Lê Hồng Phong - Hải Phòng 2025) Trong không gian $Oxyz$, cho điểm $A(1;2;-3)$. Hình chiếu vuông góc của $A$ lên mặt phẳng $(Oxy)$ có tọa độ là",
+      "points": 0.25,
+      "sort_order": 890,
+      "choices": [
+        "$(1;0;0)$.",
+        "$(0;2;-3)$.",
+        "$(1;0;-3)$.",
+        "$(1;2;0)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Hình chiếu vuông góc của $A(1;2;-3)$ lên mặt phẳng $(Oxy)$ là $(1;2;0)$.",
+        "source": "THPT Lê Hồng Phong - Hải Phòng 2025",
+        "solution": "Hình chiếu vuông góc của $A(1;2;-3)$ lên mặt phẳng $(Oxy)$ là $(1;2;0)$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 90,
+      "type": "mcq",
+      "prompt": "(Sở Tuyên Quang 2025) Trong không gian với hệ trục tọa độ $Oxyz$, hình chiếu vuông góc của điểm $A(3;5;2)$ trên trục $Ox$ có tọa độ là",
+      "points": 0.25,
+      "sort_order": 900,
+      "choices": [
+        "$(3;0;0)$.",
+        "$(0;5;2)$.",
+        "$(0;0;2)$.",
+        "$(0;5;0)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Hình chiếu vuông góc của $A(3;5;2)$ trên trục $Ox$ là $(3;0;0)$.",
+        "source": "Sở Tuyên Quang 2025",
+        "solution": "Hình chiếu vuông góc của $A(3;5;2)$ trên trục $Ox$ là $(3;0;0)$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 91,
+      "type": "mcq",
+      "prompt": "(THPT Lê Thánh Tông - HCM 2025) Trong không gian với hệ tọa độ $Oxyz$, cho $\\vec{a}=-\\vec{i}+2\\vec{j}-3\\vec{k}$. Tọa độ của vectơ $\\vec{a}$ là",
+      "points": 0.25,
+      "sort_order": 910,
+      "choices": [
+        "$\\vec{a}=(2;-3;-1)$.",
+        "$\\vec{a}=(-1;2;-3)$.",
+        "$\\vec{a}=(2;-1;-3)$.",
+        "$\\vec{a}=(-3;2;-1)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{a}=-\\vec{i}+2\\vec{j}-3\\vec{k} \\Rightarrow \\vec{a}=(-1;2;-3)$.",
+        "source": "THPT Lê Thánh Tông - HCM 2025",
+        "solution": "$\\vec{a}=-\\vec{i}+2\\vec{j}-3\\vec{k} \\Rightarrow \\vec{a}=(-1;2;-3)$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 92,
+      "type": "mcq",
+      "prompt": "(Sở Quảng Nam 2025) Trong không gian $Oxyz$, cho $\\vec{u}=-2\\vec{i}-3\\vec{j}+4\\vec{k}$. Tọa độ của $\\vec{u}$ là",
+      "points": 0.25,
+      "sort_order": 920,
+      "choices": [
+        "$\\vec{u}=(2;3;-4)$.",
+        "$\\vec{u}=(2;3;4)$.",
+        "$\\vec{u}=(2;-3;4)$.",
+        "$\\vec{u}=(-2;-3;4)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{u}=-2\\vec{i}-3\\vec{j}+4\\vec{k} \\Rightarrow \\vec{u}=(-2;-3;4)$.",
+        "source": "Sở Quảng Nam 2025",
+        "solution": "$\\vec{u}=-2\\vec{i}-3\\vec{j}+4\\vec{k} \\Rightarrow \\vec{u}=(-2;-3;4)$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 93,
+      "type": "mcq",
+      "prompt": "(Sở Thái Nguyên 2025) Trong không gian với hệ tọa độ $Oxyz$, cho vectơ $\\vec{u}=\\vec{i}-3\\vec{j}+2\\vec{k}$. Tọa độ của vectơ $\\vec{u}$ là",
+      "points": 0.25,
+      "sort_order": 930,
+      "choices": [
+        "$(1;2;3)$.",
+        "$(2;3;1)$.",
+        "$(1;-3;2)$.",
+        "$(2;-3;1)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{u}=\\vec{i}-3\\vec{j}+2\\vec{k} \\Rightarrow \\vec{u}=(1;-3;2)$.",
+        "source": "Sở Thái Nguyên 2025",
+        "solution": "$\\vec{u}=\\vec{i}-3\\vec{j}+2\\vec{k} \\Rightarrow \\vec{u}=(1;-3;2)$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 94,
+      "type": "mcq",
+      "prompt": "(Liên Trường Nghệ An 2025) Trong không gian $Oxyz$, cho các vectơ $\\overrightarrow{OA}=-\\vec{i}+\\vec{k}$, $\\overrightarrow{OB}=\\vec{i}-\\vec{j}+2\\vec{k}$. Khi đó tọa độ vectơ $\\overrightarrow{AB}$ là",
+      "points": 0.25,
+      "sort_order": 940,
+      "choices": [
+        "$(-2;1;-1)$.",
+        "$(2;-1;1)$.",
+        "$(0;-1;3)$.",
+        "$(0;-1;-1)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\overrightarrow{AB} = \\overrightarrow{OB}-\\overrightarrow{OA} = (\\vec{i}-\\vec{j}+2\\vec{k})-(-\\vec{i}+\\vec{k}) = 2\\vec{i}-\\vec{j}+\\vec{k} = (2;-1;1)$.",
+        "source": "Liên Trường Nghệ An 2025",
+        "solution": "$\\overrightarrow{AB} = \\overrightarrow{OB}-\\overrightarrow{OA} = (\\vec{i}-\\vec{j}+2\\vec{k})-(-\\vec{i}+\\vec{k}) = 2\\vec{i}-\\vec{j}+\\vec{k} = (2;-1;1)$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 95,
+      "type": "mcq",
+      "prompt": "(THPT DTNT - Nghệ An 2025) Trong không gian $Oxyz$, cho $A(7;2;8)$, $M(-4;3;3)$. Tìm tọa độ điểm $B$ biết $\\triangle ABC$ vuông tại $C$ và $M$ là tâm đường tròn ngoại tiếp $\\triangle ABC$.",
+      "points": 0.25,
+      "sort_order": 950,
+      "choices": [
+        "$B(11;-1;5)$.",
+        "$B(-11;1;-5)$.",
+        "$B(1;-8;-14)$.",
+        "$B(-15;4;-2)$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Vì $\\triangle ABC$ vuông tại $C$ nên tâm đường tròn ngoại tiếp $M$ là trung điểm của cạnh huyền $AB$. Suy ra $B = 2M - A = (-8-7; 6-2; 6-8) = (-15;4;-2)$.",
+        "source": "THPT DTNT - Nghệ An 2025",
+        "solution": "Vì $\\triangle ABC$ vuông tại $C$ nên tâm đường tròn ngoại tiếp $M$ là trung điểm của cạnh huyền $AB$. Suy ra $B = 2M - A = (-8-7; 6-2; 6-8) = (-15;4;-2)$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 96,
+      "type": "mcq",
+      "prompt": "(THPT Hoằng Hóa 2 - Thanh Hóa 2025) Trong không gian $Oxyz$, cho vectơ $\\vec{u}=(2;1;-1)$. Khẳng định nào sau đây đúng?",
+      "points": 0.25,
+      "sort_order": 960,
+      "choices": [
+        "$\\vec{u}=2\\vec{i}-\\vec{j}+\\vec{k}$.",
+        "$\\vec{u}=2\\vec{i}+\\vec{j}+\\vec{k}$.",
+        "$\\vec{u}=-2\\vec{i}-\\vec{j}+\\vec{k}$.",
+        "$\\vec{u}=2\\vec{i}+\\vec{j}-\\vec{k}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Với $\\vec{u}=(2;1;-1)$ thì $\\vec{u}=2\\vec{i}+\\vec{j}-\\vec{k}$.",
+        "source": "THPT Hoằng Hóa 2 - Thanh Hóa 2025",
+        "solution": "Với $\\vec{u}=(2;1;-1)$ thì $\\vec{u}=2\\vec{i}+\\vec{j}-\\vec{k}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 97,
+      "type": "mcq",
+      "prompt": "(THPT Hoằng Hóa 2 - Thanh Hóa 2025) Trong không gian $Oxyz$, cho ba điểm $A(1;2;-1)$, $B(2;-1;3)$, $C(-2;3;3)$. Điểm $M(a;b;c)$ là điểm thứ tư của hình bình hành $ABCM$. Biểu thức $P=a^2+b^2-c^2$ có giá trị bằng bao nhiêu?",
+      "points": 0.25,
+      "sort_order": 970,
+      "choices": [
+        "$44$.",
+        "$6$.",
+        "$-3$.",
+        "$-1$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Để $ABCM$ là hình bình hành thì $\\overrightarrow{MC}=\\overrightarrow{AB}=(1;-3;4) \\Leftrightarrow (-2-a;3-b;3-c)=(1;-3;4) \\Leftrightarrow a=-3, b=6, c=-1$. Vậy $P = (-3)^2+6^2-(-1)^2 = 44$.",
+        "source": "THPT Hoằng Hóa 2 - Thanh Hóa 2025",
+        "solution": "Để $ABCM$ là hình bình hành thì $\\overrightarrow{MC}=\\overrightarrow{AB}=(1;-3;4) \\Leftrightarrow (-2-a;3-b;3-c)=(1;-3;4) \\Leftrightarrow a=-3, b=6, c=-1$. Vậy $P = (-3)^2+6^2-(-1)^2 = 44$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 98,
+      "type": "mcq",
+      "prompt": "(Đề thi vào ĐHSPHN 2025) Trong không gian với hệ trục tọa độ $Oxyz$, cho ba điểm $M(1;0;2)$, $N(2;-3;0)$ và $P(2;3;2)$. Chu vi của tam giác $MNP$ là",
+      "points": 0.25,
+      "sort_order": 980,
+      "choices": [
+        "$\\sqrt{10}+\\sqrt{14}+\\sqrt{40}$.",
+        "$\\sqrt{5}+\\sqrt{13}+\\sqrt{17}$.",
+        "$64$.",
+        "$\\sqrt{20}+\\sqrt{22}+\\sqrt{24}$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "$MN=\\sqrt{1+9+4}=\\sqrt{14}$, $MP=\\sqrt{1+9+0}=\\sqrt{10}$, $NP=\\sqrt{0+36+4}=\\sqrt{40}$. Chu vi tam giác $MNP$ là $\\sqrt{10}+\\sqrt{14}+\\sqrt{40}$.",
+        "source": "Đề thi vào ĐHSPHN 2025",
+        "solution": "$MN=\\sqrt{1+9+4}=\\sqrt{14}$, $MP=\\sqrt{1+9+0}=\\sqrt{10}$, $NP=\\sqrt{0+36+4}=\\sqrt{40}$. Chu vi tam giác $MNP$ là $\\sqrt{10}+\\sqrt{14}+\\sqrt{40}$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 99,
+      "type": "mcq",
+      "prompt": "(Cụm Ninh Giang - Tứ Kỳ - Gia Lộc 2025) Trong không gian với hệ tọa độ $(O;\\vec{i},\\vec{j},\\vec{k})$, cho hai vectơ $\\vec{a}=(1;2;3)$, $\\vec{b}=2\\vec{i}-4\\vec{k}$. Tìm tọa độ vectơ $\\vec{u}=\\vec{a}-\\vec{b}$.",
+      "points": 0.25,
+      "sort_order": 990,
+      "choices": [
+        "$\\vec{u}=(-1;-2;3)$.",
+        "$\\vec{u}=(-1;6;3)$.",
+        "$\\vec{u}=(-1;2;7)$.",
+        "$\\vec{u}=(-1;2;-1)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{b}=(2;0;-4) \\Rightarrow \\vec{a}-\\vec{b} = (1-2; 2-0; 3+4) = (-1;2;7)$.",
+        "source": "Cụm Ninh Giang - Tứ Kỳ - Gia Lộc 2025",
+        "solution": "$\\vec{b}=(2;0;-4) \\Rightarrow \\vec{a}-\\vec{b} = (1-2; 2-0; 3+4) = (-1;2;7)$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 100,
+      "type": "mcq",
+      "prompt": "(Cụm Ninh Giang - Tứ Kỳ - Gia Lộc 2025) Trong không gian $Oxyz$, cho các vectơ $\\overrightarrow{OA}=-\\vec{i}+\\vec{j}$, $\\overrightarrow{OB}=\\vec{i}+\\vec{j}-2\\vec{k}$. Khi đó tọa độ vectơ $\\overrightarrow{AB}$ là",
+      "points": 0.25,
+      "sort_order": 1000,
+      "choices": [
+        "$(2;2;-2)$.",
+        "$(2;1;-3)$.",
+        "$(0;0;-1)$.",
+        "$(2;0;-2)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\overrightarrow{OA}=(-1;1;0)$, $\\overrightarrow{OB}=(1;1;-2) \\Rightarrow \\overrightarrow{AB}=\\overrightarrow{OB}-\\overrightarrow{OA}=(2;0;-2)$.",
+        "source": "Cụm Ninh Giang - Tứ Kỳ - Gia Lộc 2025",
+        "solution": "$\\overrightarrow{OA}=(-1;1;0)$, $\\overrightarrow{OB}=(1;1;-2) \\Rightarrow \\overrightarrow{AB}=\\overrightarrow{OB}-\\overrightarrow{OA}=(2;0;-2)$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 101,
+      "type": "mcq",
+      "prompt": "(THPT Tư Nghĩa 1 - Quảng Ngãi 2025) Trong không gian với hệ tọa độ $Oxyz$, cho ba điểm $M(2;3;-1)$, $N(-1;1;1)$, $P(1;m-1;3)$. Với giá trị nào của $m$ thì tam giác $MNP$ vuông tại $N$?",
+      "points": 0.25,
+      "sort_order": 1010,
+      "choices": [
+        "$m=3$.",
+        "$m=0$.",
+        "$m=1$.",
+        "$m=2$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "$\\overrightarrow{NM}=(3;2;-2)$, $\\overrightarrow{NP}=(2;m-2;2)$. Tam giác $MNP$ vuông tại $N \\Leftrightarrow \\overrightarrow{NM}\\cdot\\overrightarrow{NP}=0 \\Leftrightarrow 6+2(m-2)-4=0 \\Leftrightarrow 2m-2=0 \\Leftrightarrow m=1$.",
+        "source": "THPT Tư Nghĩa 1 - Quảng Ngãi 2025",
+        "solution": "$\\overrightarrow{NM}=(3;2;-2)$, $\\overrightarrow{NP}=(2;m-2;2)$. Tam giác $MNP$ vuông tại $N \\Leftrightarrow \\overrightarrow{NM}\\cdot\\overrightarrow{NP}=0 \\Leftrightarrow 6+2(m-2)-4=0 \\Leftrightarrow 2m-2=0 \\Leftrightarrow m=1$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 102,
+      "type": "mcq",
+      "prompt": "(THPT Tư Nghĩa 1 - Quảng Ngãi 2025) Trong không gian với hệ tọa độ $Oxyz$, cho hai điểm $B(1;2;-3)$, $C(7;5;3)$. Tìm tọa độ điểm $E$ thỏa mãn đẳng thức $\\overrightarrow{CE} = 2\\overrightarrow{EB}$.",
+      "points": 0.25,
+      "sort_order": 1020,
+      "choices": [
+        "$E(3;9;-1)$.",
+        "$E(3;3;-1)$.",
+        "$E\\left(3;\\dfrac{8}{3};-\\dfrac{8}{3}\\right)$.",
+        "$E(2;3;1)$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Gọi $E(x;y;z)$. Ta có $\\overrightarrow{CE}=2\\overrightarrow{EB} \\Leftrightarrow \\begin{cases}x-7=2(1-x)\\\\y-5=2(2-y)\\\\z-3=2(-3-z)\\end{cases} \\Leftrightarrow \\begin{cases}x=3\\\\y=3\\\\z=-1\\end{cases}$. Vậy $E(3;3;-1)$.",
+        "source": "THPT Tư Nghĩa 1 - Quảng Ngãi 2025",
+        "solution": "Gọi $E(x;y;z)$. Ta có $\\overrightarrow{CE}=2\\overrightarrow{EB} \\Leftrightarrow \\begin{cases}x-7=2(1-x)\\\\y-5=2(2-y)\\\\z-3=2(-3-z)\\end{cases} \\Leftrightarrow \\begin{cases}x=3\\\\y=3\\\\z=-1\\end{cases}$. Vậy $E(3;3;-1)$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 103,
+      "type": "mcq",
+      "prompt": "(THPT Mai Trúc Loan - Hà Tĩnh 2025) Trong không gian với hệ tọa độ $Oxyz$, cho vectơ $\\vec{u}=(3;0;1)$ và $\\vec{v}=(2;1;0)$. Tính tích vô hướng $\\vec{u}\\cdot\\vec{v}$.",
+      "points": 0.25,
+      "sort_order": 1030,
+      "choices": [
+        "$\\vec{u}\\cdot\\vec{v}=8$.",
+        "$\\vec{u}\\cdot\\vec{v}=6$.",
+        "$\\vec{u}\\cdot\\vec{v}=-6$.",
+        "$\\vec{u}\\cdot\\vec{v}=0$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{u}\\cdot\\vec{v} = 3\\cdot 2 + 0\\cdot 1 + 1\\cdot 0 = 6$.",
+        "source": "THPT Mai Trúc Loan - Hà Tĩnh 2025",
+        "solution": "$\\vec{u}\\cdot\\vec{v} = 3\\cdot 2 + 0\\cdot 1 + 1\\cdot 0 = 6$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 104,
+      "type": "mcq",
+      "prompt": "(THPT Mai Trúc Loan - Hà Tĩnh 2025) Trong không gian $Oxyz$, cho tam giác $ABC$ với $A(1;2;-1)$, $B(2;-1;3)$, $C(-3;5;1)$. Tọa độ điểm $D$ sao cho tứ giác $ABCD$ là hình bình hành là",
+      "points": 0.25,
+      "sort_order": 1040,
+      "choices": [
+        "$(-2;8;-3)$.",
+        "$(-4;8;-3)$.",
+        "$(-4;8;-5)$.",
+        "$(-2;2;5)$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "$ABCD$ là hình bình hành $\\Leftrightarrow D = A+C-B = (1-3-2; 2+5+1; -1+1-3) = (-4;8;-3)$.",
+        "source": "THPT Mai Trúc Loan - Hà Tĩnh 2025",
+        "solution": "$ABCD$ là hình bình hành $\\Leftrightarrow D = A+C-B = (1-3-2; 2+5+1; -1+1-3) = (-4;8;-3)$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 105,
+      "type": "mcq",
+      "prompt": "Trong không gian $Oxyz$, cho hai điểm $A(2;-2;1)$, $B(0;1;2)$. Tọa độ điểm $M$ thuộc mặt phẳng $(Oxy)$ sao cho ba điểm $A, B, M$ thẳng hàng là",
+      "points": 0.25,
+      "sort_order": 1050,
+      "choices": [
+        "$M(4;-5;0)$.",
+        "$M(2;-3;0)$.",
+        "$M(0;0;1)$.",
+        "$M(4;5;0)$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Gọi $M(x;y;0) \\in (Oxy)$. $\\overrightarrow{AB}=(-2;3;1)$, $\\overrightarrow{AM}=(x-2;y+2;-1)$ cùng phương $\\Leftrightarrow \\dfrac{x-2}{-2}=\\dfrac{y+2}{3}=-1 \\Leftrightarrow x=4, y=-5$. Vậy $M(4;-5;0)$.",
+        "source": "Đề thi thử 2025",
+        "solution": "Gọi $M(x;y;0) \\in (Oxy)$. $\\overrightarrow{AB}=(-2;3;1)$, $\\overrightarrow{AM}=(x-2;y+2;-1)$ cùng phương $\\Leftrightarrow \\dfrac{x-2}{-2}=\\dfrac{y+2}{3}=-1 \\Leftrightarrow x=4, y=-5$. Vậy $M(4;-5;0)$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 106,
+      "type": "mcq",
+      "prompt": "Một phòng học có thiết kế dạng hình hộp chữ nhật với chiều dài là $8\\text{ m}$, chiều rộng là $6\\text{ m}$ và chiều cao là $3\\text{ m}$. Một chiếc đèn được treo tại chính giữa trần nhà của phòng học. Xét hệ trục tọa độ $Oxyz$ có gốc $O$ trùng với một góc phòng và mặt phẳng $(Oxy)$ trùng với mặt sàn (như hình vẽ), đơn vị đo lấy theo mét. Hãy tìm tọa độ của điểm treo đèn.\n![Hình Câu 106](/bank-images/chude15-hetruc/q106.jpeg)",
+      "points": 0.25,
+      "sort_order": 1060,
+      "choices": [
+        "$(4;4;4)$.",
+        "$(4;3;4)$.",
+        "$(3;4;3)$.",
+        "$(4;5;4)$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Theo hình vẽ, trục $Ox$ theo chiều rộng $6\\text{ m}$, trục $Oy$ theo chiều dài $8\\text{ m}$, trục $Oz$ theo chiều cao $3\\text{ m}$. Hai góc đối diện trên trần là $O'(0;0;3)$ và $B'(6;8;3)$. Điểm treo đèn là trung điểm $I$ của $O'B'$ nên $I(3;4;3)$.",
+        "source": "Đề thi thử 2025",
+        "solution": "Theo hình vẽ, trục $Ox$ theo chiều rộng $6\\text{ m}$, trục $Oy$ theo chiều dài $8\\text{ m}$, trục $Oz$ theo chiều cao $3\\text{ m}$. Hai góc đối diện trên trần là $O'(0;0;3)$ và $B'(6;8;3)$. Điểm treo đèn là trung điểm $I$ của $O'B'$ nên $I(3;4;3)$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 107,
+      "type": "mcq",
+      "prompt": "(Cụm Chương Mỹ - Thanh Oai 2025) Trong không gian với hệ tọa độ $Oxyz$, cho hai điểm $A(2;-1;-1)$, $B(-3;2;-2)$. Tọa độ của $\\overrightarrow{AB}$ là",
+      "points": 0.25,
+      "sort_order": 1070,
+      "choices": [
+        "$(5;-3;-1)$.",
+        "$(5;-3;1)$.",
+        "$(-5;1;-1)$.",
+        "$(-5;3;-1)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\overrightarrow{AB} = (-3-2; 2+1; -2+1) = (-5;3;-1)$.",
+        "source": "Cụm Chương Mỹ - Thanh Oai 2025",
+        "solution": "$\\overrightarrow{AB} = (-3-2; 2+1; -2+1) = (-5;3;-1)$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 108,
+      "type": "mcq",
+      "prompt": "(Cụm Chuyên Môn Đăk Lak 2025) Trong không gian với hệ tọa độ $Oxyz$, cho điểm $M(2;1;-3)$. Hình chiếu vuông góc của điểm $M(2;1;-3)$ trên trục $Ox$ có tọa độ là",
+      "points": 0.25,
+      "sort_order": 1080,
+      "choices": [
+        "$(0;1;0)$.",
+        "$(0;1;-3)$.",
+        "$(2;0;0)$.",
+        "$(0;0;-3)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Hình chiếu vuông góc của $M(2;1;-3)$ trên trục $Ox$ là $(2;0;0)$.",
+        "source": "Cụm Chuyên Môn Đăk Lak 2025",
+        "solution": "Hình chiếu vuông góc của $M(2;1;-3)$ trên trục $Ox$ là $(2;0;0)$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 109,
+      "type": "mcq",
+      "prompt": "(Cụm Chuyên Môn Đăk Lak 2025) Trong không gian $Oxyz$, cho hai vectơ $\\vec{a}=(2;3;3)$, $\\vec{b}=(3;2;-1)$. Khi đó tích vô hướng $\\vec{a}\\cdot\\vec{b}$ bằng",
+      "points": 0.25,
+      "sort_order": 1090,
+      "choices": [
+        "$\\vec{a}\\cdot\\vec{b}=9$.",
+        "$\\vec{a}\\cdot\\vec{b}=7$.",
+        "$\\vec{a}\\cdot\\vec{b}=3$.",
+        "$\\vec{a}\\cdot\\vec{b}=15$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{a}\\cdot\\vec{b} = 2\\cdot 3 + 3\\cdot 2 + 3(-1) = 9$.",
+        "source": "Cụm Chuyên Môn Đăk Lak 2025",
+        "solution": "$\\vec{a}\\cdot\\vec{b} = 2\\cdot 3 + 3\\cdot 2 + 3(-1) = 9$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 110,
+      "type": "mcq",
+      "prompt": "(Cụm Chuyên Môn Đăk Lak 2025) Trong không gian với hệ tọa độ $Oxyz$, cho $\\vec{a}=(2;3;3)$, $\\vec{b}=(0;-2;-1)$, $\\vec{c}=(1;-2;1)$. Khi đó tọa độ của vectơ $\\vec{u}=2\\vec{a}+\\vec{b}-\\vec{c}$ là",
+      "points": 0.25,
+      "sort_order": 1100,
+      "choices": [
+        "$\\vec{u}=(1;2;3)$.",
+        "$\\vec{u}=(3;6;4)$.",
+        "$\\vec{u}=(3;-1;5)$.",
+        "$\\vec{u}=(1;3;3)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$2\\vec{a}=(4;6;6)$, $\\vec{b}=(0;-2;-1)$, $-\\vec{c}=(-1;2;-1) \\Rightarrow \\vec{u}=(3;6;4)$.",
+        "source": "Cụm Chuyên Môn Đăk Lak 2025",
+        "solution": "$2\\vec{a}=(4;6;6)$, $\\vec{b}=(0;-2;-1)$, $-\\vec{c}=(-1;2;-1) \\Rightarrow \\vec{u}=(3;6;4)$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 111,
+      "type": "mcq",
+      "prompt": "(Cụm Chuyên Môn Đăk Lak 2025) Trong không gian $Oxyz$, cho $\\vec{a}=(2;-2;6)$. Khi đó độ dài của vectơ $\\vec{a}$ là",
+      "points": 0.25,
+      "sort_order": 1110,
+      "choices": [
+        "$|\\vec{a}|=6$.",
+        "$|\\vec{a}|=2\\sqrt{11}$.",
+        "$|\\vec{a}|=44$.",
+        "$|\\vec{a}|=\\sqrt{11}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$|\\vec{a}| = \\sqrt{2^2+(-2)^2+6^2} = \\sqrt{44} = 2\\sqrt{11}$.",
+        "source": "Cụm Chuyên Môn Đăk Lak 2025",
+        "solution": "$|\\vec{a}| = \\sqrt{2^2+(-2)^2+6^2} = \\sqrt{44} = 2\\sqrt{11}$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 112,
+      "type": "mcq",
+      "prompt": "(THPT Hà Trung - Thanh Hóa 2025) Trong không gian với hệ trục tọa độ $Oxyz$, cho ba vectơ $\\vec{a}=(1;2;3)$, $\\vec{b}=(2;2;-1)$, $\\vec{c}=(4;0;-4)$. Tọa độ của vectơ $\\vec{d}=\\vec{a}-\\vec{b}+2\\vec{c}$ là",
+      "points": 0.25,
+      "sort_order": 1120,
+      "choices": [
+        "$\\vec{d}=(7;0;-4)$.",
+        "$\\vec{d}=(-7;0;4)$.",
+        "$\\vec{d}=(-7;0;-4)$.",
+        "$\\vec{d}=(7;0;4)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{d} = (1-2+8; 2-2+0; 3+1-8) = (7;0;-4)$.",
+        "source": "THPT Hà Trung - Thanh Hóa 2025",
+        "solution": "$\\vec{d} = (1-2+8; 2-2+0; 3+1-8) = (7;0;-4)$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 113,
+      "type": "mcq",
+      "prompt": "(THPT Hà Trung - Thanh Hóa 2025) Trong không gian $Oxyz$, cho hai điểm $A(3;-2;3)$ và $B(-1;2;5)$. Tìm tọa độ trung điểm $I$ của đoạn thẳng $AB$.",
+      "points": 0.25,
+      "sort_order": 1130,
+      "choices": [
+        "$I(1;0;4)$.",
+        "$I(2;-2;-1)$.",
+        "$I(-2;2;1)$.",
+        "$I(2;0;8)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$I = \\left(\\dfrac{3-1}{2}; \\dfrac{-2+2}{2}; \\dfrac{3+5}{2}\\right) = (1;0;4)$.",
+        "source": "THPT Hà Trung - Thanh Hóa 2025",
+        "solution": "$I = \\left(\\dfrac{3-1}{2}; \\dfrac{-2+2}{2}; \\dfrac{3+5}{2}\\right) = (1;0;4)$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 114,
+      "type": "mcq",
+      "prompt": "(Sở Bắc Ninh 2025) Trong không gian $Oxyz$, cho hai điểm $A(1;2;3)$, $B(-2;4;0)$. Trung điểm của đoạn thẳng $AB$ có tung độ là",
+      "points": 0.25,
+      "sort_order": 1140,
+      "choices": [
+        "$1$.",
+        "$3$.",
+        "$2$.",
+        "$-1$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Tung độ trung điểm $I$ của $AB$ là $y_I = \\dfrac{y_A+y_B}{2} = \\dfrac{2+4}{2} = 3$.",
+        "source": "Sở Bắc Ninh 2025",
+        "solution": "Tung độ trung điểm $I$ của $AB$ là $y_I = \\dfrac{y_A+y_B}{2} = \\dfrac{2+4}{2} = 3$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 115,
+      "type": "mcq",
+      "prompt": "(Sở Bắc Ninh 2025) Trong không gian $Oxyz$, cho hai vectơ $\\vec{u}=(2;0;-2)$, $\\vec{v}=(-1;-1;6)$. Tích vô hướng $\\vec{u}\\cdot\\vec{v}$ bằng",
+      "points": 0.25,
+      "sort_order": 1150,
+      "choices": [
+        "$-14$.",
+        "$1$.",
+        "$0$.",
+        "$4$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{u}\\cdot\\vec{v} = 2(-1) + 0(-1) + (-2)\\cdot 6 = -14$.",
+        "source": "Sở Bắc Ninh 2025",
+        "solution": "$\\vec{u}\\cdot\\vec{v} = 2(-1) + 0(-1) + (-2)\\cdot 6 = -14$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 116,
+      "type": "mcq",
+      "prompt": "(THPT Phúc Thọ - Hà Nội 2025) Trong không gian với hệ tọa độ $Oxyz$, vectơ nào sau đây là vectơ pháp tuyến của mặt phẳng $(Oxy)$?",
+      "points": 0.25,
+      "sort_order": 1160,
+      "choices": [
+        "$\\vec{k}=(0;0;1)$.",
+        "$\\vec{m}=(1;1;1)$.",
+        "$\\vec{i}=(1;0;0)$.",
+        "$\\vec{j}=(0;1;0)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Trục $Oz \\perp (Oxy)$ nên $\\vec{k}=(0;0;1)$ là một vectơ pháp tuyến của mặt phẳng $(Oxy)$.",
+        "source": "THPT Phúc Thọ - Hà Nội 2025",
+        "solution": "Trục $Oz \\perp (Oxy)$ nên $\\vec{k}=(0;0;1)$ là một vectơ pháp tuyến của mặt phẳng $(Oxy)$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 15 · Dạng 1: Vectơ pháp tuyến và lập phương trình mặt phẳng cơ bản",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 117,
+      "type": "mcq",
+      "prompt": "(THPT Phúc Thọ - Hà Nội 2025) Trong không gian với hệ tọa độ $Oxyz$, tọa độ vectơ $\\vec{n}$ vuông góc với cả hai vectơ $\\vec{a}=(1;1;-2)$, $\\vec{b}=(1;0;3)$ là",
+      "points": 0.25,
+      "sort_order": 1170,
+      "choices": [
+        "$(2;-3;-1)$.",
+        "$(2;3;-1)$.",
+        "$(3;-5;-1)$.",
+        "$(3;5;-2)$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Vectơ $\\vec{n}$ vuông góc với cả $\\vec{a}$ và $\\vec{b}$ là tích có hướng $\\vec{n}=[\\vec{a},\\vec{b}] = (3;-5;-1)$.",
+        "source": "THPT Phúc Thọ - Hà Nội 2025",
+        "solution": "Vectơ $\\vec{n}$ vuông góc với cả $\\vec{a}$ và $\\vec{b}$ là tích có hướng $\\vec{n}=[\\vec{a},\\vec{b}] = (3;-5;-1)$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 17: Viết phương trình mặt phẳng có vectơ pháp tuyến tìm được bằng tích có hướng của cặp vectơ chỉ phương",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 118,
+      "type": "mcq",
+      "prompt": "(THPT Lê Quý Đôn - Hà Nội 2025) Trong không gian $Oxyz$, tọa độ vectơ $\\vec{u}=2\\vec{k}-3\\vec{j}+4\\vec{i}$ là",
+      "points": 0.25,
+      "sort_order": 1180,
+      "choices": [
+        "$(2;-4;3)$.",
+        "$(4;-3;2)$.",
+        "$(2;3;4)$.",
+        "$(4;3;2)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{u} = 4\\vec{i}-3\\vec{j}+2\\vec{k} \\Rightarrow \\vec{u}=(4;-3;2)$.",
+        "source": "THPT Lê Quý Đôn - Hà Nội 2025",
+        "solution": "$\\vec{u} = 4\\vec{i}-3\\vec{j}+2\\vec{k} \\Rightarrow \\vec{u}=(4;-3;2)$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 119,
+      "type": "mcq",
+      "prompt": "(THPT Nguyễn Quốc Trinh - Hà Nội 2025) Trong không gian $Oxyz$, cho vectơ $\\vec{a}=(2;1;-1)$ và $\\vec{b}=(3;-2;1)$. Vectơ $\\vec{a}+\\vec{b}$ có tọa độ là",
+      "points": 0.25,
+      "sort_order": 1190,
+      "choices": [
+        "$(5;-1;0)$.",
+        "$(5;-1;2)$.",
+        "$(5;1;2)$.",
+        "$(5;1;0)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{a}+\\vec{b} = (2+3; 1-2; -1+1) = (5;-1;0)$.",
+        "source": "THPT Nguyễn Quốc Trinh - Hà Nội 2025",
+        "solution": "$\\vec{a}+\\vec{b} = (2+3; 1-2; -1+1) = (5;-1;0)$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 120,
+      "type": "mcq",
+      "prompt": "(Sở Gia Lai 2025) Trong không gian $Oxyz$, cho vectơ $\\vec{a}=2\\vec{i}-3\\vec{j}+\\vec{k}$. Tọa độ của $\\vec{a}$ là",
+      "points": 0.25,
+      "sort_order": 1200,
+      "choices": [
+        "$(2;1;-3)$.",
+        "$(1;2;-3)$.",
+        "$(1;-3;2)$.",
+        "$(2;-3;1)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "$\\vec{a}=2\\vec{i}-3\\vec{j}+\\vec{k} \\Rightarrow \\vec{a}=(2;-3;1)$.",
+        "source": "Sở Gia Lai 2025",
+        "solution": "$\\vec{a}=2\\vec{i}-3\\vec{j}+\\vec{k} \\Rightarrow \\vec{a}=(2;-3;1)$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    }
+  ]
+}
