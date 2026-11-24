@@ -1,7 +1,14 @@
 import { state } from '../../store.js';
+import { go, registerCleanup } from '../../router.js';
 import { toast } from '../../lib/ui.js';
 import { escapeHtml, renderLatexText } from '../../lib/html.js';
-import { parseLatexAssignment } from '../../lib/assignment.js';
+import { saveEditorDraft, loadEditorDraft, clearEditorDraft } from '../../lib/draft.js';
+import {
+  parseLatexAssignment,
+  normalizeAssignmentEditor,
+  buildAssignmentSeedFromBank,
+  extractCategoryFromTitle,
+} from '../../lib/assignment.js';
 import {
   GEN_TYPES,
   GEN_LEVELS,
@@ -9,12 +16,12 @@ import {
   buildMatrixStats,
   buildPresetMatrix,
   pickFromMatrix,
-  shuffleMcqChoices,
   summarizePickedItems,
-  buildExamDescription,
   exportQuestionsToLatex,
 } from '../../lib/examGenerator.js';
 import {
+  fetchLearningPath,
+  fetchAssignmentEditor,
   saveAssignmentWithQuestions,
   uploadAssignmentImage,
   fetchQuestionBank,
@@ -369,9 +376,23 @@ const QB_STYLES = `
     }
     .qb-gen-config {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
       align-items: end;
+    }
+    .qb-pick-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 12px 16px;
+      border-radius: 16px;
+      background: #E9F2EC;
+      border: 1px solid rgba(47, 111, 78, 0.28);
+      color: #1F4E36;
+      font-size: 13.5px;
+      font-weight: 600;
     }
     .qb-field {
       display: flex;
@@ -1167,14 +1188,29 @@ const QB_STYLES = `
 export async function mountQuestionBank(root) {
   const PAGE_SIZE = 15;
   let currentQuestions = [];
+  let currentLectures = [];
   let selectedTopic = 'all';
   let selectedLevel = 'all';
   let selectedType = 'all';
   let searchQuery = '';
   let currentPage = 1;
   let selectedIds = new Set();
-  let generatorOpen = false;
+  let pickTargetId = null;
+  try {
+    pickTargetId = sessionStorage.getItem('lms:qbPickTarget') || null;
+  } catch {
+    pickTargetId = null;
+  }
+  let generatorOpen = Boolean(pickTargetId);
   let generatedItems = [];
+
+  registerCleanup(() => {
+    try {
+      sessionStorage.removeItem('lms:qbPickTarget');
+    } catch {
+      // Ignore storage error
+    }
+  });
 
   root.innerHTML = `
     ${QB_STYLES}
@@ -1202,15 +1238,22 @@ export async function mountQuestionBank(root) {
         </div>
       </header>
 
+      ${pickTargetId ? `
+        <div class="qb-pick-banner" id="qb-pick-banner">
+          <span>Đang chọn hoặc bốc câu hỏi để đưa vào đề đang soạn (${pickTargetId === 'new' ? 'Đề mới' : 'Đề đang chỉnh sửa'}).</span>
+          <button type="button" id="qb-cancel-pick-target-btn" class="qb-btn-secondary" style="background:#FFFFFF;height:32px;">Quay lại đề</button>
+        </div>
+      ` : ''}
+
       <!-- Prepackaged Packs Import Banner -->
       <div id="qb-pack-host"></div>
 
       <!-- Auto Exam Generator Panel -->
-      <section class="qb-gen-panel" id="qb-gen-panel">
+      <section class="qb-gen-panel ${generatorOpen ? 'open' : ''}" id="qb-gen-panel">
         <div class="qb-gen-head">
           <div>
             <h2 class="qb-gen-title">Tạo đề tự động theo ma trận</h2>
-            <p class="qb-gen-sub">Ghép đủ 3 phần Trắc nghiệm · Đúng/Sai · Trả lời ngắn theo dạng bài và tỉ lệ mức độ</p>
+            <p class="qb-gen-sub">Ghép đủ 3 phần Trắc nghiệm · Đúng/Sai · Trả lời ngắn rồi chỉnh tiếp hoặc lưu thành đề</p>
           </div>
           <button type="button" class="qb-btn-secondary" id="qb-close-gen-btn">Đóng</button>
         </div>
@@ -1218,7 +1261,25 @@ export async function mountQuestionBank(root) {
         <div class="qb-gen-config">
           <div class="qb-field">
             <label for="qb-gen-title-input">Tên đề thi mới</label>
-            <input id="qb-gen-title-input" type="text" class="qb-input" value="[Chuẩn 2025] Đề kiểm tra Chương 1 — Ứng dụng đạo hàm" placeholder="Nhập tên đề thi..." />
+            <input id="qb-gen-title-input" type="text" class="qb-input" value="Đề kiểm tra Chương 1 — Ứng dụng đạo hàm" placeholder="Nhập tên đề thi..." />
+          </div>
+          <div class="qb-field">
+            <label for="qb-gen-category-input">Chủ đề / Phân loại</label>
+            <input id="qb-gen-category-input" type="text" class="qb-input" list="qb-category-suggestions" value="Chuẩn 2025" placeholder="Ví dụ: Đại số, Hình học, Chuẩn 2025..." />
+            <datalist id="qb-category-suggestions">
+              <option value="Chuẩn 2025"></option>
+              <option value="Đại số & Giải tích"></option>
+              <option value="Hình học"></option>
+              <option value="Xác suất & Thống kê"></option>
+              <option value="Đề luyện tập"></option>
+              <option value="Vận dụng cao"></option>
+            </datalist>
+          </div>
+          <div class="qb-field">
+            <label for="qb-gen-lecture-select">Chương liên kết</label>
+            <select id="qb-gen-lecture-select" class="qb-input">
+              <option value="">Bài tập tự do</option>
+            </select>
           </div>
           <div class="qb-field">
             <label>Trạng thái khi lưu</label>
@@ -1292,10 +1353,16 @@ export async function mountQuestionBank(root) {
                 ${QB_ICONS.refresh}
                 <span id="qb-reshuffle-label">Trộn lại</span>
               </button>
-              <button type="button" class="qb-btn-primary" id="qb-save-generated-btn">
-                ${QB_ICONS.check}
-                <span>Lưu thành Đề thi</span>
+              <button type="button" class="${pickTargetId ? 'qb-btn-primary' : 'qb-btn-secondary'}" id="qb-edit-generated-btn" style="${pickTargetId ? '' : 'background:#FFFFFF;'}">
+                ${QB_ICONS.code}
+                <span>${pickTargetId ? 'Đưa vào đề đang soạn' : 'Mở trong Trình tạo đề'}</span>
               </button>
+              ${pickTargetId ? '' : `
+                <button type="button" class="qb-btn-primary" id="qb-save-generated-btn">
+                  ${QB_ICONS.check}
+                  <span>Lưu &amp; Mở đề thi</span>
+                </button>
+              `}
             </div>
           </div>
           <div class="qb-list" id="qb-gen-preview-list"></div>
@@ -1307,7 +1374,7 @@ export async function mountQuestionBank(root) {
         <span>Đã chọn <span id="qb-selected-count">0</span> câu hỏi</span>
         <div style="display:flex;gap:8px;">
           <button type="button" class="qb-btn-secondary" id="qb-clear-sel-btn">Bỏ chọn</button>
-          <button type="button" class="qb-btn-hero" id="qb-create-from-sel-btn" style="height:34px;">Tạo đề từ câu đã chọn</button>
+          <button type="button" class="qb-btn-hero" id="qb-create-from-sel-btn" style="height:34px;">${pickTargetId ? 'Đưa vào đề đang soạn' : 'Đưa vào Trình tạo đề'}</button>
         </div>
       </div>
 
@@ -1382,6 +1449,8 @@ export async function mountQuestionBank(root) {
   const packHostEl = root.querySelector('#qb-pack-host');
   const genPanelEl = root.querySelector('#qb-gen-panel');
   const genTitleInput = root.querySelector('#qb-gen-title-input');
+  const genCategoryInput = root.querySelector('#qb-gen-category-input');
+  const genLectureSelect = root.querySelector('#qb-gen-lecture-select');
   const genPublishBarEl = root.querySelector('#qb-gen-publish-bar');
   const genPresetsEl = root.querySelector('#qb-gen-presets');
   const genLevelBarEl = root.querySelector('#qb-gen-level-bar');
@@ -1529,7 +1598,13 @@ export async function mountQuestionBank(root) {
           const rows = buildMatrixStats(currentQuestions, genLevelMode);
           genMatrix = buildPresetMatrix(rows, preset);
           genMatrixInitialized = true;
-          if (genTitleInput) genTitleInput.value = preset.title;
+          if (genTitleInput) {
+            const parsedPresetTitle = extractCategoryFromTitle(preset.title);
+            genTitleInput.value = parsedPresetTitle.cleanTitle || preset.title;
+            if (genCategoryInput && parsedPresetTitle.category) {
+              genCategoryInput.value = parsedPresetTitle.category;
+            }
+          }
           generatedItems = [];
           genPreviewEl.classList.remove('open');
           renderGeneratorSlots();
@@ -1913,47 +1988,106 @@ export async function mountQuestionBank(root) {
     });
   }
 
-  async function saveQuestionsAsAssignment(title, list, options = {}) {
-    const cleanTitle = title.trim();
-    if (!cleanTitle || !list.length) return;
-    const {
-      published = true,
-      shuffleChoices = false,
-      description = '',
-    } = options;
-    const payload = {
-      title: cleanTitle,
-      published,
-      pdf_url: 'latex',
-      description,
-      lecture_id: null,
-      owner_id: state.profile?.id,
+  function getGeneratorConfig() {
+    return {
+      title: (genTitleInput?.value || '').trim(),
+      category: (genCategoryInput?.value || '').trim(),
+      lectureId: genLectureSelect?.value || '',
+      published: genPublishNow,
+      shuffleChoices: Boolean(genShuffleChoicesCb?.checked),
     };
-    const ordered = [...list].sort(
-      (a, b) => (TYPE_META[a.type]?.order || 1) - (TYPE_META[b.type]?.order || 1),
-    );
-    const formatted = ordered.map((q, idx) => {
-      const rawKey = Array.isArray(q.answer_keys) ? q.answer_keys[0] : q.answer_keys;
-      const keyObj = rawKey || { correct_answer: 'A' };
-      const maybeShuffled = shuffleChoices
-        ? shuffleMcqChoices(q, keyObj)
-        : { choices: q.choices || [], answerKey: keyObj };
-      return {
-        type: q.type || 'mcq',
-        prompt: q.prompt,
-        points: q.points || 1,
-        sort_order: idx + 1,
-        choices: maybeShuffled.choices,
-        settings: q.settings || {},
-        answer_key: maybeShuffled.answerKey,
-      };
+  }
+
+  function clearPickTarget() {
+    pickTargetId = null;
+    try {
+      sessionStorage.removeItem('lms:qbPickTarget');
+    } catch {
+      // Ignore storage error
+    }
+  }
+
+  function sendQuestionsToAssignmentEditor(list, options = {}) {
+    if (!list?.length) return;
+    const cfg = getGeneratorConfig();
+    const storage = typeof localStorage !== 'undefined' ? localStorage : null;
+    const targetId = pickTargetId || 'new';
+
+    let existingEditor = null;
+    if (pickTargetId) {
+      if (state.assignmentEditor && (pickTargetId === 'new' ? !state.assignmentEditor.assignment?.id : state.assignmentEditor.assignment?.id === pickTargetId)) {
+        existingEditor = state.assignmentEditor;
+      } else {
+        existingEditor = loadEditorDraft(storage, state.profile?.id, pickTargetId);
+      }
+    }
+
+    const seed = buildAssignmentSeedFromBank(list, {
+      title: options.title ?? (cfg.title || `Đề luyện tập (${list.length} câu)`),
+      category: options.category ?? cfg.category,
+      lectureId: options.lectureId ?? cfg.lectureId,
+      published: options.published ?? cfg.published,
+      shuffleChoices: options.shuffleChoices ?? cfg.shuffleChoices,
+      existingEditor,
     });
-    await saveAssignmentWithQuestions(payload, formatted);
+
+    state.assignmentEditor = seed;
+    state.isEditingAssignment = true;
+    saveEditorDraft(storage, state.profile?.id, targetId, seed);
+    clearPickTarget();
     toast(
-      `Đã ${published ? 'xuất bản' : 'lưu nháp'} đề "${cleanTitle}" (${list.length} câu)!`,
+      existingEditor
+        ? `Đã thêm ${list.length} câu vào đề đang soạn.`
+        : `Đã nạp ${list.length} câu vào Trình tạo đề.`,
       'success',
     );
-    window.location.hash = '#/assignments';
+    go(`assignments/${targetId}`);
+  }
+
+  async function saveQuestionsAsAssignment(title, list, options = {}) {
+    const cleanTitle = String(title || '').trim();
+    if (!cleanTitle || !list.length) return;
+    const cfg = getGeneratorConfig();
+    const seed = buildAssignmentSeedFromBank(list, {
+      title: cleanTitle,
+      category: options.category ?? cfg.category,
+      lectureId: options.lectureId ?? cfg.lectureId,
+      published: options.published ?? cfg.published,
+      shuffleChoices: options.shuffleChoices ?? cfg.shuffleChoices,
+    });
+    const payload = {
+      title: seed.assignment.title,
+      published: seed.assignment.published,
+      pdf_url: 'latex',
+      description: seed.latexSource,
+      lecture_id: seed.assignment.lecture_id || null,
+      owner_id: state.profile?.id,
+    };
+    const saved = await saveAssignmentWithQuestions(payload, seed.questions);
+    const storage = typeof localStorage !== 'undefined' ? localStorage : null;
+    clearEditorDraft(storage, state.profile?.id, 'new');
+    clearPickTarget();
+
+    toast(
+      `Đã ${seed.assignment.published ? 'xuất bản' : 'lưu nháp'} đề "${seed.assignment.title}" (${list.length} câu)!`,
+      'success',
+    );
+
+    if (saved?.id) {
+      try {
+        const savedEditor = await fetchAssignmentEditor(saved.id);
+        state.assignmentEditor = {
+          ...normalizeAssignmentEditor(savedEditor),
+          latexSource: seed.latexSource,
+        };
+        state.isEditingAssignment = true;
+        go(`assignments/${saved.id}`);
+        return;
+      } catch {
+        // Fallback to list if immediate fetch fails
+      }
+    }
+    go('assignments');
   }
 
   function renderFilterBars() {
@@ -2203,15 +2337,45 @@ export async function mountQuestionBank(root) {
     return loaded;
   }
 
+  function syncGeneratorLectureSelect() {
+    if (!genLectureSelect) return;
+    const prevVal = genLectureSelect.value;
+    genLectureSelect.innerHTML = [
+      '<option value="">Bài tập tự do</option>',
+      ...currentLectures.map((l) => `<option value="${escapeHtml(l.id)}">${escapeHtml(l.title)}</option>`),
+    ].join('');
+    if (pickTargetId) {
+      const storage = typeof localStorage !== 'undefined' ? localStorage : null;
+      const draft = (state.assignmentEditor && (pickTargetId === 'new' ? !state.assignmentEditor.assignment?.id : state.assignmentEditor.assignment?.id === pickTargetId))
+        ? state.assignmentEditor
+        : loadEditorDraft(storage, state.profile?.id, pickTargetId);
+      if (draft?.assignment) {
+        const parsedT = extractCategoryFromTitle(draft.assignment.title || '');
+        if (genTitleInput && parsedT.cleanTitle) genTitleInput.value = parsedT.cleanTitle;
+        if (genCategoryInput && (draft.assignment.category || parsedT.category)) {
+          genCategoryInput.value = draft.assignment.category || parsedT.category;
+        }
+        if (draft.assignment.lecture_id) genLectureSelect.value = draft.assignment.lecture_id;
+        return;
+      }
+    }
+    if (prevVal) genLectureSelect.value = prevVal;
+  }
+
   async function loadQuestions() {
     let dbQuestions = [];
-    try {
-      const { questions } = await fetchQuestionBank({ limit: 1000, offset: 0 });
-      dbQuestions = questions || [];
+    const [bankResult, pathResult] = await Promise.all([
+      fetchQuestionBank({ limit: 1000, offset: 0 }).catch(() => ({ questions: null })),
+      fetchLearningPath(state.profile?.role).catch(() => ({ lectures: [] })),
+    ]);
+    if (bankResult?.questions) {
+      dbQuestions = bankResult.questions;
       dbBankAvailable = true;
-    } catch {
+    } else {
       dbBankAvailable = false;
     }
+    currentLectures = pathResult?.lectures || [];
+    syncGeneratorLectureSelect();
 
     const dbPackIds = new Set(dbQuestions.map((q) => q.settings?.pack).filter(Boolean));
     const localQuestions = await loadPrepackagedQuestions(dbPackIds);
@@ -2223,6 +2387,12 @@ export async function mountQuestionBank(root) {
     renderGeneratorSlots();
     renderQuestionsList();
   }
+
+  root.querySelector('#qb-cancel-pick-target-btn')?.addEventListener('click', () => {
+    const target = pickTargetId;
+    clearPickTarget();
+    go(target ? `assignments/${target}` : 'assignments');
+  });
 
   // Toggle Generator Panel
   root.querySelector('#qb-toggle-gen-btn')?.addEventListener('click', () => {
@@ -2288,21 +2458,19 @@ export async function mountQuestionBank(root) {
     }
   });
 
+  root.querySelector('#qb-edit-generated-btn')?.addEventListener('click', () => {
+    if (!generatedItems.length) return;
+    sendQuestionsToAssignmentEditor(generatedItems);
+  });
+
   root.querySelector('#qb-save-generated-btn')?.addEventListener('click', async (e) => {
     if (!generatedItems.length) return;
-    const title = genTitleInput?.value || `Đề luyện tập (${generatedItems.length} câu)`;
+    const cfg = getGeneratorConfig();
+    const title = cfg.title || `Đề luyện tập (${generatedItems.length} câu)`;
     const btn = e.currentTarget;
     btn.disabled = true;
     try {
-      await saveQuestionsAsAssignment(
-        title,
-        generatedItems.map((x) => x.q),
-        {
-          published: genPublishNow,
-          shuffleChoices: Boolean(genShuffleChoicesCb?.checked),
-          description: buildExamDescription(generatedItems),
-        },
-      );
+      await saveQuestionsAsAssignment(title, generatedItems);
     } catch (err) {
       toast(err.message, 'error');
       btn.disabled = false;
@@ -2315,16 +2483,12 @@ export async function mountQuestionBank(root) {
     syncSelectionBar();
     renderQuestionsList();
   });
-  root.querySelector('#qb-create-from-sel-btn')?.addEventListener('click', async () => {
+  root.querySelector('#qb-create-from-sel-btn')?.addEventListener('click', () => {
     const selected = currentQuestions.filter((q) => selectedIds.has(q.id));
     if (!selected.length) return;
-    const title = window.prompt(`Nhập tên đề thi cho ${selected.length} câu đã chọn:`, `Đề kiểm tra (${selected.length} câu)`);
-    if (!title) return;
-    try {
-      await saveQuestionsAsAssignment(title, selected);
-    } catch (err) {
-      toast(err.message, 'error');
-    }
+    sendQuestionsToAssignmentEditor(selected, {
+      title: (genTitleInput?.value || '').trim() || `Đề kiểm tra (${selected.length} câu)`,
+    });
   });
 
   // Search debounce

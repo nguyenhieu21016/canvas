@@ -476,7 +476,8 @@ export async function mountAssignmentManagerView(id) {
       try {
         const editor = await fetchAssignmentEditor(id);
         state.assignmentEditor = normalizeAssignmentEditor(editor);
-        go('assignments');
+        state.isEditingAssignment = true;
+        go(`assignments/${id}`);
       } catch (error) {
         toast(error.message, 'error');
       }

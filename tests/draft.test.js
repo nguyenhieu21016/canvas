@@ -1,5 +1,14 @@
 import { describe, expect, it } from 'vitest';
-import { clearDraft, draftKey, loadDraft, saveDraft } from '../src/lib/draft.js';
+import {
+  clearDraft,
+  clearEditorDraft,
+  draftKey,
+  editorDraftKey,
+  loadDraft,
+  loadEditorDraft,
+  saveDraft,
+  saveEditorDraft,
+} from '../src/lib/draft.js';
 
 function memoryStorage() {
   const map = new Map();
@@ -23,5 +32,24 @@ describe('draft storage', () => {
 
     clearDraft(storage, 'u1', 'a1');
     expect(loadDraft(storage, 'u1', 'a1')).toBeNull();
+  });
+
+  it('saves, loads, and clears assignment editor drafts across new and existing IDs', () => {
+    const storage = memoryStorage();
+    expect(editorDraftKey('u1', 'new')).toBe('lms:editorDraft:u1:new');
+
+    saveEditorDraft(storage, 'u1', 'new', {
+      assignment: { title: 'Đề nháp F5', pdf_url: 'latex', published: true },
+      questions: [{ type: 'mcq', prompt: '1+1=?' }],
+      latexSource: '\\begin{ex}1+1=?\\end{ex}',
+    });
+
+    const loaded = loadEditorDraft(storage, 'u1', 'new');
+    expect(loaded.assignment.title).toBe('Đề nháp F5');
+    expect(loaded.questions).toHaveLength(1);
+    expect(loaded.latexSource).toContain('\\begin{ex}');
+
+    clearEditorDraft(storage, 'u1', 'new');
+    expect(loadEditorDraft(storage, 'u1', 'new')).toBeNull();
   });
 });

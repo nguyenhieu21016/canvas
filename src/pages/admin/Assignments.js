@@ -1,9 +1,16 @@
 import { state, pageRoot } from '../../store.js';
-import { wireRouteRetry, registerCleanup } from '../../router.js';
+import { wireRouteRetry, registerCleanup, go, route } from '../../router.js';
 import { toast, renderSkeletonAssignments, renderErrorState } from '../../lib/ui.js';
 import { escapeHtml, renderLatexText, option, setButtonLoading } from '../../lib/html.js';
 import { toDrivePreviewUrl } from '../../lib/drive.js';
-import { normalizeAssignmentEditor, parseLatexAssignment } from '../../lib/assignment.js';
+import {
+  normalizeAssignmentEditor,
+  parseLatexAssignment,
+  applyCategoryToTitle,
+  extractCategoryFromTitle,
+} from '../../lib/assignment.js';
+import { saveEditorDraft, loadEditorDraft, clearEditorDraft } from '../../lib/draft.js';
+import { exportQuestionsToLatex } from '../../lib/examGenerator.js';
 import {
   fetchLearningPath,
   fetchAssignmentsForManager,
@@ -16,9 +23,18 @@ import {
 
 const ASG_ICONS = {
   plus: `<svg class="lucide lucide-plus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>`,
+  arrowLeft: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>`,
+  sliders: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="21" x2="14" y1="4" y2="4"/><line x1="10" x2="3" y1="4" y2="4"/><line x1="21" x2="12" y1="12" y2="12"/><line x1="8" x2="3" y1="12" y2="12"/><line x1="21" x2="16" y1="20" y2="20"/><line x1="12" x2="3" y1="20" y2="20"/><line x1="14" x2="14" y1="2" y2="6"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="16" x2="16" y1="18" y2="22"/></svg>`,
+  check: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>`,
+  listTree: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12h-8"/><path d="M21 6H8"/><path d="M21 18h-8"/><path d="M3 6v4c0 1.1.9 2 2 2h3"/><path d="M3 10v6c0 1.1.9 2 2 2h3"/></svg>`,
+  eye: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>`,
+  code2: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>`,
+  imagePlus: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 5h6"/><path d="M19 2v6"/><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><circle cx="9" cy="9" r="2"/></svg>`,
+  refreshCw: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>`,
+  sparkles: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg>`,
   chevronDown: `<svg class="lucide lucide-chevron-down nh-asg-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>`,
   chevronLeft: `<svg class="lucide lucide-chevron-left" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>`,
-  chevronRight: `<svg class="lucide lucide-chevron-right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>`,
+  chevronRight: `<svg class="lucide lucide-chevron-right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>`,
   squarePen: `<svg class="lucide lucide-square-pen" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/></svg>`,
   trash2: `<svg class="lucide lucide-trash-2" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>`,
 };
@@ -1292,40 +1308,68 @@ export function emptyEditor() {
       published: true,
     },
     questions: [],
+    latexSource: '',
   };
 }
 
-export async function mountAssignmentManager() {
+function getEditorStorage() {
+  return typeof localStorage !== 'undefined' ? localStorage : null;
+}
+
+function currentEditorDraftId(editor = state.assignmentEditor) {
+  return editor?.assignment?.id || route().id || 'new';
+}
+
+function persistCurrentEditorDraft() {
+  if (!state.isEditingAssignment || !state.assignmentEditor) return;
+  saveEditorDraft(getEditorStorage(), state.profile?.id, currentEditorDraftId(), state.assignmentEditor);
+}
+
+export async function mountAssignmentManager(routeId) {
   const root = pageRoot();
+  const resolvedRouteId = routeId !== undefined ? routeId : route().id;
   root.innerHTML = renderSkeletonAssignments();
   try {
+    const storage = getEditorStorage();
+    const userId = state.profile?.id;
     const [path, assignments] = await Promise.all([
       fetchLearningPath(state.profile.role),
       fetchAssignmentsForManager(),
     ]);
+
+    if (resolvedRouteId === 'new') {
+      state.isEditingAssignment = true;
+      if (!state.assignmentEditor || state.assignmentEditor.assignment?.id) {
+        const draft = loadEditorDraft(storage, userId, 'new');
+        const base = emptyEditor();
+        state.assignmentEditor = draft
+          ? { ...base, ...draft, assignment: { ...base.assignment, ...draft.assignment } }
+          : base;
+      }
+    } else if (resolvedRouteId) {
+      state.isEditingAssignment = true;
+      if (state.assignmentEditor?.assignment?.id !== resolvedRouteId) {
+        const editor = await fetchAssignmentEditor(resolvedRouteId);
+        const normalized = normalizeAssignmentEditor(editor);
+        const draft = loadEditorDraft(storage, userId, resolvedRouteId);
+        state.assignmentEditor = draft
+          ? {
+            ...normalized,
+            ...draft,
+            assignment: { ...normalized.assignment, ...draft.assignment, id: normalized.assignment.id },
+          }
+          : normalized;
+      }
+    } else {
+      state.isEditingAssignment = false;
+    }
+
     if (!state.assignmentEditor) state.assignmentEditor = emptyEditor();
     if (state.isEditingAssignment) {
       root.innerHTML = `
-        <!-- Top Breadcrumb Bar -->
-        <div class="nh-admin-breadcrumb-bar">
-          <div class="nh-admin-breadcrumb-inner">
-            <a href="#/manage">Trung tâm Quản trị</a>
-            <span class="sep">&rsaquo;</span>
-            <a href="#/assignments">Quản lý Bài tập & Đề thi</a>
-            <span class="sep">&rsaquo;</span>
-            <span class="active">Chỉnh sửa đề thi</span>
-          </div>
-        </div>
-
-        <section class="assignment-editor-view" style="background: #EDF2E4; min-height: calc(100vh - 110px); padding: 24px max(var(--page-gutter), 16px);">
-          <div style="width: 100%; max-width: 98vw; margin: 0 auto;">
-            <div style="margin-bottom: 16px;">
-              <button type="button" id="back-to-list-btn" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; background: #ffffff; color: #455120; border: 1px solid #D8E2CA; border-radius: 9999px; font-family: 'Google Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s ease;" onmouseover="this.style.background='#F0F4E8'" onmouseout="this.style.background='#ffffff'">
-                <md-icon style="font-size: 18px;">arrow_back</md-icon>
-                <span>Quay lại danh sách</span>
-              </button>
-            </div>
-            <form id="assignment-editor" style="display: flex; flex-direction: column;">
+        <section class="nh-ed-page">
+          <div class="nh-ed-wrap">
+            <form id="assignment-editor" style="display: flex; flex-direction: column; gap: 16px;">
               ${renderAssignmentEditor(path.lectures)}
             </form>
           </div>
@@ -1335,16 +1379,18 @@ export async function mountAssignmentManager() {
     } else {
       const cleanup = renderAssignmentsListView(root, assignments, path, {
         onCreate: () => {
+          clearEditorDraft(storage, userId, 'new');
           state.assignmentEditor = emptyEditor();
           state.isEditingAssignment = true;
-          mountAssignmentManager();
+          go('assignments/new');
         },
         onOpen: async (assignmentId) => {
           try {
+            clearEditorDraft(storage, userId, assignmentId);
             const editor = await fetchAssignmentEditor(assignmentId);
             state.assignmentEditor = normalizeAssignmentEditor(editor);
             state.isEditingAssignment = true;
-            await mountAssignmentManager();
+            go(`assignments/${assignmentId}`);
           } catch (error) {
             toast(error.message, 'error');
           }
@@ -1353,8 +1399,9 @@ export async function mountAssignmentManager() {
           if (!window.confirm('Xóa đề này?')) return;
           try {
             await deleteAssignment(assignmentId);
+            clearEditorDraft(storage, userId, assignmentId);
             toast('Đã xóa đề thi.', 'success');
-            await mountAssignmentManager();
+            await mountAssignmentManager(null);
           } catch (error) {
             toast(error.message, 'error');
           }
@@ -1391,32 +1438,736 @@ export function renderPdfPreview(url) {
   return `<iframe src="${escapeHtml(preview)}" style="width: 100%; height: 100%; border: 0; border-radius: 8px;" loading="lazy"></iframe>`;
 }
 
+function summarizeQuestionsCompact(questions = []) {
+  const counts = { mcq: 0, tf4: 0, short: 0 };
+  for (const q of questions) {
+    const t = q?.type || 'mcq';
+    counts[t] = (counts[t] || 0) + 1;
+  }
+  const parts = [];
+  if (counts.mcq) parts.push(`${counts.mcq} TN`);
+  if (counts.tf4) parts.push(`${counts.tf4} Đ/S`);
+  if (counts.short) parts.push(`${counts.short} TLN`);
+  return { total: questions.length, counts, text: parts.join(' · ') };
+}
+
+function getShortAnswerPreview(question) {
+  const key = question?.answer_key || {};
+  if (question?.type === 'tf4') {
+    const arr = Array.isArray(key.correct_answer) ? key.correct_answer : [];
+    return arr.length ? arr.map((v) => (v ? 'Đ' : 'S')).join('') : 'Đ/S';
+  }
+  if (question?.type === 'short') {
+    const first = (key.accepted_answers || [])[0] ?? key.correct_answer ?? '';
+    return String(first).slice(0, 8) || 'TLN';
+  }
+  return String(key.correct_answer || 'A').toUpperCase();
+}
+
+function stripLatexForSnippet(text = '') {
+  return String(text)
+    .replace(/!\[[^\]]*\]\([^)]+\)/g, '[Hình]')
+    .replace(/^\([^)]+\)\s*/, '')
+    .replace(/\\(?:textbf|textit|dfrac|frac|sqrt|cdot|times|infty|le|ge|ne|approx|Leftrightarrow|Rightarrow)\b/g, ' ')
+    .replace(/[$\\{}]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+export function renderOutlineListHtml(questions = [], activeIndex = 0) {
+  if (!questions.length) {
+    return `<div class="nh-ed-outline-empty">Chưa có câu hỏi</div>`;
+  }
+  const roman = ['I', 'II', 'III', 'IV', 'V'];
+  const partTitles = { mcq: 'Trắc nghiệm', tf4: 'Đúng / Sai', short: 'Trả lời ngắn' };
+  let html = '';
+  let prevType = null;
+  let partNum = 0;
+
+  questions.forEach((q, idx) => {
+    const qType = q?.type || 'mcq';
+    if (qType !== prevType) {
+      prevType = qType;
+      partNum += 1;
+      let groupCount = 0;
+      for (let i = idx; i < questions.length && (questions[i]?.type || 'mcq') === qType; i += 1) {
+        groupCount += 1;
+      }
+      html += `<div class="nh-ed-outline-sec">Phần ${roman[partNum - 1] || partNum} · ${partTitles[qType] || 'Câu hỏi'} (${groupCount})</div>`;
+    }
+    let typeSeq = 1;
+    for (let i = idx - 1; i >= 0 && (questions[i]?.type || 'mcq') === qType; i -= 1) typeSeq += 1;
+    const qNumStr = String(typeSeq).padStart(2, '0');
+    const snippet = stripLatexForSnippet(q.prompt || '');
+    const label = snippet ? `Câu ${qNumStr} · ${snippet}` : `Câu ${qNumStr}`;
+    const ans = getShortAnswerPreview(q);
+
+    html += `
+      <button type="button" class="nh-ed-outline-row" data-outline-idx="${idx}" aria-current="${idx === activeIndex ? 'true' : 'false'}" title="${escapeHtml(label)}">
+        <span class="nh-ed-outline-txt">${escapeHtml(label)}</span>
+        <span class="nh-ed-outline-ans">${escapeHtml(ans)}</span>
+      </button>
+    `;
+  });
+
+  return html;
+}
+
+const ED_STYLES = `
+  <style>
+    .nh-ed-page {
+      min-height: calc(100vh - 110px);
+      background: #F7F7F2;
+      padding: 20px 20px 56px;
+      font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif;
+      color: #181B16;
+    }
+    .nh-ed-wrap {
+      width: 100%;
+      max-width: 1480px;
+      margin: 0 auto;
+    }
+    .nh-ed-hero-title {
+      width: 100%;
+      margin: 0;
+      padding: 4px 10px;
+      margin-left: -10px;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      background: transparent;
+      color: #F7F7F2;
+      font-family: var(--md-ref-typeface-brand, 'Google Sans', sans-serif);
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.015em;
+      line-height: 1.25;
+      outline: none;
+      box-sizing: border-box;
+      transition: background-color 0.14s ease, border-color 0.14s ease;
+    }
+    .nh-ed-hero-title::placeholder { color: rgba(247, 247, 242, 0.45); }
+    .nh-ed-hero-title:hover { background: rgba(247, 247, 242, 0.08); }
+    .nh-ed-hero-title:focus {
+      background: rgba(247, 247, 242, 0.12);
+      border-color: rgba(247, 247, 242, 0.38);
+    }
+    .nh-ed-hero-meta {
+      margin: 0;
+      font-size: 13px;
+      color: rgba(247, 247, 242, 0.74);
+      font-variant-numeric: tabular-nums;
+    }
+    .nh-ed-hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+    .nh-ed-btn-hero {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      height: 40px;
+      padding: 0 18px;
+      border: 0;
+      border-radius: 9999px;
+      background: #F7F7F2;
+      color: #181B16;
+      font-family: inherit;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background-color 0.15s ease;
+    }
+    .nh-ed-btn-hero:hover { background: #EBEDE6; }
+    .nh-ed-btn-hero:disabled { opacity: 0.6; cursor: not-allowed; }
+    .nh-ed-btn-hero--ghost {
+      background: rgba(247, 247, 242, 0.14);
+      color: #F7F7F2;
+    }
+    .nh-ed-btn-hero--ghost:hover { background: rgba(247, 247, 242, 0.22); }
+    .nh-ed-btn-hero--ghost[aria-expanded="true"] {
+      background: rgba(247, 247, 242, 0.26);
+    }
+    .nh-ed-btn-hero--danger-icon {
+      width: 40px;
+      padding: 0;
+      background: rgba(247, 247, 242, 0.11);
+      color: #F8D4D1;
+    }
+    .nh-ed-btn-hero--danger-icon:hover {
+      background: rgba(184, 67, 58, 0.36);
+      color: #FFFFFF;
+    }
+
+    /* Meta Drawer */
+    .nh-ed-meta-drawer {
+      display: none;
+      background: #FFFFFF;
+      border: 1px solid #E4E6DE;
+      border-radius: 20px;
+      padding: 18px 20px;
+    }
+    .nh-ed-meta-drawer.open { display: block; }
+    .nh-ed-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      align-items: start;
+    }
+    .nh-ed-field-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #64695F;
+      margin-bottom: 6px;
+    }
+    .nh-ed-input {
+      width: 100%;
+      height: 38px;
+      padding: 0 12px;
+      border-radius: 11px;
+      border: 1px solid #E4E6DE;
+      background: #F7F7F2;
+      color: #181B16;
+      font-family: inherit;
+      font-size: 13.5px;
+      box-sizing: border-box;
+      outline: none;
+      transition: border-color 0.14s ease, background-color 0.14s ease;
+    }
+    .nh-ed-input:focus {
+      background: #FFFFFF;
+      border-color: #181B16;
+    }
+    .nh-ed-seg {
+      display: inline-flex;
+      padding: 3px;
+      gap: 4px;
+      border-radius: 9999px;
+      background: #EBEDE6;
+      height: 38px;
+      box-sizing: border-box;
+      align-items: center;
+    }
+    .nh-ed-seg-btn {
+      height: 32px;
+      padding: 0 13px;
+      border: 0;
+      border-radius: 9999px;
+      background: transparent;
+      color: #64695F;
+      font-family: inherit;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background-color 0.14s ease, color 0.14s ease;
+    }
+    .nh-ed-seg-btn[aria-pressed="true"] {
+      background: #FFFFFF;
+      color: #181B16;
+    }
+    .nh-ed-combo-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      max-height: 240px;
+      overflow-y: auto;
+      background: #FFFFFF;
+      border-radius: 12px;
+      z-index: 100;
+      box-shadow: 0 10px 28px rgba(24, 27, 22, 0.10);
+      border: 1px solid #E4E6DE;
+      padding: 4px;
+    }
+    .nh-ed-combo-opt {
+      padding: 9px 11px;
+      cursor: pointer;
+      font-size: 13px;
+      color: #181B16;
+      border-radius: 8px;
+    }
+    .nh-ed-combo-opt:hover { background: #EBEDE6; }
+
+    /* Shared Buttons & Badges inside workspace */
+    .nh-ed-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      height: 32px;
+      padding: 0 12px;
+      border-radius: 9999px;
+      border: 1px solid transparent;
+      font-family: inherit;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background-color 0.14s ease, border-color 0.14s ease;
+    }
+    .nh-ed-btn--primary { background: #181B16; color: #F7F7F2; }
+    .nh-ed-btn--primary:hover { background: #2C3028; }
+    .nh-ed-btn--outline { background: #FFFFFF; border-color: #E4E6DE; color: #181B16; }
+    .nh-ed-btn--outline:hover { background: #EBEDE6; border-color: #D3D7CB; }
+    .nh-ed-btn--secondary { background: #EBEDE6; color: #181B16; }
+    .nh-ed-btn--secondary:hover { background: #E2E5DC; }
+    .nh-ed-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+    .nh-ed-badge {
+      display: inline-flex;
+      align-items: center;
+      height: 24px;
+      padding: 0 10px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      background: #EBEDE6;
+      color: #181B16;
+      white-space: nowrap;
+    }
+    .nh-ed-badge--dark { background: #181B16; color: #F7F7F2; }
+    .nh-ed-badge--ok { background: #E9F2EC; color: #1F4E36; }
+
+    /* 3-Column Variant B Grid */
+    .nh-ed-grid-b {
+      display: grid;
+      grid-template-columns: 224px minmax(0, 1fr) minmax(0, 1fr);
+      gap: 14px;
+      align-items: stretch;
+    }
+    .nh-ed-grid-pdf {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+    .nh-ed-pane {
+      background: #FFFFFF;
+      border: 1px solid #E4E6DE;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      height: calc(100vh - 210px);
+      min-height: 540px;
+      overflow: hidden;
+    }
+    .nh-ed-pane-head {
+      padding: 12px 16px;
+      border-bottom: 1px solid #EFEFE9;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      background: #FFFFFF;
+      flex-shrink: 0;
+    }
+    .nh-ed-pane-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #181B16;
+      margin: 0;
+    }
+    .nh-ed-pane-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: #EBEDE6;
+      color: #181B16;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+    .nh-ed-pane-body {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 16px 18px;
+    }
+
+    /* Left Outline Column */
+    .nh-ed-outline-body {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .nh-ed-outline-sec {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #64695F;
+      padding: 8px 8px 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .nh-ed-outline-row {
+      width: 100%;
+      min-height: 34px;
+      border: 0;
+      background: transparent;
+      color: #181B16;
+      font-family: inherit;
+      font-size: 12.5px;
+      padding: 5px 8px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      cursor: pointer;
+      text-align: left;
+      transition: background-color 0.12s ease;
+    }
+    .nh-ed-outline-row:hover { background: #F7F7F2; }
+    .nh-ed-outline-row[aria-current="true"] {
+      background: #EBEDE6;
+      font-weight: 600;
+    }
+    .nh-ed-outline-txt {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      min-width: 0;
+    }
+    .nh-ed-outline-ans {
+      flex-shrink: 0;
+      height: 21px;
+      padding: 0 7px;
+      border-radius: 9999px;
+      background: #E9F2EC;
+      color: #1F4E36;
+      font-size: 11px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      display: inline-flex;
+      align-items: center;
+    }
+    .nh-ed-outline-empty {
+      padding: 28px 12px;
+      text-align: center;
+      font-size: 12.5px;
+      color: #64695F;
+    }
+
+    /* Preview Question Cards (Gọn chữ) */
+    .nh-ed-part-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 14px 4px 4px;
+      border-radius: 9999px;
+      background: #EBEDE6;
+      border: 1px solid #E4E6DE;
+      font-size: 13px;
+      font-weight: 700;
+      color: #181B16;
+      margin: 4px 0 12px;
+    }
+    .nh-ed-part-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #181B16;
+      color: #F7F7F2;
+      font-size: 11.5px;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+    .nh-ed-q-card {
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid #E4E6DE;
+      background: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      cursor: pointer;
+      transition: border-color 0.14s ease, background-color 0.14s ease;
+    }
+    .nh-ed-q-card:hover { border-color: #D3D7CB; }
+    .nh-ed-q-card.active-q {
+      background: #F7F7F2;
+      border-color: #181B16;
+    }
+    .nh-ed-q-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .nh-ed-q-prompt {
+      font-size: 14px;
+      line-height: 1.62;
+      color: #181B16;
+    }
+    .nh-ed-q-prompt img,
+    .nh-ed-sol-body img {
+      display: block;
+      max-width: 100%;
+      max-height: 230px;
+      object-fit: contain;
+      border-radius: 10px;
+      border: 1px solid #EFEFE9;
+      background: #FFFFFF;
+      padding: 6px;
+      margin: 8px 0 2px;
+    }
+    .nh-ed-choices {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px;
+    }
+    .nh-ed-choice {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 11px;
+      border-radius: 10px;
+      border: 1px solid #E4E6DE;
+      background: #F7F7F2;
+      font-size: 13.5px;
+      color: #181B16;
+    }
+    .nh-ed-choice.is-ok {
+      background: #E9F2EC;
+      border-color: rgba(47, 111, 78, 0.35);
+      color: #1F4E36;
+      font-weight: 600;
+    }
+    .nh-ed-choice-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px solid #D3D7CB;
+      background: #FFFFFF;
+      display: grid;
+      place-items: center;
+      font-size: 11px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .nh-ed-choice.is-ok .nh-ed-choice-dot {
+      background: #2F6F4E;
+      border-color: #2F6F4E;
+      color: #FFFFFF;
+    }
+    .nh-ed-tf-list { display: flex; flex-direction: column; gap: 6px; }
+    .nh-ed-tf-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 11px;
+      border-radius: 10px;
+      border: 1px solid #E4E6DE;
+      background: #F7F7F2;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .nh-ed-tf-pill {
+      flex-shrink: 0;
+      padding: 2px 9px;
+      border-radius: 9999px;
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+    .nh-ed-tf-pill.is-t { background: #E9F2EC; color: #1F4E36; }
+    .nh-ed-tf-pill.is-f { background: #F8EAE8; color: #B8433A; }
+    .nh-ed-sol {
+      border-top: 1px solid #EFEFE9;
+      padding-top: 8px;
+    }
+    .nh-ed-sol summary {
+      cursor: pointer;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #64695F;
+      user-select: none;
+    }
+    .nh-ed-sol-body {
+      margin-top: 8px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: #F7F7F2;
+      font-size: 13px;
+      line-height: 1.65;
+      color: #2A2E27;
+      max-width: 100%;
+      overflow-x: auto;
+    }
+
+    /* CodeMirror Container */
+    .nh-ed-cm-box {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      background: #F7F7F2;
+    }
+    .nh-ed-cm-box .CodeMirror {
+      height: 100% !important;
+      flex: 1;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 13px;
+      line-height: 1.65;
+      border: 0;
+      border-radius: 0;
+      background: #F7F7F2;
+      color: #181B16;
+    }
+    .nh-ed-cm-box .CodeMirror-gutters {
+      background: #EFEFE9;
+      border-right: 1px solid #E4E6DE;
+    }
+    .nh-ed-cm-box .CodeMirror-scroll {
+      height: 100% !important;
+      overflow-y: auto !important;
+      overflow-x: auto !important;
+    }
+    .cm-question-marker-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #181B16;
+      color: #F7F7F2;
+      font-family: 'Google Sans', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin: 6px 0 4px;
+      user-select: none;
+    }
+    .nh-ed-code-foot {
+      padding: 8px 14px;
+      border-top: 1px solid #EFEFE9;
+      background: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 12px;
+      color: #64695F;
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+    }
+
+    /* Mobile tab switcher */
+    .nh-ed-mob-tabs { display: none; }
+    .nh-ed-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 10px;
+      padding: 40px 20px;
+      height: 100%;
+      box-sizing: border-box;
+      color: #64695F;
+    }
+    .nh-ed-empty h3 { margin: 0; font-size: 15px; font-weight: 700; color: #181B16; }
+    .nh-ed-empty p { margin: 0; max-width: 320px; font-size: 13px; }
+
+    @media (max-width: 960px) {
+      .nh-ed-page { padding: 14px 12px 48px; }
+      .nh-ed-hero-title { font-size: 19px; }
+      .nh-ed-meta-grid { grid-template-columns: minmax(0, 1fr); }
+      .nh-ed-grid-b, .nh-ed-grid-pdf { grid-template-columns: minmax(0, 1fr); }
+      .nh-ed-pane { height: auto; min-height: 440px; max-height: none; }
+      .nh-ed-cm-box .CodeMirror { height: 460px !important; }
+      .nh-ed-choices { grid-template-columns: minmax(0, 1fr); }
+      .nh-ed-mob-tabs { display: flex; width: 100%; }
+      .nh-ed-mob-hide { display: none !important; }
+    }
+  </style>
+`;
+
 export function renderAssignmentEditor(lectures) {
   const { assignment, questions } = state.assignmentEditor;
   const isLatexMode = assignment.pdf_url === 'latex' || !assignment.pdf_url;
+  const stats = summarizeQuestionsCompact(questions);
+  const currentLectureTitle = assignment.lecture_id && lectures.find((l) => l.id === assignment.lecture_id)
+    ? lectures.find((l) => l.id === assignment.lecture_id).title
+    : (assignment.lecture_id ? '' : 'Bài tập tự do');
+  const extractedTitleCat = extractCategoryFromTitle(assignment.title).category;
+  const categoryVal = assignment.category || extractedTitleCat || (assignment.description && assignment.description.startsWith('__CAT__:') ? assignment.description.replace('__CAT__:', '').trim() : '');
+  const metaSummaryParts = [`${stats.total} câu`];
+  if (stats.text) metaSummaryParts.push(stats.text);
+  metaSummaryParts.push(currentLectureTitle || 'Bài tập tự do');
+  const latexLinesCount = (state.assignmentEditor.latexSource || '').split('\n').length;
 
   return `
-    <!-- Unified Header + Info Card -->
-    <div class="panel" style="padding: 20px 24px; margin-bottom: 20px;">
-      <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 16px; flex-wrap: wrap;">
-        <div>
-          <h2 style="margin: 0; font-size: 16px; font-weight: 700; color: var(--md-sys-color-on-surface);">${assignment.id ? 'Chỉnh sửa đề thi' : 'Soạn thảo đề thi mới'}</h2>
+    ${ED_STYLES}
+
+    <!-- Obsidian Hero Header (matches QuestionBank, Assignments list, Courses, Salary) -->
+    <header class="asg-overview-hero">
+      <button type="button" id="back-to-list-btn" class="phase-back-link" style="background:transparent;border:0;padding:0;cursor:pointer;font-family:inherit;">
+        ${ASG_ICONS.arrowLeft}
+        <span>Đề thi &amp; Bài tập</span>
+      </button>
+      <div class="asg-overview-hero-row">
+        <div class="asg-overview-hero-left">
+          <input
+            class="nh-ed-hero-title"
+            name="title"
+            value="${escapeHtml(assignment.title)}"
+            placeholder="Nhập tên đề thi..."
+            aria-label="Tên đề thi"
+            required
+          />
+          <p class="nh-ed-hero-meta" id="nh-ed-hero-meta">${escapeHtml(metaSummaryParts.join(' · '))}</p>
         </div>
-        <div style="display: flex; gap: 8px; align-items: center;">
-          ${assignment.id ? `<button id="delete-assignment" type="button" class="btn-danger-outline">Xóa đề</button>` : ''}
-          <button type="submit" class="btn-primary">Lưu đề thi</button>
+        <div class="nh-ed-hero-actions">
+          <button type="button" id="nh-ed-meta-toggle" class="nh-ed-btn-hero nh-ed-btn-hero--ghost" aria-expanded="false">
+            ${ASG_ICONS.sliders}
+            <span>Thông tin đề</span>
+          </button>
+          ${assignment.id ? `
+            <button type="button" id="delete-assignment" class="nh-ed-btn-hero nh-ed-btn-hero--danger-icon" title="Xóa đề thi" aria-label="Xóa đề thi">
+              ${ASG_ICONS.trash2}
+            </button>
+          ` : ''}
+          <button type="submit" id="nh-ed-save-btn" class="nh-ed-btn-hero">
+            ${ASG_ICONS.check}
+            <span>Lưu đề thi</span>
+          </button>
         </div>
       </div>
+    </header>
 
-      <div class="form-grid two" style="gap: 12px;">
+    <!-- Collapsible Metadata Drawer -->
+    <div class="nh-ed-meta-drawer" id="nh-ed-meta-drawer">
+      <div class="nh-ed-meta-grid">
         <div>
-          <label class="field-label">Tên đề thi / Bài tập về nhà <span style="color: var(--md-sys-color-error);">*</span></label>
-          <input class="field" name="title" value="${escapeHtml(assignment.title)}" placeholder="Nhập tên đề thi..." required>
-        </div>
-
-        <div>
-          <label class="field-label">Chủ đề / Phân loại (Tùy chọn tạo Pill lọc)</label>
-          <input class="field" name="category_tag" list="category-suggestions" value="${escapeHtml(assignment.category || (assignment.description && assignment.description.startsWith('__CAT__:') ? assignment.description.replace('__CAT__:', '').trim() : ''))}" placeholder="Ví dụ: Đại số, Hình học, Xác suất, Luyện đề...">
+          <label class="nh-ed-field-label" for="nh-ed-category-inp">Chủ đề / Phân loại</label>
+          <input
+            id="nh-ed-category-inp"
+            class="nh-ed-input"
+            name="category_tag"
+            list="category-suggestions"
+            value="${escapeHtml(categoryVal)}"
+            placeholder="Ví dụ: Đại số, Hình học, Luyện đề..."
+          />
           <datalist id="category-suggestions">
             <option value="Đại số & Giải tích"></option>
             <option value="Hình học"></option>
@@ -1426,189 +2177,180 @@ export function renderAssignmentEditor(lectures) {
           </datalist>
         </div>
 
-        <div class="custom-combobox" style="position: relative; grid-column: 1 / -1;">
-          <input type="hidden" name="lecture_id" value="${escapeHtml(assignment.lecture_id ?? '')}">
-          <label class="field-label">Chương liên kết</label>
+        <div class="custom-combobox" style="position: relative;">
+          <input type="hidden" name="lecture_id" value="${escapeHtml(assignment.lecture_id ?? '')}" />
+          <label class="nh-ed-field-label" for="lecture-search-input">Chương liên kết</label>
           <input
-            class="field"
+            class="nh-ed-input"
             id="lecture-search-input"
             autocomplete="off"
             placeholder="Gõ để tìm chương..."
-            value="${escapeHtml(assignment.lecture_id && lectures.find(l => l.id === assignment.lecture_id) ? lectures.find(l => l.id === assignment.lecture_id).title : (assignment.lecture_id ? '' : 'Bài tập tự do'))}"
+            value="${escapeHtml(currentLectureTitle)}"
             style="cursor: pointer;"
-          >
-          <div class="combobox-dropdown" style="display: none; position: absolute; top: calc(100% + 2px); left: 0; right: 0; max-height: 260px; overflow-y: auto; background: var(--md-sys-color-surface-container-lowest); border-radius: 10px; z-index: 100; box-shadow: 0 8px 24px rgba(0,0,0,0.10); border: 1px solid var(--md-sys-color-outline-variant);">
-            <div class="combo-option" data-value="" style="padding: 10px 14px; cursor: pointer; border-bottom: 1px solid var(--md-sys-color-outline-variant); font-size: 13px;">Bài tập tự do</div>
-            ${lectures.map((lecture) => `<div class="combo-option" data-value="${escapeHtml(lecture.id)}" data-label="${escapeHtml(lecture.title).toLowerCase()}" style="padding: 10px 14px; cursor: pointer; border-bottom: 1px solid var(--md-sys-color-outline-variant); font-size: 13px;">${escapeHtml(lecture.title)}</div>`).join('')}
+          />
+          <div class="combobox-dropdown nh-ed-combo-dropdown">
+            <div class="combo-option nh-ed-combo-opt" data-value="">Bài tập tự do</div>
+            ${lectures.map((lecture) => `<div class="combo-option nh-ed-combo-opt" data-value="${escapeHtml(lecture.id)}" data-label="${escapeHtml(lecture.title).toLowerCase()}">${escapeHtml(lecture.title)}</div>`).join('')}
+          </div>
+        </div>
+
+        <div>
+          <label class="nh-ed-field-label">Hiển thị &amp; Định dạng</label>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+            <div class="nh-ed-seg" id="nh-ed-pub-seg">
+              <button type="button" class="nh-ed-seg-btn" data-pub-val="true" aria-pressed="${assignment.published !== false ? 'true' : 'false'}">Xuất bản</button>
+              <button type="button" class="nh-ed-seg-btn" data-pub-val="false" aria-pressed="${assignment.published === false ? 'true' : 'false'}">Nháp</button>
+            </div>
+            <div class="nh-ed-seg" id="nh-ed-mode-seg">
+              <button type="button" class="nh-ed-seg-btn" data-mode-val="latex" aria-pressed="${isLatexMode ? 'true' : 'false'}">LaTeX</button>
+              <button type="button" class="nh-ed-seg-btn" data-mode-val="pdf" aria-pressed="${!isLatexMode ? 'true' : 'false'}">PDF</button>
+            </div>
           </div>
         </div>
 
         ${!isLatexMode ? `
-        <div style="grid-column: 1 / -1;">
-          <label class="field-label">Link tài liệu PDF (Google Drive) <span style="color: var(--md-sys-color-error);">*</span></label>
-          <input class="field" id="assignment-pdf-input" name="pdf_url" value="${escapeHtml(assignment.pdf_url)}" placeholder="https://drive.google.com/..." required>
-        </div>
+          <div style="grid-column: 1 / -1;">
+            <label class="nh-ed-field-label" for="assignment-pdf-input">Link tài liệu PDF (Google Drive) *</label>
+            <input class="nh-ed-input" id="assignment-pdf-input" name="pdf_url" value="${escapeHtml(assignment.pdf_url)}" placeholder="https://drive.google.com/..." required />
+          </div>
         ` : ''}
       </div>
     </div>
 
-    <input type="hidden" name="id" value="${escapeHtml(assignment.id ?? '')}">
-    <input type="hidden" name="description" value="${escapeHtml(assignment.description ?? '')}">
-    <input type="hidden" name="sort_order" value="${Number(assignment.sort_order ?? 0)}">
-    <input type="hidden" name="published" value="true">
+    <input type="hidden" name="id" value="${escapeHtml(assignment.id ?? '')}" />
+    <input type="hidden" name="description" value="${escapeHtml(assignment.description ?? '')}" />
+    <input type="hidden" name="sort_order" value="${Number(assignment.sort_order ?? 0)}" />
+    <input type="hidden" name="published" value="${assignment.published === false ? 'false' : 'true'}" />
 
-    <style>
-      .combo-option:hover { background: var(--md-sys-color-surface-container-low); }
-      .combo-option { color: var(--md-sys-color-on-surface); transition: background 0.12s; }
-      .field-label { display: block; font-size: 12px; font-weight: 600; color: var(--md-sys-color-on-surface-variant); margin-bottom: 5px; }
-      .btn-primary { display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; background: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); border: 0; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: opacity 0.15s; }
-      .btn-primary:hover { opacity: 0.88; }
-      .btn-danger-outline { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: transparent; color: var(--md-sys-color-error); border: 1px solid var(--md-sys-color-error); border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; transition: background 0.15s; }
-      .btn-danger-outline:hover { background: color-mix(in srgb, var(--md-sys-color-error) 8%, transparent); }
-    </style>
-
-
-    <!-- Main Workspace Split View -->
-    <style>
-      .left-pane {
-        flex: 1;
-        min-width: 380px;
-        height: calc(100vh - 140px);
-        overflow-y: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        padding-right: 6px;
-      }
-      .right-pane {
-        flex: 1.1;
-        min-width: 420px;
-        height: calc(100vh - 140px);
-        display: flex;
-        flex-direction: column;
-        background: #ffffff;
-        border: 1px solid #D8E2C4;
-        border-radius: 16px;
-        padding: 20px;
-        box-sizing: border-box;
-      }
-      .cm-wrapper-box {
-        flex: 1;
-        min-height: 0;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-      }
-      .CodeMirror {
-        height: 100% !important;
-        font-family: 'JetBrains Mono', 'Fira Code', monospace;
-        font-size: 13.5px;
-        line-height: 1.6;
-        border-radius: 12px;
-        border: 1px solid #cbd5e1;
-      }
-      .CodeMirror-scroll {
-        height: 100% !important;
-        overflow-y: auto !important;
-        overflow-x: auto !important;
-      }
-      @media (max-width: 900px) {
-        .left-pane, .right-pane {
-          height: auto !important;
-          min-width: 100% !important;
-          flex: none !important;
-        }
-      }
-      .cm-question-line-highlight {
-        background: rgba(69, 81, 32, 0.08) !important;
-        border-left: 3px solid #455120 !important;
-      }
-      .cm-question-marker-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        background: #455120;
-        color: #ffffff;
-        font-family: 'Google Sans', sans-serif;
-        font-weight: 700;
-        font-size: 11px;
-        padding: 2px 8px;
-        border-radius: 6px;
-        margin-bottom: 6px;
-        user-select: none;
-        box-shadow: 0 1px 4px rgba(69, 81, 32, 0.25);
-      }
-      .latex-review-q-block {
-        transition: all 0.2s ease;
-        border-radius: 8px;
-        padding: 12px;
-        margin: -12px;
-      }
-      .latex-review-q-block:hover {
-        background: #fafcf7;
-      }
-      .latex-review-q-block.active-q {
-        background: #f2f7ec;
-        border: 1px solid #d8e2ca;
-      }
-    </style>
-    <div class="assignment-workspace-split" style="display: flex; flex-wrap: wrap; gap: 20px; min-height: 600px; align-items: stretch;">
-      
-      <!-- Left pane: Rendered Question Cards -->
-      <div class="left-pane" style="padding-right: 4px;">
-        <div class="latex-review-list" style="display: flex; flex-direction: column; gap: 24px; background: #ffffff; padding: 28px 32px; border-radius: 16px; border: 1px solid #D8E2C4; box-shadow: 0 2px 10px rgba(69, 81, 32, 0.03);">
-
-
-          <div class="question-builder" style="display: flex; flex-direction: column; gap: 24px;">
-            ${questions.length ? questions.map((question, index) => renderQuestionEditor(question, index)).join('') : '<div style="padding: 40px; text-align: center; color: #667085; font-family: \'Google Sans\', sans-serif; font-size: 13.5px;">Chưa có câu hỏi nào. Hãy dán mã LaTeX vào khung bên phải!</div>'}
-          </div>
+    ${isLatexMode ? `
+      <div class="nh-ed-mob-tabs">
+        <div class="nh-ed-seg" style="width:100%;">
+          <button type="button" class="nh-ed-seg-btn" style="flex:1;" data-mob-pane="preview" aria-pressed="true">Xem trước (${stats.total})</button>
+          <button type="button" class="nh-ed-seg-btn" style="flex:1;" data-mob-pane="code" aria-pressed="false">Mã LaTeX</button>
+          <button type="button" class="nh-ed-seg-btn" style="flex:1;" data-mob-pane="outline" aria-pressed="false">Mục lục</button>
         </div>
       </div>
 
-      <!-- Right pane: LaTeX Editor Container -->
-      <div class="right-pane" style="border-radius: 16px; display: flex; flex-direction: column; background: #ffffff; border: 1px solid #D8E2C4; padding: 20px; box-shadow: 0 2px 8px rgba(69, 81, 32, 0.03);">
-        <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 14px; margin-bottom: 16px;">
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <div style="width: 32px; height: 32px; border-radius: 8px; background: #F0F4E8; color: #455120; display: flex; align-items: center; justify-content: center;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="20" y2="15"></line><line x1="10" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="14" y2="21"></line></svg>
+      <div class="nh-ed-grid-b">
+        <!-- Col 1: Mục lục -->
+        <aside class="nh-ed-pane nh-ed-mob-hide" data-ed-pane="outline">
+          <div class="nh-ed-pane-head">
+            <h2 class="nh-ed-pane-title">
+              <span class="nh-ed-pane-icon">${ASG_ICONS.listTree}</span>
+              <span>Mục lục</span>
+            </h2>
+            <span class="nh-ed-badge" id="nh-ed-outline-count">${stats.total}</span>
+          </div>
+          <div class="nh-ed-outline-body" id="nh-ed-outline-list">
+            ${renderOutlineListHtml(questions, 0)}
+          </div>
+        </aside>
+
+        <!-- Col 2: Xem trước -->
+        <section class="nh-ed-pane" data-ed-pane="preview">
+          <div class="nh-ed-pane-head">
+            <h2 class="nh-ed-pane-title">
+              <span class="nh-ed-pane-icon">${ASG_ICONS.eye}</span>
+              <span>Xem trước</span>
+            </h2>
+            <span class="nh-ed-badge" id="nh-ed-preview-count">${stats.total} câu</span>
+          </div>
+          <div class="nh-ed-pane-body left-pane">
+            <div class="latex-review-list">
+              <div class="question-builder" style="display:flex;flex-direction:column;gap:12px;">
+                ${questions.length
+        ? questions.map((question, index) => renderQuestionEditor(question, index)).join('')
+        : `
+                    <div class="nh-ed-empty">
+                      <h3>Chưa có câu hỏi nào</h3>
+                      <p>Bốc câu từ Ngân hàng câu hỏi, dán mã EX_TEST bên phải hoặc chèn câu mẫu.</p>
+                      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
+                        <button type="button" class="nh-ed-btn nh-ed-btn--primary" data-pick-bank="true">
+                          ${ASG_ICONS.sparkles}
+                          <span>Bốc từ Ngân hàng</span>
+                        </button>
+                        <button type="button" id="nh-ed-insert-sample-btn" class="nh-ed-btn nh-ed-btn--secondary">
+                          <span>Chèn câu mẫu</span>
+                        </button>
+                      </div>
+                    </div>
+                  `
+      }
+              </div>
             </div>
-            <h3 style="margin: 0; font-family: var(--md-ref-typeface-brand); font-size: 17px; font-weight: 700; color: #101828;">Soạn thảo LaTeX (EX_TEST)</h3>
           </div>
-          <div style="display: flex; gap: 8px; align-items: center;">
-            <input type="file" id="latex-image-upload" accept="image/*" style="display: none;">
-            <button type="button" id="latex-image-btn" style="display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; background: #ffffff; color: #455120; border: 1px solid #D8E2CA; border-radius: 9999px; font-family: 'Google Sans', sans-serif; font-size: 12.5px; font-weight: 500; cursor: pointer; transition: background 0.15s ease;" onmouseover="this.style.background='#F0F4E8'" onmouseout="this.style.background='#ffffff'">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-              <span>Chèn ảnh</span>
-            </button>
-            <span id="latex-upload-status" style="font-size: 12px; color: #455120; font-family: 'Google Sans', sans-serif; display: none;">Đang tải ảnh...</span>
-            <button type="button" id="latex-live-parse-btn" style="display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px; background: #455120; color: #ffffff; border: 0; border-radius: 9999px; font-family: 'Google Sans', sans-serif; font-size: 12.5px; font-weight: 500; cursor: pointer; box-shadow: 0 2px 6px rgba(69, 81, 32, 0.15);">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
-              <span>Cập nhật & Xem trước</span>
-            </button>
+        </section>
+
+        <!-- Col 3: Soạn thảo LaTeX -->
+        <section class="nh-ed-pane right-pane nh-ed-mob-hide" data-ed-pane="code">
+          <div class="nh-ed-pane-head">
+            <h2 class="nh-ed-pane-title">
+              <span class="nh-ed-pane-icon">${ASG_ICONS.code2}</span>
+              <span>LaTeX (EX_TEST)</span>
+            </h2>
+            <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+              <button type="button" id="nh-ed-pick-bank-btn" class="nh-ed-btn nh-ed-btn--outline" data-pick-bank="true" title="Chọn hoặc bốc câu hỏi từ Ngân hàng">
+                ${ASG_ICONS.sparkles}
+                <span>Ngân hàng</span>
+              </button>
+              <input type="file" id="latex-image-upload" accept="image/*" style="display:none;" />
+              <button type="button" id="latex-image-btn" class="nh-ed-btn nh-ed-btn--outline">
+                ${ASG_ICONS.imagePlus}
+                <span>Chèn ảnh</span>
+              </button>
+              <span id="latex-upload-status" style="font-size:12px;color:#64695F;display:none;">Đang tải...</span>
+              <button type="button" id="latex-live-parse-btn" class="nh-ed-btn nh-ed-btn--primary">
+                ${ASG_ICONS.refreshCw}
+                <span>Cập nhật</span>
+              </button>
+            </div>
           </div>
-        </div>
-        
-        <div class="cm-wrapper-box" style="flex: 1; min-height: 0; display: flex; flex-direction: column; height: 100%;">
-          <textarea id="latex-live-input" style="flex: 1; min-height: 520px; width: 100%; box-sizing: border-box; padding: 18px; font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 13.5px; line-height: 1.6; border: 1px solid #cbd5e1; border-radius: 12px; resize: vertical; background: #f8fafc; color: #0f172a; outline: none; transition: border-color 0.15s ease;" onfocus="this.style.borderColor='#455120'; this.style.background='#ffffff';" onblur="this.style.borderColor='#cbd5e1'; this.style.background='#f8fafc';" placeholder="Dán mã LaTeX chuẩn EX_TEST vào đây...&#10;Hỗ trợ: \choice (Trắc nghiệm), \choiceTF (Đúng/Sai), \shortans (Trả lời ngắn).&#10;Ví dụ Trắc nghiệm:&#10;\begin{ex}&#10;Nội dung câu hỏi...&#10;\choice&#10;{A}&#10;{\True B}&#10;{C}&#10;{D}&#10;\end{ex}&#10;&#10;Ví dụ Đúng/Sai:&#10;\begin{ex}&#10;Câu hỏi...&#10;\choiceTF&#10;{\True Ý 1}&#10;{\False Ý 2}&#10;{\True Ý 3}&#10;{\False Ý 4}&#10;\end{ex}">${escapeHtml(state.assignmentEditor.latexSource || '')}</textarea>
-        </div>
+          <div class="nh-ed-cm-box">
+            <textarea id="latex-live-input" style="flex:1;min-height:480px;width:100%;box-sizing:border-box;padding:16px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.65;border:0;background:#F7F7F2;color:#181B16;resize:none;outline:none;" placeholder="Dán mã LaTeX chuẩn EX_TEST vào đây...">${escapeHtml(state.assignmentEditor.latexSource || '')}</textarea>
+          </div>
+          <div class="nh-ed-code-foot">
+            <span id="nh-ed-code-lines">${latexLinesCount} dòng · Tự đồng bộ 0,4s</span>
+            <span>Ctrl/Cmd + S để cập nhật</span>
+          </div>
+        </section>
       </div>
+    ` : `
+      <div class="nh-ed-grid-pdf">
+        <section class="nh-ed-pane">
+          <div class="nh-ed-pane-head">
+            <h2 class="nh-ed-pane-title">
+              <span class="nh-ed-pane-icon">${ASG_ICONS.listTree}</span>
+              <span>Phiếu đáp án (<span class="qb-count">${stats.total} câu</span>)</span>
+            </h2>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <button type="button" class="nh-ed-btn nh-ed-btn--outline" data-add-question="mcq">+ TN</button>
+              <button type="button" class="nh-ed-btn nh-ed-btn--outline" data-add-question="tf4">+ Đ/S</button>
+              <button type="button" class="nh-ed-btn nh-ed-btn--outline" data-add-question="short">+ TLN</button>
+            </div>
+          </div>
+          <div class="nh-ed-pane-body left-pane">
+            <div class="question-builder" style="display:flex;flex-direction:column;gap:12px;">
+              ${questions.length
+      ? questions.map((question, index) => renderQuestionEditor(question, index)).join('')
+      : `<div class="nh-ed-empty"><h3>Chưa có câu hỏi nào</h3><p>Bấm + TN, + Đ/S hoặc + TLN ở góc trên để thêm đáp án cho đề PDF.</p></div>`
+    }
+            </div>
+          </div>
+        </section>
 
-    </div>
-
-    <!-- LaTeX Import Dialog -->
-    <dialog id="latex-import-dialog" style="padding: 24px; border-radius: 12px; border: none; box-shadow: 0 4px 24px rgba(0,0,0,0.2); width: 800px; max-width: 90vw;">
-      <h3 style="margin-top: 0;">Nhập đề thi từ LaTeX (Chuẩn EX_TEST)</h3>
-      <p style="color: var(--md-sys-color-outline); margin-bottom: 16px; font-size: 0.9rem;">
-        Dán mã LaTeX vào đây. Hệ thống sẽ phân tích cấu trúc <code>\\begin{ex}...\\end{ex}</code>, <code>\\choice</code>, <code>\\True</code>, và <code>\\loigiai{...}</code>.
-        Chế độ này sẽ thay thế file PDF bằng nội dung LaTeX render trực tiếp trên màn hình của học sinh.
-      </p>
-      <textarea id="latex-input" style="width: 100%; height: 300px; padding: 12px; font-family: monospace; border: 1px solid var(--md-sys-color-outline-variant); border-radius: 8px; resize: vertical;" placeholder="\\begin{ex}...\n\\choice\n{A}\n{\\True B}\n{C}\n{D}\n\\loigiai{...}\n\\end{ex}"></textarea>
-      <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 16px;">
-        <md-outlined-button id="latex-cancel-btn" type="button">Hủy</md-outlined-button>
-        <md-filled-button id="latex-parse-btn" type="button">Phân tích</md-filled-button>
+        <section class="nh-ed-pane">
+          <div class="nh-ed-pane-head">
+            <h2 class="nh-ed-pane-title">
+              <span class="nh-ed-pane-icon">${ASG_ICONS.eye}</span>
+              <span>Xem trước PDF</span>
+            </h2>
+          </div>
+          <div class="nh-ed-pane-body pdf-preview-container" style="padding:12px;">
+            ${renderPdfPreview(assignment.pdf_url)}
+          </div>
+        </section>
       </div>
-    </dialog>
+    `}
   `;
 }
 
@@ -1621,8 +2363,8 @@ export function renderQuestionEditor(question, index) {
     const isNewSection = !prevQ || prevQ.type !== question.type;
 
     let typeCount = 1;
-    for (let i = index - 1; i >= 0; i--) {
-      if (allQuestions[i].type === question.type) typeCount++;
+    for (let i = index - 1; i >= 0; i -= 1) {
+      if (allQuestions[i].type === question.type) typeCount += 1;
       else break;
     }
     const displayIndex = typeCount - 1;
@@ -1630,17 +2372,18 @@ export function renderQuestionEditor(question, index) {
     let sectionHeaderHTML = '';
     if (isNewSection) {
       let sectionNum = 1;
-      for (let i = 1; i <= index; i++) {
-        if (allQuestions[i].type !== allQuestions[i - 1].type) sectionNum++;
+      for (let i = 1; i <= index; i += 1) {
+        if (allQuestions[i].type !== allQuestions[i - 1].type) sectionNum += 1;
       }
       const romanNumeral = ['I', 'II', 'III', 'IV', 'V'][sectionNum - 1] || sectionNum;
-      let typeLabel = 'Trắc nghiệm';
-      if (question.type === 'tf4') typeLabel = 'Trắc nghiệm đúng sai';
-      if (question.type === 'short') typeLabel = 'Trắc nghiệm trả lời ngắn';
+      let typeLabel = 'Phần I · Trắc nghiệm';
+      if (question.type === 'tf4') typeLabel = `Phần ${romanNumeral} · Đúng / Sai`;
+      else if (question.type === 'short') typeLabel = `Phần ${romanNumeral} · Trả lời ngắn`;
+      else typeLabel = `Phần ${romanNumeral} · Trắc nghiệm`;
 
       sectionHeaderHTML = `
-        <div style="display: flex; align-items: center; justify-content: flex-start; gap: 10px; padding: 4px 16px 4px 4px; background: #f0f4e8; border: 1px solid #d8e2ca; border-radius: 9999px; color: #455120; font-family: 'Google Sans', sans-serif; font-weight: 700; font-size: 14.5px; box-sizing: border-box; width: 100%; margin-bottom: 8px; ${index > 0 ? 'margin-top: 16px;' : ''}">
-          <span style="width: 26px; height: 26px; border-radius: 50%; background: #455120; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; font-family: 'Google Sans', sans-serif;">${romanNumeral}</span>
+        <div class="nh-ed-part-pill">
+          <span class="nh-ed-part-num">${romanNumeral}</span>
           <span>${typeLabel}</span>
         </div>
       `;
@@ -1648,124 +2391,87 @@ export function renderQuestionEditor(question, index) {
 
     let correctAnswer = question.answer_key?.correct_answer ?? '';
     if (question.type === 'short') {
-      correctAnswer = (question.answer_key?.accepted_answers || []).join(', ');
+      correctAnswer = (question.answer_key?.accepted_answers || []).join(' / ');
     }
-    const cleanPrompt = question.prompt ? question.prompt.replace(/^Câu\s*\d+[\.\:\s]*/i, '') : '';
+    const cleanPrompt = question.prompt ? question.prompt.replace(/^Câu\s*\d+[.:\s]*/i, '') : '';
     const qNumStr = String(displayIndex + 1).padStart(2, '0');
+    const ansSummary = getShortAnswerPreview(question);
 
     return `
       ${sectionHeaderHTML}
-      <article class="latex-review-q-block" data-question-index="${index}" data-source-index="${question.sourceIndex ?? ''}" title="Bấm để cuộn đến đoạn code tương ứng" style="display: flex; flex-direction: column; gap: 14px; padding-bottom: 24px; border-bottom: 1px solid #f1f5f9; cursor: pointer;">
-        
-        <!-- Question Title & Prompt -->
-        <div style="font-size: 15px; color: #1e293b; line-height: 1.6;">
-          <span style="font-weight: 900; color: #455120; font-size: 17px; font-family: var(--md-ref-typeface-brand); letter-spacing: 0.5px; margin-right: 12px; display: inline-block;">CÂU ${qNumStr}</span>
-          <span style="font-weight: 500; color: #1e293b; font-size: 15px; font-family: 'Google Sans', sans-serif;">${renderLatexText(cleanPrompt)}</span>
+      <article class="nh-ed-q-card latex-review-q-block" data-question-index="${index}" data-source-index="${question.startIndex ?? ''}" title="Bấm để nhảy tới mã LaTeX tương ứng">
+        <div class="nh-ed-q-head">
+          <span class="nh-ed-badge nh-ed-badge--dark">Câu ${qNumStr}</span>
+          <span class="nh-ed-badge nh-ed-badge--ok">Đáp án ${escapeHtml(ansSummary)}</span>
         </div>
-        
-        ${question.type === 'mcq' && question.choices && question.choices.length > 0 ? `
-        <div class="choice-grid" style="display: flex; flex-direction: column; gap: 10px; padding-left: 2px; margin-top: 4px;">
-          ${question.choices.map((choice, cIdx) => {
+
+        <div class="nh-ed-q-prompt">${renderLatexText(cleanPrompt)}</div>
+
+        ${question.type === 'mcq' && question.choices?.length ? `
+          <div class="nh-ed-choices">
+            ${question.choices.map((choice, cIdx) => {
       const letter = String.fromCharCode(65 + cIdx);
-      const isCorrectChoice = String(correctAnswer).toUpperCase() === letter;
+      const isOk = String(correctAnswer).toUpperCase() === letter;
       const cleanChoice = choice.replace(/^[A-D]\.\s*/i, '').trim();
-
-      let circleBorder = '#cbd5e1';
-      let circleBg = '#ffffff';
-      let dotDisplay = 'none';
-      let dotColor = '#455120';
-
-      if (isCorrectChoice) {
-        circleBorder = '#455120';
-        dotDisplay = 'block';
-        dotColor = '#455120';
-      }
-
       return `
-              <div style="display: flex; gap: 10px; align-items: center; padding: 2px 0;">
-                <div class="latex-radio-circle" style="width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid ${circleBorder}; background: ${circleBg}; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                  <div class="dot" style="width: 8px; height: 8px; border-radius: 50%; background: ${dotColor}; display: ${dotDisplay};"></div>
+                <div class="nh-ed-choice ${isOk ? 'is-ok' : ''}">
+                  <span class="nh-ed-choice-dot">${letter}</span>
+                  <span>${renderLatexText(cleanChoice)}</span>
                 </div>
-                <div style="font-size: 14.5px; line-height: 1.5; color: #1e293b; display: flex; align-items: center; gap: 4px;">
-                  <span style="font-weight: 800; color: #1e293b;">${letter}.</span><span>${renderLatexText(cleanChoice)}</span>
-                </div>
-              </div>
-            `;
+              `;
     }).join('')}
-        </div>
+          </div>
         ` : ''}
 
         ${question.type === 'tf4' ? `
-        <div class="choice-grid" style="display: flex; flex-direction: column; gap: 10px; padding-left: 2px; margin-top: 4px;">
-          ${(question.settings?.statements || []).map((statement, cIdx) => {
-      const letter = String.fromCharCode(97 + cIdx); // a, b, c, d
-      const isTrue = question.answer_key?.correct_answer?.[cIdx];
+          <div class="nh-ed-tf-list">
+            ${(question.settings?.statements || []).map((statement, cIdx) => {
+      const letter = String.fromCharCode(97 + cIdx);
+      const isTrue = Boolean(question.answer_key?.correct_answer?.[cIdx]);
       return `
-              <div style="display: flex; gap: 10px; align-items: flex-start; padding: 2px 0;">
-                <div style="font-weight: 800; color: #1e293b; min-width: 20px;">${letter})</div>
-                <div style="font-size: 14.5px; line-height: 1.5; color: #1e293b; flex: 1;">
-                  ${renderLatexText(statement)}
+                <div class="nh-ed-tf-row">
+                  <div style="flex:1;min-width:0;"><strong>${letter})</strong> ${renderLatexText(statement)}</div>
+                  <span class="nh-ed-tf-pill ${isTrue ? 'is-t' : 'is-f'}">${isTrue ? 'Đúng' : 'Sai'}</span>
                 </div>
-                <div style="display: flex; gap: 6px; font-weight: bold; font-size: 13px;">
-                  <span style="color: ${isTrue ? '#455120' : '#cbd5e1'};">Đ</span> /
-                  <span style="color: ${!isTrue ? '#ef4444' : '#cbd5e1'};">S</span>
-                </div>
-              </div>
-            `;
+              `;
     }).join('')}
-        </div>
-        ` : ''}
-
-        ${question.type === 'mcq' && correctAnswer ? `
-        <div style="margin-top: 14px;">
-          <div style="font-size: 16px; font-weight: 900; color: #455120; font-family: var(--md-ref-typeface-brand); margin-bottom: 6px;">Đáp án</div>
-          <div style="font-family: 'Google Sans', sans-serif; font-size: 14.5px; font-weight: 700; color: #1e293b; line-height: 1.6;">
-            ${correctAnswer}. ${question.choices && question.choices[String(correctAnswer).charCodeAt(0) - 65] ? renderLatexText(question.choices[String(correctAnswer).charCodeAt(0) - 65]) : ''}
           </div>
-        </div>
         ` : ''}
 
         ${question.type === 'short' ? `
-        <div style="margin-top: 14px;">
-          <div style="font-size: 16px; font-weight: 900; color: #455120; font-family: var(--md-ref-typeface-brand); margin-bottom: 6px;">Đáp án</div>
-          <div style="font-family: 'Google Sans', sans-serif; font-size: 14.5px; font-weight: 700; color: #1e293b; line-height: 1.6; padding: 8px 12px; background: #f8fafc; border-radius: 6px; border: 1px dashed #cbd5e1;">
-            ${correctAnswer || '(Chưa có đáp án)'}
+          <div style="padding:8px 12px;border-radius:10px;background:#E9F2EC;color:#1F4E36;font-size:13px;font-weight:600;">
+            Đáp số: ${correctAnswer ? renderLatexText(correctAnswer) : '(Chưa có đáp án)'}
           </div>
-        </div>
         ` : ''}
 
         ${question.settings?.explanation ? `
-        <div style="margin-top: 18px;">
-          <div style="font-size: 16px; font-weight: 900; color: #455120; font-family: var(--md-ref-typeface-brand); margin-bottom: 8px;">Hướng dẫn giải chi tiết</div>
-          <div style="font-family: 'Google Sans', sans-serif; font-size: 14.5px; line-height: 2.2; color: #334155; max-width: 100%; overflow-x: auto;">
-            ${renderLatexText(question.settings.explanation)}
-          </div>
-        </div>
+          <details class="nh-ed-sol">
+            <summary>Lời giải chi tiết</summary>
+            <div class="nh-ed-sol-body">${renderLatexText(question.settings.explanation)}</div>
+          </details>
         ` : ''}
 
-        <input type="hidden" name="question-id-${index}" value="${escapeHtml(question.id ?? '')}">
+        <input type="hidden" name="question-id-${index}" value="${escapeHtml(question.id ?? '')}" />
       </article>
     `;
   }
 
   return `
-    <article class="question-editor" data-index="${index}">
-      <div class="editor-heading" style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid #f1f5f9;">
-        <strong style="font-size: 15px; font-weight: 700; color: #455120;">Câu ${index + 1}</strong>
-        <div style="display: flex; gap: 8px; align-items: center;">
-          <select name="question-type-${index}" class="nh-form-input-clean" style="width: 120px; height: 36px; padding: 4px 8px;">
+    <article class="nh-ed-q-card question-editor" data-index="${index}">
+      <div class="nh-ed-q-head">
+        <strong style="font-size:14px;color:#181B16;">Câu ${index + 1}</strong>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <select name="question-type-${index}" class="nh-ed-input" style="width:110px;height:32px;font-size:12.5px;">
             ${['mcq', 'tf4', 'short'].map((type) => `<option value="${type}" ${question.type === type ? 'selected' : ''}>${type.toUpperCase()}</option>`).join('')}
           </select>
-          <input type="number" class="nh-form-input-clean" name="question-sort-${index}" value="${Number(question.sort_order ?? index + 1)}" placeholder="Thứ tự" style="width: 70px; height: 36px; padding: 4px 8px;">
-          <button type="button" data-remove-question="${index}" aria-label="Xóa câu" style="width: 32px; height: 32px; border-radius: 50%; border: 1px solid #cbd5e1; background: #ffffff; color: #ef4444; cursor: pointer; display: flex; align-items: center; justify-content: center;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <input type="number" class="nh-ed-input" name="question-sort-${index}" value="${Number(question.sort_order ?? index + 1)}" style="width:64px;height:32px;font-size:12.5px;text-align:center;" />
+          <button type="button" data-remove-question="${index}" aria-label="Xóa câu" class="nh-ed-btn nh-ed-btn--outline" style="width:32px;padding:0;color:#B8433A;">
+            ${ASG_ICONS.trash2}
           </button>
         </div>
       </div>
-      <input type="hidden" name="question-id-${index}" value="${escapeHtml(question.id ?? '')}">
-      <div>
-        ${renderQuestionKeyEditor(question, index)}
-      </div>
+      <input type="hidden" name="question-id-${index}" value="${escapeHtml(question.id ?? '')}" />
+      <div>${renderQuestionKeyEditor(question, index)}</div>
     </article>
   `;
 }
@@ -1807,13 +2513,27 @@ export function renderQuestionKeyEditor(question, index) {
 
 export function refreshQuestionBuilder(lectures) {
   const questions = state.assignmentEditor.questions;
-  const heading = document.querySelector('.question-builder-header .qb-count');
+  const heading = document.querySelector('.qb-count');
   const builder = document.querySelector('.question-builder');
   if (heading) heading.textContent = `${questions.length} câu`;
+
+  const heroMeta = document.querySelector('#nh-ed-hero-meta');
+  if (heroMeta) {
+    const stats = summarizeQuestionsCompact(questions);
+    const lectureId = document.querySelector('input[name="lecture_id"]')?.value || '';
+    const lectureTitle = lectureId && lectures.find((l) => l.id === lectureId)
+      ? lectures.find((l) => l.id === lectureId).title
+      : (lectureId ? '' : 'Bài tập tự do');
+    const parts = [`${stats.total} câu`];
+    if (stats.text) parts.push(stats.text);
+    parts.push(lectureTitle || 'Bài tập tự do');
+    heroMeta.textContent = parts.join(' · ');
+  }
+
   if (builder) {
     builder.innerHTML = questions.length
       ? questions.map((question, index) => renderQuestionEditor(question, index)).join('')
-      : '<div class="panel empty-state" style="padding: 40px; text-align: center; background: var(--md-sys-color-surface-container-low); border: 1px dashed var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-medium, 12px); color: var(--md-sys-color-outline);">Chưa có câu nào trong phiếu trả lời. Hãy thêm câu hỏi ở trên để bắt đầu nhập đáp án.</div>';
+      : '<div class="nh-ed-empty"><h3>Chưa có câu hỏi nào</h3><p>Bấm + TN, + Đ/S hoặc + TLN ở góc trên để thêm đáp án cho đề PDF.</p></div>';
   }
   wireQuestionEditorControls(lectures);
 }
@@ -1825,96 +2545,213 @@ export function wireQuestionEditorControls(lectures) {
     button.addEventListener('click', () => {
       state.assignmentEditor = collectEditor(lectures);
       state.assignmentEditor.questions.splice(Number(button.dataset.removeQuestion), 1);
+      persistCurrentEditorDraft();
       refreshQuestionBuilder(lectures);
     });
   });
 }
 
+const SAMPLE_EX_TEST = `\\begin{ex}
+Cho hàm số $y = x^3 - 3x$. Điểm cực tiểu của hàm số là
+\\choice
+{$x = -1$}
+{\\True $x = 1$}
+{$x = 0$}
+{$x = 3$}
+\\loigiai{
+Ta có $y' = 3x^2 - 3 = 0 \\Leftrightarrow x = \\pm 1$. Dựa vào bảng biến thiên, $x = 1$ là điểm cực tiểu.
+}
+\\end{ex}
+`;
+
 export function wireAssignmentEditor(lectures) {
+  const editorForm = document.querySelector('#assignment-editor');
+  const heroMetaEl = document.querySelector('#nh-ed-hero-meta');
+
+  const updateHeroMeta = () => {
+    if (!heroMetaEl) return;
+    const questions = state.assignmentEditor?.questions || [];
+    const stats = summarizeQuestionsCompact(questions);
+    const lectureId = document.querySelector('input[name="lecture_id"]')?.value || '';
+    const lectureObj = lectureId ? lectures.find((l) => l.id === lectureId) : null;
+    const lectureTitle = lectureObj ? lectureObj.title : 'Bài tập tự do';
+    const parts = [`${stats.total} câu`];
+    if (stats.text) parts.push(stats.text);
+    parts.push(lectureTitle);
+    heroMetaEl.textContent = parts.join(' · ');
+  };
+
+  // Collapsible metadata drawer toggle
+  const metaToggleBtn = document.querySelector('#nh-ed-meta-toggle');
+  const metaDrawer = document.querySelector('#nh-ed-meta-drawer');
+  metaToggleBtn?.addEventListener('click', () => {
+    const isOpen = metaDrawer?.classList.toggle('open');
+    metaToggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  // Published segmented control
+  const pubHidden = document.querySelector('input[name="published"]');
+  document.querySelectorAll('#nh-ed-pub-seg [data-pub-val]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const val = btn.dataset.pubVal;
+      if (pubHidden) pubHidden.value = val;
+      document.querySelectorAll('#nh-ed-pub-seg [data-pub-val]').forEach((b) => {
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+      if (state.assignmentEditor?.assignment) {
+        state.assignmentEditor.assignment.published = val !== 'false';
+        persistCurrentEditorDraft();
+      }
+    });
+  });
+
+  // Mode segmented control (LaTeX <-> PDF)
+  document.querySelectorAll('#nh-ed-mode-seg [data-mode-val]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetMode = btn.dataset.modeVal;
+      const currentIsLatex = !state.assignmentEditor?.assignment?.pdf_url || state.assignmentEditor.assignment.pdf_url === 'latex';
+      if ((targetMode === 'latex' && currentIsLatex) || (targetMode === 'pdf' && !currentIsLatex)) {
+        return;
+      }
+      state.assignmentEditor = collectEditor(lectures);
+      if (targetMode === 'latex') {
+        state.assignmentEditor.assignment.pdf_url = 'latex';
+        const src = String(state.assignmentEditor.latexSource || '');
+        if (!src.includes('\\begin{ex}') && state.assignmentEditor.questions?.length > 0) {
+          state.assignmentEditor.latexSource = exportQuestionsToLatex(state.assignmentEditor.assignment.title, state.assignmentEditor.questions);
+        }
+      } else {
+        state.assignmentEditor.assignment.pdf_url = '';
+      }
+      persistCurrentEditorDraft();
+      mountAssignmentManager();
+    });
+  });
+
   // Wire Custom Searchable Combobox
   const searchInput = document.querySelector('#lecture-search-input');
   const hiddenInput = document.querySelector('input[name="lecture_id"]');
   const dropdown = document.querySelector('.combobox-dropdown');
   if (searchInput && dropdown) {
     const options = dropdown.querySelectorAll('.combo-option');
-    // Mở dropdown khi click/focus
     const openDropdown = () => {
       dropdown.style.display = 'block';
-      options.forEach(opt => opt.style.display = 'block'); // reset filter
+      options.forEach((opt) => {
+        opt.style.display = 'block';
+      });
     };
     searchInput.addEventListener('focus', openDropdown);
     searchInput.addEventListener('click', openDropdown);
 
-    // Tìm kiếm (filter)
     searchInput.addEventListener('input', (e) => {
       dropdown.style.display = 'block';
       const term = (e.target.value || '').toLowerCase();
-      options.forEach(opt => {
-        if (!opt.dataset.value) return; // Luôn hiện "Bài tập tự do"
+      options.forEach((opt) => {
+        if (!opt.dataset.value) return;
         const label = opt.dataset.label || '';
         opt.style.display = label.includes(term) ? 'block' : 'none';
       });
     });
 
-    // Chọn item
-    options.forEach(opt => {
+    options.forEach((opt) => {
       opt.addEventListener('click', () => {
-        hiddenInput.value = opt.dataset.value;
+        if (hiddenInput) hiddenInput.value = opt.dataset.value;
         searchInput.value = opt.textContent;
         dropdown.style.display = 'none';
+        updateHeroMeta();
+        if (state.assignmentEditor) {
+          state.assignmentEditor = collectEditor(lectures);
+          persistCurrentEditorDraft();
+        }
       });
     });
 
-    // Bấm ra ngoài để đóng
-    document.addEventListener('click', (e) => {
+    const handleDocClick = (e) => {
       if (!e.target.closest('.custom-combobox')) {
         dropdown.style.display = 'none';
-        // Nếu gõ linh tinh mà không chọn, có thể tự động reset về giá trị cũ (tuỳ chọn)
       }
-    });
+    };
+    document.addEventListener('click', handleDocClick);
+    registerCleanup(() => document.removeEventListener('click', handleDocClick));
   }
 
   document.querySelector('#back-to-list-btn')?.addEventListener('click', () => {
+    clearEditorDraft(getEditorStorage(), state.profile?.id, currentEditorDraftId());
     state.isEditingAssignment = false;
     state.assignmentEditor = emptyEditor();
-    mountAssignmentManager();
+    if (route().id) {
+      go('assignments');
+    } else {
+      mountAssignmentManager(null);
+    }
   });
 
   document.querySelectorAll('[data-add-question]').forEach((button) => {
     button.addEventListener('click', () => {
       state.assignmentEditor = collectEditor(lectures);
       state.assignmentEditor.questions.push(defaultQuestion(button.dataset.addQuestion));
+      persistCurrentEditorDraft();
       refreshQuestionBuilder(lectures);
     });
-  });
-
-  document.querySelector('#bulk-add-btn')?.addEventListener('click', () => {
-    state.assignmentEditor = collectEditor(lectures);
-    const countInput = document.querySelector('input[name="bulk-question-count"]');
-    const typeSelect = document.querySelector('select[name="bulk-question-type"]');
-    const count = Math.min(100, Math.max(1, Number(countInput?.value || 20)));
-    const type = typeSelect?.value || 'mcq';
-    const questions = Array.from({ length: count }, () => defaultQuestion(type));
-    state.assignmentEditor.questions.push(...questions);
-    refreshQuestionBuilder(lectures);
   });
 
   wireQuestionEditorControls(lectures);
 
   if (state.assignmentEditor.assignment.pdf_url === 'latex' && window.MathJax) {
-    setTimeout(() => window.MathJax.typesetPromise(), 50);
+    setTimeout(() => window.MathJax.typesetPromise().catch(() => { }), 50);
   }
-
-  document.querySelector('#latex-mode-btn')?.addEventListener('click', () => {
-    state.assignmentEditor = collectEditor(lectures);
-    state.assignmentEditor.assignment.pdf_url = 'latex';
-    mountAssignmentManager();
-  });
 
   const uploadInput = document.querySelector('#latex-image-upload');
   const uploadBtn = document.querySelector('#latex-image-btn');
   const uploadStatus = document.querySelector('#latex-upload-status');
   const latexInput = document.querySelector('#latex-live-input');
+  const outlineBody = document.querySelector('#nh-ed-outline-list');
+  const outlineCountBadge = document.querySelector('#nh-ed-outline-count');
+  const previewCountBadge = document.querySelector('#nh-ed-preview-count');
+  const codeLinesFooter = document.querySelector('#nh-ed-code-lines');
+
+  const setActiveQuestionUI = (idx) => {
+    document.querySelectorAll('#nh-ed-outline-list .nh-ed-outline-row').forEach((row) => {
+      const isMatch = Number(row.dataset.outlineIdx) === idx;
+      row.setAttribute('aria-current', isMatch ? 'true' : 'false');
+      if (isMatch && outlineBody) {
+        const rowTop = row.offsetTop;
+        const rowBottom = rowTop + row.offsetHeight;
+        if (rowTop < outlineBody.scrollTop) {
+          outlineBody.scrollTop = Math.max(0, rowTop - 8);
+        } else if (rowBottom > outlineBody.scrollTop + outlineBody.clientHeight) {
+          outlineBody.scrollTop = rowBottom - outlineBody.clientHeight + 8;
+        }
+      }
+    });
+    document.querySelectorAll('.latex-review-q-block').forEach((card) => {
+      card.classList.toggle('active-q', Number(card.dataset.questionIndex) === idx);
+    });
+  };
+
+  const scrollPreviewToQuestion = (idx) => {
+    const targetCard = document.querySelector(`.latex-review-q-block[data-question-index="${idx}"]`);
+    const leftPane = document.querySelector('.left-pane');
+    if (targetCard && leftPane) {
+      const paneRect = leftPane.getBoundingClientRect();
+      const cardRect = targetCard.getBoundingClientRect();
+      const targetTop = leftPane.scrollTop + (cardRect.top - paneRect.top) - 16;
+      leftPane.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
+    }
+  };
+
+  const scrollCodeToQuestion = (idx) => {
+    if (!cm) return;
+    const q = state.assignmentEditor?.questions?.[idx];
+    if (!q || q.startIndex === undefined) return;
+    const doc = cm.getDoc();
+    const pos = doc.posFromIndex(q.startIndex);
+    cm.focus();
+    cm.setCursor(pos);
+    const topLine = Math.max(0, pos.line - 2);
+    const coords = cm.charCoords({ line: topLine, ch: 0 }, 'local');
+    cm.scrollTo(null, Math.max(0, coords.top - 8));
+  };
 
   const syncPreviewScroll = () => {
     if (!cm) return;
@@ -1936,12 +2773,8 @@ export function wireAssignmentEditor(lectures) {
       }
     }
 
-    const targetCard = document.querySelector(`.latex-review-q-block[data-question-index="${currentQIdx}"]`);
-    const leftPane = document.querySelector('.left-pane');
-    if (targetCard && leftPane) {
-      const cardTop = targetCard.offsetTop - 24;
-      leftPane.scrollTo({ top: Math.max(0, cardTop), behavior: 'smooth' });
-    }
+    setActiveQuestionUI(currentQIdx);
+    scrollPreviewToQuestion(currentQIdx);
   };
 
   let cm = null;
@@ -1958,8 +2791,15 @@ export function wireAssignmentEditor(lectures) {
     });
     let changeDebounce = null;
     cm?.on('change', () => {
-      latexInput.value = cm.getValue();
-      state.assignmentEditor.latexSource = cm.getValue();
+      const val = cm.getValue();
+      latexInput.value = val;
+      if (state.assignmentEditor) {
+        state.assignmentEditor.latexSource = val;
+        persistCurrentEditorDraft();
+      }
+      if (codeLinesFooter) {
+        codeLinesFooter.textContent = `${val.split('\n').length} dòng · Tự đồng bộ 0,4s`;
+      }
       clearTimeout(changeDebounce);
       changeDebounce = setTimeout(() => {
         updateLatexPreview(true);
@@ -1969,48 +2809,103 @@ export function wireAssignmentEditor(lectures) {
     let scrollTimeout = null;
     cm?.on('scroll', () => {
       clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(syncPreviewScroll, 40);
+      scrollTimeout = setTimeout(syncPreviewScroll, 50);
     });
     cm?.on('cursorActivity', () => {
       clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(syncPreviewScroll, 60);
+      scrollTimeout = setTimeout(syncPreviewScroll, 80);
     });
   }
+
+  // Mobile 3-way pane switcher
+  document.querySelectorAll('[data-mob-pane]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.mobPane;
+      document.querySelectorAll('[data-mob-pane]').forEach((b) => {
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+      document.querySelectorAll('[data-ed-pane]').forEach((pane) => {
+        pane.classList.toggle('nh-ed-mob-hide', pane.dataset.edPane !== target);
+      });
+      if (target === 'code' && cm) {
+        setTimeout(() => cm.refresh(), 10);
+      }
+    });
+  });
+
+  // Outline click -> jump preview & code
+  outlineBody?.addEventListener('click', (e) => {
+    const row = e.target.closest('.nh-ed-outline-row[data-outline-idx]');
+    if (!row) return;
+    const idx = Number(row.dataset.outlineIdx);
+    setActiveQuestionUI(idx);
+    scrollPreviewToQuestion(idx);
+    scrollCodeToQuestion(idx);
+  });
+
+  // Navigate to Question Bank to pick questions into current assignment
+  editorForm?.addEventListener('click', (e) => {
+    const pickBtn = e.target.closest('[data-pick-bank="true"]');
+    if (!pickBtn) return;
+    if (editorForm) {
+      state.assignmentEditor = collectEditor(lectures);
+      if (cm) state.assignmentEditor.latexSource = cm.getValue();
+    }
+    persistCurrentEditorDraft();
+    try {
+      sessionStorage.setItem('lms:qbPickTarget', currentEditorDraftId());
+    } catch {
+      // Ignore storage error
+    }
+    go('question-bank');
+  });
+
+  // Preview card click -> jump code & outline (skipping solution <details> toggles)
+  document.querySelector('.left-pane')?.addEventListener('click', (e) => {
+    if (e.target.closest('#nh-ed-insert-sample-btn')) {
+      if (cm) {
+        cm.setValue(SAMPLE_EX_TEST);
+        cm.focus();
+      } else if (latexInput) {
+        latexInput.value = SAMPLE_EX_TEST;
+      }
+      updateLatexPreview(false);
+      persistCurrentEditorDraft();
+      return;
+    }
+    if (e.target.closest('details, summary, a, button')) return;
+    const card = e.target.closest('.latex-review-q-block[data-question-index]');
+    if (!card) return;
+    const idx = Number(card.dataset.questionIndex);
+    setActiveQuestionUI(idx);
+    scrollCodeToQuestion(idx);
+  });
 
   let cmLineWidgets = [];
   const refreshCodeMirrorQuestionMarkers = (parsedQuestions) => {
     if (!cm) return;
-    // Clear previous widgets
-    cmLineWidgets.forEach(w => w.clear());
+    cmLineWidgets.forEach((w) => w.clear());
     cmLineWidgets = [];
 
     const doc = cm.getDoc();
-    const text = doc.getValue();
-
     parsedQuestions.forEach((q, idx) => {
       let typeCount = 1;
       for (let i = idx - 1; i >= 0; i--) {
         if (parsedQuestions[i].type === q.type) typeCount++;
         else break;
       }
-      const displayIndex = typeCount - 1;
-      const qNumStr = String(displayIndex + 1).padStart(2, '0');
+      const qNumStr = String(typeCount).padStart(2, '0');
       if (q.startIndex !== undefined) {
         const pos = doc.posFromIndex(q.startIndex);
         const widgetEl = document.createElement('div');
         widgetEl.className = 'cm-question-marker-badge';
-        widgetEl.innerHTML = `<span style="font-size: 10px; opacity: 0.9;">📌</span> CÂU ${qNumStr}`;
+        widgetEl.textContent = `CÂU ${qNumStr}`;
         widgetEl.style.cursor = 'pointer';
-        widgetEl.title = `Bấm để xem câu ${idx + 1} bên bản xem trước`;
+        widgetEl.title = `Bấm để xem Câu ${qNumStr} bên bản xem trước`;
         widgetEl.addEventListener('click', (e) => {
           e.stopPropagation();
-          const targetCard = document.querySelector(`.latex-review-q-block[data-question-index="${idx}"]`);
-          if (targetCard) {
-            targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            document.querySelectorAll('.latex-review-q-block').forEach(c => c.classList.remove('active-q'));
-            targetCard.classList.add('active-q');
-            setTimeout(() => targetCard.classList.remove('active-q'), 2500);
-          }
+          setActiveQuestionUI(idx);
+          scrollPreviewToQuestion(idx);
         });
 
         const widget = cm.addLineWidget(pos.line, widgetEl, { above: true, coverGutter: false, noHScroll: true });
@@ -2019,25 +2914,63 @@ export function wireAssignmentEditor(lectures) {
     });
   };
 
+  const syncLatexMetricsAndOutline = (questionsList, text) => {
+    if (outlineBody) outlineBody.innerHTML = renderOutlineListHtml(questionsList, 0);
+    if (outlineCountBadge) outlineCountBadge.textContent = String(questionsList.length);
+    if (previewCountBadge) previewCountBadge.textContent = `${questionsList.length} câu`;
+    const mobPreviewBtn = document.querySelector('[data-mob-pane="preview"]');
+    if (mobPreviewBtn) mobPreviewBtn.textContent = `Xem trước (${questionsList.length})`;
+    if (codeLinesFooter) {
+      codeLinesFooter.textContent = `${text.split('\n').length} dòng · Tự đồng bộ 0,4s`;
+    }
+    updateHeroMeta();
+  };
+
   const updateLatexPreview = (preserveFocus = false) => {
     const text = cm ? cm.getValue() : (document.querySelector('#latex-live-input')?.value || '');
     if (latexInput) latexInput.value = text;
     const parsedQuestions = parseLatexAssignment(text);
 
-    if (parsedQuestions.length === 0) return false;
+    if (parsedQuestions.length === 0) {
+      if (preserveFocus && text.trim() === '') {
+        if (editorForm) state.assignmentEditor = collectEditor(lectures);
+        state.assignmentEditor.questions = [];
+        state.assignmentEditor.latexSource = text;
+        refreshCodeMirrorQuestionMarkers([]);
+        const qBuilder = document.querySelector('.latex-review-list .question-builder');
+        if (qBuilder) {
+          qBuilder.innerHTML = `
+            <div class="nh-ed-empty">
+              <h3>Chưa có câu hỏi nào</h3>
+              <p>Bốc câu từ Ngân hàng câu hỏi, dán mã EX_TEST bên phải hoặc chèn câu mẫu.</p>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
+                <button type="button" class="nh-ed-btn nh-ed-btn--primary" data-pick-bank="true">
+                  ${ASG_ICONS.sparkles}
+                  <span>Bốc từ Ngân hàng</span>
+                </button>
+                <button type="button" id="nh-ed-insert-sample-btn" class="nh-ed-btn nh-ed-btn--secondary">
+                  <span>Chèn câu mẫu</span>
+                </button>
+              </div>
+            </div>
+          `;
+        }
+        syncLatexMetricsAndOutline([], text);
+      } else if (!preserveFocus) {
+        toast('Không tìm thấy câu hỏi nào hợp lệ (cần dùng \\begin{ex}...\\end{ex}).', 'error');
+      }
+      return false;
+    }
 
-    // Update state without wiping cursor/scroll
-    const activeForm = document.querySelector('#assignment-editor');
-    if (activeForm) {
+    if (editorForm) {
       state.assignmentEditor = collectEditor(lectures);
     }
     state.assignmentEditor.questions = parsedQuestions;
     state.assignmentEditor.latexSource = text;
 
-    // Refresh question markers in CodeMirror
     refreshCodeMirrorQuestionMarkers(parsedQuestions);
+    syncLatexMetricsAndOutline(parsedQuestions, text);
 
-    // Update preview DOM directly
     const qBuilder = document.querySelector('.latex-review-list .question-builder');
     const leftPane = document.querySelector('.left-pane');
     const prevScrollTop = leftPane ? leftPane.scrollTop : 0;
@@ -2070,10 +3003,7 @@ export function wireAssignmentEditor(lectures) {
 
   document.querySelector('#latex-live-parse-btn')?.addEventListener('click', (e) => {
     e.preventDefault();
-    const ok = updateLatexPreview(false);
-    if (!ok) {
-      toast('Không tìm thấy câu hỏi nào hợp lệ (cần dùng \\begin{ex}...\\end{ex}).', 'error');
-    }
+    updateLatexPreview(false);
   });
 
   async function handleImageUpload(file) {
@@ -2081,7 +3011,6 @@ export function wireAssignmentEditor(lectures) {
     if (uploadStatus) uploadStatus.style.display = 'inline-block';
     if (uploadBtn) uploadBtn.disabled = true;
 
-    // Save scroll and cursor positions
     const leftPane = document.querySelector('.left-pane');
     const leftScrollTop = leftPane ? leftPane.scrollTop : 0;
     const cmScrollInfo = cm ? cm.getScrollInfo() : null;
@@ -2109,9 +3038,8 @@ export function wireAssignmentEditor(lectures) {
         state.assignmentEditor.latexSource = latexInput.value;
       }
 
-      // Auto-refresh preview immediately without reloading whole view
       updateLatexPreview(true);
-
+      persistCurrentEditorDraft();
       if (leftPane) {
         leftPane.scrollTop = leftScrollTop;
       }
@@ -2148,67 +3076,89 @@ export function wireAssignmentEditor(lectures) {
     cm.on('paste', (instance, e) => handlePaste(e));
   } else {
     latexInput?.addEventListener('paste', handlePaste);
+    latexInput?.addEventListener('input', () => {
+      if (state.assignmentEditor) {
+        state.assignmentEditor.latexSource = latexInput.value;
+        persistCurrentEditorDraft();
+      }
+      if (codeLinesFooter) {
+        codeLinesFooter.textContent = `${latexInput.value.split('\n').length} dòng · Tự đồng bộ 0,4s`;
+      }
+    });
   }
 
   document.querySelector('#delete-assignment')?.addEventListener('click', async () => {
     if (!window.confirm('Xóa đề này?')) return;
     try {
-      await deleteAssignment(state.assignmentEditor.assignment.id);
+      const deletedId = state.assignmentEditor.assignment.id;
+      await deleteAssignment(deletedId);
+      clearEditorDraft(getEditorStorage(), state.profile?.id, deletedId);
       state.assignmentEditor = emptyEditor();
       state.isEditingAssignment = false;
       toast('Đã xóa đề.', 'success');
-      await mountAssignmentManager();
+      if (route().id) {
+        go('assignments');
+      } else {
+        await mountAssignmentManager(null);
+      }
     } catch (error) {
       toast(error.message, 'error');
     }
   });
 
-  const editorForm = document.querySelector('#assignment-editor');
   if (editorForm) {
     const titleInput = editorForm.querySelector('[name="title"]');
     const pdfInput = editorForm.querySelector('[name="pdf_url"]');
 
-    const validateTitle = () => {
-      if (!titleInput.value.trim()) {
-        titleInput.error = true;
-        titleInput.errorText = 'Tên đề thi không được để trống';
-        return false;
+    const validateTitle = (showError = false) => {
+      const ok = Boolean(titleInput?.value.trim());
+      if (titleInput) {
+        titleInput.style.outline = ok ? '' : '2px solid #F29B92';
+        if (!ok && showError) {
+          toast('Tên đề thi không được để trống.', 'error');
+          titleInput.focus();
+        }
       }
-      titleInput.error = false;
-      titleInput.errorText = '';
-      return true;
+      return ok;
     };
 
-    const validatePdf = () => {
+    const validatePdf = (showError = false) => {
       if (!pdfInput) return true;
       const val = pdfInput.value.trim();
       if (!val) {
-        pdfInput.error = true;
-        pdfInput.errorText = 'Link PDF không được để trống';
+        pdfInput.style.borderColor = '#B8433A';
+        if (showError) {
+          if (metaDrawer) {
+            metaDrawer.classList.add('open');
+            metaToggleBtn?.setAttribute('aria-expanded', 'true');
+          }
+          toast('Link PDF không được để trống.', 'error');
+          pdfInput.focus();
+        }
         return false;
       }
-      if (val === 'latex') {
-        pdfInput.error = false;
-        pdfInput.errorText = '';
-        return true;
-      }
-      if (!val.startsWith('http://') && !val.startsWith('https://')) {
-        pdfInput.error = true;
-        pdfInput.errorText = 'Link PDF phải bắt đầu bằng http:// hoặc https://';
+      if (val !== 'latex' && !val.startsWith('http://') && !val.startsWith('https://')) {
+        pdfInput.style.borderColor = '#B8433A';
+        if (showError) {
+          if (metaDrawer) {
+            metaDrawer.classList.add('open');
+            metaToggleBtn?.setAttribute('aria-expanded', 'true');
+          }
+          toast('Link PDF phải bắt đầu bằng http:// hoặc https://', 'error');
+          pdfInput.focus();
+        }
         return false;
       }
-      pdfInput.error = false;
-      pdfInput.errorText = '';
+      pdfInput.style.borderColor = '';
       return true;
     };
 
-    titleInput?.addEventListener('input', validateTitle);
+    titleInput?.addEventListener('input', () => validateTitle(false));
     pdfInput?.addEventListener('input', () => {
-      validatePdf();
+      validatePdf(false);
       const previewContainer = document.querySelector('.pdf-preview-container');
       if (previewContainer) {
         if (pdfInput.value === 'latex') {
-          // Trigger full re-render so it shows the latex questions logic
           state.assignmentEditor = collectEditor(lectures);
           state.assignmentEditor.assignment.pdf_url = 'latex';
           mountAssignmentManager();
@@ -2220,12 +3170,11 @@ export function wireAssignmentEditor(lectures) {
 
     editorForm.addEventListener('submit', async (event) => {
       event.preventDefault();
-      const isTitleValid = validateTitle();
-      const isPdfValid = validatePdf();
-      if (!isTitleValid || !isPdfValid) {
+      if (!validateTitle(true) || !validatePdf(true)) {
         return;
       }
-      const restore = setButtonLoading(event.currentTarget.querySelector('md-filled-button'));
+      const saveBtn = editorForm.querySelector('#nh-ed-save-btn');
+      const restore = setButtonLoading(saveBtn);
       try {
         const editor = collectEditor(lectures);
         const isUpdate = !!editor.assignment.id;
@@ -2242,19 +3191,24 @@ export function wireAssignmentEditor(lectures) {
         if (isUpdate) {
           regradedCount = await regradeAssignment(savedAssignment.id);
         }
+        clearEditorDraft(getEditorStorage(), state.profile?.id, 'new');
+        clearEditorDraft(getEditorStorage(), state.profile?.id, savedAssignment.id);
         const savedEditor = await fetchAssignmentEditor(savedAssignment.id);
         const prevLatexSource = editor.latexSource;
         const prevQuestions = editor.questions;
         state.assignmentEditor = normalizeAssignmentEditor(savedEditor);
-        // Preserve latexSource and parsed questions after save in LaTeX mode
         if (editor.assignment.pdf_url === 'latex' || !editor.assignment.pdf_url) {
           state.assignmentEditor.latexSource = prevLatexSource;
           if (prevQuestions && prevQuestions.length > 0) {
             state.assignmentEditor.questions = prevQuestions;
           }
         }
+        state.isEditingAssignment = true;
         toast(regradedCount > 0 ? `Đã lưu đề và chấm lại ${regradedCount} bài đã nộp.` : 'Đã lưu đề thi.', 'success');
-        await mountAssignmentManager();
+        if (route().id !== savedAssignment.id && typeof window !== 'undefined' && window.history?.replaceState) {
+          window.history.replaceState(null, '', `#/assignments/${savedAssignment.id}`);
+        }
+        await mountAssignmentManager(savedAssignment.id);
       } catch (error) {
         toast(error.message, 'error');
       } finally {
@@ -2264,9 +3218,11 @@ export function wireAssignmentEditor(lectures) {
 
     editorForm.addEventListener('input', () => {
       state.assignmentEditor = collectEditor(lectures);
+      persistCurrentEditorDraft();
     });
     editorForm.addEventListener('change', async (event) => {
       state.assignmentEditor = collectEditor(lectures);
+      persistCurrentEditorDraft();
       if (event.target?.matches('select[name^="question-type-"]')) {
         refreshQuestionBuilder(lectures);
       }
@@ -2349,19 +3305,7 @@ export function collectEditor() {
   }
 
   const customCategory = (values.category_tag || '').trim();
-  let title = values.title || '';
-  // If user entered a category, we can ensure title or category metadata carries it
-  if (customCategory && !title.startsWith(`[${customCategory}]`)) {
-    // If title has an existing bracket like [Đại số], replace it; otherwise prepend it
-    if (/^\[[^\]]+\]\s*/.test(title)) {
-      title = title.replace(/^\[[^\]]+\]\s*/, `[${customCategory}] `);
-    } else {
-      title = `[${customCategory}] ${title}`;
-    }
-  } else if (!customCategory && /^\[[^\]]+\]\s*/.test(title)) {
-    // If user cleared category tag, remove bracket tag from title
-    title = title.replace(/^\[[^\]]+\]\s*/, '');
-  }
+  const title = applyCategoryToTitle(values.title || '', customCategory);
 
   return {
     assignment: {

@@ -1,3 +1,28 @@
+import { exportQuestionsToLatex, shuffleMcqChoices } from './examGenerator.js';
+
+export function extractCategoryFromTitle(rawTitle = '') {
+  const match = String(rawTitle || '').match(/^\[([^\]]+)\]\s*(.*)$/);
+  if (!match) {
+    return { category: '', cleanTitle: String(rawTitle || '').trim() };
+  }
+  return { category: match[1].trim(), cleanTitle: match[2].trim() };
+}
+
+export function applyCategoryToTitle(rawTitle = '', rawCategory = '') {
+  const customCategory = String(rawCategory || '').trim();
+  let title = String(rawTitle || '').trim();
+  if (customCategory && !title.startsWith(`[${customCategory}]`)) {
+    if (/^\[[^\]]+\]\s*/.test(title)) {
+      title = title.replace(/^\[[^\]]+\]\s*/, `[${customCategory}] `);
+    } else {
+      title = title ? `[${customCategory}] ${title}` : `[${customCategory}]`;
+    }
+  } else if (!customCategory && /^\[[^\]]+\]\s*/.test(title)) {
+    title = title.replace(/^\[[^\]]+\]\s*/, '').trim();
+  }
+  return title;
+}
+
 export function normalizeEditorQuestion(q) {
   return {
     ...q,
@@ -6,10 +31,23 @@ export function normalizeEditorQuestion(q) {
 }
 
 export function normalizeAssignmentEditor(editor) {
+  const questions = (editor.questions || []).map(normalizeEditorQuestion);
+  const isLatexMode = !editor.assignment?.pdf_url || editor.assignment.pdf_url === 'latex';
+  const rawDesc = String(editor.assignment?.description || '');
+  let latexSource = '';
+  if (isLatexMode) {
+    if (rawDesc.includes('\\begin{ex}')) {
+      latexSource = rawDesc;
+    } else if (questions.length > 0) {
+      latexSource = exportQuestionsToLatex(editor.assignment?.title, questions);
+    } else {
+      latexSource = rawDesc;
+    }
+  }
   return {
     assignment: editor.assignment,
-    questions: editor.questions.map(normalizeEditorQuestion),
-    latexSource: editor.assignment.pdf_url === 'latex' ? editor.assignment.description : '',
+    questions,
+    latexSource,
   };
 }
 
@@ -157,4 +195,88 @@ export function parseLatexAssignment(latexText) {
   }
 
   return questions;
+}
+
+const TYPE_SORT_ORDER = { mcq: 1, tf4: 2, short: 3 };
+
+/**
+ * Convert Question Bank items (or { q } matrix slots) into unified Assignment Editor state,
+ * preserving full metadata (title, category, lecture_id, published) and generating EX_TEST LaTeX.
+ * When `existingEditor` is passed, appends new questions onto the existing LaTeX source cleanly.
+ */
+export function buildAssignmentSeedFromBank(items = [], options = {}) {
+  const {
+    title = '',
+    category = '',
+    lectureId = '',
+    published = true,
+    shuffleChoices = false,
+    existingEditor = null,
+  } = options;
+
+  const normalizedList = (items || [])
+    .map((entry) => entry?.q || entry)
+    .filter(Boolean)
+    .sort((a, b) => (TYPE_SORT_ORDER[a.type] || 1) - (TYPE_SORT_ORDER[b.type] || 1));
+
+  const prepared = normalizedList.map((q, idx) => {
+    const rawKey = Array.isArray(q.answer_keys) ? q.answer_keys[0] : (q.answer_keys || q.answer_key);
+    const keyObj = rawKey || { correct_answer: 'A' };
+    const maybeShuffled = shuffleChoices && (q.type || 'mcq') === 'mcq'
+      ? shuffleMcqChoices(q, keyObj)
+      : { choices: q.choices || [], answerKey: keyObj };
+    return {
+      type: q.type || 'mcq',
+      prompt: q.prompt || '',
+      points: q.points || 1,
+      sort_order: idx + 1,
+      choices: maybeShuffled.choices,
+      settings: q.settings || {},
+      answer_key: maybeShuffled.answerKey,
+    };
+  });
+
+  if (existingEditor) {
+    const existingAssignment = existingEditor.assignment || {};
+    const existingTitle = existingAssignment.title || applyCategoryToTitle(title, category);
+    const existingLatex = String(existingEditor.latexSource || '').trim();
+    const addedLatex = exportQuestionsToLatex(existingTitle, prepared)
+      .split('\n')
+      .filter((line, idx) => !(idx === 0 && line.startsWith('% ')))
+      .join('\n')
+      .trim();
+
+    const combinedLatex = existingLatex
+      ? `${existingLatex}\n\n${addedLatex}\n`
+      : exportQuestionsToLatex(existingTitle, prepared);
+    const reparsed = parseLatexAssignment(combinedLatex);
+
+    return {
+      assignment: {
+        ...existingAssignment,
+        pdf_url: 'latex',
+        description: combinedLatex,
+      },
+      questions: reparsed.length ? reparsed : [...(existingEditor.questions || []), ...prepared],
+      latexSource: combinedLatex,
+    };
+  }
+
+  const finalTitle = applyCategoryToTitle(title || `Đề luyện tập (${prepared.length} câu)`, category);
+  const latexSource = exportQuestionsToLatex(finalTitle, prepared);
+  const reparsed = parseLatexAssignment(latexSource);
+
+  return {
+    assignment: {
+      title: finalTitle,
+      category: String(category || '').trim(),
+      description: latexSource,
+      pdf_url: 'latex',
+      lecture_id: lectureId || '',
+      sort_order: 0,
+      published: published !== false,
+    },
+    questions: reparsed.length ? reparsed : prepared,
+    latexSource,
+  };
 }

@@ -10,6 +10,13 @@ import {
   buildExamDescription,
   exportQuestionsToLatex,
 } from '../src/lib/examGenerator.js';
+import {
+  normalizeAssignmentEditor,
+  parseLatexAssignment,
+  buildAssignmentSeedFromBank,
+  applyCategoryToTitle,
+  extractCategoryFromTitle,
+} from '../src/lib/assignment.js';
 
 function makeSampleBank() {
   const bank = [];
@@ -158,5 +165,87 @@ describe('examGenerator', () => {
     expect(tex).toContain('\\choiceTF');
     expect(tex).toContain('\\shortans{42}');
     expect(tex).toContain('\\True ');
+  });
+
+  it('normalizes Question Bank assignments into editable EX_TEST LaTeX source when description is summary text', () => {
+    const bank = makeSampleBank();
+    const picked = pickFromMatrix(
+      bank,
+      {
+        'Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)': { mcq: 1, tf4: 1, short: 0 },
+        'Bài 6: Ứng dụng đạo hàm thực tiễn': { mcq: 0, tf4: 0, short: 1 },
+      },
+      { levelMode: 'all' },
+    );
+
+    const normalized = normalizeAssignmentEditor({
+      assignment: {
+        id: 'asg-1',
+        title: 'Đề từ ngân hàng câu hỏi',
+        pdf_url: 'latex',
+        description: buildExamDescription(picked),
+      },
+      questions: picked.map((x) => x.q),
+    });
+
+    expect(normalized.latexSource).toContain('\\begin{ex}');
+    const reparsed = parseLatexAssignment(normalized.latexSource);
+    expect(reparsed).toHaveLength(3);
+    expect(reparsed.map((q) => q.type)).toEqual(['mcq', 'tf4', 'short']);
+    expect(reparsed[0].answer_key.correct_answer).toBe('B');
+    expect(reparsed[1].answer_key.correct_answer).toEqual([true, false, true, false]);
+    expect(reparsed[2].answer_key.accepted_answers).toEqual(['42']);
+  });
+
+  it('preserves explicit EX_TEST LaTeX description without overwriting', () => {
+    const rawLatex = '\\begin{ex}\n$1+1=$\n\\choice\n{\\True $2$}\n{$3$}\n{$4$}\n{$5$}\n\\end{ex}';
+    const normalized = normalizeAssignmentEditor({
+      assignment: {
+        id: 'asg-2',
+        title: 'Đề LaTeX thủ công',
+        pdf_url: 'latex',
+        description: rawLatex,
+      },
+      questions: [],
+    });
+    expect(normalized.latexSource).toBe(rawLatex);
+  });
+
+  it('builds a full assignment editor seed (title, category, lecture_id, EX_TEST LaTeX) from bank items and appends cleanly', () => {
+    expect(extractCategoryFromTitle('[Đại số] Đề số 1')).toEqual({
+      category: 'Đại số',
+      cleanTitle: 'Đề số 1',
+    });
+    expect(applyCategoryToTitle('Đề số 1', 'Hình học')).toBe('[Hình học] Đề số 1');
+    expect(applyCategoryToTitle('[Đại số] Đề số 1', '')).toBe('Đề số 1');
+
+    const bank = makeSampleBank();
+    const picked = pickFromMatrix(
+      bank,
+      { 'Bài 1 · Dạng 1: Đơn điệu (Đồ thị / BBT)': { mcq: 1, tf4: 1, short: 0 } },
+      { levelMode: 'all' },
+    );
+
+    const seed = buildAssignmentSeedFromBank(picked, {
+      title: 'Đề kiểm tra 15 phút',
+      category: 'Giải tích',
+      lectureId: 'lec-1',
+      published: false,
+    });
+
+    expect(seed.assignment.title).toBe('[Giải tích] Đề kiểm tra 15 phút');
+    expect(seed.assignment.category).toBe('Giải tích');
+    expect(seed.assignment.lecture_id).toBe('lec-1');
+    expect(seed.assignment.published).toBe(false);
+    expect(seed.questions).toHaveLength(2);
+    expect(seed.latexSource).toContain('\\begin{ex}');
+
+    // Appending extra short-answer question preserves existing metadata and merges LaTeX
+    const shortQ = bank.find((q) => q.type === 'short');
+    const merged = buildAssignmentSeedFromBank([shortQ], { existingEditor: seed });
+    expect(merged.assignment.lecture_id).toBe('lec-1');
+    expect(merged.assignment.title).toBe('[Giải tích] Đề kiểm tra 15 phút');
+    expect(merged.questions).toHaveLength(3);
+    expect(merged.questions.map((q) => q.type)).toEqual(['mcq', 'tf4', 'short']);
   });
 });

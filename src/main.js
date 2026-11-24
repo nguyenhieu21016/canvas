@@ -221,7 +221,7 @@ addRoute('students', () => import('./pages/admin/Students.js').then((m) => m.mou
 addRoute('progress', () => import('./pages/admin/Students.js').then((m) => m.mountProgressManager()));
 addRoute('online', () => import('./pages/admin/Students.js').then((m) => m.mountOnlineUsers()));
 addRoute('content', () => import('./pages/admin/Courses.js').then((m) => m.mountContentManager()));
-addRoute('assignments', () => import('./pages/admin/Assignments.js').then((m) => m.mountAssignmentManager()));
+addRoute('assignments', (id) => import('./pages/admin/Assignments.js').then((m) => m.mountAssignmentManager(id)));
 addRoute('salary', () => import('./pages/admin/Salary.js').then((m) => m.mountSalaryManager()));
 addRoute('question-bank', () => import('./pages/admin/QuestionBank.js').then((m) => m.mountQuestionBank(pageRoot())));
 
