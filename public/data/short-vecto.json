@@ -1,0 +1,310 @@
+{
+  "pack_id": "short-vecto",
+  "title": "Chủ đề 19 · Vectơ trong không gian — Trả lời ngắn (2025)",
+  "chapter": "GĐ1 · Chương 3",
+  "count": 11,
+  "questions": [
+    {
+      "source_num": 1,
+      "type": "short",
+      "prompt": "(THPT Yên Lạc - Vĩnh Phúc 2025) Cho tứ diện $SABC$ có $G$ là trọng tâm tam giác $ABC$ và $I$ là trọng tâm tam giác $GBC$. Biết $\\overrightarrow{SI} = x\\overrightarrow{SA} + y\\overrightarrow{SB} + z\\overrightarrow{SC}$, tính giá trị biểu thức $9(x - y + z)$.",
+      "points": 1,
+      "sort_order": 10,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Vì $I$ là trọng tâm $\\triangle GBC$ nên $\\overrightarrow{SI} = \\dfrac{1}{3}(\\overrightarrow{SG} + \\overrightarrow{SB} + \\overrightarrow{SC})$, và vì $G$ là trọng tâm $\\triangle ABC$ nên $\\overrightarrow{SG} = \\dfrac{1}{3}(\\overrightarrow{SA} + \\overrightarrow{SB} + \\overrightarrow{SC})$.\nThay vào ta được $\\overrightarrow{SI} = \\dfrac{1}{9}\\overrightarrow{SA} + \\dfrac{4}{9}\\overrightarrow{SB} + \\dfrac{4}{9}\\overrightarrow{SC}$, suy ra $x = \\dfrac{1}{9},\\; y = \\dfrac{4}{9},\\; z = \\dfrac{4}{9}$.\nVậy $9(x - y + z) = 1 - 4 + 4 = 1$.",
+        "source": "THPT Yên Lạc - Vĩnh Phúc 2025",
+        "solution": "Vì $I$ là trọng tâm $\\triangle GBC$ nên $\\overrightarrow{SI} = \\dfrac{1}{3}(\\overrightarrow{SG} + \\overrightarrow{SB} + \\overrightarrow{SC})$, và vì $G$ là trọng tâm $\\triangle ABC$ nên $\\overrightarrow{SG} = \\dfrac{1}{3}(\\overrightarrow{SA} + \\overrightarrow{SB} + \\overrightarrow{SC})$.\nThay vào ta được $\\overrightarrow{SI} = \\dfrac{1}{9}\\overrightarrow{SA} + \\dfrac{4}{9}\\overrightarrow{SB} + \\dfrac{4}{9}\\overrightarrow{SC}$, suy ra $x = \\dfrac{1}{9},\\; y = \\dfrac{4}{9},\\; z = \\dfrac{4}{9}$.\nVậy $9(x - y + z) = 1 - 4 + 4 = 1$.",
+        "pack": "short-vecto"
+      },
+      "answer_key": {
+        "correct_answer": "1",
+        "accepted_answers": [
+          "1"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 2: Phân tích một vectơ theo các vectơ còn lại",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 2,
+      "type": "short",
+      "prompt": "(THPT Chuyên Vĩnh Phúc 2025) Có ba lực cùng tác động vào một vật. Hai trong ba lực này hợp với nhau một góc $100^\\circ$ và có độ lớn lần lượt là $25\\text{ N}$ và $12\\text{ N}$. Lực thứ ba vuông góc với mặt phẳng tạo bởi hai lực đã cho và có độ lớn $4\\text{ N}$. Tính độ lớn của hợp lực của ba lực trên (đơn vị $\\text{N}$, làm tròn đến hàng phần chục).",
+      "points": 1,
+      "sort_order": 20,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Vì $\\vec{F}_3 \\perp \\vec{F}_1$ và $\\vec{F}_3 \\perp \\vec{F}_2$ nên:\n$$|\\vec{F}_1 + \\vec{F}_2 + \\vec{F}_3| = \\sqrt{F_1^2 + F_2^2 + F_3^2 + 2F_1F_2\\cos 100^\\circ} = \\sqrt{25^2 + 12^2 + 4^2 + 600\\cos 100^\\circ} \\approx 26,1\\text{ (N)}.$$",
+        "source": "THPT Chuyên Vĩnh Phúc 2025",
+        "solution": "Vì $\\vec{F}_3 \\perp \\vec{F}_1$ và $\\vec{F}_3 \\perp \\vec{F}_2$ nên:\n$$|\\vec{F}_1 + \\vec{F}_2 + \\vec{F}_3| = \\sqrt{F_1^2 + F_2^2 + F_3^2 + 2F_1F_2\\cos 100^\\circ} = \\sqrt{25^2 + 12^2 + 4^2 + 600\\cos 100^\\circ} \\approx 26,1\\text{ (N)}.$$",
+        "pack": "short-vecto"
+      },
+      "answer_key": {
+        "correct_answer": "26,1",
+        "accepted_answers": [
+          "26,1",
+          "26.1"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 3: Tích vô hướng của vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 3,
+      "type": "short",
+      "prompt": "(Cụm Chương Mỹ - Thanh Oai 2025) Có ba lực cùng tác động vào một vật. Lực $\\vec{F}_1, \\vec{F}_2$ hợp với nhau một góc $110^\\circ$ và có độ lớn lần lượt là $24\\text{ N}$ và $16\\text{ N}$. Lực $\\vec{F}_3$ vuông góc với mặt phẳng tạo bởi $\\vec{F}_1, \\vec{F}_2$ và có độ lớn $4\\text{ N}$. Tính độ lớn của hợp lực của ba lực trên (đơn vị $\\text{N}$, làm tròn đến hàng phần chục).",
+      "points": 1,
+      "sort_order": 30,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có:\n$$|\\vec{F}_1 + \\vec{F}_2 + \\vec{F}_3| = \\sqrt{F_1^2 + F_2^2 + F_3^2 + 2F_1F_2\\cos 110^\\circ} = \\sqrt{24^2 + 16^2 + 4^2 + 2\\cdot 24\\cdot 16\\cos 110^\\circ} \\approx 24,2\\text{ (N)}.$$",
+        "source": "Cụm Chương Mỹ - Thanh Oai 2025",
+        "solution": "Ta có:\n$$|\\vec{F}_1 + \\vec{F}_2 + \\vec{F}_3| = \\sqrt{F_1^2 + F_2^2 + F_3^2 + 2F_1F_2\\cos 110^\\circ} = \\sqrt{24^2 + 16^2 + 4^2 + 2\\cdot 24\\cdot 16\\cos 110^\\circ} \\approx 24,2\\text{ (N)}.$$",
+        "pack": "short-vecto"
+      },
+      "answer_key": {
+        "correct_answer": "24,2",
+        "accepted_answers": [
+          "24,2",
+          "24.2"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 3: Tích vô hướng của vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 4,
+      "type": "short",
+      "prompt": "(THPT Phúc Thọ - Hà Nội 2025) Người ta treo một chiếc đèn trang trí có trọng lượng $200\\text{ N}$ lên trần nhà bằng ba sợi dây không giãn, bằng nhau tại ba điểm $A, B, C$ tạo thành tam giác đều. Mỗi sợi dây tạo với mặt phẳng trần nhà một góc $30^\\circ$ để giữ ở trạng thái cân bằng (tham khảo hình vẽ). Tính lực căng trong mỗi sợi dây (đơn vị $\\text{N}$, làm tròn đến hàng đơn vị).\n![Hình Câu 4](/bank-images/short-vecto/q4_p0.jpeg)",
+      "points": 1,
+      "sort_order": 40,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Do tính đối xứng, độ lớn lực căng trên mỗi sợi dây đều bằng $T$. Chiếu phương trình cân bằng $\\vec{T}_A + \\vec{T}_B + \\vec{T}_C + \\vec{P} = \\vec{0}$ lên phương thẳng đứng ta có $3T\\sin 30^\\circ = 200 \\Rightarrow T = \\dfrac{400}{3} \\approx 133\\text{ (N)}$.",
+        "source": "THPT Phúc Thọ - Hà Nội 2025",
+        "solution": "Do tính đối xứng, độ lớn lực căng trên mỗi sợi dây đều bằng $T$. Chiếu phương trình cân bằng $\\vec{T}_A + \\vec{T}_B + \\vec{T}_C + \\vec{P} = \\vec{0}$ lên phương thẳng đứng ta có $3T\\sin 30^\\circ = 200 \\Rightarrow T = \\dfrac{400}{3} \\approx 133\\text{ (N)}$.",
+        "pack": "short-vecto"
+      },
+      "answer_key": {
+        "correct_answer": "133",
+        "accepted_answers": [
+          "133"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 5,
+      "type": "short",
+      "prompt": "(THPT Gia Bình - Bắc Ninh 2025) Một chiếc ô tô được đặt trên mặt đáy dưới của một khung sắt hình hộp chữ nhật có đáy trên là hình chữ nhật $ABCD$ song song với mặt phẳng nằm ngang. Khung sắt được buộc vào móc $E$ của cần cẩu bằng bốn đoạn dây cáp $EA, EB, EC, ED$ bằng nhau và cùng tạo với $(ABCD)$ góc $60^\\circ$. Biết các lực căng $\\vec{F}_1, \\vec{F}_2, \\vec{F}_3, \\vec{F}_4$ đều có cường độ $3500\\text{ N}$ và trọng lượng khung sắt là $2500\\text{ N}$. Trọng lượng của chiếc ô tô bằng bao nhiêu Niutơn (làm tròn đến hàng đơn vị)?\n![Hình Câu 5](/bank-images/short-vecto/q5_p0.jpeg)",
+      "points": 1,
+      "sort_order": 50,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Tổng hợp lực của bốn lực căng theo phương thẳng đứng cân bằng với trọng lượng tổng cộng: $P_{\\text{tổng}} = 4\\cdot 3500\\cdot\\sin 60^\\circ = 7000\\sqrt{3}\\text{ N}$.\nTrọng lượng chiếc ô tô là $7000\\sqrt{3} - 2500 \\approx 9624\\text{ N}$.",
+        "source": "THPT Gia Bình - Bắc Ninh 2025",
+        "solution": "Tổng hợp lực của bốn lực căng theo phương thẳng đứng cân bằng với trọng lượng tổng cộng: $P_{\\text{tổng}} = 4\\cdot 3500\\cdot\\sin 60^\\circ = 7000\\sqrt{3}\\text{ N}$.\nTrọng lượng chiếc ô tô là $7000\\sqrt{3} - 2500 \\approx 9624\\text{ N}$.",
+        "pack": "short-vecto"
+      },
+      "answer_key": {
+        "correct_answer": "9624",
+        "accepted_answers": [
+          "9624"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 6,
+      "type": "short",
+      "prompt": "(THPT Thạch Thành 1 - Thanh Hóa 2025) Một chiếc ô tô đặt trên mặt đáy dưới của khung sắt hình hộp chữ nhật có đáy trên là hình vuông $ABCD$ nằm ngang, buộc vào móc $E$ của cần cẩu bằng bốn đoạn dây cáp $EA, EB, EC, ED$ bằng nhau và cùng tạo với $(ABCD)$ góc $45^\\circ$. Biết lực căng các dây bằng nhau, trọng lượng khung sắt là $1000\\text{ N}$ và trọng lượng ô tô là $4000\\text{ N}$. Tính cường độ lực căng mỗi đoạn dây cáp (đơn vị $\\text{N}$, làm tròn đến hàng đơn vị).\n![Hình Câu 6](/bank-images/short-vecto/q6_p0.jpeg)",
+      "points": 1,
+      "sort_order": 60,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Tổng trọng lượng là $P = 1000 + 4000 = 5000\\text{ N}$. Khi cân bằng theo phương thẳng đứng: $4F\\sin 45^\\circ = 5000 \\Rightarrow F = 1250\\sqrt{2} \\approx 1768\\text{ N}$.",
+        "source": "THPT Thạch Thành 1 - Thanh Hóa 2025",
+        "solution": "Tổng trọng lượng là $P = 1000 + 4000 = 5000\\text{ N}$. Khi cân bằng theo phương thẳng đứng: $4F\\sin 45^\\circ = 5000 \\Rightarrow F = 1250\\sqrt{2} \\approx 1768\\text{ N}$.",
+        "pack": "short-vecto"
+      },
+      "answer_key": {
+        "correct_answer": "1768",
+        "accepted_answers": [
+          "1768"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 7,
+      "type": "short",
+      "prompt": "(THPT Triệu Sơn 3 - Thanh Hóa 2025) Một chiếc đèn trang trí gắn trên giá hình tròn bán kính $0,5\\text{ m}$ được treo song song mặt phẳng nằm ngang bởi ba sợi dây không dãn dài bằng nhau $OA = OB = OC = L$ buộc vào ba điểm $A, B, C$ tạo thành tam giác đều. Trọng lượng đèn là $27\\text{ N}$ và mỗi sợi dây chịu lực căng tối đa $12\\text{ N}$. Chiều dài tối thiểu của mỗi sợi dây là bao nhiêu mét (làm tròn đến hàng phần trăm)?\n![Hình Câu 7](/bank-images/short-vecto/q7_p0.jpeg)",
+      "points": 1,
+      "sort_order": 70,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Gọi $G$ là tâm đường tròn đáy, ta có $GA = 0,5\\text{ m}$ và $OG = \\sqrt{L^2 - 0,25}$. Do đối xứng, $3F\\cdot\\dfrac{OG}{L} = 27 \\Rightarrow F = \\dfrac{9L}{\\sqrt{L^2 - 0,25}}$. Điều kiện $F \\le 12 \\Leftrightarrow 3L \\le 4\\sqrt{L^2 - 0,25} \\Leftrightarrow 7L^2 \\ge 4 \\Leftrightarrow L \\ge \\dfrac{2\\sqrt{7}}{7} \\approx 0,76\\text{ m}$.",
+        "source": "THPT Triệu Sơn 3 - Thanh Hóa 2025",
+        "solution": "Gọi $G$ là tâm đường tròn đáy, ta có $GA = 0,5\\text{ m}$ và $OG = \\sqrt{L^2 - 0,25}$. Do đối xứng, $3F\\cdot\\dfrac{OG}{L} = 27 \\Rightarrow F = \\dfrac{9L}{\\sqrt{L^2 - 0,25}}$. Điều kiện $F \\le 12 \\Leftrightarrow 3L \\le 4\\sqrt{L^2 - 0,25} \\Leftrightarrow 7L^2 \\ge 4 \\Leftrightarrow L \\ge \\dfrac{2\\sqrt{7}}{7} \\approx 0,76\\text{ m}$.",
+        "pack": "short-vecto"
+      },
+      "answer_key": {
+        "correct_answer": "0,76",
+        "accepted_answers": [
+          "0,76",
+          "0.76"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 8,
+      "type": "short",
+      "prompt": "(Chuyên Phan Bội Châu - Nghệ An 2025) Một chiếc máy đo đạc trắc địa có trọng lượng $30\\text{ N}$ đặt trên giá đỡ ba chân. Trọng lực được phân bố đều thành ba lực $\\vec{F}_1, \\vec{F}_2, \\vec{F}_3$ có độ lớn bằng nhau lên ba chân giá đỡ, mỗi chân tạo với mặt đất góc $60^\\circ$. Độ lớn của lực $\\vec{F}_1$ bằng bao nhiêu $\\text{N}$ (làm tròn đến hàng phần chục)?\n![Hình Câu 8](/bank-images/short-vecto/q8_p0.jpeg)",
+      "points": 1,
+      "sort_order": 80,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Do đối xứng và mỗi chân hợp với mặt đất góc $60^\\circ$ nên $3|\\vec{F}_1|\\sin 60^\\circ = 30 \\Rightarrow |\\vec{F}_1| = \\dfrac{10}{\\sqrt{3}/2} = \\dfrac{20\\sqrt{3}}{3} \\approx 11,5\\text{ N}$.",
+        "source": "Chuyên Phan Bội Châu - Nghệ An 2025",
+        "solution": "Do đối xứng và mỗi chân hợp với mặt đất góc $60^\\circ$ nên $3|\\vec{F}_1|\\sin 60^\\circ = 30 \\Rightarrow |\\vec{F}_1| = \\dfrac{10}{\\sqrt{3}/2} = \\dfrac{20\\sqrt{3}}{3} \\approx 11,5\\text{ N}$.",
+        "pack": "short-vecto"
+      },
+      "answer_key": {
+        "correct_answer": "11,5",
+        "accepted_answers": [
+          "11,5",
+          "11.5"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 9,
+      "type": "short",
+      "prompt": "(Sở Hà Tĩnh 2025) Có ba lực cùng tác động vào một cái bàn như hình vẽ. Hai lực $\\vec{F}_1, \\vec{F}_2$ nằm trên mặt phẳng chứa mặt bàn, tạo với nhau góc $110^\\circ$ và có độ lớn lần lượt $9\\text{ N}$ và $4\\text{ N}$; lực $\\vec{F}_3$ vuông góc với mặt bàn có độ lớn $7\\text{ N}$. Độ lớn hợp lực của ba lực trên là $a\\text{ (N)}$. Tìm $a$ (quy tròn về số nguyên).\n![Hình Câu 9](/bank-images/short-vecto/q9_p0.jpeg)",
+      "points": 1,
+      "sort_order": 90,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Vì $\\vec{F}_3$ vuông góc với mặt bàn chứa $\\vec{F}_1, \\vec{F}_2$ nên:\n$$|\\vec{F}| = \\sqrt{9^2 + 4^2 + 2\\cdot 9\\cdot 4\\cos 110^\\circ + 7^2} = \\sqrt{146 + 72\\cos 110^\\circ} \\approx 11,02 \\approx 11\\text{ (N)}.$$",
+        "source": "Sở Hà Tĩnh 2025",
+        "solution": "Vì $\\vec{F}_3$ vuông góc với mặt bàn chứa $\\vec{F}_1, \\vec{F}_2$ nên:\n$$|\\vec{F}| = \\sqrt{9^2 + 4^2 + 2\\cdot 9\\cdot 4\\cos 110^\\circ + 7^2} = \\sqrt{146 + 72\\cos 110^\\circ} \\approx 11,02 \\approx 11\\text{ (N)}.$$",
+        "pack": "short-vecto"
+      },
+      "answer_key": {
+        "correct_answer": "11",
+        "accepted_answers": [
+          "11"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 3: Tích vô hướng của vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 10,
+      "type": "short",
+      "prompt": "(Chuyên Thái Bình 2025) Một giỏ hoa treo gồm $3$ sợi dây không giãn, mỗi sợi dài $60\\text{ cm}$, đỡ một miếng gỗ hình tròn bán kính $20\\text{ cm}$ tại $3$ điểm tạo thành tam giác đều. Mỗi sợi dây chịu lực tối đa $15\\text{ N}$ và trọng lượng miếng giá gỗ là $5\\text{ N}$. Tính trọng lượng tối đa của các chậu hoa để dây không đứt (đơn vị $\\text{N}$, làm tròn đến hàng phần chục).\n![Hình Câu 10](/bank-images/short-vecto/q10_p0.jpeg)",
+      "points": 1,
+      "sort_order": 100,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Chiều cao từ nút thắt $O$ đến tâm $G$ miếng gỗ là $OG = \\sqrt{60^2 - 20^2} = 40\\sqrt{2}\\text{ cm}$.\nTổng trọng lượng tối đa của giá gỗ và chậu hoa là $P_{\\max} = 3\\cdot 15\\cdot\\dfrac{40\\sqrt{2}}{60} = 30\\sqrt{2}\\text{ N}$.\nDo đó trọng lượng tối đa của các chậu hoa là $30\\sqrt{2} - 5 \\approx 37,4\\text{ N}$.",
+        "source": "Chuyên Thái Bình 2025",
+        "solution": "Chiều cao từ nút thắt $O$ đến tâm $G$ miếng gỗ là $OG = \\sqrt{60^2 - 20^2} = 40\\sqrt{2}\\text{ cm}$.\nTổng trọng lượng tối đa của giá gỗ và chậu hoa là $P_{\\max} = 3\\cdot 15\\cdot\\dfrac{40\\sqrt{2}}{60} = 30\\sqrt{2}\\text{ N}$.\nDo đó trọng lượng tối đa của các chậu hoa là $30\\sqrt{2} - 5 \\approx 37,4\\text{ N}$.",
+        "pack": "short-vecto"
+      },
+      "answer_key": {
+        "correct_answer": "37,4",
+        "accepted_answers": [
+          "37,4",
+          "37.4"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 11,
+      "type": "short",
+      "prompt": "(THPT Trần Nguyên Hãn - Hải Phòng 2025) Một chiếc cân đòn tay đang cân vật có khối lượng $m = 3\\text{ kg}$, đĩa cân giữ bởi bốn đoạn xích $SA, SB, SC, SD$ sao cho $S.ABCD$ là hình chóp tứ giác đều có $\\widehat{ASC} = 90^\\circ$. Biết độ lớn lực căng mỗi sợi xích có dạng $\\dfrac{a\\sqrt{2}}{4}\\text{ (N)}$ (lấy $g = 10\\text{ m/s}^2$). Giá trị của $a$ bằng bao nhiêu?\n![Hình Câu 11](/bank-images/short-vecto/q11_p0.jpeg)",
+      "points": 1,
+      "sort_order": 110,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Trọng lượng vật là $P = mg = 30\\text{ N}$. Vì $S.ABCD$ là hình chóp tứ giác đều có $\\widehat{ASC} = 90^\\circ$ nên $\\triangle SAC$ vuông cân tại $S$, mỗi cạnh bên tạo với mặt đáy góc $45^\\circ$.\nCân bằng theo phương thẳng đứng: $4F\\sin 45^\\circ = 30 \\Rightarrow F = \\dfrac{15\\sqrt{2}}{2} = \\dfrac{30\\sqrt{2}}{4}\\text{ N}$. Vậy $a = 30$.",
+        "source": "THPT Trần Nguyên Hãn - Hải Phòng 2025",
+        "solution": "Trọng lượng vật là $P = mg = 30\\text{ N}$. Vì $S.ABCD$ là hình chóp tứ giác đều có $\\widehat{ASC} = 90^\\circ$ nên $\\triangle SAC$ vuông cân tại $S$, mỗi cạnh bên tạo với mặt đáy góc $45^\\circ$.\nCân bằng theo phương thẳng đứng: $4F\\sin 45^\\circ = 30 \\Rightarrow F = \\dfrac{15\\sqrt{2}}{2} = \\dfrac{30\\sqrt{2}}{4}\\text{ N}$. Vậy $a = 30$.",
+        "pack": "short-vecto"
+      },
+      "answer_key": {
+        "correct_answer": "30",
+        "accepted_answers": [
+          "30"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Vận dụng"
+      ]
+    }
+  ]
+}

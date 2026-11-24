@@ -1,0 +1,980 @@
+{
+  "pack_id": "chude21-phuongsai-dolechchuan",
+  "title": "Chủ đề 21 · Phương sai - Độ lệch chuẩn (2025)",
+  "chapter": "GĐ1 · Chương 5",
+  "count": 36,
+  "questions": [
+    {
+      "source_num": 1,
+      "type": "mcq",
+      "prompt": "(THPT Hàm Rồng - Thanh Hóa 2025) Mỗi ngày bác Hương đều đi bộ để rèn luyện sức khỏe. Quãng đường đi bộ mỗi ngày của bác Hương trong $20$ ngày được thống kê lại ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Quãng đường} & [2,7;3,0) & [3,0;3,3) & [3,3;3,6) & [3,6;3,9) & [3,9;4,2) \\\\ \\hline \\text{Số ngày} & 3 & 6 & 5 & 4 & 2 \\\\ \\hline \\end{array}$$\nPhương sai của mẫu số liệu ghép nhóm là",
+      "points": 0.25,
+      "sort_order": 10,
+      "choices": [
+        "$3,39$.",
+        "$11,62$.",
+        "$0,13$.",
+        "$0,36$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Cỡ mẫu: $n = 3 + 6 + 5 + 4 + 2 = 20$.\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Quãng đường} & [2,7;3,0) & [3,0;3,3) & [3,3;3,6) & [3,6;3,9) & [3,9;4,2) \\\\ \\hline \\text{Giá trị đại diện} & 2,85 & 3,15 & 3,45 & 3,75 & 4,05 \\\\ \\hline \\text{Số ngày} & 3 & 6 & 5 & 4 & 2 \\\\ \\hline \\end{array}$$\nSố trung bình cộng của mẫu số liệu ghép nhóm là:\n$$\\bar{x} = \\frac{2,85 \\cdot 3 + 3,15 \\cdot 6 + 3,45 \\cdot 5 + 3,75 \\cdot 4 + 4,05 \\cdot 2}{20} = 3,39.$$\nPhương sai của mẫu số liệu ghép nhóm là:\n$$s^2 = \\frac{1}{20}\\left(2,85^2 \\cdot 3 + 3,15^2 \\cdot 6 + 3,45^2 \\cdot 5 + 3,75^2 \\cdot 4 + 4,05^2 \\cdot 2\\right) - 3,39^2 = 0,1314 \\approx 0,13.$$",
+        "source": "THPT Hàm Rồng - Thanh Hóa 2025",
+        "solution": "Cỡ mẫu: $n = 3 + 6 + 5 + 4 + 2 = 20$.\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Quãng đường} & [2,7;3,0) & [3,0;3,3) & [3,3;3,6) & [3,6;3,9) & [3,9;4,2) \\\\ \\hline \\text{Giá trị đại diện} & 2,85 & 3,15 & 3,45 & 3,75 & 4,05 \\\\ \\hline \\text{Số ngày} & 3 & 6 & 5 & 4 & 2 \\\\ \\hline \\end{array}$$\nSố trung bình cộng của mẫu số liệu ghép nhóm là:\n$$\\bar{x} = \\frac{2,85 \\cdot 3 + 3,15 \\cdot 6 + 3,45 \\cdot 5 + 3,75 \\cdot 4 + 4,05 \\cdot 2}{20} = 3,39.$$\nPhương sai của mẫu số liệu ghép nhóm là:\n$$s^2 = \\frac{1}{20}\\left(2,85^2 \\cdot 3 + 3,15^2 \\cdot 6 + 3,45^2 \\cdot 5 + 3,75^2 \\cdot 4 + 4,05^2 \\cdot 2\\right) - 3,39^2 = 0,1314 \\approx 0,13.$$"
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 2,
+      "type": "mcq",
+      "prompt": "(THPT Hàm Rồng - Thanh Hóa 2025) Mỗi ngày cô Hoa đều chơi môn Pickleball để rèn luyện sức khoẻ. Qua thống kê thời gian một tuần chơi (đơn vị: giờ) của cô Hoa, tính được phương sai của mẫu số liệu ghép nhóm là $0,1314$. Độ lệch chuẩn của mẫu số liệu trên là",
+      "points": 0.25,
+      "sort_order": 20,
+      "choices": [
+        "$3,39$.",
+        "$11,62$.",
+        "$0,36$.",
+        "$0,13$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Độ lệch chuẩn là căn bậc hai số học của phương sai:\n$$s = \\sqrt{0,1314} \\approx 0,36.$$",
+        "source": "THPT Hàm Rồng - Thanh Hóa 2025",
+        "solution": "Độ lệch chuẩn là căn bậc hai số học của phương sai:\n$$s = \\sqrt{0,1314} \\approx 0,36.$$"
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 3,
+      "type": "mcq",
+      "prompt": "(Đề Tham Khảo 2025) Hai mẫu số liệu ghép nhóm $M_1, M_2$ có bảng tần số ghép nhóm như sau:\nMẫu $M_1$:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Nhóm} & [8;10) & [10;12) & [12;14) & [14;16) & [16;18) \\\\ \\hline \\text{Tần số} & 3 & 4 & 8 & 6 & 4 \\\\ \\hline \\end{array}$$\nMẫu $M_2$:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Nhóm} & [8;10) & [10;12) & [12;14) & [14;16) & [16;18) \\\\ \\hline \\text{Tần số} & 6 & 8 & 16 & 12 & 8 \\\\ \\hline \\end{array}$$\nGọi $s_1, s_2$ lần lượt là độ lệch chuẩn của mẫu số liệu ghép nhóm $M_1, M_2$. Phát biểu nào sau đây là đúng?",
+      "points": 0.25,
+      "sort_order": 30,
+      "choices": [
+        "$s_1 = s_2$.",
+        "$s_1 = 2s_2$.",
+        "$2s_1 = s_2$.",
+        "$4s_1 = s_2$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta thấy hai mẫu $M_1$ và $M_2$ có cùng các nhóm ghép và tần số tương ứng của $M_2$ gấp $2$ lần tần số của $M_1$ ($n_2 = 50 = 2n_1$).\nCụ thể:\n- Mẫu $M_1$: $n_1 = 25$, $\\bar{x}_1 = \\frac{3\\cdot 9 + 4\\cdot 11 + 8\\cdot 13 + 6\\cdot 15 + 4\\cdot 17}{25} = 13,32$,\n$$s_1^2 = \\frac{1}{25}\\left(3\\cdot 9^2 + 4\\cdot 11^2 + 8\\cdot 13^2 + 6\\cdot 15^2 + 4\\cdot 17^2\\right) - 13,32^2 = 5,9776 \\Rightarrow s_1 \\approx 2,445.$$\n- Mẫu $M_2$: $n_2 = 50$, $\\bar{x}_2 = \\frac{6\\cdot 9 + 8\\cdot 11 + 16\\cdot 13 + 12\\cdot 15 + 8\\cdot 17}{50} = 13,32$,\n$$s_2^2 = \\frac{1}{50}\\left(6\\cdot 9^2 + 8\\cdot 11^2 + 16\\cdot 13^2 + 12\\cdot 15^2 + 8\\cdot 17^2\\right) - 13,32^2 = 5,9776 \\Rightarrow s_2 \\approx 2,445.$$\nVậy $s_1 = s_2$.",
+        "source": "Đề Tham Khảo 2025",
+        "solution": "Ta thấy hai mẫu $M_1$ và $M_2$ có cùng các nhóm ghép và tần số tương ứng của $M_2$ gấp $2$ lần tần số của $M_1$ ($n_2 = 50 = 2n_1$).\nCụ thể:\n- Mẫu $M_1$: $n_1 = 25$, $\\bar{x}_1 = \\frac{3\\cdot 9 + 4\\cdot 11 + 8\\cdot 13 + 6\\cdot 15 + 4\\cdot 17}{25} = 13,32$,\n$$s_1^2 = \\frac{1}{25}\\left(3\\cdot 9^2 + 4\\cdot 11^2 + 8\\cdot 13^2 + 6\\cdot 15^2 + 4\\cdot 17^2\\right) - 13,32^2 = 5,9776 \\Rightarrow s_1 \\approx 2,445.$$\n- Mẫu $M_2$: $n_2 = 50$, $\\bar{x}_2 = \\frac{6\\cdot 9 + 8\\cdot 11 + 16\\cdot 13 + 12\\cdot 15 + 8\\cdot 17}{50} = 13,32$,\n$$s_2^2 = \\frac{1}{50}\\left(6\\cdot 9^2 + 8\\cdot 11^2 + 16\\cdot 13^2 + 12\\cdot 15^2 + 8\\cdot 17^2\\right) - 13,32^2 = 5,9776 \\Rightarrow s_2 \\approx 2,445.$$\nVậy $s_1 = s_2$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 4,
+      "type": "mcq",
+      "prompt": "(THPT Lê Thánh Tông - HCM 2025) Thống kê điểm trung bình môn Toán của một số học sinh lớp $12$ được mẫu số liệu sau:\n$$\\begin{array}{|c|c|c|c|c|c|c|c|} \\hline \\text{Khoảng điểm} & [6,5;7) & [7;7,5) & [7,5;8) & [8;8,5) & [8,5;9) & [9;9,5) & [9,5;10) \\\\ \\hline \\text{Tần số} & 8 & 10 & 16 & 24 & 13 & 7 & 4 \\\\ \\hline \\end{array}$$\nPhương sai của mẫu số liệu về điểm trung bình môn Toán của các học sinh đó là",
+      "points": 0.25,
+      "sort_order": 40,
+      "choices": [
+        "$0,616$.",
+        "$0,785$.",
+        "$0,78$.",
+        "$0,609$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Cỡ mẫu $n = 8 + 10 + 16 + 24 + 13 + 7 + 4 = 82$.\nCác giá trị đại diện lần lượt là $6,75; 7,25; 7,75; 8,25; 8,75; 9,25; 9,75$.\nSố trung bình:\n$$\\bar{x} = \\frac{6,75 \\cdot 8 + 7,25 \\cdot 10 + 7,75 \\cdot 16 + 8,25 \\cdot 24 + 8,75 \\cdot 13 + 9,25 \\cdot 7 + 9,75 \\cdot 4}{82} \\approx 8,12195.$$\nPhương sai của mẫu số liệu:\n$$s^2 = \\frac{1}{82}\\left[8(6,75 - \\bar{x})^2 + 10(7,25 - \\bar{x})^2 + 16(7,75 - \\bar{x})^2 + 24(8,25 - \\bar{x})^2 + 13(8,75 - \\bar{x})^2 + 7(9,25 - \\bar{x})^2 + 4(9,75 - \\bar{x})^2\\right] \\approx 0,609.$$",
+        "source": "THPT Lê Thánh Tông - HCM 2025",
+        "solution": "Cỡ mẫu $n = 8 + 10 + 16 + 24 + 13 + 7 + 4 = 82$.\nCác giá trị đại diện lần lượt là $6,75; 7,25; 7,75; 8,25; 8,75; 9,25; 9,75$.\nSố trung bình:\n$$\\bar{x} = \\frac{6,75 \\cdot 8 + 7,25 \\cdot 10 + 7,75 \\cdot 16 + 8,25 \\cdot 24 + 8,75 \\cdot 13 + 9,25 \\cdot 7 + 9,75 \\cdot 4}{82} \\approx 8,12195.$$\nPhương sai của mẫu số liệu:\n$$s^2 = \\frac{1}{82}\\left[8(6,75 - \\bar{x})^2 + 10(7,25 - \\bar{x})^2 + 16(7,75 - \\bar{x})^2 + 24(8,25 - \\bar{x})^2 + 13(8,75 - \\bar{x})^2 + 7(9,25 - \\bar{x})^2 + 4(9,75 - \\bar{x})^2\\right] \\approx 0,609.$$"
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 5,
+      "type": "mcq",
+      "prompt": "(THPT Diễn Châu 5 - Nghệ An 2025) Mỗi ngày bác Hương đều đi bộ để rèn luyện sức khỏe. Quãng đường đi bộ mỗi ngày (đơn vị: km) của bác Hương trong $20$ ngày được thống kê lại ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Quãng đường (km)} & [2,7;3,0) & [3,0;3,3) & [3,3;3,6) & [3,6;3,9) & [3,9;4,2) \\\\ \\hline \\text{Số ngày} & 3 & 6 & 5 & 4 & 2 \\\\ \\hline \\end{array}$$\nPhương sai của mẫu số liệu ghép nhóm là (làm tròn đến hàng phần trăm)",
+      "points": 0.25,
+      "sort_order": 50,
+      "choices": [
+        "$0,13$.",
+        "$0,36$.",
+        "$3,39$.",
+        "$11,62$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Cỡ mẫu $n = 20$. Giá trị đại diện các nhóm là $2,85; 3,15; 3,45; 3,75; 4,05$.\nSố trung bình:\n$$\\bar{x} = \\frac{2,85\\cdot 3 + 3,15\\cdot 6 + 3,45\\cdot 5 + 3,75\\cdot 4 + 4,05\\cdot 2}{20} = 3,39.$$\nPhương sai của mẫu số liệu ghép nhóm là:\n$$s^2 = \\frac{1}{20}\\left(2,85^2\\cdot 3 + 3,15^2\\cdot 6 + 3,45^2\\cdot 5 + 3,75^2\\cdot 4 + 4,05^2\\cdot 2\\right) - 3,39^2 = 0,1314 \\approx 0,13.$$",
+        "source": "THPT Diễn Châu 5 - Nghệ An 2025",
+        "solution": "Cỡ mẫu $n = 20$. Giá trị đại diện các nhóm là $2,85; 3,15; 3,45; 3,75; 4,05$.\nSố trung bình:\n$$\\bar{x} = \\frac{2,85\\cdot 3 + 3,15\\cdot 6 + 3,45\\cdot 5 + 3,75\\cdot 4 + 4,05\\cdot 2}{20} = 3,39.$$\nPhương sai của mẫu số liệu ghép nhóm là:\n$$s^2 = \\frac{1}{20}\\left(2,85^2\\cdot 3 + 3,15^2\\cdot 6 + 3,45^2\\cdot 5 + 3,75^2\\cdot 4 + 4,05^2\\cdot 2\\right) - 3,39^2 = 0,1314 \\approx 0,13.$$"
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 6,
+      "type": "mcq",
+      "prompt": "(THPT Hùng Vương - Bình Thuận 2025) Dũng là học sinh rất giỏi chơi rubik, bạn có thể giải nhiều loại khối rubik khác nhau. Trong một lần tập luyện giải khối rubik $3 \\times 3$, bạn Dũng đã tự thống kê lại thời gian giải rubik trong $25$ lần giải liên tiếp ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Thời gian giải rubik} & [8;10) & [10;12) & [12;14) & [14;16) & [16;18) \\\\ \\hline \\text{Số lần} & 4 & 6 & 8 & 4 & 3 \\\\ \\hline \\end{array}$$\nĐộ lệch chuẩn của mẫu số liệu ghép nhóm có giá trị gần nhất với giá trị nào dưới đây?",
+      "points": 0.25,
+      "sort_order": 60,
+      "choices": [
+        "$5,98$.",
+        "$6$.",
+        "$2,44$.",
+        "$2,5$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Các giá trị đại diện lần lượt là $9; 11; 13; 15; 17$, cỡ mẫu $n = 25$.\nGiá trị trung bình:\n$$\\bar{x} = \\frac{4\\cdot 9 + 6\\cdot 11 + 8\\cdot 13 + 4\\cdot 15 + 3\\cdot 17}{25} = 12,68.$$\nPhương sai của mẫu số liệu:\n$$s^2 = \\frac{4(9 - 12,68)^2 + 6(11 - 12,68)^2 + 8(13 - 12,68)^2 + 4(15 - 12,68)^2 + 3(17 - 12,68)^2}{25} = 5,9776.$$\nVậy độ lệch chuẩn là $s = \\sqrt{5,9776} \\approx 2,4449$, gần nhất với $2,44$.",
+        "source": "THPT Hùng Vương - Bình Thuận 2025",
+        "solution": "Các giá trị đại diện lần lượt là $9; 11; 13; 15; 17$, cỡ mẫu $n = 25$.\nGiá trị trung bình:\n$$\\bar{x} = \\frac{4\\cdot 9 + 6\\cdot 11 + 8\\cdot 13 + 4\\cdot 15 + 3\\cdot 17}{25} = 12,68.$$\nPhương sai của mẫu số liệu:\n$$s^2 = \\frac{4(9 - 12,68)^2 + 6(11 - 12,68)^2 + 8(13 - 12,68)^2 + 4(15 - 12,68)^2 + 3(17 - 12,68)^2}{25} = 5,9776.$$\nVậy độ lệch chuẩn là $s = \\sqrt{5,9776} \\approx 2,4449$, gần nhất với $2,44$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 7,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Sơn 3 - Thanh Hóa 2025) Khảo sát thời gian chơi thể thao trong một ngày của $42$ học sinh được cho trong bảng sau (thời gian đơn vị phút):\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Thời gian (phút)} & [0;20) & [20;40) & [40;60) & [60;80) & [80;100) \\\\ \\hline \\text{Số học sinh} & 5 & 9 & 12 & 10 & 6 \\\\ \\hline \\end{array}$$\nPhương sai của mẫu số liệu (được làm tròn đến hàng đơn vị) bằng",
+      "points": 0.25,
+      "sort_order": 70,
+      "choices": [
+        "$598$.",
+        "$597$.",
+        "$2477$.",
+        "$256$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Các giá trị đại diện là $10; 30; 50; 70; 90$. Trung bình thời gian chơi thể thao trong một ngày của một học sinh là:\n$$\\bar{x} = \\frac{10\\cdot 5 + 30\\cdot 9 + 50\\cdot 12 + 70\\cdot 10 + 90\\cdot 6}{42} = \\frac{360}{7}.$$\nPhương sai của mẫu số liệu là:\n$$S^2 = \\frac{5\\cdot 10^2 + 9\\cdot 30^2 + 12\\cdot 50^2 + 10\\cdot 70^2 + 6\\cdot 90^2}{42} - \\left(\\frac{360}{7}\\right)^2 = \\frac{29300}{49} \\approx 597,96.$$Làm tròn đến hàng đơn vị ta được $S^2 \\approx 598$.",
+        "source": "THPT Triệu Sơn 3 - Thanh Hóa 2025",
+        "solution": "Các giá trị đại diện là $10; 30; 50; 70; 90$. Trung bình thời gian chơi thể thao trong một ngày của một học sinh là:\n$$\\bar{x} = \\frac{10\\cdot 5 + 30\\cdot 9 + 50\\cdot 12 + 70\\cdot 10 + 90\\cdot 6}{42} = \\frac{360}{7}.$$\nPhương sai của mẫu số liệu là:\n$$S^2 = \\frac{5\\cdot 10^2 + 9\\cdot 30^2 + 12\\cdot 50^2 + 10\\cdot 70^2 + 6\\cdot 90^2}{42} - \\left(\\frac{360}{7}\\right)^2 = \\frac{29300}{49} \\approx 597,96.$$Làm tròn đến hàng đơn vị ta được $S^2 \\approx 598$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 8,
+      "type": "mcq",
+      "prompt": "(Sở Vĩnh Phúc 2025) Thống kê điểm kiểm tra học kì I môn Toán của các học sinh lớp $12\\text{A}$ và $12\\text{B}$ ở bảng:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Điểm} & [5;6) & [6;7) & [7;8) & [8;9) & [9;10) \\\\ \\hline 12\\text{A} & 1 & 0 & 11 & 22 & 6 \\\\ \\hline 12\\text{B} & 0 & 6 & 8 & 14 & 12 \\\\ \\hline \\end{array}$$\nKhẳng định nào sau đây là đúng?",
+      "points": 0.25,
+      "sort_order": 80,
+      "choices": [
+        "Điểm trung bình của lớp $12\\text{A}$ là $8,4$ (làm tròn đến hàng phần chục).",
+        "Điểm trung bình của lớp $12\\text{A}$ nhỏ hơn lớp $12\\text{B}$.",
+        "So sánh theo độ lệch chuẩn thì học sinh lớp $12\\text{A}$ học đồng đều hơn học sinh lớp $12\\text{B}$.",
+        "Phương sai của mẫu số liệu lớp $12\\text{B}$ là $1,05$ (làm tròn đến hàng phần trăm)."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Giá trị đại diện các nhóm lần lượt là $5,5; 6,5; 7,5; 8,5; 9,5$. Cỡ mẫu mỗi lớp đều là $n = 40$.\n- Điểm trung bình lớp $12\\text{A}$: $\\bar{x}_A = \\frac{5,5\\cdot 1 + 7,5\\cdot 11 + 8,5\\cdot 22 + 9,5\\cdot 6}{40} = 8,3$.\n- Điểm trung bình lớp $12\\text{B}$: $\\bar{x}_B = \\frac{6,5\\cdot 6 + 7,5\\cdot 8 + 8,5\\cdot 14 + 9,5\\cdot 12}{40} = 8,3$.\n- Phương sai lớp $12\\text{A}$: $S_A^2 = \\frac{1}{40}(1\\cdot 5,5^2 + 11\\cdot 7,5^2 + 22\\cdot 8,5^2 + 6\\cdot 9,5^2) - 8,3^2 = 0,61 \\Rightarrow S_A = \\sqrt{0,61}$.\n- Phương sai lớp $12\\text{B}$: $S_B^2 = \\frac{1}{40}(6\\cdot 6,5^2 + 8\\cdot 7,5^2 + 14\\cdot 8,5^2 + 12\\cdot 9,5^2) - 8,3^2 = 1,06 \\Rightarrow S_B = \\sqrt{1,06}$.\nVì độ lệch chuẩn của lớp $12\\text{A}$ nhỏ hơn lớp $12\\text{B}$ ($\\sqrt{0,61} < \\sqrt{1,06}$) nên lớp $12\\text{A}$ học đồng đều hơn.",
+        "source": "Sở Vĩnh Phúc 2025",
+        "solution": "Giá trị đại diện các nhóm lần lượt là $5,5; 6,5; 7,5; 8,5; 9,5$. Cỡ mẫu mỗi lớp đều là $n = 40$.\n- Điểm trung bình lớp $12\\text{A}$: $\\bar{x}_A = \\frac{5,5\\cdot 1 + 7,5\\cdot 11 + 8,5\\cdot 22 + 9,5\\cdot 6}{40} = 8,3$.\n- Điểm trung bình lớp $12\\text{B}$: $\\bar{x}_B = \\frac{6,5\\cdot 6 + 7,5\\cdot 8 + 8,5\\cdot 14 + 9,5\\cdot 12}{40} = 8,3$.\n- Phương sai lớp $12\\text{A}$: $S_A^2 = \\frac{1}{40}(1\\cdot 5,5^2 + 11\\cdot 7,5^2 + 22\\cdot 8,5^2 + 6\\cdot 9,5^2) - 8,3^2 = 0,61 \\Rightarrow S_A = \\sqrt{0,61}$.\n- Phương sai lớp $12\\text{B}$: $S_B^2 = \\frac{1}{40}(6\\cdot 6,5^2 + 8\\cdot 7,5^2 + 14\\cdot 8,5^2 + 12\\cdot 9,5^2) - 8,3^2 = 1,06 \\Rightarrow S_B = \\sqrt{1,06}$.\nVì độ lệch chuẩn của lớp $12\\text{A}$ nhỏ hơn lớp $12\\text{B}$ ($\\sqrt{0,61} < \\sqrt{1,06}$) nên lớp $12\\text{A}$ học đồng đều hơn."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 9,
+      "type": "mcq",
+      "prompt": "(Chuyên KHTN Hà Nội 2025) Thống kê chiều cao (đơn vị: cm) của các học sinh trong một lớp học ta có bảng số liệu sau:\n$$\\begin{array}{|c|c|c|c|c|c|c|} \\hline \\text{Chiều cao} & [150;155) & [155;160) & [160;165) & [165;170) & [170;175) & [175;180) \\\\ \\hline \\text{Số học sinh} & 1 & 4 & 10 & 9 & 4 & 2 \\\\ \\hline \\end{array}$$\nĐộ lệch chuẩn của mẫu số liệu trên bằng bao nhiêu? (Kết quả làm tròn đến hàng phần trăm)",
+      "points": 0.25,
+      "sort_order": 90,
+      "choices": [
+        "$35,66$.",
+        "$5,87$.",
+        "$34,47$.",
+        "$5,97$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Cỡ mẫu $n = 1 + 4 + 10 + 9 + 4 + 2 = 30$.\nSố trung bình:\n$$\\bar{x} = \\frac{1}{30}\\left(152,5\\cdot 1 + 157,5\\cdot 4 + 162,5\\cdot 10 + 167,5\\cdot 9 + 172,5\\cdot 4 + 177,5\\cdot 2\\right) = \\frac{496}{3} \\approx 165,3333.$$\nPhương sai:\n$$S^2 = \\frac{1}{30}\\left(152,5^2\\cdot 1 + 157,5^2\\cdot 4 + 162,5^2\\cdot 10 + 167,5^2\\cdot 9 + 172,5^2\\cdot 4 + 177,5^2\\cdot 2\\right) - \\bar{x}^2 = \\frac{1241}{36} \\approx 34,4722.$$\nĐộ lệch chuẩn: $S = \\sqrt{S^2} \\approx 5,87$.",
+        "source": "Chuyên KHTN Hà Nội 2025",
+        "solution": "Cỡ mẫu $n = 1 + 4 + 10 + 9 + 4 + 2 = 30$.\nSố trung bình:\n$$\\bar{x} = \\frac{1}{30}\\left(152,5\\cdot 1 + 157,5\\cdot 4 + 162,5\\cdot 10 + 167,5\\cdot 9 + 172,5\\cdot 4 + 177,5\\cdot 2\\right) = \\frac{496}{3} \\approx 165,3333.$$\nPhương sai:\n$$S^2 = \\frac{1}{30}\\left(152,5^2\\cdot 1 + 157,5^2\\cdot 4 + 162,5^2\\cdot 10 + 167,5^2\\cdot 9 + 172,5^2\\cdot 4 + 177,5^2\\cdot 2\\right) - \\bar{x}^2 = \\frac{1241}{36} \\approx 34,4722.$$\nĐộ lệch chuẩn: $S = \\sqrt{S^2} \\approx 5,87$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 10,
+      "type": "mcq",
+      "prompt": "(Chuyên Vinh 2025) Thống kê điểm trung bình môn Toán của lớp $11\\text{A}$ được cho ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|} \\hline \\text{Nhóm} & [6;7) & [7;8) & [8;9) & [9;10) \\\\ \\hline \\text{Tần số} & 2 & 8 & 18 & 12 \\\\ \\hline \\end{array}$$\nPhương sai của mẫu số liệu trên là",
+      "points": 0.25,
+      "sort_order": 100,
+      "choices": [
+        "$6$.",
+        "$8,5$.",
+        "$0,7$.",
+        "$0,15$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Cỡ mẫu $n = 2 + 8 + 18 + 12 = 40$.\nSố trung bình:\n$$\\bar{x} = \\frac{1}{40}(2\\cdot 6,5 + 8\\cdot 7,5 + 18\\cdot 8,5 + 12\\cdot 9,5) = \\frac{17}{2} = 8,5.$$\nPhương sai:\n$$S^2 = \\frac{1}{40}\\left(2\\cdot 6,5^2 + 8\\cdot 7,5^2 + 18\\cdot 8,5^2 + 12\\cdot 9,5^2\\right) - \\left(\\frac{17}{2}\\right)^2 = 0,7.$$",
+        "source": "Chuyên Vinh 2025",
+        "solution": "Cỡ mẫu $n = 2 + 8 + 18 + 12 = 40$.\nSố trung bình:\n$$\\bar{x} = \\frac{1}{40}(2\\cdot 6,5 + 8\\cdot 7,5 + 18\\cdot 8,5 + 12\\cdot 9,5) = \\frac{17}{2} = 8,5.$$\nPhương sai:\n$$S^2 = \\frac{1}{40}\\left(2\\cdot 6,5^2 + 8\\cdot 7,5^2 + 18\\cdot 8,5^2 + 12\\cdot 9,5^2\\right) - \\left(\\frac{17}{2}\\right)^2 = 0,7.$$"
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 11,
+      "type": "mcq",
+      "prompt": "(Sở Thanh Hóa 2025) Bảng dưới đây thống kê cự ly ném tạ của một vận động viên:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Cự ly (m)} & [19;19,5) & [19,5;20) & [20;20,5) & [20,5;21) & [21;21,5) \\\\ \\hline \\text{Tần số} & 13 & 45 & 24 & 12 & 6 \\\\ \\hline \\end{array}$$\nPhương sai của mẫu số liệu ghép nhóm trên là (làm tròn kết quả đến hàng phần trăm)",
+      "points": 0.25,
+      "sort_order": 110,
+      "choices": [
+        "$0,28$.",
+        "$0,22$.",
+        "$0,24$.",
+        "$0,26$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $n = 13 + 45 + 24 + 12 + 6 = 100$. Các giá trị đại diện là $19,25; 19,75; 20,25; 20,75; 21,25$.\nGiá trị trung bình:\n$$\\bar{x} = \\frac{13\\cdot 19,25 + 45\\cdot 19,75 + 24\\cdot 20,25 + 12\\cdot 20,75 + 6\\cdot 21,25}{100} = 20,015.$$\nPhương sai của mẫu số liệu trên là:\n$$s^2 = \\frac{13\\cdot (-0,765)^2 + 45\\cdot (-0,265)^2 + 24\\cdot (0,235)^2 + 12\\cdot (0,735)^2 + 6\\cdot (1,235)^2}{100} = 0,277275 \\approx 0,28.$$",
+        "source": "Sở Thanh Hóa 2025",
+        "solution": "Ta có $n = 13 + 45 + 24 + 12 + 6 = 100$. Các giá trị đại diện là $19,25; 19,75; 20,25; 20,75; 21,25$.\nGiá trị trung bình:\n$$\\bar{x} = \\frac{13\\cdot 19,25 + 45\\cdot 19,75 + 24\\cdot 20,25 + 12\\cdot 20,75 + 6\\cdot 21,25}{100} = 20,015.$$\nPhương sai của mẫu số liệu trên là:\n$$s^2 = \\frac{13\\cdot (-0,765)^2 + 45\\cdot (-0,265)^2 + 24\\cdot (0,235)^2 + 12\\cdot (0,735)^2 + 6\\cdot (1,235)^2}{100} = 0,277275 \\approx 0,28.$$"
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 12,
+      "type": "mcq",
+      "prompt": "(Cụm trường THPT Hải Dương 2025) Cho mẫu số liệu ghép nhóm như bảng dưới đây:\n$$\\begin{array}{|c|c|c|c|c|} \\hline \\text{Nhóm} & [u_1; u_2) & [u_2; u_3) & \\dots & [u_k; u_{k+1}) \\\\ \\hline \\text{Giá trị đại diện} & c_1 & c_2 & \\dots & c_k \\\\ \\hline \\text{Tần số} & n_1 & n_2 & \\dots & n_k \\\\ \\hline \\end{array}$$\nKhi đó phương sai của mẫu số liệu được xác định theo công thức",
+      "points": 0.25,
+      "sort_order": 120,
+      "choices": [
+        "$s^2 = \\frac{1}{n}\\left[n_1(c_1 - \\bar{x}) + n_2(c_2 - \\bar{x}) + \\dots + n_k(c_k - \\bar{x})\\right]$.",
+        "$s^2 = \\frac{1}{n}\\left[n_1(c_1 - \\bar{x})^2 + n_2(c_2 - \\bar{x})^2 + \\dots + n_k(c_k - \\bar{x})^2\\right]$.",
+        "$s^2 = \\frac{1}{n^2}\\left[n_1(c_1 - \\bar{x})^2 + n_2(c_2 - \\bar{x})^2 + \\dots + n_k(c_k - \\bar{x})^2\\right]$.",
+        "$s^2 = \\frac{1}{n^2}\\left[n_1(c_1 - \\bar{x}) + n_2(c_2 - \\bar{x}) + \\dots + n_k(c_k - \\bar{x})\\right]$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Theo định nghĩa, phương sai của mẫu số liệu ghép nhóm với cỡ mẫu $n = n_1 + n_2 + \\dots + n_k$ và số trung bình $\\bar{x}$ là:\n$$s^2 = \\frac{1}{n}\\left[n_1(c_1 - \\bar{x})^2 + n_2(c_2 - \\bar{x})^2 + \\dots + n_k(c_k - \\bar{x})^2\\right].$$",
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "solution": "Theo định nghĩa, phương sai của mẫu số liệu ghép nhóm với cỡ mẫu $n = n_1 + n_2 + \\dots + n_k$ và số trung bình $\\bar{x}$ là:\n$$s^2 = \\frac{1}{n}\\left[n_1(c_1 - \\bar{x})^2 + n_2(c_2 - \\bar{x})^2 + \\dots + n_k(c_k - \\bar{x})^2\\right].$$"
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 13,
+      "type": "mcq",
+      "prompt": "(Chuyên Lê Khiết - Quảng Ngãi 2025) Hai mẫu số liệu ghép nhóm $M_1, M_2$ có bảng tần số ghép nhóm như sau:\nMẫu $M_1$:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Nhóm} & [8;10) & [10;12) & [12;14) & [14;16) & [16;18) \\\\ \\hline \\text{Tần số} & 6 & 4 & 8 & 6 & 4 \\\\ \\hline \\end{array}$$\nMẫu $M_2$:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Nhóm} & [8;10) & [10;12) & [12;14) & [14;16) & [16;18) \\\\ \\hline \\text{Tần số} & 9 & 6 & 12 & 9 & 6 \\\\ \\hline \\end{array}$$\nGọi $s_1, s_2$ lần lượt là độ lệch chuẩn của mẫu số liệu ghép nhóm $M_1, M_2$. Phát biểu nào sau đây là đúng?",
+      "points": 0.25,
+      "sort_order": 130,
+      "choices": [
+        "$s_1 = 2s_2$.",
+        "$s_1 = s_2$.",
+        "$s_2 = \\frac{3}{2}s_1$.",
+        "$s_1 = \\frac{3}{2}s_2$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Mẫu số liệu $M_1$ có cỡ mẫu $n_1 = 28$, giá trị đại diện $9; 11; 13; 15; 17$, số trung bình $\\bar{x}_1 = \\frac{6\\cdot 9 + 4\\cdot 11 + 8\\cdot 13 + 6\\cdot 15 + 4\\cdot 17}{28} = \\frac{90}{7}$.\nĐộ lệch chuẩn của $M_1$ là:\n$$s_1 = \\sqrt{\\frac{6(9 - \\bar{x}_1)^2 + 4(11 - \\bar{x}_1)^2 + 8(13 - \\bar{x}_1)^2 + 6(15 - \\bar{x}_1)^2 + 4(17 - \\bar{x}_1)^2}{28}} \\approx 2,669.$$\nMẫu số liệu $M_2$ có tần số ở mỗi nhóm bằng $\\frac{3}{2}$ lần tần số tương ứng ở $M_1$, cỡ mẫu $n_2 = 42$, nên $\\bar{x}_2 = \\frac{540}{42} = \\frac{90}{7}$ và\n$$s_2 = \\sqrt{\\frac{9(9 - \\bar{x}_2)^2 + 6(11 - \\bar{x}_2)^2 + 12(13 - \\bar{x}_2)^2 + 9(15 - \\bar{x}_2)^2 + 6(17 - \\bar{x}_2)^2}{42}} \\approx 2,669.$$\nVậy $s_1 = s_2$.",
+        "source": "Chuyên Lê Khiết - Quảng Ngãi 2025",
+        "solution": "Mẫu số liệu $M_1$ có cỡ mẫu $n_1 = 28$, giá trị đại diện $9; 11; 13; 15; 17$, số trung bình $\\bar{x}_1 = \\frac{6\\cdot 9 + 4\\cdot 11 + 8\\cdot 13 + 6\\cdot 15 + 4\\cdot 17}{28} = \\frac{90}{7}$.\nĐộ lệch chuẩn của $M_1$ là:\n$$s_1 = \\sqrt{\\frac{6(9 - \\bar{x}_1)^2 + 4(11 - \\bar{x}_1)^2 + 8(13 - \\bar{x}_1)^2 + 6(15 - \\bar{x}_1)^2 + 4(17 - \\bar{x}_1)^2}{28}} \\approx 2,669.$$\nMẫu số liệu $M_2$ có tần số ở mỗi nhóm bằng $\\frac{3}{2}$ lần tần số tương ứng ở $M_1$, cỡ mẫu $n_2 = 42$, nên $\\bar{x}_2 = \\frac{540}{42} = \\frac{90}{7}$ và\n$$s_2 = \\sqrt{\\frac{9(9 - \\bar{x}_2)^2 + 6(11 - \\bar{x}_2)^2 + 12(13 - \\bar{x}_2)^2 + 9(15 - \\bar{x}_2)^2 + 6(17 - \\bar{x}_2)^2}{42}} \\approx 2,669.$$\nVậy $s_1 = s_2$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 14,
+      "type": "mcq",
+      "prompt": "(THPT Nông Cống 3 - Thanh Hóa 2025) Trong $30$ ngày, một nhà đầu tư đã theo dõi giá cổ phiếu của hai công ty $G$ và $H$ vào phiên mở cửa mỗi ngày. Thông tin được ghi lại ở hai bảng dưới đây:\nGiá cổ phiếu của công ty $G$:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Giá (nghìn đồng)} & [50;52) & [52;54) & [54;56) & [56;58) & [58;60) \\\\ \\hline \\text{Tần số} & 3 & 7 & 9 & 8 & 3 \\\\ \\hline \\end{array}$$\nGiá cổ phiếu của công ty $H$:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Giá (nghìn đồng)} & [40;42) & [42;44) & [44;46) & [46;48) & [48;50) \\\\ \\hline \\text{Tần số} & 6 & 7 & 5 & 7 & 5 \\\\ \\hline \\end{array}$$\nGọi $s_1, s_2$ lần lượt là độ lệch chuẩn (làm tròn đến hàng phần chục) của hai mẫu số liệu ghép nhóm ở số liệu của công ty $G$ và công ty $H$. Khẳng định nào sau đây là đúng?",
+      "points": 0.25,
+      "sort_order": 140,
+      "choices": [
+        "$s_1 = s_2$.",
+        "$s_1 + 1 = s_2$.",
+        "$s_1 > s_2$.",
+        "$s_1 < s_2$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Gọi $\\bar{x}_1, \\bar{x}_2$ lần lượt là giá trị trung bình của hai mẫu số liệu ghép nhóm ở công ty $G$ và công ty $H$.\nKhi đó:\n$$\\bar{x}_1 = \\frac{1}{30}(51\\cdot 3 + 53\\cdot 7 + 55\\cdot 9 + 57\\cdot 8 + 59\\cdot 3) = \\frac{1652}{30} \\approx 55,07;$$\n$$\\bar{x}_2 = \\frac{1}{30}(41\\cdot 6 + 43\\cdot 7 + 45\\cdot 5 + 47\\cdot 7 + 49\\cdot 5) = \\frac{1346}{30} \\approx 44,87.$$\nTính phương sai và độ lệch chuẩn:\n- $s_1^2 \\approx 5,20 \\Rightarrow s_1 \\approx 2,3$;\n- $s_2^2 \\approx 7,72 \\Rightarrow s_2 \\approx 2,8$.\nVậy $s_1 < s_2$.",
+        "source": "THPT Nông Cống 3 - Thanh Hóa 2025",
+        "solution": "Gọi $\\bar{x}_1, \\bar{x}_2$ lần lượt là giá trị trung bình của hai mẫu số liệu ghép nhóm ở công ty $G$ và công ty $H$.\nKhi đó:\n$$\\bar{x}_1 = \\frac{1}{30}(51\\cdot 3 + 53\\cdot 7 + 55\\cdot 9 + 57\\cdot 8 + 59\\cdot 3) = \\frac{1652}{30} \\approx 55,07;$$\n$$\\bar{x}_2 = \\frac{1}{30}(41\\cdot 6 + 43\\cdot 7 + 45\\cdot 5 + 47\\cdot 7 + 49\\cdot 5) = \\frac{1346}{30} \\approx 44,87.$$\nTính phương sai và độ lệch chuẩn:\n- $s_1^2 \\approx 5,20 \\Rightarrow s_1 \\approx 2,3$;\n- $s_2^2 \\approx 7,72 \\Rightarrow s_2 \\approx 2,8$.\nVậy $s_1 < s_2$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 15,
+      "type": "mcq",
+      "prompt": "(Sở Thái Nguyên 2025) Cho mẫu số liệu ghép nhóm về điểm thi và số người dự thi như sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Điểm thi} & [1;4,5) & [4,5;8) & [8;11,5) & [11,5;15) & [15;18,5) \\\\ \\hline \\text{Số người dự thi} & 1 & 10 & 12 & 17 & 16 \\\\ \\hline \\end{array}$$\nĐộ lệch chuẩn (làm tròn kết quả đến hàng phần trăm) của mẫu số liệu ghép nhóm trên bằng",
+      "points": 0.25,
+      "sort_order": 150,
+      "choices": [
+        "$4,29$.",
+        "$4,02$.",
+        "$3,89$.",
+        "$3,93$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Cỡ mẫu $n = 1 + 10 + 12 + 17 + 16 = 56$. Các giá trị đại diện lần lượt là $2,75; 6,25; 9,75; 13,25; 16,75$.\nGiá trị trung bình:\n$$\\bar{x} = \\frac{1\\cdot 2,75 + 10\\cdot 6,25 + 12\\cdot 9,75 + 17\\cdot 13,25 + 16\\cdot 16,75}{56} = 12,0625.$$\nPhương sai $s^2 \\approx 15,4336$.\nĐộ lệch chuẩn $s = \\sqrt{s^2} \\approx 3,93$.",
+        "source": "Sở Thái Nguyên 2025",
+        "solution": "Cỡ mẫu $n = 1 + 10 + 12 + 17 + 16 = 56$. Các giá trị đại diện lần lượt là $2,75; 6,25; 9,75; 13,25; 16,75$.\nGiá trị trung bình:\n$$\\bar{x} = \\frac{1\\cdot 2,75 + 10\\cdot 6,25 + 12\\cdot 9,75 + 17\\cdot 13,25 + 16\\cdot 16,75}{56} = 12,0625.$$\nPhương sai $s^2 \\approx 15,4336$.\nĐộ lệch chuẩn $s = \\sqrt{s^2} \\approx 3,93$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 16,
+      "type": "mcq",
+      "prompt": "(Chuyên Lê Quý Đôn - Đà Nẵng 2025) Số đặc trưng nào sau đây **không** đo mức độ phân tán của mẫu số liệu ghép nhóm?",
+      "points": 0.25,
+      "sort_order": 160,
+      "choices": [
+        "Khoảng biến thiên.",
+        "Phương sai.",
+        "Số trung bình.",
+        "Khoảng tứ phân vị."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Khoảng biến thiên, khoảng tứ phân vị, phương sai và độ lệch chuẩn là các số đặc trưng đo mức độ phân tán của mẫu số liệu ghép nhóm.\nSố trung bình đo xu thế trung tâm, không đo mức độ phân tán.",
+        "source": "Chuyên Lê Quý Đôn - Đà Nẵng 2025",
+        "solution": "Khoảng biến thiên, khoảng tứ phân vị, phương sai và độ lệch chuẩn là các số đặc trưng đo mức độ phân tán của mẫu số liệu ghép nhóm.\nSố trung bình đo xu thế trung tâm, không đo mức độ phân tán."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 17,
+      "type": "mcq",
+      "prompt": "(KHTN Hà Nội 2025) Khảo sát trọng lượng của một số quả mít được trồng trong một nông trường ta có số liệu sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Trọng lượng (kg)} & [4;6) & [6;8) & [8;10) & [10;12) & [12;14) \\\\ \\hline \\text{Số quả} & 6 & 12 & 19 & 9 & 4 \\\\ \\hline \\end{array}$$\nTìm độ lệch tiêu chuẩn của mẫu số liệu trên (kết quả làm tròn đến hàng phần trăm).",
+      "points": 0.25,
+      "sort_order": 170,
+      "choices": [
+        "$2,19$.",
+        "$8,72$.",
+        "$4,80$.",
+        "$2,20$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Các giá trị đại diện lần lượt là $5; 7; 9; 11; 13$, cỡ mẫu $n = 6 + 12 + 19 + 9 + 4 = 50$.\nTrọng lượng trung bình của một quả mít là:\n$$\\bar{x} = \\frac{6\\cdot 5 + 12\\cdot 7 + 19\\cdot 9 + 9\\cdot 11 + 4\\cdot 13}{50} = 8,72\\text{ (kg)}.$$\nĐộ lệch chuẩn:\n$$s = \\sqrt{\\frac{6\\cdot 5^2 + 12\\cdot 7^2 + 19\\cdot 9^2 + 9\\cdot 11^2 + 4\\cdot 13^2}{50} - 8,72^2} = \\sqrt{4,8016} \\approx 2,19.$$",
+        "source": "KHTN Hà Nội 2025",
+        "solution": "Các giá trị đại diện lần lượt là $5; 7; 9; 11; 13$, cỡ mẫu $n = 6 + 12 + 19 + 9 + 4 = 50$.\nTrọng lượng trung bình của một quả mít là:\n$$\\bar{x} = \\frac{6\\cdot 5 + 12\\cdot 7 + 19\\cdot 9 + 9\\cdot 11 + 4\\cdot 13}{50} = 8,72\\text{ (kg)}.$$\nĐộ lệch chuẩn:\n$$s = \\sqrt{\\frac{6\\cdot 5^2 + 12\\cdot 7^2 + 19\\cdot 9^2 + 9\\cdot 11^2 + 4\\cdot 13^2}{50} - 8,72^2} = \\sqrt{4,8016} \\approx 2,19.$$"
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 18,
+      "type": "mcq",
+      "prompt": "(THPT Lê Thánh Tông - Nguyễn Khuyến 2025) Bảng số liệu ghép nhóm về chiều cao đo được (đơn vị: cm) của $30$ học sinh nam lớp $12\\text{A2}$ đầu năm học $2024 - 2025$ của một trường THPT được cho như sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Chiều cao} & [150;155) & [155;160) & [160;165) & [165;170) & [170;175) \\\\ \\hline \\text{Tần số} & 3 & 7 & 10 & 7 & 3 \\\\ \\hline \\end{array}$$\nTính độ lệch chuẩn của mẫu số liệu ghép nhóm trên.",
+      "points": 0.25,
+      "sort_order": 180,
+      "choices": [
+        "$\\frac{\\sqrt{285}}{3}$.",
+        "$\\frac{\\sqrt{287}}{3}$.",
+        "$4\\sqrt{2}$.",
+        "$\\sqrt{71}$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Các giá trị đại diện là $152,5; 157,5; 162,5; 167,5; 172,5$.\nChiều cao trung bình của $30$ học sinh trên là:\n$$\\bar{x} = \\frac{152,5\\cdot 3 + 157,5\\cdot 7 + 162,5\\cdot 10 + 167,5\\cdot 7 + 172,5\\cdot 3}{30} = 162,5.$$\nPhương sai của mẫu số liệu ghép nhóm trên là:\n$$s^2 = \\frac{(152,5 - 162,5)^2\\cdot 3 + (157,5 - 162,5)^2\\cdot 7 + (167,5 - 162,5)^2\\cdot 7 + (172,5 - 162,5)^2\\cdot 3}{30} = \\frac{95}{3}.$$\nĐộ lệch chuẩn là $s = \\sqrt{\\frac{95}{3}} = \\frac{\\sqrt{285}}{3}$.",
+        "source": "THPT Lê Thánh Tông - Nguyễn Khuyến 2025",
+        "solution": "Các giá trị đại diện là $152,5; 157,5; 162,5; 167,5; 172,5$.\nChiều cao trung bình của $30$ học sinh trên là:\n$$\\bar{x} = \\frac{152,5\\cdot 3 + 157,5\\cdot 7 + 162,5\\cdot 10 + 167,5\\cdot 7 + 172,5\\cdot 3}{30} = 162,5.$$\nPhương sai của mẫu số liệu ghép nhóm trên là:\n$$s^2 = \\frac{(152,5 - 162,5)^2\\cdot 3 + (157,5 - 162,5)^2\\cdot 7 + (167,5 - 162,5)^2\\cdot 7 + (172,5 - 162,5)^2\\cdot 3}{30} = \\frac{95}{3}.$$\nĐộ lệch chuẩn là $s = \\sqrt{\\frac{95}{3}} = \\frac{\\sqrt{285}}{3}$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 19,
+      "type": "mcq",
+      "prompt": "(Chuyên KHTN Hà Nội 2025) Thống kê độ tuổi tập thể dục thể thao hàng ngày trong một cụm dân cư có bảng số liệu sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Độ tuổi} & [10;20) & [20;30) & [30;40) & [40;50) & [50;60) \\\\ \\hline \\text{Số người} & 10 & 6 & 15 & 19 & 25 \\\\ \\hline \\end{array}$$\nTính phương sai của mẫu số liệu trên (kết quả làm tròn đến hàng phần trăm).",
+      "points": 0.25,
+      "sort_order": 190,
+      "choices": [
+        "$189,66$.",
+        "$13,68$.",
+        "$187,13$.",
+        "$187,03$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Cỡ mẫu $n = 10 + 6 + 15 + 19 + 25 = 75$. Giá trị đại diện các nhóm là $15; 25; 35; 45; 55$.\nGiá trị trung bình:\n$$\\bar{x} = \\frac{10\\cdot 15 + 6\\cdot 25 + 15\\cdot 35 + 19\\cdot 45 + 25\\cdot 55}{75} = \\frac{611}{15}.$$\nPhương sai:\n$$s^2 = \\frac{1}{75}\\left(10\\cdot 15^2 + 6\\cdot 25^2 + 15\\cdot 35^2 + 19\\cdot 45^2 + 25\\cdot 55^2\\right) - \\left(\\frac{611}{15}\\right)^2 = \\frac{42104}{225} \\approx 187,13.$$",
+        "source": "Chuyên KHTN Hà Nội 2025",
+        "solution": "Cỡ mẫu $n = 10 + 6 + 15 + 19 + 25 = 75$. Giá trị đại diện các nhóm là $15; 25; 35; 45; 55$.\nGiá trị trung bình:\n$$\\bar{x} = \\frac{10\\cdot 15 + 6\\cdot 25 + 15\\cdot 35 + 19\\cdot 45 + 25\\cdot 55}{75} = \\frac{611}{15}.$$\nPhương sai:\n$$s^2 = \\frac{1}{75}\\left(10\\cdot 15^2 + 6\\cdot 25^2 + 15\\cdot 35^2 + 19\\cdot 45^2 + 25\\cdot 55^2\\right) - \\left(\\frac{611}{15}\\right)^2 = \\frac{42104}{225} \\approx 187,13.$$"
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 20,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Sơn 1 - Thanh Hóa 2025) Thống kê lợi nhuận hàng tháng (đơn vị: triệu đồng) trong $20$ tháng của một nhà đầu tư được cho như sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Lợi nhuận} & [10;20) & [20;30) & [30;40) & [40;50) & [50;60) \\\\ \\hline \\text{Số tháng} & 2 & 4 & 8 & 4 & 2 \\\\ \\hline \\end{array}$$\nĐộ lệch chuẩn của mẫu số liệu trên là $S$. Chọn khẳng định đúng nhất trong $4$ khẳng định sau:",
+      "points": 0.25,
+      "sort_order": 200,
+      "choices": [
+        "$S = 9,95$.",
+        "$S \\approx 109,5$.",
+        "$S = 11,95$.",
+        "$S \\approx 10,95$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Giá trị đại diện các nhóm là $15; 25; 35; 45; 55$.\nSố trung bình:\n$$\\bar{x} = \\frac{15\\cdot 2 + 25\\cdot 4 + 35\\cdot 8 + 45\\cdot 4 + 55\\cdot 2}{20} = 35.$$\nPhương sai:\n$$S^2 = \\frac{1}{20}\\left(2\\cdot 15^2 + 4\\cdot 25^2 + 8\\cdot 35^2 + 4\\cdot 45^2 + 2\\cdot 55^2\\right) - 35^2 = 120.$$\nĐộ lệch chuẩn: $S = \\sqrt{120} \\approx 10,95$.",
+        "source": "THPT Triệu Sơn 1 - Thanh Hóa 2025",
+        "solution": "Giá trị đại diện các nhóm là $15; 25; 35; 45; 55$.\nSố trung bình:\n$$\\bar{x} = \\frac{15\\cdot 2 + 25\\cdot 4 + 35\\cdot 8 + 45\\cdot 4 + 55\\cdot 2}{20} = 35.$$\nPhương sai:\n$$S^2 = \\frac{1}{20}\\left(2\\cdot 15^2 + 4\\cdot 25^2 + 8\\cdot 35^2 + 4\\cdot 45^2 + 2\\cdot 55^2\\right) - 35^2 = 120.$$\nĐộ lệch chuẩn: $S = \\sqrt{120} \\approx 10,95$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 21,
+      "type": "mcq",
+      "prompt": "(Sở Bắc Ninh 2025) Khảo sát thời gian sử dụng điện thoại một ngày của học sinh lớp $12\\text{A}$ thì được mẫu số liệu ghép nhóm sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Thời gian (phút)} & [0;20) & [20;40) & [40;60) & [60;80) & [80;100] \\\\ \\hline \\text{Số học sinh} & 2 & 5 & 7 & 19 & 9 \\\\ \\hline \\end{array}$$\nĐộ lệch chuẩn của mẫu số liệu ghép nhóm trên thuộc khoảng nào dưới đây?",
+      "points": 0.25,
+      "sort_order": 210,
+      "choices": [
+        "$(22;24)$.",
+        "$(20;22)$.",
+        "$(18;20)$.",
+        "$(24;26)$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Cỡ mẫu $n = 2 + 5 + 7 + 19 + 9 = 42$. Các giá trị đại diện là $10; 30; 50; 70; 90$.\nGiá trị trung bình:\n$$\\bar{x} = \\frac{2\\cdot 10 + 5\\cdot 30 + 7\\cdot 50 + 19\\cdot 70 + 9\\cdot 90}{42} = \\frac{190}{3} \\approx 63,33.$$\nPhương sai:\n$$s^2 = \\frac{1}{42}\\left[2(10 - \\bar{x})^2 + 5(30 - \\bar{x})^2 + 7(50 - \\bar{x})^2 + 19(70 - \\bar{x})^2 + 9(90 - \\bar{x})^2\\right] \\approx 469,84.$$\nĐộ lệch chuẩn $s = \\sqrt{s^2} \\approx 21,68 \\in (20;22)$.",
+        "source": "Sở Bắc Ninh 2025",
+        "solution": "Cỡ mẫu $n = 2 + 5 + 7 + 19 + 9 = 42$. Các giá trị đại diện là $10; 30; 50; 70; 90$.\nGiá trị trung bình:\n$$\\bar{x} = \\frac{2\\cdot 10 + 5\\cdot 30 + 7\\cdot 50 + 19\\cdot 70 + 9\\cdot 90}{42} = \\frac{190}{3} \\approx 63,33.$$\nPhương sai:\n$$s^2 = \\frac{1}{42}\\left[2(10 - \\bar{x})^2 + 5(30 - \\bar{x})^2 + 7(50 - \\bar{x})^2 + 19(70 - \\bar{x})^2 + 9(90 - \\bar{x})^2\\right] \\approx 469,84.$$\nĐộ lệch chuẩn $s = \\sqrt{s^2} \\approx 21,68 \\in (20;22)$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 22,
+      "type": "mcq",
+      "prompt": "(THPT Đô Lương 1 - Nghệ An 2025) Thống kê chiều cao (đơn vị: cm) của các học sinh trong một lớp học ta có bảng số liệu sau:\n$$\\begin{array}{|c|c|c|c|c|c|c|} \\hline \\text{Chiều cao} & [150;155) & [155;160) & [160;165) & [165;170) & [170;175) & [175;180) \\\\ \\hline \\text{Số học sinh} & 1 & 4 & 10 & 9 & 4 & 2 \\\\ \\hline \\end{array}$$\nĐộ lệch chuẩn của mẫu số liệu trên bằng bao nhiêu? (làm tròn đến hàng phần trăm)",
+      "points": 0.25,
+      "sort_order": 220,
+      "choices": [
+        "$5,97$.",
+        "$5,87$.",
+        "$34,47$.",
+        "$35,66$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Cỡ mẫu $n = 30$. Số trung bình của mẫu số liệu là:\n$$\\bar{x} = \\frac{1\\cdot 152,5 + 4\\cdot 157,5 + 10\\cdot 162,5 + 9\\cdot 167,5 + 4\\cdot 172,5 + 2\\cdot 177,5}{30} = \\frac{496}{3}.$$\nĐộ lệch chuẩn của mẫu số liệu trên bằng:\n$$s = \\sqrt{\\frac{1\\cdot 152,5^2 + 4\\cdot 157,5^2 + 10\\cdot 162,5^2 + 9\\cdot 167,5^2 + 4\\cdot 172,5^2 + 2\\cdot 177,5^2}{30} - \\left(\\frac{496}{3}\\right)^2} = \\frac{\\sqrt{1241}}{6} \\approx 5,87.$$",
+        "source": "THPT Đô Lương 1 - Nghệ An 2025",
+        "solution": "Cỡ mẫu $n = 30$. Số trung bình của mẫu số liệu là:\n$$\\bar{x} = \\frac{1\\cdot 152,5 + 4\\cdot 157,5 + 10\\cdot 162,5 + 9\\cdot 167,5 + 4\\cdot 172,5 + 2\\cdot 177,5}{30} = \\frac{496}{3}.$$\nĐộ lệch chuẩn của mẫu số liệu trên bằng:\n$$s = \\sqrt{\\frac{1\\cdot 152,5^2 + 4\\cdot 157,5^2 + 10\\cdot 162,5^2 + 9\\cdot 167,5^2 + 4\\cdot 172,5^2 + 2\\cdot 177,5^2}{30} - \\left(\\frac{496}{3}\\right)^2} = \\frac{\\sqrt{1241}}{6} \\approx 5,87.$$"
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 23,
+      "type": "mcq",
+      "prompt": "(THPT Hương Hóa - Quảng Trị 2025) Số tiền ghi trên hoá đơn của $150$ khách hàng lấy ngẫu nhiên trong một ngày của một siêu thị cho ở bảng dưới đây:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Số tiền (nghìn đồng)} & [50;100) & [100;150) & [150;200) & [200;250) & [250;300) \\\\ \\hline \\text{Tần số} & 6 & 9 & 39 & 66 & 30 \\\\ \\hline \\end{array}$$\nHãy tính độ lệch chuẩn của mẫu số liệu ghép nhóm trên.",
+      "points": 0.25,
+      "sort_order": 230,
+      "choices": [
+        "$49,24$.",
+        "$210$.",
+        "$2425$.",
+        "$49,41$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Các giá trị đại diện là $75; 125; 175; 225; 275$.\nSố trung bình:\n$$\\bar{x} = \\frac{1}{150}(75\\cdot 6 + 125\\cdot 9 + 175\\cdot 39 + 225\\cdot 66 + 275\\cdot 30) = 210.$$\nPhương sai:\n$$S^2 = \\frac{1}{150}\\left(75^2\\cdot 6 + 125^2\\cdot 9 + 175^2\\cdot 39 + 225^2\\cdot 66 + 275^2\\cdot 30\\right) - 210^2 = 2425.$$\nĐộ lệch chuẩn $S = \\sqrt{2425} \\approx 49,24$.",
+        "source": "THPT Hương Hóa - Quảng Trị 2025",
+        "solution": "Các giá trị đại diện là $75; 125; 175; 225; 275$.\nSố trung bình:\n$$\\bar{x} = \\frac{1}{150}(75\\cdot 6 + 125\\cdot 9 + 175\\cdot 39 + 225\\cdot 66 + 275\\cdot 30) = 210.$$\nPhương sai:\n$$S^2 = \\frac{1}{150}\\left(75^2\\cdot 6 + 125^2\\cdot 9 + 175^2\\cdot 39 + 225^2\\cdot 66 + 275^2\\cdot 30\\right) - 210^2 = 2425.$$\nĐộ lệch chuẩn $S = \\sqrt{2425} \\approx 49,24$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 24,
+      "type": "mcq",
+      "prompt": "(THPT Lê Thánh Tông - HCM 2025) Dũng là học sinh rất giỏi chơi rubik, bạn có thể giải nhiều loại khối rubik khác nhau. Trong một lần luyện tập giải khối rubik $3\\times 3$, bạn Dũng đã tự thống kê lại thời gian giải rubik trong $25$ lần giải liên tiếp ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Thời gian giải rubik (giây)} & [8;10) & [10;12) & [12;14) & [14;16) & [16;18) \\\\ \\hline \\text{Số lần} & 4 & 6 & 8 & 4 & 3 \\\\ \\hline \\end{array}$$\nĐộ lệch chuẩn của mẫu số liệu ghép nhóm có giá trị gần nhất với giá trị nào dưới đây?",
+      "points": 0.25,
+      "sort_order": 240,
+      "choices": [
+        "$5,98$.",
+        "$6$.",
+        "$2,44$.",
+        "$2,5$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Các giá trị đại diện là $9; 11; 13; 15; 17$.\nSố trung bình:\n$$\\bar{x} = \\frac{4\\cdot 9 + 6\\cdot 11 + 8\\cdot 13 + 4\\cdot 15 + 3\\cdot 17}{25} = 12,68.$$\nPhương sai:\n$$S^2 = \\frac{1}{25}\\left[4(9 - 12,68)^2 + 6(11 - 12,68)^2 + 8(13 - 12,68)^2 + 4(15 - 12,68)^2 + 3(17 - 12,68)^2\\right] = \\frac{3736}{625}.$$\nĐộ lệch chuẩn $s = \\sqrt{\\frac{3736}{625}} \\approx 2,4449$, gần nhất với $2,44$.",
+        "source": "THPT Lê Thánh Tông - HCM 2025",
+        "solution": "Các giá trị đại diện là $9; 11; 13; 15; 17$.\nSố trung bình:\n$$\\bar{x} = \\frac{4\\cdot 9 + 6\\cdot 11 + 8\\cdot 13 + 4\\cdot 15 + 3\\cdot 17}{25} = 12,68.$$\nPhương sai:\n$$S^2 = \\frac{1}{25}\\left[4(9 - 12,68)^2 + 6(11 - 12,68)^2 + 8(13 - 12,68)^2 + 4(15 - 12,68)^2 + 3(17 - 12,68)^2\\right] = \\frac{3736}{625}.$$\nĐộ lệch chuẩn $s = \\sqrt{\\frac{3736}{625}} \\approx 2,4449$, gần nhất với $2,44$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 25,
+      "type": "mcq",
+      "prompt": "(Sở Thái Nguyên 2025) Mỗi ngày bác Lan đều đi bộ để rèn luyện sức khỏe. Quãng đường đi bộ mỗi ngày (đơn vị: km) của bác Lan trong $20$ ngày được thống kê lại ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Quãng đường (km)} & [2,7;3,0) & [3,0;3,3) & [3,3;3,6) & [3,6;3,9) & [3,9;4,2) \\\\ \\hline \\text{Số ngày} & 3 & 6 & 5 & 4 & 2 \\\\ \\hline \\end{array}$$\nĐộ lệch chuẩn của mẫu số liệu ghép nhóm này có giá trị gần nhất với giá trị nào dưới đây?",
+      "points": 0.25,
+      "sort_order": 250,
+      "choices": [
+        "$0,25$.",
+        "$0,27$.",
+        "$0,42$.",
+        "$0,36$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Cỡ mẫu $n = 20$. Các giá trị đại diện là $2,85; 3,15; 3,45; 3,75; 4,05$.\nSố trung bình:\n$$\\bar{x} = \\frac{3\\cdot 2,85 + 6\\cdot 3,15 + 5\\cdot 3,45 + 4\\cdot 3,75 + 2\\cdot 4,05}{20} = 3,39.$$\nĐộ lệch chuẩn:\n$$s = \\sqrt{\\frac{3(2,85 - 3,39)^2 + 6(3,15 - 3,39)^2 + 5(3,45 - 3,39)^2 + 4(3,75 - 3,39)^2 + 2(4,05 - 3,39)^2}{20}} = \\sqrt{0,1314} \\approx 0,36.$$",
+        "source": "Sở Thái Nguyên 2025",
+        "solution": "Cỡ mẫu $n = 20$. Các giá trị đại diện là $2,85; 3,15; 3,45; 3,75; 4,05$.\nSố trung bình:\n$$\\bar{x} = \\frac{3\\cdot 2,85 + 6\\cdot 3,15 + 5\\cdot 3,45 + 4\\cdot 3,75 + 2\\cdot 4,05}{20} = 3,39.$$\nĐộ lệch chuẩn:\n$$s = \\sqrt{\\frac{3(2,85 - 3,39)^2 + 6(3,15 - 3,39)^2 + 5(3,45 - 3,39)^2 + 4(3,75 - 3,39)^2 + 2(4,05 - 3,39)^2}{20}} = \\sqrt{0,1314} \\approx 0,36.$$"
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 26,
+      "type": "mcq",
+      "prompt": "(Sở Quảng Ninh 2025) Khảo sát thời gian tự học bài ở nhà của học sinh khối $12$ ở trường $X$, ta thu được bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Thời gian (phút)} & [0;30) & [30;60) & [60;90) & [90;120) & [120;150) \\\\ \\hline \\text{Số học sinh} & 75 & 125 & 250 & 82 & 18 \\\\ \\hline \\end{array}$$\nPhương sai của mẫu số liệu ghép nhóm (làm tròn kết quả đến hàng đơn vị) là",
+      "points": 0.25,
+      "sort_order": 260,
+      "choices": [
+        "$874$.",
+        "$875$.",
+        "$873$.",
+        "$872$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Cỡ mẫu $n = 75 + 125 + 250 + 82 + 18 = 550$. Giá trị đại diện là $15; 45; 75; 105; 135$.\nSố trung bình:\n$$\\bar{x} = \\frac{15\\cdot 75 + 45\\cdot 125 + 75\\cdot 250 + 105\\cdot 82 + 135\\cdot 18}{550} = \\frac{3654}{55}.$$\nPhương sai của mẫu số liệu ghép nhóm là:\n$$s^2 = \\frac{75(15 - \\bar{x})^2 + 125(45 - \\bar{x})^2 + 250(75 - \\bar{x})^2 + 82(105 - \\bar{x})^2 + 18(135 - \\bar{x})^2}{550} \\approx 874,12 \\approx 874.$$",
+        "source": "Sở Quảng Ninh 2025",
+        "solution": "Cỡ mẫu $n = 75 + 125 + 250 + 82 + 18 = 550$. Giá trị đại diện là $15; 45; 75; 105; 135$.\nSố trung bình:\n$$\\bar{x} = \\frac{15\\cdot 75 + 45\\cdot 125 + 75\\cdot 250 + 105\\cdot 82 + 135\\cdot 18}{550} = \\frac{3654}{55}.$$\nPhương sai của mẫu số liệu ghép nhóm là:\n$$s^2 = \\frac{75(15 - \\bar{x})^2 + 125(45 - \\bar{x})^2 + 250(75 - \\bar{x})^2 + 82(105 - \\bar{x})^2 + 18(135 - \\bar{x})^2}{550} \\approx 874,12 \\approx 874.$$"
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 27,
+      "type": "mcq",
+      "prompt": "(THPT Tư Nghĩa 1 - Quảng Ngãi 2025) Bạn An rất thích nhảy hiện đại. Thời gian tập nhảy mỗi ngày của bạn An trong thời gian gần đây được thống kê ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|} \\hline \\text{Thời gian (phút)} & [5;15) & [15;25) & [25;35) & [35;45) \\\\ \\hline \\text{Số ngày} & 5 & 5 & 4 & 1 \\\\ \\hline \\end{array}$$\nĐộ lệch chuẩn của mẫu số liệu ghép nhóm có giá trị gần nhất với giá trị nào sau đây?",
+      "points": 0.25,
+      "sort_order": 270,
+      "choices": [
+        "$9,29$.",
+        "$9,25$.",
+        "$9,27$.",
+        "$9,3$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Cỡ mẫu $n = 15$, giá trị đại diện các nhóm là $10; 20; 30; 40$.\nSố trung bình:\n$$\\bar{x} = \\frac{10\\cdot 5 + 20\\cdot 5 + 30\\cdot 4 + 40\\cdot 1}{15} = \\frac{62}{3}.$$\nĐộ lệch chuẩn của mẫu số liệu ghép nhóm là:\n$$s = \\sqrt{\\frac{\\left(\\frac{62}{3} - 10\\right)^2\\cdot 5 + \\left(\\frac{62}{3} - 20\\right)^2\\cdot 5 + \\left(\\frac{62}{3} - 30\\right)^2\\cdot 4 + \\left(\\frac{62}{3} - 40\\right)^2\\cdot 1}{15}} \\approx 9,29.$$",
+        "source": "THPT Tư Nghĩa 1 - Quảng Ngãi 2025",
+        "solution": "Cỡ mẫu $n = 15$, giá trị đại diện các nhóm là $10; 20; 30; 40$.\nSố trung bình:\n$$\\bar{x} = \\frac{10\\cdot 5 + 20\\cdot 5 + 30\\cdot 4 + 40\\cdot 1}{15} = \\frac{62}{3}.$$\nĐộ lệch chuẩn của mẫu số liệu ghép nhóm là:\n$$s = \\sqrt{\\frac{\\left(\\frac{62}{3} - 10\\right)^2\\cdot 5 + \\left(\\frac{62}{3} - 20\\right)^2\\cdot 5 + \\left(\\frac{62}{3} - 30\\right)^2\\cdot 4 + \\left(\\frac{62}{3} - 40\\right)^2\\cdot 1}{15}} \\approx 9,29.$$"
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 28,
+      "type": "mcq",
+      "prompt": "(THPT Mai Trúc Loan - Hà Tĩnh 2025) Khối lượng các gói kẹo được đóng gói (đơn vị là kg) được thống kê ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Khối lượng (kg)} & [1,5;1,7) & [1,7;1,9) & [1,9;2,1) & [2,1;2,3) & [2,3;2,5) \\\\ \\hline \\text{Số gói kẹo} & 3 & 5 & 23 & 5 & 4 \\\\ \\hline \\end{array}$$\nPhương sai của mẫu số liệu ghép nhóm trên gần nhất với kết quả nào sau đây?",
+      "points": 0.25,
+      "sort_order": 280,
+      "choices": [
+        "$0,08$.",
+        "$0,07$.",
+        "$0,09$.",
+        "$0,04$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Cỡ mẫu $n = 3 + 5 + 23 + 5 + 4 = 40$. Giá trị đại diện là $1,6; 1,8; 2,0; 2,2; 2,4$.\nTrung bình của mẫu số liệu:\n$$\\bar{x} = \\frac{1,6\\cdot 3 + 1,8\\cdot 5 + 2,0\\cdot 23 + 2,2\\cdot 5 + 2,4\\cdot 4}{40} = 2,01.$$\nPhương sai của mẫu số liệu:\n$$S^2 = \\frac{1}{40}\\left(3\\cdot 1,6^2 + 5\\cdot 1,8^2 + 23\\cdot 2,0^2 + 5\\cdot 2,2^2 + 4\\cdot 2,4^2\\right) - 2,01^2 = 0,0379 \\approx 0,04.$$",
+        "source": "THPT Mai Trúc Loan - Hà Tĩnh 2025",
+        "solution": "Cỡ mẫu $n = 3 + 5 + 23 + 5 + 4 = 40$. Giá trị đại diện là $1,6; 1,8; 2,0; 2,2; 2,4$.\nTrung bình của mẫu số liệu:\n$$\\bar{x} = \\frac{1,6\\cdot 3 + 1,8\\cdot 5 + 2,0\\cdot 23 + 2,2\\cdot 5 + 2,4\\cdot 4}{40} = 2,01.$$\nPhương sai của mẫu số liệu:\n$$S^2 = \\frac{1}{40}\\left(3\\cdot 1,6^2 + 5\\cdot 1,8^2 + 23\\cdot 2,0^2 + 5\\cdot 2,2^2 + 4\\cdot 2,4^2\\right) - 2,01^2 = 0,0379 \\approx 0,04.$$"
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 29,
+      "type": "mcq",
+      "prompt": "(Cụm Chương Mỹ - Thanh Oai 2025) Bạn Chi rất thích nhảy hiện đại. Thời gian tập nhảy mỗi ngày trong thời gian gần đây của bạn Chi được thống kê lại ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Thời gian (phút)} & [20;25) & [25;30) & [30;35) & [35;40) & [40;45) \\\\ \\hline \\text{Số ngày} & 6 & 6 & 4 & 1 & 1 \\\\ \\hline \\end{array}$$\nTìm phương sai của mẫu số liệu ghép nhóm trên.",
+      "points": 0.25,
+      "sort_order": 290,
+      "choices": [
+        "$31,75$.",
+        "$31,25$.",
+        "$32,25$.",
+        "$32$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Cỡ mẫu $n = 18$, giá trị đại diện các nhóm là $22,5; 27,5; 32,5; 37,5; 42,5$.\nTrung bình cộng:\n$$\\bar{x} = \\frac{6\\cdot 22,5 + 6\\cdot 27,5 + 4\\cdot 32,5 + 1\\cdot 37,5 + 1\\cdot 42,5}{18} = \\frac{85}{3}.$$\nPhương sai của mẫu số liệu là:\n$$s^2 = \\frac{6\\left(22,5 - \\frac{85}{3}\\right)^2 + 6\\left(27,5 - \\frac{85}{3}\\right)^2 + 4\\left(32,5 - \\frac{85}{3}\\right)^2 + 1\\left(37,5 - \\frac{85}{3}\\right)^2 + 1\\left(42,5 - \\frac{85}{3}\\right)^2}{18} = 31,25.$$",
+        "source": "Cụm Chương Mỹ - Thanh Oai 2025",
+        "solution": "Cỡ mẫu $n = 18$, giá trị đại diện các nhóm là $22,5; 27,5; 32,5; 37,5; 42,5$.\nTrung bình cộng:\n$$\\bar{x} = \\frac{6\\cdot 22,5 + 6\\cdot 27,5 + 4\\cdot 32,5 + 1\\cdot 37,5 + 1\\cdot 42,5}{18} = \\frac{85}{3}.$$\nPhương sai của mẫu số liệu là:\n$$s^2 = \\frac{6\\left(22,5 - \\frac{85}{3}\\right)^2 + 6\\left(27,5 - \\frac{85}{3}\\right)^2 + 4\\left(32,5 - \\frac{85}{3}\\right)^2 + 1\\left(37,5 - \\frac{85}{3}\\right)^2 + 1\\left(42,5 - \\frac{85}{3}\\right)^2}{18} = 31,25.$$"
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 30,
+      "type": "mcq",
+      "prompt": "(Cụm Chuyên Môn Đăk Lak 2025) Một mẫu số liệu ghép nhóm có độ lệch chuẩn bằng $3$ thì có phương sai bằng:",
+      "points": 0.25,
+      "sort_order": 300,
+      "choices": [
+        "$s^2 = 3$.",
+        "$s^2 = 6$.",
+        "$s^2 = 9$.",
+        "$s^2 = \\sqrt{3}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Phương sai bằng bình phương của độ lệch chuẩn nên $s^2 = 3^2 = 9$.",
+        "source": "Cụm Chuyên Môn Đăk Lak 2025",
+        "solution": "Phương sai bằng bình phương của độ lệch chuẩn nên $s^2 = 3^2 = 9$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 31,
+      "type": "mcq",
+      "prompt": "(THPT Hà Trung - Thanh Hóa 2025) Bảng số liệu bên dưới biểu diễn số liệu ghép nhóm về nhiệt độ không khí trung bình các tháng trong năm $2021$ tại Hà Nội (đơn vị: độ $C$) (Nguồn: *Niên giám thống kê 2021, NXB Thống kê, 2022*):\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Nhóm} & [16,8;19,8) & [19,8;22,8) & [22,8;25,8) & [25,8;28,8) & [28,8;31,8) \\\\ \\hline \\text{Tần số} & 2 & 3 & 2 & 1 & 4 \\\\ \\hline \\end{array}$$\nĐộ lệch chuẩn (làm tròn đến chữ số hàng phần trăm) của mẫu số liệu đã cho bằng",
+      "points": 0.25,
+      "sort_order": 310,
+      "choices": [
+        "$4,55$.",
+        "$4,56$.",
+        "$4,6$.",
+        "$4,5$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Cỡ mẫu $n = 2 + 3 + 2 + 1 + 4 = 12$. Các giá trị đại diện là $18,3; 21,3; 24,3; 27,3; 30,3$.\nSố trung bình:\n$$\\bar{x} = \\frac{2\\cdot 18,3 + 3\\cdot 21,3 + 2\\cdot 24,3 + 1\\cdot 27,3 + 4\\cdot 30,3}{12} = 24,8.$$\nPhương sai:\n$$s^2 = \\frac{2(18,3 - 24,8)^2 + 3(21,3 - 24,8)^2 + 2(24,3 - 24,8)^2 + 1(27,3 - 24,8)^2 + 4(30,3 - 24,8)^2}{12} = 20,75.$$\nĐộ lệch chuẩn: $s = \\sqrt{20,75} \\approx 4,555 \\approx 4,56$.",
+        "source": "THPT Hà Trung - Thanh Hóa 2025",
+        "solution": "Cỡ mẫu $n = 2 + 3 + 2 + 1 + 4 = 12$. Các giá trị đại diện là $18,3; 21,3; 24,3; 27,3; 30,3$.\nSố trung bình:\n$$\\bar{x} = \\frac{2\\cdot 18,3 + 3\\cdot 21,3 + 2\\cdot 24,3 + 1\\cdot 27,3 + 4\\cdot 30,3}{12} = 24,8.$$\nPhương sai:\n$$s^2 = \\frac{2(18,3 - 24,8)^2 + 3(21,3 - 24,8)^2 + 2(24,3 - 24,8)^2 + 1(27,3 - 24,8)^2 + 4(30,3 - 24,8)^2}{12} = 20,75.$$\nĐộ lệch chuẩn: $s = \\sqrt{20,75} \\approx 4,555 \\approx 4,56$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 32,
+      "type": "mcq",
+      "prompt": "(Sở Bắc Ninh 2025) Bạn Chi rất thích nhảy hiện đại. Thời gian tập nhảy trong một số ngày gần đây của bạn Chi được thống kê lại bằng bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Thời gian (phút)} & (20;25) & (25;30) & (30;35) & (35;40) & (40;45) \\\\ \\hline \\text{Số ngày} & 6 & 6 & 4 & 1 & 1 \\\\ \\hline \\end{array}$$\nPhương sai của mẫu số liệu ghép nhóm trên có giá trị gần nhất với giá trị nào dưới đây?",
+      "points": 0.25,
+      "sort_order": 320,
+      "choices": [
+        "$33$.",
+        "$34,77$.",
+        "$32$.",
+        "$31,24$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Cỡ mẫu $n = 6 + 6 + 4 + 1 + 1 = 18$. Các giá trị đại diện là $\\frac{45}{2}, \\frac{55}{2}, \\frac{65}{2}, \\frac{75}{2}, \\frac{85}{2}$.\nGiá trị trung bình:\n$$\\bar{x} = \\frac{\\frac{45}{2}\\cdot 6 + \\frac{55}{2}\\cdot 6 + \\frac{65}{2}\\cdot 4 + \\frac{75}{2}\\cdot 1 + \\frac{85}{2}\\cdot 1}{18} = \\frac{85}{3}.$$\nPhương sai của mẫu số liệu ghép nhóm trên là:\n$$s^2 = \\frac{6\\left(\\frac{45}{2} - \\frac{85}{3}\\right)^2 + 6\\left(\\frac{55}{2} - \\frac{85}{3}\\right)^2 + 4\\left(\\frac{65}{2} - \\frac{85}{3}\\right)^2 + 1\\left(\\frac{75}{2} - \\frac{85}{3}\\right)^2 + 1\\left(\\frac{85}{2} - \\frac{85}{3}\\right)^2}{18} = 31,25.$$\nGiá trị gần nhất với $31,25$ trong các đáp án là $31,24$.",
+        "source": "Sở Bắc Ninh 2025",
+        "solution": "Cỡ mẫu $n = 6 + 6 + 4 + 1 + 1 = 18$. Các giá trị đại diện là $\\frac{45}{2}, \\frac{55}{2}, \\frac{65}{2}, \\frac{75}{2}, \\frac{85}{2}$.\nGiá trị trung bình:\n$$\\bar{x} = \\frac{\\frac{45}{2}\\cdot 6 + \\frac{55}{2}\\cdot 6 + \\frac{65}{2}\\cdot 4 + \\frac{75}{2}\\cdot 1 + \\frac{85}{2}\\cdot 1}{18} = \\frac{85}{3}.$$\nPhương sai của mẫu số liệu ghép nhóm trên là:\n$$s^2 = \\frac{6\\left(\\frac{45}{2} - \\frac{85}{3}\\right)^2 + 6\\left(\\frac{55}{2} - \\frac{85}{3}\\right)^2 + 4\\left(\\frac{65}{2} - \\frac{85}{3}\\right)^2 + 1\\left(\\frac{75}{2} - \\frac{85}{3}\\right)^2 + 1\\left(\\frac{85}{2} - \\frac{85}{3}\\right)^2}{18} = 31,25.$$\nGiá trị gần nhất với $31,25$ trong các đáp án là $31,24$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 33,
+      "type": "mcq",
+      "prompt": "(THPT Phúc Thọ - Hà Nội 2025) Khảo sát về độ ẩm không khí trung bình các tháng năm $2024$ tại Hà Nội (đơn vị $\\%$) người ta được một mẫu số liệu ghép nhóm như sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Độ ẩm} & [71;74) & [74;77) & [77;80) & [80;83) & [83;86) \\\\ \\hline \\text{Số tháng} & 1 & 1 & 2 & 6 & 2 \\\\ \\hline \\end{array}$$\nPhương sai của mẫu số liệu ghép nhóm trên có giá trị gần nhất với giá trị nào dưới đây?",
+      "points": 0.25,
+      "sort_order": 330,
+      "choices": [
+        "$134,25$.",
+        "$3,34$.",
+        "$80,25$.",
+        "$11,1875$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Cỡ mẫu $n = 12$. Giá trị đại diện là $72,5; 75,5; 78,5; 81,5; 84,5$.\nSố trung bình cộng:\n$$\\bar{x} = \\frac{1\\cdot 72,5 + 1\\cdot 75,5 + 2\\cdot 78,5 + 6\\cdot 81,5 + 2\\cdot 84,5}{12} = \\frac{321}{4} = 80,25.$$\nPhương sai của mẫu số liệu ghép nhóm trên là:\n$$s^2 = \\frac{1}{12}\\left[1(72,5 - 80,25)^2 + 1(75,5 - 80,25)^2 + 2(78,5 - 80,25)^2 + 6(81,5 - 80,25)^2 + 2(84,5 - 80,25)^2\\right] = 11,1875.$$",
+        "source": "THPT Phúc Thọ - Hà Nội 2025",
+        "solution": "Cỡ mẫu $n = 12$. Giá trị đại diện là $72,5; 75,5; 78,5; 81,5; 84,5$.\nSố trung bình cộng:\n$$\\bar{x} = \\frac{1\\cdot 72,5 + 1\\cdot 75,5 + 2\\cdot 78,5 + 6\\cdot 81,5 + 2\\cdot 84,5}{12} = \\frac{321}{4} = 80,25.$$\nPhương sai của mẫu số liệu ghép nhóm trên là:\n$$s^2 = \\frac{1}{12}\\left[1(72,5 - 80,25)^2 + 1(75,5 - 80,25)^2 + 2(78,5 - 80,25)^2 + 6(81,5 - 80,25)^2 + 2(84,5 - 80,25)^2\\right] = 11,1875.$$"
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 34,
+      "type": "mcq",
+      "prompt": "(Chuyên Lam Sơn - Thanh Hóa 2025) Một siêu thị thống kê số tiền (đơn vị: chục nghìn đồng) mà $44$ khách hàng mua hàng ở siêu thị đó trong một ngày. Số liệu được cho ở bảng:\n$$\\begin{array}{|c|c|c|} \\hline \\text{Nhóm} & \\text{Giá trị đại diện} & \\text{Tần số} \\\\ \\hline [40;45) & 42,5 & 4 \\\\ \\hline [45;50) & 47,5 & 14 \\\\ \\hline [50;55) & 52,5 & 8 \\\\ \\hline [55;60) & 57,5 & 10 \\\\ \\hline [60;65) & 62,5 & 6 \\\\ \\hline [65;70) & 67,5 & 2 \\\\ \\hline \\end{array}$$\nBiết số trung bình của mẫu số liệu đã cho là $\\bar{x} \\approx 53,18$. Phương sai của mẫu số liệu ghép nhóm trên (kết quả làm tròn đến hàng phần mười) là",
+      "points": 0.25,
+      "sort_order": 340,
+      "choices": [
+        "$s^2 = 46,12$.",
+        "$s^2 = 46,1$.",
+        "$s^2 = 46,21$.",
+        "$s^2 = 46,2$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có:\n$$4(42,5 - 53,18)^2 + 14(47,5 - 53,18)^2 + 8(52,5 - 53,18)^2 + 10(57,5 - 53,18)^2 + 6(62,5 - 53,18)^2 + 2(67,5 - 53,18)^2 = 2029,5456.$$\nVậy phương sai của mẫu số liệu ghép nhóm trên là:\n$$s^2 = \\frac{2029,5456}{44} \\approx 46,1.$$",
+        "source": "Chuyên Lam Sơn - Thanh Hóa 2025",
+        "solution": "Ta có:\n$$4(42,5 - 53,18)^2 + 14(47,5 - 53,18)^2 + 8(52,5 - 53,18)^2 + 10(57,5 - 53,18)^2 + 6(62,5 - 53,18)^2 + 2(67,5 - 53,18)^2 = 2029,5456.$$\nVậy phương sai của mẫu số liệu ghép nhóm trên là:\n$$s^2 = \\frac{2029,5456}{44} \\approx 46,1.$$"
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 35,
+      "type": "mcq",
+      "prompt": "(Liên trường THPT Ninh Bình 2025) Để đánh giá chất lượng của một loại pin điện thoại mới, người ta ghi lại thời gian nghe nhạc liên tục của điện thoại được sạc đầy pin cho đến khi hết pin cho kết quả sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Thời gian (giờ)} & [5;5,5) & [5,5;6) & [6;6,5) & [6,5;7) & [7;7,5) \\\\ \\hline \\text{Số chiếc điện thoại (tần số)} & 2 & 8 & 15 & 10 & 5 \\\\ \\hline \\end{array}$$\nTính độ lệch chuẩn của mẫu số liệu ghép nhóm trên (làm tròn đến $4$ chữ số thập phân).",
+      "points": 0.25,
+      "sort_order": 350,
+      "choices": [
+        "$0,4252$.",
+        "$0,5268$.",
+        "$0,5314$.",
+        "$0,6214$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Cỡ mẫu $n = 2 + 8 + 15 + 10 + 5 = 40$. Các giá trị đại diện là $5,25; 5,75; 6,25; 6,75; 7,25$.\nGiá trị trung bình:\n$$\\bar{x} = \\frac{2\\cdot 5,25 + 8\\cdot 5,75 + 15\\cdot 6,25 + 10\\cdot 6,75 + 5\\cdot 7,25}{40} = \\frac{127}{20} = 6,35.$$\nPhương sai:\n$$s^2 = \\frac{2\\cdot 5,25^2 + 8\\cdot 5,75^2 + 15\\cdot 6,25^2 + 10\\cdot 6,75^2 + 5\\cdot 7,25^2}{40} - 6,35^2 = \\frac{111}{400}.$$\nĐộ lệch chuẩn: $s = \\sqrt{\\frac{111}{400}} \\approx 0,5268$.",
+        "source": "Liên trường THPT Ninh Bình 2025",
+        "solution": "Cỡ mẫu $n = 2 + 8 + 15 + 10 + 5 = 40$. Các giá trị đại diện là $5,25; 5,75; 6,25; 6,75; 7,25$.\nGiá trị trung bình:\n$$\\bar{x} = \\frac{2\\cdot 5,25 + 8\\cdot 5,75 + 15\\cdot 6,25 + 10\\cdot 6,75 + 5\\cdot 7,25}{40} = \\frac{127}{20} = 6,35.$$\nPhương sai:\n$$s^2 = \\frac{2\\cdot 5,25^2 + 8\\cdot 5,75^2 + 15\\cdot 6,25^2 + 10\\cdot 6,75^2 + 5\\cdot 7,25^2}{40} - 6,35^2 = \\frac{111}{400}.$$\nĐộ lệch chuẩn: $s = \\sqrt{\\frac{111}{400}} \\approx 0,5268$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 36,
+      "type": "mcq",
+      "prompt": "(Sở Bình Phước 2025) Hai mẫu số liệu ghép nhóm $M_1, M_2$ có bảng tần số ghép nhóm như sau:\nMẫu $M_1$:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Nhóm} & [0;2) & [2;4) & [4;6) & [6;8) & [8;10] \\\\ \\hline \\text{Tần số} & 1 & 2 & 10 & 15 & 2 \\\\ \\hline \\end{array}$$\nMẫu $M_2$:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Nhóm} & [0;2) & [2;4) & [4;6) & [6;8) & [8;10] \\\\ \\hline \\text{Tần số} & 0 & 1 & 15 & 13 & 1 \\\\ \\hline \\end{array}$$\nGọi $s_1^2, s_2^2$ lần lượt là phương sai của mẫu số liệu ghép nhóm $M_1, M_2$. Phát biểu nào sau đây là đúng?",
+      "points": 0.25,
+      "sort_order": 360,
+      "choices": [
+        "$s_1^2 = 2s_2^2$.",
+        "$s_1^2 = \\frac{15}{8}s_2^2$.",
+        "$s_1^2 = \\frac{9}{5}s_2^2$.",
+        "$3s_1^2 = s_2^2$."
+      ],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Các giá trị đại diện là $1; 3; 5; 7; 9$, cỡ mẫu mỗi bảng đều là $n = 30$.\n- Với mẫu $M_1$:\n$$\\bar{x}_1 = \\frac{1\\cdot 1 + 2\\cdot 3 + 10\\cdot 5 + 15\\cdot 7 + 2\\cdot 9}{30} = 6,$$\n$$s_1^2 = \\frac{1(1-6)^2 + 2(3-6)^2 + 10(5-6)^2 + 15(7-6)^2 + 2(9-6)^2}{30} = \\frac{43}{15}.$$\n- Với mẫu $M_2$:\n$$\\bar{x}_2 = \\frac{0\\cdot 1 + 1\\cdot 3 + 15\\cdot 5 + 13\\cdot 7 + 1\\cdot 9}{30} = \\frac{89}{15},$$\n$$s_2^2 = \\frac{1\\left(3 - \\frac{89}{15}\\right)^2 + 15\\left(5 - \\frac{89}{15}\\right)^2 + 13\\left(7 - \\frac{89}{15}\\right)^2 + 1\\left(9 - \\frac{89}{15}\\right)^2}{30} = \\frac{344}{225}.$$\nSuy ra $\\frac{s_1^2}{s_2^2} = \\frac{43}{15} : \\frac{344}{225} = \\frac{15}{8} \\Rightarrow s_1^2 = \\frac{15}{8}s_2^2$.",
+        "source": "Sở Bình Phước 2025",
+        "solution": "Các giá trị đại diện là $1; 3; 5; 7; 9$, cỡ mẫu mỗi bảng đều là $n = 30$.\n- Với mẫu $M_1$:\n$$\\bar{x}_1 = \\frac{1\\cdot 1 + 2\\cdot 3 + 10\\cdot 5 + 15\\cdot 7 + 2\\cdot 9}{30} = 6,$$\n$$s_1^2 = \\frac{1(1-6)^2 + 2(3-6)^2 + 10(5-6)^2 + 15(7-6)^2 + 2(9-6)^2}{30} = \\frac{43}{15}.$$\n- Với mẫu $M_2$:\n$$\\bar{x}_2 = \\frac{0\\cdot 1 + 1\\cdot 3 + 15\\cdot 5 + 13\\cdot 7 + 1\\cdot 9}{30} = \\frac{89}{15},$$\n$$s_2^2 = \\frac{1\\left(3 - \\frac{89}{15}\\right)^2 + 15\\left(5 - \\frac{89}{15}\\right)^2 + 13\\left(7 - \\frac{89}{15}\\right)^2 + 1\\left(9 - \\frac{89}{15}\\right)^2}{30} = \\frac{344}{225}.$$\nSuy ra $\\frac{s_1^2}{s_2^2} = \\frac{43}{15} : \\frac{344}{225} = \\frac{15}{8} \\Rightarrow s_1^2 = \\frac{15}{8}s_2^2$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Vận dụng"
+      ]
+    }
+  ]
+}

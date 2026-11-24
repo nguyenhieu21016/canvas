@@ -1,0 +1,2451 @@
+{
+  "pack_id": "short-thucte-oxyz",
+  "title": "Chủ đề 14 · Thực tế Oxyz — Trả lời ngắn (2025)",
+  "chapter": "GĐ1 · Chương 4",
+  "count": 89,
+  "questions": [
+    {
+      "source_num": 1,
+      "type": "short",
+      "prompt": "(Đề Tham Khảo 2025) Hệ thống định vị toàn cầu GPS xác định vị trí một điểm $M(a;b;c)$ trong không gian $Oxyz$ nhờ bốn vệ tinh đặt tại $A(3;1;0)$, $B(3;6;6)$, $C(4;6;2)$, $D(6;2;14)$. Biết $MA = 3$, $MB = 6$, $MC = 5$, $MD = 13$. Khoảng cách từ điểm $M$ đến gốc tọa độ $O$ bằng bao nhiêu?",
+      "points": 1,
+      "sort_order": 10,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Từ $MA=3, MB=6, MC=5, MD=13$, ta lập 4 phương trình mặt cầu rồi trừ vế theo vế thu được hệ tuyến tính:\n$$\\begin{cases} 10b + 12c = 44 \\\\ 2a + 10b + 4c = 30 \\\\ 6a + 2b + 28c = 66 \\end{cases} \\Leftrightarrow \\begin{cases} a = 1 \\\\ b = 2 \\\\ c = 2. \\end{cases}$$\nSuy ra $M(1;2;2)$ và $OM = \\sqrt{1^2 + 2^2 + 2^2} = 3$.",
+        "source": "Đề Tham Khảo 2025",
+        "solution": "Từ $MA=3, MB=6, MC=5, MD=13$, ta lập 4 phương trình mặt cầu rồi trừ vế theo vế thu được hệ tuyến tính:\n$$\\begin{cases} 10b + 12c = 44 \\\\ 2a + 10b + 4c = 30 \\\\ 6a + 2b + 28c = 66 \\end{cases} \\Leftrightarrow \\begin{cases} a = 1 \\\\ b = 2 \\\\ c = 2. \\end{cases}$$\nSuy ra $M(1;2;2)$ và $OM = \\sqrt{1^2 + 2^2 + 2^2} = 3$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "3",
+        "accepted_answers": [
+          "3"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 21: Phương trình mặt cầu",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 2,
+      "type": "short",
+      "prompt": "(Sở Bình Phước 2025) Trong không gian $Oxyz$, mặt đất là mặt phẳng $(Oxy)$ (đơn vị: mét). Một bóng đèn dạng khối cầu tâm $I(-1;2;4)$, bán kính $R$ treo cố định. Một con kiến bò trên bóng đèn và một con kiến khác bò trên mặt đất sao cho vectơ nối vị trí hai con kiến luôn cùng phương với đường thẳng $\\Delta: \\dfrac{x}{1} = \\dfrac{y+1}{2} = \\dfrac{z-2}{2}$. Biết lúc hai con kiến gần nhau nhất có khoảng cách bằng $\\dfrac{57}{10}\\text{ m}$. Bán kính khối cầu có độ dài bao nhiêu $\\text{cm}$?\n![Hình Câu 2](/bank-images/short-oxyz/q2_p0.jpeg)",
+      "points": 1,
+      "sort_order": 20,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Góc $\\alpha$ giữa $\\Delta$ (VTCP $\\vec{u}=(1;2;2)$) và $(Oxy)$ thỏa $\\sin\\alpha = \\frac{2}{3}$. Khoảng cách ngắn nhất giữa mặt cầu và mặt đất là $h = 4 - R$. Khi hai con kiến gần nhau nhất, đoạn nối chúng dài $d_{\\min} = \\frac{h}{\\sin\\alpha} = \\frac{3}{2}(4 - R)$. Theo đề bài $\\frac{3}{2}(4 - R) = \\frac{57}{10} \\Rightarrow 4 - R = \\frac{19}{5} \\Rightarrow R = 0,2\\text{ m} = 20\\text{ cm}$.",
+        "source": "Sở Bình Phước 2025",
+        "solution": "Góc $\\alpha$ giữa $\\Delta$ (VTCP $\\vec{u}=(1;2;2)$) và $(Oxy)$ thỏa $\\sin\\alpha = \\frac{2}{3}$. Khoảng cách ngắn nhất giữa mặt cầu và mặt đất là $h = 4 - R$. Khi hai con kiến gần nhau nhất, đoạn nối chúng dài $d_{\\min} = \\frac{h}{\\sin\\alpha} = \\frac{3}{2}(4 - R)$. Theo đề bài $\\frac{3}{2}(4 - R) = \\frac{57}{10} \\Rightarrow 4 - R = \\frac{19}{5} \\Rightarrow R = 0,2\\text{ m} = 20\\text{ cm}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "20",
+        "accepted_answers": [
+          "20"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 21: Phương trình mặt cầu",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 3,
+      "type": "short",
+      "prompt": "(THPT Văn Giang - Hưng Yên 2025) Với hệ trục $Oxyz$ có $O$ trên mặt nước, $(Oxy)$ là mặt nước, $Oz$ hướng lên trên (đơn vị: mét), một con chim bói cá ở vị trí cách mặt nước $2\\text{ m}$, cách $(Oxz)$ và $(Oyz)$ lần lượt $3\\text{ m}$ và $1\\text{ m}$, phóng thẳng xuống con cá dưới mặt nước $50\\text{ cm}$, cách $(Oxz)$ và $(Oyz)$ lần lượt $1\\text{ m}$ và $1,5\\text{ m}$. Tọa độ điểm $B$ lúc chim vừa tiếp xúc mặt nước là $(a;b;c)$. Tính $T = 5a + 15b + 25c$.\n![Hình Câu 3](/bank-images/short-oxyz/q3_p0.png)",
+      "points": 1,
+      "sort_order": 30,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Tọa độ chim là $C(1;3;2)$ và con cá là $A(1,5;1;-0,5)$, suy ra $\\overrightarrow{CA} = (0,5;-2;-2,5)$. Điểm $B(a;b;0) \\in AC$ thoả $\\overrightarrow{CB} = k\\overrightarrow{CA}$ với $-2 = -2,5k \\Rightarrow k = \\frac{4}{5}$, cho $a = 1 + 0,5\\cdot\\frac{4}{5} = \\frac{7}{5}$ và $b = 3 - 2\\cdot\\frac{4}{5} = \\frac{7}{5}$. Vậy $T = 5\\cdot\\frac{7}{5} + 15\\cdot\\frac{7}{5} + 0 = 28$.",
+        "source": "THPT Văn Giang - Hưng Yên 2025",
+        "solution": "Tọa độ chim là $C(1;3;2)$ và con cá là $A(1,5;1;-0,5)$, suy ra $\\overrightarrow{CA} = (0,5;-2;-2,5)$. Điểm $B(a;b;0) \\in AC$ thoả $\\overrightarrow{CB} = k\\overrightarrow{CA}$ với $-2 = -2,5k \\Rightarrow k = \\frac{4}{5}$, cho $a = 1 + 0,5\\cdot\\frac{4}{5} = \\frac{7}{5}$ và $b = 3 - 2\\cdot\\frac{4}{5} = \\frac{7}{5}$. Vậy $T = 5\\cdot\\frac{7}{5} + 15\\cdot\\frac{7}{5} + 0 = 28$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "28",
+        "accepted_answers": [
+          "28"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 4,
+      "type": "short",
+      "prompt": "(THPT Tiên Du - Bắc Ninh 2025) Hình sau đây minh họa sơ đồ một ngôi nhà trong hệ trục $Oxyz$, trong đó nền nhà, bốn bức tường và hai mái nhà đều là hình chữ nhật. Biết $F(a;b;c)$. Giá trị của tổng $a + b + c$ bằng bao nhiêu?\n![Hình Câu 4](/bank-images/short-oxyz/q4_p0.jpeg)",
+      "points": 1,
+      "sort_order": 40,
+      "choices": [],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Từ hình vẽ ta có $P(2;0;4)$, $Q(2;5;4)$, $G(4;5;3)$. Vì $PQGF$ là hình chữ nhật nên $\\overrightarrow{GF} = \\overrightarrow{QP} = (0;-5;0) \\Rightarrow F(4;0;3)$. Vậy $a + b + c = 4 + 0 + 3 = 7$.",
+        "source": "THPT Tiên Du - Bắc Ninh 2025",
+        "solution": "Từ hình vẽ ta có $P(2;0;4)$, $Q(2;5;4)$, $G(4;5;3)$. Vì $PQGF$ là hình chữ nhật nên $\\overrightarrow{GF} = \\overrightarrow{QP} = (0;-5;0) \\Rightarrow F(4;0;3)$. Vậy $a + b + c = 4 + 0 + 3 = 7$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "7",
+        "accepted_answers": [
+          "7"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 5,
+      "type": "short",
+      "prompt": "(THPT Lê Thánh Tông - HCM 2025) Trong không gian $Oxyz$, cho mặt cầu $(S): x^2 + y^2 + z^2 - 2x - 2z - 38 = 0$ và hai mặt phẳng $(\\alpha): x + 2y - 4 = 0$, $(\\beta): 3y + z - 5 = 0$. Xét mặt phẳng $(P)$ thay đổi, song song với giao tuyến của $(\\alpha), (\\beta)$ và tiếp xúc với $(S)$. Khoảng cách lớn nhất từ $A(5;-5;6)$ đến $(P)$ bằng bao nhiêu (làm tròn đến hàng phần mười)?",
+      "points": 1,
+      "sort_order": 50,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Mặt cầu $(S)$ có tâm $I(1;0;1)$, bán kính $R = 2\\sqrt{10}$. Giao tuyến $\\Delta = (\\alpha) \\cap (\\beta)$ có VTCP $\\vec{u} = [\\vec{n}_\\alpha, \\vec{n}_\\beta] = (2;-1;3)$. Gọi $d$ là đường thẳng qua $I$ song song $\\Delta$. Vì $(P) \\parallel d$ và tiếp xúc $(S)$ nên $d(A,(P))_{\\max} = d(A, d) + R$. Ta có $\\overrightarrow{IA} = (4;-5;5)$, $[\\overrightarrow{IA}, \\vec{u}] = (-10;-2;6)$, nên $d(A,d) = \\frac{\\sqrt{140}}{\\sqrt{14}} = \\sqrt{10}$. Vậy $d_{\\max} = 3\\sqrt{10} \\approx 9,5$.",
+        "source": "THPT Lê Thánh Tông - HCM 2025",
+        "solution": "Mặt cầu $(S)$ có tâm $I(1;0;1)$, bán kính $R = 2\\sqrt{10}$. Giao tuyến $\\Delta = (\\alpha) \\cap (\\beta)$ có VTCP $\\vec{u} = [\\vec{n}_\\alpha, \\vec{n}_\\beta] = (2;-1;3)$. Gọi $d$ là đường thẳng qua $I$ song song $\\Delta$. Vì $(P) \\parallel d$ và tiếp xúc $(S)$ nên $d(A,(P))_{\\max} = d(A, d) + R$. Ta có $\\overrightarrow{IA} = (4;-5;5)$, $[\\overrightarrow{IA}, \\vec{u}] = (-10;-2;6)$, nên $d(A,d) = \\frac{\\sqrt{140}}{\\sqrt{14}} = \\sqrt{10}$. Vậy $d_{\\max} = 3\\sqrt{10} \\approx 9,5$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "9,5",
+        "accepted_answers": [
+          "9,5",
+          "9.5"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 21: Phương trình mặt cầu",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 6,
+      "type": "short",
+      "prompt": "(THPT Nguyễn Đăng Đạo - Bắc Ninh 2025) Trong không gian $Oxyz$ (đơn vị: $1\\text{ m}$), một cabin cáp treo xuất phát từ $A(10;3;0)$ và chuyển động đều theo đường cáp thẳng đến $D$ cách $A$ $4050\\text{ m}$. Biết đường đi cùng phương với $\\vec{u} = (2;-2;1)$ và sau $3$ phút cabin đến $B$ có hoành độ $x_B = 550$. Hỏi thời gian di chuyển trên quãng đường $AD$ là bao nhiêu phút?",
+      "points": 1,
+      "sort_order": 60,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $\\overrightarrow{AB} = k\\vec{u}$ với $550 - 10 = 2k \\Rightarrow k = 270$, suy ra $AB = 270|\\vec{u}| = 270\\cdot 3 = 810\\text{ m}$. Do $AD = 4050 = 5AB$ và chuyển động đều nên thời gian đi hết $AD$ là $5\\cdot 3 = 15$ phút.",
+        "source": "THPT Nguyễn Đăng Đạo - Bắc Ninh 2025",
+        "solution": "Ta có $\\overrightarrow{AB} = k\\vec{u}$ với $550 - 10 = 2k \\Rightarrow k = 270$, suy ra $AB = 270|\\vec{u}| = 270\\cdot 3 = 810\\text{ m}$. Do $AD = 4050 = 5AB$ và chuyển động đều nên thời gian đi hết $AD$ là $5\\cdot 3 = 15$ phút.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "15",
+        "accepted_answers": [
+          "15"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 7,
+      "type": "short",
+      "prompt": "(THPT Gia Bình - Bắc Ninh 2025) Trong không gian $Oxyz$ (đơn vị: $\\text{km}$), một radar phát hiện máy bay chuyển động thẳng đều từ $A(812;600;5)$ đến $B(950;530;6)$ trong $10$ phút. Nếu tiếp tục giữ nguyên tốc độ và hướng bay thì sau $10$ phút tiếp theo máy bay ở $C(x;y;z)$. Tính $x + y + z$.\n![Hình Câu 7](/bank-images/short-oxyz/q7_p0.jpeg)",
+      "points": 1,
+      "sort_order": 70,
+      "choices": [],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Vì thời gian đi $AB$ và $BC$ đều bằng $10$ phút nên $B$ là trung điểm $AC$. Suy ra $C = 2B - A = (1088; 460; 7)$, nên $x + y + z = 1555$.",
+        "source": "THPT Gia Bình - Bắc Ninh 2025",
+        "solution": "Vì thời gian đi $AB$ và $BC$ đều bằng $10$ phút nên $B$ là trung điểm $AC$. Suy ra $C = 2B - A = (1088; 460; 7)$, nên $x + y + z = 1555$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "1555",
+        "accepted_answers": [
+          "1555"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 8,
+      "type": "short",
+      "prompt": "(Sở Ninh Bình 2025) Trong không gian $Oxyz$, một khinh khí cầu ở $A(-16;-10;10)$ bay với vectơ vận tốc không đổi $\\vec{v} = (4;3;-1)$ (đơn vị: $\\text{km/h}$) trong $10$ giờ. Trạm kiểm soát tại gốc $O$ kiểm soát trong bán kính $12\\text{ km}$. Thời gian kể từ khi trạm phát hiện đến khi khinh khí cầu ra khỏi vùng kiểm soát là bao nhiêu phút?",
+      "points": 1,
+      "sort_order": 80,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Sau $t$ giờ, vị trí khinh khí cầu là $B(-16+4t; -10+3t; 10-t)$. Điều kiện $OB \\le 12 \\Leftrightarrow (-16+4t)^2 + (-10+3t)^2 + (10-t)^2 \\le 144 \\Leftrightarrow 26t^2 - 208t + 312 \\le 0 \\Leftrightarrow 2 \\le t \\le 6$. Thời gian trong vùng kiểm soát là $6 - 2 = 4\\text{ giờ} = 240\\text{ phút}$.",
+        "source": "Sở Ninh Bình 2025",
+        "solution": "Sau $t$ giờ, vị trí khinh khí cầu là $B(-16+4t; -10+3t; 10-t)$. Điều kiện $OB \\le 12 \\Leftrightarrow (-16+4t)^2 + (-10+3t)^2 + (10-t)^2 \\le 144 \\Leftrightarrow 26t^2 - 208t + 312 \\le 0 \\Leftrightarrow 2 \\le t \\le 6$. Thời gian trong vùng kiểm soát là $6 - 2 = 4\\text{ giờ} = 240\\text{ phút}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "240",
+        "accepted_answers": [
+          "240"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 21: Phương trình mặt cầu",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 9,
+      "type": "short",
+      "prompt": "(THPT Thuận Thành 1&2 - Bắc Ninh 2025) Một chiếc máy quay phim có trọng lượng $300\\text{ N}$ đặt trên giá đỡ ba chân với đỉnh $E(0;0;6)$ và ba chân tiếp xúc mặt đất tại $A_1(0;1;0)$, $A_2\\left(\\dfrac{\\sqrt{3}}{2};-\\dfrac{1}{2};0\\right)$, $A_3\\left(-\\dfrac{\\sqrt{3}}{2};-\\dfrac{1}{2};0\\right)$. Giả sử lực tác dụng lên chân thứ nhất là $\\vec{F}_1 = (a;b;c)$, tính $a + 3b - c$.\n![Hình Câu 9](/bank-images/short-oxyz/q9_p0.jpeg)",
+      "points": 1,
+      "sort_order": 90,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Vì $EA_1 = EA_2 = EA_3 = \\sqrt{37}$ nên ba lực có độ lớn bằng nhau: $\\vec{F}_i = k\\overrightarrow{EA_i}$. Tổng ba lực cân bằng trọng lực $\\vec{P} = (0;0;-300)$ nên $-18k = -300 \\Rightarrow k = \\frac{50}{3}$. Suy ra $\\vec{F}_1 = \\left(0; \\frac{50}{3}; -100\\right)$, do đó $a + 3b - c = 0 + 50 - (-100) = 150$.",
+        "source": "THPT Thuận Thành 1&2 - Bắc Ninh 2025",
+        "solution": "Vì $EA_1 = EA_2 = EA_3 = \\sqrt{37}$ nên ba lực có độ lớn bằng nhau: $\\vec{F}_i = k\\overrightarrow{EA_i}$. Tổng ba lực cân bằng trọng lực $\\vec{P} = (0;0;-300)$ nên $-18k = -300 \\Rightarrow k = \\frac{50}{3}$. Suy ra $\\vec{F}_1 = \\left(0; \\frac{50}{3}; -100\\right)$, do đó $a + 3b - c = 0 + 50 - (-100) = 150$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "150",
+        "accepted_answers": [
+          "150"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 10,
+      "type": "short",
+      "prompt": "(THPT Hùng Vương - Bình Thuận 2025) Gắn hệ trục $Oxyz$ (đơn vị: $\\text{km}$) vào một sân bay có $(Oxy)$ là mặt sân bay. Một máy bay bay thẳng từ $A(5;0;5)$ đến $B(10;10;3)$ và hạ cánh tại $M(a;b;0)$. Tính giá trị của $a + b$ (viết dưới dạng số thập phân).",
+      "points": 1,
+      "sort_order": 100,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Đường thẳng $AB$ qua $A(5;0;5)$ với VTCP $\\overrightarrow{AB} = (5;10;-2)$ có phương trình $x = 5 + 5t,\\; y = 10t,\\; z = 5 - 2t$. Cho $z = 0 \\Rightarrow t = \\frac{5}{2}$, suy ra $M(17,5; 25; 0)$. Vậy $a + b = 42,5$.",
+        "source": "THPT Hùng Vương - Bình Thuận 2025",
+        "solution": "Đường thẳng $AB$ qua $A(5;0;5)$ với VTCP $\\overrightarrow{AB} = (5;10;-2)$ có phương trình $x = 5 + 5t,\\; y = 10t,\\; z = 5 - 2t$. Cho $z = 0 \\Rightarrow t = \\frac{5}{2}$, suy ra $M(17,5; 25; 0)$. Vậy $a + b = 42,5$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "42,5",
+        "accepted_answers": [
+          "42,5",
+          "42.5"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 16 · Dạng 1: Vectơ chỉ phương và lập phương trình đường thẳng cơ bản",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 11,
+      "type": "short",
+      "prompt": "(THPT Triệu Sơn 3 - Thanh Hóa 2025) Hai khinh khí cầu $A, B$ bay lên từ gốc $O$ trên mặt đất. Sau một thời gian, $A$ cách $O$ $4\\text{ km}$ về phía Đông, $3\\text{ km}$ về phía Nam, cao $1\\text{ km}$; $B$ cách $O$ $1\\text{ km}$ về phía Bắc, $1,5\\text{ km}$ về phía Tây, cao $0,8\\text{ km}$. Một người đứng trên mặt đất ở vị trí sao cho tổng khoảng cách đến $A$ và $B$ nhỏ nhất. Tổng khoảng cách nhỏ nhất ấy bằng bao nhiêu $\\text{km}$ (làm tròn đến hàng phần trăm)?\n![Hình Câu 11](/bank-images/short-oxyz/q11_p0.png)",
+      "points": 1,
+      "sort_order": 110,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Chọn $Ox$ hướng Nam, $Oy$ hướng Đông, $Oz$ thẳng đứng lên trên: $A(3;4;1)$, $B(-1;-1,5;0,8)$. Lấy $B'(-1;-1,5;-0,8)$ đối xứng với $B$ qua $(Oxy)$. Tổng khoảng cách ngắn nhất là $AB' = \\sqrt{4^2 + 5,5^2 + 1,8^2} = \\sqrt{49,49} \\approx 7,03\\text{ km}$.",
+        "source": "THPT Triệu Sơn 3 - Thanh Hóa 2025",
+        "solution": "Chọn $Ox$ hướng Nam, $Oy$ hướng Đông, $Oz$ thẳng đứng lên trên: $A(3;4;1)$, $B(-1;-1,5;0,8)$. Lấy $B'(-1;-1,5;-0,8)$ đối xứng với $B$ qua $(Oxy)$. Tổng khoảng cách ngắn nhất là $AB' = \\sqrt{4^2 + 5,5^2 + 1,8^2} = \\sqrt{49,49} \\approx 7,03\\text{ km}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "7,03",
+        "accepted_answers": [
+          "7,03",
+          "7.03"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 12,
+      "type": "short",
+      "prompt": "(THPT Lý Thường Kiệt - Hà Nội 2025) Hình bên dưới minh họa sơ đồ một ngôi nhà trong không gian $Oxyz$, trong đó nền nhà, bốn bức tường và hai mái nhà đều là hình chữ nhật. Tính số đo góc dốc của mái nhà (số đo góc nhị diện có cạnh $FG$, hai mặt $(FGQP)$ và $(FGHE)$, làm tròn đến hàng phần mười theo độ).\n![Hình Câu 12](/bank-images/short-oxyz/q12_p0.jpeg)",
+      "points": 1,
+      "sort_order": 120,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $F(4;0;3)$, $E(0;0;3)$, $P(2;0;4)$. Do $(Oxz) \\perp FG$, góc phẳng nhị diện là $\\widehat{PFE}$. Với $\\overrightarrow{FP} = (-2;0;1)$ và $\\overrightarrow{FE} = (-4;0;0)$, ta có $\\cos\\widehat{PFE} = \\frac{8}{4\\sqrt{5}} = \\frac{2}{\\sqrt{5}} \\Rightarrow \\widehat{PFE} \\approx 26,6^\\circ$.",
+        "source": "THPT Lý Thường Kiệt - Hà Nội 2025",
+        "solution": "Ta có $F(4;0;3)$, $E(0;0;3)$, $P(2;0;4)$. Do $(Oxz) \\perp FG$, góc phẳng nhị diện là $\\widehat{PFE}$. Với $\\overrightarrow{FP} = (-2;0;1)$ và $\\overrightarrow{FE} = (-4;0;0)$, ta có $\\cos\\widehat{PFE} = \\frac{8}{4\\sqrt{5}} = \\frac{2}{\\sqrt{5}} \\Rightarrow \\widehat{PFE} \\approx 26,6^\\circ$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "26,6",
+        "accepted_answers": [
+          "26,6",
+          "26.6"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 20: Bài toán liên quan đến các công thức tính góc trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 13,
+      "type": "short",
+      "prompt": "(THPT Nguyễn Khuyến - Lê Thánh Tông 2025) Một bể cá hình hộp chữ nhật $ABCD.EFGH$ có $AB = 6\\text{ dm}$, $AD = 8\\text{ dm}$, cạnh bên $10\\text{ dm}$. Chú cá bơi theo hai đoạn thẳng từ $G$ chạm đáy $(ABCD)$ rồi đến trung điểm $M$ của $AF$. Để đường đi ngắn nhất thì điểm chạm đáy cách $BA$ và $BC$ lần lượt là $a$ và $b$. Tính $D = 3a + 6b$.\n![Hình Câu 13](/bank-images/short-oxyz/q13_p0.jpeg)",
+      "points": 1,
+      "sort_order": 130,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Chọn gốc $B(0;0;0)$, $C(8;0;0)$, $A(0;6;0)$, $F(0;0;10)$, $G(8;0;10)$, suy ra $M(0;3;5)$. Lấy $N(0;3;-5)$ đối xứng $M$ qua $(Oxy)$. Điểm chạm đáy tối ưu $I(x;y;0)$ là giao của $NG$ với $(Oxy)$: $\\frac{8-x}{8} = \\frac{-y}{-3} = \\frac{10}{15} \\Rightarrow x = \\frac{8}{3},\\; y = 2$. Vậy $a = \\frac{8}{3},\\; b = 2 \\Rightarrow D = 3\\cdot\\frac{8}{3} + 6\\cdot 2 = 20$.",
+        "source": "THPT Nguyễn Khuyến - Lê Thánh Tông 2025",
+        "solution": "Chọn gốc $B(0;0;0)$, $C(8;0;0)$, $A(0;6;0)$, $F(0;0;10)$, $G(8;0;10)$, suy ra $M(0;3;5)$. Lấy $N(0;3;-5)$ đối xứng $M$ qua $(Oxy)$. Điểm chạm đáy tối ưu $I(x;y;0)$ là giao của $NG$ với $(Oxy)$: $\\frac{8-x}{8} = \\frac{-y}{-3} = \\frac{10}{15} \\Rightarrow x = \\frac{8}{3},\\; y = 2$. Vậy $a = \\frac{8}{3},\\; b = 2 \\Rightarrow D = 3\\cdot\\frac{8}{3} + 6\\cdot 2 = 20$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "20",
+        "accepted_answers": [
+          "20"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 14,
+      "type": "short",
+      "prompt": "(THPT Kinh Môn - Hải Dương 2025) Một chiếc xe đang kéo căng sợi dây cáp $AB$ trong công trường xây dựng, gắn hệ tọa độ $Oxyz$ như hình vẽ (đơn vị: $1\\text{ m}$). Biết $\\overrightarrow{AB} = (x;y;z)$, tính $x + 2y - z$ (làm tròn đến hàng phần mười).\n![Hình Câu 14](/bank-images/short-oxyz/q14_p0.jpeg)",
+      "points": 1,
+      "sort_order": 140,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $A(0;0;10)$ và $B$ nằm trong $(Oxy)$ với $OB = 15$, $\\widehat{BOy} = 30^\\circ$, suy ra $x_B = 15\\sin 30^\\circ = 7,5$, $y_B = 15\\cos 30^\\circ = \\frac{15\\sqrt{3}}{2}$, $z_B = 0$. Do đó $\\overrightarrow{AB} = \\left(7,5; \\frac{15\\sqrt{3}}{2}; -10\\right)$, nên $x + 2y - z = 7,5 + 15\\sqrt{3} + 10 \\approx 43,5$.",
+        "source": "THPT Kinh Môn - Hải Dương 2025",
+        "solution": "Ta có $A(0;0;10)$ và $B$ nằm trong $(Oxy)$ với $OB = 15$, $\\widehat{BOy} = 30^\\circ$, suy ra $x_B = 15\\sin 30^\\circ = 7,5$, $y_B = 15\\cos 30^\\circ = \\frac{15\\sqrt{3}}{2}$, $z_B = 0$. Do đó $\\overrightarrow{AB} = \\left(7,5; \\frac{15\\sqrt{3}}{2}; -10\\right)$, nên $x + 2y - z = 7,5 + 15\\sqrt{3} + 10 \\approx 43,5$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "43,5",
+        "accepted_answers": [
+          "43,5",
+          "43.5"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 15,
+      "type": "short",
+      "prompt": "(HSG Vũng Tàu 2025) Ở trên biển, hai con tàu $A$ và $B$ đang ở cùng một vĩ tuyến và cách nhau $10$ hải lý. Cả hai tàu cùng khởi hành: tàu $A$ chạy về hướng Nam với vận tốc $8$ hải lý/giờ, tàu $B$ chạy về vị trí hiện tại của tàu $A$ với vận tốc $6$ hải lý/giờ. Sau bao nhiêu giờ thì khoảng cách giữa hai tàu là ngắn nhất (làm tròn đến hàng phần mười)?\n![Hình Câu 15](/bank-images/short-oxyz/q15_p0.jpeg)",
+      "points": 1,
+      "sort_order": 150,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Chọn gốc $O$ tại vị trí ban đầu của tàu $A$. Sau $t$ giờ, tàu $A$ đi được $8t$ hải lý về hướng Nam và tàu $B$ cách $O$ đoạn $10 - 6t$ hải lý. Khoảng cách giữa hai tàu là $f(t) = \\sqrt{(8t)^2 + (10 - 6t)^2} = \\sqrt{100t^2 - 120t + 100} = \\sqrt{(10t - 6)^2 + 64} \\ge 8$. Giá trị nhỏ nhất đạt được khi $10t - 6 = 0 \\Leftrightarrow t = 0,6$ giờ.",
+        "source": "HSG Vũng Tàu 2025",
+        "solution": "Chọn gốc $O$ tại vị trí ban đầu của tàu $A$. Sau $t$ giờ, tàu $A$ đi được $8t$ hải lý về hướng Nam và tàu $B$ cách $O$ đoạn $10 - 6t$ hải lý. Khoảng cách giữa hai tàu là $f(t) = \\sqrt{(8t)^2 + (10 - 6t)^2} = \\sqrt{100t^2 - 120t + 100} = \\sqrt{(10t - 6)^2 + 64} \\ge 8$. Giá trị nhỏ nhất đạt được khi $10t - 6 = 0 \\Leftrightarrow t = 0,6$ giờ.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "0,6",
+        "accepted_answers": [
+          "0,6",
+          "0.6"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 16,
+      "type": "short",
+      "prompt": "(THPT Triệu Sơn 1 - Thanh Hóa 2025) Trong không gian $Oxyz$ (đơn vị: $1\\text{ m}$), một cabin cáp treo xuất phát từ $A(10;3;0)$ chuyển động đều theo đường cáp thẳng đến $D$ cách $A$ $3780\\text{ m}$. Biết đường đi cùng phương với $\\vec{u} = (2;-2;1)$ và sau $3$ phút cabin đến $B$ có hoành độ $x_B = 550$. Hỏi thời gian đi trên quãng đường $AD$ là bao nhiêu giây?",
+      "points": 1,
+      "sort_order": 160,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $\\overrightarrow{AB} = k\\vec{u} \\Rightarrow 540 = 2k \\Rightarrow k = 270 \\Rightarrow AB = 270\\cdot 3 = 810\\text{ m}$. Vận tốc cabin là $v = \\frac{810}{180} = 4,5\\text{ m/s}$, nên thời gian đi hết $AD$ là $\\frac{3780}{4,5} = 840$ giây.",
+        "source": "THPT Triệu Sơn 1 - Thanh Hóa 2025",
+        "solution": "Ta có $\\overrightarrow{AB} = k\\vec{u} \\Rightarrow 540 = 2k \\Rightarrow k = 270 \\Rightarrow AB = 270\\cdot 3 = 810\\text{ m}$. Vận tốc cabin là $v = \\frac{810}{180} = 4,5\\text{ m/s}$, nên thời gian đi hết $AD$ là $\\frac{3780}{4,5} = 840$ giây.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "840",
+        "accepted_answers": [
+          "840"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 17,
+      "type": "short",
+      "prompt": "(THPT Triệu Sơn 1 - Thanh Hóa 2025) Trong không gian $Oxyz$, bốn vệ tinh GPS đặt tại $A(2;4;0)$, $B(0;4;6)$, $C(2;0;6)$, $D(-1;-2;-3)$ và vị trí $M(a;b;c)$ thỏa mãn $MA + MB + MC + MD$ nhỏ nhất. Tính độ dài $MO$ (làm tròn đến hàng phần chục).",
+      "points": 1,
+      "sort_order": 170,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Xét tứ diện $OABC$ có $OA = BC = 2\\sqrt{5}$, $OB = AC = 2\\sqrt{13}$, $OC = AB = 2\\sqrt{10}$ (tứ diện gần đều) với trọng tâm $G(1;2;3)$ là trung điểm của $OD$ (vì $D(-1;-2;-3) = -G$ — thực tế $O$ là trung điểm $DG$). Các cặp góc đối đỉnh tại $G$ trong tứ diện $ABCD$ bằng nhau từng đôi một nên $MA + MB + MC + MD$ đạt GTNN khi $M \\equiv G(1;2;3)$. Vậy $MO = \\sqrt{1^2+2^2+3^2} = \\sqrt{14} \\approx 3,7$.",
+        "source": "THPT Triệu Sơn 1 - Thanh Hóa 2025",
+        "solution": "Xét tứ diện $OABC$ có $OA = BC = 2\\sqrt{5}$, $OB = AC = 2\\sqrt{13}$, $OC = AB = 2\\sqrt{10}$ (tứ diện gần đều) với trọng tâm $G(1;2;3)$ là trung điểm của $OD$ (vì $D(-1;-2;-3) = -G$ — thực tế $O$ là trung điểm $DG$). Các cặp góc đối đỉnh tại $G$ trong tứ diện $ABCD$ bằng nhau từng đôi một nên $MA + MB + MC + MD$ đạt GTNN khi $M \\equiv G(1;2;3)$. Vậy $MO = \\sqrt{1^2+2^2+3^2} = \\sqrt{14} \\approx 3,7$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "3,7",
+        "accepted_answers": [
+          "3,7",
+          "3.7"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 18,
+      "type": "short",
+      "prompt": "(THPT Cụm trường Hải Dương 2025) Một khối chóp tứ giác đều $S.ABCD$ đặt trên trụ hình hộp chữ nhật $ABCD.A'B'C'D'$ đáy vuông (hình vẽ). Chọn hệ trục $Oxyz$ (đơn vị: mét) với $A'(0;0;0)$, $A(0;0;1)$, $B(0;0,5;1)$. Các mặt bên khối chóp có cạnh bên $60\\text{ cm}$. Biết $S(a;b;c)$, tính $a + b + c$ (làm tròn đến hàng phần trăm).\n![Hình Câu 18](/bank-images/short-oxyz/q18_p0.png)",
+      "points": 1,
+      "sort_order": 180,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Đáy hình vuông cạnh $0,5\\text{ m}$ nên đường chéo $AC = \\frac{\\sqrt{2}}{2}$, bán kính ngoại tiếp đáy $AI = \\frac{\\sqrt{2}}{4}$. Chiều cao chóp $SI = \\sqrt{0,6^2 - \\left(\\frac{\\sqrt{2}}{4}\\right)^2} = \\frac{\\sqrt{94}}{20}\\text{ m}$. Tâm đáy $I(0,25;0,25;1)$ nên $S\\left(0,25; 0,25; 1 + \\frac{\\sqrt{94}}{20}\\right)$. Vậy $a + b + c = 1,5 + \\frac{\\sqrt{94}}{20} \\approx 1,98$.",
+        "source": "THPT Cụm trường Hải Dương 2025",
+        "solution": "Đáy hình vuông cạnh $0,5\\text{ m}$ nên đường chéo $AC = \\frac{\\sqrt{2}}{2}$, bán kính ngoại tiếp đáy $AI = \\frac{\\sqrt{2}}{4}$. Chiều cao chóp $SI = \\sqrt{0,6^2 - \\left(\\frac{\\sqrt{2}}{4}\\right)^2} = \\frac{\\sqrt{94}}{20}\\text{ m}$. Tâm đáy $I(0,25;0,25;1)$ nên $S\\left(0,25; 0,25; 1 + \\frac{\\sqrt{94}}{20}\\right)$. Vậy $a + b + c = 1,5 + \\frac{\\sqrt{94}}{20} \\approx 1,98$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "1,98",
+        "accepted_answers": [
+          "1,98",
+          "1.98"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 19,
+      "type": "short",
+      "prompt": "(Cụm trường THPT Bắc Ninh 2025) Hai chiếc flycam cùng bay lên từ gốc $O$. Chiếc thứ nhất đến $A$ cách mặt đất $5\\text{ m}$, cách $O$ $3\\text{ m}$ về phía Nam và $2\\text{ m}$ về phía Đông; chiếc thứ hai đến $B$ cách mặt đất $5\\text{ m}$, cách $O$ $6\\text{ m}$ về phía Bắc và $6\\text{ m}$ về phía Tây. Chọn hệ trục $Oxyz$ ($Ox$ hướng Nam, $Oy$ hướng Đông, $Oz$ thẳng đứng lên, đơn vị mét). Trên mặt đất xác định vị trí $M$ sao cho tổng khoảng cách từ $M$ đến hai flycam ngắn nhất. Khoảng cách từ $O$ đến $M$ bằng bao nhiêu mét?\n![Hình Câu 19](/bank-images/short-oxyz/q19_p0.jpeg)",
+      "points": 1,
+      "sort_order": 190,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $A(3;2;5)$, $B(-6;-6;5)$. Do $z_A = z_B = 5$, giao điểm $M$ của $AB'$ (với $B'(-6;-6;-5)$) và $(Oxy)$ chính là hình chiếu trung điểm $AB$: $M\\left(-\\frac{3}{2}; -2; 0\\right)$. Vậy $OM = \\sqrt{\\left(-\\frac{3}{2}\\right)^2 + (-2)^2} = 2,5\\text{ m}$.",
+        "source": "Cụm trường THPT Bắc Ninh 2025",
+        "solution": "Ta có $A(3;2;5)$, $B(-6;-6;5)$. Do $z_A = z_B = 5$, giao điểm $M$ của $AB'$ (với $B'(-6;-6;-5)$) và $(Oxy)$ chính là hình chiếu trung điểm $AB$: $M\\left(-\\frac{3}{2}; -2; 0\\right)$. Vậy $OM = \\sqrt{\\left(-\\frac{3}{2}\\right)^2 + (-2)^2} = 2,5\\text{ m}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "2,5",
+        "accepted_answers": [
+          "2,5",
+          "2.5"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 20,
+      "type": "short",
+      "prompt": "(THPT Lê Thánh Tông - HCM 2025) Một mô hình kem ốc quế gồm phần kem hình cầu tâm $I(1;2;3)$, bán kính $R_c = 3$ và phần ốc quế hình nón đỉnh $H(0;1;-2)$, đáy là đường tròn $(C)$ bán kính $R_N = \\sqrt{6}$ tiếp xúc với phần kem. Đặt đèn Led tại $M(a;b;2)$ ($a \\in \\mathbb{Z}$) nằm trên mặt phẳng chứa $(C)$ sao cho từ $M$ kẻ được $2$ tiếp tuyến với $(C)$ có góc giữa chúng không bé hơn $60^\\circ$. Có bao nhiêu vị trí đặt đèn thỏa mãn?\n![Hình Câu 20a](/bank-images/short-oxyz/q20_p0.jpeg)\n![Hình Câu 20b](/bank-images/short-oxyz/q20_p1.jpeg)",
+      "points": 1,
+      "sort_order": 200,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Ta có $\\overrightarrow{IH} = (-1;-1;-5) \\Rightarrow IH = 3\\sqrt{3}$ và khoảng cách từ $I$ đến tâm $A$ của $(C)$ là $IA = \\sqrt{R_c^2 - R_N^2} = \\sqrt{3} = \\frac{1}{3}IH$, suy ra $A\\left(\\frac{2}{3}; \\frac{5}{3}; \\frac{4}{3}\\right)$. Mặt phẳng $(P)$ chứa $(C)$ qua $A$ vuông góc $\\overrightarrow{IH}$ có phương trình $x + y + 5z - 9 = 0$. Do $M(a;b;2) \\in (P)$ nên $b = -a - 1$. Điều kiện kẻ được $2$ tiếp tuyến tạo góc $\\ge 60^\\circ$ là $\\sqrt{6} < AM \\le 2\\sqrt{6} \\Leftrightarrow 6 < 2a^2 + 4a + 8 \\le 24 \\Leftrightarrow a \\neq -1$ và $-4 \\le a \\le 2$. Vậy có $6$ giá trị nguyên $a \\in \\{-4;-3;-2;0;1;2\\}$.",
+        "source": "THPT Lê Thánh Tông - HCM 2025",
+        "solution": "Ta có $\\overrightarrow{IH} = (-1;-1;-5) \\Rightarrow IH = 3\\sqrt{3}$ và khoảng cách từ $I$ đến tâm $A$ của $(C)$ là $IA = \\sqrt{R_c^2 - R_N^2} = \\sqrt{3} = \\frac{1}{3}IH$, suy ra $A\\left(\\frac{2}{3}; \\frac{5}{3}; \\frac{4}{3}\\right)$. Mặt phẳng $(P)$ chứa $(C)$ qua $A$ vuông góc $\\overrightarrow{IH}$ có phương trình $x + y + 5z - 9 = 0$. Do $M(a;b;2) \\in (P)$ nên $b = -a - 1$. Điều kiện kẻ được $2$ tiếp tuyến tạo góc $\\ge 60^\\circ$ là $\\sqrt{6} < AM \\le 2\\sqrt{6} \\Leftrightarrow 6 < 2a^2 + 4a + 8 \\le 24 \\Leftrightarrow a \\neq -1$ và $-4 \\le a \\le 2$. Vậy có $6$ giá trị nguyên $a \\in \\{-4;-3;-2;0;1;2\\}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "6",
+        "accepted_answers": [
+          "6"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 21: Phương trình mặt cầu",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 21,
+      "type": "short",
+      "prompt": "(Chuyên Hạ Long 2025) Coi Trái Đất là khối cầu tâm $O(0;0;0)$, bán kính $R = 6$ (nghìn $\\text{km}$). Hai vệ tinh GPS có tọa độ $A(26;0;0)$ và $B(0;26;0)$. Xét điểm $M(x;y;z)$ thuộc bề mặt Trái Đất. Tính giá trị nhỏ nhất của $MA + MB$ theo đơn vị nghìn $\\text{km}$ (làm tròn đến hàng đơn vị).",
+      "points": 1,
+      "sort_order": 210,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Với $x^2 + y^2 + z^2 = 36$, theo bất đẳng thức Minkowski:\n$$MA + MB = \\sqrt{(26-x)^2 + y^2 + z^2} + \\sqrt{x^2 + (26-y)^2 + z^2} \\ge \\sqrt{(52 - x - y)^2 + (x+y)^2}.$$\nĐặt $t = x + y \\in [-6\\sqrt{2}; 6\\sqrt{2}]$ (dấu bằng khi $z = 0$ và $x = y = 3\\sqrt{2}$). Hàm $f(t) = \\sqrt{2t^2 - 104t + 2704}$ nghịch biến trên $[-6\\sqrt{2}; 6\\sqrt{2}]$ nên GTNN đạt tại $t = 6\\sqrt{2}$: $f(6\\sqrt{2}) = \\sqrt{2776 - 624\\sqrt{2}} \\approx 43,51 \\approx 44$.",
+        "source": "Chuyên Hạ Long 2025",
+        "solution": "Với $x^2 + y^2 + z^2 = 36$, theo bất đẳng thức Minkowski:\n$$MA + MB = \\sqrt{(26-x)^2 + y^2 + z^2} + \\sqrt{x^2 + (26-y)^2 + z^2} \\ge \\sqrt{(52 - x - y)^2 + (x+y)^2}.$$\nĐặt $t = x + y \\in [-6\\sqrt{2}; 6\\sqrt{2}]$ (dấu bằng khi $z = 0$ và $x = y = 3\\sqrt{2}$). Hàm $f(t) = \\sqrt{2t^2 - 104t + 2704}$ nghịch biến trên $[-6\\sqrt{2}; 6\\sqrt{2}]$ nên GTNN đạt tại $t = 6\\sqrt{2}$: $f(6\\sqrt{2}) = \\sqrt{2776 - 624\\sqrt{2}} \\approx 43,51 \\approx 44$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "44",
+        "accepted_answers": [
+          "44"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 21: Phương trình mặt cầu",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 22,
+      "type": "short",
+      "prompt": "(Chuyên Vinh 2025) Một ngôi nhà gồm phần thân là hình hộp chữ nhật $ABCD.OMNK$ có chiều dài $1200\\text{ cm}$, chiều rộng $900\\text{ cm}$, chiều cao $450\\text{ cm}$ và phần mái là hình chóp $S.ABCD$ có các cạnh bên bằng nhau và tạo với đáy góc $\\alpha$ với $\\tan\\alpha = \\dfrac{1}{5}$. Chọn hệ trục $Oxyz$ với $M \\in Ox$, $K \\in Oy$, $A \\in Oz$ (hình vẽ). Biết $S(a;b;c)$ (đơn vị $\\text{cm}$), tính $P = a + b + c$.\n![Hình Câu 22](/bank-images/short-oxyz/q22_p0.png)",
+      "points": 1,
+      "sort_order": 220,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Tâm đáy $ABCD$ là $I(450;600;450)$, $CI = \\frac{1}{2}\\sqrt{900^2+1200^2} = 750\\text{ cm}$. Chiều cao mái $SI = CI\\tan\\alpha = 750\\cdot\\frac{1}{5} = 150\\text{ cm}$, nên $z_S = 450 + 150 = 600\\text{ cm}$. Vậy $S(450;600;600)$ và $P = 1650$.",
+        "source": "Chuyên Vinh 2025",
+        "solution": "Tâm đáy $ABCD$ là $I(450;600;450)$, $CI = \\frac{1}{2}\\sqrt{900^2+1200^2} = 750\\text{ cm}$. Chiều cao mái $SI = CI\\tan\\alpha = 750\\cdot\\frac{1}{5} = 150\\text{ cm}$, nên $z_S = 450 + 150 = 600\\text{ cm}$. Vậy $S(450;600;600)$ và $P = 1650$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "1650",
+        "accepted_answers": [
+          "1650"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 23,
+      "type": "short",
+      "prompt": "(Cụm trường THPT Hải Dương 2025) Một toà nhà có mái vát $CDFE$ với chiều dài $OA = 30\\text{ m}$, chiều rộng $OB = 20\\text{ m}$, chiều cao tường $BD = 10\\text{ m}$ và $EA = 6\\text{ m}$. Từ $P$ cách $B$ $10\\text{ m}$, xây các bậc thang rộng $2\\text{ m}$, cao $20\\text{ cm}$ dần về cuối phòng. Lắp giá treo máy chiếu tại giao điểm $I$ của $DE$ và $CF$ vuông góc sàn sao cho không vướng đầu học sinh cao $1,8\\text{ m}$ đứng ngay dưới máy chiếu và không che tầm nhìn của học sinh ngồi hàng cuối tại trung điểm $X$ của $SQ$ (mắt cao hơn bậc thang $1,2\\text{ m}$). Tổng độ dài thanh treo và thân máy chiếu lớn nhất là bao nhiêu mét (làm tròn đến hàng phần mười)?\n![Hình Câu 23](/bank-images/short-oxyz/q23_p0.jpeg)",
+      "points": 1,
+      "sort_order": 230,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Chọn hệ trục với $A(30;0;0)$, $B(0;20;0)$, $D(0;20;10)$, $E(30;0;6)$, suy ra $I(15;10;8)$. Hình chiếu $T(15;10;0)$ nằm ở bậc thang thứ $3$ (cao $0,6\\text{ m}$), nên đỉnh đầu học sinh đứng ở cao độ $0,6 + 1,8 = 2,4\\text{ m}$ (khoảng cách tới $I$ là $5,6\\text{ m}$). Hàng cuối có $10$ bậc (cao $2\\text{ m}$), mắt học sinh ở cao độ $2 + 1,2 = 3,2\\text{ m}$ (thấp hơn $I$ là $8 - 3,2 = 4,8\\text{ m}$). Vậy độ dài lớn nhất là $\\min(5,6; 4,8) = 4,8\\text{ m}$.",
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "solution": "Chọn hệ trục với $A(30;0;0)$, $B(0;20;0)$, $D(0;20;10)$, $E(30;0;6)$, suy ra $I(15;10;8)$. Hình chiếu $T(15;10;0)$ nằm ở bậc thang thứ $3$ (cao $0,6\\text{ m}$), nên đỉnh đầu học sinh đứng ở cao độ $0,6 + 1,8 = 2,4\\text{ m}$ (khoảng cách tới $I$ là $5,6\\text{ m}$). Hàng cuối có $10$ bậc (cao $2\\text{ m}$), mắt học sinh ở cao độ $2 + 1,2 = 3,2\\text{ m}$ (thấp hơn $I$ là $8 - 3,2 = 4,8\\text{ m}$). Vậy độ dài lớn nhất là $\\min(5,6; 4,8) = 4,8\\text{ m}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "4,8",
+        "accepted_answers": [
+          "4,8",
+          "4.8"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 24,
+      "type": "short",
+      "prompt": "(THPT Trần Phú - Vĩnh Phúc 2025) Trong không gian $Oxyz$ (đơn vị: $1\\text{ km}$), đài kiểm soát ở $O(0;0;0)$ có tầm radar $417\\text{ km}$. Một máy bay ở $A(222;565;8)$ bay dọc đường thẳng $d$ có VTCP $\\vec{u} = (91;75;0)$ hướng về đài kiểm soát. Vị trí sớm nhất máy bay xuất hiện trên radar là $M(a;b;c)$. Tính $a + b + c$.\n![Hình Câu 24](/bank-images/short-oxyz/q24_p0.jpeg)",
+      "points": 1,
+      "sort_order": 240,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Đường thẳng $d$ hướng về $O$: $x = 222 - 91t,\\; y = 565 - 75t,\\; z = 8$ ($t > 0$). Giải $(222-91t)^2 + (565-75t)^2 + 64 = 417^2 \\Leftrightarrow 13906t^2 - 125154t + 194684 = 0 \\Leftrightarrow t = 2$ hoặc $t = 7$. Vị trí sớm nhất ứng với $t = 2$ là $M(40;415;8)$, nên $a + b + c = 463$.",
+        "source": "THPT Trần Phú - Vĩnh Phúc 2025",
+        "solution": "Đường thẳng $d$ hướng về $O$: $x = 222 - 91t,\\; y = 565 - 75t,\\; z = 8$ ($t > 0$). Giải $(222-91t)^2 + (565-75t)^2 + 64 = 417^2 \\Leftrightarrow 13906t^2 - 125154t + 194684 = 0 \\Leftrightarrow t = 2$ hoặc $t = 7$. Vị trí sớm nhất ứng với $t = 2$ là $M(40;415;8)$, nên $a + b + c = 463$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "463",
+        "accepted_answers": [
+          "463"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 21: Phương trình mặt cầu",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 25,
+      "type": "short",
+      "prompt": "(Cụm trường Nghệ An 2025) Trong không gian $Oxyz$ (mỗi đơn vị ứng với $10\\text{ km}$), máy bay 1 ban đầu ở $A(25;-10;1)$ bay theo hướng $\\vec{v}_1 = (-3;-4;0)$ tốc độ $750\\text{ km/h}$; máy bay 2 ban đầu ở $B(30;-25;1,1)$ bay theo hướng $\\vec{v}_2 = (-4;3;0)$ tốc độ $900\\text{ km/h}$. Radar tránh va chạm trên máy bay 1 có bán kính $50\\text{ km}$. Thời gian máy bay 2 xuất hiện trên radar máy bay 1 là bao nhiêu phút (làm tròn đến hàng phần trăm)?",
+      "points": 1,
+      "sort_order": 250,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Đổi sang đơn vị $\\text{km}$: $A(250;-100;10)$ với $\\vec{u}_1 = (-450;-600;0)$ và $B(300;-250;11)$ với $\\vec{u}_2 = (-720;540;0)$. Sau $t$ giờ, $MN^2 = (50 - 270t)^2 + (-150 + 1140t)^2 + 1 \\le 2500 \\Leftrightarrow 1372500t^2 - 369000t + 22501 \\le 0 \\Leftrightarrow 0,09348 \\le t \\le 0,17537$. Thời gian xuất hiện là $(0,17537 - 0,09348)\\cdot 60 \\approx 4,91$ phút.",
+        "source": "Cụm trường Nghệ An 2025",
+        "solution": "Đổi sang đơn vị $\\text{km}$: $A(250;-100;10)$ với $\\vec{u}_1 = (-450;-600;0)$ và $B(300;-250;11)$ với $\\vec{u}_2 = (-720;540;0)$. Sau $t$ giờ, $MN^2 = (50 - 270t)^2 + (-150 + 1140t)^2 + 1 \\le 2500 \\Leftrightarrow 1372500t^2 - 369000t + 22501 \\le 0 \\Leftrightarrow 0,09348 \\le t \\le 0,17537$. Thời gian xuất hiện là $(0,17537 - 0,09348)\\cdot 60 \\approx 4,91$ phút.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "4,91",
+        "accepted_answers": [
+          "4,91",
+          "4.91"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 16 · Dạng 1: Vectơ chỉ phương và lập phương trình đường thẳng cơ bản",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 26,
+      "type": "short",
+      "prompt": "(Sở Bắc Ninh 2025) Bình chuyền bóng cho An, quả bóng lệch trái và rơi xuống điểm cách chỗ An $0,5\\text{ m}$ và cách Bình $4,5\\text{ m}$. Chọn hệ trục $Oxyz$ có $O$ tại Bình, An nằm trên tia $Ox$, $(Oxy)$ là mặt đất (hình vẽ). Quỹ đạo bóng nằm trong mặt phẳng $(\\alpha): x + by + cz + d = 0$ vuông góc với mặt đất. Tính $-5b^2 - c^2 + 3d^2$.\n![Hình Câu 26](/bank-images/short-oxyz/q26_p0.jpeg)",
+      "points": 1,
+      "sort_order": 260,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Điểm rơi có tung độ $y_A = 0,5$, $OA = 4,5 \\Rightarrow x_A = \\sqrt{4,5^2 - 0,5^2} = \\sqrt{20}$, nên $A(\\sqrt{20};0,5;0)$. Vì $(\\alpha)$ qua $O$ và vuông góc $(Oxy)$ nên $d = 0$, $c = 0$. Thay $A$ vào $(\\alpha)$ được $\\sqrt{20} + 0,5b = 0 \\Rightarrow b = -4\\sqrt{5}$. Vậy $-5b^2 - c^2 + 3d^2 = -5\\cdot 80 = -400$.",
+        "source": "Sở Bắc Ninh 2025",
+        "solution": "Điểm rơi có tung độ $y_A = 0,5$, $OA = 4,5 \\Rightarrow x_A = \\sqrt{4,5^2 - 0,5^2} = \\sqrt{20}$, nên $A(\\sqrt{20};0,5;0)$. Vì $(\\alpha)$ qua $O$ và vuông góc $(Oxy)$ nên $d = 0$, $c = 0$. Thay $A$ vào $(\\alpha)$ được $\\sqrt{20} + 0,5b = 0 \\Rightarrow b = -4\\sqrt{5}$. Vậy $-5b^2 - c^2 + 3d^2 = -5\\cdot 80 = -400$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "-400",
+        "accepted_answers": [
+          "-400"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 15 · Dạng 1: Vectơ pháp tuyến và lập phương trình mặt phẳng cơ bản",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 27,
+      "type": "short",
+      "prompt": "(Sở Vĩnh Phúc 2025) Trong không gian $Oxyz$ (đơn vị: $\\text{km}$), máy bay chiến đấu bay thẳng đều từ $M(1100;650;14)$ đến $N$ trong $20$ phút, sau $10$ phút tiếp theo đến $Q(1500;860;16)$. Một khẩu pháo ở $E\\left(\\dfrac{1700}{3}; 370; \\dfrac{34}{3}\\right)$ bắn đạn với tốc độ gấp $5$ lần tốc độ máy bay để bắn trúng tại $N$. Sau bao nhiêu phút kể từ lúc máy bay ở $M$ thì pháo phải bắn?",
+      "points": 1,
+      "sort_order": 270,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Ta có $\\overrightarrow{MN} = \\frac{2}{3}\\overrightarrow{MQ} = \\left(\\frac{800}{3}; 140; \\frac{4}{3}\\right)$ và $\\overrightarrow{ME} = \\left(-\\frac{1600}{3}; -280; -\\frac{8}{3}\\right) = -2\\overrightarrow{MN}$. Do đó $E, M, N$ thẳng hàng với $EN = 3MN$. Gọi $x$ là thời điểm bắn (phút), thời gian đạn bay là $20 - x = \\frac{EN}{5v} = \\frac{3MN}{5(MN/20)} = 12 \\Rightarrow x = 8$ phút.",
+        "source": "Sở Vĩnh Phúc 2025",
+        "solution": "Ta có $\\overrightarrow{MN} = \\frac{2}{3}\\overrightarrow{MQ} = \\left(\\frac{800}{3}; 140; \\frac{4}{3}\\right)$ và $\\overrightarrow{ME} = \\left(-\\frac{1600}{3}; -280; -\\frac{8}{3}\\right) = -2\\overrightarrow{MN}$. Do đó $E, M, N$ thẳng hàng với $EN = 3MN$. Gọi $x$ là thời điểm bắn (phút), thời gian đạn bay là $20 - x = \\frac{EN}{5v} = \\frac{3MN}{5(MN/20)} = 12 \\Rightarrow x = 8$ phút.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "8",
+        "accepted_answers": [
+          "8"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 28,
+      "type": "short",
+      "prompt": "(Cụm trường Hưng Yên 2025) Trong không gian $Oxyz$ (đơn vị: $1\\text{ cm}$), trục nòng súng $d: \\begin{cases} x = t \\\\ y = 2 \\\\ z = 4 \\end{cases}$ và cọc đỡ bia $d': \\begin{cases} x = 1 \\\\ y = 2 \\\\ z = 1 + 3t' \\end{cases}$. Để trúng hồng tâm cần ngắm vào $N(a;b;c) \\in d'$ cách giao điểm của $d$ và $d'$ một khoảng $6\\text{ cm}$ với $c < 0$. Tính $2a - b + 3c$.\n![Hình Câu 28](/bank-images/short-oxyz/q28_p0.jpeg)",
+      "points": 1,
+      "sort_order": 280,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Giao điểm của $d$ và $d'$ là $I(1;2;4)$. Điểm $N(1;2;1+3t')$ thỏa $IN = |3t' - 3| = 6$ và $c = 1 + 3t' < 0 \\Rightarrow t' = -1 \\Rightarrow N(1;2;-2)$. Vậy $2a - b + 3c = 2 - 2 - 6 = -6$.",
+        "source": "Cụm trường Hưng Yên 2025",
+        "solution": "Giao điểm của $d$ và $d'$ là $I(1;2;4)$. Điểm $N(1;2;1+3t')$ thỏa $IN = |3t' - 3| = 6$ và $c = 1 + 3t' < 0 \\Rightarrow t' = -1 \\Rightarrow N(1;2;-2)$. Vậy $2a - b + 3c = 2 - 2 - 6 = -6$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "-6",
+        "accepted_answers": [
+          "-6"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 16 · Dạng 1: Vectơ chỉ phương và lập phương trình đường thẳng cơ bản",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 29,
+      "type": "short",
+      "prompt": "(Sở Thừa Thiên Huế 2025) Một cẩu trục tháp có thân tháp là trục $Oz$, mặt đất là $(Oxy)$ (đơn vị: mét). Vật liệu ban đầu ở $A(6;8;0)$ được móc nâng thẳng đứng lên cao hơn vị trí đặt $B(4;-3;15)$ là $1\\text{ m}$, rồi quay cần nâng góc $\\alpha \\in (0^\\circ; 180^\\circ)$ tạo cung tròn đến nửa mặt phẳng chứa $Oz$ và $B$, sau đó kéo xe con và hạ thẳng đứng $1\\text{ m}$ xuống $B$. Tính quãng đường vật liệu di chuyển (làm tròn đến hàng phần chục).\n![Hình Câu 29](/bank-images/short-oxyz/q29_p0.jpeg)",
+      "points": 1,
+      "sort_order": 290,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Nâng thẳng đứng lên độ cao $16\\text{ m}$: đi $16\\text{ m}$. Hình chiếu $A'(6;8;0)$ có $OA' = 10$, $B'(4;-3;0)$ có $OB' = 5$ và $\\overrightarrow{OA'}\\cdot\\overrightarrow{OB'} = 24 - 24 = 0 \\Rightarrow \\alpha = 90^\\circ$. Cung tròn quay dài $10\\cdot\\frac{\\pi}{2} = 5\\pi\\text{ m}$. Xe con chạy vào $10 - 5 = 5\\text{ m}$, rồi hạ xuống $1\\text{ m}$. Tổng quãng đường: $16 + 5\\pi + 5 + 1 = 22 + 5\\pi \\approx 37,7\\text{ m}$.",
+        "source": "Sở Thừa Thiên Huế 2025",
+        "solution": "Nâng thẳng đứng lên độ cao $16\\text{ m}$: đi $16\\text{ m}$. Hình chiếu $A'(6;8;0)$ có $OA' = 10$, $B'(4;-3;0)$ có $OB' = 5$ và $\\overrightarrow{OA'}\\cdot\\overrightarrow{OB'} = 24 - 24 = 0 \\Rightarrow \\alpha = 90^\\circ$. Cung tròn quay dài $10\\cdot\\frac{\\pi}{2} = 5\\pi\\text{ m}$. Xe con chạy vào $10 - 5 = 5\\text{ m}$, rồi hạ xuống $1\\text{ m}$. Tổng quãng đường: $16 + 5\\pi + 5 + 1 = 22 + 5\\pi \\approx 37,7\\text{ m}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "37,7",
+        "accepted_answers": [
+          "37,7",
+          "37.7"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 30,
+      "type": "short",
+      "prompt": "(Sở Ninh Bình 2025) Trong không gian $Oxyz$, cho hình lập phương $OBCD.O'B'C'D'$ cạnh $9$ sao cho $D \\in Ox$, $B \\in Oy$, $O' \\in Oz$. Điểm $M \\in O'B'$ thỏa $O'B' = 3O'M$. Một con kiến bò từ $M$ qua sáu mặt của hình lập phương rồi quay lại $M$ với quãng đường ngắn nhất. Con kiến bò qua bao nhiêu điểm có hoành độ, tung độ và cao độ đều là các số nguyên dương?",
+      "points": 1,
+      "sort_order": 300,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Trải phẳng sáu mặt hình lập phương theo chuỗi ngắn nhất từ $M(0;3;9)$ đến ảnh $M'$ ứng với đoạn thẳng nối $(3;0)$ và $(30;27)$ trên mặt phẳng trải, có phương trình $y = x - 3$. Ba đoạn nằm trên các mặt tọa độ có một tọa độ bằng $0$ (loại); trên ba mặt còn lại ($x = 9$, $y = 9$, $z = 9$), mỗi đoạn chứa đúng $2$ điểm nguyên trong (ví dụ trên $NP$: $x_0 \\in \\{10;11\\}$). Tổng cộng có $3\\cdot 2 = 6$ điểm.",
+        "source": "Sở Ninh Bình 2025",
+        "solution": "Trải phẳng sáu mặt hình lập phương theo chuỗi ngắn nhất từ $M(0;3;9)$ đến ảnh $M'$ ứng với đoạn thẳng nối $(3;0)$ và $(30;27)$ trên mặt phẳng trải, có phương trình $y = x - 3$. Ba đoạn nằm trên các mặt tọa độ có một tọa độ bằng $0$ (loại); trên ba mặt còn lại ($x = 9$, $y = 9$, $z = 9$), mỗi đoạn chứa đúng $2$ điểm nguyên trong (ví dụ trên $NP$: $x_0 \\in \\{10;11\\}$). Tổng cộng có $3\\cdot 2 = 6$ điểm.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "6",
+        "accepted_answers": [
+          "6"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 31,
+      "type": "short",
+      "prompt": "(THPT Sào Nam - Quảng Nam 2025) Chọn hệ trục $Oxyz$ với $(Oxy)$ là mặt đất. Hai khinh khí cầu cùng bay lên từ $O$. Sau nửa giờ, chiếc 1 cách $O$ $11\\text{ km}$ về phía Đông, $8\\text{ km}$ về phía Nam, cao $1,3\\text{ km}$; chiếc 2 cách $O$ $8\\text{ km}$ về phía Bắc, $8\\text{ km}$ về phía Tây, cao $900\\text{ m}$. Tính khoảng cách ($\\text{km}$) giữa hai khinh khí cầu sau $1$ giờ bay với vận tốc và hướng không đổi (làm tròn đến hàng phần chục).",
+      "points": 1,
+      "sort_order": 310,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Sau nửa giờ, $A(8;11;1,3)$ và $B(-8;-8;0,9)$ nên $AB = \\sqrt{16^2 + 19^2 + 0,4^2} = \\sqrt{617,16}$. Sau $1$ giờ (gấp đôi thời gian), khoảng cách là $2AB = 2\\sqrt{617,16} \\approx 49,7\\text{ km}$.",
+        "source": "THPT Sào Nam - Quảng Nam 2025",
+        "solution": "Sau nửa giờ, $A(8;11;1,3)$ và $B(-8;-8;0,9)$ nên $AB = \\sqrt{16^2 + 19^2 + 0,4^2} = \\sqrt{617,16}$. Sau $1$ giờ (gấp đôi thời gian), khoảng cách là $2AB = 2\\sqrt{617,16} \\approx 49,7\\text{ km}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "49,7",
+        "accepted_answers": [
+          "49,7",
+          "49.7"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 32,
+      "type": "short",
+      "prompt": "(Cụm trường Nguyễn Hiền - Lê Hồng Phong - Quảng Nam 2025) Trong hệ trục $Oxyz$ gốc $O$ tại Đà Nẵng, lúc $6\\text{h}$ máy bay $A$ xuất phát theo tia $OA$ hợp với các tia $Ox, Oy, Oz$ các góc bằng nhau với vận tốc $800\\text{ km/h}$. Mười phút sau, máy bay $B$ xuất phát theo tia $OB$ hợp với các tia $Ox', Oy', Oz$ các góc bằng nhau với vận tốc $900\\text{ km/h}$. Tính khoảng cách ($\\text{km}$, làm tròn đến hàng đơn vị) giữa hai máy bay lúc $6\\text{h}30'$.\n![Hình Câu 32](/bank-images/short-oxyz/q32_p0.jpeg)",
+      "points": 1,
+      "sort_order": 320,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Tia hợp với $3$ tia trục góc $\\alpha$ bằng nhau có $\\cos\\alpha = \\frac{1}{\\sqrt{3}}$. Lúc $6\\text{h}30'$, $OA = 800\\cdot\\frac{1}{2} = 400\\text{ km}$ và $OB = 900\\cdot\\frac{1}{3} = 300\\text{ km}$, nên $A\\left(\\frac{400}{\\sqrt{3}};\\frac{400}{\\sqrt{3}};\\frac{400}{\\sqrt{3}}\\right)$ và $B\\left(-\\frac{300}{\\sqrt{3}};-\\frac{300}{\\sqrt{3}};\\frac{300}{\\sqrt{3}}\\right)$. Suy ra $AB = \\sqrt{\\frac{2\\cdot 700^2 + 100^2}{3}} = 100\\sqrt{33} \\approx 574\\text{ km}$.",
+        "source": "Cụm trường Nguyễn Hiền - Lê Hồng Phong - Quảng Nam 2025",
+        "solution": "Tia hợp với $3$ tia trục góc $\\alpha$ bằng nhau có $\\cos\\alpha = \\frac{1}{\\sqrt{3}}$. Lúc $6\\text{h}30'$, $OA = 800\\cdot\\frac{1}{2} = 400\\text{ km}$ và $OB = 900\\cdot\\frac{1}{3} = 300\\text{ km}$, nên $A\\left(\\frac{400}{\\sqrt{3}};\\frac{400}{\\sqrt{3}};\\frac{400}{\\sqrt{3}}\\right)$ và $B\\left(-\\frac{300}{\\sqrt{3}};-\\frac{300}{\\sqrt{3}};\\frac{300}{\\sqrt{3}}\\right)$. Suy ra $AB = \\sqrt{\\frac{2\\cdot 700^2 + 100^2}{3}} = 100\\sqrt{33} \\approx 574\\text{ km}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "574",
+        "accepted_answers": [
+          "574"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 33,
+      "type": "short",
+      "prompt": "(THPT Nông Cống 3 - Thanh Hóa 2025) Trên sân bóng gắn hệ trục $Oxyz$ (đơn vị: $1\\text{ m}$), đỉnh $4$ cột cao $30\\text{ m}$ là $M(90;0;30)$, $N(90;120;30)$, $P(0;120;30)$, $Q(0;0;30)$. Camera đặt tại $K_0$ có cao độ $25$ và $K_0M = K_0N = K_0P = K_0Q$, sau đó hạ thẳng đứng xuống $K_1$ có cao độ $19$. Biết $\\overrightarrow{K_0K_1} = (a;b;c)$, tính $P = a + b + 3c$.\n![Hình Câu 33](/bank-images/short-oxyz/q33_p0.jpeg)",
+      "points": 1,
+      "sort_order": 330,
+      "choices": [],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Vì camera hạ theo phương thẳng đứng nên $K_0(x;y;25)$ và $K_1(x;y;19)$ có cùng hoành độ và tung độ, suy ra $\\overrightarrow{K_0K_1} = (0;0;-6)$. Vậy $P = 0 + 0 + 3(-6) = -18$.",
+        "source": "THPT Nông Cống 3 - Thanh Hóa 2025",
+        "solution": "Vì camera hạ theo phương thẳng đứng nên $K_0(x;y;25)$ và $K_1(x;y;19)$ có cùng hoành độ và tung độ, suy ra $\\overrightarrow{K_0K_1} = (0;0;-6)$. Vậy $P = 0 + 0 + 3(-6) = -18$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "-18",
+        "accepted_answers": [
+          "-18"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 34,
+      "type": "short",
+      "prompt": "(THPT Trực Ninh - Nam Định 2025) Trong không gian $Oxyz$ (đơn vị: $\\text{km}$), máy bay di chuyển thẳng đều từ $A(800;500;7)$ đến $B(940;550;9)$ trong $10$ phút. Sau $5$ phút tiếp theo máy bay đến $C(x;y;z)$. Tính $x + y + z$.",
+      "points": 1,
+      "sort_order": 340,
+      "choices": [],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Do thời gian $BC$ bằng nửa $AB$ nên $\\overrightarrow{BC} = \\frac{1}{2}\\overrightarrow{AB} = (70;25;1)$, suy ra $C(1010;575;10)$. Vậy $x + y + z = 1595$.",
+        "source": "THPT Trực Ninh - Nam Định 2025",
+        "solution": "Do thời gian $BC$ bằng nửa $AB$ nên $\\overrightarrow{BC} = \\frac{1}{2}\\overrightarrow{AB} = (70;25;1)$, suy ra $C(1010;575;10)$. Vậy $x + y + z = 1595$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "1595",
+        "accepted_answers": [
+          "1595"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 35,
+      "type": "short",
+      "prompt": "(THPT Trực Ninh - Nam Định 2025) Chọn hệ trục $Oxyz$ ($Ox$ hướng Nam, $Oy$ hướng Đông, $Oz$ thẳng đứng lên, đơn vị mét). Flycam I ở $A$ cách $O$ $150\\text{ m}$ về phía Nam, $200\\text{ m}$ về phía Đông, cao $50\\text{ m}$; Flycam II ở $B$ cách $O$ $180\\text{ m}$ về phía Bắc, $240\\text{ m}$ về phía Tây, cao $60\\text{ m}$. Khoảng cách giữa hai flycam bằng bao nhiêu mét (làm tròn đến hàng đơn vị)?",
+      "points": 1,
+      "sort_order": 350,
+      "choices": [],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Ta có $A(150;200;50)$ và $B(-180;-240;60)$. Khoảng cách $AB = \\sqrt{(-330)^2 + (-440)^2 + 10^2} = \\sqrt{302600} \\approx 550,09 \\approx 550\\text{ m}$.",
+        "source": "THPT Trực Ninh - Nam Định 2025",
+        "solution": "Ta có $A(150;200;50)$ và $B(-180;-240;60)$. Khoảng cách $AB = \\sqrt{(-330)^2 + (-440)^2 + 10^2} = \\sqrt{302600} \\approx 550,09 \\approx 550\\text{ m}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "550",
+        "accepted_answers": [
+          "550"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 36,
+      "type": "short",
+      "prompt": "(Sở Bắc Giang 2025) Trong không gian $Oxyz$ (đơn vị: $\\text{km}$), đài kiểm soát không lưu đặt tại $O(0;0;0)$. Một máy bay bay theo đường thẳng đi qua $A(-500;-300;500)$ và $B(-200;-200;450)$. Khi máy bay gần đài kiểm soát nhất, tọa độ máy bay là $(a;b;c)$. Tính $P = a + b + c$.",
+      "points": 1,
+      "sort_order": 360,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Đường bay qua $A$ có VTCP $\\frac{1}{50}\\overrightarrow{AB} = (6;2;-1)$: $x = -500 + 6t,\\; y = -300 + 2t,\\; z = 500 - t$. Hình chiếu $H$ của $O$ lên đường bay thỏa $6(-500+6t) + 2(-300+2t) - (500-t) = 0 \\Leftrightarrow 41t = 4100 \\Leftrightarrow t = 100$. Suy ra $H(100;-100;400)$ và $P = 400$.",
+        "source": "Sở Bắc Giang 2025",
+        "solution": "Đường bay qua $A$ có VTCP $\\frac{1}{50}\\overrightarrow{AB} = (6;2;-1)$: $x = -500 + 6t,\\; y = -300 + 2t,\\; z = 500 - t$. Hình chiếu $H$ của $O$ lên đường bay thỏa $6(-500+6t) + 2(-300+2t) - (500-t) = 0 \\Leftrightarrow 41t = 4100 \\Leftrightarrow t = 100$. Suy ra $H(100;-100;400)$ và $P = 400$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "400",
+        "accepted_answers": [
+          "400"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 16 · Dạng 1: Vectơ chỉ phương và lập phương trình đường thẳng cơ bản",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 37,
+      "type": "short",
+      "prompt": "(Sở Phú Thọ 2025) Hai chiếc drone cứu trợ cùng bay lên từ gốc $O$. Chiếc 1 bay đến vị trí cách $O$ $2,5\\text{ km}$ về phía Nam, $1,5\\text{ km}$ về phía Đông, cao $60\\text{ m}$; chiếc 2 cách $O$ $3\\text{ km}$ về phía Bắc, $2,5\\text{ km}$ về phía Tây, cao $40\\text{ m}$. Tìm vị trí trên mặt đất để tổng khoảng cách đến hai drone nhỏ nhất. Vị trí đó cách $O$ $a\\text{ km}$ về phía Bắc và $b\\text{ km}$ về phía Tây. Tính $a + b$.",
+      "points": 1,
+      "sort_order": 370,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Với đơn vị $\\text{km}$ ($Ox$ hướng Nam, $Oy$ hướng Đông): $A(2,5; 1,5; 0,06)$, $B(-3; -2,5; 0,04)$. Lấy $A'(2,5; 1,5; -0,06)$ đối xứng $A$ qua $(Oxy)$. Giao điểm $C$ của $A'B$ với $(Oxy)$ ứng với $t = \\frac{0,04}{0,1} = \\frac{2}{5}$: $C\\left(-\\frac{4}{5}; -\\frac{9}{10}; 0\\right)$. Suy ra $a = 0,8$, $b = 0,9 \\Rightarrow a + b = 1,7$.",
+        "source": "Sở Phú Thọ 2025",
+        "solution": "Với đơn vị $\\text{km}$ ($Ox$ hướng Nam, $Oy$ hướng Đông): $A(2,5; 1,5; 0,06)$, $B(-3; -2,5; 0,04)$. Lấy $A'(2,5; 1,5; -0,06)$ đối xứng $A$ qua $(Oxy)$. Giao điểm $C$ của $A'B$ với $(Oxy)$ ứng với $t = \\frac{0,04}{0,1} = \\frac{2}{5}$: $C\\left(-\\frac{4}{5}; -\\frac{9}{10}; 0\\right)$. Suy ra $a = 0,8$, $b = 0,9 \\Rightarrow a + b = 1,7$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "1,7",
+        "accepted_answers": [
+          "1,7",
+          "1.7"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 16 · Dạng 1: Vectơ chỉ phương và lập phương trình đường thẳng cơ bản",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 38,
+      "type": "short",
+      "prompt": "(Sở Ninh Bình 2025) Để treo chậu cây bằng $3$ đoạn dây dài bằng nhau nối từ $3$ điểm $A(0;1;2)$, $B(2;-2;1)$, $C(-2;0;1)$ trên miệng chậu tới điểm treo $M(a;b;c)$ thuộc mặt phẳng $(\\alpha): 2x + 2y + z - 3 = 0$. Bình phương khoảng cách $OM^2$ bằng bao nhiêu?\n![Hình Câu 38](/bank-images/short-oxyz/q38_p0.jpeg)",
+      "points": 1,
+      "sort_order": 380,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Từ $M \\in (\\alpha)$ và $MA^2 = MB^2 = MC^2$, ta có hệ:\n$$\\begin{cases} 2a + 2b + c = 3 \\\\ 4a - 6b - 2c = 4 \\\\ 4a + 2b + 2c = 0 \\end{cases} \\Leftrightarrow \\begin{cases} a = 2 \\\\ b = 3 \\\\ c = -7. \\end{cases}$$\nVậy $OM^2 = 2^2 + 3^2 + (-7)^2 = 62$.",
+        "source": "Sở Ninh Bình 2025",
+        "solution": "Từ $M \\in (\\alpha)$ và $MA^2 = MB^2 = MC^2$, ta có hệ:\n$$\\begin{cases} 2a + 2b + c = 3 \\\\ 4a - 6b - 2c = 4 \\\\ 4a + 2b + 2c = 0 \\end{cases} \\Leftrightarrow \\begin{cases} a = 2 \\\\ b = 3 \\\\ c = -7. \\end{cases}$$\nVậy $OM^2 = 2^2 + 3^2 + (-7)^2 = 62$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "62",
+        "accepted_answers": [
+          "62"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 15 · Dạng 1: Vectơ pháp tuyến và lập phương trình mặt phẳng cơ bản",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 39,
+      "type": "short",
+      "prompt": "(Chuyên Lê Quý Đôn - Đà Nẵng 2025) Một máng trượt nước dạng cung tròn có hai đầu mút $A(0;0;5)$, $B(6;7;1)$ và đi qua $C(5;0;2)$ trong hệ trục $Oxyz$ (đơn vị: mét). Độ dài máng trượt nước bằng bao nhiêu mét (làm tròn đến hàng đơn vị)?\n![Hình Câu 39a](/bank-images/short-oxyz/q39_p0.jpeg)\n![Hình Câu 39b](/bank-images/short-oxyz/q39_p1.jpeg)",
+      "points": 1,
+      "sort_order": 390,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Ta có $AB = \\sqrt{101}$, $AC = \\sqrt{34}$, $BC = \\sqrt{51}$ và $S_{\\triangle ABC} = \\frac{1}{2}|[\\overrightarrow{AC}, \\overrightarrow{AB}]| = \\frac{\\sqrt{1670}}{2}$. Bán kính đường tròn ngoại tiếp $R = \\frac{AB\\cdot AC\\cdot BC}{4S_{\\triangle ABC}} \\approx 5,12\\text{ m}$. Ta có $\\cos\\widehat{ACB} = -\\frac{4\\sqrt{6}}{51} \\Rightarrow \\widehat{ACB} \\approx 1,7641\\text{ rad}$, nên góc ở tâm chắn cung $\\widehat{ACB}$ là $\\alpha = 2(\\pi - \\widehat{ACB}) \\approx 2,755\\text{ rad}$. Độ dài cung $l = R\\alpha \\approx 14,11 \\approx 14\\text{ m}$.",
+        "source": "Chuyên Lê Quý Đôn - Đà Nẵng 2025",
+        "solution": "Ta có $AB = \\sqrt{101}$, $AC = \\sqrt{34}$, $BC = \\sqrt{51}$ và $S_{\\triangle ABC} = \\frac{1}{2}|[\\overrightarrow{AC}, \\overrightarrow{AB}]| = \\frac{\\sqrt{1670}}{2}$. Bán kính đường tròn ngoại tiếp $R = \\frac{AB\\cdot AC\\cdot BC}{4S_{\\triangle ABC}} \\approx 5,12\\text{ m}$. Ta có $\\cos\\widehat{ACB} = -\\frac{4\\sqrt{6}}{51} \\Rightarrow \\widehat{ACB} \\approx 1,7641\\text{ rad}$, nên góc ở tâm chắn cung $\\widehat{ACB}$ là $\\alpha = 2(\\pi - \\widehat{ACB}) \\approx 2,755\\text{ rad}$. Độ dài cung $l = R\\alpha \\approx 14,11 \\approx 14\\text{ m}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "14",
+        "accepted_answers": [
+          "14"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 40,
+      "type": "short",
+      "prompt": "(Sở Quảng Bình 2025) Một máy bay không người lái bay lên từ điểm xuất phát, sau một thời gian cách điểm xuất phát $50\\text{ km}$ về phía Bắc, $20\\text{ km}$ về phía Tây và cách mặt đất $1\\text{ km}$. Khoảng cách từ máy bay đến điểm xuất phát bằng bao nhiêu $\\text{km}$ (làm tròn đến hàng phần mười)?",
+      "points": 1,
+      "sort_order": 400,
+      "choices": [],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Khoảng cách là $OM = \\sqrt{50^2 + 20^2 + 1^2} = \\sqrt{2901} \\approx 53,9\\text{ km}$.",
+        "source": "Sở Quảng Bình 2025",
+        "solution": "Khoảng cách là $OM = \\sqrt{50^2 + 20^2 + 1^2} = \\sqrt{2901} \\approx 53,9\\text{ km}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "53,9",
+        "accepted_answers": [
+          "53,9",
+          "53.9"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 41,
+      "type": "short",
+      "prompt": "(Sở Bạc Liêu 2025) Trong không gian $Oxyz$ (đơn vị: $\\text{km}$), trạm phát sóng đặt tại $I(1;-2;3)$ có tầm phủ sóng $5000\\text{ m}$. Nhà bạn Lan ở $M(1;2;0)$, nhà bạn Minh ở $N(-3;1;0)$. Gọi $Q$ là điểm trên đoạn $MN$ có thể bắt sóng tốt. Độ dài lớn nhất của $MQ$ bằng bao nhiêu $\\text{km}$ (làm tròn đến hàng phần trăm)?",
+      "points": 1,
+      "sort_order": 410,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Tham số hóa $Q(1-4t; 2-t; 0)$ ($0 \\le t \\le 1$). Điều kiện $IQ \\le 5 \\Leftrightarrow 16t^2 + (4-t)^2 + 9 \\le 25 \\Leftrightarrow 0 \\le t \\le \\frac{8}{17}$. Suy ra $MQ_{\\max} = \\frac{8}{17}\\sqrt{17} = \\frac{8\\sqrt{17}}{17} \\approx 1,94\\text{ km}$.",
+        "source": "Sở Bạc Liêu 2025",
+        "solution": "Tham số hóa $Q(1-4t; 2-t; 0)$ ($0 \\le t \\le 1$). Điều kiện $IQ \\le 5 \\Leftrightarrow 16t^2 + (4-t)^2 + 9 \\le 25 \\Leftrightarrow 0 \\le t \\le \\frac{8}{17}$. Suy ra $MQ_{\\max} = \\frac{8}{17}\\sqrt{17} = \\frac{8\\sqrt{17}}{17} \\approx 1,94\\text{ km}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "1,94",
+        "accepted_answers": [
+          "1,94",
+          "1.94"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 21: Phương trình mặt cầu",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 42,
+      "type": "short",
+      "prompt": "(THPT Lê Thánh Tông - Nguyễn Khuyến 2025) Trong hệ trục $Oxyz$ (đơn vị: mét), đường ống dẫn dầu trên không dọc theo $d: \\begin{cases} x = t \\\\ y = 0 \\\\ z = 16 \\end{cases}$, điểm trung chuyển $A(12;10;15)$ và mặt đất là $(Oxy)$. Chọn $B \\in d$ và $C \\in (Oxy)$ sao cho tổng $AB + BC + AC$ nhỏ nhất. Tìm giá trị nhỏ nhất đó (làm tròn đến hàng phần chục).\n![Hình Câu 42](/bank-images/short-oxyz/q42_p0.jpeg)",
+      "points": 1,
+      "sort_order": 420,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Lấy $A'(12;10;-15)$ đối xứng $A$ qua $(Oxy)$. Với $B(t;0;16) \\in d$, ta có $AB + BC + AC \\ge AB + A'B = \\sqrt{(t-12)^2 + 101} + \\sqrt{(t-12)^2 + 1061} \\ge \\sqrt{101} + \\sqrt{1061} \\approx 42,6\\text{ m}$ (đạt tại $t = 12$, $B(12;0;16)$).",
+        "source": "THPT Lê Thánh Tông - Nguyễn Khuyến 2025",
+        "solution": "Lấy $A'(12;10;-15)$ đối xứng $A$ qua $(Oxy)$. Với $B(t;0;16) \\in d$, ta có $AB + BC + AC \\ge AB + A'B = \\sqrt{(t-12)^2 + 101} + \\sqrt{(t-12)^2 + 1061} \\ge \\sqrt{101} + \\sqrt{1061} \\approx 42,6\\text{ m}$ (đạt tại $t = 12$, $B(12;0;16)$).",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "42,6",
+        "accepted_answers": [
+          "42,6",
+          "42.6"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 16 · Dạng 1: Vectơ chỉ phương và lập phương trình đường thẳng cơ bản",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 43,
+      "type": "short",
+      "prompt": "(Sở Hà Nội 2025) Trong không gian $Oxyz$ (đơn vị: $\\text{km}$), máy bay 1 ban đầu ở $A(0;35;10)$ bay theo hướng $\\vec{v}_1 = (3;4;0)$ tốc độ $900\\text{ km/h}$; máy bay 2 ban đầu ở $B(31;10;11)$ bay theo hướng $\\vec{v}_2 = (5;12;0)$ tốc độ $910\\text{ km/h}$. Khoảng cách an toàn tối thiểu là $9,3\\text{ km}$. Sau ít nhất bao nhiêu phút hai máy bay vi phạm khoảng cách an toàn (làm tròn đến hàng phần trăm)?",
+      "points": 1,
+      "sort_order": 430,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Vectơ vận tốc (km/phút): $\\vec{u}_1 = (9;12;0)$ và $\\vec{u}_2 = \\left(\\frac{35}{6};14;0\\right)$. Sau $t$ phút, khoảng cách hai máy bay là $MN = \\sqrt{\\left(\\frac{19}{6}t - 31\\right)^2 + (2t - 25)^2 + 1}$. Giải $MN \\le 9,3 \\Leftrightarrow 8,42 \\le t \\le 10,56$. Vậy sau ít nhất $8,42$ phút.",
+        "source": "Sở Hà Nội 2025",
+        "solution": "Vectơ vận tốc (km/phút): $\\vec{u}_1 = (9;12;0)$ và $\\vec{u}_2 = \\left(\\frac{35}{6};14;0\\right)$. Sau $t$ phút, khoảng cách hai máy bay là $MN = \\sqrt{\\left(\\frac{19}{6}t - 31\\right)^2 + (2t - 25)^2 + 1}$. Giải $MN \\le 9,3 \\Leftrightarrow 8,42 \\le t \\le 10,56$. Vậy sau ít nhất $8,42$ phút.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "8,42",
+        "accepted_answers": [
+          "8,42",
+          "8.42"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 16 · Dạng 1: Vectơ chỉ phương và lập phương trình đường thẳng cơ bản",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 44,
+      "type": "short",
+      "prompt": "(Chuyên Hùng Vương - Phú Thọ 2025) Một tòa nhà dạng hình chóp cụt $OABC.DEFG$ có đáy $OABC$ là hình chữ nhật trong $(Oxy)$ với $OA = 100\\text{ m}$, $OC = 60\\text{ m}$ và $D(10;10;8)$ (đơn vị: mét). Tính khoảng cách từ $B$ đến mặt phẳng $(OCGD)$ (làm tròn đến hàng phần chục).\n![Hình Câu 44](/bank-images/short-oxyz/q44_p0.jpeg)",
+      "points": 1,
+      "sort_order": 440,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $B(100;60;0)$, $C(0;60;0)$, $D(10;10;8)$. VTPT của $(OCGD)$ là $\\frac{1}{120}[\\overrightarrow{OC}, \\overrightarrow{OD}] = (4;0;-5)$, phương trình $(OCGD): 4x - 5z = 0$. Khoảng cách $d(B,(OCGD)) = \\frac{400}{\\sqrt{41}} \\approx 62,5\\text{ m}$.",
+        "source": "Chuyên Hùng Vương - Phú Thọ 2025",
+        "solution": "Ta có $B(100;60;0)$, $C(0;60;0)$, $D(10;10;8)$. VTPT của $(OCGD)$ là $\\frac{1}{120}[\\overrightarrow{OC}, \\overrightarrow{OD}] = (4;0;-5)$, phương trình $(OCGD): 4x - 5z = 0$. Khoảng cách $d(B,(OCGD)) = \\frac{400}{\\sqrt{41}} \\approx 62,5\\text{ m}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "62,5",
+        "accepted_answers": [
+          "62,5",
+          "62.5"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 17: Viết phương trình mặt phẳng có vectơ pháp tuyến tìm được bằng tích có hướng của cặp vectơ chỉ phương",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 45,
+      "type": "short",
+      "prompt": "(Sở Tuyên Quang 2025) Một tấm bảng đồng chất hình vuông $ABCD$ tâm $O'(0;0;5)$ treo nghiêng bằng $4$ dây $IA, IB, IC, ID$ tại $I(0;0;9)$, biết $A(-\\sqrt{2};\\sqrt{2};5)$, $D(a;b;c)$ với $a > 0, c > 5$ và góc $\\widehat{O'ID}$ lớn nhất. Biết lực căng dây $IB$ là $|\\vec{F}_1| = 50\\text{ N}$ và dây $IC$ là $|\\vec{F}_2| = 40\\text{ N}$. Tính khối lượng $m\\text{ (kg)}$ của tấm bảng (lấy $g = 9,8\\text{ m/s}^2$, làm tròn đến hàng đơn vị).\n![Hình Câu 45](/bank-images/short-oxyz/q45_p0.png)",
+      "points": 1,
+      "sort_order": 450,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Ta có $O'A = O'D = 2$, $O'I = 4$, $IA = IC = 2\\sqrt{5}$. Trong $\\triangle O'ID$, $\\cos\\widehat{O'ID} = \\frac{ID^2 + 12}{8ID} \\ge \\frac{\\sqrt{3}}{2}$, nên $\\widehat{O'ID}_{\\max} = 30^\\circ$ khi $ID = 2\\sqrt{3}$ và $IB = 2\\sqrt{7}$. Hợp lực của dây $IA, IC$ ($F_2 = F_4 = 40\\text{ N}$) hướng lên trên có độ lớn $2\\cdot 40\\cdot\\frac{4}{2\\sqrt{5}} = 32\\sqrt{5}\\text{ N}$. Trong $\\triangle IBD$, $\\cos\\widehat{BIO'} = \\frac{5\\sqrt{7}}{14} \\Rightarrow \\widehat{BIO'} \\approx 19^\\circ$, hợp lực của dây $IB, ID$ hướng lên trên có độ lớn $IK = \\frac{50\\sin 131^\\circ}{\\sin 30^\\circ} \\approx 75,47\\text{ N}$. Suy ra $m = \\frac{32\\sqrt{5} + 75,47}{9,8} \\approx 15\\text{ kg}$.",
+        "source": "Sở Tuyên Quang 2025",
+        "solution": "Ta có $O'A = O'D = 2$, $O'I = 4$, $IA = IC = 2\\sqrt{5}$. Trong $\\triangle O'ID$, $\\cos\\widehat{O'ID} = \\frac{ID^2 + 12}{8ID} \\ge \\frac{\\sqrt{3}}{2}$, nên $\\widehat{O'ID}_{\\max} = 30^\\circ$ khi $ID = 2\\sqrt{3}$ và $IB = 2\\sqrt{7}$. Hợp lực của dây $IA, IC$ ($F_2 = F_4 = 40\\text{ N}$) hướng lên trên có độ lớn $2\\cdot 40\\cdot\\frac{4}{2\\sqrt{5}} = 32\\sqrt{5}\\text{ N}$. Trong $\\triangle IBD$, $\\cos\\widehat{BIO'} = \\frac{5\\sqrt{7}}{14} \\Rightarrow \\widehat{BIO'} \\approx 19^\\circ$, hợp lực của dây $IB, ID$ hướng lên trên có độ lớn $IK = \\frac{50\\sin 131^\\circ}{\\sin 30^\\circ} \\approx 75,47\\text{ N}$. Suy ra $m = \\frac{32\\sqrt{5} + 75,47}{9,8} \\approx 15\\text{ kg}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "15",
+        "accepted_answers": [
+          "15"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 46,
+      "type": "short",
+      "prompt": "(Sở Yên Bái 2025) Trong không gian $Oxyz$, ba drone giao hàng ở $A(1;1;1)$, $B(5;7;9)$, $C(9;11;4)$. Gọi $d_1, d_2, d_3$ là khoảng cách giữa từng cặp drone. Tính $d_1 + d_2 + d_3$ (làm tròn đến hàng phần chục).",
+      "points": 1,
+      "sort_order": 460,
+      "choices": [],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Ta có $AB = 2\\sqrt{29}$, $BC = \\sqrt{57}$, $AC = \\sqrt{173}$, nên $d_1 + d_2 + d_3 = 2\\sqrt{29} + \\sqrt{57} + \\sqrt{173} \\approx 31,5$.",
+        "source": "Sở Yên Bái 2025",
+        "solution": "Ta có $AB = 2\\sqrt{29}$, $BC = \\sqrt{57}$, $AC = \\sqrt{173}$, nên $d_1 + d_2 + d_3 = 2\\sqrt{29} + \\sqrt{57} + \\sqrt{173} \\approx 31,5$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "31,5",
+        "accepted_answers": [
+          "31,5",
+          "31.5"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 47,
+      "type": "short",
+      "prompt": "(Sở Yên Bái 2025) Du khách trượt zipline thẳng từ $A(3;2,5;15)$ sang $B(21;27,5;10)$ trong không gian $Oxyz$ (đơn vị: mét). Khi ở độ cao $12\\text{ m}$, du khách ở vị trí $M(a;b;c)$. Tính $T = a + b + c$.\n![Hình Câu 47](/bank-images/short-oxyz/q47_p0.jpeg)",
+      "points": 1,
+      "sort_order": 470,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Đường thẳng $AB$: $x = 3 + 18t,\\; y = 2,5 + 25t,\\; z = 15 - 5t$. Cho $z = 12 \\Rightarrow t = \\frac{3}{5}$, suy ra $M(13,8; 17,5; 12)$. Vậy $T = 13,8 + 17,5 + 12 = 43,3$.",
+        "source": "Sở Yên Bái 2025",
+        "solution": "Đường thẳng $AB$: $x = 3 + 18t,\\; y = 2,5 + 25t,\\; z = 15 - 5t$. Cho $z = 12 \\Rightarrow t = \\frac{3}{5}$, suy ra $M(13,8; 17,5; 12)$. Vậy $T = 13,8 + 17,5 + 12 = 43,3$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "43,3",
+        "accepted_answers": [
+          "43,3",
+          "43.3"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 16 · Dạng 1: Vectơ chỉ phương và lập phương trình đường thẳng cơ bản",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 48,
+      "type": "short",
+      "prompt": "(THPT Triệu Sơn 1 - Thanh Hóa 2025) Trong không gian $Oxyz$, cho ba điểm $A(1;-2;3)$, $B(3;4;1)$, $C(-5;2;1)$ và mặt phẳng $(\\alpha)$ thay đổi chứa trục $Ox$ sao cho $A, B, C$ nằm cùng phía với $(\\alpha)$. Gọi $d_1, d_2, d_3$ là khoảng cách từ $A, B, C$ đến $(\\alpha)$. Biết giá trị lớn nhất của $T = d_1 + 2d_2 + 3d_3$ bằng $a\\sqrt{b}$ ($a \\in \\mathbb{N}$, $b$ nguyên tố). Tính $S = 2a + 3b$.",
+      "points": 1,
+      "sort_order": 480,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Gọi $G$ là tâm tỉ cự của $(A,1), (B,2), (C,3)$: $G\\left(-\\frac{4}{3}; 2; \\frac{4}{3}\\right)$. Vì $A, B, C$ cùng phía với $(\\alpha)$ nên $T = 6d(G,(\\alpha)) \\le 6d(G, Ox) = 6\\sqrt{2^2 + \\left(\\frac{4}{3}\\right)^2} = 4\\sqrt{13}$. Vậy $a = 4, b = 13 \\Rightarrow S = 2\\cdot 4 + 3\\cdot 13 = 47$.",
+        "source": "THPT Triệu Sơn 1 - Thanh Hóa 2025",
+        "solution": "Gọi $G$ là tâm tỉ cự của $(A,1), (B,2), (C,3)$: $G\\left(-\\frac{4}{3}; 2; \\frac{4}{3}\\right)$. Vì $A, B, C$ cùng phía với $(\\alpha)$ nên $T = 6d(G,(\\alpha)) \\le 6d(G, Ox) = 6\\sqrt{2^2 + \\left(\\frac{4}{3}\\right)^2} = 4\\sqrt{13}$. Vậy $a = 4, b = 13 \\Rightarrow S = 2\\cdot 4 + 3\\cdot 13 = 47$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "47",
+        "accepted_answers": [
+          "47"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 15 · Dạng 1: Vectơ pháp tuyến và lập phương trình mặt phẳng cơ bản",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 49,
+      "type": "short",
+      "prompt": "(THPT Triệu Sơn 1 - Thanh Hóa 2025) Một máy bay đang bay ngang ở độ cao $h = 9\\text{ km}$ trên đường bay thẳng đi qua phía trên một trạm kiểm soát không lưu. Tại thời điểm máy bay cách trạm $d = 15\\text{ km}$, khoảng cách $d$ đang giảm với tốc độ $760\\text{ km/h}$. Hỏi tốc độ $V$ của máy bay lúc này là bao nhiêu $\\text{km/h}$?\n![Hình Câu 49](/bank-images/short-oxyz/q49_p0.jpeg)",
+      "points": 1,
+      "sort_order": 490,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Gọi $x$ là khoảng cách ngang từ máy bay đến trạm, ta có $d^2 = x^2 + h^2 = x^2 + 81$. Tại $d = 15\\text{ km}$ thì $x = \\sqrt{15^2 - 9^2} = 12\\text{ km}$. Lấy đạo hàm hai vế theo thời gian $t$: $2d\\cdot d'(t) = 2x\\cdot x'(t) \\Rightarrow V = |x'(t)| = \\frac{d}{x}|d'(t)| = \\frac{15}{12}\\cdot 760 = 950\\text{ km/h}$.",
+        "source": "THPT Triệu Sơn 1 - Thanh Hóa 2025",
+        "solution": "Gọi $x$ là khoảng cách ngang từ máy bay đến trạm, ta có $d^2 = x^2 + h^2 = x^2 + 81$. Tại $d = 15\\text{ km}$ thì $x = \\sqrt{15^2 - 9^2} = 12\\text{ km}$. Lấy đạo hàm hai vế theo thời gian $t$: $2d\\cdot d'(t) = 2x\\cdot x'(t) \\Rightarrow V = |x'(t)| = \\frac{d}{x}|d'(t)| = \\frac{15}{12}\\cdot 760 = 950\\text{ km/h}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "950",
+        "accepted_answers": [
+          "950"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 50,
+      "type": "short",
+      "prompt": "(THPT Đô Lương 1 - Nghệ An 2025) Trong không gian $Oxyz$, mắt người quan sát ở $M(1;2;3)$ và vật ở $N(2;3;-12)$. Một tấm bìa hình tròn nằm trong $(Oxy)$ tâm tại gốc $O$, bán kính $R$ che khuất tầm nhìn của người quan sát tới $N$. Bán kính $R$ nhỏ nhất bằng bao nhiêu (làm tròn đến hàng phần trăm)?\n![Hình Câu 50](/bank-images/short-oxyz/q50_p0.jpeg)",
+      "points": 1,
+      "sort_order": 500,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Đường thẳng $MN$: $x = 1 + t,\\; y = 2 + t,\\; z = 3 - 15t$ cắt $(Oxy)$ tại $t = \\frac{1}{5}$, tức $I\\left(\\frac{6}{5}; \\frac{11}{5}; 0\\right)$. Để che khuất $N$ thì $R \\ge OI = \\sqrt{\\left(\\frac{6}{5}\\right)^2 + \\left(\\frac{11}{5}\\right)^2} = \\frac{\\sqrt{157}}{5} \\approx 2,51$.",
+        "source": "THPT Đô Lương 1 - Nghệ An 2025",
+        "solution": "Đường thẳng $MN$: $x = 1 + t,\\; y = 2 + t,\\; z = 3 - 15t$ cắt $(Oxy)$ tại $t = \\frac{1}{5}$, tức $I\\left(\\frac{6}{5}; \\frac{11}{5}; 0\\right)$. Để che khuất $N$ thì $R \\ge OI = \\sqrt{\\left(\\frac{6}{5}\\right)^2 + \\left(\\frac{11}{5}\\right)^2} = \\frac{\\sqrt{157}}{5} \\approx 2,51$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "2,51",
+        "accepted_answers": [
+          "2,51",
+          "2.51"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 16 · Dạng 1: Vectơ chỉ phương và lập phương trình đường thẳng cơ bản",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 51,
+      "type": "short",
+      "prompt": "(Sở Đà Nẵng 2025) Một khinh khí cầu ở độ cao $50\\text{ km}$ nhận tín hiệu từ ba vệ tinh $A(103;204;62)$, $B(106;208;74)$, $C(105;212;134)$ (đơn vị: $\\text{km}$) với khoảng cách lần lượt $MA = 13\\text{ km}$, $MB = 26\\text{ km}$, $MC = 85\\text{ km}$. Tính khoảng cách $OM$ (làm tròn đến hàng đơn vị).\n![Hình Câu 51](/bank-images/short-oxyz/q51_p0.jpeg)",
+      "points": 1,
+      "sort_order": 510,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Với $M(x;y;50)$, từ $MA = 13$ và $MB = 26$ ta có $(x-103)^2 + (y-204)^2 = 25$ và $(x-106)^2 + (y-208)^2 = 100$. Trừ hai phương trình được $3x + 4y = 1100$. Kết hợp $(x-105)^2 + (y-212)^2 = 85^2 - 84^2 = 169$ cho nghiệm duy nhất $M(100;200;50)$. Vậy $OM = \\sqrt{100^2 + 200^2 + 50^2} = 50\\sqrt{21} \\approx 229\\text{ km}$.",
+        "source": "Sở Đà Nẵng 2025",
+        "solution": "Với $M(x;y;50)$, từ $MA = 13$ và $MB = 26$ ta có $(x-103)^2 + (y-204)^2 = 25$ và $(x-106)^2 + (y-208)^2 = 100$. Trừ hai phương trình được $3x + 4y = 1100$. Kết hợp $(x-105)^2 + (y-212)^2 = 85^2 - 84^2 = 169$ cho nghiệm duy nhất $M(100;200;50)$. Vậy $OM = \\sqrt{100^2 + 200^2 + 50^2} = 50\\sqrt{21} \\approx 229\\text{ km}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "229",
+        "accepted_answers": [
+          "229"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 21: Phương trình mặt cầu",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 52,
+      "type": "short",
+      "prompt": "(Sở Sơn La 2025) Trong không gian $Oxyz$ (đơn vị: $\\text{km}$), một khinh khí cầu bay thẳng từ $A(-16;-10;10)$ đến $B(24;20;0)$ hết $10$ giờ. Trạm kiểm soát đặt tại $O$ có phạm vi $12\\text{ km}$. Thời gian từ lúc trạm phát hiện đến khi khinh khí cầu ra khỏi vùng kiểm soát là bao nhiêu phút?",
+      "points": 1,
+      "sort_order": 520,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Vectơ vận tốc $\\vec{v} = \\frac{1}{10}\\overrightarrow{AB} = (4;3;-1)$ (km/h). Sau $t$ giờ, vị trí là $(-16+4t; -10+3t; 10-t)$. Giải $(-16+4t)^2 + (-10+3t)^2 + (10-t)^2 \\le 144 \\Leftrightarrow 2 \\le t \\le 6$. Thời gian trong vùng kiểm soát là $4\\text{ giờ} = 240\\text{ phút}$.",
+        "source": "Sở Sơn La 2025",
+        "solution": "Vectơ vận tốc $\\vec{v} = \\frac{1}{10}\\overrightarrow{AB} = (4;3;-1)$ (km/h). Sau $t$ giờ, vị trí là $(-16+4t; -10+3t; 10-t)$. Giải $(-16+4t)^2 + (-10+3t)^2 + (10-t)^2 \\le 144 \\Leftrightarrow 2 \\le t \\le 6$. Thời gian trong vùng kiểm soát là $4\\text{ giờ} = 240\\text{ phút}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "240",
+        "accepted_answers": [
+          "240"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 21: Phương trình mặt cầu",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 53,
+      "type": "short",
+      "prompt": "(THPT Hương Hóa - Quảng Trị 2025) Xét Trái Đất trong không gian $Oxyz$ với $O$ là tâm, $1$ đơn vị ứng với $6371\\text{ km}$. Điểm có vĩ độ $\\alpha^\\circ\\text{N}$, kinh độ $\\beta^\\circ\\text{E}$ có tọa độ $(\\cos\\alpha^\\circ\\cos\\beta^\\circ;\\; \\cos\\alpha^\\circ\\sin\\beta^\\circ;\\; \\sin\\alpha^\\circ)$. Tính khoảng cách trên bề mặt Trái Đất giữa cầu Hiền Lương ($17,0045^\\circ\\text{N}; 107,0517^\\circ\\text{E}$) và Dinh Độc Lập ($10,777^\\circ\\text{N}; 106,695^\\circ\\text{E}$) theo $\\text{km}$ (làm tròn đến hàng chục).\n![Hình Câu 53](/bank-images/short-oxyz/q53_p0.jpeg)",
+      "points": 1,
+      "sort_order": 530,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Hai điểm $A, B$ nằm trên mặt cầu đơn vị nên $\\cos\\widehat{AOB} = \\overrightarrow{OA}\\cdot\\overrightarrow{OB} = \\sin\\alpha_1\\sin\\alpha_2 + \\cos\\alpha_1\\cos\\alpha_2\\cos(\\beta_1 - \\beta_2) \\approx 0,99407$. Suy ra góc $\\widehat{AOB} \\approx 0,10895\\text{ rad}$ và độ dài cung tròn lớn $l = 6371\\cdot 0,10895 \\approx 694 \\approx 690\\text{ km}$.",
+        "source": "THPT Hương Hóa - Quảng Trị 2025",
+        "solution": "Hai điểm $A, B$ nằm trên mặt cầu đơn vị nên $\\cos\\widehat{AOB} = \\overrightarrow{OA}\\cdot\\overrightarrow{OB} = \\sin\\alpha_1\\sin\\alpha_2 + \\cos\\alpha_1\\cos\\alpha_2\\cos(\\beta_1 - \\beta_2) \\approx 0,99407$. Suy ra góc $\\widehat{AOB} \\approx 0,10895\\text{ rad}$ và độ dài cung tròn lớn $l = 6371\\cdot 0,10895 \\approx 694 \\approx 690\\text{ km}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "690",
+        "accepted_answers": [
+          "690"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 54,
+      "type": "short",
+      "prompt": "(Sở Phú Thọ 2025) Trong không gian $Oxyz$ (đơn vị: mét), người 1 bắn viên đạn đi qua $A(5;7;10)$ và $B(6;9;12)$; người 2 bắn viên đạn đi qua $C(15;17;5)$ và $D$ (ở độ cao $26\\text{ m}$). Hai viên đạn chạm nhau tại vị trí $E$ cách $A$ $150\\text{ m}$ (cùng hướng $\\overrightarrow{AB}$). Hỏi $D$ cách $C$ bao nhiêu mét (làm tròn đến hàng phần chục)?\n![Hình Câu 54](/bank-images/short-oxyz/q54_p0.jpeg)",
+      "points": 1,
+      "sort_order": 540,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $\\overrightarrow{AB} = (1;2;2)$ ($AB = 3$), nên $\\overrightarrow{AE} = 50\\overrightarrow{AB} = (50;100;100) \\Rightarrow E(55;107;110)$. Đường thẳng $CE$ có VTCP $\\frac{1}{5}\\overrightarrow{CE} = (8;18;21)$: $x = 15 + 8t,\\; y = 17 + 18t,\\; z = 5 + 21t$. Với $z_D = 26 \\Rightarrow t = 1 \\Rightarrow D(23;35;26)$, suy ra $CD = \\sqrt{8^2 + 18^2 + 21^2} = \\sqrt{829} \\approx 28,8\\text{ m}$.",
+        "source": "Sở Phú Thọ 2025",
+        "solution": "Ta có $\\overrightarrow{AB} = (1;2;2)$ ($AB = 3$), nên $\\overrightarrow{AE} = 50\\overrightarrow{AB} = (50;100;100) \\Rightarrow E(55;107;110)$. Đường thẳng $CE$ có VTCP $\\frac{1}{5}\\overrightarrow{CE} = (8;18;21)$: $x = 15 + 8t,\\; y = 17 + 18t,\\; z = 5 + 21t$. Với $z_D = 26 \\Rightarrow t = 1 \\Rightarrow D(23;35;26)$, suy ra $CD = \\sqrt{8^2 + 18^2 + 21^2} = \\sqrt{829} \\approx 28,8\\text{ m}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "28,8",
+        "accepted_answers": [
+          "28,8",
+          "28.8"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 16 · Dạng 1: Vectơ chỉ phương và lập phương trình đường thẳng cơ bản",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 55,
+      "type": "short",
+      "prompt": "(Sở Bình Thuận 2025) Coi Trái Đất là khối cầu bán kính $6400\\text{ km}$, tâm $O(0;0;0)$, đơn vị trên mỗi trục là $1000\\text{ km}$. Một thiên thạch ở $M(4,29;7;0)$ chuyển động thẳng với tốc độ $960\\text{ km/phút}$ về phía tâm Trái Đất và bốc cháy khi vào khí quyển ở độ cao $150\\text{ km}$ so với mực nước biển. Xác định thời điểm (phút) thiên thạch bốc cháy kể từ lúc phát hiện (làm tròn đến hàng phần trăm).",
+      "points": 1,
+      "sort_order": 550,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Khoảng cách $OM = \\sqrt{4,29^2 + 7^2} = 8,21$ nghìn $\\text{km} = 8210\\text{ km}$. Quãng đường đi đến độ cao $150\\text{ km}$ là $d = 8210 - (6400 + 150) = 1660\\text{ km}$. Thời gian là $t = \\frac{1660}{960} = \\frac{83}{48} \\approx 1,73$ phút.",
+        "source": "Sở Bình Thuận 2025",
+        "solution": "Khoảng cách $OM = \\sqrt{4,29^2 + 7^2} = 8,21$ nghìn $\\text{km} = 8210\\text{ km}$. Quãng đường đi đến độ cao $150\\text{ km}$ là $d = 8210 - (6400 + 150) = 1660\\text{ km}$. Thời gian là $t = \\frac{1660}{960} = \\frac{83}{48} \\approx 1,73$ phút.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "1,73",
+        "accepted_answers": [
+          "1,73",
+          "1.73"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 21: Phương trình mặt cầu",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 56,
+      "type": "short",
+      "prompt": "(Sở Bắc Ninh 2025) Trong hệ trục $Oxyz$ (đơn vị: mét), Bình căng dây từ $P(1;1;0)$ đến $Q(3;0;1)$, rồi chọn điểm $M$ thuộc đoạn $PQ$ căng thêm dây đến $A(1;0;-1)$ và $B(2;1;1)$. Khi tổng độ dài các đoạn dây nhỏ nhất thì khoảng cách $MP$ bằng bao nhiêu mét (làm tròn đến hàng phần chục)?",
+      "points": 1,
+      "sort_order": 560,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Ta thấy $P, Q, A, B$ đồng phẳng trong $(PQA): x + y - z - 2 = 0$, đồng thời $A, B$ nằm về hai phía của $PQ$. Tổng $MA + MB$ nhỏ nhất khi $M = AB \\cap PQ$. Với $PQ: (1+2t; 1-t; t)$ và $AB: (1+s; s; -1+2s)$, giải hệ thu được $t = \\frac{1}{3}$, suy ra $M\\left(\\frac{5}{3}; \\frac{2}{3}; \\frac{1}{3}\\right)$ và $PM = \\frac{\\sqrt{6}}{3} \\approx 0,8\\text{ m}$.",
+        "source": "Sở Bắc Ninh 2025",
+        "solution": "Ta thấy $P, Q, A, B$ đồng phẳng trong $(PQA): x + y - z - 2 = 0$, đồng thời $A, B$ nằm về hai phía của $PQ$. Tổng $MA + MB$ nhỏ nhất khi $M = AB \\cap PQ$. Với $PQ: (1+2t; 1-t; t)$ và $AB: (1+s; s; -1+2s)$, giải hệ thu được $t = \\frac{1}{3}$, suy ra $M\\left(\\frac{5}{3}; \\frac{2}{3}; \\frac{1}{3}\\right)$ và $PM = \\frac{\\sqrt{6}}{3} \\approx 0,8\\text{ m}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "0,8",
+        "accepted_answers": [
+          "0,8",
+          "0.8"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 16 · Dạng 1: Vectơ chỉ phương và lập phương trình đường thẳng cơ bản",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 57,
+      "type": "short",
+      "prompt": "(THPT Lê Thánh Tông - HCM 2025) Trong không gian $Oxyz$ (đơn vị: $1\\text{ km}$, $(Oxy)$ là mặt đất), máy bay Su-30 ở $A(0;35;10)$ bay theo hướng $\\vec{v}_1 = (3;4;0)$ tốc độ $900\\text{ km/h}$; MiG-31 ở $B(31;10;11)$ bay theo hướng $\\vec{v}_2 = (5;12;0)$ tốc độ $910\\text{ km/h}$. Gió thổi với vận tốc $80\\text{ km/h}$ theo hướng $\\vec{u} = (-3;0;4)$ tác động lên cả hai máy bay. Vùng cấm bay là hình trụ đáy tâm $C(178;430;0)$, bán kính $7\\text{ km}$, cao $43\\text{ km}$. Tại thời điểm MiG-31 bay ra khỏi vùng cấm bay, khoảng cách hai máy bay là bao nhiêu $\\text{km}$ (làm tròn đến hàng phần chục)?\n![Hình Câu 57](/bank-images/short-oxyz/q57_p0.jpeg)",
+      "points": 1,
+      "sort_order": 570,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Vận tốc gió $\\vec{c} = (-48;0;64)$. Vận tốc thực của Su-30 là $(492;720;64)$, của MiG-31 là $(302;840;64)$. Quỹ đạo MiG-31: $(31+302t; 10+840t; 11+64t)$. Độ cao đỉnh hình trụ $z = 43 \\Leftrightarrow t = 0,5$, tại đó $(182-178)^2 + (430-430)^2 = 16 < 49$, nên MiG-31 ra khỏi vùng cấm qua đáy trên tại $t = 0,5\\text{ h}$. Khi đó MiG-31 ở $M(182;430;43)$ và Su-30 ở $N(246;395;42)$, khoảng cách $MN = \\sqrt{64^2 + (-35)^2 + (-1)^2} \\approx 72,95 \\approx 73,0\\text{ km}$.",
+        "source": "THPT Lê Thánh Tông - HCM 2025",
+        "solution": "Vận tốc gió $\\vec{c} = (-48;0;64)$. Vận tốc thực của Su-30 là $(492;720;64)$, của MiG-31 là $(302;840;64)$. Quỹ đạo MiG-31: $(31+302t; 10+840t; 11+64t)$. Độ cao đỉnh hình trụ $z = 43 \\Leftrightarrow t = 0,5$, tại đó $(182-178)^2 + (430-430)^2 = 16 < 49$, nên MiG-31 ra khỏi vùng cấm qua đáy trên tại $t = 0,5\\text{ h}$. Khi đó MiG-31 ở $M(182;430;43)$ và Su-30 ở $N(246;395;42)$, khoảng cách $MN = \\sqrt{64^2 + (-35)^2 + (-1)^2} \\approx 72,95 \\approx 73,0\\text{ km}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "73,0",
+        "accepted_answers": [
+          "73,0",
+          "73.0"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 16 · Dạng 1: Vectơ chỉ phương và lập phương trình đường thẳng cơ bản",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 58,
+      "type": "short",
+      "prompt": "(Sở Lào Cai 2025) Một dây cáp chạy thẳng từ $X(100;-40;0)$ đến đỉnh tháp $T(40;60;150)$ trong hệ trục $Oxyz$. Cần nối điểm $A(40;30;-20)$ tới điểm $M(a;b;c)$ trên dây cáp sao cho $MA$ ngắn nhất. Tính $a + b + c$.\n![Hình Câu 58](/bank-images/short-oxyz/q58_p0.jpeg)",
+      "points": 1,
+      "sort_order": 580,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Đường thẳng $XT$ có VTCP $(6;-10;-15)$: $x = 40 + 6t,\\; y = 60 - 10t,\\; z = 150 - 15t$. Hình chiếu $M$ của $A(40;30;-20)$ lên $XT$ thỏa $6(6t) - 10(30 - 10t) - 15(170 - 15t) = 0 \\Leftrightarrow 361t = 2850 \\Leftrightarrow t = \\frac{150}{19}$. Suy ra $a + b + c = 250 - 19t = 250 - 150 = 100$.",
+        "source": "Sở Lào Cai 2025",
+        "solution": "Đường thẳng $XT$ có VTCP $(6;-10;-15)$: $x = 40 + 6t,\\; y = 60 - 10t,\\; z = 150 - 15t$. Hình chiếu $M$ của $A(40;30;-20)$ lên $XT$ thỏa $6(6t) - 10(30 - 10t) - 15(170 - 15t) = 0 \\Leftrightarrow 361t = 2850 \\Leftrightarrow t = \\frac{150}{19}$. Suy ra $a + b + c = 250 - 19t = 250 - 150 = 100$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "100",
+        "accepted_answers": [
+          "100"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 16 · Dạng 1: Vectơ chỉ phương và lập phương trình đường thẳng cơ bản",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 59,
+      "type": "short",
+      "prompt": "(Sở Quảng Nam 2025) Trong không gian $Oxyz$ ($1$ đơn vị $= 10\\text{ m}$), tên lửa phòng không đặt tại $M(0;50;0)$. UAV bay thẳng đều qua $A_0(1100;0;15)$ lúc $t = 0\\text{ s}$ và $A_1(1095;1;14,5)$ lúc $t = 1\\text{ s}$. Lúc $t = 6\\text{ s}$, tên lửa được phóng thẳng đều với tốc độ $1300\\text{ m/s}$ và phá hủy UAV tại $B$. Sau bao nhiêu giây kể từ lúc phóng tên lửa thì va chạm xảy ra (làm tròn đến hàng phần trăm)?\n![Hình Câu 59a](/bank-images/short-oxyz/q59_p0.jpeg)\n![Hình Câu 59b](/bank-images/short-oxyz/q59_p1.jpeg)",
+      "points": 1,
+      "sort_order": 590,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Tại thời điểm $t > 6$, UAV ở $B(1100-5t; t; 15-0,5t)$. Trong thời gian $(t-6)$ giây, tên lửa bay được $130(t-6)$ đơn vị tọa độ, nên $BM^2 = [130(t-6)]^2 \\Leftrightarrow (1100-5t)^2 + (t-50)^2 + (15-0,5t)^2 = 16900(t-6)^2$. Giải phương trình bậc hai với $t > 6$ thu được $t \\approx 13,93\\text{ s}$. Vậy thời gian bay của tên lửa là $13,93 - 6 = 7,93\\text{ s}$.",
+        "source": "Sở Quảng Nam 2025",
+        "solution": "Tại thời điểm $t > 6$, UAV ở $B(1100-5t; t; 15-0,5t)$. Trong thời gian $(t-6)$ giây, tên lửa bay được $130(t-6)$ đơn vị tọa độ, nên $BM^2 = [130(t-6)]^2 \\Leftrightarrow (1100-5t)^2 + (t-50)^2 + (15-0,5t)^2 = 16900(t-6)^2$. Giải phương trình bậc hai với $t > 6$ thu được $t \\approx 13,93\\text{ s}$. Vậy thời gian bay của tên lửa là $13,93 - 6 = 7,93\\text{ s}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "7,93",
+        "accepted_answers": [
+          "7,93",
+          "7.93"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 16 · Dạng 1: Vectơ chỉ phương và lập phương trình đường thẳng cơ bản",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 60,
+      "type": "short",
+      "prompt": "(Sở Thái Nguyên 2025) Để đổ bê tông mái vát, ông An ghép cốt pha dạng tam giác $ABC$ đi qua $A$ trên chân tường $1$ cách góc $O$ đoạn $4\\text{ m}$, $B$ trên chân tường $2$, $C$ trên cột góc nhà (hai tường và sàn đôi một vuông góc) và tựa lên đỉnh cột $M$ cách đều hai tường $1\\text{ m}$, cao $1\\text{ m}$. Diện tích nhỏ nhất của khung cốt pha $ABC$ bằng bao nhiêu $\\text{m}^2$ (làm tròn đến hàng phần trăm)?\n![Hình Câu 60](/bank-images/short-oxyz/q60_p0.png)",
+      "points": 1,
+      "sort_order": 600,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Chọn $A(4;0;0)$, $B(0;b;0)$, $C(0;0;c)$ ($b,c > 0$) và $M(1;1;1) \\in (ABC) \\Rightarrow \\frac{1}{4} + \\frac{1}{b} + \\frac{1}{c} = 1 \\Rightarrow \\frac{1}{b} + \\frac{1}{c} = \\frac{3}{4}$. Đặt $u = bc$, từ Cauchy ta có $3u = 4(b+c) \\ge 8\\sqrt{u} \\Rightarrow u \\ge \\frac{64}{9}$. Lại có $S_{\\triangle ABC} = \\frac{1}{2}\\sqrt{(bc)^2 + 16(b^2+c^2)} = \\frac{1}{2}\\sqrt{10u^2 - 32u}$ đồng biến với $u \\ge \\frac{64}{9}$. Vậy $S_{\\min}$ đạt tại $u = \\frac{64}{9}$, cho $S_{\\min} = \\frac{1}{2}\\sqrt{10\\left(\\frac{64}{9}\\right)^2 - 32\\cdot\\frac{64}{9}} \\approx 8,34\\text{ m}^2$.",
+        "source": "Sở Thái Nguyên 2025",
+        "solution": "Chọn $A(4;0;0)$, $B(0;b;0)$, $C(0;0;c)$ ($b,c > 0$) và $M(1;1;1) \\in (ABC) \\Rightarrow \\frac{1}{4} + \\frac{1}{b} + \\frac{1}{c} = 1 \\Rightarrow \\frac{1}{b} + \\frac{1}{c} = \\frac{3}{4}$. Đặt $u = bc$, từ Cauchy ta có $3u = 4(b+c) \\ge 8\\sqrt{u} \\Rightarrow u \\ge \\frac{64}{9}$. Lại có $S_{\\triangle ABC} = \\frac{1}{2}\\sqrt{(bc)^2 + 16(b^2+c^2)} = \\frac{1}{2}\\sqrt{10u^2 - 32u}$ đồng biến với $u \\ge \\frac{64}{9}$. Vậy $S_{\\min}$ đạt tại $u = \\frac{64}{9}$, cho $S_{\\min} = \\frac{1}{2}\\sqrt{10\\left(\\frac{64}{9}\\right)^2 - 32\\cdot\\frac{64}{9}} \\approx 8,34\\text{ m}^2$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "8,34",
+        "accepted_answers": [
+          "8,34",
+          "8.34"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 15 · Dạng 1: Vectơ pháp tuyến và lập phương trình mặt phẳng cơ bản",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 61,
+      "type": "short",
+      "prompt": "(Sở Long An 2025) Trong không gian $Oxyz$ (đơn vị: mét), bốn drone $A, B, C, D$ xếp hình tam giác $ABC$ với $D$ thuộc cạnh $BC$ thỏa $DB = 4DC$. Biết $A(80;20;80)$, $B(70;20;20)$, $C(420;120;120)$. Khoảng cách giữa drone $A$ và $D$ bằng bao nhiêu mét (làm tròn đến hàng đơn vị)?\n![Hình Câu 61](/bank-images/short-oxyz/q61_p0.jpeg)",
+      "points": 1,
+      "sort_order": 610,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $\\overrightarrow{CD} = \\frac{1}{5}\\overrightarrow{CB} = (-70;-20;-20) \\Rightarrow D(350;100;100)$. Do đó $AD = \\sqrt{270^2 + 80^2 + 20^2} = 10\\sqrt{797} \\approx 282\\text{ m}$.",
+        "source": "Sở Long An 2025",
+        "solution": "Ta có $\\overrightarrow{CD} = \\frac{1}{5}\\overrightarrow{CB} = (-70;-20;-20) \\Rightarrow D(350;100;100)$. Do đó $AD = \\sqrt{270^2 + 80^2 + 20^2} = 10\\sqrt{797} \\approx 282\\text{ m}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "282",
+        "accepted_answers": [
+          "282"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 62,
+      "type": "short",
+      "prompt": "(THPT Ngô Sĩ Liên - Bắc Giang 2025) Trong không gian $Oxyz$ (đơn vị: mét), sàn nhà nằm trên mặt phẳng $(\\alpha): 2x + y - 3z + 18 = 0$, hai mái nhà nằm trên $(P): x - y = 0$ và $(Q): x + y - 2z = 0$. Chiều cao ngôi nhà từ sàn đến nóc (giao tuyến hai mái) bằng bao nhiêu mét (làm tròn đến hàng phần chục)?\n![Hình Câu 62](/bank-images/short-oxyz/q62_p0.jpeg)",
+      "points": 1,
+      "sort_order": 620,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Giao tuyến $d = (P) \\cap (Q)$ đi qua $O(0;0;0)$ và có VTCP $\\vec{u} = (1;1;1)$ thỏa $\\vec{u}\\cdot\\vec{n}_\\alpha = 2 + 1 - 3 = 0$, nên $d \\parallel (\\alpha)$. Chiều cao ngôi nhà là $d(O,(\\alpha)) = \\frac{18}{\\sqrt{2^2 + 1^2 + (-3)^2}} = \\frac{18}{\\sqrt{14}} \\approx 4,8\\text{ m}$.",
+        "source": "THPT Ngô Sĩ Liên - Bắc Giang 2025",
+        "solution": "Giao tuyến $d = (P) \\cap (Q)$ đi qua $O(0;0;0)$ và có VTCP $\\vec{u} = (1;1;1)$ thỏa $\\vec{u}\\cdot\\vec{n}_\\alpha = 2 + 1 - 3 = 0$, nên $d \\parallel (\\alpha)$. Chiều cao ngôi nhà là $d(O,(\\alpha)) = \\frac{18}{\\sqrt{2^2 + 1^2 + (-3)^2}} = \\frac{18}{\\sqrt{14}} \\approx 4,8\\text{ m}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "4,8",
+        "accepted_answers": [
+          "4,8",
+          "4.8"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 15 · Dạng 1: Vectơ pháp tuyến và lập phương trình mặt phẳng cơ bản",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 63,
+      "type": "short",
+      "prompt": "(Sở Quảng Ninh 2025) Trong không gian $Oxyz$, thiết bị định vị ở $A(1;0;2)$ là trung điểm đoạn $BC$ với $B \\in \\Delta: \\dfrac{x-3}{1} = \\dfrac{y+1}{2} = \\dfrac{z-4}{-1}$ và $C \\in (\\alpha): 2x - y + z + 1 = 0$. Đường thẳng $BC$ có một VTCP $\\vec{u} = (-2;a;b)$. Tính $a + 2b$.",
+      "points": 1,
+      "sort_order": 630,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Gọi $B(3+t; -1+2t; 4-t) \\in \\Delta$. Do $A$ là trung điểm $BC$ nên $C(-1-t; 1-2t; t) \\in (\\alpha) \\Rightarrow 2(-1-t) - (1-2t) + t + 1 = 0 \\Leftrightarrow t = 2 \\Rightarrow B(5;3;2)$. Suy ra $\\overrightarrow{AB} = (4;3;0) = -2\\left(-2;-\\frac{3}{2};0\\right)$, nên $a = -\\frac{3}{2}, b = 0 \\Rightarrow a + 2b = -1,5$.",
+        "source": "Sở Quảng Ninh 2025",
+        "solution": "Gọi $B(3+t; -1+2t; 4-t) \\in \\Delta$. Do $A$ là trung điểm $BC$ nên $C(-1-t; 1-2t; t) \\in (\\alpha) \\Rightarrow 2(-1-t) - (1-2t) + t + 1 = 0 \\Leftrightarrow t = 2 \\Rightarrow B(5;3;2)$. Suy ra $\\overrightarrow{AB} = (4;3;0) = -2\\left(-2;-\\frac{3}{2};0\\right)$, nên $a = -\\frac{3}{2}, b = 0 \\Rightarrow a + 2b = -1,5$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "-1,5",
+        "accepted_answers": [
+          "-1,5",
+          "-1.5"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 18: Viết phương trình đường thẳng thỏa mãn điều kiện cho trước",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 64,
+      "type": "short",
+      "prompt": "(Liên Trường Nghệ An 2025) Phòng khách hình hộp chữ nhật $ABCD.A'B'C'D'$ có $AB = 5\\text{ m}$, $BC = 6\\text{ m}$, $AA' = 3\\text{ m}$. Mắc các dây đèn $NC, BM, EF$ như hình vẽ với $EF \\parallel AC$, $BN = 2\\text{ m}$, $DM = 1\\text{ m}$, giá $120\\,000$ đồng/mét. Số tiền mua dây đèn là bao nhiêu triệu đồng (làm tròn đến hàng phần trăm)?\n![Hình Câu 64](/bank-images/short-oxyz/q64_p0.jpeg)",
+      "points": 1,
+      "sort_order": 640,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Chọn $A(0;0;0)$, $B(5;0;0)$, $C(5;6;0)$, $N(5;0;2)$, $M(0;6;1)$. Ta có $NC = 2\\sqrt{10}\\text{ m}$, $BM = \\sqrt{62}\\text{ m}$. Tham số hóa $E(5-5a; 6a; a) \\in BM$ và $F(5; -3b; 2+b) \\in CN$. Điều kiện $\\overrightarrow{EF} \\parallel \\overrightarrow{AC} = (5;6;0)$ cho $a = \\frac{2}{5}$, $b = -\\frac{8}{5}$, suy ra $EF = \\frac{2\\sqrt{61}}{5}\\text{ m}$. Tổng chi phí là $\\left(2\\sqrt{10} + \\sqrt{62} + \\frac{2\\sqrt{61}}{5}\\right)\\cdot 0,12 \\approx 2,08$ triệu đồng.",
+        "source": "Liên Trường Nghệ An 2025",
+        "solution": "Chọn $A(0;0;0)$, $B(5;0;0)$, $C(5;6;0)$, $N(5;0;2)$, $M(0;6;1)$. Ta có $NC = 2\\sqrt{10}\\text{ m}$, $BM = \\sqrt{62}\\text{ m}$. Tham số hóa $E(5-5a; 6a; a) \\in BM$ và $F(5; -3b; 2+b) \\in CN$. Điều kiện $\\overrightarrow{EF} \\parallel \\overrightarrow{AC} = (5;6;0)$ cho $a = \\frac{2}{5}$, $b = -\\frac{8}{5}$, suy ra $EF = \\frac{2\\sqrt{61}}{5}\\text{ m}$. Tổng chi phí là $\\left(2\\sqrt{10} + \\sqrt{62} + \\frac{2\\sqrt{61}}{5}\\right)\\cdot 0,12 \\approx 2,08$ triệu đồng.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "2,08",
+        "accepted_answers": [
+          "2,08",
+          "2.08"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 18: Viết phương trình đường thẳng thỏa mãn điều kiện cho trước",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 65,
+      "type": "short",
+      "prompt": "(Cụm Ninh Giang - Tứ Kỳ - Gia Lộc 2025) Trong không gian $Oxyz$, tọa độ ba khu vực là $A(30;20;0)$, $B(70;50;40)$, $C(50;80;70)$. Vị trí trạm phát sóng $D(a;b;c)$ cách đều $A, B, C$ và có khoảng cách tới chúng nhỏ nhất. Tính $T = a + b + c$ (làm tròn đến hàng đơn vị).",
+      "points": 1,
+      "sort_order": 650,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Điểm $D$ là tâm đường tròn ngoại tiếp $\\triangle ABC$, nên $D \\in (ABC)$ và $DA = DB = DC$. Mặt phẳng $(ABC)$ có phương trình $3a + 20b - 18c = 490$; từ $DA^2 = DB^2 = DC^2$ có $80a + 60b + 80c = 7700$ và $40a + 120b + 140c = 12500$. Giải hệ được $D\\left(\\frac{13200}{733}; \\frac{40355}{733}; \\frac{27085}{733}\\right)$, suy ra $T = \\frac{80640}{733} \\approx 110$.",
+        "source": "Cụm Ninh Giang - Tứ Kỳ - Gia Lộc 2025",
+        "solution": "Điểm $D$ là tâm đường tròn ngoại tiếp $\\triangle ABC$, nên $D \\in (ABC)$ và $DA = DB = DC$. Mặt phẳng $(ABC)$ có phương trình $3a + 20b - 18c = 490$; từ $DA^2 = DB^2 = DC^2$ có $80a + 60b + 80c = 7700$ và $40a + 120b + 140c = 12500$. Giải hệ được $D\\left(\\frac{13200}{733}; \\frac{40355}{733}; \\frac{27085}{733}\\right)$, suy ra $T = \\frac{80640}{733} \\approx 110$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "110",
+        "accepted_answers": [
+          "110"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 17: Viết phương trình mặt phẳng có vectơ pháp tuyến tìm được bằng tích có hướng của cặp vectơ chỉ phương",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 66,
+      "type": "short",
+      "prompt": "(THPT Tư Nghĩa 1 - Quảng Ngãi 2025) Một máy bay cất cánh ở vị trí $M(a;b;c)$ trong hệ trục $Oxyz$ như hình vẽ, biết $OM = 14$, $\\widehat{NOB} = 32^\\circ$, $\\widehat{MOC} = 65^\\circ$. Tính $a + 2b + 3c$ (làm tròn đến hàng đơn vị).\n![Hình Câu 66](/bank-images/short-oxyz/q66_p0.jpeg)",
+      "points": 1,
+      "sort_order": 660,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $c = OM\\cos 65^\\circ \\approx 5,92$ và $ON = OM\\sin 65^\\circ \\approx 12,69$. Tiếp theo $b = ON\\cos 32^\\circ \\approx 10,76$ và $a = ON\\sin 32^\\circ \\approx 6,72$. Vậy $a + 2b + 3c \\approx 39,27 \\approx 39$.",
+        "source": "THPT Tư Nghĩa 1 - Quảng Ngãi 2025",
+        "solution": "Ta có $c = OM\\cos 65^\\circ \\approx 5,92$ và $ON = OM\\sin 65^\\circ \\approx 12,69$. Tiếp theo $b = ON\\cos 32^\\circ \\approx 10,76$ và $a = ON\\sin 32^\\circ \\approx 6,72$. Vậy $a + 2b + 3c \\approx 39,27 \\approx 39$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "39",
+        "accepted_answers": [
+          "39"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 67,
+      "type": "short",
+      "prompt": "(Sở Vũng Tàu 2025) Một máy bay không người lái bay lên từ điểm xuất phát, sau một thời gian cách điểm xuất phát $55\\text{ km}$ về phía Bắc, $20\\text{ km}$ về phía Tây và cao $1,5\\text{ km}$. Khoảng cách từ máy bay đến điểm xuất phát bằng bao nhiêu $\\text{km}$ (làm tròn đến một chữ số thập phân)?\n![Hình Câu 67](/bank-images/short-oxyz/q67_p0.jpeg)",
+      "points": 1,
+      "sort_order": 670,
+      "choices": [],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Khoảng cách là $OA = \\sqrt{55^2 + 20^2 + 1,5^2} = \\sqrt{3427,25} \\approx 58,5\\text{ km}$.",
+        "source": "Sở Vũng Tàu 2025",
+        "solution": "Khoảng cách là $OA = \\sqrt{55^2 + 20^2 + 1,5^2} = \\sqrt{3427,25} \\approx 58,5\\text{ km}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "58,5",
+        "accepted_answers": [
+          "58,5",
+          "58.5"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 68,
+      "type": "short",
+      "prompt": "(Sở Vũng Tàu 2025) Tại một sân bay gắn hệ trục $Oxyz$ ($O$ tại chân đài quan sát, $(Oxy)$ là mặt sân bay, đơn vị: $\\text{km}$), máy bay hạ cánh thẳng từ $A(4;0;10)$ qua $B(5;5;6)$ và tiếp đất tại $C(a;b;0)$. Vị trí tiếp đất cách chân đài quan sát bao nhiêu $\\text{km}$ (làm tròn đến một chữ số thập phân)?\n![Hình Câu 68](/bank-images/short-oxyz/q68_p0.jpeg)",
+      "points": 1,
+      "sort_order": 680,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Đường thẳng $AB$: $\\frac{x-4}{1} = \\frac{y}{5} = \\frac{z-10}{-4}$. Cho $z = 0$ được $a = \\frac{13}{2}$, $b = \\frac{25}{2}$. Suy ra $OC = \\sqrt{\\left(\\frac{13}{2}\\right)^2 + \\left(\\frac{25}{2}\\right)^2} = \\frac{\\sqrt{794}}{2} \\approx 14,1\\text{ km}$.",
+        "source": "Sở Vũng Tàu 2025",
+        "solution": "Đường thẳng $AB$: $\\frac{x-4}{1} = \\frac{y}{5} = \\frac{z-10}{-4}$. Cho $z = 0$ được $a = \\frac{13}{2}$, $b = \\frac{25}{2}$. Suy ra $OC = \\sqrt{\\left(\\frac{13}{2}\\right)^2 + \\left(\\frac{25}{2}\\right)^2} = \\frac{\\sqrt{794}}{2} \\approx 14,1\\text{ km}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "14,1",
+        "accepted_answers": [
+          "14,1",
+          "14.1"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 16 · Dạng 1: Vectơ chỉ phương và lập phương trình đường thẳng cơ bản",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 69,
+      "type": "short",
+      "prompt": "(THPT Mai Trúc Loan - Hà Tĩnh 2025) Thiết kế mái nhà sàn Làng Nủ trong hệ trục $Oxyz$ (hình vẽ) gồm hình chữ nhật $CDFE$ và hình thang $ADFG$ đối xứng qua $(Oxz)$ với $G(6;-6;6)$, $C(3;4;8)$, $F(4;-4;7)$, $I$ là trung điểm $CE$. Biết góc giữa $\\overrightarrow{DC}$ và $\\overrightarrow{AB}$ bằng $a^\\circ$, tìm $a$ (làm tròn đến hàng đơn vị).\n![Hình Câu 69](/bank-images/short-oxyz/q69_p0.jpeg)",
+      "points": 1,
+      "sort_order": 690,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Do đối xứng qua $(Oxz)$: $A(6;6;6)$, $D(4;4;7)$, $B(0;6;6)$. Suy ra $\\overrightarrow{AB} = (-6;0;0)$ và $\\overrightarrow{DC} = (-1;0;1)$. Ta có $\\cos(\\overrightarrow{DC},\\overrightarrow{AB}) = \\frac{6}{6\\sqrt{2}} = \\frac{\\sqrt{2}}{2} \\Rightarrow a = 45$.",
+        "source": "THPT Mai Trúc Loan - Hà Tĩnh 2025",
+        "solution": "Do đối xứng qua $(Oxz)$: $A(6;6;6)$, $D(4;4;7)$, $B(0;6;6)$. Suy ra $\\overrightarrow{AB} = (-6;0;0)$ và $\\overrightarrow{DC} = (-1;0;1)$. Ta có $\\cos(\\overrightarrow{DC},\\overrightarrow{AB}) = \\frac{6}{6\\sqrt{2}} = \\frac{\\sqrt{2}}{2} \\Rightarrow a = 45$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "45",
+        "accepted_answers": [
+          "45"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 70,
+      "type": "short",
+      "prompt": "(THPT Quế Võ 1 - Bắc Ninh 2025) Trên mặt phẳng tọa độ $Oxy$ (đơn vị: $\\text{km}$), một xe thiết giáp chạy thẳng đều từ $A(60;20)$ đến $B(20;50)$ trong $3$ giờ. Gọi $M(x_M;y_M)$ là tọa độ xe sau $1$ giờ xuất phát. Hỏi $y_M$ bằng bao nhiêu?",
+      "points": 1,
+      "sort_order": 700,
+      "choices": [],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Vì $\\overrightarrow{AM} = \\frac{1}{3}\\overrightarrow{AB} = \\left(-\\frac{40}{3}; 10\\right)$ nên $y_M = 20 + 10 = 30$.",
+        "source": "THPT Quế Võ 1 - Bắc Ninh 2025",
+        "solution": "Vì $\\overrightarrow{AM} = \\frac{1}{3}\\overrightarrow{AB} = \\left(-\\frac{40}{3}; 10\\right)$ nên $y_M = 20 + 10 = 30$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "30",
+        "accepted_answers": [
+          "30"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 71,
+      "type": "short",
+      "prompt": "(THPT Quế Võ 1 - Bắc Ninh 2025) Trong hệ trục $Oxyz$ (đơn vị: nghìn $\\text{km}$), hai trạm mặt đất đặt tại $O(0;0;0)$, $A(30;40;0)$ và vệ tinh $M(x;y;35)$ luôn cách mặt đất $35\\,000\\text{ km}$. Tín hiệu truyền với vận tốc $270\\,000\\text{ km/s}$ từ $O$ lên $M$ rồi về $A$ mất ít nhất bao nhiêu giây (làm tròn đến hàng phần trăm)?\n![Hình Câu 71](/bank-images/short-oxyz/q71_p0.jpeg)",
+      "points": 1,
+      "sort_order": 710,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Quãng đường truyền ngắn nhất khi $M$ có hình chiếu là trung điểm $OA$: $(OM + MA)_{\\min} = \\sqrt{30^2 + 40^2 + (35+35)^2} = 10\\sqrt{74}$ nghìn $\\text{km}$. Thời gian ít nhất là $\\frac{10\\sqrt{74}}{270} \\approx 0,32$ giây.",
+        "source": "THPT Quế Võ 1 - Bắc Ninh 2025",
+        "solution": "Quãng đường truyền ngắn nhất khi $M$ có hình chiếu là trung điểm $OA$: $(OM + MA)_{\\min} = \\sqrt{30^2 + 40^2 + (35+35)^2} = 10\\sqrt{74}$ nghìn $\\text{km}$. Thời gian ít nhất là $\\frac{10\\sqrt{74}}{270} \\approx 0,32$ giây.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "0,32",
+        "accepted_answers": [
+          "0,32",
+          "0.32"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 72,
+      "type": "short",
+      "prompt": "(Cụm Chuyên Môn Đắk Lắk 2025) Hai khinh khí cầu bay lên từ gốc $O$. Chiếc 1 cách $O$ $300\\text{ m}$ về phía Nam, $100\\text{ m}$ về phía Đông, cao $100\\text{ m}$; chiếc 2 cách $O$ $200\\text{ m}$ về phía Bắc, $100\\text{ m}$ về phía Tây, cao $50\\text{ m}$. Người đứng trên mặt đất ở vị trí có tổng khoảng cách tới hai khinh khí cầu nhỏ nhất cách $O$ bao nhiêu mét (làm tròn đến hàng đơn vị)?",
+      "points": 1,
+      "sort_order": 720,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Với $A(300;100;100)$ và $B(-200;-100;50)$, lấy $B'(-200;-100;-50)$ đối xứng $B$ qua $(Oxy)$. Giao điểm $M$ của $AB'$ với $(Oxy)$ là $M\\left(-\\frac{100}{3}; -\\frac{100}{3}; 0\\right)$, nên $OM = \\frac{100\\sqrt{2}}{3} \\approx 47\\text{ m}$.",
+        "source": "Cụm Chuyên Môn Đắk Lắk 2025",
+        "solution": "Với $A(300;100;100)$ và $B(-200;-100;50)$, lấy $B'(-200;-100;-50)$ đối xứng $B$ qua $(Oxy)$. Giao điểm $M$ của $AB'$ với $(Oxy)$ là $M\\left(-\\frac{100}{3}; -\\frac{100}{3}; 0\\right)$, nên $OM = \\frac{100\\sqrt{2}}{3} \\approx 47\\text{ m}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "47",
+        "accepted_answers": [
+          "47"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 73,
+      "type": "short",
+      "prompt": "(Sở Bắc Ninh 2025) Trong không gian $Oxyz$ (đơn vị: $\\text{km}$), máy bay di chuyển thẳng đều từ $A(800;500;7)$ đến $B(940;550;8)$ trong $10$ phút. Sau $10$ phút tiếp theo máy bay ở vị trí $D(x;y;z)$. Tính $x - y + z$.\n![Hình Câu 73](/bank-images/short-oxyz/q73_p0.png)",
+      "points": 1,
+      "sort_order": 730,
+      "choices": [],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Vì $B$ là trung điểm $AD$ nên $D = 2B - A = (1080;600;9)$, suy ra $x - y + z = 1080 - 600 + 9 = 489$.",
+        "source": "Sở Bắc Ninh 2025",
+        "solution": "Vì $B$ là trung điểm $AD$ nên $D = 2B - A = (1080;600;9)$, suy ra $x - y + z = 1080 - 600 + 9 = 489$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "489",
+        "accepted_answers": [
+          "489"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 74,
+      "type": "short",
+      "prompt": "(Sở Bình Phước 2025) Trong không gian $Oxyz$ ($O$ tại sân bay, đơn vị: $100\\text{ m}$), một máy bay bay thẳng đều qua $A(200;70;118)$ và $P(80;105;113)$. Sau $50$ giây kể từ lúc ở $A$, độ cao máy bay giảm $400\\text{ m}$. Hỏi sau $25$ giây nữa, khoảng cách từ sân bay đến máy bay là bao nhiêu $\\text{km}$?",
+      "points": 1,
+      "sort_order": 740,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Đường bay $AP$: $x = 200 - 24t,\\; y = 70 + 7t,\\; z = 118 - t$. Sau $75$ giây, độ cao giảm $\\frac{75}{50}\\cdot 400 = 600\\text{ m}$ ($6$ đơn vị), tức $t = 6$. Tọa độ lúc đó là $(56;112;112)$, khoảng cách $S = \\sqrt{56^2 + 112^2 + 112^2} = 168$ đơn vị $= 16,8\\text{ km}$.",
+        "source": "Sở Bình Phước 2025",
+        "solution": "Đường bay $AP$: $x = 200 - 24t,\\; y = 70 + 7t,\\; z = 118 - t$. Sau $75$ giây, độ cao giảm $\\frac{75}{50}\\cdot 400 = 600\\text{ m}$ ($6$ đơn vị), tức $t = 6$. Tọa độ lúc đó là $(56;112;112)$, khoảng cách $S = \\sqrt{56^2 + 112^2 + 112^2} = 168$ đơn vị $= 16,8\\text{ km}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "16,8",
+        "accepted_answers": [
+          "16,8",
+          "16.8"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 16 · Dạng 1: Vectơ chỉ phương và lập phương trình đường thẳng cơ bản",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 75,
+      "type": "short",
+      "prompt": "(Chuyên Lương Thế Vinh - Đồng Nai 2025) Đặt quả bóng rổ ở góc phòng hình hộp chữ nhật sao cho tiếp xúc với hai bức tường và nền nhà. Có một điểm $M$ trên quả bóng cách hai bức tường và nền nhà lần lượt $17\\text{ cm}$, $18\\text{ cm}$ và $21\\text{ cm}$. Tính đường kính quả bóng rổ biết bóng tiêu chuẩn có đường kính từ $23\\text{ cm}$ đến $24,5\\text{ cm}$ (làm tròn đến hàng phần chục).\n![Hình Câu 75](/bank-images/short-oxyz/q75_p0.jpeg)",
+      "points": 1,
+      "sort_order": 750,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Gọi bán kính là $a > 0$, tâm bóng $I(a;a;a)$. Do $M(17;18;21)$ thuộc mặt cầu nên $(17-a)^2 + (18-a)^2 + (21-a)^2 = a^2 \\Leftrightarrow 2a^2 - 112a + 1054 = 0 \\Leftrightarrow a \\approx 11,97$ hoặc $a \\approx 44,03$ (loại). Vậy đường kính là $2a \\approx 23,9\\text{ cm}$.",
+        "source": "Chuyên Lương Thế Vinh - Đồng Nai 2025",
+        "solution": "Gọi bán kính là $a > 0$, tâm bóng $I(a;a;a)$. Do $M(17;18;21)$ thuộc mặt cầu nên $(17-a)^2 + (18-a)^2 + (21-a)^2 = a^2 \\Leftrightarrow 2a^2 - 112a + 1054 = 0 \\Leftrightarrow a \\approx 11,97$ hoặc $a \\approx 44,03$ (loại). Vậy đường kính là $2a \\approx 23,9\\text{ cm}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "23,9",
+        "accepted_answers": [
+          "23,9",
+          "23.9"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 21: Phương trình mặt cầu",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 76,
+      "type": "short",
+      "prompt": "(THPT Lê Quý Đôn - Hà Nội 2025) Một chiếc bàn gấp gọn gắn hệ trục $Oxyz$, chân bàn $FA$ nằm trên đường thẳng $a: \\begin{cases} x = -3 + t \\\\ y = 1 + t \\\\ z = -2 + 4t \\end{cases}$ cắt mặt bàn $(P): x + y - 2z + 6 = 0$ tại $F$. Biết $FA = 40\\sqrt{3}\\text{ cm}$, độ cao của mặt bàn so với mặt đất là bao nhiêu $\\text{cm}$?\n![Hình Câu 76](/bank-images/short-oxyz/q76_p0.jpeg)",
+      "points": 1,
+      "sort_order": 760,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Góc $\\varphi$ giữa đường thẳng $a$ (VTCP $\\vec{u}=(1;1;4)$) và mặt phẳng $(P)$ (VTPT $\\vec{n}=(1;1;-2)$) thỏa $\\sin\\varphi = \\frac{|1+1-8|}{\\sqrt{18}\\cdot\\sqrt{6}} = \\frac{1}{\\sqrt{3}}$. Độ cao mặt bàn là $FA\\sin\\varphi = 40\\sqrt{3}\\cdot\\frac{1}{\\sqrt{3}} = 40\\text{ cm}$.",
+        "source": "THPT Lê Quý Đôn - Hà Nội 2025",
+        "solution": "Góc $\\varphi$ giữa đường thẳng $a$ (VTCP $\\vec{u}=(1;1;4)$) và mặt phẳng $(P)$ (VTPT $\\vec{n}=(1;1;-2)$) thỏa $\\sin\\varphi = \\frac{|1+1-8|}{\\sqrt{18}\\cdot\\sqrt{6}} = \\frac{1}{\\sqrt{3}}$. Độ cao mặt bàn là $FA\\sin\\varphi = 40\\sqrt{3}\\cdot\\frac{1}{\\sqrt{3}} = 40\\text{ cm}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "40",
+        "accepted_answers": [
+          "40"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 20: Bài toán liên quan đến các công thức tính góc trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 77,
+      "type": "short",
+      "prompt": "(Sở Hậu Giang 2025) Từ mặt nước phẳng của một bể nước, tại ba vị trí đôi một cách nhau $2\\text{ m}$, người ta thả dây dọi thẳng đứng chạm đáy bể phẳng với độ dài phần dây trong nước lần lượt là $4\\text{ m}$, $4,4\\text{ m}$, $4,8\\text{ m}$. Đáy bể nghiêng so với mặt phẳng nằm ngang một góc bao nhiêu độ (làm tròn đến hàng phần chục)?",
+      "points": 1,
+      "sort_order": 770,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Chọn $O'(0;0;-4)$, $A'(1;\\sqrt{3};-4,4)$, $B'(2;0;-4,8)$. VTPT mặt đáy $(O'A'B')$ là $[\\overrightarrow{O'A'}, \\overrightarrow{O'B'}] = (-0,8\\sqrt{3}; 0; -2\\sqrt{3})$, cùng phương với $(2;0;5)$. Góc giữa mặt đáy và $(Oxy)$ thỏa $\\cos\\alpha = \\frac{5}{\\sqrt{29}} \\Rightarrow \\alpha \\approx 21,8^\\circ$.",
+        "source": "Sở Hậu Giang 2025",
+        "solution": "Chọn $O'(0;0;-4)$, $A'(1;\\sqrt{3};-4,4)$, $B'(2;0;-4,8)$. VTPT mặt đáy $(O'A'B')$ là $[\\overrightarrow{O'A'}, \\overrightarrow{O'B'}] = (-0,8\\sqrt{3}; 0; -2\\sqrt{3})$, cùng phương với $(2;0;5)$. Góc giữa mặt đáy và $(Oxy)$ thỏa $\\cos\\alpha = \\frac{5}{\\sqrt{29}} \\Rightarrow \\alpha \\approx 21,8^\\circ$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "21,8",
+        "accepted_answers": [
+          "21,8",
+          "21.8"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 20: Bài toán liên quan đến các công thức tính góc trong không gian",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 78,
+      "type": "short",
+      "prompt": "(Sở Hậu Giang 2025) Trong không gian $Oxyz$ (đơn vị: $\\text{km}$), máy bay ở vị trí $A(-800;-40;10)$ trên đường thẳng $d: \\begin{cases} x = -1000 + 100t \\\\ y = -200 + 80t \\\\ z = 10 \\end{cases}$. Tìm giá trị của $t$ ứng với vị trí $A$.",
+      "points": 1,
+      "sort_order": 780,
+      "choices": [],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Thay tọa độ $A(-800;-40;10)$ vào $d$: $-800 = -1000 + 100t \\Leftrightarrow t = 2$ (thỏa mãn cả ba phương trình).",
+        "source": "Sở Hậu Giang 2025",
+        "solution": "Thay tọa độ $A(-800;-40;10)$ vào $d$: $-800 = -1000 + 100t \\Leftrightarrow t = 2$ (thỏa mãn cả ba phương trình).",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "2",
+        "accepted_answers": [
+          "2"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 16 · Dạng 1: Vectơ chỉ phương và lập phương trình đường thẳng cơ bản",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 79,
+      "type": "short",
+      "prompt": "(Sở Lai Châu 2025) Trong không gian $Oxyz$ (đơn vị: $\\text{km}$), vùng phủ sóng điện thoại là hình cầu $(S): x^2 + y^2 + z^2 - 4x - 6y - 2z + 5 = 0$. Khoảng cách xa nhất giữa hai điểm thuộc vùng phủ sóng là bao nhiêu $\\text{km}$?",
+      "points": 1,
+      "sort_order": 790,
+      "choices": [],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Mặt cầu có tâm $I(2;3;1)$, bán kính $R = \\sqrt{4+9+1-5} = 3$. Khoảng cách xa nhất bằng đường kính $2R = 6\\text{ km}$.",
+        "source": "Sở Lai Châu 2025",
+        "solution": "Mặt cầu có tâm $I(2;3;1)$, bán kính $R = \\sqrt{4+9+1-5} = 3$. Khoảng cách xa nhất bằng đường kính $2R = 6\\text{ km}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "6",
+        "accepted_answers": [
+          "6"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 21: Phương trình mặt cầu",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 80,
+      "type": "short",
+      "prompt": "(THPT Nguyễn Gia Thiều - Hà Nội 2025) Người điều khiển Flycam đứng tại gốc $O(0;0;0)$ (đơn vị: mét), Flycam đang ở $A(1;-8;4)$. Khoảng cách từ người điều khiển đến Flycam bằng bao nhiêu mét?",
+      "points": 1,
+      "sort_order": 800,
+      "choices": [],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Khoảng cách $OA = \\sqrt{1^2 + (-8)^2 + 4^2} = \\sqrt{81} = 9\\text{ m}$.",
+        "source": "THPT Nguyễn Gia Thiều - Hà Nội 2025",
+        "solution": "Khoảng cách $OA = \\sqrt{1^2 + (-8)^2 + 4^2} = \\sqrt{81} = 9\\text{ m}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "9",
+        "accepted_answers": [
+          "9"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 81,
+      "type": "short",
+      "prompt": "(Cụm chuyên môn Đắk Lắk 2025) Trong không gian $Oxyz$ (đơn vị: mét), cabin cáp treo xuất phát từ $A(10;0;3)$ chuyển động theo đường cáp có VTCP $\\vec{u} = (2;2;1)$. Hai trụ $B, C$ trên cáp có $x_B = 20$, $y_C = 120$. Biết thời gian đi từ $B$ đến $C$ là $55\\text{ s}$, vận tốc cabin bằng bao nhiêu $\\text{m/s}$?",
+      "points": 1,
+      "sort_order": 810,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Đường cáp: $(10+2t; 2t; 3+t)$. Trụ $B$ ứng với $t = 5 \\Rightarrow B(20;10;8)$; trụ $C$ ứng với $t = 60 \\Rightarrow C(130;120;63)$. Độ dài $BC = 55|\\vec{u}| = 165\\text{ m}$, nên vận tốc là $\\frac{165}{55} = 3\\text{ m/s}$.",
+        "source": "Cụm chuyên môn Đắk Lắk 2025",
+        "solution": "Đường cáp: $(10+2t; 2t; 3+t)$. Trụ $B$ ứng với $t = 5 \\Rightarrow B(20;10;8)$; trụ $C$ ứng với $t = 60 \\Rightarrow C(130;120;63)$. Độ dài $BC = 55|\\vec{u}| = 165\\text{ m}$, nên vận tốc là $\\frac{165}{55} = 3\\text{ m/s}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "3",
+        "accepted_answers": [
+          "3"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 16 · Dạng 1: Vectơ chỉ phương và lập phương trình đường thẳng cơ bản",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 82,
+      "type": "short",
+      "prompt": "(Cụm chuyên môn Đắk Lắk 2025) Trong không gian $Oxyz$, tọa độ ba khu vực là $A(20;30;0)$, $B(70;50;40)$, $C(50;80;70)$. Vị trí trạm phát sóng $D(a;b;c)$ cách đều $A, B, C$ và có khoảng cách tới chúng nhỏ nhất. Tính $T = a + b + c$ (làm tròn đến hàng đơn vị).",
+      "points": 1,
+      "sort_order": 820,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Điểm $D$ là tâm đường tròn ngoại tiếp $\\triangle ABC$. Mặt phẳng $(ABC): 6a + 23b - 19c = 810$, kết hợp $DA^2 = DB^2 = DC^2$ cho $100a + 40b + 80c = 7700$ và $60a + 100b + 140c = 12500$. Giải hệ được $D\\left(\\frac{11085}{463}; \\frac{27445}{463}; \\frac{16985}{463}\\right)$, suy ra $T = \\frac{55515}{463} \\approx 120$.",
+        "source": "Cụm chuyên môn Đắk Lắk 2025",
+        "solution": "Điểm $D$ là tâm đường tròn ngoại tiếp $\\triangle ABC$. Mặt phẳng $(ABC): 6a + 23b - 19c = 810$, kết hợp $DA^2 = DB^2 = DC^2$ cho $100a + 40b + 80c = 7700$ và $60a + 100b + 140c = 12500$. Giải hệ được $D\\left(\\frac{11085}{463}; \\frac{27445}{463}; \\frac{16985}{463}\\right)$, suy ra $T = \\frac{55515}{463} \\approx 120$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "120",
+        "accepted_answers": [
+          "120"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 17: Viết phương trình mặt phẳng có vectơ pháp tuyến tìm được bằng tích có hướng của cặp vectơ chỉ phương",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 83,
+      "type": "short",
+      "prompt": "(Sở Nghệ An 2025) Trong không gian $Oxyz$ (đơn vị: $1\\text{ m}$), mặt ngoài tòa nhà là mặt phẳng $(P)$ thẳng đứng đi qua $C(10;50;0)$ và $D(30;10;0)$. Drone bay từ $O(0;0;0)$ đến $A(30;40;120)$, rồi bay vuông góc tới $(P)$ tại điểm giao hàng $B$. Tính khoảng cách $OB$ (làm tròn đến hàng đơn vị).\n![Hình Câu 83](/bank-images/short-oxyz/q83_p0.jpeg)",
+      "points": 1,
+      "sort_order": 830,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Mặt phẳng $(P)$ thẳng đứng qua $C, D$ có VTPT $(2;1;0)$ và phương trình $2x + y - 70 = 0$. Hình chiếu $B(30+2t; 40+t; 120)$ của $A$ lên $(P)$ thỏa $2(30+2t) + (40+t) - 70 = 0 \\Leftrightarrow t = -6 \\Rightarrow B(18;34;120)$. Vậy $OB = \\sqrt{18^2 + 34^2 + 120^2} = \\sqrt{15880} \\approx 126\\text{ m}$.",
+        "source": "Sở Nghệ An 2025",
+        "solution": "Mặt phẳng $(P)$ thẳng đứng qua $C, D$ có VTPT $(2;1;0)$ và phương trình $2x + y - 70 = 0$. Hình chiếu $B(30+2t; 40+t; 120)$ của $A$ lên $(P)$ thỏa $2(30+2t) + (40+t) - 70 = 0 \\Leftrightarrow t = -6 \\Rightarrow B(18;34;120)$. Vậy $OB = \\sqrt{18^2 + 34^2 + 120^2} = \\sqrt{15880} \\approx 126\\text{ m}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "126",
+        "accepted_answers": [
+          "126"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 17: Viết phương trình mặt phẳng có vectơ pháp tuyến tìm được bằng tích có hướng của cặp vectơ chỉ phương",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 84,
+      "type": "short",
+      "prompt": "(Chuyên Lam Sơn - Thanh Hóa 2025) Thiết kế một thùng hàng hình hộp chữ nhật có tổng diện tích toàn phần bằng $36\\text{ m}^2$ và đường chéo không gian dài $6\\text{ m}$. Thể tích lớn nhất có thể của thùng hàng là bao nhiêu $\\text{m}^3$ (làm tròn đến hàng phần chục)?\n![Hình Câu 84](/bank-images/short-oxyz/q84_p0.jpeg)",
+      "points": 1,
+      "sort_order": 840,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Gọi ba kích thước là $x, y, z > 0$: $xy + yz + zx = 18$ và $x^2 + y^2 + z^2 = 36 \\Rightarrow x + y + z = 6\\sqrt{2}$. Khi đó $yz = x^2 - 6\\sqrt{2}x + 18$ và $(y+z)^2 \\ge 4yz \\Leftrightarrow 0 \\le x \\le 4\\sqrt{2}$. Xét $V = x^3 - 6\\sqrt{2}x^2 + 18x$ trên $[0; 4\\sqrt{2}]$, cực đại đạt tại $x = \\sqrt{2}$ (và $x = 4\\sqrt{2}$): $V_{\\max} = 8\\sqrt{2} \\approx 11,3\\text{ m}^3$.",
+        "source": "Chuyên Lam Sơn - Thanh Hóa 2025",
+        "solution": "Gọi ba kích thước là $x, y, z > 0$: $xy + yz + zx = 18$ và $x^2 + y^2 + z^2 = 36 \\Rightarrow x + y + z = 6\\sqrt{2}$. Khi đó $yz = x^2 - 6\\sqrt{2}x + 18$ và $(y+z)^2 \\ge 4yz \\Leftrightarrow 0 \\le x \\le 4\\sqrt{2}$. Xét $V = x^3 - 6\\sqrt{2}x^2 + 18x$ trên $[0; 4\\sqrt{2}]$, cực đại đạt tại $x = \\sqrt{2}$ (và $x = 4\\sqrt{2}$): $V_{\\max} = 8\\sqrt{2} \\approx 11,3\\text{ m}^3$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "11,3",
+        "accepted_answers": [
+          "11,3",
+          "11.3"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 14: Biểu thức tọa độ của các phép toán vectơ",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 85,
+      "type": "short",
+      "prompt": "(Chuyên Lam Sơn - Thanh Hóa 2025) Trong không gian $Oxyz$, một mặt cầu di động luôn đi qua $A(3;5;-2)$, $B(-1;3;2)$ và tiếp xúc với mặt phẳng $(P): 2x + y - 2z + 9 = 0$ tại $C$. Gọi $m_1, m_2$ lần lượt là giá trị lớn nhất và nhỏ nhất của $OC$. Tính $m_1^2 + m_2^2$.\n![Hình Câu 85](/bank-images/short-oxyz/q85_p0.jpeg)",
+      "points": 1,
+      "sort_order": 850,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Ta có $\\overrightarrow{AB} = (-4;-2;4) = -2\\vec{n}_P \\Rightarrow AB \\perp (P)$. Giao điểm $M = AB \\cap (P) = \\left(-\\frac{7}{3}; \\frac{7}{3}; \\frac{10}{3}\\right)$ với $MA = 8, MB = 2$. Theo phương tích, $MC^2 = MA\\cdot MB = 16 \\Rightarrow C$ chạy trên đường tròn tâm $M$, bán kính $r = 4$ trong $(P)$. Hình chiếu của $O$ lên $(P)$ là $H(-2;-1;2)$ có $OH = 3$, $HM = \\sqrt{13} < 4$. Suy ra $m_1^2 = 9 + (4+\\sqrt{13})^2$ và $m_2^2 = 9 + (4-\\sqrt{13})^2$, nên $m_1^2 + m_2^2 = 18 + 2(16+13) = 76$.",
+        "source": "Chuyên Lam Sơn - Thanh Hóa 2025",
+        "solution": "Ta có $\\overrightarrow{AB} = (-4;-2;4) = -2\\vec{n}_P \\Rightarrow AB \\perp (P)$. Giao điểm $M = AB \\cap (P) = \\left(-\\frac{7}{3}; \\frac{7}{3}; \\frac{10}{3}\\right)$ với $MA = 8, MB = 2$. Theo phương tích, $MC^2 = MA\\cdot MB = 16 \\Rightarrow C$ chạy trên đường tròn tâm $M$, bán kính $r = 4$ trong $(P)$. Hình chiếu của $O$ lên $(P)$ là $H(-2;-1;2)$ có $OH = 3$, $HM = \\sqrt{13} < 4$. Suy ra $m_1^2 = 9 + (4+\\sqrt{13})^2$ và $m_2^2 = 9 + (4-\\sqrt{13})^2$, nên $m_1^2 + m_2^2 = 18 + 2(16+13) = 76$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "76",
+        "accepted_answers": [
+          "76"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 21: Phương trình mặt cầu",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 86,
+      "type": "short",
+      "prompt": "(Cụm THPT Hoàn Kiếm - Hai Bà Trưng - Hà Nội 2025) Một phần sân trường hình thang vuông $ABCD$ (vuông tại $A, B$) có $AB = 25\\text{ m}$, $AD = 15\\text{ m}$, $BC = 18\\text{ m}$. Để thoát nước về góc $C$, người ta hạ độ cao tại $B, C, D$ thấp hơn $A$ lần lượt $10\\text{ cm}$, $a\\text{ cm}$, $6\\text{ cm}$ sao cho $A, B', C', D'$ đồng phẳng. Tìm $a$.\n![Hình Câu 86](/bank-images/short-oxyz/q86_p0.png)",
+      "points": 1,
+      "sort_order": 860,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Chọn hệ trục với $B(0;0;0)$, $A(25;0;0)$, $C(0;18;0)$, $D(25;15;0)$ và độ hạ là cao độ $z$: $B'(0;0;10)$, $C'(0;18;a)$, $D'(25;15;6)$. Điều kiện đồng phẳng $[\\overrightarrow{AB'}, \\overrightarrow{AD'}]\\cdot\\overrightarrow{AC'} = 0$ cho $(-150;150;-375)\\cdot(-25;18;a) = 0 \\Leftrightarrow 6450 - 375a = 0 \\Leftrightarrow a = 17,2$.",
+        "source": "Cụm THPT Hoàn Kiếm - Hai Bà Trưng - Hà Nội 2025",
+        "solution": "Chọn hệ trục với $B(0;0;0)$, $A(25;0;0)$, $C(0;18;0)$, $D(25;15;0)$ và độ hạ là cao độ $z$: $B'(0;0;10)$, $C'(0;18;a)$, $D'(25;15;6)$. Điều kiện đồng phẳng $[\\overrightarrow{AB'}, \\overrightarrow{AD'}]\\cdot\\overrightarrow{AC'} = 0$ cho $(-150;150;-375)\\cdot(-25;18;a) = 0 \\Leftrightarrow 6450 - 375a = 0 \\Leftrightarrow a = 17,2$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "17,2",
+        "accepted_answers": [
+          "17,2",
+          "17.2"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 15 · Dạng 1: Vectơ pháp tuyến và lập phương trình mặt phẳng cơ bản",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 87,
+      "type": "short",
+      "prompt": "(Sở Gia Lai 2025) Trong không gian $Oxyz$ (đơn vị: $1\\text{ km}$), máy bay cất cánh thẳng từ $O(0;0;0)$ đến $A(2;5;1,2)$ trên sân bay nằm trong mặt phẳng $(Oxy)$. Góc giữa đường bay và sân bay bằng bao nhiêu độ (làm tròn đến hàng đơn vị)?",
+      "points": 1,
+      "sort_order": 870,
+      "choices": [],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Ta có $\\sin\\alpha = \\frac{|\\overrightarrow{OA}\\cdot\\vec{k}|}{|\\overrightarrow{OA}|} = \\frac{1,2}{\\sqrt{2^2 + 5^2 + 1,2^2}} = \\frac{6\\sqrt{761}}{761} \\approx 0,2175 \\Rightarrow \\alpha \\approx 12,56^\\circ \\approx 13^\\circ$.",
+        "source": "Sở Gia Lai 2025",
+        "solution": "Ta có $\\sin\\alpha = \\frac{|\\overrightarrow{OA}\\cdot\\vec{k}|}{|\\overrightarrow{OA}|} = \\frac{1,2}{\\sqrt{2^2 + 5^2 + 1,2^2}} = \\frac{6\\sqrt{761}}{761} \\approx 0,2175 \\Rightarrow \\alpha \\approx 12,56^\\circ \\approx 13^\\circ$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "13",
+        "accepted_answers": [
+          "13"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 20: Bài toán liên quan đến các công thức tính góc trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 88,
+      "type": "short",
+      "prompt": "(Liên trường THPT Ninh Bình 2025) Trong không gian $Oxyz$ ($O$ tại sân bay, đơn vị: $100\\text{ m}$), một máy bay bay thẳng đều qua $A(200;70;118)$ và $P(80;105;113)$. Sau $50$ giây từ $A$, độ cao máy bay giảm $400\\text{ m}$. Hỏi sau $25$ giây nữa, khoảng cách từ sân bay đến máy bay là bao nhiêu $\\text{km}$?",
+      "points": 1,
+      "sort_order": 880,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Vectơ vận tốc $\\vec{v}$ cùng phương $\\overrightarrow{AP} = (-120;35;-5)$ và giảm $4$ đơn vị cao độ trong $50$ giây nên $\\vec{v} = (-1,92; 0,56; -0,08)$ (đơn vị/s). Sau $75$ giây, máy bay ở $C(56;112;112)$ cách $O$ đoạn $OC = \\sqrt{56^2 + 112^2 + 112^2} = 168$ đơn vị $= 16,8\\text{ km}$.",
+        "source": "Liên trường THPT Ninh Bình 2025",
+        "solution": "Vectơ vận tốc $\\vec{v}$ cùng phương $\\overrightarrow{AP} = (-120;35;-5)$ và giảm $4$ đơn vị cao độ trong $50$ giây nên $\\vec{v} = (-1,92; 0,56; -0,08)$ (đơn vị/s). Sau $75$ giây, máy bay ở $C(56;112;112)$ cách $O$ đoạn $OC = \\sqrt{56^2 + 112^2 + 112^2} = 168$ đơn vị $= 16,8\\text{ km}$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "16,8",
+        "accepted_answers": [
+          "16,8",
+          "16.8"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 16 · Dạng 1: Vectơ chỉ phương và lập phương trình đường thẳng cơ bản",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 89,
+      "type": "short",
+      "prompt": "(Sở Hà Tĩnh 2025) Trong không gian $Oxyz$ (đơn vị: $\\text{km}$), trạm cứu hộ đặt tại $A(5;0;0)$, tàu du lịch $B$ trên $d_1: \\begin{cases} x = 2 + t \\\\ y = 1 - 2t \\\\ z = 0 \\end{cases}$ và tàu chở hàng $C$ trên $d_2: \\begin{cases} x = 2 - s \\\\ y = 11 + s \\\\ z = 0 \\end{cases}$. Tìm vị trí $B, C$ để tổng quãng đường $T = AB + BC + CA$ nhỏ nhất. Biết $T_{\\min} = \\sqrt{a}\\text{ (km)}$, tính $a + 2025$.",
+      "points": 1,
+      "sort_order": 890,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Hai đường thẳng $d_1, d_2$ và điểm $A$ cùng thuộc mặt phẳng $z = 0$. Điểm đối xứng của $A$ qua $d_1$ là $A_1(1;-2;0)$, qua $d_2$ là $A_2(13;8;0)$. Ta có $T = A_1B + BC + CA_2 \\ge A_1A_2 = \\sqrt{12^2 + 10^2} = \\sqrt{244}$. Suy ra $a = 244$ và $a + 2025 = 2269$.",
+        "source": "Sở Hà Tĩnh 2025",
+        "solution": "Hai đường thẳng $d_1, d_2$ và điểm $A$ cùng thuộc mặt phẳng $z = 0$. Điểm đối xứng của $A$ qua $d_1$ là $A_1(1;-2;0)$, qua $d_2$ là $A_2(13;8;0)$. Ta có $T = A_1B + BC + CA_2 \\ge A_1A_2 = \\sqrt{12^2 + 10^2} = \\sqrt{244}$. Suy ra $a = 244$ và $a + 2025 = 2269$.",
+        "pack": "short-thucte-oxyz"
+      },
+      "answer_key": {
+        "correct_answer": "2269",
+        "accepted_answers": [
+          "2269"
+        ],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 4",
+        "Bài 16 · Dạng 1: Vectơ chỉ phương và lập phương trình đường thẳng cơ bản",
+        "Vận dụng"
+      ]
+    }
+  ]
+}

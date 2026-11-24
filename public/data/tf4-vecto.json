@@ -1,0 +1,188 @@
+{
+  "pack_id": "tf4-vecto",
+  "title": "Chủ đề 15 · Vectơ trong không gian — Đúng/Sai (2025)",
+  "chapter": "GĐ1 · Chương 3",
+  "count": 5,
+  "questions": [
+    {
+      "source_num": 1,
+      "type": "tf4",
+      "prompt": "(THPT Văn Giang - Hưng Yên 2025) Cho tứ diện $ABCD$ có $AB, AC, AD$ đôi một vuông góc. Cạnh $AB = AC = a$. Gọi $M$ là trung điểm của $BC$, $H$ là trung điểm của $MD$.",
+      "points": 1,
+      "sort_order": 10,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "a) \\textbf{Đúng.} Vì $M$ là trung điểm của $BC$ nên $\\overrightarrow{DM} = \\dfrac{\\overrightarrow{DB} + \\overrightarrow{DC}}{2}$.\nb) \\textbf{Sai.} Do $\\triangle ABC$ cân tại $A$ nên $AM \\perp BC$; do $DB = DC = \\sqrt{a^2 + AD^2}$ nên $\\triangle DBC$ cân tại $D$, suy ra $DM \\perp BC$. Do đó $BC \\perp (ADM) \\Rightarrow BC \\perp AH$, nên $(\\overrightarrow{AH}, \\overrightarrow{BC}) = 90^\\circ$.\nc) \\textbf{Đúng.} Ta có $\\overrightarrow{AH} = \\dfrac{\\overrightarrow{AD} + \\overrightarrow{AM}}{2} = \\dfrac{1}{2}\\overrightarrow{AD} + \\dfrac{\\overrightarrow{AB} + \\overrightarrow{AC}}{4}$. Vì $AB, AC, AD$ đôi một vuông góc nên $\\overrightarrow{AB}\\cdot\\overrightarrow{AH} = \\dfrac{1}{4}AB^2 = \\dfrac{a^2}{4}$.\nd) \\textbf{Sai.} Ta có $\\overrightarrow{AH} = \\dfrac{1}{2}\\overrightarrow{AD} + \\dfrac{\\overrightarrow{AB} + \\overrightarrow{AC}}{4}$ (không phải $\\dfrac{\\overrightarrow{AB} + \\overrightarrow{AD}}{4}$).",
+        "statements": [
+          "$\\overrightarrow{DM} = \\dfrac{\\overrightarrow{DB} + \\overrightarrow{DC}}{2}$.",
+          "Góc giữa hai vectơ $\\overrightarrow{AH}$ và $\\overrightarrow{BC}$ bằng $60^\\circ$.",
+          "$\\overrightarrow{AB}\\cdot\\overrightarrow{AH} = \\dfrac{a^2}{4}$.",
+          "$\\overrightarrow{AH} = \\dfrac{1}{2}\\overrightarrow{AD} + \\dfrac{\\overrightarrow{AB} + \\overrightarrow{AD}}{4}$."
+        ],
+        "source": "THPT Văn Giang - Hưng Yên 2025",
+        "solution": "a) \\textbf{Đúng.} Vì $M$ là trung điểm của $BC$ nên $\\overrightarrow{DM} = \\dfrac{\\overrightarrow{DB} + \\overrightarrow{DC}}{2}$.\nb) \\textbf{Sai.} Do $\\triangle ABC$ cân tại $A$ nên $AM \\perp BC$; do $DB = DC = \\sqrt{a^2 + AD^2}$ nên $\\triangle DBC$ cân tại $D$, suy ra $DM \\perp BC$. Do đó $BC \\perp (ADM) \\Rightarrow BC \\perp AH$, nên $(\\overrightarrow{AH}, \\overrightarrow{BC}) = 90^\\circ$.\nc) \\textbf{Đúng.} Ta có $\\overrightarrow{AH} = \\dfrac{\\overrightarrow{AD} + \\overrightarrow{AM}}{2} = \\dfrac{1}{2}\\overrightarrow{AD} + \\dfrac{\\overrightarrow{AB} + \\overrightarrow{AC}}{4}$. Vì $AB, AC, AD$ đôi một vuông góc nên $\\overrightarrow{AB}\\cdot\\overrightarrow{AH} = \\dfrac{1}{4}AB^2 = \\dfrac{a^2}{4}$.\nd) \\textbf{Sai.} Ta có $\\overrightarrow{AH} = \\dfrac{1}{2}\\overrightarrow{AD} + \\dfrac{\\overrightarrow{AB} + \\overrightarrow{AC}}{4}$ (không phải $\\dfrac{\\overrightarrow{AB} + \\overrightarrow{AD}}{4}$).",
+        "pack": "tf4-vecto"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 3: Tích vô hướng của vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 2,
+      "type": "tf4",
+      "prompt": "(THPT Gia Bình - Bắc Ninh 2025) Cho hình lập phương $ABCD.A'B'C'D'$ có cạnh bằng $a$. Gọi $I$ là tâm hình vuông $ABCD$, gọi $G$ là trọng tâm của tam giác $AB'C$ (tham khảo hình vẽ).\n![Hình Câu 2](/bank-images/tf4-vecto/q2_p0.jpeg)",
+      "points": 1,
+      "sort_order": 20,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "a) \\textbf{Sai.} Vì $G$ là trọng tâm $\\triangle AB'C$ nên $\\overrightarrow{GA} + \\overrightarrow{GB'} + \\overrightarrow{GC} = \\vec{0}$ (còn $\\overrightarrow{GA} + \\overrightarrow{GC} = 2\\overrightarrow{GI} \\neq \\vec{0}$).\nb) \\textbf{Đúng.} Theo quy tắc hình hộp: $\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$.\nc) \\textbf{Đúng.} Ta có $\\overrightarrow{AB}\\cdot\\overrightarrow{DD'} = \\overrightarrow{DC}\\cdot\\overrightarrow{DD'} = 0$ vì $DC \\perp DD'$.\nd) \\textbf{Sai.} Do $\\overrightarrow{DC'} = \\overrightarrow{AB'}$ nên $(\\overrightarrow{AC}, \\overrightarrow{DC'}) = (\\overrightarrow{AC}, \\overrightarrow{AB'}) = \\widehat{CAB'} = 60^\\circ$ (vì $\\triangle CAB'$ đều cạnh $a\\sqrt{2}$).",
+        "statements": [
+          "$\\overrightarrow{GA} + \\overrightarrow{GB'} + \\overrightarrow{GC} = 2\\overrightarrow{GI}$.",
+          "$\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$.",
+          "$\\overrightarrow{AB}\\cdot\\overrightarrow{DD'} = 0$.",
+          "$(\\overrightarrow{AC}, \\overrightarrow{DC'}) = 30^\\circ$."
+        ],
+        "source": "THPT Gia Bình - Bắc Ninh 2025",
+        "solution": "a) \\textbf{Sai.} Vì $G$ là trọng tâm $\\triangle AB'C$ nên $\\overrightarrow{GA} + \\overrightarrow{GB'} + \\overrightarrow{GC} = \\vec{0}$ (còn $\\overrightarrow{GA} + \\overrightarrow{GC} = 2\\overrightarrow{GI} \\neq \\vec{0}$).\nb) \\textbf{Đúng.} Theo quy tắc hình hộp: $\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$.\nc) \\textbf{Đúng.} Ta có $\\overrightarrow{AB}\\cdot\\overrightarrow{DD'} = \\overrightarrow{DC}\\cdot\\overrightarrow{DD'} = 0$ vì $DC \\perp DD'$.\nd) \\textbf{Sai.} Do $\\overrightarrow{DC'} = \\overrightarrow{AB'}$ nên $(\\overrightarrow{AC}, \\overrightarrow{DC'}) = (\\overrightarrow{AC}, \\overrightarrow{AB'}) = \\widehat{CAB'} = 60^\\circ$ (vì $\\triangle CAB'$ đều cạnh $a\\sqrt{2}$).",
+        "pack": "tf4-vecto"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 3,
+      "type": "tf4",
+      "prompt": "(THPT Triệu Sơn 1 - Thanh Hóa 2025) Cho hình lập phương $ABCD.A'B'C'D'$ có cạnh bằng $a$. Gọi $O$ là tâm hình vuông $BCC'B'$.",
+      "points": 1,
+      "sort_order": 30,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Chọn hệ trục tọa độ với $A'(0;0;0)$, $B'(a;0;0)$, $D'(0;a;0)$, $A(0;0;a)$. Khi đó $B(a;0;a)$, $C(a;a;a)$, $D(0;a;a)$, $C'(a;a;0)$, $O\\left(a; \\dfrac{a}{2}; \\dfrac{a}{2}\\right)$.\na) \\textbf{Sai.} $\\overrightarrow{BD} = (-a;a;0)$, $\\overrightarrow{B'C'} = (0;a;0) \\Rightarrow \\overrightarrow{BD}\\cdot\\overrightarrow{B'C'} = a^2 \\neq a^2\\sqrt{2}$.\nb) \\textbf{Đúng.} Vì $\\overrightarrow{BB'} = \\overrightarrow{AA'}$ nên $\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{BB'} = \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$.\nc) \\textbf{Đúng.} Ta có $\\overrightarrow{DO} = \\left(a; -\\dfrac{a}{2}; -\\dfrac{a}{2}\\right) = \\overrightarrow{AB} - \\dfrac{1}{2}\\overrightarrow{AD} + \\dfrac{1}{2}\\overrightarrow{AA'}$.\nd) \\textbf{Sai.} $\\overrightarrow{DA'} = (0;-a;-a)$, $\\overrightarrow{AC} = (a;a;0) \\Rightarrow \\cos(\\overrightarrow{DA'}, \\overrightarrow{AC}) = \\dfrac{-a^2}{a\\sqrt{2}\\cdot a\\sqrt{2}} = -\\dfrac{1}{2} \\Rightarrow (\\overrightarrow{DA'}, \\overrightarrow{AC}) = 120^\\circ$.",
+        "statements": [
+          "$\\overrightarrow{BD}\\cdot\\overrightarrow{B'C'} = a^2\\sqrt{2}$.",
+          "$\\overrightarrow{AC'} = \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{BB'}$.",
+          "$\\overrightarrow{DO} = \\overrightarrow{AB} - \\dfrac{1}{2}\\overrightarrow{AD} + \\dfrac{1}{2}\\overrightarrow{AA'}$.",
+          "Góc giữa hai vectơ $\\overrightarrow{DA'}$ và $\\overrightarrow{AC}$ bằng $60^\\circ$."
+        ],
+        "source": "THPT Triệu Sơn 1 - Thanh Hóa 2025",
+        "solution": "Chọn hệ trục tọa độ với $A'(0;0;0)$, $B'(a;0;0)$, $D'(0;a;0)$, $A(0;0;a)$. Khi đó $B(a;0;a)$, $C(a;a;a)$, $D(0;a;a)$, $C'(a;a;0)$, $O\\left(a; \\dfrac{a}{2}; \\dfrac{a}{2}\\right)$.\na) \\textbf{Sai.} $\\overrightarrow{BD} = (-a;a;0)$, $\\overrightarrow{B'C'} = (0;a;0) \\Rightarrow \\overrightarrow{BD}\\cdot\\overrightarrow{B'C'} = a^2 \\neq a^2\\sqrt{2}$.\nb) \\textbf{Đúng.} Vì $\\overrightarrow{BB'} = \\overrightarrow{AA'}$ nên $\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{BB'} = \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$.\nc) \\textbf{Đúng.} Ta có $\\overrightarrow{DO} = \\left(a; -\\dfrac{a}{2}; -\\dfrac{a}{2}\\right) = \\overrightarrow{AB} - \\dfrac{1}{2}\\overrightarrow{AD} + \\dfrac{1}{2}\\overrightarrow{AA'}$.\nd) \\textbf{Sai.} $\\overrightarrow{DA'} = (0;-a;-a)$, $\\overrightarrow{AC} = (a;a;0) \\Rightarrow \\cos(\\overrightarrow{DA'}, \\overrightarrow{AC}) = \\dfrac{-a^2}{a\\sqrt{2}\\cdot a\\sqrt{2}} = -\\dfrac{1}{2} \\Rightarrow (\\overrightarrow{DA'}, \\overrightarrow{AC}) = 120^\\circ$.",
+        "pack": "tf4-vecto"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 3: Tích vô hướng của vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 4,
+      "type": "tf4",
+      "prompt": "(THPT Lê Xoay - Vĩnh Phúc 2025) Trong không gian, cho hình lập phương $ABCD.A'B'C'D'$ có cạnh bằng $a$.",
+      "points": 1,
+      "sort_order": 40,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "a) \\textbf{Đúng.} Ta có $\\overrightarrow{A'B'} - \\overrightarrow{DC'} = \\overrightarrow{DC} - \\overrightarrow{DC'} = \\overrightarrow{C'C}$, suy ra $|\\overrightarrow{A'B'} - \\overrightarrow{DC'}| = C'C = a$.\nb) \\textbf{Sai.} Vì $\\overrightarrow{AB}$ và $\\overrightarrow{CD}$ ngược hướng nên $\\overrightarrow{AB} = -\\overrightarrow{CD}$.\nc) \\textbf{Sai.} $\\overrightarrow{AB}\\cdot\\overrightarrow{B'C'} = \\overrightarrow{AB}\\cdot\\overrightarrow{BC} = 0$ (vì $AB \\perp BC$).\nd) \\textbf{Đúng.} Từ $\\overrightarrow{C'N} = 2\\overrightarrow{NB'}$ suy ra $\\overrightarrow{B'N} = \\dfrac{1}{3}\\overrightarrow{B'C'} = \\dfrac{1}{3}\\overrightarrow{AD}$. Do đó $\\overrightarrow{AN} = \\overrightarrow{AB} + \\overrightarrow{BB'} + \\overrightarrow{B'N} = \\overrightarrow{AA'} + \\overrightarrow{AB} + \\dfrac{1}{3}\\overrightarrow{AD}$.",
+        "statements": [
+          "$|\\overrightarrow{A'B'} - \\overrightarrow{DC'}| = a$.",
+          "$\\overrightarrow{AB} = \\overrightarrow{CD}$.",
+          "$\\overrightarrow{AB}\\cdot\\overrightarrow{B'C'} = a^2$.",
+          "Gọi $N$ là điểm thỏa $\\overrightarrow{C'N} = 2\\overrightarrow{NB'}$. Khi đó $\\overrightarrow{AN} = \\overrightarrow{AA'} + \\overrightarrow{AB} + \\dfrac{1}{3}\\overrightarrow{AD}$."
+        ],
+        "source": "THPT Lê Xoay - Vĩnh Phúc 2025",
+        "solution": "a) \\textbf{Đúng.} Ta có $\\overrightarrow{A'B'} - \\overrightarrow{DC'} = \\overrightarrow{DC} - \\overrightarrow{DC'} = \\overrightarrow{C'C}$, suy ra $|\\overrightarrow{A'B'} - \\overrightarrow{DC'}| = C'C = a$.\nb) \\textbf{Sai.} Vì $\\overrightarrow{AB}$ và $\\overrightarrow{CD}$ ngược hướng nên $\\overrightarrow{AB} = -\\overrightarrow{CD}$.\nc) \\textbf{Sai.} $\\overrightarrow{AB}\\cdot\\overrightarrow{B'C'} = \\overrightarrow{AB}\\cdot\\overrightarrow{BC} = 0$ (vì $AB \\perp BC$).\nd) \\textbf{Đúng.} Từ $\\overrightarrow{C'N} = 2\\overrightarrow{NB'}$ suy ra $\\overrightarrow{B'N} = \\dfrac{1}{3}\\overrightarrow{B'C'} = \\dfrac{1}{3}\\overrightarrow{AD}$. Do đó $\\overrightarrow{AN} = \\overrightarrow{AB} + \\overrightarrow{BB'} + \\overrightarrow{B'N} = \\overrightarrow{AA'} + \\overrightarrow{AB} + \\dfrac{1}{3}\\overrightarrow{AD}$.",
+        "pack": "tf4-vecto"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 2: Phân tích một vectơ theo các vectơ còn lại",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 5,
+      "type": "tf4",
+      "prompt": "(THPT Bắc Đông Quan - Thái Bình 2025) Cho hình hộp chữ nhật $ABCD.A'B'C'D'$ có đáy $ABCD$ là hình vuông cạnh $a$. Đường thẳng $A'C$ tạo với đáy $(ABCD)$ góc $\\alpha$ sao cho $\\tan\\alpha = \\sqrt{2}$.",
+      "points": 1,
+      "sort_order": 50,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "a) \\textbf{Đúng.} Ta có $\\alpha = \\widehat{A'CA}$, suy ra $A'A = AC\\cdot\\tan\\alpha = a\\sqrt{2}\\cdot\\sqrt{2} = 2a$. Thể tích $V = AB\\cdot AD\\cdot AA' = 2a^3$.\nb) \\textbf{Đúng.} Do $BC \\perp BB'$ và $BD \\perp BB'$ nên góc nhị diện $[(BCC'B'), BB', (BDD'B')] = \\widehat{CBD} = 45^\\circ$.\nc) \\textbf{Sai.} Do $CD' \\parallel BA'$ nên $CD' \\parallel (A'BD)$, suy ra $d(BD, CD') = d(C, (A'BD)) = d(A, (A'BD))$. Vì $AB, AD, AA'$ đôi một vuông góc nên $\\dfrac{1}{d^2} = \\dfrac{1}{AB^2} + \\dfrac{1}{AD^2} + \\dfrac{1}{AA'^2} = \\dfrac{1}{a^2} + \\dfrac{1}{a^2} + \\dfrac{1}{4a^2} = \\dfrac{9}{4a^2} \\Rightarrow d(BD, CD') = \\dfrac{2a}{3}$.\nd) \\textbf{Đúng.} Theo quy tắc hình hộp: $\\overrightarrow{AC'} = \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}$.",
+        "statements": [
+          "Thể tích khối hộp chữ nhật $ABCD.A'B'C'D'$ là $2a^3$.",
+          "Góc nhị diện $[(BCC'B'), BB', (BDD'B')]$ có số đo bằng $45^\\circ$.",
+          "Khoảng cách giữa $BD$ và $CD'$ bằng $\\dfrac{a}{3}$.",
+          "$\\overrightarrow{AC'} = \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}$."
+        ],
+        "source": "THPT Bắc Đông Quan - Thái Bình 2025",
+        "solution": "a) \\textbf{Đúng.} Ta có $\\alpha = \\widehat{A'CA}$, suy ra $A'A = AC\\cdot\\tan\\alpha = a\\sqrt{2}\\cdot\\sqrt{2} = 2a$. Thể tích $V = AB\\cdot AD\\cdot AA' = 2a^3$.\nb) \\textbf{Đúng.} Do $BC \\perp BB'$ và $BD \\perp BB'$ nên góc nhị diện $[(BCC'B'), BB', (BDD'B')] = \\widehat{CBD} = 45^\\circ$.\nc) \\textbf{Sai.} Do $CD' \\parallel BA'$ nên $CD' \\parallel (A'BD)$, suy ra $d(BD, CD') = d(C, (A'BD)) = d(A, (A'BD))$. Vì $AB, AD, AA'$ đôi một vuông góc nên $\\dfrac{1}{d^2} = \\dfrac{1}{AB^2} + \\dfrac{1}{AD^2} + \\dfrac{1}{AA'^2} = \\dfrac{1}{a^2} + \\dfrac{1}{a^2} + \\dfrac{1}{4a^2} = \\dfrac{9}{4a^2} \\Rightarrow d(BD, CD') = \\dfrac{2a}{3}$.\nd) \\textbf{Đúng.} Theo quy tắc hình hộp: $\\overrightarrow{AC'} = \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}$.",
+        "pack": "tf4-vecto"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Vận dụng"
+      ]
+    }
+  ]
+}

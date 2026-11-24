@@ -1,0 +1,2654 @@
+{
+  "pack_id": "chude26-vecto",
+  "title": "Chủ đề 26 · Vectơ trong không gian (2025)",
+  "chapter": "GĐ1 · Chương 3",
+  "count": 98,
+  "questions": [
+    {
+      "source_num": 1,
+      "type": "mcq",
+      "prompt": "(THPT Đào Duy Từ - Thanh Hóa 2025) Cho hình lập phương $ABCD.A'B'C'D'$ cạnh $a$. Khẳng định nào sau đây SAI?\n![Hình Câu 1](/bank-images/chude26/q1_p0.jpeg)",
+      "points": 0.25,
+      "sort_order": 10,
+      "choices": [
+        "$|\\overrightarrow{BD}| = a\\sqrt{2}$.",
+        "$|\\overrightarrow{BD'}| = a\\sqrt{3}$.",
+        "$\\overrightarrow{AC} + \\overrightarrow{A'C'} = \\vec{0}$.",
+        "$\\overrightarrow{BA} + \\overrightarrow{BC} + \\overrightarrow{BB'} = \\overrightarrow{BD'}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Do $ABCD.A'B'C'D'$ là hình lập phương nên $\\overrightarrow{A'C'} = \\overrightarrow{AC}$, suy ra $\\overrightarrow{AC} + \\overrightarrow{A'C'} = 2\\overrightarrow{AC} \\neq \\vec{0}$.",
+        "source": "THPT Đào Duy Từ - Thanh Hóa 2025",
+        "solution": "Do $ABCD.A'B'C'D'$ là hình lập phương nên $\\overrightarrow{A'C'} = \\overrightarrow{AC}$, suy ra $\\overrightarrow{AC} + \\overrightarrow{A'C'} = 2\\overrightarrow{AC} \\neq \\vec{0}$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 2,
+      "type": "mcq",
+      "prompt": "(THPT Hàm Rồng - Thanh Hóa 2025) Cho hình hộp $ABCD.A'B'C'D'$. Chọn đẳng thức vectơ đúng:",
+      "points": 0.25,
+      "sort_order": 20,
+      "choices": [
+        "$\\overrightarrow{DB'} = \\overrightarrow{DA} + \\overrightarrow{DD'} + \\overrightarrow{DC}$.",
+        "$\\overrightarrow{AC'} = \\overrightarrow{AC} + \\overrightarrow{AB} + \\overrightarrow{AD}$.",
+        "$\\overrightarrow{DB} = \\overrightarrow{DA} + \\overrightarrow{DD'} + \\overrightarrow{DC}$.",
+        "$\\overrightarrow{AC'} = \\overrightarrow{AB} + \\overrightarrow{AB'} + \\overrightarrow{AD}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Áp dụng quy tắc hình hộp tại đỉnh $D$, đường chéo $\\overrightarrow{DB'}$ bằng tổng ba cạnh xuất phát từ $D$: $\\overrightarrow{DA} + \\overrightarrow{DD'} + \\overrightarrow{DC}$.",
+        "source": "THPT Hàm Rồng - Thanh Hóa 2025",
+        "solution": "Áp dụng quy tắc hình hộp tại đỉnh $D$, đường chéo $\\overrightarrow{DB'}$ bằng tổng ba cạnh xuất phát từ $D$: $\\overrightarrow{DA} + \\overrightarrow{DD'} + \\overrightarrow{DC}$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 3,
+      "type": "mcq",
+      "prompt": "(Đề Tham Khảo 2025) Cho hình hộp $ABCD.A'B'C'D'$ (minh họa hình bên).\n![Hình Câu 3](/bank-images/chude26/q3_p0.jpeg)\nPhát biểu nào sau đây là đúng?",
+      "points": 0.25,
+      "sort_order": 30,
+      "choices": [
+        "$\\overrightarrow{AB} + \\overrightarrow{BB'} + \\overrightarrow{B'A'} = \\overrightarrow{AC'}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{BC'} + \\overrightarrow{C'D'} = \\overrightarrow{AC'}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{AA'} + \\overrightarrow{AD} = \\overrightarrow{AC'}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Theo quy tắc hình hộp xuất phát từ đỉnh $A$, ta có $\\overrightarrow{AB} + \\overrightarrow{AA'} + \\overrightarrow{AD} = \\overrightarrow{AC'}$.",
+        "source": "Đề Tham Khảo 2025",
+        "solution": "Theo quy tắc hình hộp xuất phát từ đỉnh $A$, ta có $\\overrightarrow{AB} + \\overrightarrow{AA'} + \\overrightarrow{AD} = \\overrightarrow{AC'}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 4,
+      "type": "mcq",
+      "prompt": "(THPT Lương Tài 2 - Bắc Ninh 2025) Cho tứ diện $ABCD$, gọi $I$ là trung điểm của đoạn thẳng $BC$. Véc tơ $\\overrightarrow{BI}$ cùng hướng với véc tơ nào sau đây?\n![Hình Câu 4](/bank-images/chude26/q4_p0.png)",
+      "points": 0.25,
+      "sort_order": 40,
+      "choices": [
+        "$\\overrightarrow{AB}$.",
+        "$\\overrightarrow{CI}$.",
+        "$\\overrightarrow{CD}$.",
+        "$\\overrightarrow{BC}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Vì $I$ nằm trên đoạn $BC$ nên tia $BI$ trùng hướng với tia $BC$, do đó $\\overrightarrow{BI}$ cùng hướng với $\\overrightarrow{BC}$.",
+        "source": "THPT Lương Tài 2 - Bắc Ninh 2025",
+        "solution": "Vì $I$ nằm trên đoạn $BC$ nên tia $BI$ trùng hướng với tia $BC$, do đó $\\overrightarrow{BI}$ cùng hướng với $\\overrightarrow{BC}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 5,
+      "type": "mcq",
+      "prompt": "(THPT Lương Tài 2 - Bắc Ninh 2025) Cho tứ diện $ABCD$ có $G$ là trọng tâm tam giác $ABC$. Véc tơ $\\overrightarrow{DA} + \\overrightarrow{DB} + \\overrightarrow{DC}$ bằng",
+      "points": 0.25,
+      "sort_order": 50,
+      "choices": [
+        "$2\\overrightarrow{DG}$.",
+        "$3\\overrightarrow{DG}$.",
+        "$3\\overrightarrow{AG}$.",
+        "$\\overrightarrow{DG}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Vì $G$ là trọng tâm $\\triangle ABC$ nên $\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = \\vec{0}$, suy ra $\\overrightarrow{DA} + \\overrightarrow{DB} + \\overrightarrow{DC} = 3\\overrightarrow{DG} + (\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC}) = 3\\overrightarrow{DG}$.",
+        "source": "THPT Lương Tài 2 - Bắc Ninh 2025",
+        "solution": "Vì $G$ là trọng tâm $\\triangle ABC$ nên $\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = \\vec{0}$, suy ra $\\overrightarrow{DA} + \\overrightarrow{DB} + \\overrightarrow{DC} = 3\\overrightarrow{DG} + (\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC}) = 3\\overrightarrow{DG}$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 6,
+      "type": "mcq",
+      "prompt": "(THPT Văn Giang - Hưng Yên 2025) Trong không gian, cho tứ diện đều $ABCD$ có các cạnh bằng $a$. Tính tích vô hướng $\\overrightarrow{AB}\\cdot\\overrightarrow{CD}$ bằng",
+      "points": 0.25,
+      "sort_order": 60,
+      "choices": [
+        "$0$.",
+        "$4a^2$.",
+        "$2a^2$.",
+        "$a^2$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $\\overrightarrow{AB}\\cdot\\overrightarrow{CD} = (\\overrightarrow{CB} - \\overrightarrow{CA})\\cdot\\overrightarrow{CD} = a^2\\cos 60^{\\circ} - a^2\\cos 60^{\\circ} = 0$.",
+        "source": "THPT Văn Giang - Hưng Yên 2025",
+        "solution": "Ta có $\\overrightarrow{AB}\\cdot\\overrightarrow{CD} = (\\overrightarrow{CB} - \\overrightarrow{CA})\\cdot\\overrightarrow{CD} = a^2\\cos 60^{\\circ} - a^2\\cos 60^{\\circ} = 0$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 3: Tích vô hướng của vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 7,
+      "type": "mcq",
+      "prompt": "(THPT Văn Giang - Hưng Yên 2025) Trong không gian, cho hình hộp $ABCD.A'B'C'D'$. Mệnh đề nào dưới đây sai?",
+      "points": 0.25,
+      "sort_order": 70,
+      "choices": [
+        "$\\overrightarrow{CA'} = \\overrightarrow{CB} + \\overrightarrow{CD} + \\overrightarrow{CC'}$.",
+        "$\\overrightarrow{AC'} = \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}$.",
+        "$\\overrightarrow{BD} = \\overrightarrow{BA} + \\overrightarrow{BC} + \\overrightarrow{BB'}$.",
+        "$\\overrightarrow{C'A'} = \\overrightarrow{C'B'} + \\overrightarrow{C'D'}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Theo quy tắc hình hộp, $\\overrightarrow{BA} + \\overrightarrow{BC} + \\overrightarrow{BB'} = \\overrightarrow{BD'}$, không phải $\\overrightarrow{BD}$.",
+        "source": "THPT Văn Giang - Hưng Yên 2025",
+        "solution": "Theo quy tắc hình hộp, $\\overrightarrow{BA} + \\overrightarrow{BC} + \\overrightarrow{BB'} = \\overrightarrow{BD'}$, không phải $\\overrightarrow{BD}$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 8,
+      "type": "mcq",
+      "prompt": "(THPT Tiên Du - Bắc Ninh 2025) Cho hình hộp chữ nhật $ABCD.A'B'C'D'$ (tham khảo hình vẽ dưới đây).\n![Hình Câu 8](/bank-images/chude26/q8_p0.jpeg)\nKhẳng định nào dưới đây là đúng?",
+      "points": 0.25,
+      "sort_order": 80,
+      "choices": [
+        "$\\overrightarrow{AD} = \\overrightarrow{AB}$.",
+        "$\\overrightarrow{AD} = \\overrightarrow{A'C}$.",
+        "$\\overrightarrow{AD} = \\overrightarrow{A'B'}$.",
+        "$\\overrightarrow{AB} = \\overrightarrow{D'C'}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Trong hình hộp chữ nhật $ABCD.A'B'C'D'$, hai cạnh $AB$ và $D'C'$ song song, cùng hướng và bằng nhau nên $\\overrightarrow{AB} = \\overrightarrow{D'C'}$.",
+        "source": "THPT Tiên Du - Bắc Ninh 2025",
+        "solution": "Trong hình hộp chữ nhật $ABCD.A'B'C'D'$, hai cạnh $AB$ và $D'C'$ song song, cùng hướng và bằng nhau nên $\\overrightarrow{AB} = \\overrightarrow{D'C'}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 9,
+      "type": "mcq",
+      "prompt": "(THPT Lê Thánh Tông - HCM 2025) Cho tứ diện $ABCD$. Gọi $M$ và $P$ lần lượt là trung điểm các cạnh $AB$ và $CD$. Đặt $\\overrightarrow{BA} = \\vec{b}, \\overrightarrow{AC} = \\vec{c}, \\overrightarrow{AD} = \\vec{d}$. Khẳng định nào sau đây là đúng?",
+      "points": 0.25,
+      "sort_order": 90,
+      "choices": [
+        "$\\overrightarrow{MP} = \\frac{1}{2}(\\vec{c} + \\vec{d} + \\vec{b})$.",
+        "$\\overrightarrow{MP} = \\frac{1}{2}(\\vec{d} + \\vec{b} - \\vec{c})$.",
+        "$\\overrightarrow{MP} = \\frac{1}{2}(\\vec{c} + \\vec{b} - \\vec{d})$.",
+        "$\\overrightarrow{MP} = \\frac{1}{2}(\\vec{c} + \\vec{d} - \\vec{b})$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Vì $P$ là trung điểm $CD$ và $M$ là trung điểm $AB$ nên:\n$$\\overrightarrow{MP} = \\frac{1}{2}(\\overrightarrow{MC} + \\overrightarrow{MD}) = \\frac{1}{2}\\left(\\overrightarrow{MA} + \\overrightarrow{AC} + \\overrightarrow{MA} + \\overrightarrow{AD}\\right) = \\frac{1}{2}(\\overrightarrow{BA} + \\overrightarrow{AC} + \\overrightarrow{AD}) = \\frac{1}{2}(\\vec{b} + \\vec{c} + \\vec{d}).$$",
+        "source": "THPT Lê Thánh Tông - HCM 2025",
+        "solution": "Vì $P$ là trung điểm $CD$ và $M$ là trung điểm $AB$ nên:\n$$\\overrightarrow{MP} = \\frac{1}{2}(\\overrightarrow{MC} + \\overrightarrow{MD}) = \\frac{1}{2}\\left(\\overrightarrow{MA} + \\overrightarrow{AC} + \\overrightarrow{MA} + \\overrightarrow{AD}\\right) = \\frac{1}{2}(\\overrightarrow{BA} + \\overrightarrow{AC} + \\overrightarrow{AD}) = \\frac{1}{2}(\\vec{b} + \\vec{c} + \\vec{d}).$$"
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 2: Phân tích một vectơ theo các vectơ còn lại",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 10,
+      "type": "mcq",
+      "prompt": "(THPT Nguyễn Đăng Đạo - Bắc Ninh 2025) Cho hình chóp $S.ABCD$ có đáy là hình bình hành. Đẳng thức nào sau đây là đẳng thức đúng?",
+      "points": 0.25,
+      "sort_order": 100,
+      "choices": [
+        "$\\overrightarrow{SA} + \\overrightarrow{SB} + \\overrightarrow{SC} + \\overrightarrow{SD} = \\vec{0}$.",
+        "$\\overrightarrow{SA} + \\overrightarrow{SC} = \\overrightarrow{SB} + \\overrightarrow{SD}$.",
+        "$\\overrightarrow{SA} + \\overrightarrow{SB} = \\overrightarrow{SC} + \\overrightarrow{SD}$.",
+        "$\\overrightarrow{SB} + \\overrightarrow{SC} = \\overrightarrow{SA} + \\overrightarrow{SD}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Gọi $O$ là tâm hình bình hành $ABCD$, ta có $\\overrightarrow{SA} + \\overrightarrow{SC} = 2\\overrightarrow{SO}$ và $\\overrightarrow{SB} + \\overrightarrow{SD} = 2\\overrightarrow{SO}$, suy ra $\\overrightarrow{SA} + \\overrightarrow{SC} = \\overrightarrow{SB} + \\overrightarrow{SD}$.",
+        "source": "THPT Nguyễn Đăng Đạo - Bắc Ninh 2025",
+        "solution": "Gọi $O$ là tâm hình bình hành $ABCD$, ta có $\\overrightarrow{SA} + \\overrightarrow{SC} = 2\\overrightarrow{SO}$ và $\\overrightarrow{SB} + \\overrightarrow{SD} = 2\\overrightarrow{SO}$, suy ra $\\overrightarrow{SA} + \\overrightarrow{SC} = \\overrightarrow{SB} + \\overrightarrow{SD}$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 11,
+      "type": "mcq",
+      "prompt": "(THPT Gia Bình - Bắc Ninh 2025) Cho hình hộp $ABCD.A'B'C'D'$ (minh họa hình bên). Đẳng thức nào sau đây đúng?\n![Hình Câu 11](/bank-images/chude26/q11_p0.jpeg)",
+      "points": 0.25,
+      "sort_order": 110,
+      "choices": [
+        "$\\overrightarrow{BD} = \\overrightarrow{A'D'}$.",
+        "$\\overrightarrow{AB} = \\overrightarrow{CD}$.",
+        "$\\overrightarrow{BD} = \\overrightarrow{B'D'}$.",
+        "$\\overrightarrow{AA'} = \\overrightarrow{B'B}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Tứ giác $BDD'B'$ là hình bình hành nên hai vectơ cạnh đối cùng hướng $\\overrightarrow{BD}$ và $\\overrightarrow{B'D'}$ bằng nhau.",
+        "source": "THPT Gia Bình - Bắc Ninh 2025",
+        "solution": "Tứ giác $BDD'B'$ là hình bình hành nên hai vectơ cạnh đối cùng hướng $\\overrightarrow{BD}$ và $\\overrightarrow{B'D'}$ bằng nhau."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 12,
+      "type": "mcq",
+      "prompt": "(THPT Yên Lạc - Vĩnh Phúc 2025) Cho hình hộp $ABCD.A'B'C'D'$ như hình vẽ.\n![Hình Câu 12](/bank-images/chude26/q12_p0.jpeg)\nVectơ tổng $\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}$ bằng vectơ nào dưới đây?",
+      "points": 0.25,
+      "sort_order": 120,
+      "choices": [
+        "$\\overrightarrow{AD'}$.",
+        "$\\overrightarrow{AC'}$.",
+        "$\\overrightarrow{AC}$.",
+        "$\\overrightarrow{AB'}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Theo quy tắc hình hộp, $\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\overrightarrow{AC} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$.",
+        "source": "THPT Yên Lạc - Vĩnh Phúc 2025",
+        "solution": "Theo quy tắc hình hộp, $\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\overrightarrow{AC} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 13,
+      "type": "mcq",
+      "prompt": "(THPT Chuyên Vĩnh Phúc 2025) Cho hình hộp $ABCD.A'B'C'D'$ có đáy $ABCD$ là hình bình hành tâm $O$. Khi đó $2\\overrightarrow{AO}$ bằng véc tơ nào sau đây?\n![Hình Câu 13](/bank-images/chude26/q13_p0.png)",
+      "points": 0.25,
+      "sort_order": 130,
+      "choices": [
+        "$\\overrightarrow{A'C}$.",
+        "$\\overrightarrow{AB}$.",
+        "$\\overrightarrow{AD}$.",
+        "$\\overrightarrow{AC}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Vì $O$ là trung điểm $AC$ nên $2\\overrightarrow{AO} = \\overrightarrow{AC}$.",
+        "source": "THPT Chuyên Vĩnh Phúc 2025",
+        "solution": "Vì $O$ là trung điểm $AC$ nên $2\\overrightarrow{AO} = \\overrightarrow{AC}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 14,
+      "type": "mcq",
+      "prompt": "(Sở Ninh Bình 2025) Cho hình hộp $ABCD.A'B'C'D'$ (hình vẽ). Đẳng thức nào sau đây sai?\n![Hình Câu 14](/bank-images/chude26/q14_p0.png)",
+      "points": 0.25,
+      "sort_order": 140,
+      "choices": [
+        "$\\overrightarrow{AB'} + \\overrightarrow{CB} = \\overrightarrow{AC'}$.",
+        "$\\overrightarrow{AC} + \\overrightarrow{BB'} = \\overrightarrow{AC'}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{AD} = \\overrightarrow{AC}$.",
+        "$\\overrightarrow{AD} + \\overrightarrow{CC'} = \\overrightarrow{AD'}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Ta có $\\overrightarrow{AB'} + \\overrightarrow{CB} = \\overrightarrow{AB'} + \\overrightarrow{DA} = \\overrightarrow{DB'} \\neq \\overrightarrow{AC'}$.",
+        "source": "Sở Ninh Bình 2025",
+        "solution": "Ta có $\\overrightarrow{AB'} + \\overrightarrow{CB} = \\overrightarrow{AB'} + \\overrightarrow{DA} = \\overrightarrow{DB'} \\neq \\overrightarrow{AC'}$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 15,
+      "type": "mcq",
+      "prompt": "(THPT Nguyễn Viết Xuân - Vĩnh Phúc 2025) Cho hình hộp $ABCD.A'B'C'D'$. Phát biểu nào sau đây là đúng?",
+      "points": 0.25,
+      "sort_order": 150,
+      "choices": [
+        "$\\overrightarrow{BA} + \\overrightarrow{BC} + \\overrightarrow{BB'} = \\overrightarrow{BD'}$.",
+        "$\\overrightarrow{BA} + \\overrightarrow{BD} + \\overrightarrow{BB'} = \\overrightarrow{BD'}$.",
+        "$\\overrightarrow{BA'} + \\overrightarrow{BC} + \\overrightarrow{BB'} = \\overrightarrow{BD'}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{CB} + \\overrightarrow{BB'} = \\overrightarrow{BD'}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Theo quy tắc hình hộp tại đỉnh $B$, $\\overrightarrow{BA} + \\overrightarrow{BC} + \\overrightarrow{BB'} = \\overrightarrow{BD'}$.",
+        "source": "THPT Nguyễn Viết Xuân - Vĩnh Phúc 2025",
+        "solution": "Theo quy tắc hình hộp tại đỉnh $B$, $\\overrightarrow{BA} + \\overrightarrow{BC} + \\overrightarrow{BB'} = \\overrightarrow{BD'}$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 16,
+      "type": "mcq",
+      "prompt": "(THPT Thuận Thành 1&2 - Bắc Ninh 2025) Cho tứ diện $ABCD$. Gọi $M, N$ lần lượt là trung điểm của $AB, CD$ và $G$ là trung điểm của $MN$. Trong các khẳng định sau, khẳng định nào sai?",
+      "points": 0.25,
+      "sort_order": 160,
+      "choices": [
+        "$\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = \\vec{0}$.",
+        "$\\overrightarrow{GM} + \\overrightarrow{GN} = \\vec{0}$.",
+        "$\\overrightarrow{MA} + \\overrightarrow{MB} + \\overrightarrow{MC} + \\overrightarrow{MD} = 4\\overrightarrow{MG}$.",
+        "$\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = \\overrightarrow{GD}$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Vì $G$ là trọng tâm tứ diện nên $\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = \\vec{0}$, suy ra $\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = -\\overrightarrow{GD} \\neq \\overrightarrow{GD}$.",
+        "source": "THPT Thuận Thành 1&2 - Bắc Ninh 2025",
+        "solution": "Vì $G$ là trọng tâm tứ diện nên $\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = \\vec{0}$, suy ra $\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = -\\overrightarrow{GD} \\neq \\overrightarrow{GD}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 17,
+      "type": "mcq",
+      "prompt": "(THPT Diễn Châu 5 - Nghệ An 2025) Cho tứ diện $ABCD$. Mệnh đề nào dưới đây là mệnh đề đúng?",
+      "points": 0.25,
+      "sort_order": 170,
+      "choices": [
+        "$\\overrightarrow{AB} - \\overrightarrow{AC} = \\overrightarrow{DB} - \\overrightarrow{DC}$.",
+        "$\\overrightarrow{BC} + \\overrightarrow{AB} = \\overrightarrow{DA} - \\overrightarrow{DC}$.",
+        "$\\overrightarrow{AC} - \\overrightarrow{AD} = \\overrightarrow{BD} - \\overrightarrow{BC}$.",
+        "$\\overrightarrow{AB} - \\overrightarrow{AD} = \\overrightarrow{CD} + \\overrightarrow{BC}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Theo quy tắc hiệu: $\\overrightarrow{AB} - \\overrightarrow{AC} = \\overrightarrow{CB}$ và $\\overrightarrow{DB} - \\overrightarrow{DC} = \\overrightarrow{CB}$, nên hai vế bằng nhau.",
+        "source": "THPT Diễn Châu 5 - Nghệ An 2025",
+        "solution": "Theo quy tắc hiệu: $\\overrightarrow{AB} - \\overrightarrow{AC} = \\overrightarrow{CB}$ và $\\overrightarrow{DB} - \\overrightarrow{DC} = \\overrightarrow{CB}$, nên hai vế bằng nhau."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 18,
+      "type": "mcq",
+      "prompt": "(THPT Hùng Vương - Bình Thuận 2025) Cho hình hộp $ABCD.A'B'C'D'$. Khẳng định nào sau đây đúng?",
+      "points": 0.25,
+      "sort_order": 180,
+      "choices": [
+        "$\\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{AB'} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{A'A} = \\overrightarrow{AC'}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Theo quy tắc đường chéo hình hộp, $\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$.",
+        "source": "THPT Hùng Vương - Bình Thuận 2025",
+        "solution": "Theo quy tắc đường chéo hình hộp, $\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 19,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Sơn 3 - Thanh Hóa 2025) Cho hình lập phương $ABCD.A'B'C'D'$. Gọi $O$ là tâm của hình lập phương. Khẳng định nào sau đây là đúng?",
+      "points": 0.25,
+      "sort_order": 190,
+      "choices": [
+        "$\\overrightarrow{AO} = \\frac{1}{3}\\left(\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}\\right)$.",
+        "$\\overrightarrow{AO} = \\frac{1}{2}\\left(\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}\\right)$.",
+        "$\\overrightarrow{AO} = \\frac{1}{4}\\left(\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}\\right)$.",
+        "$\\overrightarrow{AO} = \\frac{2}{3}\\left(\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}\\right)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Vì $O$ là trung điểm đường chéo $AC'$ nên $\\overrightarrow{AO} = \\frac{1}{2}\\overrightarrow{AC'} = \\frac{1}{2}\\left(\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}\\right)$.",
+        "source": "THPT Triệu Sơn 3 - Thanh Hóa 2025",
+        "solution": "Vì $O$ là trung điểm đường chéo $AC'$ nên $\\overrightarrow{AO} = \\frac{1}{2}\\overrightarrow{AC'} = \\frac{1}{2}\\left(\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}\\right)$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 2: Phân tích một vectơ theo các vectơ còn lại",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 20,
+      "type": "mcq",
+      "prompt": "(THPT Lê Lợi - Thanh Hóa 2025) Trong không gian, cho tứ diện đều $ABCD$ có các cạnh bằng $a$. Tính tích vô hướng $\\overrightarrow{AB}\\cdot\\overrightarrow{CD}$ bằng",
+      "points": 0.25,
+      "sort_order": 200,
+      "choices": [
+        "$0$.",
+        "$4a^2$.",
+        "$2a^2$.",
+        "$a^2$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $\\overrightarrow{AB}\\cdot\\overrightarrow{CD} = (\\overrightarrow{CB} - \\overrightarrow{CA})\\cdot\\overrightarrow{CD} = a^2\\cos 60^{\\circ} - a^2\\cos 60^{\\circ} = 0$.",
+        "source": "THPT Lê Lợi - Thanh Hóa 2025",
+        "solution": "Ta có $\\overrightarrow{AB}\\cdot\\overrightarrow{CD} = (\\overrightarrow{CB} - \\overrightarrow{CA})\\cdot\\overrightarrow{CD} = a^2\\cos 60^{\\circ} - a^2\\cos 60^{\\circ} = 0$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 3: Tích vô hướng của vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 21,
+      "type": "mcq",
+      "prompt": "(THPT Lê Lợi - Thanh Hóa 2025) Trong không gian, cho hình hộp $ABCD.A'B'C'D'$. Mệnh đề nào dưới đây sai?",
+      "points": 0.25,
+      "sort_order": 210,
+      "choices": [
+        "$\\overrightarrow{CA'} = \\overrightarrow{CB} + \\overrightarrow{CD} + \\overrightarrow{CC'}$.",
+        "$\\overrightarrow{AC'} = \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}$.",
+        "$\\overrightarrow{BD} = \\overrightarrow{BA} + \\overrightarrow{BC} + \\overrightarrow{BB'}$.",
+        "$\\overrightarrow{C'A'} = \\overrightarrow{C'B'} + \\overrightarrow{C'D'}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Theo quy tắc hình hộp, $\\overrightarrow{BA} + \\overrightarrow{BC} + \\overrightarrow{BB'} = \\overrightarrow{BD'}$, nên đẳng thức ở phương án C sai.",
+        "source": "THPT Lê Lợi - Thanh Hóa 2025",
+        "solution": "Theo quy tắc hình hộp, $\\overrightarrow{BA} + \\overrightarrow{BC} + \\overrightarrow{BB'} = \\overrightarrow{BD'}$, nên đẳng thức ở phương án C sai."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 22,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Sơn 4 - Thanh Hóa 2025) Cho hình lập phương $ABCD.A'B'C'D'$ (minh họa như hình bên). Mệnh đề nào sau đây sai?\n![Hình Câu 22](/bank-images/chude26/q22_p0.jpeg)",
+      "points": 0.25,
+      "sort_order": 220,
+      "choices": [
+        "$\\overrightarrow{AB} = \\overrightarrow{CD}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$.",
+        "$\\overrightarrow{AC} = \\overrightarrow{AB} + \\overrightarrow{AD}$.",
+        "$|\\overrightarrow{AB}| = |\\overrightarrow{CD}|$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Trong hình lập phương $ABCD.A'B'C'D'$, $\\overrightarrow{AB}$ và $\\overrightarrow{CD}$ ngược hướng nhau ($\\overrightarrow{AB} = \\overrightarrow{DC} = -\\overrightarrow{CD}$), nên khẳng định A sai.",
+        "source": "THPT Triệu Sơn 4 - Thanh Hóa 2025",
+        "solution": "Trong hình lập phương $ABCD.A'B'C'D'$, $\\overrightarrow{AB}$ và $\\overrightarrow{CD}$ ngược hướng nhau ($\\overrightarrow{AB} = \\overrightarrow{DC} = -\\overrightarrow{CD}$), nên khẳng định A sai."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 23,
+      "type": "mcq",
+      "prompt": "(Cụm trường THPT Hải Dương 2025) Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình bình hành tâm $O$. Khẳng định nào sau đây đúng?",
+      "points": 0.25,
+      "sort_order": 230,
+      "choices": [
+        "$\\overrightarrow{SA} + \\overrightarrow{SB} + \\overrightarrow{SC} + \\overrightarrow{SD} = \\frac{1}{4}\\overrightarrow{SO}$.",
+        "$\\overrightarrow{SA} + \\overrightarrow{SB} + \\overrightarrow{SC} + \\overrightarrow{SD} = 4\\overrightarrow{SO}$.",
+        "$\\overrightarrow{SA} + \\overrightarrow{SB} + \\overrightarrow{SC} + \\overrightarrow{SD} = 2\\overrightarrow{SO}$.",
+        "$\\overrightarrow{SA} + \\overrightarrow{SB} + \\overrightarrow{SC} + \\overrightarrow{SD} = \\frac{1}{2}\\overrightarrow{SO}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Vì $O$ là trung điểm $AC$ và $BD$ nên $\\overrightarrow{SA} + \\overrightarrow{SC} = 2\\overrightarrow{SO}$ và $\\overrightarrow{SB} + \\overrightarrow{SD} = 2\\overrightarrow{SO}$, cộng lại thu được $4\\overrightarrow{SO}$.",
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "solution": "Vì $O$ là trung điểm $AC$ và $BD$ nên $\\overrightarrow{SA} + \\overrightarrow{SC} = 2\\overrightarrow{SO}$ và $\\overrightarrow{SB} + \\overrightarrow{SD} = 2\\overrightarrow{SO}$, cộng lại thu được $4\\overrightarrow{SO}$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 24,
+      "type": "mcq",
+      "prompt": "(THPT Nguyễn Khuyến - Lê Thánh Tông 2025) Cho hình lập phương $ABCD.A'B'C'D'$ có cạnh $2$ (tham khảo hình bên dưới). Độ dài của vectơ $\\vec{u} = \\overrightarrow{A'C'} - \\overrightarrow{A'A}$ bằng\n![Hình Câu 24](/bank-images/chude26/q24_p0.jpeg)",
+      "points": 0.25,
+      "sort_order": 240,
+      "choices": [
+        "$2\\sqrt{2}$.",
+        "$\\sqrt{3}$.",
+        "$2\\sqrt{6}$.",
+        "$2\\sqrt{3}$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $\\vec{u} = \\overrightarrow{A'C'} - \\overrightarrow{A'A} = \\overrightarrow{AA'} + \\overrightarrow{A'C'} = \\overrightarrow{AC'}$. Hình lập phương cạnh $2$ có đường chéo $AC' = 2\\sqrt{3}$, nên $|\\vec{u}| = 2\\sqrt{3}$.",
+        "source": "THPT Nguyễn Khuyến - Lê Thánh Tông 2025",
+        "solution": "Ta có $\\vec{u} = \\overrightarrow{A'C'} - \\overrightarrow{A'A} = \\overrightarrow{AA'} + \\overrightarrow{A'C'} = \\overrightarrow{AC'}$. Hình lập phương cạnh $2$ có đường chéo $AC' = 2\\sqrt{3}$, nên $|\\vec{u}| = 2\\sqrt{3}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 25,
+      "type": "mcq",
+      "prompt": "(THPT Kinh Môn - Hải Dương 2025) Cho hình chóp $S.ABCD$ có tất cả các cạnh bên và cạnh đáy đều bằng $a$ và $ABCD$ là hình vuông. Gọi $M$ là trung điểm của $CD$. Giá trị của $\\overrightarrow{MS}\\cdot\\overrightarrow{CB}$ bằng\n![Hình Câu 25](/bank-images/chude26/q25_p0.jpeg)",
+      "points": 0.25,
+      "sort_order": 250,
+      "choices": [
+        "$\\frac{a^2}{2}$.",
+        "$-\\frac{a^2}{2}$.",
+        "$\\frac{a^2}{3}$.",
+        "$\\frac{\\sqrt{2}a^2}{2}$."
+      ],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Ta có $\\overrightarrow{MS}\\cdot\\overrightarrow{CB} = (\\overrightarrow{MC} + \\overrightarrow{CS})\\cdot\\overrightarrow{CB}$. Vì $MC \\perp CB$ nên $\\overrightarrow{MC}\\cdot\\overrightarrow{CB} = 0$. Tam giác $SBC$ đều cạnh $a$ nên $(\\overrightarrow{CS}, \\overrightarrow{CB}) = 60^{\\circ}$. Vậy $\\overrightarrow{MS}\\cdot\\overrightarrow{CB} = a\\cdot a\\cdot\\cos 60^{\\circ} = \\frac{a^2}{2}$.",
+        "source": "THPT Kinh Môn - Hải Dương 2025",
+        "solution": "Ta có $\\overrightarrow{MS}\\cdot\\overrightarrow{CB} = (\\overrightarrow{MC} + \\overrightarrow{CS})\\cdot\\overrightarrow{CB}$. Vì $MC \\perp CB$ nên $\\overrightarrow{MC}\\cdot\\overrightarrow{CB} = 0$. Tam giác $SBC$ đều cạnh $a$ nên $(\\overrightarrow{CS}, \\overrightarrow{CB}) = 60^{\\circ}$. Vậy $\\overrightarrow{MS}\\cdot\\overrightarrow{CB} = a\\cdot a\\cdot\\cos 60^{\\circ} = \\frac{a^2}{2}$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 3: Tích vô hướng của vectơ",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 26,
+      "type": "mcq",
+      "prompt": "(HSG Vũng Tàu 2025) Cho tứ diện $OABC$ có ba cạnh $OA, OB, OC$ đôi một vuông góc và $OA = OB = OC = a$. Gọi $M$ là trung điểm cạnh $AB$. Góc tạo bởi hai vectơ $\\overrightarrow{AC}$ và $\\overrightarrow{OM}$ bằng",
+      "points": 0.25,
+      "sort_order": 260,
+      "choices": [
+        "$120^{\\circ}$.",
+        "$60^{\\circ}$.",
+        "$135^{\\circ}$.",
+        "$45^{\\circ}$."
+      ],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Gọi $N$ là trung điểm $BC$, ta có $\\overrightarrow{AC} = 2\\overrightarrow{MN}$ nên $(\\overrightarrow{AC}, \\overrightarrow{OM}) = (\\overrightarrow{MN}, \\overrightarrow{OM}) = 180^{\\circ} - \\widehat{OMN}$. Các tam giác vuông $OAB, OBC, OCA$ bằng nhau nên $AB = BC = CA = a\\sqrt{2}$, suy ra $OM = ON = MN = \\frac{a\\sqrt{2}}{2}$, tức $\\triangle OMN$ đều. Vậy $(\\overrightarrow{AC}, \\overrightarrow{OM}) = 180^{\\circ} - 60^{\\circ} = 120^{\\circ}$.",
+        "source": "HSG Vũng Tàu 2025",
+        "solution": "Gọi $N$ là trung điểm $BC$, ta có $\\overrightarrow{AC} = 2\\overrightarrow{MN}$ nên $(\\overrightarrow{AC}, \\overrightarrow{OM}) = (\\overrightarrow{MN}, \\overrightarrow{OM}) = 180^{\\circ} - \\widehat{OMN}$. Các tam giác vuông $OAB, OBC, OCA$ bằng nhau nên $AB = BC = CA = a\\sqrt{2}$, suy ra $OM = ON = MN = \\frac{a\\sqrt{2}}{2}$, tức $\\triangle OMN$ đều. Vậy $(\\overrightarrow{AC}, \\overrightarrow{OM}) = 180^{\\circ} - 60^{\\circ} = 120^{\\circ}$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 3: Tích vô hướng của vectơ",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 27,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Sơn 1 - Thanh Hóa 2025) Cho hình hộp $ABCD.A'B'C'D'$.\n![Hình Câu 27](/bank-images/chude26/q27_p0.png)\nTổng $\\overrightarrow{A'C'} + \\overrightarrow{CD}$ là",
+      "points": 0.25,
+      "sort_order": 270,
+      "choices": [
+        "$\\overrightarrow{BD}$.",
+        "$\\overrightarrow{A'D}$.",
+        "$\\overrightarrow{CB}$.",
+        "$\\overrightarrow{AD}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Vì $\\overrightarrow{A'C'} = \\overrightarrow{AC}$ nên $\\overrightarrow{A'C'} + \\overrightarrow{CD} = \\overrightarrow{AC} + \\overrightarrow{CD} = \\overrightarrow{AD}$.",
+        "source": "THPT Triệu Sơn 1 - Thanh Hóa 2025",
+        "solution": "Vì $\\overrightarrow{A'C'} = \\overrightarrow{AC}$ nên $\\overrightarrow{A'C'} + \\overrightarrow{CD} = \\overrightarrow{AC} + \\overrightarrow{CD} = \\overrightarrow{AD}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 28,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Sơn 1 - Thanh Hóa 2025) Cho hình chóp $S.ABCD$, có đáy $ABCD$ là hình bình hành tâm $O$. Tam giác $SAC$ đều cạnh bằng $a$.\n![Hình Câu 28](/bank-images/chude26/q28_p0.png)\nKhi đó $|\\overrightarrow{SB} + \\overrightarrow{SD}|$ bằng",
+      "points": 0.25,
+      "sort_order": 280,
+      "choices": [
+        "$\\frac{a\\sqrt{3}}{4}$.",
+        "$\\frac{a\\sqrt{3}}{2}$.",
+        "$2a\\sqrt{3}$.",
+        "$a\\sqrt{3}$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Vì $O$ là trung điểm $BD$ nên $\\overrightarrow{SB} + \\overrightarrow{SD} = 2\\overrightarrow{SO}$. Do $\\triangle SAC$ đều cạnh $a$ và $O$ là trung điểm $AC$, đường cao $SO = \\frac{a\\sqrt{3}}{2}$. Vậy $|\\overrightarrow{SB} + \\overrightarrow{SD}| = 2SO = a\\sqrt{3}$.",
+        "source": "THPT Triệu Sơn 1 - Thanh Hóa 2025",
+        "solution": "Vì $O$ là trung điểm $BD$ nên $\\overrightarrow{SB} + \\overrightarrow{SD} = 2\\overrightarrow{SO}$. Do $\\triangle SAC$ đều cạnh $a$ và $O$ là trung điểm $AC$, đường cao $SO = \\frac{a\\sqrt{3}}{2}$. Vậy $|\\overrightarrow{SB} + \\overrightarrow{SD}| = 2SO = a\\sqrt{3}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 29,
+      "type": "mcq",
+      "prompt": "(Cụm trường Hải Dương 2025) Cho hình hộp $ABCD.A'B'C'D'$. Đặt $\\overrightarrow{AB} = \\vec{a}, \\overrightarrow{AD} = \\vec{b}, \\overrightarrow{AA'} = \\vec{c}$. Phân tích vectơ $\\overrightarrow{AC'}$ theo $\\vec{a}, \\vec{b}, \\vec{c}$?",
+      "points": 0.25,
+      "sort_order": 290,
+      "choices": [
+        "$\\overrightarrow{AC'} = -\\vec{a} + \\vec{b} + \\vec{c}$.",
+        "$\\overrightarrow{AC'} = \\vec{a} - \\vec{b} + \\vec{c}$.",
+        "$\\overrightarrow{AC'} = \\vec{a} + \\vec{b} - \\vec{c}$.",
+        "$\\overrightarrow{AC'} = \\vec{a} + \\vec{b} + \\vec{c}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Theo quy tắc hình hộp, $\\overrightarrow{AC'} = \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\vec{a} + \\vec{b} + \\vec{c}$.",
+        "source": "Cụm trường Hải Dương 2025",
+        "solution": "Theo quy tắc hình hộp, $\\overrightarrow{AC'} = \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\vec{a} + \\vec{b} + \\vec{c}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 2: Phân tích một vectơ theo các vectơ còn lại",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 30,
+      "type": "mcq",
+      "prompt": "(THPT Lê Xoay - Vĩnh Phúc 2025) Cho hình hộp $ABCD.A'B'C'D'$. Phát biểu nào sau đây đúng?",
+      "points": 0.25,
+      "sort_order": 300,
+      "choices": [
+        "$\\overrightarrow{AB} + \\overrightarrow{AD} = \\overrightarrow{AC'}$.",
+        "$\\overrightarrow{AA'} + \\overrightarrow{AC} = \\overrightarrow{A'C}$.",
+        "$\\overrightarrow{AA'} + \\overrightarrow{AB} + \\overrightarrow{AD} = \\overrightarrow{AC}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{AD} = \\overrightarrow{AC}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Vì $ABCD$ là hình bình hành nên theo quy tắc hình bình hành ta có $\\overrightarrow{AB} + \\overrightarrow{AD} = \\overrightarrow{AC}$.",
+        "source": "THPT Lê Xoay - Vĩnh Phúc 2025",
+        "solution": "Vì $ABCD$ là hình bình hành nên theo quy tắc hình bình hành ta có $\\overrightarrow{AB} + \\overrightarrow{AD} = \\overrightarrow{AC}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 31,
+      "type": "mcq",
+      "prompt": "(Cụm trường THPT Bắc Ninh 2025) Cho hình lập phương $ABCD.A'B'C'D'$ có cạnh bằng $a$. Gọi $O$ là tâm của hình vuông $ABCD$. Đặt $\\vec{u} = \\overrightarrow{OA} + \\overrightarrow{OB} + \\overrightarrow{OC} + \\overrightarrow{OD} + \\overrightarrow{OA'} + \\overrightarrow{OB'} + \\overrightarrow{OC'} + \\overrightarrow{OD'}$. Khẳng định nào sau đây đúng?",
+      "points": 0.25,
+      "sort_order": 310,
+      "choices": [
+        "$|\\vec{u}| = a$.",
+        "$|\\vec{u}| = 4a$.",
+        "$|\\vec{u}| = 6a$.",
+        "$|\\vec{u}| = 2a$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Do $O$ là tâm hình vuông $ABCD$ nên $\\overrightarrow{OA} + \\overrightarrow{OB} + \\overrightarrow{OC} + \\overrightarrow{OD} = \\vec{0}$. Gọi $O'$ là tâm hình vuông $A'B'C'D'$, khi đó:\n$$\\vec{u} = \\overrightarrow{OA'} + \\overrightarrow{OB'} + \\overrightarrow{OC'} + \\overrightarrow{OD'} = 4\\overrightarrow{OO'} + (\\overrightarrow{O'A'} + \\overrightarrow{O'B'} + \\overrightarrow{O'C'} + \\overrightarrow{O'D'}) = 4\\overrightarrow{OO'}.$$\nSuy ra $|\\vec{u}| = 4OO' = 4a$.",
+        "source": "Cụm trường THPT Bắc Ninh 2025",
+        "solution": "Do $O$ là tâm hình vuông $ABCD$ nên $\\overrightarrow{OA} + \\overrightarrow{OB} + \\overrightarrow{OC} + \\overrightarrow{OD} = \\vec{0}$. Gọi $O'$ là tâm hình vuông $A'B'C'D'$, khi đó:\n$$\\vec{u} = \\overrightarrow{OA'} + \\overrightarrow{OB'} + \\overrightarrow{OC'} + \\overrightarrow{OD'} = 4\\overrightarrow{OO'} + (\\overrightarrow{O'A'} + \\overrightarrow{O'B'} + \\overrightarrow{O'C'} + \\overrightarrow{O'D'}) = 4\\overrightarrow{OO'}.$$\nSuy ra $|\\vec{u}| = 4OO' = 4a$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 32,
+      "type": "mcq",
+      "prompt": "(THPT Cẩm Xuyên - Hà Tĩnh 2025) Cho hình hộp $ABCD.A'B'C'D'$ (hình vẽ). Đẳng thức nào sau đây sai?\n![Hình Câu 32](/bank-images/chude26/q32_p0.jpeg)",
+      "points": 0.25,
+      "sort_order": 320,
+      "choices": [
+        "$\\overrightarrow{A'B'} + \\overrightarrow{AD} = \\overrightarrow{A'C'}$.",
+        "$\\overrightarrow{AB'} + \\overrightarrow{C'C} = \\overrightarrow{AC}$.",
+        "$\\overrightarrow{AD} + \\overrightarrow{CC'} = \\overrightarrow{AD'}$.",
+        "$\\overrightarrow{AC} + \\overrightarrow{DD'} = \\overrightarrow{AC'}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Ta có $\\overrightarrow{AB'} + \\overrightarrow{C'C} = \\overrightarrow{AB'} + \\overrightarrow{B'B} = \\overrightarrow{AB} \\neq \\overrightarrow{AC}$, nên đẳng thức ở phương án B sai.",
+        "source": "THPT Cẩm Xuyên - Hà Tĩnh 2025",
+        "solution": "Ta có $\\overrightarrow{AB'} + \\overrightarrow{C'C} = \\overrightarrow{AB'} + \\overrightarrow{B'B} = \\overrightarrow{AB} \\neq \\overrightarrow{AC}$, nên đẳng thức ở phương án B sai."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 33,
+      "type": "mcq",
+      "prompt": "(Sở Vĩnh Phúc 2025) Cho hình hộp $ABCD.A'B'C'D'$. Mệnh đề nào dưới đây là mệnh đề đúng?",
+      "points": 0.25,
+      "sort_order": 330,
+      "choices": [
+        "$\\overrightarrow{DB'} = \\overrightarrow{DA} + \\overrightarrow{DD'} + \\overrightarrow{DC}$.",
+        "$\\overrightarrow{AC'} = \\overrightarrow{AB} + \\overrightarrow{AB'} + \\overrightarrow{AD}$.",
+        "$\\overrightarrow{AC'} = \\overrightarrow{AC} + \\overrightarrow{AB} + \\overrightarrow{AD}$.",
+        "$\\overrightarrow{DB'} = \\overrightarrow{DA} + \\overrightarrow{DA'} + \\overrightarrow{DC}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Áp dụng quy tắc hình hộp tại đỉnh $D$ cho đường chéo $DB'$ ta có $\\overrightarrow{DB'} = \\overrightarrow{DA} + \\overrightarrow{DD'} + \\overrightarrow{DC}$.",
+        "source": "Sở Vĩnh Phúc 2025",
+        "solution": "Áp dụng quy tắc hình hộp tại đỉnh $D$ cho đường chéo $DB'$ ta có $\\overrightarrow{DB'} = \\overrightarrow{DA} + \\overrightarrow{DD'} + \\overrightarrow{DC}$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 34,
+      "type": "mcq",
+      "prompt": "(Chuyên KHTN Hà Nội 2025) Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình bình hành tâm $O$. Tổng $\\overrightarrow{SA} + \\overrightarrow{SB} + \\overrightarrow{SC} + \\overrightarrow{SD}$ bằng",
+      "points": 0.25,
+      "sort_order": 340,
+      "choices": [
+        "$4\\overrightarrow{SO}$.",
+        "$8\\overrightarrow{SO}$.",
+        "$3\\overrightarrow{SO}$.",
+        "$2\\overrightarrow{SO}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Vì $O$ là trung điểm $AC$ và $BD$ nên $\\overrightarrow{OA} + \\overrightarrow{OC} = \\vec{0}$ và $\\overrightarrow{OB} + \\overrightarrow{OD} = \\vec{0}$, suy ra $\\overrightarrow{SA} + \\overrightarrow{SB} + \\overrightarrow{SC} + \\overrightarrow{SD} = 4\\overrightarrow{SO}$.",
+        "source": "Chuyên KHTN Hà Nội 2025",
+        "solution": "Vì $O$ là trung điểm $AC$ và $BD$ nên $\\overrightarrow{OA} + \\overrightarrow{OC} = \\vec{0}$ và $\\overrightarrow{OB} + \\overrightarrow{OD} = \\vec{0}$, suy ra $\\overrightarrow{SA} + \\overrightarrow{SB} + \\overrightarrow{SC} + \\overrightarrow{SD} = 4\\overrightarrow{SO}$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 35,
+      "type": "mcq",
+      "prompt": "(THPT Lê Thánh Tông - HCM 2025) Cho hình hộp $ABCD.A'B'C'D'$ có tâm $O$. Khi đó, $\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} + \\overrightarrow{AC'}$ bằng:",
+      "points": 0.25,
+      "sort_order": 350,
+      "choices": [
+        "$\\overrightarrow{BD}$.",
+        "$2\\overrightarrow{OC'}$.",
+        "$4\\overrightarrow{AO}$.",
+        "$2\\overrightarrow{AC}$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$. Vì $O$ là tâm hình hộp nên $O$ là trung điểm $AC'$, do đó $\\overrightarrow{AC'} + \\overrightarrow{AC'} = 2\\overrightarrow{AC'} = 4\\overrightarrow{AO}$.",
+        "source": "THPT Lê Thánh Tông - HCM 2025",
+        "solution": "Ta có $\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$. Vì $O$ là tâm hình hộp nên $O$ là trung điểm $AC'$, do đó $\\overrightarrow{AC'} + \\overrightarrow{AC'} = 2\\overrightarrow{AC'} = 4\\overrightarrow{AO}$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 36,
+      "type": "mcq",
+      "prompt": "(THPT Lê Thánh Tông - HCM 2025) Cho tứ diện đều $ABCD$ có cạnh bằng $1$. Giá trị biểu thức $S = |\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AC}|$ bằng",
+      "points": 0.25,
+      "sort_order": 360,
+      "choices": [
+        "$\\frac{\\sqrt{6}}{2}$.",
+        "$\\sqrt{3}$.",
+        "$2\\sqrt{3}$.",
+        "$\\sqrt{6}$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Gọi $G$ là trọng tâm tam giác đều $BCD$, ta có $\\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AD} = 3\\overrightarrow{AG} \\Rightarrow S = 3AG$. Vì $BG = \\frac{2}{3}\\cdot\\frac{\\sqrt{3}}{2} = \\frac{1}{\\sqrt{3}}$ nên $AG = \\sqrt{1 - \\frac{1}{3}} = \\sqrt{\\frac{2}{3}}$, suy ra $S = 3\\sqrt{\\frac{2}{3}} = \\sqrt{6}$.",
+        "source": "THPT Lê Thánh Tông - HCM 2025",
+        "solution": "Gọi $G$ là trọng tâm tam giác đều $BCD$, ta có $\\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AD} = 3\\overrightarrow{AG} \\Rightarrow S = 3AG$. Vì $BG = \\frac{2}{3}\\cdot\\frac{\\sqrt{3}}{2} = \\frac{1}{\\sqrt{3}}$ nên $AG = \\sqrt{1 - \\frac{1}{3}} = \\sqrt{\\frac{2}{3}}$, suy ra $S = 3\\sqrt{\\frac{2}{3}} = \\sqrt{6}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 37,
+      "type": "mcq",
+      "prompt": "(Chuyên Hạ Long 2025) Cho tứ diện $ABCD$ có $G$ là trọng tâm tam giác $BCD$. Khẳng định nào sau đây là đúng?",
+      "points": 0.25,
+      "sort_order": 370,
+      "choices": [
+        "$\\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AD} = 2\\overrightarrow{AG}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AD} = \\overrightarrow{AG}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AD} = 4\\overrightarrow{AG}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AD} = 3\\overrightarrow{AG}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Do $G$ là trọng tâm $\\triangle BCD$ nên $\\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AD} = 3\\overrightarrow{AG}$.",
+        "source": "Chuyên Hạ Long 2025",
+        "solution": "Do $G$ là trọng tâm $\\triangle BCD$ nên $\\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AD} = 3\\overrightarrow{AG}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 38,
+      "type": "mcq",
+      "prompt": "(Chuyên Thái Bình 2025) Cho hình chóp $S.ABCD$ có đáy là hình bình hành. Đẳng thức nào sau đây là đẳng thức đúng?",
+      "points": 0.25,
+      "sort_order": 380,
+      "choices": [
+        "$\\overrightarrow{SA} + \\overrightarrow{SB} + \\overrightarrow{SC} + \\overrightarrow{SD} = \\vec{0}$.",
+        "$\\overrightarrow{SA} + \\overrightarrow{SC} = \\overrightarrow{SB} + \\overrightarrow{SD}$.",
+        "$\\overrightarrow{SA} + \\overrightarrow{SB} = \\overrightarrow{SC} + \\overrightarrow{SD}$.",
+        "$\\overrightarrow{SB} + \\overrightarrow{SC} = \\overrightarrow{SA} + \\overrightarrow{SD}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Gọi $O = AC \\cap BD$, ta có $\\overrightarrow{SA} + \\overrightarrow{SC} = 2\\overrightarrow{SO} = \\overrightarrow{SB} + \\overrightarrow{SD}$.",
+        "source": "Chuyên Thái Bình 2025",
+        "solution": "Gọi $O = AC \\cap BD$, ta có $\\overrightarrow{SA} + \\overrightarrow{SC} = 2\\overrightarrow{SO} = \\overrightarrow{SB} + \\overrightarrow{SD}$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 39,
+      "type": "mcq",
+      "prompt": "(Chuyên Thái Bình 2025) Cho hình lập phương $ABCD.A'B'C'D'$ có cạnh bằng $a$. Tích vô hướng của hai vectơ $\\overrightarrow{BC'}$ và $\\overrightarrow{B'A}$ bằng\n![Hình Câu 39](/bank-images/chude26/q39_p0.jpeg)",
+      "points": 0.25,
+      "sort_order": 390,
+      "choices": [
+        "$a^2$.",
+        "$a^2\\sqrt{2}$.",
+        "$-a^2$.",
+        "$\\frac{a^2\\sqrt{2}}{2}$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $\\overrightarrow{BC'} = \\overrightarrow{AD'}$ và $\\overrightarrow{B'A} = -\\overrightarrow{AB'}$. Tam giác $AB'D'$ đều cạnh $a\\sqrt{2}$ nên $(\\overrightarrow{AD'}, \\overrightarrow{AB'}) = 60^{\\circ}$. Suy ra $\\overrightarrow{BC'}\\cdot\\overrightarrow{B'A} = -\\overrightarrow{AD'}\\cdot\\overrightarrow{AB'} = -a\\sqrt{2}\\cdot a\\sqrt{2}\\cdot\\cos 60^{\\circ} = -a^2$.",
+        "source": "Chuyên Thái Bình 2025",
+        "solution": "Ta có $\\overrightarrow{BC'} = \\overrightarrow{AD'}$ và $\\overrightarrow{B'A} = -\\overrightarrow{AB'}$. Tam giác $AB'D'$ đều cạnh $a\\sqrt{2}$ nên $(\\overrightarrow{AD'}, \\overrightarrow{AB'}) = 60^{\\circ}$. Suy ra $\\overrightarrow{BC'}\\cdot\\overrightarrow{B'A} = -\\overrightarrow{AD'}\\cdot\\overrightarrow{AB'} = -a\\sqrt{2}\\cdot a\\sqrt{2}\\cdot\\cos 60^{\\circ} = -a^2$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 3: Tích vô hướng của vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 40,
+      "type": "mcq",
+      "prompt": "(Sở Thanh Hóa 2025) Cho hình hộp $ABCD.A'B'C'D'$ (minh họa như hình vẽ bên).\n![Hình Câu 40](/bank-images/chude26/q40_p0.jpeg)\nPhát biểu nào sau đây là đúng?",
+      "points": 0.25,
+      "sort_order": 400,
+      "choices": [
+        "$\\overrightarrow{AA'} + \\overrightarrow{AC} = \\overrightarrow{A'C'}$.",
+        "$\\overrightarrow{AA'} + \\overrightarrow{AC} = \\overrightarrow{AD'}$.",
+        "$\\overrightarrow{AA'} + \\overrightarrow{AC} = \\overrightarrow{AC'}$.",
+        "$\\overrightarrow{AA'} + \\overrightarrow{AC} = \\overrightarrow{AB'}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Tứ giác $ACC'A'$ là hình bình hành nên $\\overrightarrow{AA'} + \\overrightarrow{AC} = \\overrightarrow{AC'}$.",
+        "source": "Sở Thanh Hóa 2025",
+        "solution": "Tứ giác $ACC'A'$ là hình bình hành nên $\\overrightarrow{AA'} + \\overrightarrow{AC} = \\overrightarrow{AC'}$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 41,
+      "type": "mcq",
+      "prompt": "(Sở Thanh Hóa 2025) Trong không gian tọa độ $Oxyz$, cho $A(1;1;-2)$ và $B(2;-1;0)$. Tọa độ của vectơ $\\overrightarrow{AB}$ là:",
+      "points": 0.25,
+      "sort_order": 410,
+      "choices": [
+        "$\\overrightarrow{AB} = (1;-2;2)$.",
+        "$\\overrightarrow{AB} = (1;2;2)$.",
+        "$\\overrightarrow{AB} = (-1;2;-2)$.",
+        "$\\overrightarrow{AB} = (3;0;-2)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Ta có $\\overrightarrow{AB} = (2 - 1; -1 - 1; 0 - (-2)) = (1; -2; 2)$.",
+        "source": "Sở Thanh Hóa 2025",
+        "solution": "Ta có $\\overrightarrow{AB} = (2 - 1; -1 - 1; 0 - (-2)) = (1; -2; 2)$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 13: Hệ trục tọa độ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 42,
+      "type": "mcq",
+      "prompt": "(Cụm trường THPT Hải Dương 2025) Cho hình hộp $ABCD.EFGH$ như hình vẽ sau. Trong các khẳng định dưới đây đâu là khẳng định đúng?\n![Hình Câu 42](/bank-images/chude26/q42_p0.png)",
+      "points": 0.25,
+      "sort_order": 420,
+      "choices": [
+        "$\\overrightarrow{AB} + \\overrightarrow{AE} + \\overrightarrow{AD} = \\overrightarrow{AG}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{AE} + \\overrightarrow{AD} = \\overrightarrow{AC}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{AE} + \\overrightarrow{AD} = \\vec{0}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AD} = \\overrightarrow{AG}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Theo quy tắc hình hộp tại đỉnh $A$, $\\overrightarrow{AB} + \\overrightarrow{AE} + \\overrightarrow{AD} = \\overrightarrow{AG}$.",
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "solution": "Theo quy tắc hình hộp tại đỉnh $A$, $\\overrightarrow{AB} + \\overrightarrow{AE} + \\overrightarrow{AD} = \\overrightarrow{AG}$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 43,
+      "type": "mcq",
+      "prompt": "(THPT Trần Nguyên Hãn - Hải Phòng 2025) Cho tứ diện $ABCD$. Lấy $G$ là trọng tâm tam giác $ABC$. Phát biểu nào sau đây là sai?",
+      "points": 0.25,
+      "sort_order": 430,
+      "choices": [
+        "$\\overrightarrow{DA} + \\overrightarrow{DB} + \\overrightarrow{DC} = 3\\overrightarrow{DG}$.",
+        "$\\overrightarrow{GD} - \\overrightarrow{GA} = \\overrightarrow{AD}$.",
+        "$\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = \\vec{0}$.",
+        "$\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = \\vec{0}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Do $G$ là trọng tâm $\\triangle ABC$ nên $\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = \\vec{0}$, suy ra $\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = \\overrightarrow{GD} \\neq \\vec{0}$.",
+        "source": "THPT Trần Nguyên Hãn - Hải Phòng 2025",
+        "solution": "Do $G$ là trọng tâm $\\triangle ABC$ nên $\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = \\vec{0}$, suy ra $\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = \\overrightarrow{GD} \\neq \\vec{0}$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 44,
+      "type": "mcq",
+      "prompt": "(THPT Trần Phú - Vĩnh Phúc 2025) Cho hình tứ diện $ABCD$. Gọi $G$ là trọng tâm của tam giác $BCD$. Mệnh đề nào sau đây đúng?",
+      "points": 0.25,
+      "sort_order": 440,
+      "choices": [
+        "$\\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AD} = 3\\overrightarrow{AG}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AD} = -3\\overrightarrow{AG}$.",
+        "$\\overrightarrow{BC} + \\overrightarrow{AD} + \\overrightarrow{AC} = \\overrightarrow{AC}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{CD} + \\overrightarrow{AD} = \\overrightarrow{AD}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Vì $G$ là trọng tâm $\\triangle BCD$ nên $\\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = \\vec{0}$, suy ra $\\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AD} = 3\\overrightarrow{AG}$.",
+        "source": "THPT Trần Phú - Vĩnh Phúc 2025",
+        "solution": "Vì $G$ là trọng tâm $\\triangle BCD$ nên $\\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = \\vec{0}$, suy ra $\\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AD} = 3\\overrightarrow{AG}$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 45,
+      "type": "mcq",
+      "prompt": "(Cụm trường Hưng Yên 2025) Cho hình hộp $ABCD.EFGH$ (minh họa hình bên).\n![Hình Câu 45](/bank-images/chude26/q45_p0.jpeg)\nKết quả của phép toán $\\overrightarrow{AB} - \\overrightarrow{EH}$ là",
+      "points": 0.25,
+      "sort_order": 450,
+      "choices": [
+        "$\\overrightarrow{FH}$.",
+        "$\\overrightarrow{BH}$.",
+        "$\\overrightarrow{DB}$.",
+        "$\\overrightarrow{AE}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Vì $\\overrightarrow{EH} = \\overrightarrow{AD}$ nên $\\overrightarrow{AB} - \\overrightarrow{EH} = \\overrightarrow{AB} - \\overrightarrow{AD} = \\overrightarrow{DB}$.",
+        "source": "Cụm trường Hưng Yên 2025",
+        "solution": "Vì $\\overrightarrow{EH} = \\overrightarrow{AD}$ nên $\\overrightarrow{AB} - \\overrightarrow{EH} = \\overrightarrow{AB} - \\overrightarrow{AD} = \\overrightarrow{DB}$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 46,
+      "type": "mcq",
+      "prompt": "(Cụm trường Hải Dương 2025) Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình bình hành tâm $O$ (tham khảo hình vẽ).\n![Hình Câu 46](/bank-images/chude26/q46_p0.jpeg)\nKhẳng định nào dưới đây đúng?",
+      "points": 0.25,
+      "sort_order": 460,
+      "choices": [
+        "$\\overrightarrow{SA} + \\overrightarrow{SC} = 2\\overrightarrow{SO}$.",
+        "$\\overrightarrow{SA} + \\overrightarrow{SB} = 2\\overrightarrow{SO}$.",
+        "$\\overrightarrow{SA} + \\overrightarrow{SB} + \\overrightarrow{SC} + \\overrightarrow{SD} = 2\\overrightarrow{SO}$.",
+        "$\\overrightarrow{SB} + \\overrightarrow{SD} = \\overrightarrow{SO}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Vì $O$ là trung điểm $AC$ nên theo quy tắc trung điểm ta có $\\overrightarrow{SA} + \\overrightarrow{SC} = 2\\overrightarrow{SO}$.",
+        "source": "Cụm trường Hải Dương 2025",
+        "solution": "Vì $O$ là trung điểm $AC$ nên theo quy tắc trung điểm ta có $\\overrightarrow{SA} + \\overrightarrow{SC} = 2\\overrightarrow{SO}$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 47,
+      "type": "mcq",
+      "prompt": "(Sở Thừa Thiên Huế 2025) Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình bình hành. Khi đó $\\overrightarrow{SA} + \\overrightarrow{BC}$ bằng\n![Hình Câu 47](/bank-images/chude26/q47_p0.png)",
+      "points": 0.25,
+      "sort_order": 470,
+      "choices": [
+        "$\\overrightarrow{SD}$.",
+        "$\\overrightarrow{SC}$.",
+        "$\\overrightarrow{SA}$.",
+        "$\\overrightarrow{SB}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Vì $ABCD$ là hình bình hành nên $\\overrightarrow{BC} = \\overrightarrow{AD}$, do đó $\\overrightarrow{SA} + \\overrightarrow{BC} = \\overrightarrow{SA} + \\overrightarrow{AD} = \\overrightarrow{SD}$.",
+        "source": "Sở Thừa Thiên Huế 2025",
+        "solution": "Vì $ABCD$ là hình bình hành nên $\\overrightarrow{BC} = \\overrightarrow{AD}$, do đó $\\overrightarrow{SA} + \\overrightarrow{BC} = \\overrightarrow{SA} + \\overrightarrow{AD} = \\overrightarrow{SD}$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 48,
+      "type": "mcq",
+      "prompt": "(Chuyên Lê Khiết - Quảng Ngãi 2025) Cho hình hộp $ABCD.A'B'C'D'$ (minh họa như hình bên dưới).\n![Hình Câu 48](/bank-images/chude26/q48_p0.jpeg)\nPhát biểu nào sau đây là đúng?",
+      "points": 0.25,
+      "sort_order": 480,
+      "choices": [
+        "$\\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{BB'} + \\overrightarrow{B'A'} = \\overrightarrow{AC'}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{AA'} + \\overrightarrow{AD} = \\overrightarrow{AC'}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{BC'} + \\overrightarrow{C'D'} = \\overrightarrow{AC'}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Theo quy tắc hình hộp tại đỉnh $A$, ta có $\\overrightarrow{AB} + \\overrightarrow{AA'} + \\overrightarrow{AD} = \\overrightarrow{AC'}$.",
+        "source": "Chuyên Lê Khiết - Quảng Ngãi 2025",
+        "solution": "Theo quy tắc hình hộp tại đỉnh $A$, ta có $\\overrightarrow{AB} + \\overrightarrow{AA'} + \\overrightarrow{AD} = \\overrightarrow{AC'}$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 49,
+      "type": "mcq",
+      "prompt": "(Chuyên Hoàng Văn Thụ - Hòa Bình 2025) Cho tứ diện $ABCD$. Đặt $\\overrightarrow{AB} = \\vec{a}, \\overrightarrow{AC} = \\vec{b}, \\overrightarrow{AD} = \\vec{c}$, gọi $M$ là trung điểm của $BC$. Trong các khẳng định sau, khẳng định nào đúng?",
+      "points": 0.25,
+      "sort_order": 490,
+      "choices": [
+        "$\\overrightarrow{DM} = \\frac{1}{2}(\\vec{a} + \\vec{b} - 2\\vec{c})$.",
+        "$\\overrightarrow{DM} = \\frac{1}{2}(\\vec{a} + 2\\vec{b} - \\vec{c})$.",
+        "$\\overrightarrow{DM} = \\frac{1}{2}(-2\\vec{a} + \\vec{b} + \\vec{c})$.",
+        "$\\overrightarrow{DM} = \\frac{1}{2}(\\vec{a} - 2\\vec{b} + \\vec{c})$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $\\overrightarrow{DM} = \\overrightarrow{DA} + \\overrightarrow{AM} = -\\overrightarrow{AD} + \\frac{1}{2}(\\overrightarrow{AB} + \\overrightarrow{AC}) = -\\vec{c} + \\frac{1}{2}(\\vec{a} + \\vec{b}) = \\frac{1}{2}(\\vec{a} + \\vec{b} - 2\\vec{c})$.",
+        "source": "Chuyên Hoàng Văn Thụ - Hòa Bình 2025",
+        "solution": "Ta có $\\overrightarrow{DM} = \\overrightarrow{DA} + \\overrightarrow{AM} = -\\overrightarrow{AD} + \\frac{1}{2}(\\overrightarrow{AB} + \\overrightarrow{AC}) = -\\vec{c} + \\frac{1}{2}(\\vec{a} + \\vec{b}) = \\frac{1}{2}(\\vec{a} + \\vec{b} - 2\\vec{c})$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 2: Phân tích một vectơ theo các vectơ còn lại",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 50,
+      "type": "mcq",
+      "prompt": "(THPT Sào Nam - Quảng Nam 2025) Cho hình lập phương $ABCD.A'B'C'D'$ có cạnh bằng $a$. Khẳng định nào sau đây là đúng?",
+      "points": 0.25,
+      "sort_order": 500,
+      "choices": [
+        "$\\overrightarrow{A'C}\\cdot\\overrightarrow{AC} = a^2\\sqrt{2}$.",
+        "$\\overrightarrow{A'C}\\cdot\\overrightarrow{AC} = a^2$.",
+        "$\\overrightarrow{A'C}\\cdot\\overrightarrow{AC} = 0$.",
+        "$\\overrightarrow{A'C}\\cdot\\overrightarrow{AC} = 2a^2$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Vì $AA' \\perp (ABCD)$ nên $\\overrightarrow{A'A}\\cdot\\overrightarrow{AC} = 0$. Do đó $\\overrightarrow{A'C}\\cdot\\overrightarrow{AC} = (\\overrightarrow{A'A} + \\overrightarrow{AC})\\cdot\\overrightarrow{AC} = AC^2 = (a\\sqrt{2})^2 = 2a^2$.",
+        "source": "THPT Sào Nam - Quảng Nam 2025",
+        "solution": "Vì $AA' \\perp (ABCD)$ nên $\\overrightarrow{A'A}\\cdot\\overrightarrow{AC} = 0$. Do đó $\\overrightarrow{A'C}\\cdot\\overrightarrow{AC} = (\\overrightarrow{A'A} + \\overrightarrow{AC})\\cdot\\overrightarrow{AC} = AC^2 = (a\\sqrt{2})^2 = 2a^2$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 3: Tích vô hướng của vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 51,
+      "type": "mcq",
+      "prompt": "(Cụm trường Nguyễn Hiền - Lê Hồng Phong - Quảng Nam 2025) Cho hình lập phương $ABCD.A'B'C'D'$ cạnh bằng $a$. Tính $\\overrightarrow{AC}\\cdot\\overrightarrow{A'B}$?\n![Hình Câu 51](/bank-images/chude26/q51_p0.png)",
+      "points": 0.25,
+      "sort_order": 510,
+      "choices": [
+        "$a^2$.",
+        "$-a^2$.",
+        "$2a$.",
+        "$-2a$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $\\overrightarrow{AC} = \\overrightarrow{A'C'}$ và tam giác $A'BC'$ đều cạnh $a\\sqrt{2}$ nên $\\widehat{BA'C'} = 60^{\\circ}$. Vậy $\\overrightarrow{AC}\\cdot\\overrightarrow{A'B} = a\\sqrt{2}\\cdot a\\sqrt{2}\\cdot\\cos 60^{\\circ} = a^2$.",
+        "source": "Cụm trường Nguyễn Hiền - Lê Hồng Phong - Quảng Nam 2025",
+        "solution": "Ta có $\\overrightarrow{AC} = \\overrightarrow{A'C'}$ và tam giác $A'BC'$ đều cạnh $a\\sqrt{2}$ nên $\\widehat{BA'C'} = 60^{\\circ}$. Vậy $\\overrightarrow{AC}\\cdot\\overrightarrow{A'B} = a\\sqrt{2}\\cdot a\\sqrt{2}\\cdot\\cos 60^{\\circ} = a^2$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 3: Tích vô hướng của vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 52,
+      "type": "mcq",
+      "prompt": "(THPT Nông Cống 3 - Thanh Hóa 2025) Cho hình lăng trụ tam giác $ABC.A'B'C'$, gọi $M$ là trung điểm cạnh bên $BB'$. Đặt $\\overrightarrow{CA} = \\vec{a}, \\overrightarrow{CB} = \\vec{b}, \\overrightarrow{CC'} = \\vec{c}$. Khẳng định nào sau đây là đúng?",
+      "points": 0.25,
+      "sort_order": 520,
+      "choices": [
+        "$\\overrightarrow{AM} = -\\vec{a} + \\vec{b} + \\frac{1}{2}\\vec{c}$.",
+        "$\\overrightarrow{AM} = -\\frac{1}{2}\\vec{a} + \\vec{b} + \\vec{c}$.",
+        "$\\overrightarrow{AM} = \\vec{a} + \\frac{1}{2}\\vec{b} - \\vec{c}$.",
+        "$\\overrightarrow{AM} = \\vec{a} - \\frac{1}{2}\\vec{b} + \\vec{c}$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $\\overrightarrow{AM} = \\overrightarrow{AC} + \\overrightarrow{CB} + \\overrightarrow{BM} = -\\overrightarrow{CA} + \\overrightarrow{CB} + \\frac{1}{2}\\overrightarrow{CC'} = -\\vec{a} + \\vec{b} + \\frac{1}{2}\\vec{c}$.",
+        "source": "THPT Nông Cống 3 - Thanh Hóa 2025",
+        "solution": "Ta có $\\overrightarrow{AM} = \\overrightarrow{AC} + \\overrightarrow{CB} + \\overrightarrow{BM} = -\\overrightarrow{CA} + \\overrightarrow{CB} + \\frac{1}{2}\\overrightarrow{CC'} = -\\vec{a} + \\vec{b} + \\frac{1}{2}\\vec{c}$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 2: Phân tích một vectơ theo các vectơ còn lại",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 53,
+      "type": "mcq",
+      "prompt": "(THPT Anh Sơn 3 - Nghệ An 2025) Cho hình hộp chữ nhật $ABCD.A'B'C'D'$. Vectơ nào sau đây bằng vectơ $\\overrightarrow{AB}$?",
+      "points": 0.25,
+      "sort_order": 530,
+      "choices": [
+        "$\\overrightarrow{B'A'}$.",
+        "$\\overrightarrow{CD}$.",
+        "$\\overrightarrow{BA}$.",
+        "$\\overrightarrow{D'C'}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Trong hình hộp chữ nhật $ABCD.A'B'C'D'$, ta có $\\overrightarrow{AB} = \\overrightarrow{DC} = \\overrightarrow{D'C'}$.",
+        "source": "THPT Anh Sơn 3 - Nghệ An 2025",
+        "solution": "Trong hình hộp chữ nhật $ABCD.A'B'C'D'$, ta có $\\overrightarrow{AB} = \\overrightarrow{DC} = \\overrightarrow{D'C'}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 54,
+      "type": "mcq",
+      "prompt": "(THPT Trực Ninh - Nam Định 2025) Cho hình lập phương $ABCD.A'B'C'D'$ cạnh $a$. Khẳng định nào sau đây sai?\n![Hình Câu 54](/bank-images/chude26/q54_p0.jpeg)",
+      "points": 0.25,
+      "sort_order": 540,
+      "choices": [
+        "$\\overrightarrow{AC} + \\overrightarrow{A'C'} = \\vec{0}$.",
+        "$\\overrightarrow{BA} + \\overrightarrow{BC} + \\overrightarrow{BB'} = \\overrightarrow{BD'}$.",
+        "$|\\overrightarrow{BD'}| = a\\sqrt{3}$.",
+        "$|\\overrightarrow{BD}| = a\\sqrt{2}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Vì $\\overrightarrow{A'C'} = \\overrightarrow{AC}$ nên $\\overrightarrow{AC} + \\overrightarrow{A'C'} = 2\\overrightarrow{AC} \\neq \\vec{0}$.",
+        "source": "THPT Trực Ninh - Nam Định 2025",
+        "solution": "Vì $\\overrightarrow{A'C'} = \\overrightarrow{AC}$ nên $\\overrightarrow{AC} + \\overrightarrow{A'C'} = 2\\overrightarrow{AC} \\neq \\vec{0}$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 55,
+      "type": "mcq",
+      "prompt": "(Sở Phú Thọ 2025) Cho hình lập phương $ABCD.A'B'C'D'$ (tham khảo hình vẽ).\n![Hình Câu 55](/bank-images/chude26/q55_p0.png)\nGóc giữa hai vectơ $\\overrightarrow{AB}$ và $\\overrightarrow{CD'}$ bằng",
+      "points": 0.25,
+      "sort_order": 550,
+      "choices": [
+        "$135^{\\circ}$.",
+        "$60^{\\circ}$.",
+        "$30^{\\circ}$.",
+        "$45^{\\circ}$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Do $\\overrightarrow{AB} = \\overrightarrow{DC}$ nên $(\\overrightarrow{AB}, \\overrightarrow{CD'}) = (\\overrightarrow{DC}, \\overrightarrow{CD'}) = 180^{\\circ} - \\widehat{DCD'} = 180^{\\circ} - 45^{\\circ} = 135^{\\circ}$.",
+        "source": "Sở Phú Thọ 2025",
+        "solution": "Do $\\overrightarrow{AB} = \\overrightarrow{DC}$ nên $(\\overrightarrow{AB}, \\overrightarrow{CD'}) = (\\overrightarrow{DC}, \\overrightarrow{CD'}) = 180^{\\circ} - \\widehat{DCD'} = 180^{\\circ} - 45^{\\circ} = 135^{\\circ}$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 3: Tích vô hướng của vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 56,
+      "type": "mcq",
+      "prompt": "(Chuyên Lê Quý Đôn - Đà Nẵng 2025) Cho hình chóp $S.ABC$. Gọi $G$ là trọng tâm của tam giác $ABC$. Khẳng định nào sau đây sai?",
+      "points": 0.25,
+      "sort_order": 560,
+      "choices": [
+        "$\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = \\vec{0}$.",
+        "$\\overrightarrow{SA} + \\overrightarrow{SB} + \\overrightarrow{SC} = 3\\overrightarrow{SG}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{BC} + \\overrightarrow{CA} = \\vec{0}$.",
+        "$\\overrightarrow{GS} + \\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = \\vec{0}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Vì $G$ là trọng tâm $\\triangle ABC$ nên $\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = \\vec{0}$, do đó $\\overrightarrow{GS} + \\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = \\overrightarrow{GS} \\neq \\vec{0}$.",
+        "source": "Chuyên Lê Quý Đôn - Đà Nẵng 2025",
+        "solution": "Vì $G$ là trọng tâm $\\triangle ABC$ nên $\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = \\vec{0}$, do đó $\\overrightarrow{GS} + \\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = \\overrightarrow{GS} \\neq \\vec{0}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 57,
+      "type": "mcq",
+      "prompt": "(THPT Lê Hồng Phong - Hải Phòng 2025) Cho hình lập phương $ABCD.A'B'C'D'$. Gọi $O$ là tâm của hình lập phương. Khẳng định nào sau đây là đúng?",
+      "points": 0.25,
+      "sort_order": 570,
+      "choices": [
+        "$\\overrightarrow{AO} = \\frac{1}{4}\\left(\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}\\right)$.",
+        "$\\overrightarrow{AO} = \\frac{2}{3}\\left(\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}\\right)$.",
+        "$\\overrightarrow{AO} = \\frac{1}{3}\\left(\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}\\right)$.",
+        "$\\overrightarrow{AO} = \\frac{1}{2}\\left(\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}\\right)$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Tâm $O$ là trung điểm đường chéo $AC'$ nên $\\overrightarrow{AO} = \\frac{1}{2}\\overrightarrow{AC'} = \\frac{1}{2}\\left(\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}\\right)$.",
+        "source": "THPT Lê Hồng Phong - Hải Phòng 2025",
+        "solution": "Tâm $O$ là trung điểm đường chéo $AC'$ nên $\\overrightarrow{AO} = \\frac{1}{2}\\overrightarrow{AC'} = \\frac{1}{2}\\left(\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}\\right)$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 2: Phân tích một vectơ theo các vectơ còn lại",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 58,
+      "type": "mcq",
+      "prompt": "(Sở Quảng Bình 2025) Cho hình hộp $ABCD.EFGH$ (minh họa như hình bên). Vectơ nào sau đây bằng vectơ $\\overrightarrow{FH}$?\n![Hình Câu 58](/bank-images/chude26/q58_p0.jpeg)",
+      "points": 0.25,
+      "sort_order": 580,
+      "choices": [
+        "$\\overrightarrow{BD}$.",
+        "$\\overrightarrow{DB}$.",
+        "$\\overrightarrow{BA}$.",
+        "$\\overrightarrow{AB}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Tứ giác $BDHF$ là hình bình hành nên $\\overrightarrow{FH} = \\overrightarrow{BD}$.",
+        "source": "Sở Quảng Bình 2025",
+        "solution": "Tứ giác $BDHF$ là hình bình hành nên $\\overrightarrow{FH} = \\overrightarrow{BD}$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 59,
+      "type": "mcq",
+      "prompt": "(Cụm trường THPT Hải Dương 2025) Cho hình hộp $ABCD.A'B'C'D'$. Tìm giá trị của $k$ thích hợp điền vào đẳng thức vectơ: $\\overrightarrow{BD} - \\overrightarrow{D'D} - \\overrightarrow{B'D'} = k\\overrightarrow{A'A}$.",
+      "points": 0.25,
+      "sort_order": 590,
+      "choices": [
+        "$k = -2$.",
+        "$k = 1$.",
+        "$k = -1$.",
+        "$k = 2$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $\\overrightarrow{BD} - \\overrightarrow{D'D} - \\overrightarrow{B'D'} = \\overrightarrow{BD} + \\overrightarrow{DD'} + \\overrightarrow{D'B'} = \\overrightarrow{BB'} = \\overrightarrow{AA'} = (-1)\\overrightarrow{A'A}$, suy ra $k = -1$.",
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "solution": "Ta có $\\overrightarrow{BD} - \\overrightarrow{D'D} - \\overrightarrow{B'D'} = \\overrightarrow{BD} + \\overrightarrow{DD'} + \\overrightarrow{D'B'} = \\overrightarrow{BB'} = \\overrightarrow{AA'} = (-1)\\overrightarrow{A'A}$, suy ra $k = -1$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 60,
+      "type": "mcq",
+      "prompt": "(THPT Lê Thánh Tông - Nguyễn Khuyến 2025) Cho hình hộp $ABCD.A'B'C'D'$. Vectơ $\\vec{v} = \\overrightarrow{B'A'} + \\overrightarrow{B'C'} + \\overrightarrow{B'B}$ bằng vectơ nào dưới đây?",
+      "points": 0.25,
+      "sort_order": 600,
+      "choices": [
+        "$\\overrightarrow{DB'}$.",
+        "$\\overrightarrow{B'D'}$.",
+        "$\\overrightarrow{BD'}$.",
+        "$\\overrightarrow{B'D}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Theo quy tắc hình hộp tại đỉnh $B'$, ta có $\\overrightarrow{B'A'} + \\overrightarrow{B'C'} + \\overrightarrow{B'B} = \\overrightarrow{B'D}$.",
+        "source": "THPT Lê Thánh Tông - Nguyễn Khuyến 2025",
+        "solution": "Theo quy tắc hình hộp tại đỉnh $B'$, ta có $\\overrightarrow{B'A'} + \\overrightarrow{B'C'} + \\overrightarrow{B'B} = \\overrightarrow{B'D}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 61,
+      "type": "mcq",
+      "prompt": "(Chuyên KHTN Hà Nội 2025) Cho hình hộp $ABCD.A'B'C'D'$. Tổng $\\overrightarrow{AB} + \\overrightarrow{B'C'} + \\overrightarrow{DD'}$ bằng",
+      "points": 0.25,
+      "sort_order": 610,
+      "choices": [
+        "$\\overrightarrow{AC}$.",
+        "$\\overrightarrow{A'C}$.",
+        "$\\overrightarrow{AC'}$.",
+        "$\\overrightarrow{C'A}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Vì $\\overrightarrow{B'C'} = \\overrightarrow{BC}$ và $\\overrightarrow{DD'} = \\overrightarrow{CC'}$ nên $\\overrightarrow{AB} + \\overrightarrow{B'C'} + \\overrightarrow{DD'} = \\overrightarrow{AB} + \\overrightarrow{BC} + \\overrightarrow{CC'} = \\overrightarrow{AC'}$.",
+        "source": "Chuyên KHTN Hà Nội 2025",
+        "solution": "Vì $\\overrightarrow{B'C'} = \\overrightarrow{BC}$ và $\\overrightarrow{DD'} = \\overrightarrow{CC'}$ nên $\\overrightarrow{AB} + \\overrightarrow{B'C'} + \\overrightarrow{DD'} = \\overrightarrow{AB} + \\overrightarrow{BC} + \\overrightarrow{CC'} = \\overrightarrow{AC'}$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 62,
+      "type": "mcq",
+      "prompt": "(Sở Tuyên Quang 2025) Cho tứ diện $ABCD$, điểm $G$ là trọng tâm tam giác $BCD$. Phát biểu nào sau đây sai?",
+      "points": 0.25,
+      "sort_order": 620,
+      "choices": [
+        "$\\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = \\vec{0}$.",
+        "$\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = \\vec{0}$.",
+        "$\\overrightarrow{BC} + \\overrightarrow{BD} = 3\\overrightarrow{BG}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AD} = 3\\overrightarrow{AG}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Do $G$ là trọng tâm $\\triangle BCD$ nên $\\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = \\vec{0}$, suy ra $\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = \\overrightarrow{GA} \\neq \\vec{0}$.",
+        "source": "Sở Tuyên Quang 2025",
+        "solution": "Do $G$ là trọng tâm $\\triangle BCD$ nên $\\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = \\vec{0}$, suy ra $\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = \\overrightarrow{GA} \\neq \\vec{0}$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 63,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Sơn 1 - Thanh Hóa 2025) Cho hình hộp $ABCD.A'B'C'D'$. Chọn khẳng định đúng trong các khẳng định sau:",
+      "points": 0.25,
+      "sort_order": 630,
+      "choices": [
+        "$\\overrightarrow{AD} = \\overrightarrow{B'C'}$.",
+        "$\\overrightarrow{AD} = \\overrightarrow{CB}$.",
+        "$\\overrightarrow{CB} \\perp \\overrightarrow{BB'}$.",
+        "$\\overrightarrow{A'D} = \\overrightarrow{AC}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Trong hình hộp $ABCD.A'B'C'D'$, ta có $\\overrightarrow{AD} = \\overrightarrow{BC} = \\overrightarrow{B'C'}$.",
+        "source": "THPT Triệu Sơn 1 - Thanh Hóa 2025",
+        "solution": "Trong hình hộp $ABCD.A'B'C'D'$, ta có $\\overrightarrow{AD} = \\overrightarrow{BC} = \\overrightarrow{B'C'}$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 64,
+      "type": "mcq",
+      "prompt": "(THPT Anh Sơn 3 - Nghệ An 2025) Cho hình hộp $ABCD.A'B'C'D'$ (minh họa như hình vẽ).\n![Hình Câu 64](/bank-images/chude26/q64_p0.jpeg)\nPhát biểu nào sau đây là đúng?",
+      "points": 0.25,
+      "sort_order": 640,
+      "choices": [
+        "$\\overrightarrow{AC'} = \\overrightarrow{AB} + \\overrightarrow{AB'} + \\overrightarrow{AD}$.",
+        "$\\overrightarrow{DB} = \\overrightarrow{DA} + \\overrightarrow{DD'} + \\overrightarrow{DC}$.",
+        "$\\overrightarrow{AC'} = \\overrightarrow{AC} + \\overrightarrow{AB} + \\overrightarrow{AD}$.",
+        "$\\overrightarrow{DB'} = \\overrightarrow{DA} + \\overrightarrow{DD'} + \\overrightarrow{DC}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Theo quy tắc hình hộp tại đỉnh $D$, ta có $\\overrightarrow{DB'} = \\overrightarrow{DA} + \\overrightarrow{DD'} + \\overrightarrow{DC}$.",
+        "source": "THPT Anh Sơn 3 - Nghệ An 2025",
+        "solution": "Theo quy tắc hình hộp tại đỉnh $D$, ta có $\\overrightarrow{DB'} = \\overrightarrow{DA} + \\overrightarrow{DD'} + \\overrightarrow{DC}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 65,
+      "type": "mcq",
+      "prompt": "(THPT Đô Lương 1 - Nghệ An 2025) Cho hình hộp $ABCD.A'B'C'D'$. Mệnh đề nào dưới đây là sai?\n![Hình Câu 65](/bank-images/chude26/q65_p0.jpeg)",
+      "points": 0.25,
+      "sort_order": 650,
+      "choices": [
+        "$\\overrightarrow{AC'} = \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}$.",
+        "$\\overrightarrow{BD'} = \\overrightarrow{BA} + \\overrightarrow{BD} + \\overrightarrow{BB'}$.",
+        "$\\overrightarrow{CA'} = \\overrightarrow{CB} + \\overrightarrow{CD} + \\overrightarrow{CC'}$.",
+        "$\\overrightarrow{DB'} = \\overrightarrow{DA} + \\overrightarrow{DC} + \\overrightarrow{DD'}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Theo quy tắc hình hộp tại đỉnh $B$, phải là $\\overrightarrow{BD'} = \\overrightarrow{BA} + \\overrightarrow{BC} + \\overrightarrow{BB'}$, nên phương án B sai.",
+        "source": "THPT Đô Lương 1 - Nghệ An 2025",
+        "solution": "Theo quy tắc hình hộp tại đỉnh $B$, phải là $\\overrightarrow{BD'} = \\overrightarrow{BA} + \\overrightarrow{BC} + \\overrightarrow{BB'}$, nên phương án B sai."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 66,
+      "type": "mcq",
+      "prompt": "(Sở Hòa Bình 2025) Cho hình lập phương $ABCD.A'B'C'D'$.\n![Hình Câu 66](/bank-images/chude26/q66_p0.jpeg)\nGóc giữa hai vectơ $\\overrightarrow{AB}$ và $\\overrightarrow{DC'}$ bằng:",
+      "points": 0.25,
+      "sort_order": 660,
+      "choices": [
+        "$60^{\\circ}$.",
+        "$90^{\\circ}$.",
+        "$45^{\\circ}$.",
+        "$120^{\\circ}$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Do $\\overrightarrow{AB} = \\overrightarrow{DC}$ nên $(\\overrightarrow{AB}, \\overrightarrow{DC'}) = (\\overrightarrow{DC}, \\overrightarrow{DC'}) = \\widehat{CDC'} = 45^{\\circ}$.",
+        "source": "Sở Hòa Bình 2025",
+        "solution": "Do $\\overrightarrow{AB} = \\overrightarrow{DC}$ nên $(\\overrightarrow{AB}, \\overrightarrow{DC'}) = (\\overrightarrow{DC}, \\overrightarrow{DC'}) = \\widehat{CDC'} = 45^{\\circ}$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 3: Tích vô hướng của vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 67,
+      "type": "mcq",
+      "prompt": "(THPT Hương Hóa - Quảng Trị 2025) Cho hình lập phương $ABCD.A'B'C'D'$. Khẳng định nào sau đây sai?",
+      "points": 0.25,
+      "sort_order": 670,
+      "choices": [
+        "$\\overrightarrow{DD'} = \\overrightarrow{CC'}$.",
+        "$\\overrightarrow{AC} + \\overrightarrow{AB} = \\overrightarrow{AD}$.",
+        "$\\overrightarrow{AA'} + \\overrightarrow{AD} + \\overrightarrow{AB} = \\overrightarrow{AC'}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{C'D'} = \\vec{0}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Ta có $\\overrightarrow{AC} + \\overrightarrow{AB} = 2\\overrightarrow{AB} + \\overrightarrow{AD} \\neq \\overrightarrow{AD}$, nên khẳng định B sai.",
+        "source": "THPT Hương Hóa - Quảng Trị 2025",
+        "solution": "Ta có $\\overrightarrow{AC} + \\overrightarrow{AB} = 2\\overrightarrow{AB} + \\overrightarrow{AD} \\neq \\overrightarrow{AD}$, nên khẳng định B sai."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 68,
+      "type": "mcq",
+      "prompt": "(Sở Phú Thọ 2025) Cho tứ diện $S.ABC$ với $M, N, P$ lần lượt là trung điểm $SA, SB, SC$ (tham khảo hình vẽ).\n![Hình Câu 68](/bank-images/chude26/q68_p0.jpeg)\nKhẳng định nào sau đây đúng?",
+      "points": 0.25,
+      "sort_order": 680,
+      "choices": [
+        "$\\overrightarrow{AB} = \\frac{1}{2}(\\overrightarrow{PN} - \\overrightarrow{PM})$.",
+        "$\\overrightarrow{AB} = \\overrightarrow{PN} - \\overrightarrow{PM}$.",
+        "$\\overrightarrow{AB} = 2(\\overrightarrow{PM} - \\overrightarrow{PN})$.",
+        "$\\overrightarrow{AB} = 2(\\overrightarrow{PN} - \\overrightarrow{PM})$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Vì $MN$ là đường trung bình của $\\triangle SAB$ nên $\\overrightarrow{AB} = 2\\overrightarrow{MN} = 2(\\overrightarrow{PN} - \\overrightarrow{PM})$.",
+        "source": "Sở Phú Thọ 2025",
+        "solution": "Vì $MN$ là đường trung bình của $\\triangle SAB$ nên $\\overrightarrow{AB} = 2\\overrightarrow{MN} = 2(\\overrightarrow{PN} - \\overrightarrow{PM})$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 2: Phân tích một vectơ theo các vectơ còn lại",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 69,
+      "type": "mcq",
+      "prompt": "(Sở Bình Thuận 2025) Cho hình chóp $S.ABC$ có $G$ là trọng tâm của tam giác $ABC$. Khẳng định nào sau đây đúng?",
+      "points": 0.25,
+      "sort_order": 690,
+      "choices": [
+        "$\\overrightarrow{SG} = \\frac{1}{2}(\\overrightarrow{SA} + \\overrightarrow{SB} + \\overrightarrow{SC})$.",
+        "$\\overrightarrow{SG} = 2(\\overrightarrow{SA} + \\overrightarrow{SB} + \\overrightarrow{SC})$.",
+        "$\\overrightarrow{SG} = \\frac{1}{3}(\\overrightarrow{SA} + \\overrightarrow{SB} + \\overrightarrow{SC})$.",
+        "$\\overrightarrow{SG} = 3(\\overrightarrow{SA} + \\overrightarrow{SB} + \\overrightarrow{SC})$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Vì $G$ là trọng tâm $\\triangle ABC$ nên $\\overrightarrow{SA} + \\overrightarrow{SB} + \\overrightarrow{SC} = 3\\overrightarrow{SG} \\Leftrightarrow \\overrightarrow{SG} = \\frac{1}{3}(\\overrightarrow{SA} + \\overrightarrow{SB} + \\overrightarrow{SC})$.",
+        "source": "Sở Bình Thuận 2025",
+        "solution": "Vì $G$ là trọng tâm $\\triangle ABC$ nên $\\overrightarrow{SA} + \\overrightarrow{SB} + \\overrightarrow{SC} = 3\\overrightarrow{SG} \\Leftrightarrow \\overrightarrow{SG} = \\frac{1}{3}(\\overrightarrow{SA} + \\overrightarrow{SB} + \\overrightarrow{SC})$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 2: Phân tích một vectơ theo các vectơ còn lại",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 70,
+      "type": "mcq",
+      "prompt": "(Sở Lào Cai 2025) Cho hình lập phương $ABCD.A'B'C'D'$. Góc giữa hai vectơ $\\overrightarrow{AB}$ và $\\overrightarrow{CD'}$ bằng\n![Hình Câu 70](/bank-images/chude26/q70_p0.png)",
+      "points": 0.25,
+      "sort_order": 700,
+      "choices": [
+        "$30^{\\circ}$.",
+        "$135^{\\circ}$.",
+        "$60^{\\circ}$.",
+        "$45^{\\circ}$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Vì $\\overrightarrow{CD'} = \\overrightarrow{BA'}$ nên $(\\overrightarrow{AB}, \\overrightarrow{CD'}) = (\\overrightarrow{AB}, \\overrightarrow{BA'}) = 180^{\\circ} - (\\overrightarrow{BA}, \\overrightarrow{BA'}) = 180^{\\circ} - 45^{\\circ} = 135^{\\circ}$.",
+        "source": "Sở Lào Cai 2025",
+        "solution": "Vì $\\overrightarrow{CD'} = \\overrightarrow{BA'}$ nên $(\\overrightarrow{AB}, \\overrightarrow{CD'}) = (\\overrightarrow{AB}, \\overrightarrow{BA'}) = 180^{\\circ} - (\\overrightarrow{BA}, \\overrightarrow{BA'}) = 180^{\\circ} - 45^{\\circ} = 135^{\\circ}$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 3: Tích vô hướng của vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 71,
+      "type": "mcq",
+      "prompt": "(Sở Quảng Nam 2025) Cho hình hộp $ABCD.A'B'C'D'$ (tham khảo hình vẽ bên dưới). Mệnh đề nào sau đây đúng?\n![Hình Câu 71](/bank-images/chude26/q71_p0.jpeg)",
+      "points": 0.25,
+      "sort_order": 710,
+      "choices": [
+        "$\\overrightarrow{A'C} = \\overrightarrow{A'A} + \\overrightarrow{A'B'} + \\overrightarrow{A'B}$.",
+        "$\\overrightarrow{A'C} = \\overrightarrow{A'A} + \\overrightarrow{A'B'} + \\overrightarrow{A'C'}$.",
+        "$\\overrightarrow{A'C} = \\overrightarrow{A'A} + \\overrightarrow{A'B'} + \\overrightarrow{A'D}$.",
+        "$\\overrightarrow{A'C} = \\overrightarrow{A'A} + \\overrightarrow{A'B'} + \\overrightarrow{A'D'}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Áp dụng quy tắc hình hộp tại đỉnh $A'$, ta có $\\overrightarrow{A'C} = \\overrightarrow{A'A} + \\overrightarrow{A'B'} + \\overrightarrow{A'D'}$.",
+        "source": "Sở Quảng Nam 2025",
+        "solution": "Áp dụng quy tắc hình hộp tại đỉnh $A'$, ta có $\\overrightarrow{A'C} = \\overrightarrow{A'A} + \\overrightarrow{A'B'} + \\overrightarrow{A'D'}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 72,
+      "type": "mcq",
+      "prompt": "(Sở Long An 2025) Cho hình hộp $ABCD.A'B'C'D'$ như hình vẽ dưới. Mệnh đề nào sau đây đúng?\n![Hình Câu 72](/bank-images/chude26/q72_p0.png)",
+      "points": 0.25,
+      "sort_order": 720,
+      "choices": [
+        "$\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AC} = \\overrightarrow{AC'}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AC'} = \\overrightarrow{AC}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\overrightarrow{AD}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Theo quy tắc hình hộp, $\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$.",
+        "source": "Sở Long An 2025",
+        "solution": "Theo quy tắc hình hộp, $\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 73,
+      "type": "mcq",
+      "prompt": "(Sở Quảng Ninh 2025) Cho tứ diện $ABCD$, hai điểm $M, N$ theo thứ tự là trung điểm của $AB, CD$. Điểm $G$ là trung điểm của đoạn thẳng $MN$ (tham khảo hình vẽ bên). Phát biểu nào sau đây sai?\n![Hình Câu 73](/bank-images/chude26/q73_p0.jpeg)",
+      "points": 0.25,
+      "sort_order": 730,
+      "choices": [
+        "$\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = \\vec{0}$.",
+        "$\\overrightarrow{AD} + \\overrightarrow{BC} = \\overrightarrow{AC} + \\overrightarrow{DB}$.",
+        "$\\overrightarrow{AD} + \\overrightarrow{BC} = \\overrightarrow{AC} + \\overrightarrow{BD}$.",
+        "$\\overrightarrow{AD} + \\overrightarrow{BC} = 2\\overrightarrow{MN}$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $\\overrightarrow{AD} + \\overrightarrow{BC} = (\\overrightarrow{AC} + \\overrightarrow{CD}) + (\\overrightarrow{BD} + \\overrightarrow{DC}) = \\overrightarrow{AC} + \\overrightarrow{BD} \\neq \\overrightarrow{AC} + \\overrightarrow{DB}$. Vậy phát biểu B sai.",
+        "source": "Sở Quảng Ninh 2025",
+        "solution": "Ta có $\\overrightarrow{AD} + \\overrightarrow{BC} = (\\overrightarrow{AC} + \\overrightarrow{CD}) + (\\overrightarrow{BD} + \\overrightarrow{DC}) = \\overrightarrow{AC} + \\overrightarrow{BD} \\neq \\overrightarrow{AC} + \\overrightarrow{DB}$. Vậy phát biểu B sai."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 74,
+      "type": "mcq",
+      "prompt": "(Liên Trường Nghệ An 2025) Cho tứ diện $ABCD$. Đặt $\\overrightarrow{DA} = \\vec{a}, \\overrightarrow{DB} = \\vec{b}, \\overrightarrow{DC} = \\vec{c}$. Nếu $M, N$ lần lượt là trung điểm của hai cạnh $BD$ và $AC$ thì",
+      "points": 0.25,
+      "sort_order": 740,
+      "choices": [
+        "$\\overrightarrow{MN} = \\frac{1}{2}(-\\vec{a} + \\vec{b} + \\vec{c})$.",
+        "$\\overrightarrow{MN} = \\frac{1}{2}(\\vec{a} - \\vec{b} + \\vec{c})$.",
+        "$\\overrightarrow{MN} = \\frac{1}{2}(\\vec{a} + \\vec{b} + \\vec{c})$.",
+        "$\\overrightarrow{MN} = \\frac{1}{2}(\\vec{a} + \\vec{b} - \\vec{c})$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $\\overrightarrow{DM} = \\frac{1}{2}\\vec{b}$ và $\\overrightarrow{DN} = \\frac{1}{2}(\\overrightarrow{DA} + \\overrightarrow{DC}) = \\frac{1}{2}(\\vec{a} + \\vec{c})$. Suy ra $\\overrightarrow{MN} = \\overrightarrow{DN} - \\overrightarrow{DM} = \\frac{1}{2}(\\vec{a} - \\vec{b} + \\vec{c})$.",
+        "source": "Liên Trường Nghệ An 2025",
+        "solution": "Ta có $\\overrightarrow{DM} = \\frac{1}{2}\\vec{b}$ và $\\overrightarrow{DN} = \\frac{1}{2}(\\overrightarrow{DA} + \\overrightarrow{DC}) = \\frac{1}{2}(\\vec{a} + \\vec{c})$. Suy ra $\\overrightarrow{MN} = \\overrightarrow{DN} - \\overrightarrow{DM} = \\frac{1}{2}(\\vec{a} - \\vec{b} + \\vec{c})$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 2: Phân tích một vectơ theo các vectơ còn lại",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 75,
+      "type": "mcq",
+      "prompt": "(THPT DTNT - Nghệ An 2025) Cho tứ diện $ABCD$. Gọi $H$ là trọng tâm tam giác $ABC$. Tìm giá trị của $k$ thích hợp điền vào đẳng thức vectơ: $\\overrightarrow{DA} + \\overrightarrow{DB} + \\overrightarrow{DC} = (2k - 3)\\overrightarrow{DH}$.",
+      "points": 0.25,
+      "sort_order": 750,
+      "choices": [
+        "$5$.",
+        "$0$.",
+        "$2$.",
+        "$3$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Vì $H$ là trọng tâm $\\triangle ABC$ nên $\\overrightarrow{DA} + \\overrightarrow{DB} + \\overrightarrow{DC} = 3\\overrightarrow{DH}$, suy ra $2k - 3 = 3 \\Leftrightarrow k = 3$.",
+        "source": "THPT DTNT - Nghệ An 2025",
+        "solution": "Vì $H$ là trọng tâm $\\triangle ABC$ nên $\\overrightarrow{DA} + \\overrightarrow{DB} + \\overrightarrow{DC} = 3\\overrightarrow{DH}$, suy ra $2k - 3 = 3 \\Leftrightarrow k = 3$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 76,
+      "type": "mcq",
+      "prompt": "(THPT Hoằng Hóa 2 - Thanh Hóa 2025) Trong không gian $Oxyz$, cho hai vectơ $\\vec{a}, \\vec{b}$ thỏa mãn $|\\vec{a}| = 2\\sqrt{3}, |\\vec{b}| = 3, (\\vec{a}, \\vec{b}) = 30^{\\circ}$. Độ dài vectơ $3\\vec{a} - 2\\vec{b}$ là",
+      "points": 0.25,
+      "sort_order": 760,
+      "choices": [
+        "$6$.",
+        "$5$.",
+        "$7$.",
+        "$3$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $|3\\vec{a} - 2\\vec{b}|^2 = 9|\\vec{a}|^2 - 12|\\vec{a}||\\vec{b}|\\cos 30^{\\circ} + 4|\\vec{b}|^2 = 9\\cdot 12 - 12\\cdot 2\\sqrt{3}\\cdot 3\\cdot\\frac{\\sqrt{3}}{2} + 36 = 36$, suy ra $|3\\vec{a} - 2\\vec{b}| = 6$.",
+        "source": "THPT Hoằng Hóa 2 - Thanh Hóa 2025",
+        "solution": "Ta có $|3\\vec{a} - 2\\vec{b}|^2 = 9|\\vec{a}|^2 - 12|\\vec{a}||\\vec{b}|\\cos 30^{\\circ} + 4|\\vec{b}|^2 = 9\\cdot 12 - 12\\cdot 2\\sqrt{3}\\cdot 3\\cdot\\frac{\\sqrt{3}}{2} + 36 = 36$, suy ra $|3\\vec{a} - 2\\vec{b}| = 6$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 3: Tích vô hướng của vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 77,
+      "type": "mcq",
+      "prompt": "(Cụm Ninh Giang - Tứ Kỳ - Gia Lộc 2025) Cho hình hộp $ABCD.A'B'C'D'$. Đặt $\\overrightarrow{AB} = \\vec{a}, \\overrightarrow{AD} = \\vec{b}, \\overrightarrow{AA'} = \\vec{c}$. Phân tích vectơ $\\overrightarrow{AC'}$ theo $\\vec{a}, \\vec{b}, \\vec{c}$?",
+      "points": 0.25,
+      "sort_order": 770,
+      "choices": [
+        "$\\overrightarrow{AC'} = \\vec{a} + \\vec{b} - \\vec{c}$.",
+        "$\\overrightarrow{AC'} = \\vec{a} - \\vec{b} + \\vec{c}$.",
+        "$\\overrightarrow{AC'} = \\vec{a} + \\vec{b} + \\vec{c}$.",
+        "$\\overrightarrow{AC'} = -\\vec{a} + \\vec{b} + \\vec{c}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Theo quy tắc hình hộp, $\\overrightarrow{AC'} = \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\vec{a} + \\vec{b} + \\vec{c}$.",
+        "source": "Cụm Ninh Giang - Tứ Kỳ - Gia Lộc 2025",
+        "solution": "Theo quy tắc hình hộp, $\\overrightarrow{AC'} = \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\vec{a} + \\vec{b} + \\vec{c}$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 2: Phân tích một vectơ theo các vectơ còn lại",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 78,
+      "type": "mcq",
+      "prompt": "(THPT Tư Nghĩa 1 - Quảng Ngãi 2025) Cho hình hộp $ABCD.A'B'C'D'$ (minh họa như hình bên dưới). Phát biểu nào sau đây là đúng?\n![Hình Câu 78](/bank-images/chude26/q78_p0.jpeg)",
+      "points": 0.25,
+      "sort_order": 780,
+      "choices": [
+        "$\\overrightarrow{AB} + \\overrightarrow{AA'} + \\overrightarrow{AD} = \\overrightarrow{AC'}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{BB'} + \\overrightarrow{B'A'} = \\overrightarrow{AC'}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{BC'} + \\overrightarrow{C'D'} = \\overrightarrow{AC'}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Theo quy tắc hình hộp, $\\overrightarrow{AB} + \\overrightarrow{AA'} + \\overrightarrow{AD} = \\overrightarrow{AC'}$.",
+        "source": "THPT Tư Nghĩa 1 - Quảng Ngãi 2025",
+        "solution": "Theo quy tắc hình hộp, $\\overrightarrow{AB} + \\overrightarrow{AA'} + \\overrightarrow{AD} = \\overrightarrow{AC'}$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 79,
+      "type": "mcq",
+      "prompt": "(Sở Vũng Tàu 2025) Cho tứ diện $ABCD$, gọi $G$ là trọng tâm của tam giác $BCD$. Phát biểu nào sau đây là đúng?",
+      "points": 0.25,
+      "sort_order": 790,
+      "choices": [
+        "$\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = \\vec{0}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{BC} + \\overrightarrow{CD} = \\overrightarrow{DA}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{DC} - \\overrightarrow{DB} = \\overrightarrow{CA}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AD} = 3\\overrightarrow{AG}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Do $G$ là trọng tâm $\\triangle BCD$ nên $\\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = \\vec{0} \\Rightarrow \\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AD} = 3\\overrightarrow{AG}$.",
+        "source": "Sở Vũng Tàu 2025",
+        "solution": "Do $G$ là trọng tâm $\\triangle BCD$ nên $\\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = \\vec{0} \\Rightarrow \\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AD} = 3\\overrightarrow{AG}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 80,
+      "type": "mcq",
+      "prompt": "(Sở Vũng Tàu 2025) Cho hình lập phương $ABCD.A'B'C'D'$ cạnh $a$. Khi đó $|\\overrightarrow{AA'} + \\overrightarrow{AD}|$ bằng",
+      "points": 0.25,
+      "sort_order": 800,
+      "choices": [
+        "$2a$.",
+        "$\\frac{a\\sqrt{2}}{2}$.",
+        "$a\\sqrt{2}$.",
+        "$a\\sqrt{6}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Ta có $\\overrightarrow{AA'} + \\overrightarrow{AD} = \\overrightarrow{AD'}$, mà $AD'$ là đường chéo mặt vuông cạnh $a$ nên $|\\overrightarrow{AA'} + \\overrightarrow{AD}| = AD' = a\\sqrt{2}$.",
+        "source": "Sở Vũng Tàu 2025",
+        "solution": "Ta có $\\overrightarrow{AA'} + \\overrightarrow{AD} = \\overrightarrow{AD'}$, mà $AD'$ là đường chéo mặt vuông cạnh $a$ nên $|\\overrightarrow{AA'} + \\overrightarrow{AD}| = AD' = a\\sqrt{2}$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 81,
+      "type": "mcq",
+      "prompt": "(THPT Mai Trúc Loan - Hà Tĩnh 2025) Cho hình lập phương $ABCD.A'B'C'D'$. Mệnh đề nào sau đây sai?",
+      "points": 0.25,
+      "sort_order": 810,
+      "choices": [
+        "$\\overrightarrow{AB} = \\overrightarrow{CD}$.",
+        "$\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$.",
+        "$|\\overrightarrow{AB}| = |\\overrightarrow{CD}|$.",
+        "$\\overrightarrow{AC} = \\overrightarrow{AB} + \\overrightarrow{AD}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Ta có $\\overrightarrow{AB} = \\overrightarrow{DC} = -\\overrightarrow{CD}$, nên khẳng định A sai.",
+        "source": "THPT Mai Trúc Loan - Hà Tĩnh 2025",
+        "solution": "Ta có $\\overrightarrow{AB} = \\overrightarrow{DC} = -\\overrightarrow{CD}$, nên khẳng định A sai."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 82,
+      "type": "mcq",
+      "prompt": "(THPT Quế Võ 1 - Bắc Ninh 2025) Cho ba vectơ $\\vec{a}, \\vec{b}, \\vec{c}$ đồng phẳng. Xét các vectơ $\\vec{x} = 2\\vec{a} - \\vec{b}$; $\\vec{y} = -4\\vec{a} + 2\\vec{b}$; $\\vec{z} = -3\\vec{b} - 2\\vec{c}$. Chọn khẳng định đúng.",
+      "points": 0.25,
+      "sort_order": 820,
+      "choices": [
+        "Hai vectơ $\\vec{y}, \\vec{z}$ cùng phương.",
+        "Hai vectơ $\\vec{x}, \\vec{y}$ cùng phương.",
+        "Hai vectơ $\\vec{x}, \\vec{z}$ cùng phương.",
+        "Ba vectơ $\\vec{x}, \\vec{y}, \\vec{z}$ không đồng phẳng."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Nhận thấy $\\vec{y} = -4\\vec{a} + 2\\vec{b} = -2(2\\vec{a} - \\vec{b}) = -2\\vec{x}$, nên hai vectơ $\\vec{x}$ và $\\vec{y}$ cùng phương.",
+        "source": "THPT Quế Võ 1 - Bắc Ninh 2025",
+        "solution": "Nhận thấy $\\vec{y} = -4\\vec{a} + 2\\vec{b} = -2(2\\vec{a} - \\vec{b}) = -2\\vec{x}$, nên hai vectơ $\\vec{x}$ và $\\vec{y}$ cùng phương."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 83,
+      "type": "mcq",
+      "prompt": "(Cụm Chương Mỹ - Thanh Oai 2025) Cho tứ diện $ABCD$. Gọi $M, N$ lần lượt là trung điểm của $AB, CD$; $G$ là trung điểm của $MN$. Chọn khẳng định sai trong các khẳng định sau:",
+      "points": 0.25,
+      "sort_order": 830,
+      "choices": [
+        "$\\overrightarrow{GA} + \\overrightarrow{GB} = 2\\overrightarrow{GM}$.",
+        "$\\overrightarrow{AD} + \\overrightarrow{AC} = \\overrightarrow{AN}$.",
+        "$\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} + \\overrightarrow{GD} = \\vec{0}$.",
+        "$\\overrightarrow{GM} + \\overrightarrow{GN} = \\vec{0}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Vì $N$ là trung điểm $CD$ nên $\\overrightarrow{AC} + \\overrightarrow{AD} = 2\\overrightarrow{AN} \\neq \\overrightarrow{AN}$.",
+        "source": "Cụm Chương Mỹ - Thanh Oai 2025",
+        "solution": "Vì $N$ là trung điểm $CD$ nên $\\overrightarrow{AC} + \\overrightarrow{AD} = 2\\overrightarrow{AN} \\neq \\overrightarrow{AN}$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 84,
+      "type": "mcq",
+      "prompt": "(THPT Hà Trung - Thanh Hóa 2025) Cho hình hộp $ABCD.A'B'C'D'$, khi đó tổng của các vectơ $\\overrightarrow{AA'} + \\overrightarrow{AC}$ là\n![Hình Câu 84](/bank-images/chude26/q84_p0.png)",
+      "points": 0.25,
+      "sort_order": 840,
+      "choices": [
+        "$\\overrightarrow{AB'}$.",
+        "$\\overrightarrow{A'C'}$.",
+        "$\\overrightarrow{AD'}$.",
+        "$\\overrightarrow{AC'}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Tứ giác $ACC'A'$ là hình bình hành nên $\\overrightarrow{AA'} + \\overrightarrow{AC} = \\overrightarrow{AC'}$.",
+        "source": "THPT Hà Trung - Thanh Hóa 2025",
+        "solution": "Tứ giác $ACC'A'$ là hình bình hành nên $\\overrightarrow{AA'} + \\overrightarrow{AC} = \\overrightarrow{AC'}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 85,
+      "type": "mcq",
+      "prompt": "(THPT Phúc Thọ - Hà Nội 2025) Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình bình hành. Đặt $\\overrightarrow{SA} = \\vec{a}, \\overrightarrow{SB} = \\vec{b}, \\overrightarrow{SC} = \\vec{c}, \\overrightarrow{SD} = \\vec{d}$. Khẳng định nào dưới đây đúng?",
+      "points": 0.25,
+      "sort_order": 850,
+      "choices": [
+        "$\\vec{a} + \\vec{b} = \\vec{c} + \\vec{d}$.",
+        "$\\vec{a} + \\vec{d} = \\vec{b} + \\vec{c}$.",
+        "$\\vec{a} + \\vec{c} = \\vec{b} + \\vec{d}$.",
+        "$\\vec{a} + \\vec{b} + \\vec{c} + \\vec{d} = \\vec{0}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Gọi $O$ là tâm hình bình hành $ABCD$, ta có $\\overrightarrow{SA} + \\overrightarrow{SC} = 2\\overrightarrow{SO} = \\overrightarrow{SB} + \\overrightarrow{SD}$, tức $\\vec{a} + \\vec{c} = \\vec{b} + \\vec{d}$.",
+        "source": "THPT Phúc Thọ - Hà Nội 2025",
+        "solution": "Gọi $O$ là tâm hình bình hành $ABCD$, ta có $\\overrightarrow{SA} + \\overrightarrow{SC} = 2\\overrightarrow{SO} = \\overrightarrow{SB} + \\overrightarrow{SD}$, tức $\\vec{a} + \\vec{c} = \\vec{b} + \\vec{d}$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 2: Phân tích một vectơ theo các vectơ còn lại",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 86,
+      "type": "mcq",
+      "prompt": "(Sở Bình Phước 2025) Cho hình lập phương $ABCD.A'B'C'D'$ có cạnh bằng $a$. Độ dài của vectơ $\\vec{u} = \\overrightarrow{A'C'} - \\overrightarrow{A'A}$ bằng\n![Hình Câu 86](/bank-images/chude26/q86_p0.jpeg)",
+      "points": 0.25,
+      "sort_order": 860,
+      "choices": [
+        "$\\frac{a\\sqrt{3}}{2}$.",
+        "$a\\sqrt{2}$.",
+        "$a\\sqrt{6}$.",
+        "$a\\sqrt{3}$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $\\vec{u} = \\overrightarrow{A'C'} - \\overrightarrow{A'A} = \\overrightarrow{AA'} + \\overrightarrow{A'C'} = \\overrightarrow{AC'}$, suy ra $|\\vec{u}| = AC' = a\\sqrt{3}$.",
+        "source": "Sở Bình Phước 2025",
+        "solution": "Ta có $\\vec{u} = \\overrightarrow{A'C'} - \\overrightarrow{A'A} = \\overrightarrow{AA'} + \\overrightarrow{A'C'} = \\overrightarrow{AC'}$, suy ra $|\\vec{u}| = AC' = a\\sqrt{3}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 87,
+      "type": "mcq",
+      "prompt": "(Chuyên Lương Thế Vinh - Đồng Nai 2025) Cho hình chóp $S.ABCD$ có đáy là hình bình hành tâm $O$. Phát biểu nào sau đây là đúng?",
+      "points": 0.25,
+      "sort_order": 870,
+      "choices": [
+        "$\\overrightarrow{SA} + \\overrightarrow{OC} - \\overrightarrow{SB} = \\overrightarrow{CO}$.",
+        "$\\overrightarrow{SA} + \\overrightarrow{OC} - \\overrightarrow{SB} = \\overrightarrow{BO}$.",
+        "$\\overrightarrow{SA} + \\overrightarrow{OC} - \\overrightarrow{SB} = \\overrightarrow{OB}$.",
+        "$\\overrightarrow{SA} + \\overrightarrow{OC} - \\overrightarrow{SB} = \\vec{0}$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $\\overrightarrow{SA} + \\overrightarrow{OC} - \\overrightarrow{SB} = (\\overrightarrow{SA} - \\overrightarrow{SB}) + \\overrightarrow{OC} = \\overrightarrow{BA} + \\overrightarrow{AO} = \\overrightarrow{BO}$ (do $\\overrightarrow{OC} = \\overrightarrow{AO}$).",
+        "source": "Chuyên Lương Thế Vinh - Đồng Nai 2025",
+        "solution": "Ta có $\\overrightarrow{SA} + \\overrightarrow{OC} - \\overrightarrow{SB} = (\\overrightarrow{SA} - \\overrightarrow{SB}) + \\overrightarrow{OC} = \\overrightarrow{BA} + \\overrightarrow{AO} = \\overrightarrow{BO}$ (do $\\overrightarrow{OC} = \\overrightarrow{AO}$)."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 88,
+      "type": "mcq",
+      "prompt": "(THPT Lê Quý Đôn - Hà Nội 2025) Cho hình hộp $ABCD.A'B'C'D'$, khi đó tổng của các vectơ $\\overrightarrow{AA'} + \\overrightarrow{AC}$ là:\n![Hình Câu 88](/bank-images/chude26/q88_p0.png)",
+      "points": 0.25,
+      "sort_order": 880,
+      "choices": [
+        "$\\overrightarrow{A'C'}$.",
+        "$\\overrightarrow{AD'}$.",
+        "$\\overrightarrow{AB'}$.",
+        "$\\overrightarrow{AC'}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Do $AA'C'C$ là hình bình hành nên $\\overrightarrow{AA'} + \\overrightarrow{AC} = \\overrightarrow{AC'}$.",
+        "source": "THPT Lê Quý Đôn - Hà Nội 2025",
+        "solution": "Do $AA'C'C$ là hình bình hành nên $\\overrightarrow{AA'} + \\overrightarrow{AC} = \\overrightarrow{AC'}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 89,
+      "type": "mcq",
+      "prompt": "(Sở Hậu Giang 2025) Cho hình lập phương $ABCD.A'B'C'D'$ có cạnh $a$. Giá trị của $\\overrightarrow{AC'}\\cdot\\overrightarrow{B'D'}$ bằng",
+      "points": 0.25,
+      "sort_order": 890,
+      "choices": [
+        "$0$.",
+        "$-\\frac{1}{2}a^2$.",
+        "$\\sqrt{6}a^2$.",
+        "$-\\frac{\\sqrt{2}}{2}a^2$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Trong hình lập phương, $B'D' \\perp A'C'$ và $B'D' \\perp CC'$ nên $B'D' \\perp (ACC'A')$, suy ra $B'D' \\perp AC'$. Do đó $\\overrightarrow{AC'}\\cdot\\overrightarrow{B'D'} = 0$.",
+        "source": "Sở Hậu Giang 2025",
+        "solution": "Trong hình lập phương, $B'D' \\perp A'C'$ và $B'D' \\perp CC'$ nên $B'D' \\perp (ACC'A')$, suy ra $B'D' \\perp AC'$. Do đó $\\overrightarrow{AC'}\\cdot\\overrightarrow{B'D'} = 0$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 3: Tích vô hướng của vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 90,
+      "type": "mcq",
+      "prompt": "(Sở Lai Châu 2025) Cho hình lập phương $ABCD.A'B'C'D'$.\n![Hình Câu 90](/bank-images/chude26/q90_p0.jpeg)\nGóc giữa hai vectơ $\\overrightarrow{AB}$ và $\\overrightarrow{DC'}$ là:",
+      "points": 0.25,
+      "sort_order": 900,
+      "choices": [
+        "$60^{\\circ}$.",
+        "$90^{\\circ}$.",
+        "$45^{\\circ}$.",
+        "$120^{\\circ}$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Do $\\overrightarrow{AB} = \\overrightarrow{DC}$ nên $(\\overrightarrow{AB}, \\overrightarrow{DC'}) = (\\overrightarrow{DC}, \\overrightarrow{DC'}) = \\widehat{CDC'} = 45^{\\circ}$.",
+        "source": "Sở Lai Châu 2025",
+        "solution": "Do $\\overrightarrow{AB} = \\overrightarrow{DC}$ nên $(\\overrightarrow{AB}, \\overrightarrow{DC'}) = (\\overrightarrow{DC}, \\overrightarrow{DC'}) = \\widehat{CDC'} = 45^{\\circ}$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 3: Tích vô hướng của vectơ",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 91,
+      "type": "mcq",
+      "prompt": "(Cụm chuyên môn Đăk Lak 2025) Cho hình hộp chữ nhật $ABCD.A'B'C'D'$. Khẳng định nào sau đây đúng?",
+      "points": 0.25,
+      "sort_order": 910,
+      "choices": [
+        "$\\overrightarrow{AC'} = \\overrightarrow{AB} + \\overrightarrow{AC} + \\overrightarrow{AB}$.",
+        "$\\overrightarrow{AC'} = \\overrightarrow{AB'} + \\overrightarrow{AC} + \\overrightarrow{AD'}$.",
+        "$\\overrightarrow{AC'} = \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}$.",
+        "$\\overrightarrow{AC'} = \\overrightarrow{AB'} + \\overrightarrow{AD'} + \\overrightarrow{AA'}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Theo quy tắc hình hộp, $\\overrightarrow{AC'} = \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}$.",
+        "source": "Cụm chuyên môn Đăk Lak 2025",
+        "solution": "Theo quy tắc hình hộp, $\\overrightarrow{AC'} = \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}$."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 92,
+      "type": "mcq",
+      "prompt": "(Sở Hải Phòng 2025) Cho hình hộp $ABCD.A_1B_1C_1D_1$. Mệnh đề nào sau đây đúng?",
+      "points": 0.25,
+      "sort_order": 920,
+      "choices": [
+        "$|\\overrightarrow{BA} + \\overrightarrow{BB_1} + \\overrightarrow{BC}| = |\\overrightarrow{BD_1}|$.",
+        "$|\\overrightarrow{AB_1} + \\overrightarrow{AD_1}| = |\\overrightarrow{AC_1}|$.",
+        "$|\\overrightarrow{AB_1} - \\overrightarrow{AD_1}| = |\\overrightarrow{BD_1}|$.",
+        "$|\\overrightarrow{AA_1} + \\overrightarrow{C_1D} + \\overrightarrow{C_1D_1}| = 0$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Theo quy tắc hình hộp tại đỉnh $B$, $\\overrightarrow{BA} + \\overrightarrow{BB_1} + \\overrightarrow{BC} = \\overrightarrow{BD_1}$, suy ra $|\\overrightarrow{BA} + \\overrightarrow{BB_1} + \\overrightarrow{BC}| = |\\overrightarrow{BD_1}|$.",
+        "source": "Sở Hải Phòng 2025",
+        "solution": "Theo quy tắc hình hộp tại đỉnh $B$, $\\overrightarrow{BA} + \\overrightarrow{BB_1} + \\overrightarrow{BC} = \\overrightarrow{BD_1}$, suy ra $|\\overrightarrow{BA} + \\overrightarrow{BB_1} + \\overrightarrow{BC}| = |\\overrightarrow{BD_1}|$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 93,
+      "type": "mcq",
+      "prompt": "(Cụm THPT Hoàn Kiếm - Hai Bà Trưng - Hà Nội 2025) Cho hình lăng trụ $ABC.A'B'C'$. Phát biểu nào sau đây là đúng?",
+      "points": 0.25,
+      "sort_order": 930,
+      "choices": [
+        "$\\overrightarrow{B'C} = -\\overrightarrow{AA'} + \\overrightarrow{AB} - \\overrightarrow{AC}$.",
+        "$\\overrightarrow{B'C} = -\\overrightarrow{AA'} - \\overrightarrow{AB} + \\overrightarrow{AC}$.",
+        "$\\overrightarrow{B'C} = -\\overrightarrow{AA'} - \\overrightarrow{AB} - \\overrightarrow{AC}$.",
+        "$\\overrightarrow{B'C} = \\overrightarrow{AA'} - \\overrightarrow{AB} + \\overrightarrow{AC}$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Ta có $\\overrightarrow{B'C} = \\overrightarrow{B'B} + \\overrightarrow{BA} + \\overrightarrow{AC} = -\\overrightarrow{AA'} - \\overrightarrow{AB} + \\overrightarrow{AC}$.",
+        "source": "Cụm THPT Hoàn Kiếm - Hai Bà Trưng - Hà Nội 2025",
+        "solution": "Ta có $\\overrightarrow{B'C} = \\overrightarrow{B'B} + \\overrightarrow{BA} + \\overrightarrow{AC} = -\\overrightarrow{AA'} - \\overrightarrow{AB} + \\overrightarrow{AC}$."
+      },
+      "answer_key": {
+        "correct_answer": "B"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 2: Phân tích một vectơ theo các vectơ còn lại",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 94,
+      "type": "mcq",
+      "prompt": "(Sở Gia Lai 2025) Trong không gian cho hình hộp $ABCD.A'B'C'D'$. Vectơ đối của vectơ $\\overrightarrow{AA'}$ là",
+      "points": 0.25,
+      "sort_order": 940,
+      "choices": [
+        "$\\overrightarrow{A'C'}$.",
+        "$\\overrightarrow{BB'}$.",
+        "$\\overrightarrow{BA'}$.",
+        "$\\overrightarrow{C'C}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Vì $\\overrightarrow{AA'} = \\overrightarrow{CC'}$ nên vectơ đối của $\\overrightarrow{AA'}$ là $-\\overrightarrow{CC'} = \\overrightarrow{C'C}$.",
+        "source": "Sở Gia Lai 2025",
+        "solution": "Vì $\\overrightarrow{AA'} = \\overrightarrow{CC'}$ nên vectơ đối của $\\overrightarrow{AA'}$ là $-\\overrightarrow{CC'} = \\overrightarrow{C'C}$."
+      },
+      "answer_key": {
+        "correct_answer": "D"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 95,
+      "type": "mcq",
+      "prompt": "(Sở Thái Bình 2025) Cho hình lập phương $ABCD.A'B'C'D'$ có độ dài mỗi cạnh bằng $1$. Tính độ dài của vectơ $\\overrightarrow{AB} + \\overrightarrow{CC'}$.",
+      "points": 0.25,
+      "sort_order": 950,
+      "choices": [
+        "$\\sqrt{2}$.",
+        "$\\sqrt{3}$.",
+        "$1$.",
+        "$2$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Vì $\\overrightarrow{CC'} = \\overrightarrow{AA'}$ nên $\\overrightarrow{AB} + \\overrightarrow{CC'} = \\overrightarrow{AB} + \\overrightarrow{AA'} = \\overrightarrow{AB'}$. Đường chéo mặt bên $AB' = \\sqrt{2}$.",
+        "source": "Sở Thái Bình 2025",
+        "solution": "Vì $\\overrightarrow{CC'} = \\overrightarrow{AA'}$ nên $\\overrightarrow{AB} + \\overrightarrow{CC'} = \\overrightarrow{AB} + \\overrightarrow{AA'} = \\overrightarrow{AB'}$. Đường chéo mặt bên $AB' = \\sqrt{2}$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 96,
+      "type": "mcq",
+      "prompt": "(Liên trường THPT Ninh Bình 2025) Cho hình lập phương $ABCD.A'B'C'D'$ có độ dài mỗi cạnh bằng $1$. Tính độ dài của vectơ $\\overrightarrow{AC} + \\overrightarrow{C'D'}$.\n![Hình Câu 96](/bank-images/chude26/q96_p0.png)",
+      "points": 0.25,
+      "sort_order": 960,
+      "choices": [
+        "$1$.",
+        "$2\\sqrt{2}$.",
+        "$\\sqrt{3}$.",
+        "$\\sqrt{2}$."
+      ],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Vì $\\overrightarrow{C'D'} = \\overrightarrow{CD}$ nên $\\overrightarrow{AC} + \\overrightarrow{C'D'} = \\overrightarrow{AC} + \\overrightarrow{CD} = \\overrightarrow{AD}$. Do đó $|\\overrightarrow{AC} + \\overrightarrow{C'D'}| = AD = 1$.",
+        "source": "Liên trường THPT Ninh Bình 2025",
+        "solution": "Vì $\\overrightarrow{C'D'} = \\overrightarrow{CD}$ nên $\\overrightarrow{AC} + \\overrightarrow{C'D'} = \\overrightarrow{AC} + \\overrightarrow{CD} = \\overrightarrow{AD}$. Do đó $|\\overrightarrow{AC} + \\overrightarrow{C'D'}| = AD = 1$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 97,
+      "type": "mcq",
+      "prompt": "(Sở Hà Tĩnh 2025) Trong không gian, cho hình hộp $ABCD.A'B'C'D'$. Mệnh đề nào dưới đây sai?\n![Hình Câu 97](/bank-images/chude26/q97_p0.png)",
+      "points": 0.25,
+      "sort_order": 970,
+      "choices": [
+        "$\\overrightarrow{CA'} = \\overrightarrow{CB} + \\overrightarrow{CD} + \\overrightarrow{CC'}$.",
+        "$\\overrightarrow{AC'} = \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'}$.",
+        "$\\overrightarrow{BD'} = \\overrightarrow{BA} + \\overrightarrow{BD} + \\overrightarrow{BB'}$.",
+        "$\\overrightarrow{CA} = \\overrightarrow{CB} + \\overrightarrow{CD}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Theo quy tắc hình hộp tại đỉnh $B$, phải là $\\overrightarrow{BD'} = \\overrightarrow{BA} + \\overrightarrow{BC} + \\overrightarrow{BB'}$, nên mệnh đề C sai (các mệnh đề A, B, D đều đúng).",
+        "source": "Sở Hà Tĩnh 2025",
+        "solution": "Theo quy tắc hình hộp tại đỉnh $B$, phải là $\\overrightarrow{BD'} = \\overrightarrow{BA} + \\overrightarrow{BC} + \\overrightarrow{BB'}$, nên mệnh đề C sai (các mệnh đề A, B, D đều đúng)."
+      },
+      "answer_key": {
+        "correct_answer": "C"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 1: Các phép toán vectơ trong không gian",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 98,
+      "type": "mcq",
+      "prompt": "(Chuyên Lam Sơn - Thanh Hóa 2025) Trong không gian với hệ tọa độ $Oxyz$, cho hai vectơ $\\vec{a}$ và $\\vec{b}$ cùng có độ dài bằng $1$. Biết góc giữa hai vectơ này bằng $120^{\\circ}$. Hãy tính $T = \\vec{a}\\cdot\\vec{b}$.",
+      "points": 0.25,
+      "sort_order": 980,
+      "choices": [
+        "$T = \\frac{-1}{2}$.",
+        "$T = \\frac{1}{2}$.",
+        "$T = \\frac{\\sqrt{3}}{2}$.",
+        "$T = \\frac{-\\sqrt{3}}{2}$."
+      ],
+      "settings": {
+        "level": "Nhận biết",
+        "explanation": "Ta có $T = \\vec{a}\\cdot\\vec{b} = |\\vec{a}||\\vec{b}|\\cos(\\vec{a}, \\vec{b}) = 1\\cdot 1\\cdot\\cos 120^{\\circ} = -\\frac{1}{2}$.",
+        "source": "Chuyên Lam Sơn - Thanh Hóa 2025",
+        "solution": "Ta có $T = \\vec{a}\\cdot\\vec{b} = |\\vec{a}||\\vec{b}|\\cos(\\vec{a}, \\vec{b}) = 1\\cdot 1\\cdot\\cos 120^{\\circ} = -\\frac{1}{2}$."
+      },
+      "answer_key": {
+        "correct_answer": "A"
+      },
+      "tags": [
+        "GĐ1 · Chương 3",
+        "Bài 12 · Dạng 3: Tích vô hướng của vectơ",
+        "Nhận biết"
+      ]
+    }
+  ]
+}

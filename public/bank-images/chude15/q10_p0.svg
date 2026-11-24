@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 350" width="560" height="350" style="background:#ffffff;font-family:system-ui,-apple-system,sans-serif">
+  <text x="295" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#181B16">Số giờ làm thêm trong một tuần của sinh viên</text>
+
+  <!-- Y axis labels and gridlines (0 to 40, step 5 -> y0 = 285, y40 = 61, 5 units = 28px) -->
+  <g font-size="12" fill="#475569" text-anchor="end">
+    <line x1="75" y1="285" x2="520" y2="285" stroke="#181B16" stroke-width="1.5"/>
+    <text x="66" y="289">0</text>
+    <line x1="75" y1="257" x2="520" y2="257" stroke="#E4E6DE"/>
+    <text x="66" y="261">5</text>
+    <line x1="75" y1="229" x2="520" y2="229" stroke="#E4E6DE"/>
+    <text x="66" y="233">10</text>
+    <line x1="75" y1="201" x2="520" y2="201" stroke="#E4E6DE"/>
+    <text x="66" y="205">15</text>
+    <line x1="75" y1="173" x2="520" y2="173" stroke="#E4E6DE"/>
+    <text x="66" y="177">20</text>
+    <line x1="75" y1="145" x2="520" y2="145" stroke="#E4E6DE"/>
+    <text x="66" y="149">25</text>
+    <line x1="75" y1="117" x2="520" y2="117" stroke="#E4E6DE"/>
+    <text x="66" y="121">30</text>
+    <line x1="75" y1="89" x2="520" y2="89" stroke="#E4E6DE"/>
+    <text x="66" y="93">35</text>
+    <line x1="75" y1="61" x2="520" y2="61" stroke="#E4E6DE"/>
+    <text x="66" y="65">40</text>
+  </g>
+
+  <text x="24" y="175" transform="rotate(-90 24 175)" text-anchor="middle" font-size="12.5" fill="#181B16">(Số sinh viên)</text>
+  <text x="297" y="335" text-anchor="middle" font-size="12.5" fill="#181B16">(Số giờ)</text>
+
+  <!-- Bars: 1 unit = 5.6px -->
+  <!-- [2;4): 12 -> h = 67.2, y = 217.8 -->
+  <rect x="103" y="217.8" width="42" height="67.2" fill="#181B16" rx="2"/>
+  <text x="124" y="210" text-anchor="middle" font-size="12" font-weight="600" fill="#181B16">12</text>
+  <text x="124" y="305" text-anchor="middle" font-size="12" fill="#181B16">[2; 4)</text>
+
+  <!-- [4;6): 20 -> h = 112, y = 173 -->
+  <rect x="188" y="173" width="42" height="112" fill="#181B16" rx="2"/>
+  <text x="209" y="165" text-anchor="middle" font-size="12" font-weight="600" fill="#181B16">20</text>
+  <text x="209" y="305" text-anchor="middle" font-size="12" fill="#181B16">[4; 6)</text>
+
+  <!-- [6;8): 37 -> h = 207.2, y = 77.8 -->
+  <rect x="273" y="77.8" width="42" height="207.2" fill="#181B16" rx="2"/>
+  <text x="294" y="70" text-anchor="middle" font-size="12" font-weight="600" fill="#181B16">37</text>
+  <text x="294" y="305" text-anchor="middle" font-size="12" fill="#181B16">[6; 8)</text>
+
+  <!-- [8;10): 21 -> h = 117.6, y = 167.4 -->
+  <rect x="358" y="167.4" width="42" height="117.6" fill="#181B16" rx="2"/>
+  <text x="379" y="159" text-anchor="middle" font-size="12" font-weight="600" fill="#181B16">21</text>
+  <text x="379" y="305" text-anchor="middle" font-size="12" fill="#181B16">[8; 10)</text>
+
+  <!-- [10;12): 10 -> h = 56, y = 229 -->
+  <rect x="443" y="229" width="42" height="56" fill="#181B16" rx="2"/>
+  <text x="464" y="221" text-anchor="middle" font-size="12" font-weight="600" fill="#181B16">10</text>
+  <text x="464" y="305" text-anchor="middle" font-size="12" fill="#181B16">[10; 12)</text>
+</svg>

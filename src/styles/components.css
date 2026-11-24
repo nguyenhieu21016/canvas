@@ -2300,6 +2300,7 @@ tbody tr:hover {
 .nh-user-avatar {
   width: 36px;
   height: 36px;
+  padding: 0;
   border-radius: 50%;
   border: none;
   background: #181B16;
@@ -2307,13 +2308,25 @@ tbody tr:hover {
   font-family: 'Google Sans', ui-sans-serif, system-ui, sans-serif;
   font-weight: 700;
   font-size: 13.5px;
-  display: grid;
-  place-items: center;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
   cursor: pointer;
   box-shadow: none;
   flex-shrink: 0;
   aspect-ratio: 1 / 1;
   transition: background-color 0.15s ease;
+}
+
+.nh-user-avatar img,
+.nh-dropdown-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
 }
 
 .nh-user-avatar:hover {
@@ -2363,13 +2376,17 @@ tbody tr:hover {
 .nh-dropdown-avatar {
   width: 36px;
   height: 36px;
+  padding: 0;
   border-radius: 50%;
   background: #181B16;
   color: #F7F7F2;
   font-weight: 700;
   font-size: 14px;
-  display: grid;
-  place-items: center;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
   flex-shrink: 0;
   aspect-ratio: 1 / 1;
 }

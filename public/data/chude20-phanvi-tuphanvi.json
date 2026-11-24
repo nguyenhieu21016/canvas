@@ -1,0 +1,1023 @@
+{
+  "pack_id": "chude20-phanvi-tuphanvi",
+  "title": "Chủ đề 20 · Phân vị - Tứ phân vị - Khoảng tứ phân vị (2025)",
+  "chapter": "GĐ1 · Chương 5",
+  "count": 35,
+  "questions": [
+    {
+      "source_num": 1,
+      "type": "mcq",
+      "prompt": "(THPT Yên Lạc - Vĩnh Phúc 2025) Kết quả khảo sát cân nặng của $25$ quả bơ được cho trong bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|c|} \\hline \\text{Cân nặng (g)} & [150;155) & [155;160) & [160;165) & [165;170) & [170;175) & [175;180] \\\\ \\hline \\text{Số quả} & 2 & 4 & 7 & 8 & 3 & 1 \\\\ \\hline \\end{array}$$\nTứ phân vị thứ ba ($Q_3$) của mẫu số liệu trên thuộc nhóm thứ mấy (các nhóm đánh số thứ tự từ trái sang phải)?",
+      "points": 1,
+      "sort_order": 1,
+      "choices": [
+        "Nhóm thứ $5$.",
+        "Nhóm thứ $2$.",
+        "Nhóm thứ $3$.",
+        "Nhóm thứ $4$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Cỡ mẫu $n = 25$. Trung vị là $x_{13} \\in [160;165)$. Nửa trên gồm $x_{14}, \\dots, x_{25}$ ($12$ giá trị), suy ra $Q_3 = \\dfrac{x_{19} + x_{20}}{2}$. Vì $2 + 4 + 7 = 13$ và $13 + 8 = 21$ nên $x_{19}, x_{20} \\in [165;170)$, tức là nhóm thứ $4$.",
+        "source": "THPT Yên Lạc - Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 2,
+      "type": "mcq",
+      "prompt": "(THPT Nguyễn Viết Xuân - Vĩnh Phúc 2025) Thời gian truy cập Internet mỗi buổi tối của một số học sinh được cho trong bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Thời gian (phút)} & [9,5;12,5) & [12,5;15,5) & [15,5;18,5) & [18,5;21,5) & [21,5;24,5] \\\\ \\hline \\text{Số học sinh} & 3 & 12 & 15 & 24 & 2 \\\\ \\hline \\end{array}$$\nTứ phân vị thứ ba $Q_3$ của mẫu số liệu ghép nhóm trên bằng:",
+      "points": 1,
+      "sort_order": 2,
+      "choices": [
+        "$18,1$.",
+        "$15,25$.",
+        "$21$.",
+        "$20$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Cỡ mẫu $N = 56$. Vì $\\dfrac{3N}{4} = 42$ và $3 + 12 + 15 = 30 < 42 < 54$ nên nhóm chứa $Q_3$ là $[18,5;21,5)$. Khi đó $Q_3 = 18,5 + \\dfrac{42 - 30}{24} \\cdot 3 = 20$.",
+        "source": "THPT Nguyễn Viết Xuân - Vĩnh Phúc 2025",
+        "level": "Thông hiểu",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 3,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Sơn 3 - Thanh Hóa 2025) Một mẫu số liệu ghép nhóm có tứ phân vị là $Q_1 = 3, Q_2 = 5, Q_3 = 9$. Khoảng tứ phân vị của mẫu số liệu ghép nhóm là:",
+      "points": 1,
+      "sort_order": 3,
+      "choices": [
+        "$2$.",
+        "$4$.",
+        "$5$.",
+        "$6$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Khoảng tứ phân vị là $\\Delta_Q = Q_3 - Q_1 = 9 - 3 = 6$.",
+        "source": "THPT Triệu Sơn 3 - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 4,
+      "type": "mcq",
+      "prompt": "(THPT Lý Thường Kiệt - Hà Nội 2025) Tìm hiểu thời gian xem tivi trong tuần trước của một số học sinh thu được kết quả sau:\n$$\\begin{array}{|c|c|c|c|c|c|c|} \\hline \\text{Thời gian (giờ)} & [0;5) & [5;10) & [10;15) & [15;20) & [20;25) & [25;30) \\\\ \\hline \\text{Số học sinh} & 8 & 16 & 4 & 6 & 2 & 1 \\\\ \\hline \\end{array}$$\nNhóm chứa tứ phân vị thứ ba là:",
+      "points": 1,
+      "sort_order": 4,
+      "choices": [
+        "$[5;10)$.",
+        "$[15;20)$.",
+        "$[20;25)$.",
+        "$[10;15)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Cỡ mẫu $n = 37$, $\\dfrac{3n}{4} = 27,75$. Ta có $8 + 16 = 24 < 27,75 < 24 + 4 = 28$ nên nhóm chứa $Q_3$ là $[10;15)$.",
+        "source": "THPT Lý Thường Kiệt - Hà Nội 2025",
+        "level": "Nhận biết",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 5,
+      "type": "mcq",
+      "prompt": "(Cụm trường THPT Hải Dương 2025) Phỏng vấn một số học sinh khối $11$ về thời gian (giờ) ngủ của một buổi tối, người ta thu được bảng số liệu sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Thời gian (giờ)} & [4;5) & [5;6) & [6;7) & [7;8) & [8;9) \\\\ \\hline \\text{Số lượng} & 6 & 12 & 13 & 10 & 3 \\\\ \\hline \\end{array}$$\nKhoảng tứ phân vị của bảng số liệu trên gần nhất với giá trị nào dưới đây?",
+      "points": 1,
+      "sort_order": 5,
+      "choices": [
+        "$1,97$.",
+        "$1,87$.",
+        "$1,79$.",
+        "$1,78$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Cỡ mẫu $n = 44$. Với $\\dfrac{n}{4} = 11$, $Q_1 = 5 + \\dfrac{11 - 6}{12} \\cdot 1 = \\dfrac{65}{12}$. Với $\\dfrac{3n}{4} = 33$, $Q_3 = 7 + \\dfrac{33 - 31}{10} \\cdot 1 = 7,2$. Suy ra $\\Delta_Q = 7,2 - \\dfrac{65}{12} \\approx 1,78$.",
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "level": "Thông hiểu",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 6,
+      "type": "mcq",
+      "prompt": "(THPT Nguyễn Khuyến - Lê Thánh Tông 2025) Theo thống kê điểm trung bình môn Toán của một số học sinh đã trúng tuyển vào $10$ năm học $2024 - 2025$ của Trường TH - THCS - THPT Lê Thánh Tông được kết quả như bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|c|c|} \\hline \\text{Khoảng điểm} & [6,5;7) & [7;7,5) & [7,5;8) & [8;8,5) & [8,5;9) & [9;9,5) & [9,5;10) \\\\ \\hline \\text{Tần số} & 7 & 10 & 17 & 24 & 13 & 8 & 5 \\\\ \\hline \\end{array}$$\nKhoảng tứ phân vị của mẫu số liệu ghép nhóm trên là:",
+      "points": 1,
+      "sort_order": 6,
+      "choices": [
+        "$\\Delta_Q = 1,1$.",
+        "$\\Delta_Q = 1$.",
+        "$\\Delta_Q = 1,2$.",
+        "$\\Delta_Q = 0,6$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Cỡ mẫu $n = 84$. Ta có $Q_1 = 7,5 + \\dfrac{21 - 17}{17} \\cdot 0,5 = \\dfrac{259}{34}$ và $Q_3 = 8,5 + \\dfrac{63 - 58}{13} \\cdot 0,5 = \\dfrac{113}{13}$. Suy ra $\\Delta_Q = \\dfrac{113}{13} - \\dfrac{259}{34} = \\dfrac{127}{221} \\approx 1,1$.",
+        "source": "THPT Nguyễn Khuyến - Lê Thánh Tông 2025",
+        "level": "Thông hiểu",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 7,
+      "type": "mcq",
+      "prompt": "(THPT Cụm trường Hải Dương 2025) Doanh thu bán hàng trong $20$ ngày được lựa chọn ngẫu nhiên của một cửa hàng được ghi lại ở bảng sau (đơn vị: triệu đồng):\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Doanh thu} & [5;7) & [7;9) & [9;11) & [11;13) & [13;15) \\\\ \\hline \\text{Số ngày} & 2 & 7 & 7 & 3 & 1 \\\\ \\hline \\end{array}$$\nTứ phân vị thứ ba của mẫu số liệu trên gần nhất với giá trị nào trong các giá trị sau?",
+      "points": 1,
+      "sort_order": 7,
+      "choices": [
+        "$13$.",
+        "$12$.",
+        "$10$.",
+        "$11$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Cỡ mẫu $n = 20$. Với $\\dfrac{3n}{4} = 15$, nhóm chứa $Q_3$ là $[9;11)$. Suy ra $Q_3 = 9 + \\dfrac{15 - (2 + 7)}{7} \\cdot (11 - 9) \\approx 10,7$, gần nhất với $11$.",
+        "source": "THPT Cụm trường Hải Dương 2025",
+        "level": "Thông hiểu",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 8,
+      "type": "mcq",
+      "prompt": "(Cụm trường Hải Dương 2025) Cho bảng tần số ghép nhóm số liệu thống kê chiều cao của $40$ mẫu cây ở một vườn thực vật (đơn vị: centimét):\n$$\\begin{array}{|c|c|c|c|c|c|c|} \\hline \\text{Chiều cao (cm)} & [30;40) & [40;50) & [50;60) & [60;70) & [70;80) & [80;90) \\\\ \\hline \\text{Số cây} & 4 & 10 & 14 & 6 & 4 & 2 \\\\ \\hline \\end{array}$$\nTứ phân vị thứ nhất của mẫu số liệu thuộc nhóm nào dưới đây?",
+      "points": 1,
+      "sort_order": 8,
+      "choices": [
+        "$[50;60)$.",
+        "$[40;50)$.",
+        "$[70;80)$.",
+        "$[60;70)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Cỡ mẫu $n = 40 \\Rightarrow \\dfrac{n}{4} = 10$. Vì $4 < 10 < 4 + 10 = 14$ nên nhóm chứa tứ phân vị thứ nhất là $[40;50)$.",
+        "source": "Cụm trường Hải Dương 2025",
+        "level": "Nhận biết",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 9,
+      "type": "mcq",
+      "prompt": "(Sở Vĩnh Phúc 2025) Mỗi ngày bác An đều đi bộ để rèn luyện sức khỏe. Quãng đường đi bộ mỗi ngày của bác An trong $20$ ngày được thống kê ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Quãng đường (km)} & [2,7;3,0) & [3,0;3,3) & [3,3;3,6) & [3,6;3,9) & [3,9;4,2) \\\\ \\hline \\text{Số ngày} & 3 & 6 & 5 & 4 & 2 \\\\ \\hline \\end{array}$$\nKhoảng tứ phân vị của mẫu số liệu ghép nhóm trên là:",
+      "points": 1,
+      "sort_order": 9,
+      "choices": [
+        "$0,975$.",
+        "$0,9$.",
+        "$0,5$.",
+        "$0,575$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Nhóm chứa $Q_1$ là $[3,0;3,3)$: $Q_1 = 3,0 + \\dfrac{5 - 3}{6} \\cdot 0,3 = 3,1$. Nhóm chứa $Q_3$ là $[3,6;3,9)$: $Q_3 = 3,6 + \\dfrac{15 - 14}{4} \\cdot 0,3 = 3,675$. Suy ra $\\Delta_Q = 3,675 - 3,1 = 0,575$.",
+        "source": "Sở Vĩnh Phúc 2025",
+        "level": "Thông hiểu",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 10,
+      "type": "mcq",
+      "prompt": "(THPT Lê Thánh Tông - HCM 2025) Thời gian (phút) truy cập Internet mỗi buổi tối của một học sinh được cho trong bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Thời gian (phút)} & [9,5;12,5) & [12,5;15,5) & [15,5;18,5) & [18,5;21,5) & [21,5;24,5) \\\\ \\hline \\text{Số học sinh} & 3 & 12 & 15 & 24 & 2 \\\\ \\hline \\end{array}$$\nKhoảng tứ phân vị của mẫu số liệu trên là?",
+      "points": 1,
+      "sort_order": 10,
+      "choices": [
+        "$10,75$.",
+        "$4,75$.",
+        "$4,63$.",
+        "$4,38$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Ta có $n = 56$. Với $\\dfrac{n}{4} = 14$: $Q_1 = 12,5 + \\dfrac{14 - 3}{12} \\cdot 3 = 15,25$. Với $\\dfrac{3n}{4} = 42$: $Q_3 = 18,5 + \\dfrac{42 - 30}{24} \\cdot 3 = 20$. Suy ra $\\Delta_Q = 20 - 15,25 = 4,75$.",
+        "source": "THPT Lê Thánh Tông - HCM 2025",
+        "level": "Thông hiểu",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 11,
+      "type": "mcq",
+      "prompt": "(Chuyên Thái Bình 2025) Cho mẫu số liệu ghép nhóm với bộ ba tứ phân vị lần lượt là $Q_1 = 11,5$; $Q_2 = 14,5$; $Q_3 = 21,3$. Khi đó khoảng tứ phân vị của mẫu số liệu trên là:",
+      "points": 1,
+      "sort_order": 11,
+      "choices": [
+        "$\\Delta_Q = 3,0$.",
+        "$\\Delta_Q = 6,8$.",
+        "$\\Delta_Q = 9,8$.",
+        "$\\Delta_Q = 32,8$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Ta có $\\Delta_Q = Q_3 - Q_1 = 21,3 - 11,5 = 9,8$.",
+        "source": "Chuyên Thái Bình 2025",
+        "level": "Nhận biết",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 12,
+      "type": "mcq",
+      "prompt": "(Cụm trường Nghệ An 2025) Một cửa hàng quần áo khảo sát một số khách hàng xem họ dự định mua quần áo cho trẻ em với mức giá nào (đơn vị: nghìn đồng). Kết quả khảo sát được ghi lại ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Mức giá} & [60;90) & [90;120) & [120;150) & [150;180) & [180;210) \\\\ \\hline \\text{Số khách hàng} & 20 & 75 & 48 & 25 & 12 \\\\ \\hline \\end{array}$$\nKhoảng $[a;b)$ ($a, b \\in \\mathbb{R}$) chứa tứ phân vị thứ nhất của mẫu số liệu ghép nhóm trên. Tính tổng $S = a + b$ được kết quả là:",
+      "points": 1,
+      "sort_order": 12,
+      "choices": [
+        "$210$.",
+        "$150$.",
+        "$45$.",
+        "$30$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Cỡ mẫu $n = 180 \\Rightarrow \\dfrac{n}{4} = 45$. Vì $20 < 45 < 20 + 75 = 95$ nên nhóm chứa tứ phân vị thứ nhất là $[90;120)$. Vậy $S = a + b = 90 + 120 = 210$.",
+        "source": "Cụm trường Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 13,
+      "type": "mcq",
+      "prompt": "(THPT Trực Ninh - Nam Định 2025) Một người thống kê lại thời gian thực hiện các cuộc gọi điện thoại của người đó trong một tuần ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|c|} \\hline \\text{Thời gian (giây)} & [0;60) & [60;120) & [120;180) & [180;240) & [240;300) & [300;360) \\\\ \\hline \\text{Số cuộc gọi} & 8 & 10 & 7 & 5 & 2 & 1 \\\\ \\hline \\end{array}$$\nKhoảng tứ phân vị của mẫu số liệu ghép nhóm này gần nhất với số nào?",
+      "points": 1,
+      "sort_order": 13,
+      "choices": [
+        "$100$.",
+        "$130$.",
+        "$110$.",
+        "$120$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Với $n = 33$, vị trí thứ $8$ thuộc $[0;60)$ và thứ $9$ thuộc $[60;120)$ nên $Q_1 \\approx 60$; vị trí thứ $25$ thuộc $[180;240)$ và thứ $26$ thuộc $[240;300)$ nên $Q_3 \\approx 180$. Khoảng tứ phân vị $\\Delta_Q = 180 - 60 = 120$ (theo công thức ghép nhóm cho kết quả $\\approx 116,4$, gần nhất với $120$).",
+        "source": "THPT Trực Ninh - Nam Định 2025",
+        "level": "Thông hiểu",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 14,
+      "type": "mcq",
+      "prompt": "(Sở Phú Thọ 2025) Kết quả đo chiều cao của $100$ cây keo ba năm tuổi tại một nông trường được cho bởi bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Chiều cao (m)} & [8,4;8,6) & [8,6;8,8) & [8,8;9,0) & [9,0;9,2) & [9,2;9,4) \\\\ \\hline \\text{Số cây} & 5 & 12 & 25 & 44 & 14 \\\\ \\hline \\end{array}$$\nKhoảng tứ phân vị của mẫu số liệu ghép nhóm đã cho bằng:",
+      "points": 1,
+      "sort_order": 14,
+      "choices": [
+        "$0,886$.",
+        "$0,115$.",
+        "$0,826$.",
+        "$0,286$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Cỡ mẫu $n = 100$. Ta có $Q_1 = 8,8 + \\dfrac{25 - 17}{25} \\cdot 0,2 = \\dfrac{1108}{125} = 8,864$ và $Q_3 = 9,0 + \\dfrac{75 - 42}{44} \\cdot 0,2 = \\dfrac{183}{20} = 9,15$. Vậy $\\Delta_Q = Q_3 - Q_1 = 0,286$.",
+        "source": "Sở Phú Thọ 2025",
+        "level": "Thông hiểu",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 15,
+      "type": "mcq",
+      "prompt": "(Sở Thái Nguyên 2025) Cho mẫu số liệu ghép nhóm về quãng đường chạy bộ (km) và số ngày chạy bộ như bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Quãng đường chạy bộ} & [1,2;2,2) & [2,2;3,2) & [3,2;4,2) & [4,2;5,2) & [5,2;6,2) \\\\ \\hline \\text{Số ngày chạy bộ} & 2 & 1 & 7 & 8 & 8 \\\\ \\hline \\end{array}$$\nKhoảng tứ phân vị (làm tròn kết quả đến hàng phần trăm) của mẫu số liệu ghép nhóm đã cho bằng:",
+      "points": 1,
+      "sort_order": 15,
+      "choices": [
+        "$0,88$.",
+        "$5,71$.",
+        "$0,81$.",
+        "$1,69$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Ta có $n = 26$, $\\dfrac{n}{4} = 6,5$. Suy ra $Q_1 = 3,2 + \\dfrac{6,5 - 3}{7} \\cdot 1 = 3,7$ và $Q_3 = 5,2 + \\dfrac{19,5 - 18}{8} \\cdot 1 \\approx 5,39$. Do đó $\\Delta_Q = 5,39 - 3,7 = 1,69$.",
+        "source": "Sở Thái Nguyên 2025",
+        "level": "Thông hiểu",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 16,
+      "type": "mcq",
+      "prompt": "(Chuyên Lê Quý Đôn - Đà Nẵng 2025) Lợi nhuận hàng tháng (đơn vị: triệu đồng) trong $24$ tháng của một nhà đầu tư tài chính được cho trong bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Lợi nhuận} & [5;15) & [15;25) & [25;35) & [35;45) & [45;55) \\\\ \\hline \\text{Số tháng} & 3 & 7 & 9 & 4 & 1 \\\\ \\hline \\end{array}$$\nNhóm chứa tứ phân vị thứ ba là:",
+      "points": 1,
+      "sort_order": 16,
+      "choices": [
+        "$[35;45)$.",
+        "$[25;35)$.",
+        "$[15;25)$.",
+        "$(45;55)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Cỡ mẫu $n = 24$, $\\dfrac{3n}{4} = 18$. Tần số tích lũy đến nhóm $[15;25)$ là $3 + 7 = 10 < 18$, đến nhóm $[25;35)$ là $10 + 9 = 19 \\ge 18$. Vậy tứ phân vị thứ ba thuộc nhóm $[25;35)$.",
+        "source": "Chuyên Lê Quý Đôn - Đà Nẵng 2025",
+        "level": "Nhận biết",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 17,
+      "type": "mcq",
+      "prompt": "(THPT Lê Hồng Phong - Hải Phòng 2025) Cho bảng tần số ghép nhóm số liệu thống kê cân nặng của $40$ học sinh lớp $11\\text{A}$ trong một trường trung học phổ thông (đơn vị: kilôgam). Xác định khoảng tứ phân vị của mẫu số liệu ghép nhóm đó:\n$$\\begin{array}{|c|c|c|c|c|c|c|} \\hline \\text{Nhóm} & [30;40) & [40;50) & [50;60) & [60;70) & [70;80) & [80;90) \\\\ \\hline \\text{Tần số} & 2 & 10 & 16 & 8 & 2 & 2 \\\\ \\hline \\end{array}$$",
+      "points": 1,
+      "sort_order": 17,
+      "choices": [
+        "$\\Delta_Q = 14,5$.",
+        "$\\Delta_Q = 16$.",
+        "$\\Delta_Q = 10,6$.",
+        "$\\Delta_Q = 13,5$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Cỡ mẫu $n = 40$, $\\dfrac{n}{4} = 10$, $\\dfrac{3n}{4} = 30$. Ta có $Q_1 = 40 + \\dfrac{10 - 2}{10} \\cdot 10 = 48$ và $Q_3 = 60 + \\dfrac{30 - 28}{8} \\cdot 10 = 62,5$. Suy ra $\\Delta_Q = 62,5 - 48 = 14,5$.",
+        "source": "THPT Lê Hồng Phong - Hải Phòng 2025",
+        "level": "Thông hiểu",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 18,
+      "type": "mcq",
+      "prompt": "(Sở Quảng Bình 2025) Điểm kiểm tra $15$ phút của lớp $12A$ được cho bởi bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|c|c|} \\hline \\text{Điểm} & [3;4) & [4;5) & [5;6) & [6;7) & [7;8) & [8;9) & [9;10) \\\\ \\hline \\text{Số học sinh} & 3 & 8 & 7 & 12 & 7 & 1 & 1 \\\\ \\hline \\end{array}$$\nTứ phân vị thứ nhất của mẫu số liệu ghép nhóm trên (làm tròn kết quả đến hàng phần trăm) là:",
+      "points": 1,
+      "sort_order": 18,
+      "choices": [
+        "$2,10$.",
+        "$4,84$.",
+        "$2,09$.",
+        "$6,94$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Cỡ mẫu $n = 39$, $\\dfrac{n}{4} = \\dfrac{39}{4} = 9,75$. Nhóm chứa $Q_1$ là $[4;5)$ nên $Q_1 = 4 + \\dfrac{9,75 - 3}{8} \\cdot (5 - 4) \\approx 4,84$.",
+        "source": "Sở Quảng Bình 2025",
+        "level": "Thông hiểu",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 19,
+      "type": "mcq",
+      "prompt": "(Cụm trường THPT Hải Dương 2025) Dũng là học sinh rất giỏi chơi rubik, bạn có thể giải nhiều loại khối rubik khác nhau. Trong một lần luyện tập giải khối rubik $3\\times 3$, bạn Dũng đã tự thống kê lại thời gian giải rubik trong $25$ lần giải liên tiếp ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Thời gian giải rubik (giây)} & [8;10) & [10;12) & [12;14) & [14;16) & [16;18) \\\\ \\hline \\text{Số lần} & 4 & 6 & 8 & 4 & 3 \\\\ \\hline \\end{array}$$\nKhoảng tứ phân vị của mẫu số liệu ghép nhóm bằng $\\dfrac{a}{b}$, với $\\dfrac{a}{b}$ là phân số tối giản và $a, b \\in \\mathbb{Z}$. Tính giá trị của biểu thức $P = a + b$.",
+      "points": 1,
+      "sort_order": 19,
+      "choices": [
+        "$43$.",
+        "$30$.",
+        "$37$.",
+        "$25$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Ta có $Q_1 = 10 + \\dfrac{6,25 - 4}{6} \\cdot 2 = \\dfrac{43}{4}$ và $Q_3 = 14 + \\dfrac{18,75 - 18}{4} \\cdot 2 = \\dfrac{115}{8}$. Khoảng tứ phân vị $\\Delta_Q = \\dfrac{115}{8} - \\dfrac{43}{4} = \\dfrac{29}{8}$. Vậy $P = a + b = 29 + 8 = 37$.",
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "level": "Vận dụng",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 20,
+      "type": "mcq",
+      "prompt": "(Chuyên Hùng Vương - Phú Thọ 2025) Cho bảng thống kê doanh số bán hàng của $100$ nhân viên ở một trung tâm thương mại trong một tuần như sau:\n$$\\begin{array}{|c|c|c|c|c|c|c|} \\hline \\text{Doanh số (triệu đồng)} & [20;30) & [30;40) & [40;50) & [50;60) & [60;70) & [70;80) \\\\ \\hline \\text{Số nhân viên} & 25 & 20 & 20 & 15 & 14 & 6 \\\\ \\hline \\end{array}$$\nTrung tâm thương mại dự định chọn $25\\%$ số nhân viên có doanh số bán hàng cao nhất để trao thưởng. Theo mẫu số liệu trên, trung tâm thương mại nên khen thưởng các nhân viên có doanh số bán hàng ít nhất là bao nhiêu triệu đồng (kết quả làm tròn đến hàng phần chục)?",
+      "points": 1,
+      "sort_order": 20,
+      "choices": [
+        "$30,0$ triệu đồng.",
+        "$42,5$ triệu đồng.",
+        "$56,7$ triệu đồng.",
+        "$53,7$ triệu đồng."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Doanh số của $25\\%$ nhân viên cao nhất tương ứng với mức tối thiểu $Q_3$. Ta có $\\dfrac{3n}{4} = 75 \\Rightarrow Q_3 \\in [50;60)$, suy ra $Q_3 = 50 + \\dfrac{75 - (25 + 20 + 20)}{15} \\cdot 10 = \\dfrac{170}{3} \\approx 56,7$ triệu đồng.",
+        "source": "Chuyên Hùng Vương - Phú Thọ 2025",
+        "level": "Vận dụng",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 21,
+      "type": "mcq",
+      "prompt": "(Sở Yên Bái 2025) Một mẫu số liệu ghép nhóm có tứ phân vị là $Q_1 = 4; Q_2 = 6; Q_3 = 9$. Khoảng tứ phân vị của mẫu số liệu ghép nhóm đó bằng:",
+      "points": 1,
+      "sort_order": 21,
+      "choices": [
+        "$5$.",
+        "$2$.",
+        "$7$.",
+        "$13$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Có $\\Delta_Q = Q_3 - Q_1 = 9 - 4 = 5$.",
+        "source": "Sở Yên Bái 2025",
+        "level": "Nhận biết",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 22,
+      "type": "mcq",
+      "prompt": "(Sở Hòa Bình 2025) Mỗi ngày bác Hoa đều đi bộ để rèn luyện sức khỏe. Quãng đường đi bộ mỗi ngày (đơn vị: km) của bác Hoa trong $20$ ngày được thống kê lại ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Quãng đường (km)} & [2,5;3,0) & [3,0;3,5) & [3,5;4,0) & [4,0;4,5) & [4,5;5,0) \\\\ \\hline \\text{Số ngày} & 3 & 6 & 5 & 4 & 2 \\\\ \\hline \\end{array}$$\nKhoảng tứ phân vị của mẫu số liệu ghép nhóm (kết quả làm tròn đến hàng phần trăm) là:",
+      "points": 1,
+      "sort_order": 22,
+      "choices": [
+        "$0,9$.",
+        "$0,96$.",
+        "$0,97$.",
+        "$0,8$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Ta có $n = 20$. Với $\\dfrac{n}{4} = 5$: $Q_1 = 3,0 + \\dfrac{5 - 3}{6} \\cdot 0,5 = \\dfrac{19}{6}$. Với $\\dfrac{3n}{4} = 15$: $Q_3 = 4,0 + \\dfrac{15 - 14}{4} \\cdot 0,5 = \\dfrac{33}{8}$. Vậy $\\Delta_Q = \\dfrac{33}{8} - \\dfrac{19}{6} = \\dfrac{23}{24} \\approx 0,96$.",
+        "source": "Sở Hòa Bình 2025",
+        "level": "Thông hiểu",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 23,
+      "type": "mcq",
+      "prompt": "(Sở Sơn La 2025) Mẫu số liệu ghép nhóm thống kê mức lương của một công ty (đơn vị: triệu đồng) được cho trong bảng dưới đây:\n$$\\begin{array}{|c|c|c|c|c|c|c|} \\hline \\text{Nhóm (triệu đồng)} & [6;8) & [8;10) & [10;12) & [12;14) & [14;16) &  \\\\ \\hline \\text{Tần số} & 6 & 14 & 18 & 10 & 2 & n=50 \\\\ \\hline \\end{array}$$\nTứ phân vị thứ nhất của mẫu số liệu đã cho (làm tròn đến hàng phần trăm) là:",
+      "points": 1,
+      "sort_order": 23,
+      "choices": [
+        "$8,81$.",
+        "$9,12$.",
+        "$8,96$.",
+        "$8,93$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Ta có $\\dfrac{n}{4} = \\dfrac{50}{4} = 12,5 \\Rightarrow Q_1 \\in [8;10)$. Khi đó $Q_1 = 8 + \\dfrac{12,5 - 6}{14} \\cdot (10 - 8) \\approx 8,93$.",
+        "source": "Sở Sơn La 2025",
+        "level": "Thông hiểu",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 24,
+      "type": "mcq",
+      "prompt": "(Sở Phú Thọ 2025) Hai mẫu số liệu ghép nhóm $A, B$ có bảng tần số ghép nhóm như sau:\nNhóm A:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Nhóm} & [0;10) & [10;20) & [20;30) & [30;40) & [40;50) \\\\ \\hline \\text{Tần số} & 8 & 9 & 5 & 6 & 2 \\\\ \\hline \\end{array}$$\nNhóm B:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Nhóm} & [0,3;10,3) & [10,3;20,3) & [20,3;30,3) & [30,3;40,3) & [40,3;50,3) \\\\ \\hline \\text{Tần số} & 16 & 18 & 10 & 12 & 4 \\\\ \\hline \\end{array}$$\nGọi $\\Delta_{Q_A}, \\Delta_{Q_B}$ lần lượt là khoảng tứ phân vị của mẫu số liệu ghép nhóm $A, B$. Phát biểu nào sau đây đúng:",
+      "points": 1,
+      "sort_order": 24,
+      "choices": [
+        "$\\Delta_{Q_B} = 2\\Delta_{Q_A}$.",
+        "$\\Delta_{Q_B} = 0,3 + \\Delta_{Q_A}$.",
+        "$\\Delta_{Q_B} = \\Delta_{Q_A}$.",
+        "$\\Delta_{Q_B} = 0,3\\Delta_{Q_A}$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Mẫu $B$ tịnh tiến mỗi đầu mút thêm $0,3$ và nhân đôi mọi tần số so với mẫu $A$, nên $Q_{1(B)} = Q_{1(A)} + 0,3$ và $Q_{3(B)} = Q_{3(A)} + 0,3$. Suy ra $\\Delta_{Q_B} = Q_{3(B)} - Q_{1(B)} = Q_{3(A)} - Q_{1(A)} = \\Delta_{Q_A}$.",
+        "source": "Sở Phú Thọ 2025",
+        "level": "Vận dụng",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 25,
+      "type": "mcq",
+      "prompt": "(Sở Bình Thuận 2025) Mỗi ngày bác Hương đều đi bộ để rèn luyện sức khỏe. Quãng đường đi bộ mỗi ngày (đơn vị: km) của bác Hương trong $20$ ngày được thống kê lại ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Quãng đường (km)} & [2,7;3,0) & [3,0;3,3) & [3,3;3,6) & [3,6;3,9) & [3,9;4,2) \\\\ \\hline \\text{Số ngày} & 3 & 6 & 5 & 4 & 2 \\\\ \\hline \\end{array}$$\nTứ phân vị thứ nhất của mẫu số liệu ghép nhóm thuộc nhóm nào sau đây?",
+      "points": 1,
+      "sort_order": 25,
+      "choices": [
+        "$[3,0;3,3)$.",
+        "$[3,6;3,9)$.",
+        "$[3,3;3,6)$.",
+        "$[2,7;3,0)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Ta có $\\dfrac{n}{4} = \\dfrac{20}{4} = 5$. Vì $3 < 5 < 3 + 6 = 9$ nên $Q_1 \\in [3,0;3,3)$.",
+        "source": "Sở Bình Thuận 2025",
+        "level": "Nhận biết",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 26,
+      "type": "mcq",
+      "prompt": "(THPT DTNT - Nghệ An 2025) Cho bảng số liệu thống kê dưới đây:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Nhóm} & [18;22) & [22;26) & [26;30) & [30;34) & [34;38) \\\\ \\hline \\text{Tần số} & 5 & 5 & 10 & 7 & 9 \\\\ \\hline \\end{array}$$\nNhóm chứa tứ phân vị thứ nhất là:",
+      "points": 1,
+      "sort_order": 26,
+      "choices": [
+        "$[18;22)$.",
+        "$[30;34)$.",
+        "$[22;26)$.",
+        "$[34;38)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Tổng tần số $N = 36 \\Rightarrow \\dfrac{N}{4} = 9$. Vì $5 < 9 < 10$ nên nhóm chứa tứ phân vị thứ nhất là $[22;26)$.",
+        "source": "THPT DTNT - Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 27,
+      "type": "mcq",
+      "prompt": "(Sở Vũng Tàu 2025) Bảng sau thống kê cân nặng của $50$ quả xoài cát Hòa Lộc được lựa chọn ngẫu nhiên sau khi thu hoạch ở một nông trường như sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Cân nặng (g)} & [250;290) & [290;330) & [330;370) & [370;410) & [410;450) \\\\ \\hline \\text{Số quả xoài} & 3 & 13 & 18 & 11 & 5 \\\\ \\hline \\end{array}$$\nKhoảng tứ phân vị của mẫu thống kê trên là:",
+      "points": 1,
+      "sort_order": 27,
+      "choices": [
+        "$319,23$.",
+        "$382,72$.",
+        "$63,50$.",
+        "$65,43$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Với $n = 50$, $\\dfrac{n}{4} = 12,5 \\Rightarrow Q_1 = 290 + \\dfrac{12,5 - 3}{13} \\cdot 40 = \\dfrac{4150}{13}$. Với $\\dfrac{3n}{4} = 37,5 \\Rightarrow Q_3 = 370 + \\dfrac{37,5 - 34}{11} \\cdot 40 = \\dfrac{4210}{11}$. Do đó $\\Delta_Q = Q_3 - Q_1 \\approx 63,50$.",
+        "source": "Sở Vũng Tàu 2025",
+        "level": "Thông hiểu",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 28,
+      "type": "mcq",
+      "prompt": "(Chuyên Lương Thế Vinh - Đồng Nai 2025) Mỗi ngày bác Hương đều đi bộ để rèn luyện sức khỏe. Quãng đường đi bộ mỗi ngày (đơn vị: km) của bác Hương trong $20$ ngày được thống kê lại ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Quãng đường (km)} & [2,7;3,0) & [3,0;3,3) & [3,3;3,6) & [3,6;3,9) & [3,9;4,2) \\\\ \\hline \\text{Số ngày} & 3 & 6 & 5 & 4 & 2 \\\\ \\hline \\end{array}$$\nKhoảng tứ phân vị của mẫu số liệu ghép nhóm là:",
+      "points": 1,
+      "sort_order": 28,
+      "choices": [
+        "$0,9$.",
+        "$0,975$.",
+        "$0,5$.",
+        "$0,575$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Với $n = 20$: $Q_1 = 3,0 + \\dfrac{5 - 3}{6} \\cdot 0,3 = 3,1$ và $Q_3 = 3,6 + \\dfrac{15 - 14}{4} \\cdot 0,3 = 3,675$. Suy ra $\\Delta_Q = 3,675 - 3,1 = 0,575$.",
+        "source": "Chuyên Lương Thế Vinh - Đồng Nai 2025",
+        "level": "Thông hiểu",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 29,
+      "type": "mcq",
+      "prompt": "(Sở Hậu Giang 2025) Thời gian chờ khám của các bệnh nhân tại một phòng khám được cho trong bảng sau:\n$$\\begin{array}{|c|c|c|c|c|} \\hline \\text{Thời gian (phút)} & [0;5) & [5;10) & [10;15) & [15;20) \\\\ \\hline \\text{Số bệnh nhân} & 3 & 12 & 15 & 8 \\\\ \\hline \\end{array}$$\nTứ phân vị thứ nhất của mẫu số liệu ghép nhóm này (làm tròn đến hàng phần trăm) là:",
+      "points": 1,
+      "sort_order": 29,
+      "choices": [
+        "$7,71$.",
+        "$14,50$.",
+        "$6,70$.",
+        "$6,79$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Cỡ mẫu $n = 3 + 12 + 15 + 8 = 38$, $\\dfrac{n}{4} = 9,5 \\Rightarrow Q_1 \\in [5;10)$. Vậy $Q_1 = 5 + \\dfrac{9,5 - 3}{12} \\cdot (10 - 5) \\approx 7,71$.",
+        "source": "Sở Hậu Giang 2025",
+        "level": "Thông hiểu",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 30,
+      "type": "mcq",
+      "prompt": "(Sở Lai Châu 2025) Trọng lượng của $20$ củ sâm trong một lô củ sâm được thu hoạch sau sáu năm trồng tại một cơ sở trồng sâm Lai Châu có bảng tần số ghép nhóm sau (đơn vị: gam):\n$$\\begin{array}{|c|c|c|c|c|} \\hline \\text{Nhóm} & [40;45) & [45;50) & [50;55) & [55;60) \\\\ \\hline \\text{Tần số} & 3 & 7 & 8 & 2 \\\\ \\hline \\end{array}$$\nKhoảng tứ phân vị của mẫu số liệu ghép nhóm trên (làm tròn kết quả đến hàng phần mười) là:",
+      "points": 1,
+      "sort_order": 30,
+      "choices": [
+        "$3,3$.",
+        "$9,5$.",
+        "$6,7$.",
+        "$8,6$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Cỡ mẫu $n = 20$. Ta có $Q_1 = 45 + \\dfrac{5 - 3}{7} \\cdot 5 \\approx 46,429$ và $Q_3 = 50 + \\dfrac{15 - 10}{8} \\cdot 5 = 53,125$. Vậy $\\Delta_Q = 53,125 - 46,429 \\approx 6,7$.",
+        "source": "Sở Lai Châu 2025",
+        "level": "Thông hiểu",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 31,
+      "type": "mcq",
+      "prompt": "(Cụm chuyên môn Đăk Lak 2025) Bạn Chi rất thích nhảy hiện đại. Thời gian tập nhảy mỗi ngày trong thời gian gần đây của bạn Chi được thống kê lại ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Thời gian (phút)} & [20;25) & [25;30) & [30;35) & [35;40) & [40;45) \\\\ \\hline \\text{Số ngày} & 6 & 6 & 4 & 1 & 1 \\\\ \\hline \\end{array}$$\nKhoảng tứ phân vị của mẫu số liệu ghép nhóm là:",
+      "points": 1,
+      "sort_order": 31,
+      "choices": [
+        "$23,75$.",
+        "$8,125$.",
+        "$27,5$.",
+        "$31,88$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Cỡ mẫu $n = 18$. Nhóm chứa $Q_1$ là $[20;25)$ nên $Q_1 = 20 + \\dfrac{4,5}{6} \\cdot 5 = 23,75$. Nhóm chứa $Q_3$ là $[30;35)$ nên $Q_3 = 30 + \\dfrac{13,5 - 12}{4} \\cdot 5 = 31,875$. Vậy $\\Delta_Q = Q_3 - Q_1 = 8,125$.",
+        "source": "Cụm chuyên môn Đăk Lak 2025",
+        "level": "Thông hiểu",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 32,
+      "type": "mcq",
+      "prompt": "(Cụm THPT Hoàn Kiếm - Hai Bà Trưng - Hà Nội 2025) Cho mẫu số liệu ghép nhóm về độ tuổi của dân cư khu phố A như sau:\n$$\\begin{array}{|c|c|c|c|c|c|c|} \\hline \\text{Nhóm} & [20;30) & [30;40) & [40;50) & [50;60) & [60;70) & [70;80) \\\\ \\hline \\text{Số người} & 24 & 26 & 20 & 15 & 11 & 4 \\\\ \\hline \\end{array}$$\nKhoảng tứ phân vị của mẫu số liệu trên là:",
+      "points": 1,
+      "sort_order": 32,
+      "choices": [
+        "$23,95$.",
+        "$60$.",
+        "$33,94$.",
+        "$22,95$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Cỡ mẫu $n = 100$. Ta có $Q_1 = 30 + \\dfrac{25 - 24}{26} \\cdot 10 = \\dfrac{395}{13}$ và $Q_3 = 50 + \\dfrac{75 - 70}{15} \\cdot 10 = \\dfrac{160}{3}$. Khoảng tứ phân vị là $\\Delta_Q = \\dfrac{160}{3} - \\dfrac{395}{13} = \\dfrac{895}{39} \\approx 22,95$.",
+        "source": "Cụm THPT Hoàn Kiếm - Hai Bà Trưng - Hà Nội 2025",
+        "level": "Thông hiểu",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 33,
+      "type": "mcq",
+      "prompt": "(THPT Bắc Đông Quan - Thái Bình 2025) Doanh thu bán hàng trong $20$ ngày được lựa chọn ngẫu nhiên của một cửa hàng được ghi lại ở bảng sau (đơn vị: triệu đồng):\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Doanh thu} & [5;7) & [7;9) & [9;11) & [11;13) & [13;15) \\\\ \\hline \\text{Số ngày} & 2 & 7 & 7 & 3 & 1 \\\\ \\hline \\end{array}$$\nTứ phân vị thứ nhất của mẫu số liệu trên gần nhất với giá trị nào trong các giá trị sau?",
+      "points": 1,
+      "sort_order": 33,
+      "choices": [
+        "$7$.",
+        "$7,6$.",
+        "$8,6$.",
+        "$8$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Ta có $\\dfrac{n}{4} = 5$, nên nhóm chứa $Q_1$ là $[7;9)$. Khi đó $Q_1 = 7 + \\dfrac{5 - 2}{7} \\cdot (9 - 7) \\approx 7,9$, gần nhất với $8$.",
+        "source": "THPT Bắc Đông Quan - Thái Bình 2025",
+        "level": "Thông hiểu",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 34,
+      "type": "mcq",
+      "prompt": "(THPT Khoa Học Giáo Dục - Hà Nội 2025) Dũng là một học sinh rất giỏi chơi rubik, bạn có thể giải nhiều loại khối rubik khác nhau. Trong một lần luyện tập giải khối rubik $3\\times 3$, bạn Dũng đã tự thống kê lại thời gian giải rubik trong $25$ lần giải liên tiếp trong bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Thời gian giải rubik (giây)} & [8;10) & [10;12) & [12;14) & [14;16) & [16;18) \\\\ \\hline \\text{Số lần} & 4 & 6 & 8 & 4 & 3 \\\\ \\hline \\end{array}$$\nKhoảng tứ phân vị của mẫu số liệu ghép nhóm (làm tròn đến hàng phần trăm) là:",
+      "points": 1,
+      "sort_order": 34,
+      "choices": [
+        "$14,38$.",
+        "$3,63$.",
+        "$10,75$.",
+        "$1,75$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Ta có $Q_1 = 10 + \\dfrac{6,25 - 4}{6} \\cdot 2 = \\dfrac{43}{4}$ và $Q_3 = 14 + \\dfrac{18,75 - 18}{4} \\cdot 2 = \\dfrac{115}{8}$. Vậy $\\Delta_Q = \\dfrac{115}{8} - \\dfrac{43}{4} \\approx 3,63$.",
+        "source": "THPT Khoa Học Giáo Dục - Hà Nội 2025",
+        "level": "Thông hiểu",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 35,
+      "type": "mcq",
+      "prompt": "(Sở Hà Tĩnh 2025) Cho mẫu số liệu ghép nhóm có tứ phân vị thứ nhất, thứ hai, thứ ba lần lượt là $Q_1, Q_2, Q_3$. Khoảng tứ phân vị của mẫu số liệu ghép nhóm đó bằng:",
+      "points": 1,
+      "sort_order": 35,
+      "choices": [
+        "$\\Delta_Q = Q_1 - Q_2$.",
+        "$\\Delta_Q = Q_3 - Q_1$.",
+        "$\\Delta_Q = Q_2 - Q_1$.",
+        "$\\Delta_Q = Q_1 - Q_3$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Khoảng tứ phân vị của mẫu số liệu ghép nhóm được tính bởi công thức $\\Delta_Q = Q_3 - Q_1$.",
+        "source": "Sở Hà Tĩnh 2025",
+        "level": "Nhận biết",
+        "pack": "chude20-phanvi-tuphanvi"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    }
+  ]
+}

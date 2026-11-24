@@ -111,6 +111,66 @@ const PREPACKAGED_PACKS = [
     title: 'Chủ đề 12 · Ứng dụng đạo hàm giải toán Kinh tế — Trả lời ngắn (2025)',
     subtitle: '65 câu Trả lời ngắn chuẩn LaTeX về doanh thu, chi phí & tối ưu lợi nhuận, đã phân loại Bài 6',
   },
+  {
+    packId: 'chude19-sotrungbinh-mot-trungvi',
+    url: '/data/chude19-sotrungbinh-mot-trungvi.json',
+    title: 'Chủ đề 19 · Số trung bình - Mốt - Trung vị - Khoảng biến thiên (2025)',
+    subtitle: '59 câu Trắc nghiệm Thống kê ghép nhóm chuẩn LaTeX (bảng công thức sạch watermark), đã phân loại GĐ1 - Chương 5 (Bài 22)',
+  },
+  {
+    packId: 'chude20-phanvi-tuphanvi',
+    url: '/data/chude20-phanvi-tuphanvi.json',
+    title: 'Chủ đề 20 · Phân vị - Tứ phân vị - Khoảng tứ phân vị (2025)',
+    subtitle: '35 câu Trắc nghiệm Tứ phân vị & Khoảng tứ phân vị chuẩn LaTeX sạch watermark, đã phân loại GĐ1 - Chương 5 (Bài 22)',
+  },
+  {
+    packId: 'chude21-phuongsai-dolechchuan',
+    url: '/data/chude21-phuongsai-dolechchuan.json',
+    title: 'Chủ đề 21 · Phương sai - Độ lệch chuẩn (2025)',
+    subtitle: '36 câu Trắc nghiệm Phương sai & Độ lệch chuẩn ghép nhóm chuẩn LaTeX sạch watermark, đã phân loại GĐ1 - Chương 5 (Bài 23)',
+  },
+  {
+    packId: 'short-thongke',
+    url: '/data/short-thongke.json',
+    title: 'Chủ đề 15 · Thống kê — Trả lời ngắn (2025)',
+    subtitle: '16 câu Trả lời ngắn Thống kê ghép nhóm chuẩn LaTeX + 2 biểu đồ SVG sạch watermark, đã phân loại GĐ1 - Chương 5 (Bài 22 & Bài 23)',
+  },
+  {
+    packId: 'tf4-thongke',
+    url: '/data/tf4-thongke.json',
+    title: 'Chủ đề 10 · Thống kê 12 — Đúng/Sai (2025)',
+    subtitle: '26 câu Trắc nghiệm Đúng/Sai (4 mệnh đề) Thống kê ghép nhóm chuẩn LaTeX + biểu đồ SVG sạch watermark, đã phân loại GĐ1 - Chương 5 (Bài 22 & Bài 23)',
+  },
+  {
+    packId: 'chude26-vecto',
+    url: '/data/chude26-vecto.json',
+    title: 'Chủ đề 26 · Vectơ trong không gian (2025)',
+    subtitle: '98 câu Trắc nghiệm Vectơ không gian chuẩn LaTeX + 40 hình minh họa cắt từ đề gốc sạch watermark, đã phân loại GĐ1 - Chương 3 (Bài 12 & Bài 13)',
+  },
+  {
+    packId: 'tf4-thucte-oxyz',
+    url: '/data/tf4-thucte-oxyz.json',
+    title: 'Chủ đề 9 · Thực tế Oxyz — Đúng/Sai (2025)',
+    subtitle: '59 câu Trắc nghiệm Đúng/Sai (4 mệnh đề) Thực tế Oxyz chuẩn LaTeX + 40 hình minh họa cắt từ đề gốc sạch watermark, đã phân loại GĐ1 - Chương 3 & Chương 4',
+  },
+  {
+    packId: 'tf4-vecto',
+    url: '/data/tf4-vecto.json',
+    title: 'Chủ đề 15 · Vectơ trong không gian — Đúng/Sai (2025)',
+    subtitle: '5 câu Trắc nghiệm Đúng/Sai (4 mệnh đề) Vectơ không gian chuẩn LaTeX + hình minh họa cắt từ đề gốc sạch watermark, đã phân loại GĐ1 - Chương 3 (Bài 12)',
+  },
+  {
+    packId: 'short-thucte-oxyz',
+    url: '/data/short-thucte-oxyz.json',
+    title: 'Chủ đề 14 · Thực tế Oxyz — Trả lời ngắn (2025)',
+    subtitle: '89 câu Trả lời ngắn Thực tế Oxyz chuẩn LaTeX + 54 hình minh họa cắt từ đề gốc sạch watermark, đã phân loại GĐ1 - Chương 3 & Chương 4',
+  },
+  {
+    packId: 'short-vecto',
+    url: '/data/short-vecto.json',
+    title: 'Chủ đề 19 · Vectơ trong không gian — Trả lời ngắn (2025)',
+    subtitle: '11 câu Trả lời ngắn Vectơ không gian chuẩn LaTeX + 8 hình minh họa cắt từ đề gốc sạch watermark, đã phân loại GĐ1 - Chương 3 (Bài 12)',
+  },
 ];
 
 const TYPE_META = {

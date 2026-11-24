@@ -1,0 +1,944 @@
+{
+  "pack_id": "tf4-thongke",
+  "title": "Chủ đề 10 · Thống kê 12 — Đúng/Sai (2025)",
+  "chapter": "GĐ1 · Chương 5",
+  "count": 26,
+  "questions": [
+    {
+      "source_num": 1,
+      "type": "tf4",
+      "prompt": "(THPT Đào Duy Từ - Thanh Hóa 2025) Thống kê nhiệt độ trung bình của tháng $2$ tại thành phố Thanh Hóa từ năm $2004$ đến hết $2023$ được kết quả sau:\n$$\\begin{array}{|c|c|} \\hline \\text{Lớp nhiệt độ }(^{\\circ}\\text{C}) & \\text{Tần số} \\\\ \\hline [12;14) & 1 \\\\ \\hline [14;16) & 3 \\\\ \\hline [16;18) & 12 \\\\ \\hline [18;20) & 9 \\\\ \\hline [20;22) & 5 \\\\ \\hline \\text{Cộng} & 30 \\\\ \\hline \\end{array}$$",
+      "points": 1,
+      "sort_order": 10,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "a) \\textbf{Đúng.} Khoảng biến thiên $R = 22 - 12 = 10\\;(^{\\circ}\\text{C})$.\nb) \\textbf{Đúng.} Các giá trị đại diện là $13; 15; 17; 19; 21$. Số trung bình là:\n$$\\bar{x} = \\frac{1\\cdot 13 + 3\\cdot 15 + 12\\cdot 17 + 9\\cdot 19 + 5\\cdot 21}{30} = \\frac{538}{30} \\approx 17,933\\;(^{\\circ}\\text{C}).$$\nLàm tròn đến hàng đơn vị ta được $18\\;(^{\\circ}\\text{C})$.\nc) \\textbf{Sai.} Phương sai của mẫu số liệu là:\n$$s^2 = \\frac{1\\cdot 13^2 + 3\\cdot 15^2 + 12\\cdot 17^2 + 9\\cdot 19^2 + 5\\cdot 21^2}{30} - \\left(\\frac{538}{30}\\right)^2 \\approx 3,9289 \\approx 3,93.$$\nd) \\textbf{Đúng.} Độ lệch chuẩn của mẫu số liệu là $s = \\sqrt{s^2} \\approx \\sqrt{3,9289} \\approx 1,98\\;(^{\\circ}\\text{C})$.",
+        "statements": [
+          "Khoảng biến thiên của bảng số liệu là $10\\;(^{\\circ}\\text{C})$.",
+          "Giá trị trung bình là $18\\;(^{\\circ}\\text{C})$ (làm tròn đến hàng đơn vị).",
+          "Phương sai của mẫu số liệu này là $3,94\\;(^{\\circ}\\text{C})^2$ (làm tròn đến hàng phần trăm).",
+          "Độ lệch chuẩn của mẫu số liệu này là $1,98\\;(^{\\circ}\\text{C})$ (làm tròn đến hàng phần trăm)."
+        ],
+        "source": "THPT Đào Duy Từ - Thanh Hóa 2025",
+        "solution": "a) \\textbf{Đúng.} Khoảng biến thiên $R = 22 - 12 = 10\\;(^{\\circ}\\text{C})$.\nb) \\textbf{Đúng.} Các giá trị đại diện là $13; 15; 17; 19; 21$. Số trung bình là:\n$$\\bar{x} = \\frac{1\\cdot 13 + 3\\cdot 15 + 12\\cdot 17 + 9\\cdot 19 + 5\\cdot 21}{30} = \\frac{538}{30} \\approx 17,933\\;(^{\\circ}\\text{C}).$$\nLàm tròn đến hàng đơn vị ta được $18\\;(^{\\circ}\\text{C})$.\nc) \\textbf{Sai.} Phương sai của mẫu số liệu là:\n$$s^2 = \\frac{1\\cdot 13^2 + 3\\cdot 15^2 + 12\\cdot 17^2 + 9\\cdot 19^2 + 5\\cdot 21^2}{30} - \\left(\\frac{538}{30}\\right)^2 \\approx 3,9289 \\approx 3,93.$$\nd) \\textbf{Đúng.} Độ lệch chuẩn của mẫu số liệu là $s = \\sqrt{s^2} \\approx \\sqrt{3,9289} \\approx 1,98\\;(^{\\circ}\\text{C})$.",
+        "pack": "tf4-thongke"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 2,
+      "type": "tf4",
+      "prompt": "(THPT Hàm Rồng - Thanh Hóa 2025) Một bác tài xế thống kê lại độ dài quãng đường (đơn vị: km) bác đã lái xe mỗi ngày trong một tháng ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Độ dài quãng đường (km)} & [50;100) & [100;150) & [150;200) & [200;250) & [250;300) \\\\ \\hline \\text{Số ngày} & 5 & 10 & 9 & 4 & 2 \\\\ \\hline \\end{array}$$",
+      "points": 1,
+      "sort_order": 20,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "a) \\textbf{Đúng.} Khoảng biến thiên $R = 300 - 50 = 250\\text{ (km)}$.\nb) \\textbf{Sai.} Giá trị đại diện là $75; 125; 175; 225; 275$, cỡ mẫu $n = 30$:\n$$\\bar{x} = \\frac{5\\cdot 75 + 10\\cdot 125 + 9\\cdot 175 + 4\\cdot 225 + 2\\cdot 275}{30} = 155.$$\nc) \\textbf{Đúng.} $Q_1 = 100 + \\frac{7,5 - 5}{10}\\cdot 50 = 112,5$; $Q_3 = 150 + \\frac{22,5 - 15}{9}\\cdot 50 = \\frac{575}{3}$. Suy ra $\\Delta_Q = \\frac{575}{3} - 112,5 \\approx 79,17$.\nd) \\textbf{Đúng.} Phương sai $S^2 = \\frac{1}{30}(5\\cdot 75^2 + 10\\cdot 125^2 + 9\\cdot 175^2 + 4\\cdot 225^2 + 2\\cdot 275^2) - 155^2 = 3100$, nên $S = \\sqrt{3100} \\approx 55,68$.",
+        "statements": [
+          "Khoảng biến thiên của mẫu số liệu ghép nhóm là $250\\text{ (km)}$.",
+          "Số trung bình của mẫu số liệu ghép nhóm là $145$.",
+          "Khoảng tứ phân vị của mẫu số liệu ghép nhóm gần bằng $79,17$.",
+          "Độ lệch chuẩn của mẫu số liệu ghép nhóm gần bằng $55,68$."
+        ],
+        "source": "THPT Hàm Rồng - Thanh Hóa 2025",
+        "solution": "a) \\textbf{Đúng.} Khoảng biến thiên $R = 300 - 50 = 250\\text{ (km)}$.\nb) \\textbf{Sai.} Giá trị đại diện là $75; 125; 175; 225; 275$, cỡ mẫu $n = 30$:\n$$\\bar{x} = \\frac{5\\cdot 75 + 10\\cdot 125 + 9\\cdot 175 + 4\\cdot 225 + 2\\cdot 275}{30} = 155.$$\nc) \\textbf{Đúng.} $Q_1 = 100 + \\frac{7,5 - 5}{10}\\cdot 50 = 112,5$; $Q_3 = 150 + \\frac{22,5 - 15}{9}\\cdot 50 = \\frac{575}{3}$. Suy ra $\\Delta_Q = \\frac{575}{3} - 112,5 \\approx 79,17$.\nd) \\textbf{Đúng.} Phương sai $S^2 = \\frac{1}{30}(5\\cdot 75^2 + 10\\cdot 125^2 + 9\\cdot 175^2 + 4\\cdot 225^2 + 2\\cdot 275^2) - 155^2 = 3100$, nên $S = \\sqrt{3100} \\approx 55,68$.",
+        "pack": "tf4-thongke"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 3,
+      "type": "tf4",
+      "prompt": "(THPT Tiên Du - Bắc Ninh 2025) Hai thùng hàng $A, B$ đều chứa $25$ quả táo. Kết quả kiểm tra cân nặng của $25$ quả táo ở mỗi thùng $A$ và $B$ được cho ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Cân nặng (g)} & [250;260) & [260;270) & [270;280) & [280;290) & [290;300) \\\\ \\hline \\text{Số táo ở thùng } A & 2 & 4 & 12 & 4 & 3 \\\\ \\hline \\text{Số táo ở thùng } B & 1 & 3 & 7 & 10 & 4 \\\\ \\hline \\end{array}$$",
+      "points": 1,
+      "sort_order": 30,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "a) \\textbf{Đúng.} $\\bar{x}_A = \\frac{255\\cdot 2 + 265\\cdot 4 + 275\\cdot 12 + 285\\cdot 4 + 295\\cdot 3}{25} = 275,8$; $\\bar{x}_B = \\frac{255\\cdot 1 + 265\\cdot 3 + 275\\cdot 7 + 285\\cdot 10 + 295\\cdot 4}{25} = 280,2$. Suy ra $\\bar{x}_A < \\bar{x}_B$.\nb) \\textbf{Đúng.} Số quả từ $280\\text{g}$ trở lên ở thùng $A$ là $4 + 3 = 7$, xác suất là $\\frac{7}{25} = 0,28$.\nc) \\textbf{Đúng.} Số quả từ $270\\text{g}$ trở lên ở thùng $A$ là $19$, ở thùng $B$ là $21$. Xác suất là $\\frac{19\\cdot 21}{25\\cdot 25} = \\frac{399}{625} = 0,6384$.\nd) \\textbf{Đúng.} Thùng $B$ có $10 + 4 = 14$ quả từ $280\\text{g}$ trở lên, nhiều hơn thùng $A$ ($7$ quả).",
+        "statements": [
+          "Số trung bình của cân nặng các quả táo ở thùng $A$ nhỏ hơn số trung bình của cân nặng các quả táo ở thùng $B$.",
+          "Lấy ngẫu nhiên một quả táo từ thùng $A$. Xác suất để quả táo đó có cân nặng từ $280\\text{g}$ trở lên là $0,28$.",
+          "Lấy ngẫu nhiên một quả táo từ thùng $A$ và một quả táo từ thùng $B$. Xác suất để hai quả táo lấy ra đều nặng từ $270\\text{g}$ trở lên là $0,6384$.",
+          "Số táo có cân nặng từ $280\\text{g}$ trở lên ở thùng $B$ nhiều hơn số táo có cân nặng từ $280\\text{g}$ trở lên ở thùng $A$."
+        ],
+        "source": "THPT Tiên Du - Bắc Ninh 2025",
+        "solution": "a) \\textbf{Đúng.} $\\bar{x}_A = \\frac{255\\cdot 2 + 265\\cdot 4 + 275\\cdot 12 + 285\\cdot 4 + 295\\cdot 3}{25} = 275,8$; $\\bar{x}_B = \\frac{255\\cdot 1 + 265\\cdot 3 + 275\\cdot 7 + 285\\cdot 10 + 295\\cdot 4}{25} = 280,2$. Suy ra $\\bar{x}_A < \\bar{x}_B$.\nb) \\textbf{Đúng.} Số quả từ $280\\text{g}$ trở lên ở thùng $A$ là $4 + 3 = 7$, xác suất là $\\frac{7}{25} = 0,28$.\nc) \\textbf{Đúng.} Số quả từ $270\\text{g}$ trở lên ở thùng $A$ là $19$, ở thùng $B$ là $21$. Xác suất là $\\frac{19\\cdot 21}{25\\cdot 25} = \\frac{399}{625} = 0,6384$.\nd) \\textbf{Đúng.} Thùng $B$ có $10 + 4 = 14$ quả từ $280\\text{g}$ trở lên, nhiều hơn thùng $A$ ($7$ quả).",
+        "pack": "tf4-thongke"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 4,
+      "type": "tf4",
+      "prompt": "(THPT Nguyễn Đăng Đạo - Bắc Ninh 2025) Thống kê chiều cao của $40$ học sinh của một lớp (đơn vị đo: cm) ta được mẫu số liệu ghép nhóm như sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Nhóm chiều cao} & [155;160) & [160;165) & [165;170) & [170;175) & \\text{Tổng} \\\\ \\hline \\text{Số học sinh} & 5 & 12 & 16 & 7 & n = 40 \\\\ \\hline \\end{array}$$",
+      "points": 1,
+      "sort_order": 40,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "a) \\textbf{Đúng.} Tần số của nhóm $[160;165)$ là $12$.\nb) \\textbf{Sai.} Tần số tích lũy của nhóm $[165;170)$ là $5 + 12 + 16 = 33$.\nc) \\textbf{Sai.} Nhóm chứa mốt là $[165;170)$ nên $M_o = 165 + \\frac{16 - 12}{(16 - 12) + (16 - 7)}\\cdot 5 \\approx 166,5$.\nd) \\textbf{Sai.} Số trung bình cộng là $\\bar{x} = \\frac{5\\cdot 157,5 + 12\\cdot 162,5 + 16\\cdot 167,5 + 7\\cdot 172,5}{40} = 165,625 \\approx 165,6$.",
+        "statements": [
+          "Tần số của nhóm $[160;165)$ là $12$.",
+          "Tần số tích lũy của nhóm $[165;170)$ là $17$.",
+          "Mốt (làm tròn đến hàng phần mười) của mẫu số liệu trên là $165,6$.",
+          "Số trung bình cộng (làm tròn đến hàng phần mười) của mẫu số liệu trên là $165,5$."
+        ],
+        "source": "THPT Nguyễn Đăng Đạo - Bắc Ninh 2025",
+        "solution": "a) \\textbf{Đúng.} Tần số của nhóm $[160;165)$ là $12$.\nb) \\textbf{Sai.} Tần số tích lũy của nhóm $[165;170)$ là $5 + 12 + 16 = 33$.\nc) \\textbf{Sai.} Nhóm chứa mốt là $[165;170)$ nên $M_o = 165 + \\frac{16 - 12}{(16 - 12) + (16 - 7)}\\cdot 5 \\approx 166,5$.\nd) \\textbf{Sai.} Số trung bình cộng là $\\bar{x} = \\frac{5\\cdot 157,5 + 12\\cdot 162,5 + 16\\cdot 167,5 + 7\\cdot 172,5}{40} = 165,625 \\approx 165,6$.",
+        "pack": "tf4-thongke"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 5,
+      "type": "tf4",
+      "prompt": "(THPT Chuyên Vĩnh Phúc 2025) Phòng quản lí đào tạo trường Đại học Kinh tế quốc dân thống kê số giờ làm thêm của một nhóm sinh viên năm thứ tư của trường thu được kết quả như bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Số giờ làm thêm (giờ/tuần)} & [9;12) & [12;15) & [15;18) & [18;21) & [21;24) \\\\ \\hline \\text{Số sinh viên} & 6 & 12 & 4 & 2 & 1 \\\\ \\hline \\end{array}$$",
+      "points": 1,
+      "sort_order": 50,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "a) \\textbf{Sai.} Cỡ mẫu $n = 25$. Số trung bình là $\\bar{x} = \\frac{6\\cdot 10,5 + 12\\cdot 13,5 + 4\\cdot 16,5 + 2\\cdot 19,5 + 1\\cdot 22,5}{25} = 14,1$ (giờ).\nb) \\textbf{Đúng.} Giá trị đại diện của nhóm $[9;12)$ là $\\frac{9+12}{2} = 10,5$.\nc) \\textbf{Sai.} $\\frac{3n}{4} = 18,75$, nhóm chứa $Q_3$ là $[15;18)$ nên $Q_3 = 15 + \\frac{18,75 - 18}{4}\\cdot 3 = 15,5625$.\nd) \\textbf{Sai.} Trung vị là $x_{13} \\in [12;15)$ nên nhóm chứa trung vị là $[12;15)$.",
+        "statements": [
+          "Số giờ làm thêm trung bình của nhóm sinh viên trên trong một tuần là $16,5$ giờ.",
+          "Giá trị đại diện của nhóm $[9;12)$ là $10,5$.",
+          "Tứ phân vị thứ ba là $15,65$.",
+          "Nhóm chứa trung vị là $[15;18)$."
+        ],
+        "source": "THPT Chuyên Vĩnh Phúc 2025",
+        "solution": "a) \\textbf{Sai.} Cỡ mẫu $n = 25$. Số trung bình là $\\bar{x} = \\frac{6\\cdot 10,5 + 12\\cdot 13,5 + 4\\cdot 16,5 + 2\\cdot 19,5 + 1\\cdot 22,5}{25} = 14,1$ (giờ).\nb) \\textbf{Đúng.} Giá trị đại diện của nhóm $[9;12)$ là $\\frac{9+12}{2} = 10,5$.\nc) \\textbf{Sai.} $\\frac{3n}{4} = 18,75$, nhóm chứa $Q_3$ là $[15;18)$ nên $Q_3 = 15 + \\frac{18,75 - 18}{4}\\cdot 3 = 15,5625$.\nd) \\textbf{Sai.} Trung vị là $x_{13} \\in [12;15)$ nên nhóm chứa trung vị là $[12;15)$.",
+        "pack": "tf4-thongke"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 6,
+      "type": "tf4",
+      "prompt": "(THPT Triệu Sơn 4 - Thanh Hóa 2025) Thầy giáo thống kê lại điểm trung bình cuối năm của các học sinh lớp $11\\text{A}$ và $11\\text{B}$ ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Điểm trung bình} & [5;6) & [6;7) & [7;8) & [8;9) & [9;10) \\\\ \\hline 11\\text{A} & 1 & 0 & 11 & 22 & 6 \\\\ \\hline 11\\text{B} & 0 & 6 & 8 & 14 & 12 \\\\ \\hline \\end{array}$$",
+      "points": 1,
+      "sort_order": 60,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "a) \\textbf{Đúng.} $\\bar{x}_A = \\frac{1\\cdot 5,5 + 11\\cdot 7,5 + 22\\cdot 8,5 + 6\\cdot 9,5}{40} = 8,3$.\nb) \\textbf{Sai.} $\\bar{x}_B = \\frac{6\\cdot 6,5 + 8\\cdot 7,5 + 14\\cdot 8,5 + 12\\cdot 9,5}{40} = 8,3 = \\bar{x}_A$.\nc) \\textbf{Sai.} $s_B^2 = \\frac{1}{40}(6\\cdot 6,5^2 + 8\\cdot 7,5^2 + 14\\cdot 8,5^2 + 12\\cdot 9,5^2) - 8,3^2 = 1,06$.\nd) \\textbf{Đúng.} $s_A^2 = 0,61 \\Rightarrow s_A = \\sqrt{0,61} < s_B = \\sqrt{1,06}$ nên lớp $11\\text{A}$ học đồng đều hơn.",
+        "statements": [
+          "Điểm trung bình của lớp $11\\text{A}$ là $8,3$ (làm tròn đến hàng phần chục).",
+          "Điểm trung bình của lớp $11\\text{A}$ nhỏ hơn lớp $11\\text{B}$.",
+          "Phương sai của mẫu số liệu lớp $11\\text{B}$ là $1,05$ (làm tròn đến hàng phần trăm).",
+          "So sánh theo độ lệch chuẩn thì các học sinh lớp $11\\text{A}$ học đồng đều hơn lớp $11\\text{B}$."
+        ],
+        "source": "THPT Triệu Sơn 4 - Thanh Hóa 2025",
+        "solution": "a) \\textbf{Đúng.} $\\bar{x}_A = \\frac{1\\cdot 5,5 + 11\\cdot 7,5 + 22\\cdot 8,5 + 6\\cdot 9,5}{40} = 8,3$.\nb) \\textbf{Sai.} $\\bar{x}_B = \\frac{6\\cdot 6,5 + 8\\cdot 7,5 + 14\\cdot 8,5 + 12\\cdot 9,5}{40} = 8,3 = \\bar{x}_A$.\nc) \\textbf{Sai.} $s_B^2 = \\frac{1}{40}(6\\cdot 6,5^2 + 8\\cdot 7,5^2 + 14\\cdot 8,5^2 + 12\\cdot 9,5^2) - 8,3^2 = 1,06$.\nd) \\textbf{Đúng.} $s_A^2 = 0,61 \\Rightarrow s_A = \\sqrt{0,61} < s_B = \\sqrt{1,06}$ nên lớp $11\\text{A}$ học đồng đều hơn.",
+        "pack": "tf4-thongke"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 7,
+      "type": "tf4",
+      "prompt": "(Cụm trường THPT Bắc Ninh 2025) Điểm trung bình môn Toán cuối năm của các học sinh lớp $12\\text{A}$ và $12\\text{B}$ được thống kê trong bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Điểm trung bình} & [5;6) & [6;7) & [7;8) & [8;9) & [9;10) \\\\ \\hline 12\\text{A} & 1 & 0 & 11 & 22 & 6 \\\\ \\hline 12\\text{B} & 0 & 6 & 8 & 14 & 12 \\\\ \\hline \\end{array}$$",
+      "points": 1,
+      "sort_order": 70,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "a) \\textbf{Đúng.} Số học sinh có điểm từ $8$ trở lên của lớp $12\\text{A}$ là $22 + 6 = 28$.\nb) \\textbf{Sai.} $\\bar{x}_A = 8,3$, $s_A^2 = 0,61 \\Rightarrow s_A = \\sqrt{0,61} \\approx 0,78$.\nc) \\textbf{Sai.} $\\bar{x}_A = \\bar{x}_B = 8,3$.\nd) \\textbf{Đúng.} $s_A \\approx 0,78 < s_B = \\sqrt{1,06} \\approx 1,03$ nên lớp $12\\text{A}$ ít phân tán hơn lớp $12\\text{B}$.",
+        "statements": [
+          "Lớp $12\\text{A}$ có $28$ học sinh có điểm trung bình môn Toán cuối năm từ $8$ trở lên.",
+          "Độ lệch chuẩn của mẫu số liệu lớp $12\\text{A}$ (làm tròn đến hàng phần trăm) là $0,72$.",
+          "Số trung bình của mẫu số liệu lớp $12\\text{A}$ lớn hơn số trung bình của mẫu số liệu lớp $12\\text{B}$.",
+          "Dựa vào độ lệch chuẩn của mẫu số liệu thống kê ghép nhóm, thì lớp $12\\text{A}$ có điểm trung bình môn toán cuối năm ít phân tán hơn lớp $12\\text{B}$."
+        ],
+        "source": "Cụm trường THPT Bắc Ninh 2025",
+        "solution": "a) \\textbf{Đúng.} Số học sinh có điểm từ $8$ trở lên của lớp $12\\text{A}$ là $22 + 6 = 28$.\nb) \\textbf{Sai.} $\\bar{x}_A = 8,3$, $s_A^2 = 0,61 \\Rightarrow s_A = \\sqrt{0,61} \\approx 0,78$.\nc) \\textbf{Sai.} $\\bar{x}_A = \\bar{x}_B = 8,3$.\nd) \\textbf{Đúng.} $s_A \\approx 0,78 < s_B = \\sqrt{1,06} \\approx 1,03$ nên lớp $12\\text{A}$ ít phân tán hơn lớp $12\\text{B}$.",
+        "pack": "tf4-thongke"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 8,
+      "type": "tf4",
+      "prompt": "(THPT Cẩm Xuyên - Hà Tĩnh 2025) Thống kê thời gian (đơn vị: phút) tập thể dục buổi sáng mỗi ngày trong tháng $10$ năm $2024$ của An cho kết quả như sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Thời gian (phút)} & [15;20) & [20;25) & [25;30) & [30;35) & [35;40) \\\\ \\hline \\text{Số ngày} & 5 & 4 & 10 & 7 & 4 \\\\ \\hline \\end{array}$$",
+      "points": 1,
+      "sort_order": 80,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "a) \\textbf{Đúng.} Khoảng biến thiên $R = 40 - 15 = 25$.\nb) \\textbf{Đúng.} Cỡ mẫu $n = 30$. Số trung bình là $\\bar{x} = \\frac{17,5\\cdot 5 + 22,5\\cdot 4 + 27,5\\cdot 10 + 32,5\\cdot 7 + 37,5\\cdot 4}{30} = \\frac{83}{3}$.\nc) \\textbf{Sai.} Phương sai $s^2 = \\frac{1}{30}(17,5^2\\cdot 5 + 22,5^2\\cdot 4 + 27,5^2\\cdot 10 + 32,5^2\\cdot 7 + 37,5^2\\cdot 4) - \\left(\\frac{83}{3}\\right)^2 = \\frac{1409}{36} \\approx 39,14$.\nd) \\textbf{Đúng.} $Q_1 = 20 + \\frac{7,5 - 5}{4}\\cdot 5 = \\frac{185}{8}$; $Q_3 = 30 + \\frac{22,5 - 19}{7}\\cdot 5 = \\frac{65}{2}$. Vậy $\\Delta_Q = \\frac{65}{2} - \\frac{185}{8} = \\frac{75}{8} = 9,375$.",
+        "statements": [
+          "Khoảng biến thiên của mẫu số liệu ghép nhóm này là $25$.",
+          "Số trung bình cộng của mẫu số liệu ghép nhóm trên là $\\frac{83}{3}$.",
+          "Phương sai của mẫu số liệu là $36,14$ (kết quả được làm tròn đến hàng phần trăm).",
+          "Khoảng tứ phân vị của mẫu số liệu ghép nhóm này là $9,375$."
+        ],
+        "source": "THPT Cẩm Xuyên - Hà Tĩnh 2025",
+        "solution": "a) \\textbf{Đúng.} Khoảng biến thiên $R = 40 - 15 = 25$.\nb) \\textbf{Đúng.} Cỡ mẫu $n = 30$. Số trung bình là $\\bar{x} = \\frac{17,5\\cdot 5 + 22,5\\cdot 4 + 27,5\\cdot 10 + 32,5\\cdot 7 + 37,5\\cdot 4}{30} = \\frac{83}{3}$.\nc) \\textbf{Sai.} Phương sai $s^2 = \\frac{1}{30}(17,5^2\\cdot 5 + 22,5^2\\cdot 4 + 27,5^2\\cdot 10 + 32,5^2\\cdot 7 + 37,5^2\\cdot 4) - \\left(\\frac{83}{3}\\right)^2 = \\frac{1409}{36} \\approx 39,14$.\nd) \\textbf{Đúng.} $Q_1 = 20 + \\frac{7,5 - 5}{4}\\cdot 5 = \\frac{185}{8}$; $Q_3 = 30 + \\frac{22,5 - 19}{7}\\cdot 5 = \\frac{65}{2}$. Vậy $\\Delta_Q = \\frac{65}{2} - \\frac{185}{8} = \\frac{75}{8} = 9,375$.",
+        "pack": "tf4-thongke"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 9,
+      "type": "tf4",
+      "prompt": "(Sở Vĩnh Phúc 2025) Kết quả khảo sát năng suất lúa của một số thửa ruộng được cho ở mẫu số liệu như sau:\n$$\\begin{array}{|c|c|c|c|c|c|c|} \\hline \\text{Năng suất lúa (tấn/ha)} & [5,5;5,7) & [5,7;5,9) & [5,9;6,1) & [6,1;6,3) & [6,3;6,5) & [6,5;6,7) \\\\ \\hline \\text{Số thửa ruộng} & 3 & 4 & 6 & 5 & 5 & 2 \\\\ \\hline \\end{array}$$",
+      "points": 1,
+      "sort_order": 90,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "a) \\textbf{Sai.} Khoảng biến thiên $R = 6,7 - 5,5 = 1,2$.\nb) \\textbf{Đúng.} $\\bar{x} = \\frac{3\\cdot 5,6 + 4\\cdot 5,8 + 6\\cdot 6 + 5\\cdot 6,2 + 5\\cdot 6,4 + 2\\cdot 6,6}{25} = 6,088$; $s^2 = \\frac{1}{25}(3\\cdot 5,6^2 + 4\\cdot 5,8^2 + 6\\cdot 6^2 + 5\\cdot 6,2^2 + 5\\cdot 6,4^2 + 2\\cdot 6,6^2) - 6,088^2 = 0,086656$.\nc) \\textbf{Đúng.} $Q_1 = 5,7 + \\frac{6,25 - 3}{4}\\cdot 0,2 = 5,8625$; $Q_3 = 6,3 + \\frac{18,75 - 18}{5}\\cdot 0,2 = 6,33 \\Rightarrow \\Delta_Q = 6,33 - 5,8625 = 0,4675$.\nd) \\textbf{Đúng.} $n = 3 + 4 + 6 + 5 + 5 + 2 = 25$.",
+        "statements": [
+          "Khoảng biến thiên của mẫu số liệu là $1,3$ (tấn/ha).",
+          "Phương sai của mẫu số liệu ghép nhóm trên là $0,086656$.",
+          "Khoảng tứ phân vị của mẫu số liệu ghép nhóm trên là $0,4675$.",
+          "Có $25$ thửa ruộng đã được khảo sát."
+        ],
+        "source": "Sở Vĩnh Phúc 2025",
+        "solution": "a) \\textbf{Sai.} Khoảng biến thiên $R = 6,7 - 5,5 = 1,2$.\nb) \\textbf{Đúng.} $\\bar{x} = \\frac{3\\cdot 5,6 + 4\\cdot 5,8 + 6\\cdot 6 + 5\\cdot 6,2 + 5\\cdot 6,4 + 2\\cdot 6,6}{25} = 6,088$; $s^2 = \\frac{1}{25}(3\\cdot 5,6^2 + 4\\cdot 5,8^2 + 6\\cdot 6^2 + 5\\cdot 6,2^2 + 5\\cdot 6,4^2 + 2\\cdot 6,6^2) - 6,088^2 = 0,086656$.\nc) \\textbf{Đúng.} $Q_1 = 5,7 + \\frac{6,25 - 3}{4}\\cdot 0,2 = 5,8625$; $Q_3 = 6,3 + \\frac{18,75 - 18}{5}\\cdot 0,2 = 6,33 \\Rightarrow \\Delta_Q = 6,33 - 5,8625 = 0,4675$.\nd) \\textbf{Đúng.} $n = 3 + 4 + 6 + 5 + 5 + 2 = 25$.",
+        "pack": "tf4-thongke"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          true,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 10,
+      "type": "tf4",
+      "prompt": "(Chuyên Hạ Long 2025) Giá đóng cửa của một cổ phiếu là giá của cổ phiếu đó cuối một phiên giao dịch. Bảng sau thống kê giá đóng cửa (đơn vị: nghìn đồng) của hai mã cổ phiếu $(A)$ và $(B)$ trong $50$ ngày giao dịch liên tiếp:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Giá đóng cửa} & [18;20) & [20;22) & [22;24) & [24;26) & [26;28) \\\\ \\hline \\text{Cổ phiếu } A & 8 & 9 & 12 & 10 & 11 \\\\ \\hline \\text{Cổ phiếu } B & 16 & 4 & 3 & 6 & 21 \\\\ \\hline \\end{array}$$",
+      "points": 1,
+      "sort_order": 100,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "Giá trị đại diện là $19; 21; 23; 25; 27$, cỡ mẫu $n = 50$.\na) \\textbf{Đúng.} $\\bar{x}_A = \\frac{19\\cdot 8 + 21\\cdot 9 + 23\\cdot 12 + 25\\cdot 10 + 27\\cdot 11}{50} = 23,28$.\nb) \\textbf{Đúng.} $S_A^2 = \\frac{1}{50}\\left[8(19 - 23,28)^2 + 9(21 - 23,28)^2 + 12(23 - 23,28)^2 + 10(25 - 23,28)^2 + 11(27 - 23,28)^2\\right] = 7,5216$.\nc) \\textbf{Đúng.} $\\bar{x}_B = \\frac{19\\cdot 16 + 21\\cdot 4 + 23\\cdot 3 + 25\\cdot 6 + 27\\cdot 21}{50} = 23,48$.\nd) \\textbf{Sai.} $S_B^2 = \\frac{1}{50}\\left[16(19 - 23,48)^2 + 4(21 - 23,48)^2 + 3(23 - 23,48)^2 + 6(25 - 23,48)^2 + 21(27 - 23,48)^2\\right] = 12,4096 > S_A^2$, nên cổ phiếu $(B)$ biến động lớn hơn cổ phiếu $(A)$.",
+        "statements": [
+          "Xét mẫu số liệu của cổ phiếu $(A)$ ta có số trung bình là $\\bar{x}_A = 23,28$.",
+          "Xét mẫu số liệu của cổ phiếu $(A)$ ta có phương sai của mẫu số liệu ghép nhóm là $S_A^2 = 7,5216$.",
+          "Xét mẫu số liệu của cổ phiếu $(B)$ ta có số trung bình là $\\bar{x}_B = 23,48$.",
+          "Cổ phiếu $(A)$ có mức độ biến động giá lớn hơn cổ phiếu $(B)$."
+        ],
+        "source": "Chuyên Hạ Long 2025",
+        "solution": "Giá trị đại diện là $19; 21; 23; 25; 27$, cỡ mẫu $n = 50$.\na) \\textbf{Đúng.} $\\bar{x}_A = \\frac{19\\cdot 8 + 21\\cdot 9 + 23\\cdot 12 + 25\\cdot 10 + 27\\cdot 11}{50} = 23,28$.\nb) \\textbf{Đúng.} $S_A^2 = \\frac{1}{50}\\left[8(19 - 23,28)^2 + 9(21 - 23,28)^2 + 12(23 - 23,28)^2 + 10(25 - 23,28)^2 + 11(27 - 23,28)^2\\right] = 7,5216$.\nc) \\textbf{Đúng.} $\\bar{x}_B = \\frac{19\\cdot 16 + 21\\cdot 4 + 23\\cdot 3 + 25\\cdot 6 + 27\\cdot 21}{50} = 23,48$.\nd) \\textbf{Sai.} $S_B^2 = \\frac{1}{50}\\left[16(19 - 23,48)^2 + 4(21 - 23,48)^2 + 3(23 - 23,48)^2 + 6(25 - 23,48)^2 + 21(27 - 23,48)^2\\right] = 12,4096 > S_A^2$, nên cổ phiếu $(B)$ biến động lớn hơn cổ phiếu $(A)$.",
+        "pack": "tf4-thongke"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 11,
+      "type": "tf4",
+      "prompt": "(Chuyên Thái Bình 2025) Một bác tài xế thống kê lại độ dài quãng đường bác đã lái xe mỗi ngày trong một tháng ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Độ dài quãng đường (km)} & [50;100) & [100;150) & [150;200) & [200;250) & [250;300) \\\\ \\hline \\text{Số ngày} & 5 & 10 & 9 & 4 & 2 \\\\ \\hline \\end{array}$$",
+      "points": 1,
+      "sort_order": 110,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "a) \\textbf{Đúng.} $R = 300 - 50 = 250\\text{ km}$.\nb) \\textbf{Đúng.} $Q_1 = 112,5$, $Q_3 = \\frac{575}{3} \\approx 191,67 \\Rightarrow Q_3 - Q_1 \\approx 79,17 \\approx 79\\text{ km}$.\nc) \\textbf{Sai.} $\\bar{x} = \\frac{5\\cdot 75 + 10\\cdot 125 + 9\\cdot 175 + 4\\cdot 225 + 2\\cdot 275}{30} = 155\\text{ km}$.\nd) \\textbf{Đúng.} $s^2 = 3100 \\Rightarrow s = 10\\sqrt{31} \\approx 55,68 \\approx 56\\text{ km}$.",
+        "statements": [
+          "Khoảng biến thiên của mẫu số liệu ghép nhóm là $250\\text{ km}$.",
+          "Khoảng tứ phân vị của mẫu số liệu ghép nhóm bằng $79\\text{ km}$ (làm tròn đến hàng đơn vị).",
+          "Số trung bình của mẫu số liệu ghép nhóm là $145\\text{ km}$.",
+          "Độ lệch chuẩn của mẫu số liệu ghép nhóm gần bằng $56\\text{ km}$ (làm tròn đến hàng đơn vị)."
+        ],
+        "source": "Chuyên Thái Bình 2025",
+        "solution": "a) \\textbf{Đúng.} $R = 300 - 50 = 250\\text{ km}$.\nb) \\textbf{Đúng.} $Q_1 = 112,5$, $Q_3 = \\frac{575}{3} \\approx 191,67 \\Rightarrow Q_3 - Q_1 \\approx 79,17 \\approx 79\\text{ km}$.\nc) \\textbf{Sai.} $\\bar{x} = \\frac{5\\cdot 75 + 10\\cdot 125 + 9\\cdot 175 + 4\\cdot 225 + 2\\cdot 275}{30} = 155\\text{ km}$.\nd) \\textbf{Đúng.} $s^2 = 3100 \\Rightarrow s = 10\\sqrt{31} \\approx 55,68 \\approx 56\\text{ km}$.",
+        "pack": "tf4-thongke"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 12,
+      "type": "tf4",
+      "prompt": "(Chuyên Vinh 2025) Lớp $12\\text{A}$ có $40$ học sinh, trong đó có $8$ em tham gia Câu lạc bộ Toán học. Điểm thi học kì $1$ môn Toán của cả lớp được thống kê trong bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Nhóm} & [5;6) & [6;7) & [7;8) & [8;9) & [9;10) \\\\ \\hline \\text{Tần số} & 2 & 3 & 8 & 15 & 12 \\\\ \\hline \\end{array}$$",
+      "points": 1,
+      "sort_order": 120,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "a) \\textbf{Đúng.} $R = 10 - 5 = 5$.\nb) \\textbf{Đúng.} $\\bar{x} = \\frac{5,5\\cdot 2 + 6,5\\cdot 3 + 7,5\\cdot 8 + 8,5\\cdot 15 + 9,5\\cdot 12}{40} = 8,3$. Tổng tần số $3$ nhóm đầu ($< 8 < 8,3$) là $2 + 3 + 8 = 13$.\nc) \\textbf{Sai.} Có $15 + 12 = 27$ học sinh có điểm $\\ge 8$ (gồm $8$ em CLB và $19$ em không thuộc CLB). Xác suất là $\\frac{C_8^2\\cdot C_{19}^4}{C_{27}^6} = \\frac{108528}{296010} \\approx 0,3666 > \\frac{1}{3}$.\nd) \\textbf{Đúng.} Xếp $5$ bạn nam thành hàng ngang có $5!$ cách, tạo $6$ khoảng trống; xếp $3$ bạn nữ vào $6$ khoảng trống có $A_6^3$ cách. Xác suất là $\\frac{5!\\cdot A_6^3}{8!} = \\frac{5}{14} \\approx 0,357 > \\frac{1}{3}$.",
+        "statements": [
+          "Khoảng biến thiên của số liệu là $5$.",
+          "Có ít nhất $13$ học sinh có điểm thi thấp hơn điểm trung bình của cả lớp.",
+          "Biết rằng $8$ học sinh trong Câu lạc bộ Toán học đều có điểm thi không dưới $8$. Chọn ngẫu nhiên $6$ học sinh trong lớp có điểm lớn hơn hoặc bằng $8$. Xác suất có đúng $2$ em của Câu lạc bộ Toán học được chọn nhỏ hơn $\\frac{1}{3}$.",
+          "Biết $8$ học sinh trong Câu lạc bộ Toán học gồm có $5$ học sinh nam và $3$ học sinh nữ. Trong buổi lễ tuyên dương khen thưởng, $8$ học sinh trong Câu lạc bộ Toán học được sắp xếp ngẫu nhiên thành một hàng ngang để trao quà. Xác suất không có $2$ học sinh nữ nào đứng cạnh nhau lớn hơn $\\frac{1}{3}$."
+        ],
+        "source": "Chuyên Vinh 2025",
+        "solution": "a) \\textbf{Đúng.} $R = 10 - 5 = 5$.\nb) \\textbf{Đúng.} $\\bar{x} = \\frac{5,5\\cdot 2 + 6,5\\cdot 3 + 7,5\\cdot 8 + 8,5\\cdot 15 + 9,5\\cdot 12}{40} = 8,3$. Tổng tần số $3$ nhóm đầu ($< 8 < 8,3$) là $2 + 3 + 8 = 13$.\nc) \\textbf{Sai.} Có $15 + 12 = 27$ học sinh có điểm $\\ge 8$ (gồm $8$ em CLB và $19$ em không thuộc CLB). Xác suất là $\\frac{C_8^2\\cdot C_{19}^4}{C_{27}^6} = \\frac{108528}{296010} \\approx 0,3666 > \\frac{1}{3}$.\nd) \\textbf{Đúng.} Xếp $5$ bạn nam thành hàng ngang có $5!$ cách, tạo $6$ khoảng trống; xếp $3$ bạn nữ vào $6$ khoảng trống có $A_6^3$ cách. Xác suất là $\\frac{5!\\cdot A_6^3}{8!} = \\frac{5}{14} \\approx 0,357 > \\frac{1}{3}$.",
+        "pack": "tf4-thongke"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 13,
+      "type": "tf4",
+      "prompt": "(Cụm trường THPT Hải Dương 2025) Một công ty bất động sản thực hiện cuộc khảo sát khách hàng xem họ có nhu cầu mua ở mức giá nào cho một căn nhà, để tiến hành dự án xây dựng khu đô thị mới Bắc Sông Hương sắp tới. Kết quả khảo sát $500$ khách hàng được ghi lại ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Mức giá (triệu đồng}/\\text{m}^2) & [10;14) & [14;18) & [18;22) & [22;26) & [26;30) \\\\ \\hline \\text{Số khách hàng} & 75 & 105 & 197 & 80 & 43 \\\\ \\hline \\end{array}$$",
+      "points": 1,
+      "sort_order": 130,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "a) \\textbf{Đúng.} Độ dài mỗi nhóm là $4$.\nb) \\textbf{Sai.} Tần số tích lũy của nhóm $[14;18)$ là $75 + 105 = 180$.\nc) \\textbf{Sai.} $\\frac{3n}{4} = 375$. Tần số tích lũy đến $[18;22)$ là $180 + 197 = 377 \\ge 375$ nên $Q_3 \\in [18;22)$.\nd) \\textbf{Đúng.} $Q_1 = 14 + \\frac{125 - 75}{105}\\cdot 4 = \\frac{334}{21} \\approx 15,905$; $Q_3 = 18 + \\frac{375 - 180}{197}\\cdot 4 = \\frac{4326}{197} \\approx 21,959$. Suy ra $\\Delta_Q = Q_3 - Q_1 \\approx 6,055 \\approx 6,1$ (triệu).",
+        "statements": [
+          "Độ dài mỗi nhóm là $4$.",
+          "Tần số tích luỹ của nhóm $[14;18)$ là $105$.",
+          "Tứ phân vị thứ ba thuộc nhóm $[22;26)$.",
+          "Biết rằng công ty sẽ xây dựng phân khúc nhà giá rẻ cho $25\\%$ số khách hàng có nhu cầu mua ở mức giá thấp nhất theo khảo sát, xây dựng phân khúc nhà giá cao cấp cho $25\\%$ số khách hàng có nhu cầu mua ở mức giá cao nhất theo khảo sát. Tuy nhiên trước hết sẽ ưu tiên xây dựng phân khúc nhà tầm trung hướng tới $50\\%$ số khách hàng còn lại. Khi đó theo khảo sát, độ chênh lệch giá cao nhất và giá thấp nhất (đúng đến hàng phần mười, đơn vị triệu đồng) dành cho phân khúc nhà tầm trung là $6,1$ triệu."
+        ],
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "solution": "a) \\textbf{Đúng.} Độ dài mỗi nhóm là $4$.\nb) \\textbf{Sai.} Tần số tích lũy của nhóm $[14;18)$ là $75 + 105 = 180$.\nc) \\textbf{Sai.} $\\frac{3n}{4} = 375$. Tần số tích lũy đến $[18;22)$ là $180 + 197 = 377 \\ge 375$ nên $Q_3 \\in [18;22)$.\nd) \\textbf{Đúng.} $Q_1 = 14 + \\frac{125 - 75}{105}\\cdot 4 = \\frac{334}{21} \\approx 15,905$; $Q_3 = 18 + \\frac{375 - 180}{197}\\cdot 4 = \\frac{4326}{197} \\approx 21,959$. Suy ra $\\Delta_Q = Q_3 - Q_1 \\approx 6,055 \\approx 6,1$ (triệu).",
+        "pack": "tf4-thongke"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 14,
+      "type": "tf4",
+      "prompt": "(THPT Trần Phú - Vĩnh Phúc 2025) Một bác tài xế thống kê lại độ dài quãng đường (đơn vị: km) bác đã lái xe mỗi ngày trong một tháng ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Độ dài quãng đường (km)} & [50;100) & [100;150) & [150;200) & [200;250) & [250;300) \\\\ \\hline \\text{Số ngày} & 5 & 10 & 9 & 4 & 2 \\\\ \\hline \\end{array}$$",
+      "points": 1,
+      "sort_order": 140,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "a) \\textbf{Đúng.} $\\bar{x} = 155$, $S^2 = 3100 \\Rightarrow S = \\sqrt{3100} \\approx 55,68$.\nb) \\textbf{Đúng.} $R = 300 - 50 = 250\\text{ (km)}$.\nc) \\textbf{Đúng.} $Q_1 = 112,5$, $Q_3 = \\frac{575}{3} \\approx 191,67 \\Rightarrow \\Delta_Q \\approx 79,17$.\nd) \\textbf{Sai.} Số trung bình là $\\bar{x} = 155$.",
+        "statements": [
+          "Độ lệch chuẩn của mẫu số liệu ghép nhóm gần bằng $55,68$.",
+          "Khoảng biến thiên của mẫu số liệu ghép nhóm là $250\\text{ (km)}$.",
+          "Khoảng tứ phân vị của mẫu số liệu ghép nhóm gần bằng $79,17$.",
+          "Số trung bình của mẫu số liệu ghép nhóm là $145$."
+        ],
+        "source": "THPT Trần Phú - Vĩnh Phúc 2025",
+        "solution": "a) \\textbf{Đúng.} $\\bar{x} = 155$, $S^2 = 3100 \\Rightarrow S = \\sqrt{3100} \\approx 55,68$.\nb) \\textbf{Đúng.} $R = 300 - 50 = 250\\text{ (km)}$.\nc) \\textbf{Đúng.} $Q_1 = 112,5$, $Q_3 = \\frac{575}{3} \\approx 191,67 \\Rightarrow \\Delta_Q \\approx 79,17$.\nd) \\textbf{Sai.} Số trung bình là $\\bar{x} = 155$.",
+        "pack": "tf4-thongke"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 15,
+      "type": "tf4",
+      "prompt": "(Sở Thừa Thiên Huế 2025) Thống kê điểm thi đánh giá năng lực của $120$ học sinh ở một trường THPT ở địa bàn thành phố Huế với thang điểm $100$ được cho ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Điểm} & [0;20) & [20;40) & [40;60) & [60;80) & [80;100) \\\\ \\hline \\text{Số học sinh} & 25 & 34 & 15 & 38 & 8 \\\\ \\hline \\end{array}$$",
+      "points": 1,
+      "sort_order": 150,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "a) \\textbf{Đúng.} $R = 100 - 0 = 100$.\nb) \\textbf{Sai.} Số học sinh đạt từ $60$ điểm trở lên là $38 + 8 = 46$ học sinh.\nc) \\textbf{Sai.} $\\bar{x} = \\frac{10\\cdot 25 + 30\\cdot 34 + 50\\cdot 15 + 70\\cdot 38 + 90\\cdot 8}{120} = 45$ điểm.\nd) \\textbf{Đúng.} Số trung vị nằm ở vị trí thứ $60, 61$ thuộc nhóm $[40;60)$ (có $15$ học sinh), nên xác suất là $\\frac{15}{120} = \\frac{1}{8}$.",
+        "statements": [
+          "Khoảng biến thiên của mẫu số liệu ghép nhóm trên là $100$.",
+          "Số học sinh đạt điểm $60$ điểm trở lên là $38$ học sinh.",
+          "Số điểm trung bình của học sinh đạt được từ bảng số liệu trên là $54$ điểm.",
+          "Chọn ngẫu nhiên một học sinh từ $120$ học sinh trên, xác suất chọn được học sinh có điểm thuộc nhóm chứa trung vị là $\\frac{1}{8}$."
+        ],
+        "source": "Sở Thừa Thiên Huế 2025",
+        "solution": "a) \\textbf{Đúng.} $R = 100 - 0 = 100$.\nb) \\textbf{Sai.} Số học sinh đạt từ $60$ điểm trở lên là $38 + 8 = 46$ học sinh.\nc) \\textbf{Sai.} $\\bar{x} = \\frac{10\\cdot 25 + 30\\cdot 34 + 50\\cdot 15 + 70\\cdot 38 + 90\\cdot 8}{120} = 45$ điểm.\nd) \\textbf{Đúng.} Số trung vị nằm ở vị trí thứ $60, 61$ thuộc nhóm $[40;60)$ (có $15$ học sinh), nên xác suất là $\\frac{15}{120} = \\frac{1}{8}$.",
+        "pack": "tf4-thongke"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 16,
+      "type": "tf4",
+      "prompt": "(Cụm trường Nguyễn Hiền - Lê Hồng Phong - Quảng Nam 2025) Hiện nay, thời gian sử dụng điện thoại của học sinh quá nhiều dẫn đến suy giảm thị lực. Trung tâm Mắt Kính Đức Thành Trà Kiệu tổ chức khám sàng lọc miễn phí cho $100$ học sinh của một trường THPT trên địa bàn huyện để kiểm tra tình trạng cận thị của học sinh và thu được mẫu số liệu sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Mức độ cận thị (Đơn vị diop)} & [0,0;0,5) & [0,5;1,0) & [1,0;1,5) & [1,5;2,0] & [2,0;2,5) \\\\ \\hline \\text{Số học sinh} & 20 & 15 & 30 & 20 & 15 \\\\ \\hline \\end{array}$$",
+      "points": 1,
+      "sort_order": 160,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "a) \\textbf{Đúng.} Nhóm chứa mốt là $[1,0;1,5)$ nên giá trị đại diện là $1,25$.\nb) \\textbf{Sai.} Độ cận trung bình là $\\bar{x} = \\frac{0,25\\cdot 20 + 0,75\\cdot 15 + 1,25\\cdot 30 + 1,75\\cdot 20 + 2,25\\cdot 15}{100} = 1,225$.\nc) \\textbf{Sai.} $M_e = 1,0 + \\frac{50 - (20 + 15)}{30}\\cdot 0,5 = 1,25$.\nd) \\textbf{Sai.} Phương sai $s^2 = \\frac{20(0,25 - \\bar{x})^2 + 15(0,75 - \\bar{x})^2 + 30(1,25 - \\bar{x})^2 + 20(1,75 - \\bar{x})^2 + 15(2,25 - \\bar{x})^2}{100} = 0,436875$.",
+        "statements": [
+          "Giá trị đại diện của nhóm chứa Mốt là $1,25$.",
+          "Độ cận trung bình (đơn vị diop) của $100$ học sinh là $1,26$.",
+          "Trung vị của mẫu số liệu là $M_e = 1,26$.",
+          "Phương sai của mẫu số liệu là $s^2 = 0,4389$."
+        ],
+        "source": "Cụm trường Nguyễn Hiền - Lê Hồng Phong - Quảng Nam 2025",
+        "solution": "a) \\textbf{Đúng.} Nhóm chứa mốt là $[1,0;1,5)$ nên giá trị đại diện là $1,25$.\nb) \\textbf{Sai.} Độ cận trung bình là $\\bar{x} = \\frac{0,25\\cdot 20 + 0,75\\cdot 15 + 1,25\\cdot 30 + 1,75\\cdot 20 + 2,25\\cdot 15}{100} = 1,225$.\nc) \\textbf{Sai.} $M_e = 1,0 + \\frac{50 - (20 + 15)}{30}\\cdot 0,5 = 1,25$.\nd) \\textbf{Sai.} Phương sai $s^2 = \\frac{20(0,25 - \\bar{x})^2 + 15(0,75 - \\bar{x})^2 + 30(1,25 - \\bar{x})^2 + 20(1,75 - \\bar{x})^2 + 15(2,25 - \\bar{x})^2}{100} = 0,436875$.",
+        "pack": "tf4-thongke"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 17,
+      "type": "tf4",
+      "prompt": "(THPT Anh Sơn 3 - Nghệ An 2025) Bạn Trang thống kê chiều cao (đơn vị: cm) của các bạn học sinh nữ lớp $12\\text{C}$ và lớp $12\\text{D}$ ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Chiều cao (cm)} & [155;160) & [160;165) & [165;170) & [170;175) & [175;180) \\\\ \\hline \\text{Số học sinh nữ lớp } 12\\text{C} & 2 & 7 & 12 & 4 & 1 \\\\ \\hline \\text{Số học sinh nữ lớp } 12\\text{D} & 5 & 9 & 8 & 2 & 2 \\\\ \\hline \\end{array}$$",
+      "points": 1,
+      "sort_order": 170,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "a) \\textbf{Đúng.} Giá trị đại diện của $[165;170)$ là $\\frac{165+170}{2} = 167,5$.\nb) \\textbf{Sai.} Khoảng biến thiên lớp $12\\text{D}$ là $180 - 155 = 25$ (không phải $20$).\nc) \\textbf{Đúng.} $n_C = n_D = 26$. Lớp $12\\text{C}$: $Q_1 = 160 + \\frac{6,5 - 2}{7}\\cdot 5 = \\frac{2285}{14}$, $Q_3 = 165 + \\frac{19,5 - 9}{12}\\cdot 5 = \\frac{1355}{8} \\Rightarrow \\Delta_C = \\frac{345}{56} \\approx 6,16$. Lớp $12\\text{D}$: $Q_1 = 160 + \\frac{6,5 - 5}{9}\\cdot 5 = \\frac{965}{6}$, $Q_3 = 165 + \\frac{19,5 - 14}{8}\\cdot 5 = \\frac{2695}{16} \\Rightarrow \\Delta_D = \\frac{365}{48} \\approx 7,60$. Vì $\\Delta_C < \\Delta_D$ nên lớp $12\\text{C}$ đồng đều hơn.\nd) \\textbf{Sai.} $S_C = \\sqrt{\\frac{14325}{676}} \\approx 4,603 < S_D = \\sqrt{\\frac{125}{4}} \\approx 5,59$, nên lớp $12\\text{D}$ phân tán hơn lớp $12\\text{C}$.",
+        "statements": [
+          "Giá trị đại diện của nhóm $[165;170)$ là $167,5$.",
+          "Khoảng biến thiên của mẫu số liệu ghép nhóm của lớp $12\\text{D}$ là $20$.",
+          "Nếu so sánh theo khoảng tứ phân vị của mẫu số liệu ghép nhóm thì học sinh nữ lớp $12\\text{C}$ có chiều cao đồng đều hơn.",
+          "Nếu so sánh theo độ lệch chuẩn của mẫu số liệu ghép nhóm thì học sinh nữ lớp $12\\text{D}$ có chiều cao trung bình đồng đều hơn."
+        ],
+        "source": "THPT Anh Sơn 3 - Nghệ An 2025",
+        "solution": "a) \\textbf{Đúng.} Giá trị đại diện của $[165;170)$ là $\\frac{165+170}{2} = 167,5$.\nb) \\textbf{Sai.} Khoảng biến thiên lớp $12\\text{D}$ là $180 - 155 = 25$ (không phải $20$).\nc) \\textbf{Đúng.} $n_C = n_D = 26$. Lớp $12\\text{C}$: $Q_1 = 160 + \\frac{6,5 - 2}{7}\\cdot 5 = \\frac{2285}{14}$, $Q_3 = 165 + \\frac{19,5 - 9}{12}\\cdot 5 = \\frac{1355}{8} \\Rightarrow \\Delta_C = \\frac{345}{56} \\approx 6,16$. Lớp $12\\text{D}$: $Q_1 = 160 + \\frac{6,5 - 5}{9}\\cdot 5 = \\frac{965}{6}$, $Q_3 = 165 + \\frac{19,5 - 14}{8}\\cdot 5 = \\frac{2695}{16} \\Rightarrow \\Delta_D = \\frac{365}{48} \\approx 7,60$. Vì $\\Delta_C < \\Delta_D$ nên lớp $12\\text{C}$ đồng đều hơn.\nd) \\textbf{Sai.} $S_C = \\sqrt{\\frac{14325}{676}} \\approx 4,603 < S_D = \\sqrt{\\frac{125}{4}} \\approx 5,59$, nên lớp $12\\text{D}$ phân tán hơn lớp $12\\text{C}$.",
+        "pack": "tf4-thongke"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 18,
+      "type": "tf4",
+      "prompt": "(THPT Trực Ninh - Nam Định 2025) Cho mẫu số liệu dưới dạng bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|c|} \\hline \\text{Số câu trả lời đúng} & [16;21) & [21;26) & [26;31) & [31;36) & [36;41) &  \\\\ \\hline \\text{Tần số} & 4 & 6 & 8 & 18 & 4 & N = 40 \\\\ \\hline \\end{array}$$",
+      "points": 1,
+      "sort_order": 180,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "a) \\textbf{Đúng.} $\\frac{36 + 41}{2} = 38,5$.\nb) \\textbf{Đúng.} Giá trị đại diện các lớp lần lượt là $18,5; 23,5; 28,5; 33,5; 38,5$, tổng tần số $N = 40$.\nc) \\textbf{Đúng.} $\\bar{x} = \\frac{18,5\\cdot 4 + 23,5\\cdot 6 + 28,5\\cdot 8 + 33,5\\cdot 18 + 38,5\\cdot 4}{40} = 30$.\nd) \\textbf{Đúng.} $S^2 = \\frac{(18,5-30)^2\\cdot 4 + (23,5-30)^2\\cdot 6 + (28,5-30)^2\\cdot 8 + (33,5-30)^2\\cdot 18 + (38,5-30)^2\\cdot 4}{40} = 32,75$.",
+        "statements": [
+          "Giá trị đại diện của lớp $[36;41)$ là $38,5$.",
+          "Công thức tính số trung bình là $\\bar{x} = \\frac{18,5\\cdot 4 + 23,5\\cdot 6 + 28,5\\cdot 8 + 33,5\\cdot 18 + 38,5\\cdot 4}{40}$.",
+          "Số trung bình là $30$.",
+          "Phương sai của mẫu số liệu là $S^2 = 32,75$."
+        ],
+        "source": "THPT Trực Ninh - Nam Định 2025",
+        "solution": "a) \\textbf{Đúng.} $\\frac{36 + 41}{2} = 38,5$.\nb) \\textbf{Đúng.} Giá trị đại diện các lớp lần lượt là $18,5; 23,5; 28,5; 33,5; 38,5$, tổng tần số $N = 40$.\nc) \\textbf{Đúng.} $\\bar{x} = \\frac{18,5\\cdot 4 + 23,5\\cdot 6 + 28,5\\cdot 8 + 33,5\\cdot 18 + 38,5\\cdot 4}{40} = 30$.\nd) \\textbf{Đúng.} $S^2 = \\frac{(18,5-30)^2\\cdot 4 + (23,5-30)^2\\cdot 6 + (28,5-30)^2\\cdot 8 + (33,5-30)^2\\cdot 18 + (38,5-30)^2\\cdot 4}{40} = 32,75$.",
+        "pack": "tf4-thongke"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 19,
+      "type": "tf4",
+      "prompt": "(THPT Lê Thánh Tông - Nguyễn Khuyến HCM 2025) Cân nặng (tính theo kilogam) của $40$ học sinh trong một lớp $12$ được cho trong bảng số liệu ghép nhóm như sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Cân nặng} & [40;48) & [48;56) & [56;64) & [64;72) & [72;80) \\\\ \\hline \\text{Số học sinh} & 6 & 12 & 10 & 8 & 4 \\\\ \\hline \\end{array}$$",
+      "points": 1,
+      "sort_order": 190,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "a) \\textbf{Sai.} Cỡ mẫu $n = 6 + 12 + 10 + 8 + 4 = 40$.\nb) \\textbf{Sai.} Trung vị là $\\frac{x_{20} + x_{21}}{2}$; vì $6 + 12 = 18 < 20, 21 \\le 28$ nên nhóm chứa trung vị là $[56;64)$.\nc) \\textbf{Đúng.} $\\bar{x} = \\frac{44\\cdot 6 + 52\\cdot 12 + 60\\cdot 10 + 68\\cdot 8 + 76\\cdot 4}{40} = 58,4$.\nd) \\textbf{Sai.} $s^2 = \\frac{6(44-58,4)^2 + 12(52-58,4)^2 + 10(60-58,4)^2 + 8(68-58,4)^2 + 4(76-58,4)^2}{40} = 93,44$.",
+        "statements": [
+          "Cỡ mẫu của mẫu số liệu ghép nhóm đã cho là $12$.",
+          "Nhóm chứa trung vị của mẫu số liệu ghép nhóm đã cho là nhóm $[48;56)$.",
+          "Giá trị trung bình của mẫu số liệu ghép nhóm đã cho là $58,4$.",
+          "Phương sai của mẫu số liệu ghép nhóm đã cho là $94,33$."
+        ],
+        "source": "THPT Lê Thánh Tông - Nguyễn Khuyến HCM 2025",
+        "solution": "a) \\textbf{Sai.} Cỡ mẫu $n = 6 + 12 + 10 + 8 + 4 = 40$.\nb) \\textbf{Sai.} Trung vị là $\\frac{x_{20} + x_{21}}{2}$; vì $6 + 12 = 18 < 20, 21 \\le 28$ nên nhóm chứa trung vị là $[56;64)$.\nc) \\textbf{Đúng.} $\\bar{x} = \\frac{44\\cdot 6 + 52\\cdot 12 + 60\\cdot 10 + 68\\cdot 8 + 76\\cdot 4}{40} = 58,4$.\nd) \\textbf{Sai.} $s^2 = \\frac{6(44-58,4)^2 + 12(52-58,4)^2 + 10(60-58,4)^2 + 8(68-58,4)^2 + 4(76-58,4)^2}{40} = 93,44$.",
+        "pack": "tf4-thongke"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          false,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 20,
+      "type": "tf4",
+      "prompt": "(Sở Ninh Bình 2025) Số liệu thống kê chiều cao (đơn vị tính chiều cao: cm) của tất cả các cây vú sữa trong vườn ươm của một lâm trường được thể hiện trên biểu đồ tần số sau:\n![Hình Câu 20](/bank-images/chude10-tk/q20_p0.svg)",
+      "points": 1,
+      "sort_order": 200,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "Từ biểu đồ ta có bảng tần số: $[70;80): 9$, $[80;90): 20$, $[90;100): 33$, $[100;110): 25$, $[110;120): 15$.\na) \\textbf{Sai.} Khi nhân tất cả các tần số với $3$, cỡ mẫu tăng gấp $3$ lần nên tỷ trọng từng nhóm không đổi, do đó số trung bình và phương sai không đổi.\nb) \\textbf{Sai.} $\\bar{x} = \\frac{75\\cdot 9 + 85\\cdot 20 + 95\\cdot 33 + 105\\cdot 25 + 115\\cdot 15}{102} = \\frac{29580}{306} \\approx 96,67\\text{ (cm)}$.\nc) \\textbf{Đúng.} $n = 9 + 20 + 33 + 25 + 15 = 102$.\nd) \\textbf{Đúng.} Khoảng biến thiên mẫu ghép nhóm là $120 - 70 = 50\\text{ (cm)}$, mẫu gốc là $117 - 71 = 46\\text{ (cm)}$, chênh lệch $50 - 46 = 4\\text{ (cm)}$.",
+        "statements": [
+          "Nếu tăng số cây của mỗi nhóm lên gấp $3$ lần thì phương sai của mẫu số liệu ghép nhóm mới cũng tăng lên gấp $3$ lần.",
+          "Chiều cao trung bình (kết quả làm tròn đến hàng phần trăm) của các cây vú sữa trong vườn ươm là $96,66\\text{ cm}$.",
+          "Cỡ mẫu của mẫu số liệu ghép nhóm đã cho là $n = 102$.",
+          "Nếu trong vườn ươm nói trên, cây vú sữa thấp nhất có chiều cao $71\\text{ cm}$ và cây vú sữa cao nhất có chiều cao $117\\text{ cm}$ thì khoảng biến thiên của mẫu số liệu ghép nhóm đã cho lớn hơn khoảng biến thiên của mẫu số liệu gốc là $4\\text{ cm}$."
+        ],
+        "source": "Sở Ninh Bình 2025",
+        "solution": "Từ biểu đồ ta có bảng tần số: $[70;80): 9$, $[80;90): 20$, $[90;100): 33$, $[100;110): 25$, $[110;120): 15$.\na) \\textbf{Sai.} Khi nhân tất cả các tần số với $3$, cỡ mẫu tăng gấp $3$ lần nên tỷ trọng từng nhóm không đổi, do đó số trung bình và phương sai không đổi.\nb) \\textbf{Sai.} $\\bar{x} = \\frac{75\\cdot 9 + 85\\cdot 20 + 95\\cdot 33 + 105\\cdot 25 + 115\\cdot 15}{102} = \\frac{29580}{306} \\approx 96,67\\text{ (cm)}$.\nc) \\textbf{Đúng.} $n = 9 + 20 + 33 + 25 + 15 = 102$.\nd) \\textbf{Đúng.} Khoảng biến thiên mẫu ghép nhóm là $120 - 70 = 50\\text{ (cm)}$, mẫu gốc là $117 - 71 = 46\\text{ (cm)}$, chênh lệch $50 - 46 = 4\\text{ (cm)}$.",
+        "pack": "tf4-thongke"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          false,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 21,
+      "type": "tf4",
+      "prompt": "(Liên Trường Nghệ An 2025) Cho mẫu số liệu ghép nhóm tần số thống kê về mức lương của hai công ty $A, B$ như sau:\n$$\\begin{array}{|c|c|c|c|c|c|c|} \\hline \\text{Mức lương} & [10;15) & [15;20) & [20;25) & [25;30) & [30;35) & [35;40) \\\\ \\hline \\text{Số lượng nhân viên công ty } A & 15 & 18 & 10 & 10 & 5 & 2 \\\\ \\hline \\text{Số lượng nhân viên công ty } B & 25 & 15 & 7 & 5 & 4 & 4 \\\\ \\hline \\end{array}$$",
+      "points": 1,
+      "sort_order": 210,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "a) \\textbf{Đúng.} $n_A = 15 + 18 + 10 + 10 + 5 + 2 = 60$.\nb) \\textbf{Đúng.} $R_B = 40 - 10 = 30$.\nc) \\textbf{Sai.} $\\bar{x}_A = \\frac{15\\cdot 12,5 + 18\\cdot 17,5 + 10\\cdot 22,5 + 10\\cdot 27,5 + 5\\cdot 32,5 + 2\\cdot 37,5}{60} = \\frac{62}{3} \\approx 20,7$.\nd) \\textbf{Đúng.} $\\bar{x}_B = 19,2$; $s_A^2 = \\frac{1769}{36} \\Rightarrow s_A \\approx 7,01 < s_B = \\sqrt{\\frac{545}{9}} \\approx 7,78$, nên công ty $A$ có mức lương đồng đều hơn.",
+        "statements": [
+          "Kích thước mẫu của mẫu số liệu ghép nhóm thống kê mức lương công ty $A$ là $60$.",
+          "Khoảng biến thiên của mẫu số liệu ghép nhóm thống kê mức lương công ty $B$ là $30$.",
+          "Số trung bình của mẫu số liệu ghép nhóm thống kê mức lương công ty $A$ là $20,6$ (kết quả làm tròn đến hàng phần chục).",
+          "Theo độ lệch chuẩn thì công ty $A$ có mức lương đồng đều hơn công ty $B$."
+        ],
+        "source": "Liên Trường Nghệ An 2025",
+        "solution": "a) \\textbf{Đúng.} $n_A = 15 + 18 + 10 + 10 + 5 + 2 = 60$.\nb) \\textbf{Đúng.} $R_B = 40 - 10 = 30$.\nc) \\textbf{Sai.} $\\bar{x}_A = \\frac{15\\cdot 12,5 + 18\\cdot 17,5 + 10\\cdot 22,5 + 10\\cdot 27,5 + 5\\cdot 32,5 + 2\\cdot 37,5}{60} = \\frac{62}{3} \\approx 20,7$.\nd) \\textbf{Đúng.} $\\bar{x}_B = 19,2$; $s_A^2 = \\frac{1769}{36} \\Rightarrow s_A \\approx 7,01 < s_B = \\sqrt{\\frac{545}{9}} \\approx 7,78$, nên công ty $A$ có mức lương đồng đều hơn.",
+        "pack": "tf4-thongke"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 22,
+      "type": "tf4",
+      "prompt": "(THPT DTNT - Nghệ An 2025) Bảng thống kê độ ẩm không khí trung bình các tháng năm $2021$ tại Đà Lạt và Vũng Tàu (đơn vị: $\\%$) được ghép thành mẫu số liệu ghép nhóm như sau:\nĐà Lạt:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Nhóm} & [75;78,3) & [78,3;81,6) & [81,6;84,9) & [84,9;88,2) & [88,2;91,5) \\\\ \\hline \\text{Giá trị đại diện} & 76,65 & 79,95 & 83,25 & 86,55 & 89,85 \\\\ \\hline \\text{Tần số} & 0 & 2 & 1 & 6 & 3 \\\\ \\hline \\end{array}$$\nVũng Tàu:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Nhóm} & [75;78,3) & [78,3;81,6) & [81,6;84,9) & [84,9;88,2) & [88,2;91,5) \\\\ \\hline \\text{Giá trị đại diện} & 76,65 & 79,95 & 83,25 & 86,55 & 89,85 \\\\ \\hline \\text{Tần số} & 5 & 6 & 1 & 0 & 0 \\\\ \\hline \\end{array}$$",
+      "points": 1,
+      "sort_order": 220,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "a) \\textbf{Sai.} Ở Đà Lạt, nhóm đầu tiên có tần số khác $0$ là $[78,3;81,6)$ nên $R = 91,5 - 78,3 = 13,2$.\nb) \\textbf{Sai.} Ở Vũng Tàu ($n = 12$): $Q_1 = 75 + \\frac{3 - 0}{5}\\cdot 3,3 = 76,98$; $Q_3 = 78,3 + \\frac{9 - 5}{6}\\cdot 3,3 = 80,5 \\Rightarrow \\Delta_Q = 80,5 - 76,98 = 3,52$.\nc) \\textbf{Sai.} Ở Đà Lạt: $\\bar{x}_1 = 86$, $s_1^2 = \\frac{2(79,95 - 86)^2 + (83,25 - 86)^2 + 6(86,55 - 86)^2 + 3(89,85 - 86)^2}{12} = 10,5875 \\Rightarrow s_1 = \\sqrt{10,5875} \\approx 3,25$.\nd) \\textbf{Sai.} Ở Vũng Tàu: $\\bar{x}_2 = 78,85$, $s_2^2 = 4,235 \\Rightarrow s_2 = \\sqrt{4,235} \\approx 2,06 < s_1 \\approx 3,25$, nên Vũng Tàu đồng đều hơn.",
+        "statements": [
+          "Xét số liệu ở Đà Lạt ta có khoảng biến thiên là $16,5$.",
+          "Xét số liệu ở Vũng Tàu thì khoảng tứ phân vị là $0,23$ (làm tròn kết quả đến hàng phần trăm).",
+          "Xét số liệu ở Đà Lạt thì độ lệch chuẩn của mẫu số liệu ghép nhóm là $3,28$ (làm tròn kết quả đến hàng phần trăm).",
+          "Đà Lạt có nhiệt độ không khí trung bình tháng đồng đều hơn so với ở Vũng Tàu vì có độ lệch chuẩn nhỏ hơn."
+        ],
+        "source": "THPT DTNT - Nghệ An 2025",
+        "solution": "a) \\textbf{Sai.} Ở Đà Lạt, nhóm đầu tiên có tần số khác $0$ là $[78,3;81,6)$ nên $R = 91,5 - 78,3 = 13,2$.\nb) \\textbf{Sai.} Ở Vũng Tàu ($n = 12$): $Q_1 = 75 + \\frac{3 - 0}{5}\\cdot 3,3 = 76,98$; $Q_3 = 78,3 + \\frac{9 - 5}{6}\\cdot 3,3 = 80,5 \\Rightarrow \\Delta_Q = 80,5 - 76,98 = 3,52$.\nc) \\textbf{Sai.} Ở Đà Lạt: $\\bar{x}_1 = 86$, $s_1^2 = \\frac{2(79,95 - 86)^2 + (83,25 - 86)^2 + 6(86,55 - 86)^2 + 3(89,85 - 86)^2}{12} = 10,5875 \\Rightarrow s_1 = \\sqrt{10,5875} \\approx 3,25$.\nd) \\textbf{Sai.} Ở Vũng Tàu: $\\bar{x}_2 = 78,85$, $s_2^2 = 4,235 \\Rightarrow s_2 = \\sqrt{4,235} \\approx 2,06 < s_1 \\approx 3,25$, nên Vũng Tàu đồng đều hơn.",
+        "pack": "tf4-thongke"
+      },
+      "answer_key": {
+        "correct_answer": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 23,
+      "type": "tf4",
+      "prompt": "(Đề thi vào ĐHSPHN 2025) Bảng sau thể hiện mẫu số liệu ghép nhóm về học phí (đơn vị: triệu đồng) mà $100$ sinh viên đã chi trả trong bốn năm học đại học:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Nhóm} & [50;60) & [60;70) & [70;80) & [80;90) & [90;100) \\\\ \\hline \\text{Tần số} & 15 & 25 & 30 & 15 & 15 \\\\ \\hline \\end{array}$$",
+      "points": 1,
+      "sort_order": 230,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "a) \\textbf{Đúng.} $R = 100 - 50 = 50$.\nb) \\textbf{Đúng.} $15 + 15 = 30$ sinh viên.\nc) \\textbf{Sai.} $\\bar{x} = \\frac{55\\cdot 15 + 65\\cdot 25 + 75\\cdot 30 + 85\\cdot 15 + 95\\cdot 15}{100} = 74$ (triệu đồng).\nd) \\textbf{Sai.} $Q_1 = 60 + \\frac{25 - 15}{25}\\cdot 10 = 64$; $Q_3 = 80 + \\frac{75 - 70}{15}\\cdot 10 \\approx 83,33 \\Rightarrow \\Delta_Q \\approx 19,33$ (triệu đồng).",
+        "statements": [
+          "Khoảng biến thiên của mẫu số liệu ghép nhóm trên là $50$.",
+          "Số sinh viên đã chi trả tiền học phí từ $80$ triệu trở lên là $30$ sinh viên.",
+          "Số tiền học phí trung bình sinh viên đã chi trả từ bảng số liệu trên là $75$ triệu đồng.",
+          "Khoảng tứ phân vị của mẫu số liệu ghép nhóm trên là $64$ triệu đồng."
+        ],
+        "source": "Đề thi vào ĐHSPHN 2025",
+        "solution": "a) \\textbf{Đúng.} $R = 100 - 50 = 50$.\nb) \\textbf{Đúng.} $15 + 15 = 30$ sinh viên.\nc) \\textbf{Sai.} $\\bar{x} = \\frac{55\\cdot 15 + 65\\cdot 25 + 75\\cdot 30 + 85\\cdot 15 + 95\\cdot 15}{100} = 74$ (triệu đồng).\nd) \\textbf{Sai.} $Q_1 = 60 + \\frac{25 - 15}{25}\\cdot 10 = 64$; $Q_3 = 80 + \\frac{75 - 70}{15}\\cdot 10 \\approx 83,33 \\Rightarrow \\Delta_Q \\approx 19,33$ (triệu đồng).",
+        "pack": "tf4-thongke"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 24,
+      "type": "tf4",
+      "prompt": "(Cụm Ninh Giang - Tứ Kỳ - Gia Lộc 2025) Hai thùng hàng $A, B$ đều chứa $25$ quả táo. Kết quả kiểm tra cân nặng của $25$ quả táo ở mỗi thùng $A$ và $B$ được cho ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Cân nặng (g)} & [250;260) & [260;270) & [270;280) & [280;290) & [290;300) \\\\ \\hline \\text{Số táo ở thùng } A & 2 & 4 & 12 & 4 & 3 \\\\ \\hline \\text{Số táo ở thùng } B & 1 & 3 & 7 & 10 & 4 \\\\ \\hline \\end{array}$$",
+      "points": 1,
+      "sort_order": 240,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "a) \\textbf{Đúng.} Ở thùng $A$: $Q_1 = 270 + \\frac{6,25 - 6}{12}\\cdot 10 = \\frac{6485}{24}$; $Q_3 = 280 + \\frac{18,75 - 18}{4}\\cdot 10 = \\frac{2255}{8} \\Rightarrow \\Delta_Q = \\frac{35}{3} \\approx 11,7\\text{ (g)}$.\nb) \\textbf{Đúng.} $P = \\frac{(12+4+3)(7+10+4)}{25\\cdot 25} = \\frac{399}{625} = 0,6384$.\nc) \\textbf{Đúng.} $\\bar{x}_A = 275,8 \\Rightarrow s_A^2 = 111,36$; $\\bar{x}_B = 280,2 \\Rightarrow s_B^2 = 104,96$. Vì $s_A^2 > s_B^2$ nên thùng $A$ phân tán hơn thùng $B$.\nd) \\textbf{Đúng.} Xác suất là $\\frac{4 + 3}{25} = 0,28$.",
+        "statements": [
+          "Khoảng tứ phân vị của mẫu số liệu ghép nhóm về cân nặng các quả táo ở thùng $A$ là $\\Delta_Q \\approx 11,7\\text{ (g)}$ (làm tròn kết quả đến hàng phần chục).",
+          "Lấy ngẫu nhiên một quả táo từ thùng $A$ và một quả táo từ thùng $B$. Xác suất để hai quả táo lấy ra đều nặng từ $270\\text{g}$ trở lên là $0,6384$.",
+          "Căn cứ vào phương sai của mẫu số liệu ghép nhóm trên thì cân nặng quả táo ở thùng $A$ phân tán hơn cân nặng quả táo ở thùng $B$.",
+          "Lấy ngẫu nhiên một quả táo ở thùng $A$. Xác suất để quả táo đó có cân nặng từ $280\\text{g}$ trở lên là $0,28$."
+        ],
+        "source": "Cụm Ninh Giang - Tứ Kỳ - Gia Lộc 2025",
+        "solution": "a) \\textbf{Đúng.} Ở thùng $A$: $Q_1 = 270 + \\frac{6,25 - 6}{12}\\cdot 10 = \\frac{6485}{24}$; $Q_3 = 280 + \\frac{18,75 - 18}{4}\\cdot 10 = \\frac{2255}{8} \\Rightarrow \\Delta_Q = \\frac{35}{3} \\approx 11,7\\text{ (g)}$.\nb) \\textbf{Đúng.} $P = \\frac{(12+4+3)(7+10+4)}{25\\cdot 25} = \\frac{399}{625} = 0,6384$.\nc) \\textbf{Đúng.} $\\bar{x}_A = 275,8 \\Rightarrow s_A^2 = 111,36$; $\\bar{x}_B = 280,2 \\Rightarrow s_B^2 = 104,96$. Vì $s_A^2 > s_B^2$ nên thùng $A$ phân tán hơn thùng $B$.\nd) \\textbf{Đúng.} Xác suất là $\\frac{4 + 3}{25} = 0,28$.",
+        "pack": "tf4-thongke"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Vận dụng"
+      ]
+    },
+    {
+      "source_num": 25,
+      "type": "tf4",
+      "prompt": "(Cụm Chuyên Môn Đăk Lak 2025) Một bác tài xế thống kê lại độ dài quãng đường (đơn vị: km) đã lái xe mỗi ngày trong một tháng ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Độ dài quãng đường (km)} & [50;100) & [100;150) & [150;200) & [200;250) & [250;300) \\\\ \\hline \\text{Số ngày} & 5 & 10 & 9 & 4 & 2 \\\\ \\hline \\end{array}$$",
+      "points": 1,
+      "sort_order": 250,
+      "choices": [],
+      "settings": {
+        "level": "Thông hiểu",
+        "explanation": "a) \\textbf{Đúng.} $Q_1 = 112,5$; $Q_3 = \\frac{575}{3} \\Rightarrow \\Delta_Q = \\frac{575}{3} - 112,5 \\approx 79,17$.\nb) \\textbf{Đúng.} $R = 300 - 50 = 250\\text{ (km)}$.\nc) \\textbf{Đúng.} Số trung bình cộng của mẫu số liệu ghép nhóm là $\\bar{x} = \\frac{5\\cdot 75 + 10\\cdot 125 + 9\\cdot 175 + 4\\cdot 225 + 2\\cdot 275}{30} = 155$.\nd) \\textbf{Đúng.} $s^2 = \\frac{1}{30}(5\\cdot 75^2 + 10\\cdot 125^2 + 9\\cdot 175^2 + 4\\cdot 225^2 + 2\\cdot 275^2) - 155^2 = 3100 \\Rightarrow s = \\sqrt{3100} \\approx 55,68$.",
+        "statements": [
+          "Khoảng tứ phân vị của mẫu số liệu ghép nhóm gần bằng $79,17$.",
+          "Khoảng biến thiên của mẫu số liệu ghép nhóm là $250\\text{ (km)}$.",
+          "Số trung bình của mẫu số liệu ghép nhóm là $155$.",
+          "Độ lệch chuẩn của mẫu số liệu ghép nhóm gần bằng $55,68$."
+        ],
+        "source": "Cụm Chuyên Môn Đăk Lak 2025",
+        "solution": "a) \\textbf{Đúng.} $Q_1 = 112,5$; $Q_3 = \\frac{575}{3} \\Rightarrow \\Delta_Q = \\frac{575}{3} - 112,5 \\approx 79,17$.\nb) \\textbf{Đúng.} $R = 300 - 50 = 250\\text{ (km)}$.\nc) \\textbf{Đúng.} Số trung bình cộng của mẫu số liệu ghép nhóm là $\\bar{x} = \\frac{5\\cdot 75 + 10\\cdot 125 + 9\\cdot 175 + 4\\cdot 225 + 2\\cdot 275}{30} = 155$.\nd) \\textbf{Đúng.} $s^2 = \\frac{1}{30}(5\\cdot 75^2 + 10\\cdot 125^2 + 9\\cdot 175^2 + 4\\cdot 225^2 + 2\\cdot 275^2) - 155^2 = 3100 \\Rightarrow s = \\sqrt{3100} \\approx 55,68$.",
+        "pack": "tf4-thongke"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 23: Phương sai và độ lệch chuẩn",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 26,
+      "type": "tf4",
+      "prompt": "(Sở Hà Tĩnh 2025) Chiều cao (cm) của các em học sinh lớp $12\\text{A1}$ được thống kê theo bảng tần số ghép nhóm như sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Nhóm} & [140;150) & [150;160) & [160;170) & [170;180) & [180;190) \\\\ \\hline \\text{Tần số} & 1 & 8 & 18 & 10 & 1 \\\\ \\hline \\end{array}$$",
+      "points": 1,
+      "sort_order": 260,
+      "choices": [],
+      "settings": {
+        "level": "Vận dụng",
+        "explanation": "a) \\textbf{Đúng.} $\\bar{x} = \\frac{145 + 155\\cdot 8 + 165\\cdot 18 + 175\\cdot 10 + 185}{38} = \\frac{6290}{38} \\approx 165,53 < 170$, nên toàn bộ $10 + 1 = 11$ học sinh từ $170\\text{ cm}$ trở lên đều cao hơn trung bình.\nb) \\textbf{Sai.} Chiều cao trung bình là $\\bar{x} \\approx 165,53\\text{ (cm)}$.\nc) \\textbf{Đúng.} $R = 190 - 140 = 50$.\nd) \\textbf{Sai.} Có $11$ học sinh cao $\\ge 170\\text{ cm}$ trên tổng $38$ học sinh, xác suất là $\\frac{C_{11}^5}{C_{38}^5} = \\frac{11}{11951}$.",
+        "statements": [
+          "Lớp có ít nhất $11$ học sinh có chiều cao lớn hơn chiều cao trung bình của lớp.",
+          "Chiều cao trung bình của lớp $12\\text{A1}$ là $164\\text{ (cm)}$.",
+          "Khoảng biến thiên mẫu số liệu trên là $50$.",
+          "Chọn ngẫu nhiên $5$ học sinh của lớp tham gia đội tình nguyện. Xác suất để chọn được \"$5$ học sinh có chiều cao lớn hơn hoặc bằng $170\\text{ (cm)}$\" là $\\frac{11}{38}$."
+        ],
+        "source": "Sở Hà Tĩnh 2025",
+        "solution": "a) \\textbf{Đúng.} $\\bar{x} = \\frac{145 + 155\\cdot 8 + 165\\cdot 18 + 175\\cdot 10 + 185}{38} = \\frac{6290}{38} \\approx 165,53 < 170$, nên toàn bộ $10 + 1 = 11$ học sinh từ $170\\text{ cm}$ trở lên đều cao hơn trung bình.\nb) \\textbf{Sai.} Chiều cao trung bình là $\\bar{x} \\approx 165,53\\text{ (cm)}$.\nc) \\textbf{Đúng.} $R = 190 - 140 = 50$.\nd) \\textbf{Sai.} Có $11$ học sinh cao $\\ge 170\\text{ cm}$ trên tổng $38$ học sinh, xác suất là $\\frac{C_{11}^5}{C_{38}^5} = \\frac{11}{11951}$.",
+        "pack": "tf4-thongke"
+      },
+      "answer_key": {
+        "correct_answer": [
+          true,
+          false,
+          true,
+          false
+        ],
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Vận dụng"
+      ]
+    }
+  ]
+}

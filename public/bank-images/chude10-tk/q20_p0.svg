@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 340" width="560" height="340" style="background:#ffffff;font-family:system-ui,-apple-system,sans-serif">
+  <text x="115" y="28" font-size="14" font-weight="700" fill="#181B16">Chiều cao của cây vú sữa</text>
+
+  <!-- Y axis gridlines (0 to 36 -> y0 = 278, y36 = 44, 1 unit = 6.5px) -->
+  <line x1="70" y1="278" x2="520" y2="278" stroke="#181B16" stroke-width="1.5"/>
+  <line x1="70" y1="213" x2="520" y2="213" stroke="#E4E6DE" stroke-dasharray="4 4"/>
+  <line x1="70" y1="148" x2="520" y2="148" stroke="#E4E6DE" stroke-dasharray="4 4"/>
+  <line x1="70" y1="83" x2="520" y2="83" stroke="#E4E6DE" stroke-dasharray="4 4"/>
+
+  <text x="26" y="165" transform="rotate(-90 26 165)" text-anchor="middle" font-size="13" font-weight="600" fill="#181B16">Số cây</text>
+  <text x="295" y="325" text-anchor="middle" font-size="13" font-weight="700" fill="#181B16">Chiều cao (cm)</text>
+
+  <!-- Bars: 1 unit = 6.5px -->
+  <!-- [70;80): 9 -> h = 58.5, y = 219.5 -->
+  <rect x="95" y="219.5" width="54" height="58.5" fill="#181B16" rx="2"/>
+  <text x="122" y="211" text-anchor="middle" font-size="12.5" font-weight="700" fill="#181B16">9</text>
+  <text x="122" y="298" text-anchor="middle" font-size="12" fill="#181B16">[70; 80)</text>
+
+  <!-- [80;90): 20 -> h = 130, y = 148 -->
+  <rect x="180" y="148" width="54" height="130" fill="#181B16" rx="2"/>
+  <text x="207" y="140" text-anchor="middle" font-size="12.5" font-weight="700" fill="#181B16">20</text>
+  <text x="207" y="298" text-anchor="middle" font-size="12" fill="#181B16">[80; 90)</text>
+
+  <!-- [90;100): 33 -> h = 214.5, y = 63.5 -->
+  <rect x="265" y="63.5" width="54" height="214.5" fill="#181B16" rx="2"/>
+  <text x="292" y="55" text-anchor="middle" font-size="12.5" font-weight="700" fill="#181B16">33</text>
+  <text x="292" y="298" text-anchor="middle" font-size="12" fill="#181B16">[90; 100)</text>
+
+  <!-- [100;110): 25 -> h = 162.5, y = 115.5 -->
+  <rect x="350" y="115.5" width="54" height="162.5" fill="#181B16" rx="2"/>
+  <text x="377" y="107" text-anchor="middle" font-size="12.5" font-weight="700" fill="#181B16">25</text>
+  <text x="377" y="298" text-anchor="middle" font-size="12" fill="#181B16">[100; 110)</text>
+
+  <!-- [110;120): 15 -> h = 97.5, y = 180.5 -->
+  <rect x="435" y="180.5" width="54" height="97.5" fill="#181B16" rx="2"/>
+  <text x="462" y="172" text-anchor="middle" font-size="12.5" font-weight="700" fill="#181B16">15</text>
+  <text x="462" y="298" text-anchor="middle" font-size="12" fill="#181B16">[110; 120)</text>
+</svg>

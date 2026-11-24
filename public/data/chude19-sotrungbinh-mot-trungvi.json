@@ -1,0 +1,1719 @@
+{
+  "pack_id": "chude19-sotrungbinh-mot-trungvi",
+  "title": "Chủ đề 19 · Số trung bình - Mốt - Trung vị - Khoảng biến thiên (2025)",
+  "chapter": "GĐ1 · Chương 5",
+  "count": 59,
+  "questions": [
+    {
+      "source_num": 1,
+      "type": "mcq",
+      "prompt": "(THPT Đào Duy Từ - Thanh Hóa 2025) Một nhóm học sinh gồm $20$ học sinh nam và $10$ học sinh nữ. Có bao nhiêu cách chọn một học sinh trong nhóm đó tham gia đội thanh niên tình nguyện của trường?",
+      "points": 1,
+      "sort_order": 1,
+      "choices": [
+        "$200$.",
+        "$20$.",
+        "$30$.",
+        "$10$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Có $10 + 20 = 30$ cách chọn một học sinh.",
+        "source": "THPT Đào Duy Từ - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 2,
+      "type": "mcq",
+      "prompt": "(THPT Đào Duy Từ - Thanh Hóa 2025) Thầy Kiệt khảo sát chiều cao của $52$ học sinh khối $12$ trường THPT Đào Duy Từ thu được mẫu số liệu ghép nhóm sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Khoảng chiều cao (cm)} & [155;160) & [160;165) & [165;170) & [170;175) & [175;180) \\\\ \\hline \\text{Số học sinh} & 7 & 14 & 10 & 12 & 9 \\\\ \\hline \\end{array}$$\nKhoảng biến thiên của mẫu số liệu ghép nhóm này là:",
+      "points": 1,
+      "sort_order": 2,
+      "choices": [
+        "$25$.",
+        "$24$.",
+        "$7$.",
+        "$20$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Khoảng biến thiên $R = 180 - 155 = 25$.",
+        "source": "THPT Đào Duy Từ - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 3,
+      "type": "mcq",
+      "prompt": "(THPT Đào Duy Từ - Thanh Hóa 2025) Cho mẫu số liệu điểm môn Toán của một nhóm học sinh như sau:\n$$\\begin{array}{|c|c|c|c|c|} \\hline \\text{Điểm} & [6;7) & [7;8) & [8;9) & [9;10] \\\\ \\hline \\text{Số học sinh} & 8 & 7 & 10 & 5 \\\\ \\hline \\end{array}$$\nMốt của mẫu số liệu (kết quả làm tròn đến hàng phần trăm) là:",
+      "points": 1,
+      "sort_order": 3,
+      "choices": [
+        "$7,91$.",
+        "$8,38$.",
+        "$8,37$.",
+        "$7,95$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Nhóm chứa Mốt là $[8;9)$. Mốt của mẫu số liệu là $M_o = 8 + \\dfrac{10-7}{(10-7)+(10-5)}(9-8) = 8,375 \\approx 8,38$.",
+        "source": "THPT Đào Duy Từ - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 4,
+      "type": "mcq",
+      "prompt": "(THPT Lương Tài 2 - Bắc Ninh 2025) Thống kê điểm thi tốt nghiệp môn Toán THPT năm $2024$ của lớp $12\\text{D}$ tại một trường THPT thu được kết quả như sau:\n$$\\begin{array}{|c|c|c|c|c|c|c|c|} \\hline \\text{Nhóm} & [3;4) & [4;5) & [5;6) & [6;7) & [7;8) & [8;9) & [9;10] \\\\ \\hline \\text{Tần số} & 3 & 4 & 5 & 10 & 15 & 10 & 5 \\\\ \\hline \\end{array}$$\nKhoảng biến thiên của mẫu số liệu thống kê trên bằng:",
+      "points": 1,
+      "sort_order": 4,
+      "choices": [
+        "$7$.",
+        "$6$.",
+        "$8$.",
+        "$10$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Ta có khoảng biến thiên của mẫu số liệu thống kê trên bằng $10 - 3 = 7$.",
+        "source": "THPT Lương Tài 2 - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 5,
+      "type": "mcq",
+      "prompt": "(THPT Văn Giang - Hưng Yên 2025) Khảo sát thời gian tập thể dục của một số học sinh khối $11$ thu được mẫu số liệu ghép nhóm sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Thời gian (phút)} & [0;20) & [20;40) & [40;60) & [60;80) & [80;100) \\\\ \\hline \\text{Số học sinh} & 5 & 9 & 12 & 10 & 6 \\\\ \\hline \\end{array}$$\nNhóm chứa trung vị của mẫu số liệu trên là:",
+      "points": 1,
+      "sort_order": 5,
+      "choices": [
+        "$[20;40)$.",
+        "$[40;60)$.",
+        "$[60;80)$.",
+        "$[80;100)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Mẫu số liệu có kích thước $n = 42 \\Rightarrow \\dfrac{n}{2} = 21$. Tần số tích lũy đến nhóm $[20;40)$ là $5 + 9 = 14 < 21$, đến nhóm $[40;60)$ là $14 + 12 = 26 > 21$ nên trung vị thuộc nhóm $[40;60)$.",
+        "source": "THPT Văn Giang - Hưng Yên 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 6,
+      "type": "mcq",
+      "prompt": "(THPT Tiên Du - Bắc Ninh 2025) Khảo sát thời gian xem tự học trung bình vào buổi tối của học sinh lớp $12A$ thu được mẫu số liệu ghép nhóm sau:\n$$\\begin{array}{|c|c|c|c|c|c|c|} \\hline \\text{Thời gian (phút)} & [0;30) & [30;60) & [60;90) & [90;120) & [120;150) & [150;180) \\\\ \\hline \\text{Số học sinh} & 5 & 9 & 12 & 8 & 5 & 8 \\\\ \\hline \\end{array}$$\nGiá trị đại diện của nhóm $[60;90)$ là:",
+      "points": 1,
+      "sort_order": 6,
+      "choices": [
+        "$65$.",
+        "$75$.",
+        "$90$.",
+        "$60$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Ta có $x_3 = \\dfrac{60 + 90}{2} = 75$.",
+        "source": "THPT Tiên Du - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 7,
+      "type": "mcq",
+      "prompt": "(THPT Nguyễn Đăng Đạo - Bắc Ninh 2025) Thống kê số phút học bài ở nhà buổi tối của $100$ học sinh ta có bảng phân bố tần số ghép nhóm như sau:\n$$\\begin{array}{|c|c|c|c|c|} \\hline \\text{Số phút} & [30;60) & [60;90) & [90;120) & [120;150) \\\\ \\hline \\text{Số học sinh} & 18 & 15 & 42 & 25 \\\\ \\hline \\end{array}$$\nSố học sinh có thời gian học ít hơn $90$ phút trong số học sinh trên là:",
+      "points": 1,
+      "sort_order": 7,
+      "choices": [
+        "$15$.",
+        "$33$.",
+        "$67$.",
+        "$18$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Số học sinh có thời gian học ít hơn $90$ phút trong số học sinh trên là $18 + 15 = 33$.",
+        "source": "THPT Nguyễn Đăng Đạo - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 8,
+      "type": "mcq",
+      "prompt": "(THPT Gia Bình - Bắc Ninh 2025) Tìm hiểu thời gian hoàn thành một bài tập (đơn vị: phút) của một nhóm học sinh thu được kết quả sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Thời gian (phút)} & [0;4) & [4;8) & [8;12) & [12;16) & [16;20) \\\\ \\hline \\text{Số học sinh} & 2 & 4 & 7 & 4 & 3 \\\\ \\hline \\end{array}$$\nThời gian trung bình (phút) để hoàn thành bài tập của các em học sinh là:",
+      "points": 1,
+      "sort_order": 8,
+      "choices": [
+        "$10,4$.",
+        "$7$.",
+        "$11,3$.",
+        "$12,5$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Cỡ mẫu $n = 2 + 4 + 7 + 4 + 3 = 20$. Các giá trị đại diện lần lượt là $2; 6; 10; 14; 18$. Thời gian trung bình là $\\bar{x} = \\dfrac{2 \\cdot 2 + 4 \\cdot 6 + 7 \\cdot 10 + 4 \\cdot 14 + 3 \\cdot 18}{20} = 10,4$.",
+        "source": "THPT Gia Bình - Bắc Ninh 2025",
+        "level": "Thông hiểu",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 9,
+      "type": "mcq",
+      "prompt": "(Sở Ninh Bình 2025) Để chuẩn bị cho tiết học \"Mạng xã hội: lợi và hại\" (Hoạt động thực hành trải nghiệm môn Toán, lớp 10), giáo viên đã khảo sát thời gian sử dụng mạng xã hội trong một ngày của học sinh trong lớp $10\\text{A}1$ mình dạy và thu được mẫu số liệu như sau:\n$$\\begin{array}{|c|c|c|c|c|c|c|} \\hline \\text{Thời gian (phút)} & [10;20) & [20;30) & [30;40) & [40;50) & [50;60) & [60;70) \\\\ \\hline \\text{Số học sinh} & 5 & 10 & 15 & 7 & 5 & 3 \\\\ \\hline \\end{array}$$\nThời gian trung bình (phút) sử dụng mạng xã hội của học sinh lớp $10\\text{A}1$ xấp xỉ bằng:",
+      "points": 1,
+      "sort_order": 9,
+      "choices": [
+        "$35$.",
+        "$30,5$.",
+        "$36,3$.",
+        "$33,6$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Ta có $\\bar{x} = \\dfrac{1}{45}(5 \\cdot 15 + 10 \\cdot 25 + 15 \\cdot 35 + 7 \\cdot 45 + 5 \\cdot 55 + 3 \\cdot 65) \\approx 36,3$.",
+        "source": "Sở Ninh Bình 2025",
+        "level": "Thông hiểu",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 10,
+      "type": "mcq",
+      "prompt": "(THPT Thuận Thành 1&2 - Bắc Ninh 2025) Kết quả khảo sát cân nặng của một thùng táo ở một lô hàng cho trong bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Cân nặng (g)} & [150;155) & [155;160) & [160;165) & [165;170) & [170;175) \\\\ \\hline \\text{Số quả táo} & 4 & 7 & 12 & 6 & 2 \\\\ \\hline \\end{array}$$\nKhoảng biến thiên $R$ của mẫu số liệu ghép nhóm trên là:",
+      "points": 1,
+      "sort_order": 10,
+      "choices": [
+        "$R = 5$.",
+        "$R = 24$.",
+        "$R = 10$.",
+        "$R = 25$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Khoảng biến thiên của mẫu số liệu ghép nhóm trên là $175 - 150 = 25\\text{ (g)}$.",
+        "source": "THPT Thuận Thành 1&2 - Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 11,
+      "type": "mcq",
+      "prompt": "(THPT Lê Lợi - Thanh Hóa 2025) Khảo sát thời gian tập thể dục của một số học sinh khối $11$ thu được mẫu số liệu ghép nhóm sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Thời gian (phút)} & [0;20) & [20;40) & [40;60) & [60;80) & [80;100) \\\\ \\hline \\text{Số học sinh} & 5 & 9 & 12 & 10 & 6 \\\\ \\hline \\end{array}$$\nNhóm chứa trung vị của mẫu số liệu trên là:",
+      "points": 1,
+      "sort_order": 11,
+      "choices": [
+        "$[20;40)$.",
+        "$[40;60)$.",
+        "$[60;80)$.",
+        "$[80;100)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Mẫu số liệu có kích thước $n = 42 \\Rightarrow \\dfrac{n}{2} = 21$ nên trung vị thuộc nhóm $[40;60)$.",
+        "source": "THPT Lê Lợi - Thanh Hóa 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 12,
+      "type": "mcq",
+      "prompt": "(Cụm trường THPT Hải Dương 2025) Người ta ghi lại tốc độ của $40$ ô tô khi đi qua một trạm đo tốc độ và có được bảng số liệu sau:\n$$\\begin{array}{|c|c|c|c|c|c|c|c|c|c|} \\hline 48,5 & 43 & 50 & 55 & 45 & 60 & 53 & 55,5 & 44 & 65 \\\\ \\hline 51 & 62,5 & 41 & 44,5 & 57 & 57 & 68 & 49 & 46,5 & 53,5 \\\\ \\hline 61 & 49,5 & 54 & 62 & 59 & 56 & 47 & 50 & 60 & 61 \\\\ \\hline 49,5 & 52,5 & 57 & 47 & 50 & 55 & 45 & 47,5 & 48 & 61,5 \\\\ \\hline \\end{array}$$\nGhép nhóm bảng số liệu trên thành các nhóm có độ rộng bằng nhau và nhóm đầu tiên là nửa khoảng $[40;45)$ thì khoảng biến thiên của mẫu số liệu ghép nhóm nói trên là:",
+      "points": 1,
+      "sort_order": 12,
+      "choices": [
+        "$30$.",
+        "$40$.",
+        "$35$.",
+        "$45$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Giá trị nhỏ nhất là $41$ và lớn nhất là $68$. Bảng tần số ghép nhóm có $6$ nhóm: $[40;45), [45;50), [50;55), [55;60), [60;65), [65;70)$ với các tần số $4; 10; 8; 8; 6; 4$. Khoảng biến thiên là $70 - 40 = 30$.",
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "level": "Thông hiểu",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 13,
+      "type": "mcq",
+      "prompt": "(Chuyên Phan Bội Châu - Nghệ An 2025) Cho mẫu số liệu ghép nhóm có bảng tần số như sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Nhóm} & [16;21) & [21;26) & [26;31) & [31;36) & [36;41) \\\\ \\hline \\text{Tần số} & 4 & 6 & 8 & 18 & 4 \\\\ \\hline \\end{array}$$\nTính số trung bình của mẫu số liệu trên:",
+      "points": 1,
+      "sort_order": 13,
+      "choices": [
+        "$31$.",
+        "$32$.",
+        "$30$.",
+        "$29$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Giá trị đại diện lần lượt là $18,5; 23,5; 28,5; 33,5; 38,5$ và cỡ mẫu $n = 40$. Số trung bình $\\bar{x} = \\dfrac{1}{40}(18,5\\cdot 4 + 23,5\\cdot 6 + 28,5\\cdot 8 + 33,5\\cdot 18 + 38,5\\cdot 4) = 30$.",
+        "source": "Chuyên Phan Bội Châu - Nghệ An 2025",
+        "level": "Thông hiểu",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 14,
+      "type": "mcq",
+      "prompt": "(HSG Hải Phòng 2025) Bảng dưới đây biểu diễn mẫu số liệu ghép nhóm về thời gian chạy cự li $100\\text{m}$ của $20$ vận động viên trong một buổi luyện tập (đơn vị: giây):\n$$\\begin{array}{|c|c|c|c|c|} \\hline \\text{Nhóm} & [10,2;10,4) & [10,4;10,6) & [10,6;10,8) & [10,8;11) \\\\ \\hline \\text{Tần số} & 3 & 7 & 8 & 2 \\\\ \\hline \\end{array}$$\nSố trung bình của mẫu số liệu trên gần nhất với giá trị nào dưới đây?",
+      "points": 1,
+      "sort_order": 14,
+      "choices": [
+        "$10,6$.",
+        "$10,3$.",
+        "$10,4$.",
+        "$10,8$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Giá trị đại diện lần lượt là $10,3; 10,5; 10,7; 10,9$. Số trung bình $\\bar{x} = \\dfrac{10,3\\cdot 3 + 10,5\\cdot 7 + 10,7\\cdot 8 + 10,9\\cdot 2}{20} = 10,59 \\approx 10,6$.",
+        "source": "HSG Hải Phòng 2025",
+        "level": "Thông hiểu",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 15,
+      "type": "mcq",
+      "prompt": "(THPT Kinh Môn - Hải Dương 2025) Cho mẫu số liệu ghép nhóm về thống kê thời gian hoàn thành (phút) một bài kiểm tra trực tuyến của $100$ học sinh, ta có bảng số liệu sau:\n$$\\begin{array}{|c|c|c|c|c|c|c|} \\hline \\text{Thời gian (phút)} & [33;35) & [35;37) & [37;39) & [39;41) & [41;43) & [43;45) \\\\ \\hline \\text{Số học sinh} & 4 & 13 & 38 & 27 & 14 & 4 \\\\ \\hline \\end{array}$$\nThời gian trung bình để $100$ học sinh hoàn thành bài kiểm tra là:",
+      "points": 1,
+      "sort_order": 15,
+      "choices": [
+        "$39,28$ phút.",
+        "$38,29$ phút.",
+        "$38,92$ phút.",
+        "$39,82$ phút."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Ta có thời gian trung bình là $\\bar{x} = \\dfrac{4\\cdot 34 + 13\\cdot 36 + 38\\cdot 38 + 27\\cdot 40 + 14\\cdot 42 + 4\\cdot 44}{100} = 38,92$ phút.",
+        "source": "THPT Kinh Môn - Hải Dương 2025",
+        "level": "Thông hiểu",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 16,
+      "type": "mcq",
+      "prompt": "(HSG Vũng Tàu 2025) Người ta tiến hành phỏng vấn $40$ người về một mẫu áo sơ mi nam (cỡ tròn). Người điều tra yêu cầu cho điểm mẫu áo đó theo thang điểm là $100$. Kết quả được trình bày trong bảng ghép nhóm sau:\n$$\\begin{array}{|c|c|c|c|c|c|c|} \\hline \\text{Nhóm} & [50;60) & [60;70) & [70;80) & [80;90) & [90;100) &  \\\\ \\hline \\text{Tần số} & 4 & 5 & 23 & 5 & 3 & N=40 \\\\ \\hline \\end{array}$$\nTrung vị của mẫu số liệu ghép nhóm trên (kết quả được làm tròn đến hàng đơn vị) có giá trị là:",
+      "points": 1,
+      "sort_order": 16,
+      "choices": [
+        "$74$.",
+        "$75$.",
+        "$76$.",
+        "$77$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Nhóm chứa trung vị là $[70;80)$. Trung vị là $M_e = 70 + \\dfrac{\\dfrac{40}{2} - (4 + 5)}{23}(80 - 70) \\approx 75$.",
+        "source": "HSG Vũng Tàu 2025",
+        "level": "Thông hiểu",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 17,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Sơn 1 - Thanh Hóa 2025) Thống kê điểm kiểm tra giữa kỳ $1$ môn Toán của $30$ học sinh lớp $12\\text{B}$ được ghi lại ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|} \\hline \\text{Điểm} & [2;4) & [4;6) & [6;8) & [8;10) \\\\ \\hline \\text{Số học sinh} & 2 & 5 & 7 & 16 \\\\ \\hline \\end{array}$$\nSố trung vị của mẫu số liệu trên gần nhất với số nào trong các số sau?",
+      "points": 1,
+      "sort_order": 17,
+      "choices": [
+        "$7,9$.",
+        "$7,6$.",
+        "$8,5$.",
+        "$8,9$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Ta có $\\dfrac{n}{2} = 15 \\Rightarrow M_e \\in [8;10)$. Khi đó $M_e = 8 + \\dfrac{15 - 2 - 5 - 7}{16} \\cdot (10 - 8) = 8,125$.",
+        "source": "THPT Triệu Sơn 1 - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 18,
+      "type": "mcq",
+      "prompt": "(THPT Lê Xoay - Vĩnh Phúc 2025) Điều tra về chiều cao của $100$ học sinh lớp $10$ Trường THPT Lê Xoay ta được kết quả:\n$$\\begin{array}{|c|c|c|c|c|c|c|c|} \\hline \\text{Chiều cao (cm)} & [150;152) & [152;154) & [154;156) & [156;158) & [158;160) & [160;162) & [162;168) \\\\ \\hline \\text{Số học sinh} & 5 & 18 & 40 & 25 & 8 & 3 & 1 \\\\ \\hline \\end{array}$$\nSố học sinh có chiều cao từ $156\\text{cm}$ trở lên là:",
+      "points": 1,
+      "sort_order": 18,
+      "choices": [
+        "$37$.",
+        "$12$.",
+        "$25$.",
+        "$77$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Số học sinh có chiều cao từ $156\\text{cm}$ trở lên là $25 + 8 + 3 + 1 = 37$.",
+        "source": "THPT Lê Xoay - Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 19,
+      "type": "mcq",
+      "prompt": "(Cụm trường THPT Bắc Ninh 2025) Khảo sát thời gian chạy bộ trong một ngày của một số học sinh lớp $12$ thu được mẫu số liệu ghép nhóm sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Thời gian (phút)} & [0;20) & [20;40) & [40;60) & [60;80) & [80;100) \\\\ \\hline \\text{Số học sinh} & 2 & 11 & 15 & 6 & 7 \\\\ \\hline \\end{array}$$\nNhóm chứa mốt của mẫu số liệu này là:",
+      "points": 1,
+      "sort_order": 19,
+      "choices": [
+        "$[40;60)$.",
+        "$[60;80)$.",
+        "$[80;100)$.",
+        "$[20;40)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Nhóm $[40;60)$ là nhóm có tần số cao nhất ($15$) do đó nhóm chứa mốt là nhóm $[40;60)$.",
+        "source": "Cụm trường THPT Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 20,
+      "type": "mcq",
+      "prompt": "(Sở Hà Tĩnh 2025) Trong tuần lễ bảo vệ môi trường, các học sinh khối $12$ tiến hành thu nhặt vỏ chai nhựa để tái chế. Nhà trường thông báo kết quả thu nhặt vỏ chai của học sinh khối $12$ ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Số vỏ chai nhựa} & [10,5;15,5) & [15,5;20,5) & [20,5;25,5) & [25,5;30,5) & [30,5;35,5) \\\\ \\hline \\text{Số học sinh} & 53 & 82 & 48 & 39 & 18 \\\\ \\hline \\end{array}$$\nHãy tìm trung vị của mẫu số liệu ghép nhóm trên:",
+      "points": 1,
+      "sort_order": 20,
+      "choices": [
+        "$19,51$.",
+        "$19,59$.",
+        "$20,1$.",
+        "$18,3$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Ta có $n = 53 + 82 + 48 + 39 + 18 = 240 \\Rightarrow \\dfrac{n}{2} = 120$. Suy ra $Q_2$ thuộc nhóm $[15,5;20,5)$: $Q_2 = 15,5 + \\dfrac{120 - 53}{82} \\cdot (20,5 - 15,5) \\approx 19,59$.",
+        "source": "Sở Hà Tĩnh 2025",
+        "level": "Thông hiểu",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 21,
+      "type": "mcq",
+      "prompt": "(Chuyên Hạ Long 2025) Cho mẫu số liệu ghép nhóm:\n$$\\begin{array}{|c|c|c|c|c|c|c|} \\hline \\text{Nhóm} & [4;6) & [6;8) & [8;10) & [10;12) & [12;14) & [14;16) \\\\ \\hline \\text{Tần số} & 3 & 5 & 8 & 9 & 6 & 4 \\\\ \\hline \\end{array}$$\nTính số trung bình của mẫu số liệu (kết quả làm tròn đến hàng phần chục)?",
+      "points": 1,
+      "sort_order": 21,
+      "choices": [
+        "$10,3$.",
+        "$10,4$.",
+        "$10,5$.",
+        "$10,2$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Cỡ mẫu $n = 3 + 5 + 8 + 9 + 6 + 4 = 35$. Giá trị đại diện lần lượt là $5; 7; 9; 11; 13; 15$. Số trung bình $\\bar{x} = \\dfrac{3\\cdot 5 + 5\\cdot 7 + 8\\cdot 9 + 9\\cdot 11 + 6\\cdot 13 + 4\\cdot 15}{35} \\approx 10,3$.",
+        "source": "Chuyên Hạ Long 2025",
+        "level": "Thông hiểu",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 22,
+      "type": "mcq",
+      "prompt": "(Chuyên Thái Bình 2025) Tìm hiểu thời gian hoàn thành một bài tập (đơn vị: phút) của một nhóm học sinh thu được kết quả sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Thời gian (phút)} & [0;4) & [4;8) & [8;12) & [12;16) & [16;20) \\\\ \\hline \\text{Số học sinh} & 2 & 4 & 7 & 4 & 3 \\\\ \\hline \\end{array}$$\nThời gian trung bình (phút) để hoàn thành bài tập của các em học sinh là:",
+      "points": 1,
+      "sort_order": 22,
+      "choices": [
+        "$10,4$.",
+        "$7$.",
+        "$11,3$.",
+        "$12,5$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Phần tử đại diện các nhóm lần lượt là $2; 6; 10; 14; 18$. Thời gian trung bình là $\\bar{x} = \\dfrac{2\\cdot 2 + 6\\cdot 4 + 10\\cdot 7 + 14\\cdot 4 + 18\\cdot 3}{2 + 4 + 7 + 4 + 3} = 10,4$.",
+        "source": "Chuyên Thái Bình 2025",
+        "level": "Thông hiểu",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 23,
+      "type": "mcq",
+      "prompt": "(THPT Trần Nguyên Hãn - Hải Phòng 2025) Số liệu thống kê điểm kiểm tra giữa kì I môn Toán của lớp $11\\text{A}$:\n$$\\begin{array}{|c|c|c|c|} \\hline \\text{Số điểm} & [4;7) & [7;9) & [9;10] \\\\ \\hline \\text{Số học sinh} & 21 & 15 & 9 \\\\ \\hline \\end{array}$$\nĐiểm trung bình lớp $11\\text{A}$ (kết quả làm tròn đến hàng phần trăm) là:",
+      "points": 1,
+      "sort_order": 23,
+      "choices": [
+        "$7,13$.",
+        "$7,11$.",
+        "$7,15$.",
+        "$7,18$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Giá trị đại diện của các nhóm lần lượt là $x_1 = 5,5; x_2 = 8; x_3 = 9,5$. Khi đó $\\bar{x} = \\dfrac{21\\cdot 5,5 + 15\\cdot 8 + 9\\cdot 9,5}{21 + 15 + 9} = \\dfrac{321}{45} \\approx 7,13$.",
+        "source": "THPT Trần Nguyên Hãn - Hải Phòng 2025",
+        "level": "Thông hiểu",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 24,
+      "type": "mcq",
+      "prompt": "(Sở Vĩnh Phúc 2025) Cân nặng theo thống kê của một nhóm học sinh cho ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Cân nặng (kg)} & [40;45) & [45;50) & [50;55) & [55;60) & [60;65) \\\\ \\hline \\text{Tần số} & 5 & 10 & 8 & 7 & 6 \\\\ \\hline \\end{array}$$\nKhoảng biến thiên của mẫu số liệu ghép nhóm trên là:",
+      "points": 1,
+      "sort_order": 24,
+      "choices": [
+        "$20$.",
+        "$25$.",
+        "$5$.",
+        "$30$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Khoảng biến thiên của mẫu số liệu là $R = 65 - 40 = 25$.",
+        "source": "Sở Vĩnh Phúc 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 25,
+      "type": "mcq",
+      "prompt": "(Cụm trường Hưng Yên 2025) Cô Hải thống kê lại đường kính thân gỗ của một số cây xoan đào $6$ năm tuổi được trồng ở sân trường thu được mẫu số liệu ghép nhóm sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Đường kính (cm)} & [40;45) & [45;50) & [50;55) & [55;60) & [60;65) \\\\ \\hline \\text{Tần số} & 5 & 20 & 18 & 7 & 3 \\\\ \\hline \\end{array}$$\nKhoảng biến thiên của mẫu số liệu ghép nhóm trên là:",
+      "points": 1,
+      "sort_order": 25,
+      "choices": [
+        "$6$.",
+        "$25$.",
+        "$15$.",
+        "$30$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Ta có $R = 65 - 40 = 25$.",
+        "source": "Cụm trường Hưng Yên 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 26,
+      "type": "mcq",
+      "prompt": "(Cụm trường Hải Dương 2025) Thống kê điểm môn Toán của một số học sinh trong đợt khảo sát lần $1$, ta được kết quả như bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|c|c|} \\hline \\text{Điểm} & [6,5;7) & [7;7,5) & [7,5;8) & [8;8,5) & [8,5;9) & [9;9,5) & [9,5;10) \\\\ \\hline \\text{Số học sinh} & 7 & 10 & 17 & 24 & 13 & 8 & 5 \\\\ \\hline \\end{array}$$\nKhoảng biến thiên của mẫu số liệu trên bằng:",
+      "points": 1,
+      "sort_order": 26,
+      "choices": [
+        "$3,5$.",
+        "$16,5$.",
+        "$3$.",
+        "$2$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Khoảng biến thiên của mẫu số liệu trên bằng $10 - 6,5 = 3,5$.",
+        "source": "Cụm trường Hải Dương 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 27,
+      "type": "mcq",
+      "prompt": "(Sở Thừa Thiên Huế 2025) Các bạn học sinh lớp $11\\text{A}$ trả lời $40$ câu hỏi trong một bài kiểm tra. Kết quả được thống kê ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Số câu trả lời đúng} & [16;21) & [21;26) & [26;31) & [31;36) & [36;41) \\\\ \\hline \\text{Số học sinh} & 4 & 6 & 8 & 18 & 4 \\\\ \\hline \\end{array}$$\nXác định nhóm có tần số lớn nhất:",
+      "points": 1,
+      "sort_order": 27,
+      "choices": [
+        "$[16;21)$.",
+        "$[21;26)$.",
+        "$[31;36)$.",
+        "$[36;41)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Dựa vào bảng số liệu, số học sinh của nhóm $[31;36)$ là $18$. Do đó đây là nhóm có tần số lớn nhất.",
+        "source": "Sở Thừa Thiên Huế 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 28,
+      "type": "mcq",
+      "prompt": "(Chuyên Hoàng Văn Thụ - Hòa Bình 2025) Để chuẩn bị cho tiết học \"Mạng xã hội: Lợi và hại\" (Hoạt động thực hành trải nghiệm môn Toán, lớp 10), giáo viên đã quan sát thời gian sử dụng mạng xã hội trong một ngày của học sinh trong lớp $10\\text{B}$ minh họa và thu được mẫu số liệu sau:\n$$\\begin{array}{|c|c|c|c|c|c|c|} \\hline \\text{Thời gian sử dụng (phút)} & [10;20) & [20;30) & [30;40) & [40;50) & [50;60) & [60;70) \\\\ \\hline \\text{Số học sinh} & 7 & 15 & 10 & 5 & 4 & 4 \\\\ \\hline \\end{array}$$\nThời gian trung bình (phút) sử dụng mạng xã hội của học sinh lớp $10\\text{B}$ xấp xỉ bằng:",
+      "points": 1,
+      "sort_order": 28,
+      "choices": [
+        "$45$.",
+        "$31,5$.",
+        "$35,7$.",
+        "$34,1$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Thời gian trung bình sử dụng mạng xã hội của học sinh lớp $10\\text{B}$ là $\\bar{x} = \\dfrac{15\\cdot 7 + 25\\cdot 15 + 35\\cdot 10 + 45\\cdot 5 + 55\\cdot 4 + 65\\cdot 4}{45} \\approx 34,1$.",
+        "source": "Chuyên Hoàng Văn Thụ - Hòa Bình 2025",
+        "level": "Thông hiểu",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 29,
+      "type": "mcq",
+      "prompt": "(THPT Sào Nam - Quảng Nam 2025) Thống kê điểm kiểm tra học kì $1$ môn Toán của $300$ học sinh lớp $12$ được mô tả ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|} \\hline \\text{Điểm} & [2;4) & [4;6) & [6;8) & [8;10] \\\\ \\hline \\text{Số học sinh} & 20 & 50 & 70 & 160 \\\\ \\hline \\end{array}$$\nTính số trung bình của mẫu số liệu trên làm tròn đến hàng phần trăm:",
+      "points": 1,
+      "sort_order": 29,
+      "choices": [
+        "$8,25$.",
+        "$7,50$.",
+        "$7,46$.",
+        "$7,47$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Giá trị đại diện lần lượt là $3; 5; 7; 9$. Số trung bình $\\bar{x} = \\dfrac{3\\cdot 20 + 5\\cdot 50 + 7\\cdot 70 + 9\\cdot 160}{20 + 50 + 70 + 160} \\approx 7,47$.",
+        "source": "THPT Sào Nam - Quảng Nam 2025",
+        "level": "Thông hiểu",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 30,
+      "type": "mcq",
+      "prompt": "(THPT Anh Sơn 3 - Nghệ An 2025) Mỗi ngày bác Hương đều đi bộ để rèn luyện sức khỏe. Quãng đường đi bộ mỗi ngày (đơn vị: km) của bác Hương trong $20$ ngày được thống kê lại ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Quãng đường (km)} & [2,7;3,0) & [3,0;3,3) & [3,3;3,6) & [3,6;3,9) & [3,9;4,2) \\\\ \\hline \\text{Số ngày} & 3 & 6 & 5 & 4 & 2 \\\\ \\hline \\end{array}$$\nKhoảng biến thiên của mẫu số liệu ghép nhóm là:",
+      "points": 1,
+      "sort_order": 30,
+      "choices": [
+        "$0,3$.",
+        "$1,2$.",
+        "$0,9$.",
+        "$1,5$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Khoảng biến thiên của mẫu số liệu ghép nhóm là $4,2 - 2,7 = 1,5$.",
+        "source": "THPT Anh Sơn 3 - Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 31,
+      "type": "mcq",
+      "prompt": "(THPT Trực Ninh - Nam Định 2025) Xét mẫu số liệu ghép nhóm cho bởi bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|c|} \\hline \\text{Nhóm} & [8;11) & [11;14) & [14;17) & [17;20) & [20;23) &  \\\\ \\hline \\text{Tần số} & 5 & 6 & 8 & 7 & 4 & n=30 \\\\ \\hline \\end{array}$$\nKhoảng biến thiên của mẫu số liệu ghép nhóm trên bằng:",
+      "points": 1,
+      "sort_order": 31,
+      "choices": [
+        "$9$.",
+        "$12$.",
+        "$15$.",
+        "$31$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Khoảng biến thiên $R = a_6 - a_1 = 23 - 8 = 15$.",
+        "source": "THPT Trực Ninh - Nam Định 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 32,
+      "type": "mcq",
+      "prompt": "(Sở Ninh Bình 2025) Thống kê số điện (kWh) của $30$ lớp học ở trường THPT X dùng trong một tháng được kết quả sau:\n$$\\begin{array}{|c|c|c|c|c|c|c|} \\hline \\text{Số điện (kWh)} & [50;60) & [60;70) & [70;80) & [80;90) & [90;100) & [100;110) \\\\ \\hline \\text{Số lớp} & 1 & 5 & 6 & 9 & 7 & 2 \\\\ \\hline \\end{array}$$\nKhoảng biến thiên của mẫu số liệu ghép nhóm đã cho bằng bao nhiêu?",
+      "points": 1,
+      "sort_order": 32,
+      "choices": [
+        "$50$.",
+        "$40$.",
+        "$10$.",
+        "$60$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Khoảng biến thiên của mẫu số liệu ghép nhóm đã cho $R = 110 - 50 = 60$.",
+        "source": "Sở Ninh Bình 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 33,
+      "type": "mcq",
+      "prompt": "(Cụm trường THPT Hải Dương 2025) Số lượng khách nữ mua hàng thời trang một ngày của cửa hàng được thống kê trong bảng tần số ghép nhóm như sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Khoảng tuổi} & [20;30) & [30;40) & [40;50) & [50;60) & [60;70) \\\\ \\hline \\text{Số khách hàng nữ} & 3 & 9 & 6 & 4 & 2 \\\\ \\hline \\end{array}$$\nKhoảng biến thiên của mẫu số liệu ghép nhóm trên là:",
+      "points": 1,
+      "sort_order": 33,
+      "choices": [
+        "$50$.",
+        "$9$.",
+        "$60$.",
+        "$70$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Khoảng biến thiên của mẫu số liệu ghép nhóm trên là $70 - 20 = 50$.",
+        "source": "Cụm trường THPT Hải Dương 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 34,
+      "type": "mcq",
+      "prompt": "(Sở Bạc Liêu 2025) Người ta thống kê tốc độ của một số xe ô tô di chuyển qua một trạm kiểm soát trên đường cao tốc trong một khoảng thời gian ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Tốc độ (km/h)} & [75;80) & [80;85) & [85;90) & [90;95) & [95;100) \\\\ \\hline \\text{Số xe} & 17 & 20 & 23 & 25 & 15 \\\\ \\hline \\end{array}$$\nKhoảng biến thiên của mẫu số liệu ghép nhóm trên là:",
+      "points": 1,
+      "sort_order": 34,
+      "choices": [
+        "$5\\text{ km/h}$.",
+        "$75\\text{ km/h}$.",
+        "$25\\text{ km/h}$.",
+        "$100\\text{ km/h}$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Khoảng biến thiên $R = 100 - 75 = 25\\text{ (km/h)}$.",
+        "source": "Sở Bạc Liêu 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 35,
+      "type": "mcq",
+      "prompt": "(Sở Hà Nội 2025) Cân nặng (kg) của $50$ quả mít trong đợt thu hoạch của một trang trại được thống kê trong bảng dưới đây:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Cân nặng (kg)} & [4;6) & [6;8) & [8;10) & [10;12) & [12;14) \\\\ \\hline \\text{Số quả mít} & 6 & 12 & 19 & 9 & 4 \\\\ \\hline \\end{array}$$\nKhối lượng trung bình của $50$ quả mít trên là:",
+      "points": 1,
+      "sort_order": 35,
+      "choices": [
+        "$8,52\\text{ kg}$.",
+        "$8,72\\text{ kg}$.",
+        "$9,12\\text{ kg}$.",
+        "$8,82\\text{ kg}$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Khối lượng trung bình của $50$ quả mít trên là $\\bar{x} = \\dfrac{5\\cdot 6 + 7\\cdot 12 + 9\\cdot 19 + 11\\cdot 9 + 13\\cdot 4}{50} = 8,72\\text{ kg}$.",
+        "source": "Sở Hà Nội 2025",
+        "level": "Thông hiểu",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 36,
+      "type": "mcq",
+      "prompt": "(Sở Hà Nội 2025) Bảng thống kê dưới đây cho biết thu nhập bình quân đầu người/tháng của người dân Hà Nội (tính theo triệu đồng) trong giai đoạn từ năm $2018$ đến năm $2024$:\n$$\\begin{array}{|c|c|c|c|c|c|c|c|} \\hline \\text{Năm} & 2018 & 2019 & 2020 & 2021 & 2022 & 2023 & 2024 \\\\ \\hline \\text{Thu nhập (triệu đồng/tháng)} & 5,901 & 6,403 & 6,203 & 6,002 & 6,423 & 6,896 & 7,546 \\\\ \\hline \\end{array}$$\nMẫu số liệu trong bảng thống kê trên có khoảng biến thiên bằng bao nhiêu? (Tính theo triệu đồng)",
+      "points": 1,
+      "sort_order": 36,
+      "choices": [
+        "$1,645$.",
+        "$2,660$.",
+        "$0,867$.",
+        "$2,290$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Mẫu số liệu thống kê trên có khoảng biến thiên bằng $7,546 - 5,901 = 1,645$.",
+        "source": "Sở Hà Nội 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 37,
+      "type": "mcq",
+      "prompt": "(Sở Tuyên Quang 2025) Bảng dưới đây thống kê cự ly ném tạ của một vận động viên:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Cự ly (m)} & [19;19,5) & [19,5;20) & [20;20,5) & [20,5;21) & [21;21,5) \\\\ \\hline \\text{Tần số} & 13 & 45 & 24 & 12 & 6 \\\\ \\hline \\end{array}$$\nKhoảng biến thiên của mẫu số liệu ghép nhóm trên là:",
+      "points": 1,
+      "sort_order": 37,
+      "choices": [
+        "$3$.",
+        "$2,5$.",
+        "$2$.",
+        "$1,5$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Khoảng biến thiên của mẫu số liệu đã cho là $R = 21,5 - 19 = 2,5$.",
+        "source": "Sở Tuyên Quang 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 38,
+      "type": "mcq",
+      "prompt": "(THPT Triệu Sơn 1 - Thanh Hóa 2025) Thống kê lợi nhuận hàng tháng (đơn vị: triệu đồng) trong $20$ tháng của một nhà đầu tư được cho như sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Lợi nhuận} & [10;20) & [20;30) & [30;40) & [40;50) & [50;60) \\\\ \\hline \\text{Số tháng} & 2 & 4 & 8 & 4 & 2 \\\\ \\hline \\end{array}$$\nLợi nhuận trung bình một tháng của nhà đầu tư là bao nhiêu triệu đồng?",
+      "points": 1,
+      "sort_order": 38,
+      "choices": [
+        "$\\bar{x} = 33$.",
+        "$\\bar{x} = 36$.",
+        "$\\bar{x} = 35$.",
+        "$\\bar{x} = 34$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Giá trị đại diện lần lượt là $15; 25; 35; 45; 55$. Ta có $\\bar{x} = \\dfrac{15\\cdot 2 + 25\\cdot 4 + 35\\cdot 8 + 45\\cdot 4 + 55\\cdot 2}{20} = 35$.",
+        "source": "THPT Triệu Sơn 1 - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 39,
+      "type": "mcq",
+      "prompt": "(Chuyên Phan Bội Châu - Hà Tĩnh 2025) Mỗi ngày ông An đều đi bộ để rèn luyện sức khoẻ. Quãng đường đi bộ mỗi ngày (đơn vị: km) của ông An trong $20$ ngày được thống kê lại ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Quãng đường (km)} & [2,7;3,0) & [3,0;3,3) & [3,3;3,6) & [3,6;3,9) & [3,9;4,2) \\\\ \\hline \\text{Số ngày} & 3 & 6 & 5 & 4 & 2 \\\\ \\hline \\end{array}$$\nKhoảng biến thiên của mẫu số liệu trên là:",
+      "points": 1,
+      "sort_order": 39,
+      "choices": [
+        "$1,2$.",
+        "$0,9$.",
+        "$1,5$.",
+        "$0,3$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Khoảng biến thiên của mẫu số liệu trên là $R = 4,2 - 2,7 = 1,5$.",
+        "source": "Chuyên Phan Bội Châu - Hà Tĩnh 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 40,
+      "type": "mcq",
+      "prompt": "(Sở Bắc Ninh 2025) Kết quả khảo sát về chi phí trung bình cho mỗi suất ăn trưa cho các bạn sinh viên được tổng kết lại ở bảng số liệu sau (đơn vị: nghìn đồng):\n$$\\begin{array}{|c|c|c|c|c|} \\hline \\text{Giá tiền ăn} & [25;30) & [30;35) & [35;40) & [40;45) \\\\ \\hline \\text{Số sinh viên} & 90 & 48 & 25 & 17 \\\\ \\hline \\end{array}$$\nKhoảng biến thiên của mẫu số liệu ghép nhóm đã cho bằng:",
+      "points": 1,
+      "sort_order": 40,
+      "choices": [
+        "$0,286$.",
+        "$0,826$.",
+        "$0,115$.",
+        "$20$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Khoảng biến thiên của mẫu số liệu ghép nhóm trên là $R = 45 - 25 = 20$.",
+        "source": "Sở Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 41,
+      "type": "mcq",
+      "prompt": "(THPT Anh Sơn 3 - Nghệ An 2025) Cô Hà thống kê lại đường kính thân gỗ của một số cây xoan đào $6$ năm tuổi được trồng ở một lâm trường ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Đường kính (cm)} & [40;45) & [45;50) & [50;55) & [55;60) & [60;65) \\\\ \\hline \\text{Tần số} & 5 & 20 & 18 & 7 & 3 \\\\ \\hline \\end{array}$$\nKhoảng biến thiên của mẫu số liệu ghép nhóm trên là:",
+      "points": 1,
+      "sort_order": 41,
+      "choices": [
+        "$25$.",
+        "$30$.",
+        "$69,8$.",
+        "$6$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Khoảng biến thiên của mẫu số liệu ghép nhóm trên là $65 - 40 = 25$.",
+        "source": "THPT Anh Sơn 3 - Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 42,
+      "type": "mcq",
+      "prompt": "(Sở Đà Nẵng 2025) Khảo sát thời gian tự học của một số học sinh lớp $11$ trong một ngày, người ta thu được mẫu số liệu ghép nhóm sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Thời gian (phút)} & [0;30) & [30;60) & [60;90) & [90;120) & [120;150) \\\\ \\hline \\text{Số học sinh} & 8 & 14 & 11 & 9 & 3 \\\\ \\hline \\end{array}$$\nNhóm chứa trung vị của mẫu số liệu trên là:",
+      "points": 1,
+      "sort_order": 42,
+      "choices": [
+        "$[0;30)$.",
+        "$[30;60)$.",
+        "$[90;120)$.",
+        "$[60;90)$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Tổng số học sinh là $45$ suy ra trung vị là $x_{23}$. Vì $8 + 14 = 22 < 23$ và $22 + 11 = 33 \\ge 23$ nên trung vị thuộc nhóm $[60;90)$.",
+        "source": "Sở Đà Nẵng 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 43,
+      "type": "mcq",
+      "prompt": "(Sở Lào Cai 2025) Một công ty cung cấp nước sạch thống kê lượng nước các hộ gia đình trong một khu vực tiêu thụ trong một tháng ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Lượng nước tiêu thụ (m}^3\\text{)} & [3;6) & [6;9) & [9;12) & [12;15) & [15;18) \\\\ \\hline \\text{Số hộ gia đình} & 20 & 60 & 40 & 32 & 7 \\\\ \\hline \\end{array}$$\nKhoảng biến thiên của mẫu số liệu ghép nhóm trên là:",
+      "points": 1,
+      "sort_order": 43,
+      "choices": [
+        "$20\\text{ m}^3$.",
+        "$18\\text{ m}^3$.",
+        "$3\\text{ m}^3$.",
+        "$15\\text{ m}^3$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Khoảng biến thiên của mẫu số liệu ghép nhóm trên là $18 - 3 = 15\\text{ (m}^3\\text{)}$.",
+        "source": "Sở Lào Cai 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 44,
+      "type": "mcq",
+      "prompt": "(Sở Quảng Nam 2025) Khảo sát thời gian sử dụng điện thoại trong một ngày của một lớp học thu được mẫu số liệu ghép nhóm sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Thời gian (phút)} & [0;20) & [20;40) & [40;60) & [60;80) & [80;100) \\\\ \\hline \\text{Số học sinh} & 7 & 11 & 15 & 6 & 3 \\\\ \\hline \\end{array}$$\nKhoảng biến thiên của mẫu số liệu trên bằng:",
+      "points": 1,
+      "sort_order": 44,
+      "choices": [
+        "$100$.",
+        "$42$.",
+        "$15$.",
+        "$50$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Khoảng biến thiên của mẫu số liệu là $100 - 0 = 100$.",
+        "source": "Sở Quảng Nam 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 45,
+      "type": "mcq",
+      "prompt": "(Sở Long An 2025) Mỗi ngày bạn Nam đều làm bài tập môn Toán có bảng thống kê ghép nhóm về thời gian làm bài tập mỗi ngày của bạn Nam (đơn vị: phút) trong $60$ ngày như sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Thời gian (phút)} & [70;80) & [80;90) & [90;100) & [100;110) & [110;120) \\\\ \\hline \\text{Số ngày} & 1 & 7 & 24 & 3 & 25 \\\\ \\hline \\end{array}$$\nKhoảng biến thiên của mẫu số liệu ghép nhóm là:",
+      "points": 1,
+      "sort_order": 45,
+      "choices": [
+        "$50$.",
+        "$25$.",
+        "$24$.",
+        "$120$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Khoảng biến thiên của mẫu số liệu ghép nhóm là $120 - 70 = 50$.",
+        "source": "Sở Long An 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 46,
+      "type": "mcq",
+      "prompt": "(Liên Trường Nghệ An 2025) Cho mẫu số liệu ghép nhóm tần số như bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|c|} \\hline \\text{Giá trị} & [135;140) & [140;145) & [145;150) & [150;155) & [155;160) & [160;165) \\\\ \\hline \\text{Tần số} & 6 & 10 & 12 & 20 & 8 & 14 \\\\ \\hline \\end{array}$$\nMốt của mẫu số liệu đã cho là:",
+      "points": 1,
+      "sort_order": 46,
+      "choices": [
+        "$151,75$.",
+        "$151,5$.",
+        "$152$.",
+        "$20$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Nhóm chứa mốt là $[150;155)$, ta tính được $M_o = 150 + \\dfrac{20 - 12}{(20 - 12) + (20 - 8)}(155 - 150) = 152$.",
+        "source": "Liên Trường Nghệ An 2025",
+        "level": "Thông hiểu",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 47,
+      "type": "mcq",
+      "prompt": "(THPT Hoằng Hóa 2 - Thanh Hóa 2025) Khảo sát thời gian tập thể dục của một số học sinh khối $11$ thu được mẫu số liệu ghép nhóm sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Thời gian (phút)} & [0;20) & [20;40) & [40;60) & [60;80) & [80;100) \\\\ \\hline \\text{Số học sinh} & 5 & 9 & 12 & 10 & 6 \\\\ \\hline \\end{array}$$\nMốt của mẫu số liệu trên là:",
+      "points": 1,
+      "sort_order": 47,
+      "choices": [
+        "$52$.",
+        "$42$.",
+        "$53$.",
+        "$54$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Tần số lớn nhất là $12$ nên nhóm chứa mốt là $[40;60)$. Ta có $M_o = 40 + \\dfrac{12 - 9}{(12 - 9) + (12 - 10)} \\cdot 20 = 52$.",
+        "source": "THPT Hoằng Hóa 2 - Thanh Hóa 2025",
+        "level": "Thông hiểu",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 48,
+      "type": "mcq",
+      "prompt": "(Cụm Ninh Giang - Tứ Kỳ - Gia Lộc 2025) Cô Hà thống kê lại đường kính thân gỗ của một số cây xoan đào $6$ năm tuổi được trồng ở một lâm trường ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Đường kính (cm)} & [40;45) & [45;50) & [50;55) & [55;60) & [60;65) \\\\ \\hline \\text{Tần số} & 5 & 20 & 18 & 7 & 3 \\\\ \\hline \\end{array}$$\nKhoảng biến thiên của mẫu số liệu ghép nhóm trên là bao nhiêu?",
+      "points": 1,
+      "sort_order": 48,
+      "choices": [
+        "$6$.",
+        "$30$.",
+        "$25$.",
+        "$69,8$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Khoảng biến thiên của mẫu số liệu ghép nhóm trên là $65 - 40 = 25$.",
+        "source": "Cụm Ninh Giang - Tứ Kỳ - Gia Lộc 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 49,
+      "type": "mcq",
+      "prompt": "(Sở Vũng Tàu 2025) Mỗi ngày bác Hương đều đi bộ để rèn luyện sức khoẻ. Quãng đường đi bộ mỗi ngày (đơn vị: km) của bác Hương trong $20$ ngày được thống kê lại ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Quãng đường (km)} & [2,7;3,0) & [3,0;3,3) & [3,3;3,6) & [3,6;3,9) & [3,9;4,2) \\\\ \\hline \\text{Số ngày} & 3 & 6 & 5 & 4 & 2 \\\\ \\hline \\end{array}$$\nTrung bình mỗi ngày bác Hương đi bộ được bao nhiêu km?",
+      "points": 1,
+      "sort_order": 49,
+      "choices": [
+        "$3,39$.",
+        "$11,62$.",
+        "$0,1314$.",
+        "$0,36$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Giá trị đại diện lần lượt là $2,85; 3,15; 3,45; 3,75; 4,05$. Trung bình mỗi ngày bác Hương đi bộ $\\bar{x} = \\dfrac{2,85\\cdot 3 + 3,15\\cdot 6 + 3,45\\cdot 5 + 3,75\\cdot 4 + 4,05\\cdot 2}{20} = 3,39$.",
+        "source": "Sở Vũng Tàu 2025",
+        "level": "Thông hiểu",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 50,
+      "type": "mcq",
+      "prompt": "(THPT Mai Trúc Loan - Hà Tĩnh 2025) Doanh thu bán hàng trong $20$ ngày được lựa chọn ngẫu nhiên của một cửa hàng được ghi lại ở bảng sau (đơn vị: triệu đồng):\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Doanh thu} & [5;7) & [7;9) & [9;11) & [11;13) & [13;15) \\\\ \\hline \\text{Số ngày} & 2 & 7 & 7 & 3 & 1 \\\\ \\hline \\end{array}$$\nKhoảng biến thiên của mẫu số liệu trên là giá trị nào trong các giá trị sau?",
+      "points": 1,
+      "sort_order": 50,
+      "choices": [
+        "$10$.",
+        "$6$.",
+        "$7$.",
+        "$15$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Khoảng biến thiên của mẫu số liệu trên là $R = 15 - 5 = 10$.",
+        "source": "THPT Mai Trúc Loan - Hà Tĩnh 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 51,
+      "type": "mcq",
+      "prompt": "(Cụm Chương Mỹ - Thanh Oai 2025) Anh Thắng ghi lại cự li $20$ lần ném tạ sắt $3$ kg của mình ở bảng sau (đơn vị: mét):\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Cự li (m)} & [9,2;10) & [10;10,8) & [10,8;11,6) & [11,6;12,4) & [12,4;13,2) \\\\ \\hline \\text{Số lần} & 4 & 1 & 7 & 5 & 3 \\\\ \\hline \\end{array}$$\nHãy ước lượng cự li trung bình mỗi lần ném tạ xa từ bảng trên:",
+      "points": 1,
+      "sort_order": 51,
+      "choices": [
+        "$10,96\\text{ m}$.",
+        "$11,28\\text{ m}$.",
+        "$11,52\\text{ m}$.",
+        "$12,23\\text{ m}$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Giá trị đại diện lần lượt là $9,6; 10,4; 11,2; 12; 12,8$. Ước lượng cự li trung bình là $\\bar{x} = \\dfrac{4\\cdot 9,6 + 1\\cdot 10,4 + 7\\cdot 11,2 + 5\\cdot 12 + 3\\cdot 12,8}{20} = 11,28\\text{ (m)}$.",
+        "source": "Cụm Chương Mỹ - Thanh Oai 2025",
+        "level": "Thông hiểu",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 52,
+      "type": "mcq",
+      "prompt": "(Cụm Chuyên Môn Đăk Lak 2025) Tìm hiểu thời gian hoàn thành một bài tập (đơn vị: phút) của một số học sinh thu được kết quả sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Thời gian (phút)} & [0;4) & [4;8) & [8;12) & [12;16) & [16;20) \\\\ \\hline \\text{Số học sinh} & 2 & 4 & 7 & 4 & 3 \\\\ \\hline \\end{array}$$\nTìm khoảng biến thiên cho mẫu số liệu ghép nhóm trên:",
+      "points": 1,
+      "sort_order": 52,
+      "choices": [
+        "$4$.",
+        "$15$.",
+        "$20$.",
+        "$16$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Ta có $R = 20 - 0 = 20$.",
+        "source": "Cụm Chuyên Môn Đăk Lak 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 53,
+      "type": "mcq",
+      "prompt": "(Sở Bắc Ninh 2025) Người ta thống kê tốc độ của một số xe ôtô di chuyển qua một trạm kiểm soát trên đường cao tốc trong một khoảng thời gian ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Tốc độ (km/h)} & [75;80) & [80;85) & [85;90) & [90;95) & [95;100) \\\\ \\hline \\text{Số xe} & 15 & 22 & 28 & 34 & 19 \\\\ \\hline \\end{array}$$\nKhoảng biến thiên của mẫu số liệu ghép nhóm trên bằng?",
+      "points": 1,
+      "sort_order": 53,
+      "choices": [
+        "$100\\text{ km/h}$.",
+        "$25\\text{ km/h}$.",
+        "$5\\text{ km/h}$.",
+        "$75\\text{ km/h}$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Khoảng biến thiên của mẫu số liệu ghép nhóm trên: $R = 100 - 75 = 25\\text{ km/h}$.",
+        "source": "Sở Bắc Ninh 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 54,
+      "type": "mcq",
+      "prompt": "(THPT Lê Quý Đôn - Hà Nội 2025) Xét mẫu số liệu ghép nhóm cho bởi bảng sau:\n$$\\begin{array}{|c|c|c|} \\hline \\text{Nhóm} & \\text{Giá trị đại diện} & \\text{Tần số} \\\\ \\hline [a_1;a_2) & x_1 & n_1 \\\\ \\hline [a_2;a_3) & x_2 & n_2 \\\\ \\hline \\dots & \\dots & \\dots \\\\ \\hline [a_m;a_{m+1}) & x_m & n_m \\\\ \\hline  &  & n \\\\ \\hline \\end{array}$$\nSố trung bình cộng của mẫu số liệu ghép nhóm trên được xác định bởi công thức nào sau đây?",
+      "points": 1,
+      "sort_order": 54,
+      "choices": [
+        "$\\bar{x} = \\sqrt{\\dfrac{n_1x_1^2 + n_2x_2^2 + \\dots + n_mx_m^2}{n}}$.",
+        "$\\bar{x} = \\dfrac{n_1x_1 + n_2x_2 + \\dots + n_mx_m}{n}$.",
+        "$\\bar{x} = \\dfrac{n_1x_1 + n_2x_2 + \\dots + n_mx_m}{m}$.",
+        "$\\bar{x} = \\sqrt{\\dfrac{n_1x_1^2 + n_2x_2^2 + \\dots + n_mx_m^2}{m}}$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Số trung bình cộng của mẫu số liệu ghép nhóm là $\\bar{x} = \\dfrac{n_1x_1 + n_2x_2 + \\dots + n_mx_m}{n}$.",
+        "source": "THPT Lê Quý Đôn - Hà Nội 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 55,
+      "type": "mcq",
+      "prompt": "(THPT Nguyễn Quốc Trinh - Hà Nội 2025) Cho mẫu số liệu điểm môn Toán của một nhóm học sinh như sau:\n$$\\begin{array}{|c|c|c|c|c|c|c|} \\hline \\text{Điểm} & [4;5) & [5;6) & [6;7) & [7;8) & [8;9) & [9;10] \\\\ \\hline \\text{Số học sinh} & 3 & 5 & 8 & 15 & 10 & 5 \\\\ \\hline \\end{array}$$\nTrung vị của mẫu số liệu (kết quả làm tròn đến hàng phần trăm) là:",
+      "points": 1,
+      "sort_order": 55,
+      "choices": [
+        "$7,95$.",
+        "$7,37$.",
+        "$7,46$.",
+        "$7,47$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn D.} Cỡ mẫu $n = 3 + 5 + 8 + 15 + 10 + 5 = 46 \\Rightarrow \\dfrac{n}{2} = 23$. Tần số tích lũy đến nhóm $[6;7)$ là $16$, đến $[7;8)$ là $31$ nên nhóm chứa trung vị là $[7;8)$. Vậy $M_e = 7 + \\dfrac{23 - 16}{15} \\cdot 1 \\approx 7,47$.",
+        "source": "THPT Nguyễn Quốc Trinh - Hà Nội 2025",
+        "level": "Thông hiểu",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "D",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Thông hiểu"
+      ]
+    },
+    {
+      "source_num": 56,
+      "type": "mcq",
+      "prompt": "(Sở Nghệ An 2025) Bạn Nhi thống kê chiều cao (đơn vị: cm) của các bạn học sinh nữ lớp $12\\text{A}1$ ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|c|} \\hline \\text{Chiều cao (cm)} & [155;160) & [160;165) & [165;170) & [170;175) & [175;180) & [180;185) \\\\ \\hline \\text{Số học sinh} & 6 & 8 & 10 & 4 & 1 & 10 \\\\ \\hline \\end{array}$$\nKhoảng biến thiên của mẫu số liệu là:",
+      "points": 1,
+      "sort_order": 56,
+      "choices": [
+        "$5$.",
+        "$20$.",
+        "$30$.",
+        "$15$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Vì mẫu số liệu có nhóm đầu tiên và nhóm cuối cùng đều có tần số lớn hơn $0$ nên khoảng biến thiên của mẫu số liệu là $185 - 155 = 30$.",
+        "source": "Sở Nghệ An 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 57,
+      "type": "mcq",
+      "prompt": "(Sở Hải Phòng 2025) Một công ty xây dựng khảo sát khách hàng xem họ có nhu cầu mua nhà ở mức giá nào. Kết quả khảo sát được ghi lại ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Mức giá (triệu đồng/m}^2\\text{)} & [10;14) & [14;18) & [18;22) & [22;26) & [26;30) \\\\ \\hline \\text{Số khách hàng} & 54 & 78 & 120 & 45 & 12 \\\\ \\hline \\end{array}$$\nKhoảng biến thiên $R$ của mẫu số liệu ghép nhóm trên là:",
+      "points": 1,
+      "sort_order": 57,
+      "choices": [
+        "$R = 4$.",
+        "$R = 20$.",
+        "$R = 9$.",
+        "$R = 108$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn B.} Khoảng biến thiên của mẫu số liệu ghép nhóm là $R = 30 - 10 = 20$ (triệu đồng/$\\text{m}^2$).",
+        "source": "Sở Hải Phòng 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "B",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 58,
+      "type": "mcq",
+      "prompt": "(Sở Gia Lai 2025) Thống kê điểm kiểm tra học kì $1$ môn Toán của $300$ học sinh lớp $12$ được mô tả ở bảng sau:\n$$\\begin{array}{|c|c|c|c|c|} \\hline \\text{Điểm} & [2;4) & [4;6) & [6;8) & [8;10) \\\\ \\hline \\text{Số học sinh} & 20 & 50 & 70 & 160 \\\\ \\hline \\end{array}$$\nKhoảng biến thiên của mẫu số liệu trên là:",
+      "points": 1,
+      "sort_order": 58,
+      "choices": [
+        "$7$.",
+        "$140$.",
+        "$8$.",
+        "$160$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn C.} Khoảng biến thiên của mẫu số liệu trên là $R = 10 - 2 = 8$.",
+        "source": "Sở Gia Lai 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "C",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    },
+    {
+      "source_num": 59,
+      "type": "mcq",
+      "prompt": "(Sở Thái Bình 2025) Thời gian hoàn thành bài kiểm tra cuối học kỳ $2$ môn Toán của các bạn học sinh lớp $12\\text{A}$ được cho trong bảng sau:\n$$\\begin{array}{|c|c|c|c|c|c|} \\hline \\text{Thời gian (phút)} & [65;70) & [70;75) & [75;80) & [80;85) & [85;90) \\\\ \\hline \\text{Số học sinh} & 2 & 3 & 15 & 20 & 5 \\\\ \\hline \\end{array}$$\nKhoảng biến thiên của mẫu số liệu ghép nhóm trên là:",
+      "points": 1,
+      "sort_order": 59,
+      "choices": [
+        "$25$.",
+        "$20$.",
+        "$30$.",
+        "$15$."
+      ],
+      "settings": {
+        "explanation": "\\textbf{Chọn A.} Khoảng biến thiên của mẫu số liệu ghép nhóm trên là $90 - 65 = 25$.",
+        "source": "Sở Thái Bình 2025",
+        "level": "Nhận biết",
+        "pack": "chude19-sotrungbinh-mot-trungvi"
+      },
+      "answer_key": {
+        "correct_answer": "A",
+        "accepted_answers": [],
+        "points_map": []
+      },
+      "tags": [
+        "GĐ1 · Chương 5",
+        "Bài 22: Khoảng biến thiên và khoảng tứ phân vị",
+        "Nhận biết"
+      ]
+    }
+  ]
+}
