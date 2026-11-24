@@ -56,7 +56,7 @@ export async function mountStudentAssignmentOverview(id) {
                 <span class="asg-locked-pill">Bài tập PDF đã đóng</span>
               ` : `
                 <button type="button" id="start-assignment" class="phase-hero-cta">
-                  <span>${hasDraftInProgress ? 'Làm tiếp' : 'Bắt đầu làm bài'}</span>
+                  <span>${hasDraftInProgress ? 'Làm tiếp' : 'Làm bài'}</span>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                 </button>
               `}
@@ -93,7 +93,7 @@ export async function mountStudentAssignmentOverview(id) {
         </section>
       </section>
     `;
-    document.querySelector('#start-assignment')?.addEventListener('click', () => mountAssignmentExam(id));
+    document.querySelector('#start-assignment')?.addEventListener('click', () => go(`exam/${id}`));
   } catch (error) {
     root.innerHTML = renderErrorState(error);
     wireRouteRetry(root);
@@ -182,9 +182,9 @@ export async function mountAssignmentExam(id) {
         <section class="exam-hub">
           <!-- Block 1: Dark Hero Banner (consistent with #/learn, #/phase/:id, overview) -->
           <header class="asg-overview-hero">
-            <a href="javascript:history.back()" class="phase-back-link">
+            <a href="#/assignment/${escapeHtml(String(id))}" class="phase-back-link">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-              <span>Quay lại khóa học</span>
+              <span>Quay lại</span>
             </a>
             <div class="asg-overview-hero-row">
               <div class="asg-overview-hero-left">
@@ -307,7 +307,7 @@ export async function mountAssignmentExam(id) {
                 </div>
 
                 <div class="exam-nav-footer">
-                  <p id="autosave-status" class="autosave-status exam-autosave">${draft ? 'Đã lưu ' + formatDateTime(draft.savedAt) : 'Tự động lưu khi chọn'}</p>
+                  <p id="autosave-status" class="autosave-status exam-autosave">${draft ? 'Đã lưu ' + formatDateTime(draft.savedAt) : 'Tự động lưu'}</p>
                   <button type="button" id="trigger-submit-modal-btn" class="exam-submit-btn">Nộp bài</button>
                 </div>
               </div>
@@ -319,14 +319,12 @@ export async function mountAssignmentExam(id) {
             <div style="background: #ffffff; border-radius: 22px; width: 90%; max-width: 390px; padding: 28px 24px; text-align: center; position: relative; border: 1px solid #E4E6DE; box-shadow: 0 16px 36px rgba(24, 27, 22, 0.14); display: flex; flex-direction: column; align-items: center; gap: 16px;">
               <button type="button" id="close-submit-modal-btn" style="position: absolute; top: 14px; right: 16px; background: none; border: none; font-size: 22px; color: #64695F; cursor: pointer;">&times;</button>
 
-              <h3 style="margin: 0; color: #181B16; font-family: var(--md-ref-typeface-brand); font-size: 22px; font-weight: 800;">Xác nhận nộp bài</h3>
+              <h3 style="margin: 0; color: #181B16; font-family: var(--md-ref-typeface-brand); font-size: 22px; font-weight: 800;">Nộp bài?</h3>
 
               <div style="width: 96px; height: 96px; border-radius: 50%; background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(#181B16 calc(var(--modal-pct, 0) * 1%), #EBEDE6 0); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 4px 0;">
                 <span style="font-size: 20px; font-weight: 800; color: #181B16;" id="modal-completion-ratio">0/0</span>
-                <span style="font-size: 11px; color: #64695F;">Câu đã làm</span>
+                <span style="font-size: 11px; color: #64695F;">Đã làm</span>
               </div>
-
-              <p style="margin: 0; font-size: 14px; color: #64695F; line-height: 1.5;">Bạn có chắc chắn muốn nộp bài ngay bây giờ?</p>
 
               <div style="display: flex; gap: 10px; width: 100%; margin-top: 6px;">
                 <button type="button" id="modal-continue-btn" style="flex: 1; height: 42px; background: #EBEDE6; color: #181B16; border: none; border-radius: 9999px; font-weight: 600; font-size: 14px; cursor: pointer;">Làm tiếp</button>
@@ -384,7 +382,7 @@ export async function mountAssignmentExam(id) {
               <div>
                 <p class="eyebrow">Phiếu trả lời</p>
                 <h2>${questions.length} câu</h2>
-                <p id="autosave-status" class="autosave-status">${draft ? `Đã khôi phục bản nháp lưu lúc ${formatDateTime(draft.savedAt)}` : 'Tự động lưu khi bạn chọn đáp án.'}</p>
+                <p id="autosave-status" class="autosave-status">${draft ? `Đã lưu ${formatDateTime(draft.savedAt)}` : 'Tự động lưu'}</p>
               </div>
               <md-filled-button type="submit" data-submit-assignment>
                 <md-icon slot="icon">send</md-icon>
@@ -395,7 +393,7 @@ export async function mountAssignmentExam(id) {
               ${questions.map((question, index) => renderQuestionInput(question, index, answers[question.id])).join('')}
             </div>
             <div class="sticky-submit-bar">
-              <span id="sticky-autosave-status">${draft ? 'Bản nháp đã sẵn sàng' : 'Câu trả lời sẽ được lưu tự động'}</span>
+              <span id="sticky-autosave-status">${draft ? 'Đã lưu nháp' : 'Tự động lưu'}</span>
               <md-filled-button type="submit" data-submit-assignment>
                 <md-icon slot="icon">send</md-icon>
                 Nộp bài
@@ -685,7 +683,7 @@ export async function mountAssignmentManagerView(id) {
           ${stats.totalStudents === 0 ? `
             <div class="ins-empty">
               <h3>Chưa có học sinh nào</h3>
-              <p>Khi học sinh nộp bài, điểm số và chi tiết từng câu sẽ hiển thị tại đây.</p>
+              <p>Chưa có học sinh nộp bài.</p>
               <a class="ins-btn-review" href="#/assignments">Quay lại danh sách đề</a>
             </div>
           ` : `

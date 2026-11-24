@@ -33,144 +33,29 @@ const LEVEL_TAGS = ['Nhận biết', 'Thông hiểu', 'Vận dụng'];
 const CHAPTER_PREFIX = 'GĐ';
 
 const PREPACKAGED_PACKS = [
-  {
-    packId: 'chude11-dondieu-cuctri',
-    url: '/data/chude11-dondieu-cuctri.json',
-    title: 'Chủ đề 11 · Tính đơn điệu & Cực trị (2025)',
-    subtitle: '145 câu hỏi chuẩn LaTeX + 132 hình đồ thị/BBT sạch watermark, đã phân loại theo GĐ1 - Chương 1',
-  },
-  {
-    packId: 'chude12-tiemcan',
-    url: '/data/chude12-tiemcan.json',
-    title: 'Chủ đề 12 · Đường tiệm cận (2025)',
-    subtitle: '92 câu hỏi chuẩn LaTeX + hình đồ thị/BBT sạch watermark, đã phân loại theo GĐ1 - Chương 1 (Bài 4)',
-  },
-  {
-    packId: 'chude13-gtln-gtnn',
-    url: '/data/chude13-gtln-gtnn.json',
-    title: 'Chủ đề 13 · GTLN - GTNN của hàm số (2025)',
-    subtitle: '37 câu hỏi chuẩn LaTeX + hình đồ thị/BBT sạch watermark, đã phân loại theo GĐ1 - Chương 1 (Bài 3)',
-  },
-  {
-    packId: 'chude14-khaosat',
-    url: '/data/chude14-khaosat.json',
-    title: 'Chủ đề 14 · Khảo sát hàm số (2025)',
-    subtitle: '64 câu hỏi chuẩn LaTeX + 60 hình đồ thị/BBT sạch watermark, đã phân loại theo GĐ1 - Chương 1 (Bài 5 & Bài 6)',
-  },
-  {
-    packId: 'tf4-hambacba',
-    url: '/data/tf4-hambacba.json',
-    title: 'Chủ đề 3 · Khảo sát hàm bậc ba — Đúng/Sai (2025)',
-    subtitle: '29 câu Trắc nghiệm Đúng/Sai (4 mệnh đề) chuẩn LaTeX + 21 hình đồ thị/BBT sạch watermark',
-  },
-  {
-    packId: 'tf4-hamphanthuc',
-    url: '/data/tf4-hamphanthuc.json',
-    title: 'Chủ đề 4 · Khảo sát hàm phân thức — Đúng/Sai (2025)',
-    subtitle: '50 câu Trắc nghiệm Đúng/Sai (4 mệnh đề) chuẩn LaTeX + 20 hình đồ thị/BBT sạch watermark',
-  },
-  {
-    packId: 'tf4-hamluonggiac',
-    url: '/data/tf4-hamluonggiac.json',
-    title: 'Chủ đề 5 · Khảo sát hàm lượng giác — Đúng/Sai (2025)',
-    subtitle: '21 câu Trắc nghiệm Đúng/Sai (4 mệnh đề) chuẩn LaTeX, đã phân loại theo GĐ1 - Chương 1',
-  },
-  {
-    packId: 'tf4-hamlogarit',
-    url: '/data/tf4-hamlogarit.json',
-    title: 'Chủ đề 6 · Khảo sát hàm Logarit - Mũ — Đúng/Sai (2025)',
-    subtitle: '24 câu Trắc nghiệm Đúng/Sai (4 mệnh đề) chuẩn LaTeX, đã phân loại theo GĐ1 - Chương 1',
-  },
-  {
-    packId: 'tf4-thucte',
-    url: '/data/tf4-thucte.json',
-    title: 'Chủ đề 7 · Ứng dụng đạo hàm thực tiễn — Đúng/Sai (2025)',
-    subtitle: '49 câu Trắc nghiệm Đúng/Sai (4 mệnh đề) chuẩn LaTeX + 13 hình minh họa sạch watermark, đã phân loại Bài 6',
-  },
-  {
-    packId: 'short-dothi',
-    url: '/data/short-dothi.json',
-    title: 'Chủ đề 9 · Đồ thị hàm số — Trả lời ngắn (2025)',
-    subtitle: '39 câu Trả lời ngắn chuẩn LaTeX + 16 hình đồ thị/BBT sạch watermark, đã phân loại theo GĐ1 - Chương 1',
-  },
-  {
-    packId: 'short-chuyendong',
-    url: '/data/short-chuyendong.json',
-    title: 'Chủ đề 10 · Chuyển động & Nồng độ - Quần thể — Trả lời ngắn (2025)',
-    subtitle: '39 câu Trả lời ngắn chuẩn LaTeX + 8 hình minh họa sạch watermark, đã phân loại Bài 6',
-  },
-  {
-    packId: 'short-hinhhoc',
-    url: '/data/short-hinhhoc.json',
-    title: 'Chủ đề 11 · Tối ưu Hình học — Trả lời ngắn (2025)',
-    subtitle: '53 câu Trả lời ngắn chuẩn LaTeX + 50 hình minh họa sạch watermark, đã phân loại Bài 6',
-  },
-  {
-    packId: 'short-kinhte',
-    url: '/data/short-kinhte.json',
-    title: 'Chủ đề 12 · Ứng dụng đạo hàm giải toán Kinh tế — Trả lời ngắn (2025)',
-    subtitle: '65 câu Trả lời ngắn chuẩn LaTeX về doanh thu, chi phí & tối ưu lợi nhuận, đã phân loại Bài 6',
-  },
-  {
-    packId: 'chude19-sotrungbinh-mot-trungvi',
-    url: '/data/chude19-sotrungbinh-mot-trungvi.json',
-    title: 'Chủ đề 19 · Số trung bình - Mốt - Trung vị - Khoảng biến thiên (2025)',
-    subtitle: '59 câu Trắc nghiệm Thống kê ghép nhóm chuẩn LaTeX (bảng công thức sạch watermark), đã phân loại GĐ1 - Chương 5 (Bài 22)',
-  },
-  {
-    packId: 'chude20-phanvi-tuphanvi',
-    url: '/data/chude20-phanvi-tuphanvi.json',
-    title: 'Chủ đề 20 · Phân vị - Tứ phân vị - Khoảng tứ phân vị (2025)',
-    subtitle: '35 câu Trắc nghiệm Tứ phân vị & Khoảng tứ phân vị chuẩn LaTeX sạch watermark, đã phân loại GĐ1 - Chương 5 (Bài 22)',
-  },
-  {
-    packId: 'chude21-phuongsai-dolechchuan',
-    url: '/data/chude21-phuongsai-dolechchuan.json',
-    title: 'Chủ đề 21 · Phương sai - Độ lệch chuẩn (2025)',
-    subtitle: '36 câu Trắc nghiệm Phương sai & Độ lệch chuẩn ghép nhóm chuẩn LaTeX sạch watermark, đã phân loại GĐ1 - Chương 5 (Bài 23)',
-  },
-  {
-    packId: 'short-thongke',
-    url: '/data/short-thongke.json',
-    title: 'Chủ đề 15 · Thống kê — Trả lời ngắn (2025)',
-    subtitle: '16 câu Trả lời ngắn Thống kê ghép nhóm chuẩn LaTeX + 2 biểu đồ SVG sạch watermark, đã phân loại GĐ1 - Chương 5 (Bài 22 & Bài 23)',
-  },
-  {
-    packId: 'tf4-thongke',
-    url: '/data/tf4-thongke.json',
-    title: 'Chủ đề 10 · Thống kê 12 — Đúng/Sai (2025)',
-    subtitle: '26 câu Trắc nghiệm Đúng/Sai (4 mệnh đề) Thống kê ghép nhóm chuẩn LaTeX + biểu đồ SVG sạch watermark, đã phân loại GĐ1 - Chương 5 (Bài 22 & Bài 23)',
-  },
-  {
-    packId: 'chude26-vecto',
-    url: '/data/chude26-vecto.json',
-    title: 'Chủ đề 26 · Vectơ trong không gian (2025)',
-    subtitle: '98 câu Trắc nghiệm Vectơ không gian chuẩn LaTeX + 40 hình minh họa cắt từ đề gốc sạch watermark, đã phân loại GĐ1 - Chương 3 (Bài 12 & Bài 13)',
-  },
-  {
-    packId: 'tf4-thucte-oxyz',
-    url: '/data/tf4-thucte-oxyz.json',
-    title: 'Chủ đề 9 · Thực tế Oxyz — Đúng/Sai (2025)',
-    subtitle: '59 câu Trắc nghiệm Đúng/Sai (4 mệnh đề) Thực tế Oxyz chuẩn LaTeX + 40 hình minh họa cắt từ đề gốc sạch watermark, đã phân loại GĐ1 - Chương 3 & Chương 4',
-  },
-  {
-    packId: 'tf4-vecto',
-    url: '/data/tf4-vecto.json',
-    title: 'Chủ đề 15 · Vectơ trong không gian — Đúng/Sai (2025)',
-    subtitle: '5 câu Trắc nghiệm Đúng/Sai (4 mệnh đề) Vectơ không gian chuẩn LaTeX + hình minh họa cắt từ đề gốc sạch watermark, đã phân loại GĐ1 - Chương 3 (Bài 12)',
-  },
-  {
-    packId: 'short-thucte-oxyz',
-    url: '/data/short-thucte-oxyz.json',
-    title: 'Chủ đề 14 · Thực tế Oxyz — Trả lời ngắn (2025)',
-    subtitle: '89 câu Trả lời ngắn Thực tế Oxyz chuẩn LaTeX + 54 hình minh họa cắt từ đề gốc sạch watermark, đã phân loại GĐ1 - Chương 3 & Chương 4',
-  },
-  {
-    packId: 'short-vecto',
-    url: '/data/short-vecto.json',
-    title: 'Chủ đề 19 · Vectơ trong không gian — Trả lời ngắn (2025)',
-    subtitle: '11 câu Trả lời ngắn Vectơ không gian chuẩn LaTeX + 8 hình minh họa cắt từ đề gốc sạch watermark, đã phân loại GĐ1 - Chương 3 (Bài 12)',
-  },
+  { packId: 'chude11-dondieu-cuctri', url: '/data/chude11-dondieu-cuctri.json', title: 'Chủ đề 11 · Đơn điệu & Cực trị', subtitle: '145 TN · 132 hình · Chương 1' },
+  { packId: 'chude12-tiemcan', url: '/data/chude12-tiemcan.json', title: 'Chủ đề 12 · Tiệm cận', subtitle: '92 TN · Chương 1 (Bài 4)' },
+  { packId: 'chude13-gtln-gtnn', url: '/data/chude13-gtln-gtnn.json', title: 'Chủ đề 13 · GTLN - GTNN', subtitle: '37 TN · Chương 1 (Bài 3)' },
+  { packId: 'chude14-khaosat', url: '/data/chude14-khaosat.json', title: 'Chủ đề 14 · Khảo sát hàm số', subtitle: '64 TN · 60 hình · Chương 1 (Bài 5, 6)' },
+  { packId: 'tf4-hambacba', url: '/data/tf4-hambacba.json', title: 'Chủ đề 3 · Hàm bậc ba (Đ/S)', subtitle: '29 Đ/S · 21 hình · Chương 1' },
+  { packId: 'tf4-hamphanthuc', url: '/data/tf4-hamphanthuc.json', title: 'Chủ đề 4 · Hàm phân thức (Đ/S)', subtitle: '50 Đ/S · 20 hình · Chương 1' },
+  { packId: 'tf4-hamluonggiac', url: '/data/tf4-hamluonggiac.json', title: 'Chủ đề 5 · Hàm lượng giác (Đ/S)', subtitle: '21 Đ/S · Chương 1' },
+  { packId: 'tf4-hamlogarit', url: '/data/tf4-hamlogarit.json', title: 'Chủ đề 6 · Hàm Mũ - Logarit (Đ/S)', subtitle: '24 Đ/S · Chương 1' },
+  { packId: 'tf4-thucte', url: '/data/tf4-thucte.json', title: 'Chủ đề 7 · Đạo hàm thực tiễn (Đ/S)', subtitle: '49 Đ/S · 13 hình · Bài 6' },
+  { packId: 'short-dothi', url: '/data/short-dothi.json', title: 'Chủ đề 9 · Đồ thị hàm số (TLN)', subtitle: '39 TLN · 16 hình · Chương 1' },
+  { packId: 'short-chuyendong', url: '/data/short-chuyendong.json', title: 'Chủ đề 10 · Chuyển động & Quần thể (TLN)', subtitle: '39 TLN · 8 hình · Bài 6' },
+  { packId: 'short-hinhhoc', url: '/data/short-hinhhoc.json', title: 'Chủ đề 11 · Tối ưu Hình học (TLN)', subtitle: '53 TLN · 50 hình · Bài 6' },
+  { packId: 'short-kinhte', url: '/data/short-kinhte.json', title: 'Chủ đề 12 · Toán Kinh tế (TLN)', subtitle: '65 TLN · Bài 6' },
+  { packId: 'chude19-sotrungbinh-mot-trungvi', url: '/data/chude19-sotrungbinh-mot-trungvi.json', title: 'Chủ đề 19 · Số trung bình, Mốt, Trung vị', subtitle: '59 TN · Chương 5 (Bài 22)' },
+  { packId: 'chude20-phanvi-tuphanvi', url: '/data/chude20-phanvi-tuphanvi.json', title: 'Chủ đề 20 · Tứ phân vị', subtitle: '35 TN · Chương 5 (Bài 22)' },
+  { packId: 'chude21-phuongsai-dolechchuan', url: '/data/chude21-phuongsai-dolechchuan.json', title: 'Chủ đề 21 · Phương sai & Độ lệch chuẩn', subtitle: '36 TN · Chương 5 (Bài 23)' },
+  { packId: 'short-thongke', url: '/data/short-thongke.json', title: 'Chủ đề 15 · Thống kê (TLN)', subtitle: '16 TLN · Chương 5 (Bài 22, 23)' },
+  { packId: 'tf4-thongke', url: '/data/tf4-thongke.json', title: 'Chủ đề 10 · Thống kê (Đ/S)', subtitle: '26 Đ/S · Chương 5 (Bài 22, 23)' },
+  { packId: 'chude26-vecto', url: '/data/chude26-vecto.json', title: 'Chủ đề 26 · Vectơ không gian', subtitle: '98 TN · 40 hình · Chương 3 (Bài 12, 13)' },
+  { packId: 'tf4-thucte-oxyz', url: '/data/tf4-thucte-oxyz.json', title: 'Chủ đề 9 · Thực tế Oxyz (Đ/S)', subtitle: '59 Đ/S · 40 hình · Chương 3, 4' },
+  { packId: 'tf4-vecto', url: '/data/tf4-vecto.json', title: 'Chủ đề 15 · Vectơ không gian (Đ/S)', subtitle: '5 Đ/S · Chương 3 (Bài 12)' },
+  { packId: 'short-thucte-oxyz', url: '/data/short-thucte-oxyz.json', title: 'Chủ đề 14 · Thực tế Oxyz (TLN)', subtitle: '89 TLN · 54 hình · Chương 3, 4' },
+  { packId: 'short-vecto', url: '/data/short-vecto.json', title: 'Chủ đề 19 · Vectơ không gian (TLN)', subtitle: '11 TLN · 8 hình · Chương 3 (Bài 12)' },
 ];
 
 const TYPE_META = {
@@ -1550,17 +1435,17 @@ export async function mountQuestionBank(root) {
       <header class="asg-overview-hero">
         <a href="#/manage" class="phase-back-link">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-          <span>Trung tâm Quản trị</span>
+          <span>Quản trị</span>
         </a>
         <div class="asg-overview-hero-row">
           <div class="asg-overview-hero-left">
             <h1 class="phase-hero-title">Ngân hàng câu hỏi</h1>
-            <p class="qb-hero-meta" id="qb-hero-meta">Đang tải ngân hàng...</p>
+            <p class="qb-hero-meta" id="qb-hero-meta">Đang tải...</p>
           </div>
           <div class="qb-hero-actions">
             <button type="button" id="qb-toggle-gen-btn" class="qb-btn-hero">
               ${QB_ICONS.spark}
-              <span>Tạo đề tự động</span>
+              <span>Tạo đề</span>
             </button>
             <button type="button" id="qb-open-latex-modal-btn" class="qb-btn-hero qb-btn-hero--ghost">
               ${QB_ICONS.code}
@@ -1572,8 +1457,8 @@ export async function mountQuestionBank(root) {
 
       ${pickTargetId ? `
         <div class="qb-pick-banner" id="qb-pick-banner">
-          <span>Đang chọn hoặc bốc câu hỏi để đưa vào đề đang soạn (${pickTargetId === 'new' ? 'Đề mới' : 'Đề đang chỉnh sửa'}).</span>
-          <button type="button" id="qb-cancel-pick-target-btn" class="qb-btn-secondary" style="background:#FFFFFF;height:32px;">Quay lại đề</button>
+          <span>Chọn câu cho ${pickTargetId === 'new' ? 'đề mới' : 'đề đang sửa'}.</span>
+          <button type="button" id="qb-cancel-pick-target-btn" class="qb-btn-secondary" style="background:#FFFFFF;height:32px;">Quay lại</button>
         </div>
       ` : ''}
 
@@ -1584,20 +1469,19 @@ export async function mountQuestionBank(root) {
       <section class="qb-gen-panel ${generatorOpen ? 'open' : ''}" id="qb-gen-panel">
         <div class="qb-gen-head">
           <div>
-            <h2 class="qb-gen-title">Tạo đề tự động theo ma trận</h2>
-            <p class="qb-gen-sub">Ghép đủ 3 phần Trắc nghiệm · Đúng/Sai · Trả lời ngắn rồi chỉnh tiếp hoặc lưu thành đề</p>
+            <h2 class="qb-gen-title">Tạo đề tự động</h2>
           </div>
           <button type="button" class="qb-btn-secondary" id="qb-close-gen-btn">Đóng</button>
         </div>
 
         <div class="qb-gen-config">
           <div class="qb-field">
-            <label for="qb-gen-title-input">Tên đề thi mới</label>
-            <input id="qb-gen-title-input" type="text" class="qb-input" value="Đề kiểm tra Chương 1 — Ứng dụng đạo hàm" placeholder="Nhập tên đề thi..." />
+            <label for="qb-gen-title-input">Tên đề</label>
+            <input id="qb-gen-title-input" type="text" class="qb-input" value="Đề kiểm tra Chương 1 — Ứng dụng đạo hàm" placeholder="Nhập tên đề..." />
           </div>
           <div class="qb-field">
-            <label for="qb-gen-category-input">Chủ đề / Phân loại</label>
-            <input id="qb-gen-category-input" type="text" class="qb-input" list="qb-category-suggestions" value="Chuẩn 2025" placeholder="Ví dụ: Đại số, Hình học, Chuẩn 2025..." />
+            <label for="qb-gen-category-input">Chủ đề</label>
+            <input id="qb-gen-category-input" type="text" class="qb-input" list="qb-category-suggestions" value="Chuẩn 2025" placeholder="Chuẩn 2025, Đại số..." />
             <datalist id="qb-category-suggestions">
               <option value="Chuẩn 2025"></option>
               <option value="Đại số & Giải tích"></option>
@@ -1608,30 +1492,30 @@ export async function mountQuestionBank(root) {
             </datalist>
           </div>
           <div class="qb-field">
-            <label for="qb-gen-lecture-select">Chương liên kết</label>
+            <label for="qb-gen-lecture-select">Gắn vào</label>
             <select id="qb-gen-lecture-select" class="qb-input">
               <option value="">Bài tập tự do</option>
             </select>
           </div>
           <div class="qb-field">
-            <label>Trạng thái khi lưu</label>
+            <label>Trạng thái</label>
             <div class="qb-level-bar" id="qb-gen-publish-bar">
-              <button type="button" class="qb-pill active" data-gen-pub="true">Xuất bản ngay</button>
-              <button type="button" class="qb-pill" data-gen-pub="false">Lưu nháp</button>
+              <button type="button" class="qb-pill active" data-gen-pub="true">Xuất bản</button>
+              <button type="button" class="qb-pill" data-gen-pub="false">Nháp</button>
             </div>
           </div>
         </div>
 
         <div>
-          <div class="qb-gen-row-label">Mẫu đề nhanh</div>
+          <div class="qb-gen-row-label">Mẫu đề</div>
           <div class="qb-gen-section-row">
             <div class="qb-preset-bar" id="qb-gen-presets"></div>
-            <button type="button" class="qb-btn-secondary" id="qb-gen-reset-btn" style="height:34px;">Đặt lại về 0</button>
+            <button type="button" class="qb-btn-secondary" id="qb-gen-reset-btn" style="height:34px;">Đặt lại</button>
           </div>
         </div>
 
         <div>
-          <div class="qb-gen-row-label">Phân bổ mức độ nhận thức</div>
+          <div class="qb-gen-row-label">Mức độ</div>
           <div class="qb-level-bar" id="qb-gen-level-bar"></div>
         </div>
 
@@ -1651,21 +1535,21 @@ export async function mountQuestionBank(root) {
             <input type="number" min="0" max="100" value="20" class="qb-ratio-inp" data-ratio-lv="Vận dụng" />
             <span>%</span>
           </span>
-          <span class="qb-ratio-note" id="qb-gen-ratio-note">Tổng tỉ lệ: 100%</span>
+          <span class="qb-ratio-note" id="qb-gen-ratio-note">Tổng: 100%</span>
         </div>
 
         <div class="qb-matrix-wrap" id="qb-gen-slots"></div>
 
         <div class="qb-gen-footer">
-          <div class="qb-gen-summary" id="qb-gen-summary">Tổng đã chọn: <strong>0 câu</strong></div>
+          <div class="qb-gen-summary" id="qb-gen-summary">Đã chọn: <strong>0 câu</strong></div>
           <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
             <label class="qb-gen-check" title="Xáo trộn thứ tự các phương án A, B, C, D cho câu trắc nghiệm khi lưu đề">
               <input type="checkbox" id="qb-gen-shuffle-choices" />
-              <span>Đảo đáp án A/B/C/D</span>
+              <span>Đảo đáp án</span>
             </label>
             <button type="button" class="qb-btn-primary" id="qb-pick-random-btn">
               ${QB_ICONS.spark}
-              <span>Bốc câu hỏi</span>
+              <span>Bốc câu</span>
             </button>
           </div>
         </div>
@@ -1679,7 +1563,7 @@ export async function mountQuestionBank(root) {
             <div style="display:flex;gap:8px;flex-wrap:wrap;">
               <button type="button" class="qb-btn-secondary" id="qb-copy-latex-btn" style="background:#FFFFFF;">
                 ${QB_ICONS.copy}
-                <span>Sao chép LaTeX</span>
+                <span>Chép LaTeX</span>
               </button>
               <button type="button" class="qb-btn-secondary" id="qb-reshuffle-btn" style="background:#FFFFFF;">
                 ${QB_ICONS.refresh}
@@ -1687,12 +1571,12 @@ export async function mountQuestionBank(root) {
               </button>
               <button type="button" class="${pickTargetId ? 'qb-btn-primary' : 'qb-btn-secondary'}" id="qb-edit-generated-btn" style="${pickTargetId ? '' : 'background:#FFFFFF;'}">
                 ${QB_ICONS.code}
-                <span>${pickTargetId ? 'Đưa vào đề đang soạn' : 'Mở trong Trình tạo đề'}</span>
+                <span>${pickTargetId ? 'Đưa vào đề' : 'Sửa đề'}</span>
               </button>
               ${pickTargetId ? '' : `
                 <button type="button" class="qb-btn-primary" id="qb-save-generated-btn">
                   ${QB_ICONS.check}
-                  <span>Lưu &amp; Mở đề thi</span>
+                  <span>Lưu đề</span>
                 </button>
               `}
             </div>
@@ -1703,10 +1587,10 @@ export async function mountQuestionBank(root) {
 
       <!-- Manual Selection Action Bar -->
       <div class="qb-selection-bar" id="qb-selection-bar">
-        <span>Đã chọn <span id="qb-selected-count">0</span> câu hỏi</span>
+        <span>Đã chọn <span id="qb-selected-count">0</span> câu</span>
         <div style="display:flex;gap:8px;">
           <button type="button" class="qb-btn-secondary" id="qb-clear-sel-btn">Bỏ chọn</button>
-          <button type="button" class="qb-btn-hero" id="qb-create-from-sel-btn" style="height:34px;">${pickTargetId ? 'Đưa vào đề đang soạn' : 'Đưa vào Trình tạo đề'}</button>
+          <button type="button" class="qb-btn-hero" id="qb-create-from-sel-btn" style="height:34px;">${pickTargetId ? 'Đưa vào đề' : 'Tạo đề'}</button>
         </div>
       </div>
 
@@ -1717,14 +1601,14 @@ export async function mountQuestionBank(root) {
             <div class="qb-level-bar" id="qb-type-bar"></div>
             <div class="qb-level-bar" id="qb-level-bar"></div>
           </div>
-          <input type="search" id="qb-search-input" class="qb-search" placeholder="Tìm nội dung, trường thi..." />
+          <input type="search" id="qb-search-input" class="qb-search" placeholder="Tìm câu hỏi..." />
         </div>
         <div class="qb-topic-bar" id="qb-topic-bar"></div>
       </div>
 
       <!-- Questions List -->
       <div class="qb-list" id="qb-questions-list">
-        <div class="qb-empty">Đang tải ngân hàng câu hỏi...</div>
+        <div class="qb-empty">Đang tải...</div>
       </div>
       <div class="qb-pager" id="qb-pager"></div>
     </section>
@@ -1734,7 +1618,7 @@ export async function mountQuestionBank(root) {
       <div style="background: #F7F7F2; width: 100%; max-width: 1380px; height: 90vh; border-radius: 22px; display: flex; flex-direction: column; overflow: hidden; border: 1px solid #E4E6DE;">
         <div style="padding: 16px 24px; border-bottom: 1px solid #E4E6DE; display: flex; align-items: center; justify-content: space-between; background: #ffffff;">
           <div>
-            <h2 style="margin: 0; font-size: 18px; color: #181B16; font-weight: 700;">Nhập câu hỏi bằng mã LaTeX (EX_TEST)</h2>
+            <h2 style="margin: 0; font-size: 18px; color: #181B16; font-weight: 700;">Nhập LaTeX</h2>
           </div>
           <button id="qb-latex-close-btn" type="button" class="qb-btn-secondary">Đóng</button>
         </div>
@@ -2723,7 +2607,7 @@ export async function mountQuestionBank(root) {
 
           ${q.settings?.explanation ? `
             <details class="qb-sol">
-              <summary>Xem lời giải chi tiết${ansSummary ? ` (Đáp án ${escapeHtml(ansSummary)})` : ''}</summary>
+              <summary>Lời giải${ansSummary ? ` · ${escapeHtml(ansSummary)}` : ''}</summary>
               <div class="qb-sol-body">${renderLatexText(q.settings.explanation)}</div>
             </details>
           ` : ''}
@@ -2763,7 +2647,7 @@ export async function mountQuestionBank(root) {
     });
 
     pagerEl.innerHTML = `
-      <span>Hiển thị ${start + 1}–${start + pageItems.length} / ${filtered.length} câu</span>
+      <span>${start + 1}–${start + pageItems.length} / ${filtered.length}</span>
       ${totalPages > 1 ? `
         <div class="qb-pager-btns">
           <button type="button" class="qb-btn-secondary" id="qb-prev-page" ${currentPage <= 1 ? 'disabled' : ''}>← Trước</button>
@@ -2791,7 +2675,7 @@ export async function mountQuestionBank(root) {
 
   function updateHeroMeta() {
     const topicsCount = getTopicStats('all').length;
-    heroMetaEl.textContent = `${currentQuestions.length} câu hỏi - ${topicsCount} dạng bài`;
+    heroMetaEl.textContent = `${currentQuestions.length.toLocaleString('vi-VN')} câu · ${topicsCount} dạng`;
   }
 
   async function loadPrepackagedQuestions(excludePackIds = new Set()) {

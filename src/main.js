@@ -91,13 +91,13 @@ function renderShell() {
                 ${isManager() ? `
                   <a href="#/manage" class="nh-dropdown-item nh-dropdown-item--strong">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                    Trang Quản lý
+                    Quản trị
                   </a>
                   <div class="nh-dropdown-sep"></div>
                 ` : ''}
                 <a href="#/learn" class="nh-dropdown-item">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-                  Khoá học của tôi
+                  Khóa học
                 </a>
                 ${!isManager() ? `
                   <a href="#/grades" class="nh-dropdown-item">
@@ -107,7 +107,7 @@ function renderShell() {
                 ` : ''}
                 <a href="#/settings" class="nh-dropdown-item">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                  Trang cá nhân
+                  Hồ sơ
                 </a>
                 <div class="nh-dropdown-sep"></div>
                 <button type="button" id="nh-logout-btn" class="nh-dropdown-item">
@@ -231,6 +231,7 @@ async function bootstrap() {
 addRoute('learn', () => import('./pages/student/Learn.js').then((m) => m.mountLearn()));
 addRoute('phase/:id', (id) => import('./pages/student/Learn.js').then((m) => m.mountPhaseDetail(id)));
 addRoute('assignment/:id', (id) => import('./pages/student/Exam.js').then((m) => m.mountAssignment(id)));
+addRoute('exam/:id', (id) => import('./pages/student/Exam.js').then((m) => m.mountAssignmentExam(id)));
 addRoute('review/:id', (id) => import('./pages/student/Exam.js').then((m) => m.mountReview(id)));
 addRoute('grades', () =>
   isManager()

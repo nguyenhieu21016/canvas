@@ -249,7 +249,7 @@ export async function mountLearn() {
       });
 
       if (filtered.length === 0) {
-        freeGrid.innerHTML = `<div class="learn-empty-inline">Không có bài tập tự do phù hợp</div>`;
+        freeGrid.innerHTML = `<div class="learn-empty-inline">Không có bài phù hợp</div>`;
       } else {
         freeGrid.innerHTML = filtered.map(renderEnhancedFreeAssignmentCard).join('');
       }
@@ -528,8 +528,8 @@ export async function mountPhaseDetail(id) {
     let searchQuery = '';
 
     const heroMetaParts = isStudent
-      ? [`Đã học ${taughtCount}/${totalLectures} bài`, ...(totalAssignments > 0 ? [`${completedAssignments}/${totalAssignments} đề`] : [])]
-      : [`${modules.length} chương`, `${totalLectures} bài giảng`, ...(totalAssignments > 0 ? [`${totalAssignments} bài tập`] : [])];
+      ? [`${taughtCount}/${totalLectures} bài`, ...(totalAssignments > 0 ? [`${completedAssignments}/${totalAssignments} đề`] : [])]
+      : [`${modules.length} chương`, `${totalLectures} bài`, ...(totalAssignments > 0 ? [`${totalAssignments} đề`] : [])];
 
     root.innerHTML = `
       <section class="phase-hub">
@@ -538,17 +538,17 @@ export async function mountPhaseDetail(id) {
           <div class="phase-hero-top">
             <a href="#/learn" class="phase-back-link">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-              <span>Lộ trình học tập</span>
+              <span>Trang chủ</span>
             </a>
           </div>
           <div class="phase-hero-row">
             <div class="phase-hero-left">
               <h1 class="phase-hero-title">${escapeHtml(phase.title)}</h1>
-              <p class="phase-hero-meta">${escapeHtml(heroMetaParts.join(' - '))}</p>
+              <p class="phase-hero-meta">${escapeHtml(heroMetaParts.join(' · '))}</p>
             </div>
             ${targetContinue ? `
               <button type="button" class="phase-hero-cta" id="phase-continue-btn">
-                <span>${recentActivity ? 'Học tiếp' : 'Bắt đầu học'}</span>
+                <span>${recentActivity ? 'Học tiếp' : 'Vào học'}</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
               </button>
             ` : ''}
@@ -602,7 +602,7 @@ export async function mountPhaseDetail(id) {
           </div>
         ` : `
           <div class="phase-empty-card">
-            <p>Chưa có chương nào trong giai đoạn này.</p>
+            <p>Chưa có chương nào.</p>
           </div>
         `}
       </section>
@@ -636,7 +636,7 @@ export async function mountPhaseDetail(id) {
 
         contentHost.innerHTML = matchedBlocks.length
           ? `<div class="phase-search-results">${matchedBlocks.join('')}</div>`
-          : `<div class="phase-empty-card"><p>Không tìm thấy bài học phù hợp với "${escapeHtml(q)}".</p></div>`;
+          : `<div class="phase-empty-card"><p>Không có bài phù hợp.</p></div>`;
         return;
       }
 
@@ -650,7 +650,7 @@ export async function mountPhaseDetail(id) {
             <h2 class="phase-chapter-card-title">${escapeHtml(activeEntry.mod.title)}</h2>
             <span class="phase-chapter-card-badge">${isStudent ? `${activeEntry.taught}/${activeEntry.total}` : `${activeEntry.total} bài`}</span>
           </div>
-          ${bodyHtml || '<div class="phase-empty-inline">Không có bài học phù hợp bộ lọc.</div>'}
+          ${bodyHtml || '<div class="phase-empty-inline">Không có bài phù hợp.</div>'}
         </section>
       `;
 

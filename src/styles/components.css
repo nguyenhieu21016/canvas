@@ -328,7 +328,7 @@
 
 .page-root > :not(.loading-state):not([data-skeleton]),
 .page-root-nh > :not(.loading-state):not([data-skeleton]) {
-  animation: page-enter 380ms cubic-bezier(0.32, 0.72, 0, 1) both;
+  animation: page-enter 380ms cubic-bezier(0.32, 0.72, 0, 1) backwards;
 }
 
 .page-root > .loading-state,
