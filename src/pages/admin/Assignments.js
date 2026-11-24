@@ -1808,15 +1808,18 @@ const ED_STYLES = `
       gap: 3px;
     }
     .nh-ed-outline-sec {
+      flex-shrink: 0;
       font-size: 11.5px;
       font-weight: 700;
+      line-height: 1.4;
       color: #64695F;
-      padding: 8px 8px 3px;
+      padding: 8px 8px 4px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
     .nh-ed-outline-row {
+      flex-shrink: 0;
       width: 100%;
       min-height: 34px;
       border: 0;
@@ -1869,6 +1872,8 @@ const ED_STYLES = `
     .nh-ed-part-pill {
       display: inline-flex;
       align-items: center;
+      align-self: flex-start;
+      flex-shrink: 0;
       gap: 8px;
       padding: 4px 14px 4px 4px;
       border-radius: 9999px;
