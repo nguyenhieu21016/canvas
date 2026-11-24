@@ -1325,10 +1325,13 @@ function persistCurrentEditorDraft() {
   saveEditorDraft(getEditorStorage(), state.profile?.id, currentEditorDraftId(), state.assignmentEditor);
 }
 
-export async function mountAssignmentManager(routeId) {
+export async function mountAssignmentManager(routeId, options = {}) {
+  const { skipSkeleton = false } = options;
   const root = pageRoot();
   const resolvedRouteId = routeId !== undefined ? routeId : route().id;
-  root.innerHTML = renderSkeletonAssignments();
+  if (!skipSkeleton) {
+    root.innerHTML = renderSkeletonAssignments();
+  }
   try {
     const storage = getEditorStorage();
     const userId = state.profile?.id;
@@ -1603,20 +1606,40 @@ const ED_STYLES = `
       color: #FFFFFF;
     }
 
-    /* Meta Drawer */
+    /* Meta Drawer (smooth grid-row accordion) */
     .nh-ed-meta-drawer {
-      display: none;
-      background: #FFFFFF;
-      border: 1px solid #E4E6DE;
-      border-radius: 20px;
-      padding: 18px 20px;
+      display: grid;
+      grid-template-rows: 0fr;
+      opacity: 0;
+      margin-top: -16px;
+      pointer-events: none;
+      transition:
+        grid-template-rows 380ms cubic-bezier(0.32, 0.72, 0, 1),
+        opacity 300ms cubic-bezier(0.4, 0, 0.2, 1),
+        margin-top 380ms cubic-bezier(0.32, 0.72, 0, 1);
     }
-    .nh-ed-meta-drawer.open { display: block; }
+    .nh-ed-meta-drawer.open {
+      grid-template-rows: 1fr;
+      opacity: 1;
+      margin-top: 0;
+      pointer-events: auto;
+    }
+    .nh-ed-meta-drawer-inner {
+      min-height: 0;
+      overflow: hidden;
+    }
+    .nh-ed-meta-drawer.open .nh-ed-meta-drawer-inner {
+      overflow: visible;
+    }
     .nh-ed-meta-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
       align-items: start;
+      background: #FFFFFF;
+      border: 1px solid #E4E6DE;
+      border-radius: 20px;
+      padding: 18px 20px;
     }
     .nh-ed-field-label {
       display: block;
@@ -1905,12 +1928,26 @@ const ED_STYLES = `
       flex-direction: column;
       gap: 11px;
       cursor: pointer;
-      transition: border-color 0.14s ease, background-color 0.14s ease;
+      transition: border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease;
     }
     .nh-ed-q-card:hover { border-color: #D3D7CB; }
     .nh-ed-q-card.active-q {
       background: #F7F7F2;
       border-color: #181B16;
+      box-shadow: 0 2px 10px rgba(24, 27, 22, 0.05);
+    }
+    .nh-ed-sol[open] .nh-ed-sol-body {
+      animation: details-enter 280ms cubic-bezier(0.32, 0.72, 0, 1) both;
+    }
+    .nh-ed-btn,
+    .nh-ed-btn-hero,
+    .nh-ed-seg-btn {
+      transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease, transform 180ms ease;
+    }
+    .nh-ed-btn:active,
+    .nh-ed-btn-hero:active,
+    .nh-ed-seg-btn:active {
+      transform: scale(0.985);
     }
     .nh-ed-q-head {
       display: flex;
@@ -2162,7 +2199,8 @@ export function renderAssignmentEditor(lectures) {
 
     <!-- Collapsible Metadata Drawer -->
     <div class="nh-ed-meta-drawer" id="nh-ed-meta-drawer">
-      <div class="nh-ed-meta-grid">
+      <div class="nh-ed-meta-drawer-inner">
+        <div class="nh-ed-meta-grid">
         <div>
           <label class="nh-ed-field-label" for="nh-ed-category-inp">Chủ đề / Phân loại</label>
           <input
@@ -2219,6 +2257,7 @@ export function renderAssignmentEditor(lectures) {
             <input class="nh-ed-input" id="assignment-pdf-input" name="pdf_url" value="${escapeHtml(assignment.pdf_url)}" placeholder="https://drive.google.com/..." required />
           </div>
         ` : ''}
+        </div>
       </div>
     </div>
 
@@ -2629,7 +2668,7 @@ export function wireAssignmentEditor(lectures) {
         state.assignmentEditor.assignment.pdf_url = '';
       }
       persistCurrentEditorDraft();
-      mountAssignmentManager();
+      mountAssignmentManager(undefined, { skipSkeleton: true });
     });
   });
 
@@ -3166,7 +3205,7 @@ export function wireAssignmentEditor(lectures) {
         if (pdfInput.value === 'latex') {
           state.assignmentEditor = collectEditor(lectures);
           state.assignmentEditor.assignment.pdf_url = 'latex';
-          mountAssignmentManager();
+          mountAssignmentManager(undefined, { skipSkeleton: true });
         } else {
           previewContainer.innerHTML = renderPdfPreview(pdfInput.value);
         }

@@ -53,7 +53,7 @@ export function renderLoading(label = 'Đang tải dữ liệu') {
 
 export function renderSkeletonDashboard() {
   return `
-    <section class="students-dashboard" style="display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch; opacity: 0.85; padding: var(--page-gutter);">
+    <section class="students-dashboard" data-skeleton="true" style="display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch; opacity: 0.85; padding: var(--page-gutter);">
       <!-- Sidebar Skeleton -->
       <div style="display: flex; flex-direction: column; gap: 16px; width: 320px; min-width: 320px;">
         <div class="panel" style="padding: 16px; border-radius: 16px; background: #ffffff; display: flex; flex-direction: column; gap: 12px;">
@@ -86,14 +86,7 @@ export function renderSkeletonDashboard() {
 
 export function renderSkeletonAssignments() {
   return `
-    <div class="nh-admin-breadcrumb-bar">
-      <div class="nh-admin-breadcrumb-inner">
-        <span class="skeleton" style="width: 112px; height: 14px; border-radius: 4px;"></span>
-        <span class="sep" aria-hidden="true">/</span>
-        <span class="skeleton" style="width: 150px; height: 14px; border-radius: 4px;"></span>
-      </div>
-    </div>
-    <section style="min-height: calc(100vh - 110px); background: #F7F7F2; padding-bottom: 48px;">
+    <section data-skeleton="true" style="min-height: calc(100vh - 110px); background: #F7F7F2; padding-bottom: 48px;">
       <div style="max-width: 920px; width: 100%; margin: 0 auto; padding: 24px 16px 0; display: flex; flex-direction: column; gap: 20px; opacity: 0.88;">
         <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
           <div style="display: flex; flex-direction: column; gap: 8px;">

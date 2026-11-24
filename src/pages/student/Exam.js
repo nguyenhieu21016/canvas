@@ -1,6 +1,6 @@
 import { state, isManager, pageRoot } from '../../store.js';
 import { go, wireRouteRetry } from '../../router.js';
-import { accountInitial, toast, renderLoading, renderErrorState, renderScoreProgress, renderMetric } from '../../lib/ui.js';
+import { accountInitial, toast, renderLoading, renderErrorState } from '../../lib/ui.js';
 import { escapeHtml, renderLatexText, setButtonLoading } from '../../lib/html.js';
 import { formatDateTime, formatScore, formatAnswer } from '../../lib/format.js';
 import { driveFrame } from '../../lib/drive.js';
@@ -412,62 +412,288 @@ export async function mountAssignmentExam(id) {
   }
 }
 
+const INSIGHTS_STYLES = `
+  <style>
+    .ins-hero-meta {
+      margin: 0;
+      font-size: 13.5px;
+      line-height: 1.45;
+      color: rgba(247, 247, 242, 0.72);
+      font-variant-numeric: tabular-nums;
+    }
+    .ins-card {
+      background: #FFFFFF;
+      border: 1px solid #E4E6DE;
+      border-radius: 20px;
+    }
+    .ins-card-head {
+      padding: 16px 20px;
+      border-bottom: 1px solid #EFEFE9;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      border-radius: 20px 20px 0 0;
+    }
+    .ins-card-title {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 700;
+      color: #181B16;
+    }
+    .ins-card-sub {
+      font-size: 13px;
+      font-weight: 500;
+      color: #64695F;
+      font-variant-numeric: tabular-nums;
+    }
+    .ins-stu-list {
+      display: flex;
+      flex-direction: column;
+    }
+    .ins-stu-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 20px;
+      border-bottom: 1px solid #EFEFE9;
+      transition: background-color 0.14s ease;
+    }
+    .ins-stu-row:last-child {
+      border-bottom: 0;
+      border-radius: 0 0 20px 20px;
+    }
+    .ins-stu-row:hover {
+      background: #FAFBF7;
+    }
+    .ins-stu-main {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex: 1;
+    }
+    .ins-stu-av {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #EBEDE6;
+      color: #181B16;
+      display: grid;
+      place-items: center;
+      font-size: 13.5px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .ins-stu-av.is-done {
+      background: #E9F2EC;
+      color: #1F4E36;
+    }
+    .ins-stu-info {
+      min-width: 0;
+    }
+    .ins-stu-name {
+      display: block;
+      font-size: 14.5px;
+      font-weight: 600;
+      color: #181B16;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .ins-stu-email {
+      display: block;
+      font-size: 12.5px;
+      color: #64695F;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .ins-stu-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+    }
+    .ins-stu-time {
+      font-size: 12.5px;
+      color: #64695F;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .ins-score-cell {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 112px;
+      font-variant-numeric: tabular-nums;
+    }
+    .ins-score-num {
+      font-size: 14px;
+      font-weight: 700;
+      color: #181B16;
+      width: 50px;
+      text-align: right;
+    }
+    .ins-score-track {
+      width: 56px;
+      height: 6px;
+      border-radius: 9999px;
+      background: #EBEDE6;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .ins-score-fill {
+      height: 100%;
+      border-radius: 9999px;
+      background: #2F6F4E;
+    }
+    .ins-score-fill.is-mid { background: #A16207; }
+    .ins-score-fill.is-low { background: #B8433A; }
+    .ins-badge-pending {
+      display: inline-flex;
+      align-items: center;
+      height: 28px;
+      padding: 0 12px;
+      border-radius: 9999px;
+      background: #EBEDE6;
+      color: #64695F;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .ins-btn-review {
+      height: 34px;
+      padding: 0 14px;
+      border-radius: 9999px;
+      border: 1px solid #D3D7CB;
+      background: #FFFFFF;
+      color: #181B16;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background-color 200ms ease, border-color 200ms ease, transform 180ms ease;
+    }
+    .ins-btn-review:hover {
+      background: #EBEDE6;
+      border-color: #181B16;
+    }
+    .ins-btn-review:active {
+      transform: scale(0.985);
+    }
+    .ins-empty {
+      padding: 44px 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: #64695F;
+    }
+    .ins-empty h3 {
+      margin: 0;
+      font-size: 15.5px;
+      font-weight: 700;
+      color: #181B16;
+    }
+    .ins-empty p {
+      margin: 0;
+      max-width: 340px;
+      font-size: 13.5px;
+    }
+    @media (max-width: 760px) {
+      .ins-stu-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 14px 16px;
+      }
+      .ins-stu-right {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        gap: 8px;
+      }
+      .ins-score-cell { min-width: 0; }
+      .ins-score-num { width: auto; text-align: left; }
+      .ins-score-track { display: none; }
+    }
+  </style>
+`;
+
 export async function mountAssignmentManagerView(id) {
   const root = pageRoot();
-  root.innerHTML = renderLoading('Đang tải thống kê bài tập');
+  root.innerHTML = `
+    ${INSIGHTS_STYLES}
+    <section class="asg-overview-hub" data-skeleton="true">
+      <div class="asg-overview-hero" style="opacity:0.9;">
+        <div class="skeleton" style="width:110px;height:14px;opacity:0.25;"></div>
+        <div class="skeleton" style="width:300px;max-width:85%;height:26px;opacity:0.35;"></div>
+        <div class="skeleton" style="width:190px;height:14px;opacity:0.25;"></div>
+      </div>
+      <div class="ins-card" style="padding:20px;display:grid;gap:14px;">
+        <div class="skeleton" style="width:100%;height:48px;border-radius:10px;"></div>
+        <div class="skeleton" style="width:100%;height:48px;border-radius:10px;"></div>
+      </div>
+    </section>
+  `;
   try {
     const [{ assignment, submittedStudents, pendingStudents, stats }] = await Promise.all([
       fetchAssignmentInsights(id),
     ]);
+    const lectureLabel = assignment.lectures?.title ?? 'Bài tập tự do';
+    const summaryParts = [lectureLabel, `${stats.submittedCount}/${stats.totalStudents} đã làm`];
+    if (stats.submittedCount > 0) {
+      summaryParts.push(`TB ${formatScore(stats.averageScore)}/10`);
+    }
+
     root.innerHTML = `
-      <section class="assignment-insights">
-        <div class="panel assignment-insights-hero">
-          <div>
-            <p class="eyebrow">Bài tập về nhà</p>
-            <h2>${escapeHtml(assignment.title)}</h2>
-            <p class="muted">${escapeHtml(assignment.lectures?.title ?? 'Bài tập tự do')}</p>
-          </div>
-          <div class="assignment-score-summary">
-            <span>Điểm trung bình</span>
-            <strong>${formatScore(stats.averageScore)}/10</strong>
-            ${renderScoreProgress(stats.averageScore)}
-          </div>
-          <div class="insight-actions">
-            <md-filled-tonal-button id="edit-assignment-from-insights">
-              <md-icon slot="icon">edit</md-icon>
-              Sửa đề
-            </md-filled-tonal-button>
-            <md-outlined-button id="all-assignments-from-insights">
-              <md-icon slot="icon">list</md-icon>
-              Danh sách đề
-            </md-outlined-button>
-          </div>
-        </div>
-        <section class="metric-grid">
-          ${renderMetric('Đã làm', `${stats.submittedCount}/${stats.totalStudents}`, 'task_alt')}
-          ${renderMetric('Chưa làm', stats.pendingCount, 'pending_actions')}
-          ${renderMetric('Điểm TB', formatScore(stats.averageScore), 'monitoring')}
-          ${renderMetric('Điểm cao nhất', formatScore(stats.bestScore), 'workspace_premium')}
-        </section>
-        <section class="manager-grid assignment-insights-grid">
-          <div class="panel">
-            <div class="panel-heading">
-              <div>
-                <p class="eyebrow">Đã làm</p>
-                <h2>${submittedStudents.length} học sinh</h2>
-              </div>
+      ${INSIGHTS_STYLES}
+      <section class="asg-overview-hub">
+        <header class="asg-overview-hero">
+          <a href="#/assignments" id="all-assignments-from-insights" class="phase-back-link">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            <span>Danh sách đề</span>
+          </a>
+          <div class="asg-overview-hero-row">
+            <div class="asg-overview-hero-left">
+              <h1 class="phase-hero-title">${escapeHtml(assignment.title)}</h1>
+              <p class="ins-hero-meta">${escapeHtml(summaryParts.join(' · '))}</p>
             </div>
-            ${renderSubmittedStudents(submittedStudents)}
-          </div>
-          <div class="panel">
-            <div class="panel-heading">
-              <div>
-                <p class="eyebrow">Chưa làm</p>
-                <h2>${pendingStudents.length} học sinh</h2>
-              </div>
+            <div class="asg-overview-hero-actions">
+              <button type="button" id="edit-assignment-from-insights" class="phase-hero-cta">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/></svg>
+                <span>Sửa đề</span>
+              </button>
             </div>
-            ${renderPendingStudents(pendingStudents)}
           </div>
+        </header>
+
+        <section class="ins-card">
+          <div class="ins-card-head">
+            <h2 class="ins-card-title">Học sinh (${stats.totalStudents})</h2>
+            <span class="ins-card-sub">${stats.submittedCount} đã làm · ${stats.pendingCount} chưa làm</span>
+          </div>
+          ${stats.totalStudents === 0 ? `
+            <div class="ins-empty">
+              <h3>Chưa có học sinh nào</h3>
+              <p>Khi học sinh nộp bài, điểm số và chi tiết từng câu sẽ hiển thị tại đây.</p>
+              <a class="ins-btn-review" href="#/assignments">Quay lại danh sách đề</a>
+            </div>
+          ` : `
+            <div class="ins-stu-list">
+              ${renderSubmittedStudents(submittedStudents)}
+              ${renderPendingStudents(pendingStudents)}
+            </div>
+          `}
         </section>
       </section>
     `;
@@ -482,7 +708,10 @@ export async function mountAssignmentManagerView(id) {
         toast(error.message, 'error');
       }
     });
-    document.querySelector('#all-assignments-from-insights')?.addEventListener('click', () => go('assignments'));
+    document.querySelector('#all-assignments-from-insights')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      go('assignments');
+    });
   } catch (error) {
     root.innerHTML = renderErrorState(error);
     wireRouteRetry(root);
@@ -490,67 +719,60 @@ export async function mountAssignmentManagerView(id) {
 }
 
 export function renderSubmittedStudents(rows) {
-  if (!rows.length) return '<div class="empty-state compact">Chưa có học sinh nộp bài.</div>';
-  return `
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Học sinh</th>
-            <th>Điểm</th>
-            <th>Nộp lúc</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          ${rows
-            .map(
-              ({ student, attempt }) => `
-                <tr>
-                  <td>
-                    <strong>${escapeHtml(student.full_name || student.email)}</strong>
-                    <small>${escapeHtml(student.email)}</small>
-                  </td>
-                  <td>
-                    <div class="score-progress-block">
-                      <span>${formatScore(attempt.score_10)}/10</span>
-                      ${renderScoreProgress(attempt.score_10)}
-                    </div>
-                  </td>
-                  <td>${formatDateTime(attempt.submitted_at)}</td>
-                  <td><a class="text-link" href="#/review/${attempt.id}">Chi tiết</a></td>
-                </tr>
-              `,
-            )
-            .join('')}
-        </tbody>
-      </table>
-    </div>
-  `;
+  if (!rows.length) return '';
+  return rows
+    .map(({ student, attempt }) => {
+      const score = Number(attempt.score_10 ?? 0);
+      const pct = Math.max(0, Math.min(100, score * 10));
+      const barTone = score < 5 ? 'is-low' : score < 7 ? 'is-mid' : '';
+      return `
+        <article class="ins-stu-row">
+          <div class="ins-stu-main">
+            <span class="ins-stu-av is-done" aria-hidden="true">${escapeHtml(accountInitial(student))}</span>
+            <div class="ins-stu-info">
+              <strong class="ins-stu-name">${escapeHtml(student.full_name || student.email)}</strong>
+              <small class="ins-stu-email">${escapeHtml(student.email)}</small>
+            </div>
+          </div>
+          <div class="ins-stu-right">
+            <span class="ins-stu-time">${escapeHtml(formatDateTime(attempt.submitted_at))}</span>
+            <div class="ins-score-cell">
+              <span class="ins-score-num">${formatScore(score)}/10</span>
+              <div class="ins-score-track" aria-hidden="true">
+                <div class="ins-score-fill ${barTone}" style="width:${pct}%"></div>
+              </div>
+            </div>
+            <a class="ins-btn-review" href="#/review/${escapeHtml(attempt.id)}">
+              <span>Xem bài</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </article>
+      `;
+    })
+    .join('');
 }
 
-
-
 export function renderPendingStudents(rows) {
-  if (!rows.length) return '<div class="empty-state compact">Tất cả học sinh đã nộp bài.</div>';
-  return `
-    <div class="student-status-list">
-      ${rows
-        .map(
-          (student) => `
-            <article class="student-status-row">
-              <span class="account-avatar" aria-hidden="true">${escapeHtml(accountInitial(student))}</span>
-              <div>
-                <strong>${escapeHtml(student.full_name || student.email)}</strong>
-                <small>${escapeHtml(student.email)}</small>
-              </div>
-              <span class="status">Chưa làm</span>
-            </article>
-          `,
-        )
-        .join('')}
-    </div>
-  `;
+  if (!rows.length) return '';
+  return rows
+    .map(
+      (student) => `
+        <article class="ins-stu-row">
+          <div class="ins-stu-main">
+            <span class="ins-stu-av" aria-hidden="true">${escapeHtml(accountInitial(student))}</span>
+            <div class="ins-stu-info">
+              <strong class="ins-stu-name">${escapeHtml(student.full_name || student.email)}</strong>
+              <small class="ins-stu-email">${escapeHtml(student.email)}</small>
+            </div>
+          </div>
+          <div class="ins-stu-right">
+            <span class="ins-badge-pending">Chưa làm</span>
+          </div>
+        </article>
+      `,
+    )
+    .join('');
 }
 
 export function relationOne(value) {

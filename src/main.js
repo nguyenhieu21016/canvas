@@ -25,10 +25,38 @@ let renderGeneration = 0;
 
 applyTheme();
 
+export function syncHeaderProfile() {
+  if (!state.profile) return;
+  const initial = accountInitial(state.profile);
+  const fullName = state.profile.full_name || state.profile.email?.split('@')[0] || 'U';
+  const avatarHtml = state.profile.avatar_url
+    ? `<img src="${escapeHtml(state.profile.avatar_url)}" alt="${escapeHtml(fullName)}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;" />`
+    : escapeHtml(initial);
+
+  const trigger = document.querySelector('#nh-avatar-trigger');
+  const dropAvatar = document.querySelector('.nh-dropdown-avatar');
+  const dropName = document.querySelector('.nh-dropdown-name');
+  if (trigger) trigger.innerHTML = avatarHtml;
+  if (dropAvatar) dropAvatar.innerHTML = avatarHtml;
+  if (dropName) dropName.textContent = fullName;
+}
+
 function renderShell() {
+  const userId = String(state.profile.id || '');
+  const existingRoot = document.querySelector('#page-root');
+  if (existingRoot && app.dataset.shellUser === userId) {
+    document.querySelector('#nh-user-dropdown')?.classList.remove('show');
+    syncHeaderProfile();
+    return;
+  }
+
+  app.dataset.shellUser = userId;
   const initial = accountInitial(state.profile);
   const fullName = escapeHtml(state.profile.full_name || state.profile.email.split('@')[0]);
   const userEmail = escapeHtml(state.profile.email);
+  const avatarHtml = state.profile.avatar_url
+    ? `<img src="${escapeHtml(state.profile.avatar_url)}" alt="${fullName}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;" />`
+    : escapeHtml(initial);
 
   app.innerHTML = `
     <div class="app-shell">
@@ -47,13 +75,13 @@ function renderShell() {
               <a href="#/grades" class="nh-header-pill">Bảng điểm</a>
             `}
             <button type="button" class="nh-user-avatar" id="nh-avatar-trigger" title="Hồ sơ cá nhân" aria-label="Hồ sơ cá nhân">
-              ${initial}
+              ${avatarHtml}
             </button>
 
             <!-- User Dropdown -->
             <div class="nh-user-dropdown" id="nh-user-dropdown">
               <div class="nh-dropdown-header">
-                <div class="nh-dropdown-avatar">${initial}</div>
+                <div class="nh-dropdown-avatar">${avatarHtml}</div>
                 <div class="nh-dropdown-info">
                   <span class="nh-dropdown-name">${fullName}</span>
                   <span class="nh-dropdown-email">${userEmail}</span>
@@ -112,6 +140,7 @@ function renderShell() {
 
   // Logout handler
   document.querySelector('#nh-logout-btn')?.addEventListener('click', () => {
+    delete app.dataset.shellUser;
     state.session = null;
     state.profile = null;
     go('learn');
@@ -123,6 +152,7 @@ function renderShell() {
 async function render() {
   const generation = ++renderGeneration;
   if (!hasSupabaseConfig || state.passwordRecovery || !state.session || !state.profile) {
+    delete app.dataset.shellUser;
     renderAuth();
     return;
   }
@@ -132,12 +162,8 @@ async function render() {
 }
 
 function renderRouteTransition() {
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!document.startViewTransition || reduceMotion) {
-    render();
-    return;
-  }
-  document.startViewTransition(() => render());
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  render();
 }
 
 document.addEventListener('click', (e) => {

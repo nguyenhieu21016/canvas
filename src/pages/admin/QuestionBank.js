@@ -354,7 +354,10 @@ const QB_STYLES = `
       flex-direction: column;
       gap: 16px;
     }
-    .qb-gen-panel.open { display: flex; }
+    .qb-gen-panel.open {
+      display: flex;
+      animation: drawer-reveal 340ms cubic-bezier(0.32, 0.72, 0, 1) both;
+    }
     .qb-gen-head {
       display: flex;
       align-items: center;
@@ -932,7 +935,33 @@ const QB_STYLES = `
       font-size: 13.5px;
       font-weight: 600;
     }
-    .qb-selection-bar.show { display: flex; }
+    .qb-selection-bar.show {
+      display: flex;
+      animation: item-enter 280ms cubic-bezier(0.32, 0.72, 0, 1) both;
+    }
+    .qb-gen-preview.open {
+      animation: panel-enter 340ms cubic-bezier(0.32, 0.72, 0, 1) both;
+    }
+    .qb-sol[open] .qb-sol-body {
+      animation: details-enter 280ms cubic-bezier(0.32, 0.72, 0, 1) both;
+    }
+    #qb-latex-modal[style*="flex"] > div {
+      animation: modal-pop 320ms cubic-bezier(0.32, 0.72, 0, 1) both;
+    }
+    .qb-btn-primary,
+    .qb-btn-secondary,
+    .qb-btn-hero,
+    .qb-preset-btn,
+    .qb-mini-btn {
+      transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease, transform 180ms ease;
+    }
+    .qb-btn-primary:active,
+    .qb-btn-secondary:active,
+    .qb-btn-hero:active,
+    .qb-preset-btn:active,
+    .qb-mini-btn:active {
+      transform: scale(0.985);
+    }
 
     /* Question Cards */
     .qb-list {
