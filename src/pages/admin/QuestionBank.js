@@ -613,8 +613,115 @@ const QB_STYLES = `
     .qb-matrix-wrap {
       border: 1px solid #E4E6DE;
       border-radius: 14px;
-      overflow-x: auto;
+      overflow: hidden;
       background: #FFFFFF;
+    }
+    .qb-matrix-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 10px 12px;
+      background: #F7F7F2;
+      border-bottom: 1px solid #E4E6DE;
+    }
+    .qb-matrix-ch-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .qb-matrix-ch-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      height: 30px;
+      padding: 0 11px;
+      border: 1px solid #E4E6DE;
+      border-radius: 9999px;
+      background: #FFFFFF;
+      color: #64695F;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.14s ease, color 0.14s ease, border-color 0.14s ease;
+    }
+    .qb-matrix-ch-pill:hover {
+      background: #EBEDE6;
+      border-color: #D3D7CB;
+      color: #181B16;
+    }
+    .qb-matrix-ch-pill.active {
+      background: #181B16;
+      border-color: #181B16;
+      color: #F7F7F2;
+    }
+    .qb-matrix-ch-cnt {
+      font-size: 11px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      opacity: 0.78;
+    }
+    .qb-matrix-ch-cnt:empty { display: none; }
+    .qb-matrix-tools {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .qb-matrix-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      height: 30px;
+      padding: 0 11px;
+      border: 1px solid #D3D7CB;
+      border-radius: 9999px;
+      background: #FFFFFF;
+      color: #64695F;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      font-variant-numeric: tabular-nums;
+      transition: background-color 0.14s ease, color 0.14s ease, border-color 0.14s ease;
+    }
+    .qb-matrix-toggle:hover {
+      background: #EBEDE6;
+      color: #181B16;
+    }
+    .qb-matrix-toggle.active {
+      background: #EBEDE6;
+      border-color: #181B16;
+      color: #181B16;
+    }
+    .qb-matrix-search {
+      width: 170px;
+      height: 30px;
+      padding: 0 11px;
+      border-radius: 9999px;
+      border: 1px solid #D3D7CB;
+      background: #FFFFFF;
+      color: #181B16;
+      font-family: inherit;
+      font-size: 12px;
+      outline: none;
+    }
+    .qb-matrix-search:focus {
+      border-color: #181B16;
+    }
+    .qb-matrix-scroll {
+      max-height: 380px;
+      overflow: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #D3D7CB transparent;
+    }
+    .qb-matrix-scroll::-webkit-scrollbar { width: 5px; height: 5px; }
+    .qb-matrix-scroll::-webkit-scrollbar-thumb {
+      background: #D3D7CB;
+      border-radius: 9999px;
     }
     .qb-matrix {
       width: 100%;
@@ -623,6 +730,9 @@ const QB_STYLES = `
       font-size: 13px;
     }
     .qb-matrix th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
       padding: 10px 12px;
       text-align: left;
       font-size: 12px;
@@ -1816,6 +1926,9 @@ export async function mountQuestionBank(root) {
   let genLevelMode = 'all'; // 'all' | 'ratio' | 'Nhận biết' | 'Thông hiểu' | 'Vận dụng'
   let genLevelRatio = { 'Nhận biết': 40, 'Thông hiểu': 40, 'Vận dụng': 20 };
   let genPublishNow = true;
+  let genMatrixChapter = 'all';
+  let genMatrixOnlySelected = false;
+  let genMatrixSearch = '';
 
   function typeset(el) {
     if (window.MathJax && el) {
@@ -2018,9 +2131,16 @@ export async function mountQuestionBank(root) {
       if (thSub) thSub.textContent = `${colTotals[td.key]} / ${colAvail[td.key]} sẵn`;
     });
 
+    const chapterTotals = new Map();
+    let selectedTopicCount = 0;
+
     for (const row of rows) {
       const vals = genMatrix[row.topic] || { mcq: 0, tf4: 0, short: 0 };
       const rTotal = (vals.mcq || 0) + (vals.tf4 || 0) + (vals.short || 0);
+      if (rTotal > 0) selectedTopicCount += 1;
+      const ch = row._chapter || 'Khác';
+      chapterTotals.set(ch, (chapterTotals.get(ch) || 0) + rTotal);
+
       const tr = genSlotsEl.querySelector(`tr[data-matrix-row="${CSS.escape(row.topic)}"]`);
       if (tr) {
         tr.classList.toggle('has-val', rTotal > 0);
@@ -2031,6 +2151,15 @@ export async function mountQuestionBank(root) {
         }
       }
     }
+
+    // Update chapter pill counts & selected-only count in-place
+    genSlotsEl.querySelectorAll('[data-mch-cnt]').forEach((el) => {
+      const ch = el.dataset.mchCnt;
+      const cnt = ch === 'all' ? grand : (chapterTotals.get(ch) || 0);
+      el.textContent = cnt > 0 ? String(cnt) : '';
+    });
+    const onlyCntEl = genSlotsEl.querySelector('[data-monly-cnt]');
+    if (onlyCntEl) onlyCntEl.textContent = `(${selectedTopicCount})`;
 
     const parts = [];
     if (colTotals.mcq > 0) parts.push(`<span class="qb-badge">${colTotals.mcq} TN</span>`);
@@ -2054,6 +2183,19 @@ export async function mountQuestionBank(root) {
       return;
     }
 
+    // Tag each row with its chapter
+    const chapterSet = new Set();
+    for (const row of rows) {
+      const sampleQ = row.pools.mcq[0] || row.pools.tf4[0] || row.pools.short[0];
+      const ch = sampleQ ? getChapterTag(sampleQ) : 'Khác';
+      row._chapter = ch;
+      chapterSet.add(ch);
+    }
+    const chapters = sortChapterTags(Array.from(chapterSet));
+    if (genMatrixChapter !== 'all' && !chapters.includes(genMatrixChapter)) {
+      genMatrixChapter = 'all';
+    }
+
     const renderCell = (topic, typeKey, availCount) => {
       if (availCount <= 0) {
         return `<td class="is-num"><span class="qb-step-na" title="Chưa có câu hỏi loại này">—</span></td>`;
@@ -2071,39 +2213,93 @@ export async function mountQuestionBank(root) {
       `;
     };
 
-    genSlotsEl.innerHTML = `
-      <table class="qb-matrix">
-        <thead>
+    const getVisibleRows = () => {
+      const qNorm = normalizeSearchText(genMatrixSearch.trim());
+      return rows.filter((row) => {
+        if (genMatrixChapter !== 'all' && row._chapter !== genMatrixChapter) return false;
+        if (genMatrixOnlySelected) {
+          const v = genMatrix[row.topic] || { mcq: 0, tf4: 0, short: 0 };
+          if ((v.mcq || 0) + (v.tf4 || 0) + (v.short || 0) <= 0) return false;
+        }
+        if (qNorm && !normalizeSearchText(`${row.topic} ${row._chapter}`).includes(qNorm)) return false;
+        return true;
+      });
+    };
+
+    const renderBodyHtml = (visibleRows) => {
+      if (!visibleRows.length) {
+        return `
           <tr>
-            <th>Dạng bài (${rows.length})</th>
-            ${GEN_TYPES.map((td) => `
-              <th class="is-num">
-                <span>${escapeHtml(td.shortLabel)}</span>
-                <span class="qb-matrix-th-sub" data-col-sub="${td.key}">0 / 0 sẵn</span>
-              </th>
-            `).join('')}
-            <th class="is-total">Tổng</th>
+            <td colspan="${GEN_TYPES.length + 2}" style="text-align:center;padding:28px 16px;color:#64695F;">
+              Không có dạng bài phù hợp.
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          ${rows.map((row) => {
-            const vals = genMatrix[row.topic] || { mcq: 0, tf4: 0, short: 0 };
-            const rTotal = (vals.mcq || 0) + (vals.tf4 || 0) + (vals.short || 0);
-            return `
-              <tr class="${rTotal > 0 ? 'has-val' : ''}" data-matrix-row="${escapeHtml(row.topic)}">
-                <td>
-                  <div class="qb-matrix-topic">${escapeHtml(row.topic)}</div>
-                  <div class="qb-matrix-avail-sub">Tổng sẵn: ${row.total} câu</div>
-                </td>
-                ${GEN_TYPES.map((td) => renderCell(row.topic, td.key, row.pools[td.key].length)).join('')}
-                <td class="is-total">
-                  <span class="qb-row-total ${rTotal > 0 ? 'is-active' : ''}">${rTotal}</span>
-                </td>
-              </tr>
-            `;
-          }).join('')}
-        </tbody>
-      </table>
+        `;
+      }
+      return visibleRows.map((row) => {
+        const vals = genMatrix[row.topic] || { mcq: 0, tf4: 0, short: 0 };
+        const rTotal = (vals.mcq || 0) + (vals.tf4 || 0) + (vals.short || 0);
+        return `
+          <tr class="${rTotal > 0 ? 'has-val' : ''}" data-matrix-row="${escapeHtml(row.topic)}">
+            <td>
+              <div class="qb-matrix-topic">${escapeHtml(row.topic)}</div>
+              <div class="qb-matrix-avail-sub">${escapeHtml(formatChapterPillLabel(row._chapter))} · Tổng sẵn: ${row.total} câu</div>
+            </td>
+            ${GEN_TYPES.map((td) => renderCell(row.topic, td.key, row.pools[td.key].length)).join('')}
+            <td class="is-total">
+              <span class="qb-row-total ${rTotal > 0 ? 'is-active' : ''}">${rTotal}</span>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    };
+
+    const initialVisible = getVisibleRows();
+    const showChapterPills = chapters.length > 1;
+
+    genSlotsEl.innerHTML = `
+      <div class="qb-matrix-bar">
+        <div class="qb-matrix-ch-bar" role="group" aria-label="Lọc ma trận theo chương">
+          ${showChapterPills ? `
+            <button type="button" class="qb-matrix-ch-pill ${genMatrixChapter === 'all' ? 'active' : ''}" data-mch="all">
+              <span>Tất cả</span>
+              <span class="qb-matrix-ch-cnt" data-mch-cnt="all"></span>
+            </button>
+            ${chapters.map((ch) => `
+              <button type="button" class="qb-matrix-ch-pill ${genMatrixChapter === ch ? 'active' : ''}" data-mch="${escapeHtml(ch)}" title="${escapeHtml(ch)}">
+                <span>${escapeHtml(formatChapterPillLabel(ch))}</span>
+                <span class="qb-matrix-ch-cnt" data-mch-cnt="${escapeHtml(ch)}"></span>
+              </button>
+            `).join('')}
+          ` : ''}
+        </div>
+        <div class="qb-matrix-tools">
+          <button type="button" class="qb-matrix-toggle ${genMatrixOnlySelected ? 'active' : ''}" id="qb-matrix-only-btn">
+            <span>Đã chọn</span>
+            <span data-monly-cnt>(0)</span>
+          </button>
+          <input type="search" id="qb-matrix-search" class="qb-matrix-search" placeholder="Tìm dạng bài..." value="${escapeHtml(genMatrixSearch)}" autocomplete="off" />
+        </div>
+      </div>
+      <div class="qb-matrix-scroll">
+        <table class="qb-matrix">
+          <thead>
+            <tr>
+              <th>Dạng bài (<span id="qb-matrix-vis-cnt">${initialVisible.length}</span>/${rows.length})</th>
+              ${GEN_TYPES.map((td) => `
+                <th class="is-num">
+                  <span>${escapeHtml(td.shortLabel)}</span>
+                  <span class="qb-matrix-th-sub" data-col-sub="${td.key}">0 / 0 sẵn</span>
+                </th>
+              `).join('')}
+              <th class="is-total">Tổng</th>
+            </tr>
+          </thead>
+          <tbody id="qb-matrix-tbody">
+            ${renderBodyHtml(initialVisible)}
+          </tbody>
+        </table>
+      </div>
     `;
 
     const updateCellValue = (topic, typeKey, rawVal, maxCap) => {
@@ -2128,25 +2324,57 @@ export async function mountQuestionBank(root) {
       syncMatrixSummary(rows);
     };
 
-    genSlotsEl.querySelectorAll('.qb-stepper').forEach((stepper) => {
-      const topic = stepper.dataset.stepperTopic;
-      const typeKey = stepper.dataset.stepperType;
-      const inp = stepper.querySelector('.qb-step-inp');
-      const maxCap = Number(inp?.max) || 0;
+    const bindSteppers = () => {
+      genSlotsEl.querySelectorAll('.qb-stepper').forEach((stepper) => {
+        const topic = stepper.dataset.stepperTopic;
+        const typeKey = stepper.dataset.stepperType;
+        const inp = stepper.querySelector('.qb-step-inp');
+        const maxCap = Number(inp?.max) || 0;
 
-      stepper.querySelectorAll('[data-step-delta]').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const delta = Number(btn.dataset.stepDelta) || 0;
-          const current = Number(genMatrix[topic]?.[typeKey]) || 0;
-          updateCellValue(topic, typeKey, current + delta, maxCap);
+        stepper.querySelectorAll('[data-step-delta]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const delta = Number(btn.dataset.stepDelta) || 0;
+            const current = Number(genMatrix[topic]?.[typeKey]) || 0;
+            updateCellValue(topic, typeKey, current + delta, maxCap);
+          });
+        });
+
+        inp?.addEventListener('input', () => {
+          updateCellValue(topic, typeKey, inp.value, maxCap);
         });
       });
+    };
 
-      inp?.addEventListener('input', () => {
-        updateCellValue(topic, typeKey, inp.value, maxCap);
+    const refreshTableBody = () => {
+      const vis = getVisibleRows();
+      const tbody = genSlotsEl.querySelector('#qb-matrix-tbody');
+      const visCnt = genSlotsEl.querySelector('#qb-matrix-vis-cnt');
+      if (tbody) tbody.innerHTML = renderBodyHtml(vis);
+      if (visCnt) visCnt.textContent = String(vis.length);
+      bindSteppers();
+      syncMatrixSummary(rows);
+    };
+
+    genSlotsEl.querySelectorAll('[data-mch]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        genMatrixChapter = btn.dataset.mch;
+        genSlotsEl.querySelectorAll('[data-mch]').forEach((b) => b.classList.toggle('active', b === btn));
+        refreshTableBody();
       });
     });
 
+    genSlotsEl.querySelector('#qb-matrix-only-btn')?.addEventListener('click', (e) => {
+      genMatrixOnlySelected = !genMatrixOnlySelected;
+      e.currentTarget.classList.toggle('active', genMatrixOnlySelected);
+      refreshTableBody();
+    });
+
+    genSlotsEl.querySelector('#qb-matrix-search')?.addEventListener('input', (e) => {
+      genMatrixSearch = e.target.value;
+      refreshTableBody();
+    });
+
+    bindSteppers();
     syncMatrixSummary(rows);
   }
 
