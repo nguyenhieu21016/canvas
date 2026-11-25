@@ -964,14 +964,28 @@ export async function deleteTeachingLog({ studentId, lectureId }) {
 export async function fetchSalaryMonth(month) {
   // month: 'YYYY-MM-DD' (first day of month)
   const client = requireSupabase();
-  const { data, error } = await withTimeout(
+  let { data, error } = await withTimeout(
     client
       .from('salary_schedules')
-      .select('*, profiles(full_name), salary_sessions(id, session_date, taught)')
+      .select('*, profiles(full_name), salary_sessions(id, session_date, taught, note)')
       .eq('month', month)
       .order('created_at'),
     'Tải lịch lương',
   );
+
+  // Graceful fallback if 20261125_salary_session_notes.sql migration has not been applied yet
+  if (error && /note|column/i.test(error.message || '')) {
+    const fallback = await withTimeout(
+      client
+        .from('salary_schedules')
+        .select('*, profiles(full_name), salary_sessions(id, session_date, taught)')
+        .eq('month', month)
+        .order('created_at'),
+      'Tải lịch lương',
+    );
+    data = fallback.data;
+    error = fallback.error;
+  }
 
   if (error) throw new Error(error.message);
   return data || [];
@@ -1030,6 +1044,20 @@ export async function setSessionState({ scheduleId, sessionDate, state }) {
     );
     assertOk({ error });
   }
+}
+
+export async function saveSessionNote({ scheduleId, sessionDate, note }) {
+  const client = requireSupabase();
+  const cleanNote = String(note ?? '').trim();
+  const { error } = await withTimeout(
+    client
+      .from('salary_sessions')
+      .update({ note: cleanNote })
+      .eq('schedule_id', scheduleId)
+      .eq('session_date', sessionDate),
+    'Lưu ghi chú buổi học',
+  );
+  assertOk({ error });
 }
 
 

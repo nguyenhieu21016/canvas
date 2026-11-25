@@ -6368,6 +6368,183 @@ tbody tr:hover {
   justify-content: flex-end;
 }
 
+.salary-day-cell.has-note {
+  position: relative;
+}
+
+.salary-day-cell.has-note::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.72;
+}
+
+.salary-day-cell.is-selected {
+  box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px #181B16;
+  z-index: 1;
+}
+
+.salary-date-pill {
+  border: 0;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.14s ease;
+}
+
+.salary-date-pill:hover {
+  background: #DDE0D6;
+}
+
+.salary-day-panel {
+  gap: 12px;
+}
+
+.salary-day-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.salary-day-panel-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #181B16;
+  font-variant-numeric: tabular-nums;
+}
+
+.salary-state-seg {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  padding: 3px;
+  border-radius: 9999px;
+  background: #EBEDE6;
+}
+
+.salary-state-btn {
+  height: 30px;
+  border: 0;
+  border-radius: 9999px;
+  background: transparent;
+  color: #64695F;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.14s ease, color 0.14s ease;
+}
+
+.salary-state-btn:hover {
+  color: #181B16;
+}
+
+.salary-state-btn.active {
+  background: #181B16;
+  color: #F7F7F2;
+}
+
+.salary-day-empty {
+  padding: 12px 10px;
+  border-radius: 12px;
+  background: #F7F7F2;
+  color: #64695F;
+  font-size: 12.5px;
+  text-align: center;
+  line-height: 1.45;
+}
+
+.salary-note-saved {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #2F6F4E;
+}
+
+.salary-note-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid #E4E6DE;
+  background: #F7F7F2;
+  color: #181B16;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.5;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.salary-note-input::placeholder {
+  color: #8A8F84;
+}
+
+.salary-note-input:focus {
+  background: #FFFFFF;
+  border-color: #181B16;
+}
+
+.salary-noted-block {
+  padding-top: 10px;
+  border-top: 1px solid #EFEFE9;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.salary-noted-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 140px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #D3D7CB transparent;
+}
+
+.salary-noted-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  width: 100%;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: #181B16;
+  font-family: inherit;
+  font-size: 12.5px;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+}
+
+.salary-noted-item:hover,
+.salary-noted-item.active {
+  background: #EBEDE6;
+}
+
+.salary-noted-date {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+.salary-noted-text {
+  color: #64695F;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
 @media (max-width: 780px) {
   .salary-b-layout {
     grid-template-columns: 1fr;
